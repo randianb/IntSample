@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3CDCBB62-E373-4537-97A7-659078F56338}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dev.System</RootNamespace>
+    <AssemblyName>Dev.System</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Int">
+      <HintPath>..\..\Interp\lib\Int.dll</HintPath>
+    </Reference>
+    <Reference Include="Int.Code">
+      <HintPath>..\..\Interp\lib\Int.Code.dll</HintPath>
+    </Reference>
+    <Reference Include="Int.Customer">
+      <HintPath>..\..\Interp\lib\Int.Customer.dll</HintPath>
+    </Reference>
+    <Reference Include="Int.Department">
+      <HintPath>..\..\Interp\lib\Int.Department.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RadDock, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Scheduler, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.UI, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="TelerikCommon, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CodeSizeGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeSizeGroup.Designer.cs">
+      <DependentUpon>CodeSizeGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeSewThread.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeSewThread.Designer.cs">
+      <DependentUpon>CodeSewThread.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeSize.Designer.cs">
+      <DependentUpon>CodeSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\SizeGroup.cs" />
+    <Compile Include="Controller\SewThread.cs" />
+    <Compile Include="Controller\Sizes.cs" />
+    <Compile Include="Controller\Color.cs" />
+    <Compile Include="Data\SizeData.cs" />
+    <Compile Include="Data\SizeGroupData.cs" />
+    <Compile Include="Data\SewThreadData.cs" />
+    <Compile Include="Data\ColorData.cs" />
+    <Compile Include="CodeColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeColor.Designer.cs">
+      <DependentUpon>CodeColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CodeSizeGroup.resx">
+      <DependentUpon>CodeSizeGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeSewThread.resx">
+      <DependentUpon>CodeSewThread.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeSize.resx">
+      <DependentUpon>CodeSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeColor.resx">
+      <DependentUpon>CodeColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\07_minus-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\07_plus-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\43-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BT_copy-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imgShipment.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock-80px-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\upload-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dev.Options\Dev.Options.csproj">
+      <Project>{cde30aec-043e-4b66-8803-6bb44120624f}</Project>
+      <Name>Dev.Options</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20-201.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20-241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\07_minus-201.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\07_plus-201.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\43-201.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel-201.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BT_copy-201.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock-80px-241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\upload-201.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reports\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

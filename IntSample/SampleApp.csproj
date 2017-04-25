@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9AA576BD-A6C0-4A4E-A86B-D4F45343DB31}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SampleApp</RootNamespace>
+    <AssemblyName>SampleApp</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\int-sample.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>SampleApp.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>35827EF24A7E79A6CACA9EA03CBA3477AA0E9929</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>SampleApp_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Int">
+      <HintPath>..\..\Interp\lib\Int.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.117.40\Telerik.WinControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.117.40\Telerik.WinControls.GridView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RadDiagram, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.117.40\Telerik.WinControls.RadDiagram.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RadDock, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.117.40\Telerik.WinControls.RadDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.117.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.117.40\Telerik.WinControls.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2017.1.117.40\TelerikCommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikExport, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\LoginData.cs" />
+    <Compile Include="MainApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainApp.Designer.cs">
+      <DependentUpon>MainApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLogin.Designer.cs">
+      <DependentUpon>MainLogin.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainApp.resx">
+      <DependentUpon>MainApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLogin.resx">
+      <DependentUpon>MainLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="SampleApp_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--sirinie -->
+    <None Include="Resources\bry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1478816263_alifashion003-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1478816388_line-74.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1478816448_line-74.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1478820432_5347_-_Github.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1478825277_ordering.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sheet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1478825357_cmyk-04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1478825321_product-sales-report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\history.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\workorder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1478825357_cmyk-041.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\request.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pattern.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fabric.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inbound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inbound1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\outbound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\outbound1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\embroidery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inspect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\interp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inbound2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\outbound2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\int-sample.ico" />
+    <None Include="Resources\interp1.png" />
+    <None Include="Resources\process-chart-flow-plan-481.png" />
+    <None Include="Resources\thread-brodery-clothes-482.png" />
+    <None Include="Resources\13-481.png" />
+    <None Include="Resources\1486706861_5360_-_Dzone1.png" />
+    <None Include="Resources\1486706735_themes1.png" />
+    <None Include="Resources\1478816448_line-741.png" />
+    <None Include="Resources\cut2.png" />
+    <None Include="Resources\fabric3.png" />
+    <None Include="Resources\inspect1.png" />
+    <None Include="Resources\sew1.png" />
+    <None Include="Resources\embroidery1.png" />
+    <None Include="Resources\print1.png" />
+    <None Include="Resources\cut1.png" />
+    <None Include="Resources\1487998625_fork11.png" />
+    <None Include="Resources\stock-481.png" />
+    <None Include="Resources\outbound5.png" />
+    <None Include="Resources\inbound6.png" />
+    <None Include="Resources\1486706565_barcode1.png" />
+    <None Include="Resources\stock1.png" />
+    <None Include="Resources\outbound4.png" />
+    <None Include="Resources\inbound5.png" />
+    <None Include="Resources\fabric2.png" />
+    <None Include="Resources\pattern2.png" />
+    <None Include="Resources\request1.png" />
+    <None Include="Resources\history1.png" />
+    <None Include="Resources\1478825321_product-sales-report1.png" />
+    <None Include="Resources\1478825357_cmyk-043.png" />
+    <None Include="Resources\workorder1.png" />
+    <None Include="Resources\1478825357_cmyk-042.png" />
+    <None Include="Resources\sheet1.png" />
+    <None Include="Resources\1478825277_ordering1.png" />
+    <None Include="Resources\export3.png" />
+    <None Include="Resources\basic3-019_presentation_keynote-482.png" />
+    <None Include="Resources\outbound3.png" />
+    <None Include="Resources\inbound4.png" />
+    <None Include="Resources\basic3-017_invoice_bill-482.png" />
+    <None Include="Resources\help_desk-482.png" />
+    <None Include="Resources\basic3-064_database-482.png" />
+    <None Include="Resources\export2.png" />
+    <None Include="Resources\export1.png" />
+    <None Include="Resources\basic3-017_invoice_bill-481.png" />
+    <None Include="Resources\help_desk-481.png" />
+    <None Include="Resources\inbound3.png" />
+    <None Include="Resources\basic3-019_presentation_keynote-481.png" />
+    <None Include="Resources\basic3-064_database-481.png" />
+    <None Include="Resources\export.png" />
+    <None Include="Resources\Setting-241.png" />
+    <None Include="Resources\Setting-24.png" />
+    <None Include="Resources\1487998625_fork1.png" />
+    <None Include="Resources\basic3-064_database-48.png" />
+    <None Include="Resources\basic3-019_presentation_keynote-48.png" />
+    <None Include="Resources\basic3-017_invoice_bill-48.png" />
+    <None Include="Resources\help_desk-48.png" />
+    <None Include="Resources\yarn-ball-48.png" />
+    <None Include="Resources\pattern1.png" />
+    <None Include="Resources\fabric1.png" />
+    <None Include="Resources\1478820432_5347_-_Github1.png" />
+    <None Include="Resources\thread-brodery-clothes-481.png" />
+    <None Include="Resources\process-chart-flow-plan-48.png" />
+    <None Include="Resources\1486706735_themes.png" />
+    <None Include="Resources\1486706861_5360_-_Dzone.png" />
+    <None Include="Resources\13-48.png" />
+    <None Include="Resources\thread-brodery-clothes-48.png" />
+    <None Include="Resources\stock-48.png" />
+    <None Include="Resources\1486706565_barcode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dev.Options\Dev.Options.csproj">
+      <Project>{cde30aec-043e-4b66-8803-6bb44120624f}</Project>
+      <Name>Dev.Options</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dev.Sales\Dev.Sales.csproj">
+      <Project>{367beb2f-64c6-4376-90c4-cd4b396b56f7}</Project>
+      <Name>Dev.Sales</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dev.System\Dev.Codes.csproj">
+      <Project>{3cdcbb62-e373-4537-97a7-659078f56338}</Project>
+      <Name>Dev.Codes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

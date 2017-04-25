@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetSizeGroup" targetNamespace="http://tempuri.org/DataSetSizeGroup.xsd" xmlns:mstns="http://tempuri.org/DataSetSizeGroup.xsd" xmlns="http://tempuri.org/DataSetSizeGroup.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetSizeGroup" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetSizeGroup" msprop:Generator_UserDSName="DataSetSizeGroup">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTableSizeGroup" msprop:Generator_TableClassName="DataTableSizeGroupDataTable" msprop:Generator_TableVarName="tableDataTableSizeGroup" msprop:Generator_TablePropName="DataTableSizeGroup" msprop:Generator_RowDeletingName="DataTableSizeGroupRowDeleting" msprop:Generator_RowChangingName="DataTableSizeGroupRowChanging" msprop:Generator_RowEvHandlerName="DataTableSizeGroupRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableSizeGroupRowDeleted" msprop:Generator_UserTableName="DataTableSizeGroup" msprop:Generator_RowChangedName="DataTableSizeGroupRowChanged" msprop:Generator_RowEvArgName="DataTableSizeGroupRowChangeEvent" msprop:Generator_RowClassName="DataTableSizeGroupRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SizeGroupIdx" msprop:Generator_ColumnVarNameInTable="columnSizeGroupIdx" msprop:Generator_ColumnPropNameInRow="SizeGroupIdx" msprop:Generator_ColumnPropNameInTable="SizeGroupIdxColumn" msprop:Generator_UserColumnName="SizeGroupIdx" type="xs:int" minOccurs="0" />
+              <xs:element name="Client" msprop:Generator_ColumnVarNameInTable="columnClient" msprop:Generator_ColumnPropNameInRow="Client" msprop:Generator_ColumnPropNameInTable="ClientColumn" msprop:Generator_UserColumnName="Client" type="xs:int" minOccurs="0" />
+              <xs:element name="SizeGroupName" msprop:Generator_ColumnVarNameInTable="columnSizeGroupName" msprop:Generator_ColumnPropNameInRow="SizeGroupName" msprop:Generator_ColumnPropNameInTable="SizeGroupNameColumn" msprop:Generator_UserColumnName="SizeGroupName" type="xs:string" minOccurs="0" />
+              <xs:element name="SizeIdx1" msprop:Generator_ColumnVarNameInTable="columnSizeIdx1" msprop:Generator_ColumnPropNameInRow="SizeIdx1" msprop:Generator_ColumnPropNameInTable="SizeIdx1Column" msprop:Generator_UserColumnName="SizeIdx1" type="xs:int" minOccurs="0" />
+              <xs:element name="SizeIdx2" msprop:Generator_ColumnVarNameInTable="columnSizeIdx2" msprop:Generator_ColumnPropNameInRow="SizeIdx2" msprop:Generator_ColumnPropNameInTable="SizeIdx2Column" msprop:Generator_UserColumnName="SizeIdx2" type="xs:int" minOccurs="0" />
+              <xs:element name="SizeIdx3" msprop:Generator_ColumnVarNameInTable="columnSizeIdx3" msprop:Generator_ColumnPropNameInRow="SizeIdx3" msprop:Generator_ColumnPropNameInTable="SizeIdx3Column" msprop:Generator_UserColumnName="SizeIdx3" type="xs:int" minOccurs="0" />
+              <xs:element name="SizeIdx4" msprop:Generator_ColumnVarNameInTable="columnSizeIdx4" msprop:Generator_ColumnPropNameInRow="SizeIdx4" msprop:Generator_ColumnPropNameInTable="SizeIdx4Column" msprop:Generator_UserColumnName="SizeIdx4" type="xs:int" minOccurs="0" />
+              <xs:element name="SizeIdx5" msprop:Generator_ColumnVarNameInTable="columnSizeIdx5" msprop:Generator_ColumnPropNameInRow="SizeIdx5" msprop:Generator_ColumnPropNameInTable="SizeIdx5Column" msprop:Generator_UserColumnName="SizeIdx5" type="xs:int" minOccurs="0" />
+              <xs:element name="SizeIdx6" msprop:Generator_ColumnVarNameInTable="columnSizeIdx6" msprop:Generator_ColumnPropNameInRow="SizeIdx6" msprop:Generator_ColumnPropNameInTable="SizeIdx6Column" msprop:Generator_UserColumnName="SizeIdx6" type="xs:int" minOccurs="0" />
+              <xs:element name="SizeIdx7" msprop:Generator_ColumnVarNameInTable="columnSizeIdx7" msprop:Generator_ColumnPropNameInRow="SizeIdx7" msprop:Generator_ColumnPropNameInTable="SizeIdx7Column" msprop:Generator_UserColumnName="SizeIdx7" type="xs:int" minOccurs="0" />
+              <xs:element name="SizeIdx8" msprop:Generator_ColumnVarNameInTable="columnSizeIdx8" msprop:Generator_ColumnPropNameInRow="SizeIdx8" msprop:Generator_ColumnPropNameInTable="SizeIdx8Column" msprop:Generator_UserColumnName="SizeIdx8" type="xs:int" minOccurs="0" />
+              <xs:element name="IsUse" msprop:Generator_ColumnVarNameInTable="columnIsUse" msprop:Generator_ColumnPropNameInRow="IsUse" msprop:Generator_ColumnPropNameInTable="IsUseColumn" msprop:Generator_UserColumnName="IsUse" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

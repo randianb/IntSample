@@ -1,0 +1,6 @@
+D:\git\IntSample\Dev.System\obj\Debug\Dev.Systems.csprojResolveAssemblyReference.cache
+D:\git\IntSample\Dev.System\obj\Debug\Dev.Sales.OrderMain.resources
+D:\git\IntSample\Dev.System\obj\Debug\Dev.Systems.CodeColor.resources
+D:\git\IntSample\Dev.System\obj\Debug\Dev.System.Properties.Resources.resources
+D:\git\IntSample\Dev.System\obj\Debug\Dev.Systems.csproj.GenerateResource.Cache
+D:\git\IntSample\Dev.System\obj\Debug\Dev.System.dll.licenses

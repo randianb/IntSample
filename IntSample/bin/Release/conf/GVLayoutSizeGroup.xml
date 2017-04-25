@@ -1,0 +1,19 @@
+﻿<RadGridView ShowGroupPanel="False" BackColor="191, 219, 255" ForeColor="Black" Text="radGridView1" Font="Segoe UI, 8.25pt" Cursor="Default" Margin="3, 4, 3, 4" RightToLeft="No" TabIndex="11" ImeMode="NoControl">
+  <MasterTemplate MultiSelect="True" PageSize="50" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" AutoGenerateColumns="False">
+    <Columns>
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="SizeGroupIdx" Name="SizeGroupIdx" IsVisible="True" HeaderText="ID" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CustIdx" DisplayMember="CustName" DataType="System.Int32" Width="100" FieldName="Client" Name="Client" IsVisible="True" HeaderText="Buyer" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="200" FieldName="SizeGroupName" Name="SizeGroupName" IsVisible="True" HeaderText="Size Group" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="100" FieldName="SizeIdx1" Name="SizeIdx1" IsVisible="True" HeaderText="Size1" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="100" FieldName="SizeIdx2" Name="SizeIdx2" IsVisible="True" HeaderText="Size2" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="100" FieldName="SizeIdx3" Name="SizeIdx3" IsVisible="True" HeaderText="Size3" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="100" FieldName="SizeIdx4" Name="SizeIdx4" IsVisible="True" HeaderText="Size4" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="100" FieldName="SizeIdx5" Name="SizeIdx5" IsVisible="True" HeaderText="Size5" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="100" FieldName="SizeIdx6" Name="SizeIdx6" IsVisible="True" HeaderText="Size6" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="100" FieldName="SizeIdx7" Name="SizeIdx7" IsVisible="True" HeaderText="Size7" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="100" FieldName="SizeIdx8" Name="SizeIdx8" IsVisible="True" HeaderText="Size8" />
+      <Telerik.WinControls.UI.GridViewCheckBoxColumn DataType="System.Int32" Width="40" FieldName="IsUse" Name="IsUse" IsVisible="True" HeaderText="Use" WrapText="True" />
+    </Columns>
+    <ViewDefinition xsi:type="Telerik.WinControls.UI.TableViewDefinition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+  </MasterTemplate>
+</RadGridView>

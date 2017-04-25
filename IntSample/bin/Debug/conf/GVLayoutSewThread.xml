@@ -1,0 +1,12 @@
+﻿<RadGridView ShowGroupPanel="False" BackColor="191, 219, 255" ForeColor="Black" Text="radGridView1" Font="Segoe UI, 8.25pt" Cursor="Default" RightToLeft="No" TabIndex="11" ImeMode="NoControl">
+  <MasterTemplate MultiSelect="True" EnablePaging="True" PageSize="50" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" AutoGenerateColumns="False">
+    <Columns>
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="SewThreadIdx" Name="SewThreadIdx" IsVisible="True" HeaderText="ID" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CustIdx" DisplayMember="CustName" DataType="System.Int32" Width="100" FieldName="SewThreadCustIdx" Name="SewThreadCustIdx" IsVisible="True" HeaderText="Maker" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="100" FieldName="ColorIdx" Name="ColorIdx" IsVisible="True" HeaderText="Color" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="300" FieldName="SewThreadName" Name="SewThreadName" IsVisible="True" HeaderText="Sewing Thread" />
+      <Telerik.WinControls.UI.GridViewCheckBoxColumn DataType="System.Int32" Width="40" FieldName="IsUse" Name="IsUse" IsVisible="True" HeaderText="Use" WrapText="True" />
+    </Columns>
+    <ViewDefinition xsi:type="Telerik.WinControls.UI.TableViewDefinition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+  </MasterTemplate>
+</RadGridView>
