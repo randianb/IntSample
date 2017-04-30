@@ -218,7 +218,7 @@ namespace Dev.Sales.Data
         /// Update
         /// </summary>
         public static bool Update(int Idx, string Fileno, int DeptIdx, int Reorder, string ReorderReason,
-            DateTime Indate, int Buyer, string Pono, string Styleno, 
+            DateTime Indate, int Buyer, int Vendor, int Country, string Pono, string Styleno, string SampleType, string InspType,
             string Season, string Description, DateTime DeliveryDate, int IsPrinting,
             int EmbelishId1, int EmbelishId2, int SizeGroupIdx, int SewThreadIdx,
             int OrderQty, double OrderPrice, double OrderAmount, string Remark,
@@ -255,13 +255,25 @@ namespace Dev.Sales.Data
 
                 _cmd.Parameters.Add("@Buyer", SqlDbType.Int, 4);
                 _cmd.Parameters["@Buyer"].Value = Buyer;
-                                
+
+                _cmd.Parameters.Add("@Vendor", SqlDbType.Int, 4);
+                _cmd.Parameters["@Vendor"].Value = Vendor;
+
+                _cmd.Parameters.Add("@Country", SqlDbType.Int, 4);
+                _cmd.Parameters["@Country"].Value = Country;
+
                 _cmd.Parameters.Add("@Pono", SqlDbType.NVarChar, 50);
                 _cmd.Parameters["@Pono"].Value = Pono;
 
                 _cmd.Parameters.Add("@Styleno", SqlDbType.NVarChar, 50);
                 _cmd.Parameters["@Styleno"].Value = Styleno;
-                                
+
+                _cmd.Parameters.Add("@SampleType", SqlDbType.NVarChar, 3);
+                _cmd.Parameters["@SampleType"].Value = SampleType;
+
+                _cmd.Parameters.Add("@InspType", SqlDbType.NVarChar, 20);
+                _cmd.Parameters["@InspType"].Value = InspType;
+
                 _cmd.Parameters.Add("@Season", SqlDbType.NVarChar, 50);
                 _cmd.Parameters["@Season"].Value = Season;
 
@@ -435,6 +447,7 @@ namespace Dev.Sales.Data
                 _cmd.Parameters.Add("@EmbIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@EmbIdx"].Value = SearchKey[CommonValues.KeyName.EmbelishId1];
 
+                // 1711001-01S
                 _cmd.Parameters.Add("@Fileno", SqlDbType.NVarChar, 40);
                 _cmd.Parameters["@Fileno"].Value = fileno;
 

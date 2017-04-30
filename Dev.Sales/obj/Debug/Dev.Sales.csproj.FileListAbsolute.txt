@@ -32,3 +32,5 @@ D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.RadDock.xml
 D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.frmNewOrder.resources
 D:\git\IntSample\Dev.Sales\bin\Debug\Dev.System.dll
 D:\git\IntSample\Dev.Sales\bin\Debug\Dev.System.pdb
+D:\git\IntSample\Dev.Sales\bin\Debug\Int.Users.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Int.Costcenter.dll

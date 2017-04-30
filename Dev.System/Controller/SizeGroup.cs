@@ -186,6 +186,18 @@ namespace Dev.Codes.Controller
             ds = Data.SizeGroupData.Getlist();
             return ds;
         }
+        /// <summary>
+        /// 신규 샘플오더 생성시 사이즈 그룹 선택창을 위한 조회 
+        /// </summary>
+        /// <returns></returns>
+        public static DataSet GetlistName()
+        {
+            DataSet ds = new DataSet();
+            ds = Data.SizeGroupData.GetlistName();
+            return ds;
+        }
+        
+
         public static DataSet Getlist(int Client)
         {
             DataSet ds = new DataSet();

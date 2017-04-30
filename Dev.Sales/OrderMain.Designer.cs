@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn5 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn3 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn4 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn6 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn7 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn8 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn1 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn2 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -63,16 +63,20 @@
             this.gvOrderActual = new Telerik.WinControls.UI.RadGridView();
             this.toolTabStrip3 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
-            this.documentContainer1 = new Telerik.WinControls.UI.Docking.DocumentContainer();
+            this.twColorSize = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.gvColorSize = new Telerik.WinControls.UI.RadGridView();
             this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.toolWindow1 = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.documentContainer1 = new Telerik.WinControls.UI.Docking.DocumentContainer();
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
             this.toolWindow2 = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.toolTabStrip2 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
-            this.toolWindow3 = new Telerik.WinControls.UI.Docking.ToolWindow();
-            this.toolWindow4 = new Telerik.WinControls.UI.Docking.ToolWindow();
-            this.gvColorSize = new Telerik.WinControls.UI.RadGridView();
+            this.twStatus = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.twFabric = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.gvFabric = new Telerik.WinControls.UI.RadGridView();
+            this.twOperation = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.twHistory = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.dataSetSizeGroup = new Dev.Sales.Data.DataSetSizeGroup();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlDept)).BeginInit();
@@ -94,22 +98,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).BeginInit();
-            this.documentContainer1.SuspendLayout();
+            this.twColorSize.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
             this.toolTabStrip1.SuspendLayout();
             this.toolWindow1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).BeginInit();
+            this.documentContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
             this.documentTabStrip1.SuspendLayout();
             this.toolWindow2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip2)).BeginInit();
             this.toolTabStrip2.SuspendLayout();
-            this.toolWindow3.SuspendLayout();
-            this.toolWindow4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize.MasterTemplate)).BeginInit();
+            this.twFabric.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvFabric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvFabric.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetSizeGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -206,7 +211,7 @@
             // 
             this.radLabel2.Location = new System.Drawing.Point(103, 3);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(34, 18);
+            this.radLabel2.Size = new System.Drawing.Size(34, 14);
             this.radLabel2.TabIndex = 3;
             this.radLabel2.Text = "Buyer";
             // 
@@ -308,97 +313,97 @@
             // 
             this.gvOrderActual.MasterTemplate.AllowAddNewRow = false;
             this.gvOrderActual.MasterTemplate.AutoGenerateColumns = false;
-            gridViewDecimalColumn5.DataType = typeof(int);
-            gridViewDecimalColumn5.EnableExpressionEditor = false;
-            gridViewDecimalColumn5.FieldName = "Idx";
-            gridViewDecimalColumn5.HeaderText = "Idx";
-            gridViewDecimalColumn5.IsAutoGenerated = true;
-            gridViewDecimalColumn5.Name = "Idx";
-            gridViewDecimalColumn5.ReadOnly = true;
-            gridViewDecimalColumn5.Width = 77;
-            gridViewDateTimeColumn3.EnableExpressionEditor = false;
-            gridViewDateTimeColumn3.FieldName = "Indate";
-            gridViewDateTimeColumn3.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            gridViewDateTimeColumn3.HeaderText = "Indate";
-            gridViewDateTimeColumn3.Name = "Indate";
-            gridViewDateTimeColumn3.Width = 118;
-            gridViewTextBoxColumn7.EnableExpressionEditor = false;
-            gridViewTextBoxColumn7.FieldName = "Pono";
-            gridViewTextBoxColumn7.HeaderText = "Pono";
-            gridViewTextBoxColumn7.Name = "Pono";
-            gridViewTextBoxColumn7.Width = 154;
-            gridViewTextBoxColumn8.EnableExpressionEditor = false;
-            gridViewTextBoxColumn8.FieldName = "Styleno";
-            gridViewTextBoxColumn8.HeaderText = "Styleno";
-            gridViewTextBoxColumn8.Name = "Styleno";
-            gridViewTextBoxColumn8.Width = 180;
-            gridViewTextBoxColumn9.EnableExpressionEditor = false;
-            gridViewTextBoxColumn9.FieldName = "Fileno";
-            gridViewTextBoxColumn9.HeaderText = "Fileno";
-            gridViewTextBoxColumn9.Name = "Fileno";
-            gridViewTextBoxColumn9.Width = 128;
-            gridViewTextBoxColumn10.EnableExpressionEditor = false;
-            gridViewTextBoxColumn10.FieldName = "Season";
-            gridViewTextBoxColumn10.HeaderText = "Season";
-            gridViewTextBoxColumn10.Name = "Season";
-            gridViewTextBoxColumn10.Width = 98;
-            gridViewTextBoxColumn11.EnableExpressionEditor = false;
-            gridViewTextBoxColumn11.FieldName = "Description";
-            gridViewTextBoxColumn11.HeaderText = "Description";
-            gridViewTextBoxColumn11.Name = "Description";
-            gridViewTextBoxColumn11.Width = 136;
-            gridViewDateTimeColumn4.EnableExpressionEditor = false;
-            gridViewDateTimeColumn4.FieldName = "DeliveryDate";
-            gridViewDateTimeColumn4.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            gridViewDateTimeColumn4.HeaderText = "DeliveryDate";
-            gridViewDateTimeColumn4.IsAutoGenerated = true;
-            gridViewDateTimeColumn4.Name = "DeliveryDate";
-            gridViewDateTimeColumn4.Width = 105;
-            gridViewTextBoxColumn12.EnableExpressionEditor = false;
-            gridViewTextBoxColumn12.Expression = "GETMONTH(DeliveryDate)";
-            gridViewTextBoxColumn12.HeaderText = "DelMon";
-            gridViewTextBoxColumn12.Name = "DelMon";
-            gridViewTextBoxColumn12.ReadOnly = true;
-            gridViewTextBoxColumn12.Width = 128;
-            gridViewDecimalColumn6.DataType = typeof(int);
-            gridViewDecimalColumn6.EnableExpressionEditor = false;
-            gridViewDecimalColumn6.FieldName = "OrderQty";
-            gridViewDecimalColumn6.HeaderText = "OrderQty";
-            gridViewDecimalColumn6.Name = "OrderQty";
-            gridViewDecimalColumn6.Width = 100;
-            gridViewDecimalColumn7.DataType = typeof(double);
-            gridViewDecimalColumn7.EnableExpressionEditor = false;
-            gridViewDecimalColumn7.FieldName = "OrderPrice";
-            gridViewDecimalColumn7.HeaderText = "OrderPrice";
-            gridViewDecimalColumn7.Name = "OrderPrice";
-            gridViewDecimalColumn7.Width = 82;
-            gridViewDecimalColumn8.DataType = typeof(double);
-            gridViewDecimalColumn8.EnableExpressionEditor = false;
-            gridViewDecimalColumn8.FieldName = "OrderAmount";
-            gridViewDecimalColumn8.HeaderText = "OrderAmount";
-            gridViewDecimalColumn8.Name = "OrderAmount";
-            gridViewDecimalColumn8.Width = 80;
+            gridViewDecimalColumn1.DataType = typeof(int);
+            gridViewDecimalColumn1.EnableExpressionEditor = false;
+            gridViewDecimalColumn1.FieldName = "Idx";
+            gridViewDecimalColumn1.HeaderText = "Idx";
+            gridViewDecimalColumn1.IsAutoGenerated = true;
+            gridViewDecimalColumn1.Name = "Idx";
+            gridViewDecimalColumn1.ReadOnly = true;
+            gridViewDecimalColumn1.Width = 77;
+            gridViewDateTimeColumn1.EnableExpressionEditor = false;
+            gridViewDateTimeColumn1.FieldName = "Indate";
+            gridViewDateTimeColumn1.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            gridViewDateTimeColumn1.HeaderText = "Indate";
+            gridViewDateTimeColumn1.Name = "Indate";
+            gridViewDateTimeColumn1.Width = 118;
+            gridViewTextBoxColumn1.EnableExpressionEditor = false;
+            gridViewTextBoxColumn1.FieldName = "Pono";
+            gridViewTextBoxColumn1.HeaderText = "Pono";
+            gridViewTextBoxColumn1.Name = "Pono";
+            gridViewTextBoxColumn1.Width = 154;
+            gridViewTextBoxColumn2.EnableExpressionEditor = false;
+            gridViewTextBoxColumn2.FieldName = "Styleno";
+            gridViewTextBoxColumn2.HeaderText = "Styleno";
+            gridViewTextBoxColumn2.Name = "Styleno";
+            gridViewTextBoxColumn2.Width = 180;
+            gridViewTextBoxColumn3.EnableExpressionEditor = false;
+            gridViewTextBoxColumn3.FieldName = "Fileno";
+            gridViewTextBoxColumn3.HeaderText = "Fileno";
+            gridViewTextBoxColumn3.Name = "Fileno";
+            gridViewTextBoxColumn3.Width = 128;
+            gridViewTextBoxColumn4.EnableExpressionEditor = false;
+            gridViewTextBoxColumn4.FieldName = "Season";
+            gridViewTextBoxColumn4.HeaderText = "Season";
+            gridViewTextBoxColumn4.Name = "Season";
+            gridViewTextBoxColumn4.Width = 98;
+            gridViewTextBoxColumn5.EnableExpressionEditor = false;
+            gridViewTextBoxColumn5.FieldName = "Description";
+            gridViewTextBoxColumn5.HeaderText = "Description";
+            gridViewTextBoxColumn5.Name = "Description";
+            gridViewTextBoxColumn5.Width = 136;
+            gridViewDateTimeColumn2.EnableExpressionEditor = false;
+            gridViewDateTimeColumn2.FieldName = "DeliveryDate";
+            gridViewDateTimeColumn2.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            gridViewDateTimeColumn2.HeaderText = "DeliveryDate";
+            gridViewDateTimeColumn2.IsAutoGenerated = true;
+            gridViewDateTimeColumn2.Name = "DeliveryDate";
+            gridViewDateTimeColumn2.Width = 105;
+            gridViewTextBoxColumn6.EnableExpressionEditor = false;
+            gridViewTextBoxColumn6.Expression = "GETMONTH(DeliveryDate)";
+            gridViewTextBoxColumn6.HeaderText = "DelMon";
+            gridViewTextBoxColumn6.Name = "DelMon";
+            gridViewTextBoxColumn6.ReadOnly = true;
+            gridViewTextBoxColumn6.Width = 128;
+            gridViewDecimalColumn2.DataType = typeof(int);
+            gridViewDecimalColumn2.EnableExpressionEditor = false;
+            gridViewDecimalColumn2.FieldName = "OrderQty";
+            gridViewDecimalColumn2.HeaderText = "OrderQty";
+            gridViewDecimalColumn2.Name = "OrderQty";
+            gridViewDecimalColumn2.Width = 100;
+            gridViewDecimalColumn3.DataType = typeof(double);
+            gridViewDecimalColumn3.EnableExpressionEditor = false;
+            gridViewDecimalColumn3.FieldName = "OrderPrice";
+            gridViewDecimalColumn3.HeaderText = "OrderPrice";
+            gridViewDecimalColumn3.Name = "OrderPrice";
+            gridViewDecimalColumn3.Width = 82;
+            gridViewDecimalColumn4.DataType = typeof(double);
+            gridViewDecimalColumn4.EnableExpressionEditor = false;
+            gridViewDecimalColumn4.FieldName = "OrderAmount";
+            gridViewDecimalColumn4.HeaderText = "OrderAmount";
+            gridViewDecimalColumn4.Name = "OrderAmount";
+            gridViewDecimalColumn4.Width = 80;
             this.gvOrderActual.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn5,
-            gridViewDateTimeColumn3,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
-            gridViewDateTimeColumn4,
-            gridViewTextBoxColumn12,
-            gridViewDecimalColumn6,
-            gridViewDecimalColumn7,
-            gridViewDecimalColumn8});
+            gridViewDecimalColumn1,
+            gridViewDateTimeColumn1,
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewDateTimeColumn2,
+            gridViewTextBoxColumn6,
+            gridViewDecimalColumn2,
+            gridViewDecimalColumn3,
+            gridViewDecimalColumn4});
             this.gvOrderActual.MasterTemplate.EnablePaging = true;
             this.gvOrderActual.MasterTemplate.MultiSelect = true;
             this.gvOrderActual.MasterTemplate.PageSize = 50;
-            this.gvOrderActual.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.gvOrderActual.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvOrderActual.Name = "gvOrderActual";
             this.gvOrderActual.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvOrderActual.ShowGroupPanel = false;
-            this.gvOrderActual.Size = new System.Drawing.Size(1259, 572);
+            this.gvOrderActual.Size = new System.Drawing.Size(1259, 344);
             this.gvOrderActual.TabIndex = 11;
             this.gvOrderActual.Text = "radGridView1";
             this.gvOrderActual.ViewCellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvOrderActual_ViewCellFormatting);
@@ -406,7 +411,7 @@
             this.gvOrderActual.SelectionChanged += new System.EventHandler(this.gvOrderActual_SelectionChanged);
             this.gvOrderActual.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.GV1_Update);
             this.gvOrderActual.ContextMenuOpening += new Telerik.WinControls.UI.ContextMenuOpeningEventHandler(this.gvOrderActual_ContextMenuOpening);
-            this.gvOrderActual.Click += new System.EventHandler(this.gvOrderActual_Click);
+            this.gvOrderActual.Click += new System.EventHandler(this.GV_Click);
             // 
             // toolTabStrip3
             // 
@@ -424,7 +429,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.toolWindow3;
+            this.radDock1.ActiveWindow = this.twColorSize;
             this.radDock1.CausesValidation = false;
             this.radDock1.Controls.Add(this.toolTabStrip1);
             this.radDock1.Controls.Add(this.documentContainer1);
@@ -438,24 +443,37 @@
             // 
             // 
             // 
-            this.radDock1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radDock1.Size = new System.Drawing.Size(1281, 924);
+            this.radDock1.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.radDock1.Size = new System.Drawing.Size(1281, 696);
             this.radDock1.TabIndex = 12;
             this.radDock1.TabStop = false;
             this.radDock1.Text = "radDock1";
             // 
-            // documentContainer1
+            // twColorSize
             // 
-            this.documentContainer1.CausesValidation = false;
-            this.documentContainer1.Controls.Add(this.documentTabStrip1);
-            this.documentContainer1.Name = "documentContainer1";
+            this.twColorSize.Caption = null;
+            this.twColorSize.Controls.Add(this.gvColorSize);
+            this.twColorSize.Font = new System.Drawing.Font("Gulim", 9F);
+            this.twColorSize.Location = new System.Drawing.Point(1, 22);
+            this.twColorSize.Name = "twColorSize";
+            this.twColorSize.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.twColorSize.Size = new System.Drawing.Size(1269, 209);
+            this.twColorSize.Text = "Color and Size";
+            this.twColorSize.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.AutoHide;
+            this.twColorSize.Enter += new System.EventHandler(this.twColorSize_Enter);
+            // 
+            // gvColorSize
+            // 
+            this.gvColorSize.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvColorSize.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
-            this.documentContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.documentContainer1.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 584);
-            this.documentContainer1.SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Fill;
-            this.documentContainer1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -24);
+            this.gvColorSize.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvColorSize.Name = "gvColorSize";
+            this.gvColorSize.Size = new System.Drawing.Size(1269, 209);
+            this.gvColorSize.TabIndex = 0;
+            this.gvColorSize.Text = "radGridView1";
             // 
             // toolTabStrip1
             // 
@@ -467,7 +485,7 @@
             // 
             // 
             // 
-            this.toolTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.toolTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.toolTabStrip1.SelectedIndex = 0;
             this.toolTabStrip1.Size = new System.Drawing.Size(1271, 65);
             this.toolTabStrip1.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 65);
@@ -489,6 +507,20 @@
             this.toolWindow1.Text = "Search Data";
             this.toolWindow1.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.None;
             // 
+            // documentContainer1
+            // 
+            this.documentContainer1.CausesValidation = false;
+            this.documentContainer1.Controls.Add(this.documentTabStrip1);
+            this.documentContainer1.Name = "documentContainer1";
+            // 
+            // 
+            // 
+            this.documentContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.documentContainer1.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 584);
+            this.documentContainer1.SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Fill;
+            this.documentContainer1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -24);
+            this.documentContainer1.TabIndex = 5;
+            // 
             // documentTabStrip1
             // 
             this.documentTabStrip1.CanUpdateChildIndex = true;
@@ -499,9 +531,9 @@
             // 
             // 
             // 
-            this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.documentTabStrip1.SelectedIndex = 0;
-            this.documentTabStrip1.Size = new System.Drawing.Size(1271, 584);
+            this.documentTabStrip1.Size = new System.Drawing.Size(1271, 356);
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
             this.documentTabStrip1.TabStripVisible = false;
@@ -515,63 +547,52 @@
             this.toolWindow2.Location = new System.Drawing.Point(6, 6);
             this.toolWindow2.Name = "toolWindow2";
             this.toolWindow2.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow2.Size = new System.Drawing.Size(1259, 572);
+            this.toolWindow2.Size = new System.Drawing.Size(1259, 344);
             this.toolWindow2.Text = "Orders";
             // 
             // toolTabStrip2
             // 
             this.toolTabStrip2.CanUpdateChildIndex = true;
-            this.toolTabStrip2.Controls.Add(this.toolWindow3);
-            this.toolTabStrip2.Controls.Add(this.toolWindow4);
-            this.toolTabStrip2.Location = new System.Drawing.Point(5, 662);
+            this.toolTabStrip2.CausesValidation = false;
+            this.toolTabStrip2.Controls.Add(this.twStatus);
+            this.toolTabStrip2.Controls.Add(this.twColorSize);
+            this.toolTabStrip2.Controls.Add(this.twFabric);
+            this.toolTabStrip2.Controls.Add(this.twOperation);
+            this.toolTabStrip2.Controls.Add(this.twHistory);
+            this.toolTabStrip2.Location = new System.Drawing.Point(5, 434);
             this.toolTabStrip2.Name = "toolTabStrip2";
             // 
             // 
             // 
-            this.toolTabStrip2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.toolTabStrip2.SelectedIndex = 0;
+            this.toolTabStrip2.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.toolTabStrip2.SelectedIndex = 1;
             this.toolTabStrip2.Size = new System.Drawing.Size(1271, 257);
             this.toolTabStrip2.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
             this.toolTabStrip2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 75);
             this.toolTabStrip2.TabIndex = 3;
             this.toolTabStrip2.TabStop = false;
             // 
-            // toolWindow3
+            // twStatus
             // 
-            this.toolWindow3.Caption = null;
-            this.toolWindow3.Controls.Add(this.gvColorSize);
-            this.toolWindow3.Font = new System.Drawing.Font("Gulim", 9F);
-            this.toolWindow3.Location = new System.Drawing.Point(1, 22);
-            this.toolWindow3.Name = "toolWindow3";
-            this.toolWindow3.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow3.Size = new System.Drawing.Size(1269, 209);
-            this.toolWindow3.Text = "Color & Size";
-            this.toolWindow3.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.AutoHide;
+            this.twStatus.Caption = null;
+            this.twStatus.Font = new System.Drawing.Font("Gulim", 9F);
+            this.twStatus.Location = new System.Drawing.Point(1, 24);
+            this.twStatus.Name = "twStatus";
+            this.twStatus.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.twStatus.Size = new System.Drawing.Size(1269, 207);
+            this.twStatus.Text = "Production Status";
             // 
-            // toolWindow4
+            // twFabric
             // 
-            this.toolWindow4.Caption = null;
-            this.toolWindow4.Controls.Add(this.gvFabric);
-            this.toolWindow4.Font = new System.Drawing.Font("Gulim", 9F);
-            this.toolWindow4.Location = new System.Drawing.Point(1, 22);
-            this.toolWindow4.Name = "toolWindow4";
-            this.toolWindow4.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow4.Size = new System.Drawing.Size(1269, 209);
-            this.toolWindow4.Text = "Fabric";
-            this.toolWindow4.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.AutoHide;
-            // 
-            // gvColorSize
-            // 
-            this.gvColorSize.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvColorSize.Location = new System.Drawing.Point(0, 0);
-            // 
-            // 
-            // 
-            this.gvColorSize.MasterTemplate.ViewDefinition = tableViewDefinition5;
-            this.gvColorSize.Name = "gvColorSize";
-            this.gvColorSize.Size = new System.Drawing.Size(1269, 209);
-            this.gvColorSize.TabIndex = 0;
-            this.gvColorSize.Text = "radGridView1";
+            this.twFabric.Caption = null;
+            this.twFabric.Controls.Add(this.gvFabric);
+            this.twFabric.Font = new System.Drawing.Font("Gulim", 9F);
+            this.twFabric.Location = new System.Drawing.Point(1, 22);
+            this.twFabric.Name = "twFabric";
+            this.twFabric.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.twFabric.Size = new System.Drawing.Size(1269, 209);
+            this.twFabric.Text = "Fabric";
+            this.twFabric.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.AutoHide;
             // 
             // gvFabric
             // 
@@ -580,17 +601,42 @@
             // 
             // 
             // 
-            this.gvFabric.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.gvFabric.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvFabric.Name = "gvFabric";
             this.gvFabric.Size = new System.Drawing.Size(1269, 209);
             this.gvFabric.TabIndex = 0;
             this.gvFabric.Text = "radGridView1";
             // 
+            // twOperation
+            // 
+            this.twOperation.Caption = null;
+            this.twOperation.Font = new System.Drawing.Font("Gulim", 9F);
+            this.twOperation.Location = new System.Drawing.Point(1, 24);
+            this.twOperation.Name = "twOperation";
+            this.twOperation.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.twOperation.Size = new System.Drawing.Size(1269, 207);
+            this.twOperation.Text = "Operations";
+            // 
+            // twHistory
+            // 
+            this.twHistory.Caption = null;
+            this.twHistory.Font = new System.Drawing.Font("Gulim", 9F);
+            this.twHistory.Location = new System.Drawing.Point(1, 24);
+            this.twHistory.Name = "twHistory";
+            this.twHistory.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Floating;
+            this.twHistory.Size = new System.Drawing.Size(1269, 207);
+            this.twHistory.Text = "History";
+            // 
+            // dataSetSizeGroup
+            // 
+            this.dataSetSizeGroup.DataSetName = "DataSetSizeGroup";
+            this.dataSetSizeGroup.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // OrderMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1281, 924);
+            this.ClientSize = new System.Drawing.Size(1281, 696);
             this.Controls.Add(this.radDock1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "OrderMain";
@@ -623,22 +669,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).EndInit();
-            this.documentContainer1.ResumeLayout(false);
+            this.twColorSize.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
             this.toolTabStrip1.ResumeLayout(false);
             this.toolWindow1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).EndInit();
+            this.documentContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();
             this.documentTabStrip1.ResumeLayout(false);
             this.toolWindow2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip2)).EndInit();
             this.toolTabStrip2.ResumeLayout(false);
-            this.toolWindow3.ResumeLayout(false);
-            this.toolWindow4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize)).EndInit();
+            this.twFabric.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvFabric.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvFabric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetSizeGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -675,15 +722,19 @@
         private Telerik.WinControls.UI.RadTextBox txtStyle;
         private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip3;
         private Telerik.WinControls.UI.Docking.RadDock radDock1;
-        private Telerik.WinControls.UI.Docking.ToolWindow toolWindow3;
+        private Telerik.WinControls.UI.Docking.ToolWindow twColorSize;
         private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip1;
         private Telerik.WinControls.UI.Docking.ToolWindow toolWindow1;
         private Telerik.WinControls.UI.Docking.DocumentContainer documentContainer1;
         private Telerik.WinControls.UI.Docking.DocumentTabStrip documentTabStrip1;
         private Telerik.WinControls.UI.Docking.ToolWindow toolWindow2;
         private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip2;
-        private Telerik.WinControls.UI.Docking.ToolWindow toolWindow4;
+        private Telerik.WinControls.UI.Docking.ToolWindow twFabric;
         private Telerik.WinControls.UI.RadGridView gvColorSize;
         private Telerik.WinControls.UI.RadGridView gvFabric;
+        private Data.DataSetSizeGroup dataSetSizeGroup;
+        private Telerik.WinControls.UI.Docking.ToolWindow twHistory;
+        private Telerik.WinControls.UI.Docking.ToolWindow twStatus;
+        private Telerik.WinControls.UI.Docking.ToolWindow twOperation;
     }
 }

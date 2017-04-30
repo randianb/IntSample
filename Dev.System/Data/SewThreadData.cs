@@ -202,7 +202,46 @@ namespace Dev.Codes.Data
                 return null;
             }
         }
+        /// <summary>
+        /// 사용가능한 목록조회
+        /// </summary>
+        public static DataSet GetUsablelist()
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
 
+                _cmd.CommandText = "up_SewThread_List3";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
         public static DataSet Getlist(int SewThreadCustIdx)
         {
             try

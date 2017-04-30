@@ -30,17 +30,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Int">
-      <HintPath>..\..\Interp\lib\Int.dll</HintPath>
+    <Reference Include="Int, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Int.dll</HintPath>
     </Reference>
-    <Reference Include="Int.Code">
-      <HintPath>..\..\Interp\lib\Int.Code.dll</HintPath>
+    <Reference Include="Int.Code, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Int.Code.dll</HintPath>
     </Reference>
-    <Reference Include="Int.Customer">
-      <HintPath>..\..\Interp\lib\Int.Customer.dll</HintPath>
+    <Reference Include="Int.Costcenter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Int.Costcenter.dll</HintPath>
     </Reference>
-    <Reference Include="Int.Department">
-      <HintPath>..\..\Interp\lib\Int.Department.dll</HintPath>
+    <Reference Include="Int.Customer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Int.Customer.dll</HintPath>
+    </Reference>
+    <Reference Include="Int.Department, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Int.Department.dll</HintPath>
+    </Reference>
+    <Reference Include="Int.Users">
+      <HintPath>..\lib\Int.Users.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

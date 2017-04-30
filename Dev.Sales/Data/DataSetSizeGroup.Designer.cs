@@ -26,6 +26,8 @@ namespace Dev.Sales.Data {
         
         private DataTableSizeGroupDataTable tableDataTableSizeGroup;
         
+        private DataTableSewThreadDataTable tableDataTableSewThread;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -57,6 +59,9 @@ namespace Dev.Sales.Data {
                 if ((ds.Tables["DataTableSizeGroup"] != null)) {
                     base.Tables.Add(new DataTableSizeGroupDataTable(ds.Tables["DataTableSizeGroup"]));
                 }
+                if ((ds.Tables["DataTableSewThread"] != null)) {
+                    base.Tables.Add(new DataTableSewThreadDataTable(ds.Tables["DataTableSewThread"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -82,6 +87,16 @@ namespace Dev.Sales.Data {
         public DataTableSizeGroupDataTable DataTableSizeGroup {
             get {
                 return this.tableDataTableSizeGroup;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public DataTableSewThreadDataTable DataTableSewThread {
+            get {
+                return this.tableDataTableSewThread;
             }
         }
         
@@ -155,6 +170,9 @@ namespace Dev.Sales.Data {
                 if ((ds.Tables["DataTableSizeGroup"] != null)) {
                     base.Tables.Add(new DataTableSizeGroupDataTable(ds.Tables["DataTableSizeGroup"]));
                 }
+                if ((ds.Tables["DataTableSewThread"] != null)) {
+                    base.Tables.Add(new DataTableSewThreadDataTable(ds.Tables["DataTableSewThread"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -194,6 +212,12 @@ namespace Dev.Sales.Data {
                     this.tableDataTableSizeGroup.InitVars();
                 }
             }
+            this.tableDataTableSewThread = ((DataTableSewThreadDataTable)(base.Tables["DataTableSewThread"]));
+            if ((initTable == true)) {
+                if ((this.tableDataTableSewThread != null)) {
+                    this.tableDataTableSewThread.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -206,11 +230,19 @@ namespace Dev.Sales.Data {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableDataTableSizeGroup = new DataTableSizeGroupDataTable();
             base.Tables.Add(this.tableDataTableSizeGroup);
+            this.tableDataTableSewThread = new DataTableSewThreadDataTable();
+            base.Tables.Add(this.tableDataTableSewThread);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeDataTableSizeGroup() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeDataTableSewThread() {
             return false;
         }
         
@@ -271,6 +303,9 @@ namespace Dev.Sales.Data {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void DataTableSizeGroupRowChangeEventHandler(object sender, DataTableSizeGroupRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void DataTableSewThreadRowChangeEventHandler(object sender, DataTableSewThreadRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -469,7 +504,7 @@ namespace Dev.Sales.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTableSizeGroupRow AddDataTableSizeGroupRow(int SizeGroupIdx, int Client, string SizeGroupName, int SizeIdx1, int SizeIdx2, int SizeIdx3, int SizeIdx4, int SizeIdx5, int SizeIdx6, int SizeIdx7, int SizeIdx8, int IsUse) {
+            public DataTableSizeGroupRow AddDataTableSizeGroupRow(int SizeGroupIdx, string Client, string SizeGroupName, string SizeIdx1, string SizeIdx2, string SizeIdx3, string SizeIdx4, string SizeIdx5, string SizeIdx6, string SizeIdx7, string SizeIdx8, int IsUse) {
                 DataTableSizeGroupRow rowDataTableSizeGroupRow = ((DataTableSizeGroupRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SizeGroupIdx,
@@ -525,25 +560,25 @@ namespace Dev.Sales.Data {
             private void InitClass() {
                 this.columnSizeGroupIdx = new global::System.Data.DataColumn("SizeGroupIdx", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSizeGroupIdx);
-                this.columnClient = new global::System.Data.DataColumn("Client", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnClient = new global::System.Data.DataColumn("Client", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnClient);
                 this.columnSizeGroupName = new global::System.Data.DataColumn("SizeGroupName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSizeGroupName);
-                this.columnSizeIdx1 = new global::System.Data.DataColumn("SizeIdx1", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnSizeIdx1 = new global::System.Data.DataColumn("SizeIdx1", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSizeIdx1);
-                this.columnSizeIdx2 = new global::System.Data.DataColumn("SizeIdx2", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnSizeIdx2 = new global::System.Data.DataColumn("SizeIdx2", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSizeIdx2);
-                this.columnSizeIdx3 = new global::System.Data.DataColumn("SizeIdx3", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnSizeIdx3 = new global::System.Data.DataColumn("SizeIdx3", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSizeIdx3);
-                this.columnSizeIdx4 = new global::System.Data.DataColumn("SizeIdx4", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnSizeIdx4 = new global::System.Data.DataColumn("SizeIdx4", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSizeIdx4);
-                this.columnSizeIdx5 = new global::System.Data.DataColumn("SizeIdx5", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnSizeIdx5 = new global::System.Data.DataColumn("SizeIdx5", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSizeIdx5);
-                this.columnSizeIdx6 = new global::System.Data.DataColumn("SizeIdx6", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnSizeIdx6 = new global::System.Data.DataColumn("SizeIdx6", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSizeIdx6);
-                this.columnSizeIdx7 = new global::System.Data.DataColumn("SizeIdx7", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnSizeIdx7 = new global::System.Data.DataColumn("SizeIdx7", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSizeIdx7);
-                this.columnSizeIdx8 = new global::System.Data.DataColumn("SizeIdx8", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnSizeIdx8 = new global::System.Data.DataColumn("SizeIdx8", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSizeIdx8);
                 this.columnIsUse = new global::System.Data.DataColumn("IsUse", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsUse);
@@ -674,6 +709,299 @@ namespace Dev.Sales.Data {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class DataTableSewThreadDataTable : global::System.Data.TypedTableBase<DataTableSewThreadRow> {
+            
+            private global::System.Data.DataColumn columnSewThreadIdx;
+            
+            private global::System.Data.DataColumn columnSewThreadCustIdx;
+            
+            private global::System.Data.DataColumn columnSewThreadName;
+            
+            private global::System.Data.DataColumn columnColorIdx;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public DataTableSewThreadDataTable() {
+                this.TableName = "DataTableSewThread";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal DataTableSewThreadDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected DataTableSewThreadDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SewThreadIdxColumn {
+                get {
+                    return this.columnSewThreadIdx;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SewThreadCustIdxColumn {
+                get {
+                    return this.columnSewThreadCustIdx;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SewThreadNameColumn {
+                get {
+                    return this.columnSewThreadName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ColorIdxColumn {
+                get {
+                    return this.columnColorIdx;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public DataTableSewThreadRow this[int index] {
+                get {
+                    return ((DataTableSewThreadRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event DataTableSewThreadRowChangeEventHandler DataTableSewThreadRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event DataTableSewThreadRowChangeEventHandler DataTableSewThreadRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event DataTableSewThreadRowChangeEventHandler DataTableSewThreadRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event DataTableSewThreadRowChangeEventHandler DataTableSewThreadRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddDataTableSewThreadRow(DataTableSewThreadRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public DataTableSewThreadRow AddDataTableSewThreadRow(string SewThreadIdx, string SewThreadCustIdx, string SewThreadName, string ColorIdx) {
+                DataTableSewThreadRow rowDataTableSewThreadRow = ((DataTableSewThreadRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        SewThreadIdx,
+                        SewThreadCustIdx,
+                        SewThreadName,
+                        ColorIdx};
+                rowDataTableSewThreadRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDataTableSewThreadRow);
+                return rowDataTableSewThreadRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                DataTableSewThreadDataTable cln = ((DataTableSewThreadDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new DataTableSewThreadDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnSewThreadIdx = base.Columns["SewThreadIdx"];
+                this.columnSewThreadCustIdx = base.Columns["SewThreadCustIdx"];
+                this.columnSewThreadName = base.Columns["SewThreadName"];
+                this.columnColorIdx = base.Columns["ColorIdx"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnSewThreadIdx = new global::System.Data.DataColumn("SewThreadIdx", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSewThreadIdx);
+                this.columnSewThreadCustIdx = new global::System.Data.DataColumn("SewThreadCustIdx", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSewThreadCustIdx);
+                this.columnSewThreadName = new global::System.Data.DataColumn("SewThreadName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSewThreadName);
+                this.columnColorIdx = new global::System.Data.DataColumn("ColorIdx", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnColorIdx);
+                this.columnSewThreadIdx.Caption = "ID";
+                this.columnSewThreadCustIdx.Caption = "Maker";
+                this.columnSewThreadName.Caption = "SewThread";
+                this.columnColorIdx.Caption = "Color";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public DataTableSewThreadRow NewDataTableSewThreadRow() {
+                return ((DataTableSewThreadRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new DataTableSewThreadRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(DataTableSewThreadRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.DataTableSewThreadRowChanged != null)) {
+                    this.DataTableSewThreadRowChanged(this, new DataTableSewThreadRowChangeEvent(((DataTableSewThreadRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.DataTableSewThreadRowChanging != null)) {
+                    this.DataTableSewThreadRowChanging(this, new DataTableSewThreadRowChangeEvent(((DataTableSewThreadRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.DataTableSewThreadRowDeleted != null)) {
+                    this.DataTableSewThreadRowDeleted(this, new DataTableSewThreadRowChangeEvent(((DataTableSewThreadRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.DataTableSewThreadRowDeleting != null)) {
+                    this.DataTableSewThreadRowDeleting(this, new DataTableSewThreadRowChangeEvent(((DataTableSewThreadRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveDataTableSewThreadRow(DataTableSewThreadRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DataSetSizeGroup ds = new DataSetSizeGroup();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "DataTableSewThreadDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class DataTableSizeGroupRow : global::System.Data.DataRow {
@@ -705,10 +1033,10 @@ namespace Dev.Sales.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Client {
+            public string Client {
                 get {
                     try {
-                        return ((int)(this[this.tableDataTableSizeGroup.ClientColumn]));
+                        return ((string)(this[this.tableDataTableSizeGroup.ClientColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Client\' in table \'DataTableSizeGroup\' is DBNull.", e);
@@ -737,10 +1065,10 @@ namespace Dev.Sales.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int SizeIdx1 {
+            public string SizeIdx1 {
                 get {
                     try {
-                        return ((int)(this[this.tableDataTableSizeGroup.SizeIdx1Column]));
+                        return ((string)(this[this.tableDataTableSizeGroup.SizeIdx1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'SizeIdx1\' in table \'DataTableSizeGroup\' is DBNull.", e);
@@ -753,10 +1081,10 @@ namespace Dev.Sales.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int SizeIdx2 {
+            public string SizeIdx2 {
                 get {
                     try {
-                        return ((int)(this[this.tableDataTableSizeGroup.SizeIdx2Column]));
+                        return ((string)(this[this.tableDataTableSizeGroup.SizeIdx2Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'SizeIdx2\' in table \'DataTableSizeGroup\' is DBNull.", e);
@@ -769,10 +1097,10 @@ namespace Dev.Sales.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int SizeIdx3 {
+            public string SizeIdx3 {
                 get {
                     try {
-                        return ((int)(this[this.tableDataTableSizeGroup.SizeIdx3Column]));
+                        return ((string)(this[this.tableDataTableSizeGroup.SizeIdx3Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'SizeIdx3\' in table \'DataTableSizeGroup\' is DBNull.", e);
@@ -785,10 +1113,10 @@ namespace Dev.Sales.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int SizeIdx4 {
+            public string SizeIdx4 {
                 get {
                     try {
-                        return ((int)(this[this.tableDataTableSizeGroup.SizeIdx4Column]));
+                        return ((string)(this[this.tableDataTableSizeGroup.SizeIdx4Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'SizeIdx4\' in table \'DataTableSizeGroup\' is DBNull.", e);
@@ -801,10 +1129,10 @@ namespace Dev.Sales.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int SizeIdx5 {
+            public string SizeIdx5 {
                 get {
                     try {
-                        return ((int)(this[this.tableDataTableSizeGroup.SizeIdx5Column]));
+                        return ((string)(this[this.tableDataTableSizeGroup.SizeIdx5Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'SizeIdx5\' in table \'DataTableSizeGroup\' is DBNull.", e);
@@ -817,10 +1145,10 @@ namespace Dev.Sales.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int SizeIdx6 {
+            public string SizeIdx6 {
                 get {
                     try {
-                        return ((int)(this[this.tableDataTableSizeGroup.SizeIdx6Column]));
+                        return ((string)(this[this.tableDataTableSizeGroup.SizeIdx6Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'SizeIdx6\' in table \'DataTableSizeGroup\' is DBNull.", e);
@@ -833,10 +1161,10 @@ namespace Dev.Sales.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int SizeIdx7 {
+            public string SizeIdx7 {
                 get {
                     try {
-                        return ((int)(this[this.tableDataTableSizeGroup.SizeIdx7Column]));
+                        return ((string)(this[this.tableDataTableSizeGroup.SizeIdx7Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'SizeIdx7\' in table \'DataTableSizeGroup\' is DBNull.", e);
@@ -849,10 +1177,10 @@ namespace Dev.Sales.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int SizeIdx8 {
+            public string SizeIdx8 {
                 get {
                     try {
-                        return ((int)(this[this.tableDataTableSizeGroup.SizeIdx8Column]));
+                        return ((string)(this[this.tableDataTableSizeGroup.SizeIdx8Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'SizeIdx8\' in table \'DataTableSizeGroup\' is DBNull.", e);
@@ -1025,6 +1353,133 @@ namespace Dev.Sales.Data {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class DataTableSewThreadRow : global::System.Data.DataRow {
+            
+            private DataTableSewThreadDataTable tableDataTableSewThread;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal DataTableSewThreadRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableDataTableSewThread = ((DataTableSewThreadDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SewThreadIdx {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTableSewThread.SewThreadIdxColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SewThreadIdx\' in table \'DataTableSewThread\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTableSewThread.SewThreadIdxColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SewThreadCustIdx {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTableSewThread.SewThreadCustIdxColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SewThreadCustIdx\' in table \'DataTableSewThread\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTableSewThread.SewThreadCustIdxColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SewThreadName {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTableSewThread.SewThreadNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SewThreadName\' in table \'DataTableSewThread\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTableSewThread.SewThreadNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ColorIdx {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTableSewThread.ColorIdxColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ColorIdx\' in table \'DataTableSewThread\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTableSewThread.ColorIdxColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSewThreadIdxNull() {
+                return this.IsNull(this.tableDataTableSewThread.SewThreadIdxColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSewThreadIdxNull() {
+                this[this.tableDataTableSewThread.SewThreadIdxColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSewThreadCustIdxNull() {
+                return this.IsNull(this.tableDataTableSewThread.SewThreadCustIdxColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSewThreadCustIdxNull() {
+                this[this.tableDataTableSewThread.SewThreadCustIdxColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSewThreadNameNull() {
+                return this.IsNull(this.tableDataTableSewThread.SewThreadNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSewThreadNameNull() {
+                this[this.tableDataTableSewThread.SewThreadNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsColorIdxNull() {
+                return this.IsNull(this.tableDataTableSewThread.ColorIdxColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetColorIdxNull() {
+                this[this.tableDataTableSewThread.ColorIdxColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1044,6 +1499,40 @@ namespace Dev.Sales.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DataTableSizeGroupRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class DataTableSewThreadRowChangeEvent : global::System.EventArgs {
+            
+            private DataTableSewThreadRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public DataTableSewThreadRowChangeEvent(DataTableSewThreadRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public DataTableSewThreadRow Row {
                 get {
                     return this.eventRow;
                 }

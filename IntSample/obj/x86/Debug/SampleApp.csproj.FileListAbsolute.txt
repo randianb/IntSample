@@ -58,3 +58,5 @@ D:\git\IntSample\IntSample\bin\Debug\Dev.Sales.pdb
 D:\git\IntSample\IntSample\bin\Debug\Telerik.WinControls.Scheduler.xml
 D:\git\IntSample\IntSample\bin\Debug\Dev.System.dll
 D:\git\IntSample\IntSample\bin\Debug\Dev.System.pdb
+D:\git\IntSample\IntSample\bin\Debug\Int.Users.dll
+D:\git\IntSample\IntSample\bin\Debug\Int.Costcenter.dll

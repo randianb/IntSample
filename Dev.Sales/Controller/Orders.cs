@@ -391,7 +391,7 @@ namespace Dev.Sales.Controller
         {
             bool blRtn;
             blRtn = Data.OrdersData.Update(_idx, _fileNo, _deptIdx, _reorder, _reorderReason, _indate, _buyer,  
-                                                         _pono, _styleNo,  
+                                                         _vendor, _country, _pono, _styleNo, _sampleType, _inspType, 
                                                          _season, _description, _deliveryDate, _isPrinting,
                                                          _embelishId1, _embelishId2, _sizeGroupIdx, _sewThreadIdx, 
                                                          _orderQty, _orderPrice, _orderAmount, _remark, 

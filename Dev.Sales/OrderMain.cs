@@ -30,13 +30,15 @@ namespace Dev.Sales
         private List<CodeContents> lstStatus = new List<CodeContents>();        // 오더상태
         private List<DepartmentName> deptName = new List<DepartmentName>();     // 부서
         private List<CustomerName> custName = new List<CustomerName>();         // 거래처
+        private List<CustomerName> lstVendor = new List<CustomerName>();         // vendor
         private List<CustomerName> embName = new List<CustomerName>();          // 나염업체
         private List<CodeContents> codeName = new List<CodeContents>();         // 코드
+        private List<CodeContents> lstOrigin = new List<CodeContents>();         // Origin country 
         private List<CodeContents> lstBrand = new List<CodeContents>();         // 브랜드
         private List<CodeContents> lstIsPrinting = new List<CodeContents>();    // 나염여부
-        private List<CodeContents> lstShipTerm = new List<CodeContents>();      // 선적조건
-        private List<CodeContents> lstVsslAir = new List<CodeContents>();       // 운송방법
-        private List<CodeContents> lstDestination = new List<CodeContents>();   // 목적지
+        private List<CustomerName> lstUser = new List<CustomerName>();         // 유저명
+        private List<CustomerName> lstSewthread = new List<CustomerName>();         // sewthread
+
         private string _layoutfile = "/GVLayoutOrders.xml";
         public DataRow InsertedOrderRow = null;
 
@@ -54,6 +56,7 @@ namespace Dev.Sales
             InitializeComponent();
             __main__ = main;            // MDI 연결 
             _gv1 = this.gvOrderActual;  // 그리드뷰 일반화를 위해 변수 별도 저장
+            
         }
 
         /// <summary>
@@ -70,7 +73,7 @@ namespace Dev.Sales
             GV1_LayoutSetting(_gv1);    // 중앙 그리드뷰 설정 
             Config_ContextMenu();       // 중앙 그리드뷰 컨텍스트 생성 설정 
             LoadGVLayout();             // 그리드뷰 레이아웃 복구 
-            //DataBinding_GV1(0, null, "", "");   // 중앙 그리드뷰 데이터 
+            // DataBinding_GV1(0, null, "", "");   // 중앙 그리드뷰 데이터 
         }
         
         /// <summary>
@@ -160,11 +163,16 @@ namespace Dev.Sales
             menuItem4.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.C));
 
             // 선적 입력, 수정 
-            //contextMenu = new RadContextMenu();
             RadMenuItem mnuShipment = new RadMenuItem("Edit Shipment Data");
             mnuShipment.Image = Properties.Resources._20_20;
             mnuShipment.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
             mnuShipment.Click += new EventHandler(mnuShipment_Click);
+
+            // 작업지시서
+            RadMenuItem mnuWorksheet = new RadMenuItem("Edit Worksheets");
+            // mnuShipment.Image = Properties.Resources._20_20;
+            mnuWorksheet.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
+            mnuWorksheet.Click += new EventHandler(mnuShipment_Click);
 
             // 분리선
             RadMenuSeparatorItem separator = new RadMenuSeparatorItem();
@@ -189,7 +197,36 @@ namespace Dev.Sales
             contextMenu.Items.Add(separator);
 
             contextMenu.Items.Add(mnuShipment);
+            contextMenu.Items.Add(mnuWorksheet);
 
+        }
+
+        /// <summary>
+        /// 그리드뷰 컨텍스트 메뉴 생성 (Color, Size) 
+        /// </summary>
+        private void Config_ContextMenu_ColorSize()
+        {
+            contextMenu = new RadContextMenu();
+
+            // 신규 입력
+            RadMenuItem mnuNewColor = new RadMenuItem("New Color");
+            mnuNewColor.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
+            mnuNewColor.Click += new EventHandler(mnuNew_Click);
+
+            // 삭제
+            RadMenuItem mnuDelColor = new RadMenuItem("Remove Color");
+            mnuDelColor.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
+            mnuDelColor.Click += new EventHandler(mnuDel_Click);
+            
+            // 분리선
+            RadMenuSeparatorItem separator = new RadMenuSeparatorItem();
+            separator.Tag = "seperator";
+
+            // 컨텍스트 추가 
+            contextMenu.Items.Add(mnuNewColor);
+            contextMenu.Items.Add(mnuDelColor);
+            contextMenu.Items.Add(separator);
+                      
         }
 
         /// <summary>
@@ -214,27 +251,6 @@ namespace Dev.Sales
             cboDept.Width = 70;
             gv.Columns.Insert(1, cboDept);
 
-            gv.Columns["Fileno"].Width = 90;
-            gv.Columns["Fileno"].HeaderText = "INT File #";
-            gv.Columns["Fileno"].ReadOnly = true;
-
-            GridViewTextBoxColumn reorder = new GridViewTextBoxColumn();
-            reorder.Name = "reorder";
-            reorder.FieldName = "reorder";
-            reorder.HeaderText = "Re#";
-            reorder.ReadOnly = true; 
-            reorder.Width = 20;
-            reorder.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            gv.Columns.Insert(10, reorder);
-
-            GridViewTextBoxColumn reason = new GridViewTextBoxColumn();
-            reason.Name = "ReorderReason";
-            reason.FieldName = "ReorderReason";
-            reason.HeaderText = "Reason";
-            reason.IsVisible = false; 
-            reason.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            gv.Columns.Insert(10, reason);
-
             gv.Columns["Indate"].Width = 90;
             gv.Columns["Indate"].TextAlignment = ContentAlignment.MiddleCenter;
             gv.Columns["Indate"].FormatString = "{0:d}";
@@ -258,6 +274,27 @@ namespace Dev.Sales
             gv.Columns["Styleno"].TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns["Styleno"].HeaderText = "Style#";
 
+            gv.Columns["Fileno"].Width = 90;
+            gv.Columns["Fileno"].HeaderText = "INT File #";
+            gv.Columns["Fileno"].ReadOnly = true;
+
+            GridViewTextBoxColumn reorder = new GridViewTextBoxColumn();
+            reorder.Name = "reorder";
+            reorder.FieldName = "reorder";
+            reorder.HeaderText = "Re#";
+            reorder.ReadOnly = true;
+            reorder.Width = 35;
+            reorder.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            gv.Columns.Insert(7, reorder);
+
+            GridViewTextBoxColumn reason = new GridViewTextBoxColumn();
+            reason.Name = "ReorderReason";
+            reason.FieldName = "ReorderReason";
+            reason.HeaderText = "Reason";
+            reason.IsVisible = false;
+            reason.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            gv.Columns.Insert(8, reason);
+            
             gv.Columns["Season"].Width = 60;
             gv.Columns["Season"].TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns["Season"].HeaderText = "Season";
@@ -309,26 +346,36 @@ namespace Dev.Sales
             cboEmblelishId2.Width = 100;
             gv.Columns.Insert(15, cboEmblelishId2);
 
-            GridViewComboBoxColumn cboSizeGrp = new GridViewComboBoxColumn();
+            GridViewMultiComboBoxColumn cboSizeGrp = new GridViewMultiComboBoxColumn();
             cboSizeGrp.Name = "SizeGroupIdx";
-            cboSizeGrp.DataSource = embName;
-            cboSizeGrp.ValueMember = "CustIdx";
-            cboSizeGrp.DisplayMember = "CustName";
+            cboSizeGrp.DataSource = dataSetSizeGroup.DataTableSizeGroup;
+            cboSizeGrp.ValueMember = "SizeGroupIdx";
+            cboSizeGrp.DisplayMember = "SizeGroupName";
             cboSizeGrp.FieldName = "SizeGroupIdx";
-            cboSizeGrp.HeaderText = "SizeGroupIdx";
-            cboSizeGrp.Width = 100;
-            gv.Columns.Insert(15, cboSizeGrp);
-
-            GridViewComboBoxColumn cboSewThread = new GridViewComboBoxColumn();
-            cboSewThread.Name = "SewThreadIdx";
-            cboSewThread.DataSource = embName;
-            cboSewThread.ValueMember = "CustIdx";
-            cboSewThread.DisplayMember = "CustName";
-            cboSewThread.FieldName = "SewThreadIdx";
-            cboSewThread.HeaderText = "SewThreadIdx";
-            cboSewThread.Width = 100;
-            gv.Columns.Insert(15, cboSewThread);
+            cboSizeGrp.HeaderText = "SizeGroup";
+            cboSizeGrp.Width = 200;
+            gv.Columns.Insert(16, cboSizeGrp);
             
+            GridViewMultiComboBoxColumn cboSewThread = new GridViewMultiComboBoxColumn();
+            cboSewThread.Name = "SewThreadIdx";
+            cboSewThread.DataSource = dataSetSizeGroup.DataTableSewThread;
+            cboSewThread.ValueMember = "SewThreadIdx";
+            cboSewThread.DisplayMember = "SewThreadName";
+            cboSewThread.FieldName = "SewThreadIdx";
+            cboSewThread.HeaderText = "SewThread";
+            cboSewThread.Width = 100;
+            gv.Columns.Insert(17, cboSewThread);
+
+            GridViewComboBoxColumn cHandler = new GridViewComboBoxColumn();
+            cHandler.Name = "Handler";
+            cHandler.DataSource = lstUser;
+            cHandler.ValueMember = "CustIdx";
+            cHandler.DisplayMember = "CustName";
+            cHandler.FieldName = "Handler";
+            cHandler.HeaderText = "Handler";
+            cHandler.Width = 80;
+            gv.Columns.Insert(18, cHandler);
+
             gv.Columns["OrderQty"].Width = 80;
             gv.Columns["OrderQty"].FormatString = "{0:N0}";
             gv.Columns["OrderQty"].HeaderText = "Q'ty(pcs)";
@@ -347,19 +394,28 @@ namespace Dev.Sales
             remark.HeaderText = "Remark";
             remark.Width = 100;
             remark.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            gv.Columns.Insert(10, remark);
+            gv.Columns.Insert(22, remark);
 
+            GridViewDateTimeColumn dtRequested = new GridViewDateTimeColumn();
+            dtRequested.Name = "TeamRequestedDate";
+            dtRequested.Width = 100;
+            dtRequested.TextAlignment = ContentAlignment.MiddleCenter;
+            dtRequested.FormatString = "{0:d}";
+            dtRequested.FieldName = "TeamRequestedDate";
+            dtRequested.HeaderText = "Requested";
+            dtRequested.ReadOnly = true; 
+            gv.Columns.Insert(23, dtRequested);
 
-            GridViewComboBoxColumn cHandler = new GridViewComboBoxColumn();
-            cHandler.Name = "Handler";
-            cHandler.DataSource = lstShipTerm;
-            cHandler.ValueMember = "CodeIdx";
-            cHandler.DisplayMember = "Contents";
-            cHandler.FieldName = "Handler";
-            cHandler.HeaderText = "Handler";
-            cHandler.Width = 60;
-            gv.Columns.Insert(19, cHandler);
-            
+            GridViewDateTimeColumn dtConfirmed = new GridViewDateTimeColumn();
+            dtConfirmed.Name = "SplConfirmedDate";
+            dtConfirmed.Width = 100;
+            dtConfirmed.TextAlignment = ContentAlignment.MiddleCenter;
+            dtConfirmed.FormatString = "{0:d}";
+            dtConfirmed.FieldName = "SplConfirmedDate";
+            dtConfirmed.HeaderText = "Confirmed";
+            dtConfirmed.ReadOnly = true;
+            gv.Columns.Insert(24, dtConfirmed);
+
 
             GridViewComboBoxColumn status = new GridViewComboBoxColumn();
             status.Name = "Status";
@@ -370,7 +426,52 @@ namespace Dev.Sales
             status.HeaderText = "Status";
             status.Width = 70;
             status.ReadOnly = true;
-            gv.Columns.Insert(23, status);
+            gv.Columns.Insert(25, status);
+
+            GridViewComboBoxColumn cboVendor = new GridViewComboBoxColumn();
+            cboVendor.Name = "Vendor";
+            cboVendor.DataSource = lstVendor;
+            cboVendor.ValueMember = "CustIdx";
+            cboVendor.DisplayMember = "CustName";
+            cboVendor.FieldName = "Vendor";
+            cboVendor.HeaderText = "Vendor";
+            cboVendor.Width = 100;
+            gv.Columns.Insert(26, cboVendor);
+
+            // Country (코드의 Origin으로 연결) 
+            GridViewComboBoxColumn cboOrigin = new GridViewComboBoxColumn();
+            cboOrigin.Name = "Country";
+
+            lstOrigin.Clear();
+            lstOrigin = codeName.FindAll(
+                delegate (CodeContents code)
+                {
+                    return code.CodeIdx == 0 || code.Classification == "Origin";
+                });
+            
+            cboOrigin.DataSource = lstOrigin;
+            cboOrigin.ValueMember = "CodeIdx";
+            cboOrigin.DisplayMember = "Contents";
+            cboOrigin.FieldName = "Country";
+            cboOrigin.HeaderText = "Country";
+            cboOrigin.Width = 100;
+            gv.Columns.Insert(27, cboOrigin);
+
+            GridViewTextBoxColumn SampleType = new GridViewTextBoxColumn();
+            SampleType.Name = "SampleType";
+            SampleType.FieldName = "SampleType";
+            SampleType.HeaderText = "SampleType";
+            SampleType.IsVisible = false; 
+            SampleType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            gv.Columns.Insert(28, SampleType);
+
+            GridViewTextBoxColumn InspType = new GridViewTextBoxColumn();
+            InspType.Name = "InspType";
+            InspType.FieldName = "InspType";
+            InspType.HeaderText = "Inspection Type";
+            InspType.IsVisible = false;
+            InspType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            gv.Columns.Insert(29, InspType);
 
             #endregion
         }
@@ -768,7 +869,7 @@ namespace Dev.Sales
 
         #endregion
 
-        #region 5. 데이터 조회 (바인딩 테스트후, 무겁고 너무느려서 직접 쿼리로 제어)
+        #region 5. 데이터 조회 (바인딩 테스트후, 무겁고 느려서 직접 쿼리로 제어)
 
         /// <summary>
         /// Dropdownlist 데이터 로딩
@@ -821,6 +922,17 @@ namespace Dev.Sales
                                             Convert.ToInt32(row["Classification"])));
             }
 
+            // Vendor (구분 Sew업체로 연결) 
+            embName.Add(new CustomerName(0, "", 0));
+            _dt = CommonController.Getlist(CommonValues.KeyName.Vendor).Tables[0];
+
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstVendor.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
+                                            row["CustName"].ToString(),
+                                            Convert.ToInt32(row["Classification"])));
+            }
+
             // 코드
             _dt = CommonController.Getlist(CommonValues.KeyName.Codes).Tables[0];
 
@@ -829,6 +941,49 @@ namespace Dev.Sales
                 codeName.Add(new CodeContents(Convert.ToInt32(row["Idx"]),
                                             row["Contents"].ToString(),
                                             row["Classification"].ToString()));
+            }
+
+            
+
+            // 사이즈 그룹 데이터로딩 
+            _dt = Codes.Controller.SizeGroup.GetlistName().Tables[0]; //Getlist(0).Tables[0];
+            foreach (DataRow row in _dt.Rows)
+            {
+                dataSetSizeGroup.DataTableSizeGroup.Rows.Add(Convert.ToInt32(row["SizeGroupIdx"]),
+                                            row["Client"].ToString(),
+                                            row["SizeGroupName"].ToString(),
+                                            row["SizeIdx1"].ToString(),
+                                            row["SizeIdx2"].ToString(),
+                                            row["SizeIdx3"].ToString(),
+                                            row["SizeIdx4"].ToString(),
+                                            row["SizeIdx5"].ToString(),
+                                            row["SizeIdx6"].ToString(),
+                                            row["SizeIdx7"].ToString(),
+                                            row["SizeIdx8"].ToString());
+            }
+
+
+            // Sewthread
+            //lstSewthread.Add(new CustomerName(0, "", 0));
+            _dt = Codes.Controller.SewThread.GetUsablelist(); // CommonController.Getlist(CommonValues.KeyName.SewThread).Tables[0];
+
+            foreach (DataRow row in _dt.Rows)
+            {
+                dataSetSizeGroup.DataTableSewThread.Rows.Add(Convert.ToInt32(row["SewThreadIdx"]),
+                                            row["SewThreadCustIdx"].ToString(),
+                                            row["SewThreadName"].ToString(),
+                                            row["ColorIdx"].ToString());
+            }
+
+            // Username
+            lstUser.Add(new CustomerName(0, "", 0));
+            _dt = CommonController.Getlist(CommonValues.KeyName.User).Tables[0];
+
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstUser.Add(new CustomerName(Convert.ToInt32(row["UserIdx"]),
+                                            row["UserName"].ToString(),
+                                            Convert.ToInt32(row["DeptIdx"])));
             }
 
             // 오더상태
@@ -943,9 +1098,13 @@ namespace Dev.Sales
                 if (row.Cells["Indate"].Value != DBNull.Value) _obj1.Indate    = Convert.ToDateTime(row.Cells["Indate"].Value);
 
                 if (row.Cells["Buyer"].Value != DBNull.Value)           _obj1.Buyer = Convert.ToInt32(row.Cells["Buyer"].Value.ToString());
+                if (row.Cells["Vendor"].Value != DBNull.Value) _obj1.Vendor = Convert.ToInt32(row.Cells["Vendor"].Value.ToString());
+                if (row.Cells["Country"].Value != DBNull.Value) _obj1.Country = Convert.ToInt32(row.Cells["Country"].Value.ToString());
                 if (row.Cells["Pono"].Value != DBNull.Value)            _obj1.Pono = row.Cells["Pono"].Value.ToString();
                 if (row.Cells["Styleno"].Value != DBNull.Value)         _obj1.Styleno = row.Cells["Styleno"].Value.ToString();
-                
+                if (row.Cells["SampleType"].Value != DBNull.Value) _obj1.SampleType = row.Cells["SampleType"].Value.ToString();
+                if (row.Cells["InspType"].Value != DBNull.Value) _obj1.InspType = row.Cells["InspType"].Value.ToString();
+
                 if (row.Cells["Season"].Value != DBNull.Value)          _obj1.Season = row.Cells["Season"].Value.ToString();
                 if (row.Cells["Description"].Value != DBNull.Value)     _obj1.Description = row.Cells["Description"].Value.ToString();
                 if (row.Cells["DeliveryDate"].Value != DBNull.Value)    _obj1.DeliveryDate = Convert.ToDateTime(row.Cells["DeliveryDate"].Value);
@@ -1000,6 +1159,14 @@ namespace Dev.Sales
         /// <param name="e"></param>
         private void MasterTemplate_CellEditorInitialized(object sender, GridViewCellEventArgs e)
         {
+            RadMultiColumnComboBoxElement meditor = e.ActiveEditor as RadMultiColumnComboBoxElement;
+            if (meditor != null)
+            {
+                meditor.AutoSizeDropDownToBestFit = true;
+                meditor.AutoSizeDropDownHeight = true;
+
+            }
+
             // DDL 높이, 출력항목수 설정
             RadDropDownListEditor editor = this._gv1.ActiveEditor as RadDropDownListEditor;
             if (editor != null)
@@ -1007,9 +1174,9 @@ namespace Dev.Sales
                 ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DefaultItemsCountInDropDown
                     = CommonValues.DDL_DefaultItemsCountInDropDown;
                 ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DropDownHeight
-                    = CommonValues.DDL_DropDownHeight; 
+                    = CommonValues.DDL_DropDownHeight;
             }
-
+                       
             // 날짜컬럼의 달력크기 설정
             RadDateTimeEditor dtEditor = e.ActiveEditor as RadDateTimeEditor;
             if (dtEditor != null)
@@ -1035,8 +1202,10 @@ namespace Dev.Sales
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void gvOrderActual_Click(object sender, EventArgs e)
+        private void GV_Click(object sender, EventArgs e)
         {
+            _gv1 = (RadGridView)sender;
+
             // 멀티행 선택시 컨텍스트 메뉴에서 오더복사 disable
             if (_gv1.SelectedRows.Count > 1)
             {
@@ -1050,7 +1219,7 @@ namespace Dev.Sales
                 contextMenu.Items[6].Shortcuts.Add(new RadShortcut(Keys.Control, Keys.C));
             }
         }
-
+        
         /// <summary>
         /// 행 선택시 - 오더캔슬, 마감일때 편집 불가능하도록
         /// </summary>
@@ -1115,9 +1284,18 @@ namespace Dev.Sales
         }
 
 
+
         #endregion
-        
-        
+
+        private void twColorSize_Enter(object sender, EventArgs e)
+        {
+            //GV1_CreateColumn(_gv1);     // 그리드뷰 생성
+            //GV1_LayoutSetting(_gv1);    // 중앙 그리드뷰 설정 
+            //Config_ContextMenu();       // 중앙 그리드뷰 컨텍스트 생성 설정 
+            
+            // 데이터 조회 
+
+        }
     }
 
 }

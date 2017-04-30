@@ -51,12 +51,19 @@ namespace Dev.Options
                 case CommonValues.KeyName.SewThread:
                     ds = Int.Customer.Customer.Getlist(102); break;     // Trim(Sewing Thread) Maker
 
+                case CommonValues.KeyName.Vendor:
+                    ds = Int.Customer.Customer.Getlist(30); break;     // Sew Vendor
+
                 // 나염여부 
                 case CommonValues.KeyName.EmbelishId1:
                     ds = Int.Customer.Customer.Getlist(CommonValues.DictionaryCodeClass["Embllishment"]); break;
                 case CommonValues.KeyName.EmbelishId2:
                     ds = Int.Customer.Customer.Getlist(CommonValues.DictionaryCodeClass["Embllishment"]); break;
-                    
+
+                // 유저명
+                case CommonValues.KeyName.User:
+                    ds = Int.Users.Users.Getlist(UserInfo.DeptIdx); break;
+
                 default:
                     break;
             }

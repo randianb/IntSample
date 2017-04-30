@@ -24,12 +24,17 @@ namespace Dev.Sales
         private List<DepartmentName> deptName = new List<DepartmentName>();     // 부서
         private List<CustomerName> custName = new List<CustomerName>();         // 거래처
         private List<CustomerName> custName2 = new List<CustomerName>();         // 거래처
+        private List<CodeContents> codeName = new List<CodeContents>();         // 코드
         private List<CodeContents> lstIsPrinting = new List<CodeContents>();    // 나염여부
         private List<CustomerName> embName1 = new List<CustomerName>();          // 나염업체
         private List<CustomerName> embName2 = new List<CustomerName>();          // 나염업체
         private List<Codes.Controller.SizeGroup> lstSizeGroup = new List<Codes.Controller.SizeGroup>();      // 사이즈그룹
+        private List<CustomerName> lstSewthread = new List<CustomerName>();         // sewthread
+        private List<CodeContents> lstColor = new List<CodeContents>();         // 컬러
+
         private Dictionary<int, List<Codes.Controller.Sizes>> lstSizes =
-            new Dictionary<int, List<Codes.Controller.Sizes>>(); 
+            new Dictionary<int, List<Codes.Controller.Sizes>>();
+        private List<CustomerName> lstUser = new List<CustomerName>();         // 유저명
 
         #endregion   
 
@@ -145,47 +150,72 @@ namespace Dev.Sales
 
             // 사이즈 그룹 데이터로딩 후, 데이터테이블에 추가하고 바인딩해준다 bindingSourceSizeGroup 
             // MultipleColumnComboBox의 DataMember 설정하기 위해 필요 
-            _dt = Codes.Controller.SizeGroup.Getlist(0).Tables[0];
+            _dt = Codes.Controller.SizeGroup.GetlistName().Tables[0]; //Getlist(0).Tables[0];
             foreach (DataRow row in _dt.Rows)
             {
                 dataSetSizeGroup.DataTableSizeGroup.Rows.Add(Convert.ToInt32(row["SizeGroupIdx"]),
-                                            Convert.ToInt32(row["Client"]),
+                                            row["Client"].ToString(),
                                             row["SizeGroupName"].ToString(),
-                                            Convert.ToInt32(row["SizeIdx1"]),
-                                            Convert.ToInt32(row["SizeIdx2"]),
-                                            Convert.ToInt32(row["SizeIdx3"]),
-                                            Convert.ToInt32(row["SizeIdx4"]),
-                                            Convert.ToInt32(row["SizeIdx5"]),
-                                            Convert.ToInt32(row["SizeIdx6"]),
-                                            Convert.ToInt32(row["SizeIdx7"]),
-                                            Convert.ToInt32(row["SizeIdx8"]),
-                                            Convert.ToInt32(row["IsUse"])); 
+                                            row["SizeIdx1"].ToString(),
+                                            row["SizeIdx2"].ToString(),
+                                            row["SizeIdx3"].ToString(),
+                                            row["SizeIdx4"].ToString(),
+                                            row["SizeIdx5"].ToString(),
+                                            row["SizeIdx6"].ToString(),
+                                            row["SizeIdx7"].ToString(),
+                                            row["SizeIdx8"].ToString()); 
+            }
+            
+            // 코드
+            _dt = CommonController.Getlist(CommonValues.KeyName.Codes).Tables[0];
+            codeName.Add(new CodeContents(0, "", ""));
+            foreach (DataRow row in _dt.Rows)
+            {
+
+                codeName.Add(new CodeContents(Convert.ToInt32(row["Idx"]),
+                                            row["Contents"].ToString(),
+                                            row["Classification"].ToString()));
             }
 
-            // 사이즈 
-            _dt = Codes.Controller.Sizes.GetUselist().Tables[0]; 
-            for(int i=1; i<=8; i++)
-            {
-                lstSizes.Add(i, new List<Codes.Controller.Sizes>()); 
-            }
-            foreach(DataRow row in _dt.Rows)
-            {
-                for (int i = 1; i <= 8; i++)
-                {
-                    lstSizes[i].Add(new Codes.Controller.Sizes(Convert.ToInt32(row["SizeIdx"]),
-                                                               row["SizeName"].ToString()
-                                                               )); 
-                }
-            }
             // lstIsPrinting 
-            //lstIsPrinting.Clear();
-            //lstIsPrinting = codeName.FindAll(
-            //    delegate (CodeContents code)
-            //    {
-            //        return code.CodeIdx == 0 || code.Classification == "IsPrinting";
-            //    });
+            lstIsPrinting.Clear();
+            lstIsPrinting = codeName.FindAll(
+                delegate (CodeContents code)
+                {
+                    return code.CodeIdx == 0 || code.Classification == "IsPrinting";
+                });
+            
+            // Sewthread
+            //lstSewthread.Add(new CustomerName(0, "", 0));
+            _dt = Codes.Controller.SewThread.GetUsablelist(); // CommonController.Getlist(CommonValues.KeyName.SewThread).Tables[0];
+            
+            foreach (DataRow row in _dt.Rows)
+            {
+                dataSetSizeGroup.DataTableSewThread.Rows.Add(Convert.ToInt32(row["SewThreadIdx"]),
+                                            row["SewThreadCustIdx"].ToString(),
+                                            row["SewThreadName"].ToString(),
+                                            row["ColorIdx"].ToString());
+            }
 
+            // Username
+            lstUser.Add(new CustomerName(0, "", 0));
+            _dt = CommonController.Getlist(CommonValues.KeyName.User).Tables[0];
 
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstUser.Add(new CustomerName(Convert.ToInt32(row["UserIdx"]),
+                                            row["UserName"].ToString(),
+                                            Convert.ToInt32(row["DeptIdx"])));
+            }
+
+            // color
+            _dt = Dev.Codes.Controller.Color.GetUselist().Tables[0]; 
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstColor.Add(new CodeContents(Convert.ToInt32(row["ColorIdx"]),
+                                            row["ColorName"].ToString(),
+                                            row["Classification"].ToString()));
+            }
         }
 
         private void Config_DropDownList()
@@ -218,26 +248,11 @@ namespace Dev.Sales
             ddlEmb2.ValueMember = "CustIdx";
             ddlEmb2.DefaultItemsCountInDropDown = CommonValues.DDL_DefaultItemsCountInDropDown;
             ddlEmb2.DropDownHeight = CommonValues.DDL_DropDownHeight;
-
-            // 사이즈그룹 바이어 컬럼에 해당 콤보컬럼 연결 
-            GridViewComboBoxColumn cboBuyer = (GridViewComboBoxColumn)ddlSizeGroup.Columns["Client"];
-            cboBuyer.DataSource = custName2;
-            cboBuyer.ValueMember = "CustIdx";
-            cboBuyer.DisplayMember = "CustName";
-            cboBuyer.FieldName = "Client";
-            cboBuyer.HeaderText = "Buyer";
-
-            GridViewComboBoxColumn cboSize1 = (GridViewComboBoxColumn)ddlSizeGroup.Columns["SizeIdx1"];
-            cboBuyer.DataSource = lstSizes[1];
-            cboBuyer.ValueMember = "SizeIdx";
-            cboBuyer.DisplayMember = "SizeName";
-            cboBuyer.FieldName = "SizeIdx1";
-            //cboBuyer.HeaderText = "Size1";
-
+                                    
             this.ddlSizeGroup.AutoSizeDropDownToBestFit = true;
             this.ddlSizeGroup.AutoSizeDropDownHeight = true;
-            this.ddlSizeGroup.MultiColumnComboBoxElement.SelectedIndex = 0; 
-            
+            this.ddlSizeGroup.SelectedIndex = 0; 
+
             // lstIsPrinting
             ddlPrinting.DataSource = lstIsPrinting;
             ddlPrinting.DisplayMember = "Contents";
@@ -245,24 +260,27 @@ namespace Dev.Sales
             ddlPrinting.DefaultItemsCountInDropDown = CommonValues.DDL_DefaultItemsCountInDropDown;
             ddlPrinting.DropDownHeight = CommonValues.DDL_DropDownHeight;
             
+            // ddlSewThread
+            ddlSewThread.AutoSizeDropDownToBestFit = true;
+            ddlSewThread.AutoSizeDropDownHeight = true;
+            ddlSewThread.SelectedIndex = 0;
+
+            // Handler
+            ddlHandler.DataSource = lstUser;
+            ddlHandler.DisplayMember = "CustName";
+            ddlHandler.ValueMember = "CustIdx";
+            ddlHandler.DefaultItemsCountInDropDown = CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlHandler.DropDownHeight = CommonValues.DDL_DropDownHeight;
+
         }
-        
+
 
         private void frmNewOrder_Load(object sender, EventArgs e)
         {
             DataLoading_DDL(); 
             Config_DropDownList(); 
         }
-
-        private void CreateSeqNo(int DeptIdx, int cls)
-        {
-            // Create FileNo
-            if (cls==1)
-            {
-
-            }
-        }
-
+        
         private void txtQty_ValueChanged(object sender, EventArgs e)
         {
             txtAmount.Value = (txtQty.Value * txtUprice.Value);
@@ -272,5 +290,14 @@ namespace Dev.Sales
         {
             txtAmount.Value = (txtQty.Value * txtUprice.Value);
         }
+
+        private void btnCreateFileno_Click(object sender, EventArgs e)
+        {
+            string NewCode = Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 2, "");
+            txtFileno.Text = NewCode; 
+        }
+
+        
+        
     }
 }

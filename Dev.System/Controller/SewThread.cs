@@ -105,6 +105,13 @@ namespace Dev.Codes.Controller
             ds = Data.SewThreadData.Getlist(SewThreadCustIdx);
             return ds;
         }
+        public static DataTable GetUsablelist()
+        {
+            DataTable dt = new DataTable();
+            dt = Data.SewThreadData.GetUsablelist().Tables[0];
+            return dt;
+           
+        }
 
         public bool Update()
         {
