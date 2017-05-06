@@ -2,6 +2,8 @@
 using System;
 using System.Data;
 using System.IO;
+using System.Windows.Forms;
+using Telerik.WinControls.UI;
 
 namespace Dev.Options
 {
@@ -46,6 +48,10 @@ namespace Dev.Options
                         ds = Int.Customer.Customer.GetNamelist(UserInfo.DeptIdx);
                     else
                         ds = Int.Customer.Customer.GetNamelist();
+                    break;
+
+                case CommonValues.KeyName.CustAll:
+                    ds = Int.Customer.Customer.GetNamelist();
                     break;
 
                 case CommonValues.KeyName.SewThread:
@@ -126,6 +132,21 @@ namespace Dev.Options
             }
         }
 
+        /// <summary>
+        /// 현재 열려진 창을 닫고 새로 오픈
+        /// </summary>
+        /// <param name="frm"></param>
+        /// <returns></returns>
+        public static void Close_All_Children(RadForm thisform, string frm)
+        {
+            foreach (Form f in thisform.MdiParent.MdiChildren)
+            {
+                if (f.Name == frm.ToString())
+                {
+                    f.Close();
+                }
+            }
+        }
         #endregion
 
     }

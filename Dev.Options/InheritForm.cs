@@ -1,4 +1,5 @@
-﻿using Telerik.WinControls.UI;
+﻿using System.Windows.Forms;
+using Telerik.WinControls.UI;
 
 namespace Dev.Options
 {
@@ -11,5 +12,7 @@ namespace Dev.Options
             InitializeComponent();
             
         }
+
+        
     }
 }

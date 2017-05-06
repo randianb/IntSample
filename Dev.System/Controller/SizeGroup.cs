@@ -205,6 +205,12 @@ namespace Dev.Codes.Controller
             return ds;
         }
 
+        public static DataRow Get(int SizeGroupIdx)
+        {
+            DataRow dr = Data.SizeGroupData.Get(SizeGroupIdx);
+            return dr;
+        }
+
         public bool Update()
         {
             bool blRtn;

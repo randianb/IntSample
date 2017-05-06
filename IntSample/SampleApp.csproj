@@ -249,6 +249,7 @@
     <None Include="Resources\outbound2.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\history2.png" />
     <Content Include="Resources\int-sample.ico" />
     <None Include="Resources\interp1.png" />
     <None Include="Resources\process-chart-flow-plan-481.png" />
@@ -333,6 +334,10 @@
     <ProjectReference Include="..\Dev.Options\Dev.Options.csproj">
       <Project>{cde30aec-043e-4b66-8803-6bb44120624f}</Project>
       <Name>Dev.Options</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dev.Pattern\Dev.Pattern.csproj">
+      <Project>{645bd20a-5723-40f4-9d9f-8684a1e1a83d}</Project>
+      <Name>Dev.Pattern</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dev.Sales\Dev.Sales.csproj">
       <Project>{367beb2f-64c6-4376-90c4-cd4b396b56f7}</Project>

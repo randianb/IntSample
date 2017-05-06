@@ -79,7 +79,9 @@
             this.ribbonTab3 = new Telerik.WinControls.UI.RibbonTab();
             this.radRibbonBarGroup7 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.radButtonElement14 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement15 = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnPatternMain = new Telerik.WinControls.UI.RadButtonElement();
+            this.radRibbonBarGroup14 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.btnPatternReportControl = new Telerik.WinControls.UI.RadButtonElement();
             this.ribbonTab4 = new Telerik.WinControls.UI.RibbonTab();
             this.radRibbonBarGroup8 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.btnFabricFabricCode = new Telerik.WinControls.UI.RadButtonElement();
@@ -138,16 +140,16 @@
             // 
             // radStatusStrip1
             // 
-            this.radStatusStrip1.Location = new System.Drawing.Point(0, 925);
-            this.radStatusStrip1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.radStatusStrip1.Size = new System.Drawing.Size(1433, 30);
+            this.radStatusStrip1.Location = new System.Drawing.Point(0, 746);
+            this.radStatusStrip1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radStatusStrip1.Size = new System.Drawing.Size(1262, 26);
             // 
             // lblServerInfo
             // 
             this.lblServerInfo.AccessibleDescription = "Server";
             this.lblServerInfo.AccessibleName = "Server";
             this.lblServerInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.lblServerInfo.Bounds = new System.Drawing.Rectangle(0, 0, 46, 22);
+            this.lblServerInfo.Bounds = new System.Drawing.Rectangle(0, 0, 37, 18);
             this.lblServerInfo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblServerInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             // 
@@ -156,7 +158,7 @@
             this.lblRows.AccessibleDescription = "Rows";
             this.lblRows.AccessibleName = "Rows";
             this.lblRows.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.lblRows.Bounds = new System.Drawing.Rectangle(0, 0, 40, 22);
+            this.lblRows.Bounds = new System.Drawing.Rectangle(0, 0, 33, 18);
             this.lblRows.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblRows.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             // 
@@ -165,7 +167,7 @@
             this.lblDescription.AccessibleDescription = "None";
             this.lblDescription.AccessibleName = "None";
             this.lblDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.lblDescription.Bounds = new System.Drawing.Rectangle(0, 0, 41, 22);
+            this.lblDescription.Bounds = new System.Drawing.Rectangle(0, 0, 34, 18);
             this.lblDescription.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             // 
@@ -180,7 +182,7 @@
             this.commandBarSeparator1.BorderRightColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(231)))), ((int)(((byte)(250)))));
             this.commandBarSeparator1.BorderTopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.commandBarSeparator1.BorderTopWidth = 0F;
-            this.commandBarSeparator1.Bounds = new System.Drawing.Rectangle(0, 0, 2, 22);
+            this.commandBarSeparator1.Bounds = new System.Drawing.Rectangle(0, 0, 2, 18);
             this.commandBarSeparator1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
             this.commandBarSeparator1.DrawBorder = true;
             this.commandBarSeparator1.DrawFill = true;
@@ -204,7 +206,7 @@
             this.commandBarSeparator2.BorderRightColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(231)))), ((int)(((byte)(250)))));
             this.commandBarSeparator2.BorderTopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.commandBarSeparator2.BorderTopWidth = 0F;
-            this.commandBarSeparator2.Bounds = new System.Drawing.Rectangle(0, 0, 2, 22);
+            this.commandBarSeparator2.Bounds = new System.Drawing.Rectangle(0, 0, 2, 18);
             this.commandBarSeparator2.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
             this.commandBarSeparator2.DrawBorder = true;
             this.commandBarSeparator2.DrawFill = true;
@@ -234,13 +236,12 @@
             // 
             this.radRibbonBar1.ExitButton.Text = "Exit";
             this.radRibbonBar1.Location = new System.Drawing.Point(0, 148);
-            this.radRibbonBar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radRibbonBar1.Name = "radRibbonBar1";
             // 
             // 
             // 
             this.radRibbonBar1.OptionsButton.Text = "Options";
-            this.radRibbonBar1.Size = new System.Drawing.Size(1433, 173);
+            this.radRibbonBar1.Size = new System.Drawing.Size(1262, 165);
             this.radRibbonBar1.StartButtonImage = ((System.Drawing.Image)(resources.GetObject("radRibbonBar1.StartButtonImage")));
             this.radRibbonBar1.TabIndex = 0;
             this.radRibbonBar1.Text = "MainApp";
@@ -257,12 +258,11 @@
             this.bsExport,
             this.bsOptions,
             this.bsExit});
-            this.bsViewMain.Location = new System.Drawing.Point(0, 258);
-            this.bsViewMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.bsViewMain.Location = new System.Drawing.Point(0, 206);
             this.bsViewMain.Name = "bsViewMain";
             this.bsViewMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.bsViewMain.SelectedItem = this.bsAbout;
-            this.bsViewMain.Size = new System.Drawing.Size(1425, 690);
+            this.bsViewMain.Size = new System.Drawing.Size(1247, 552);
             this.bsViewMain.TabIndex = 3;
             this.bsViewMain.Leave += new System.EventHandler(this.bsViewMain_Leave);
             // 
@@ -282,19 +282,17 @@
             this.backstageViewPage3.Controls.Add(this.radLabel2);
             this.backstageViewPage3.Controls.Add(this.radLabel6);
             this.backstageViewPage3.Controls.Add(this.radLabel1);
-            this.backstageViewPage3.Location = new System.Drawing.Point(151, 1);
-            this.backstageViewPage3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.backstageViewPage3.Location = new System.Drawing.Point(132, 1);
             this.backstageViewPage3.Name = "backstageViewPage3";
-            this.backstageViewPage3.Size = new System.Drawing.Size(1274, 689);
+            this.backstageViewPage3.Size = new System.Drawing.Size(1115, 551);
             this.backstageViewPage3.TabIndex = 5;
             // 
             // enableSearchRow
             // 
             this.enableSearchRow.AutoSize = true;
-            this.enableSearchRow.Location = new System.Drawing.Point(55, 518);
-            this.enableSearchRow.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.enableSearchRow.Location = new System.Drawing.Point(48, 414);
             this.enableSearchRow.Name = "enableSearchRow";
-            this.enableSearchRow.Size = new System.Drawing.Size(145, 23);
+            this.enableSearchRow.Size = new System.Drawing.Size(124, 17);
             this.enableSearchRow.TabIndex = 15;
             this.enableSearchRow.Text = "Enable Search Row";
             this.enableSearchRow.UseVisualStyleBackColor = true;
@@ -302,10 +300,9 @@
             // enablePagingGV
             // 
             this.enablePagingGV.AutoSize = true;
-            this.enablePagingGV.Location = new System.Drawing.Point(55, 478);
-            this.enablePagingGV.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.enablePagingGV.Location = new System.Drawing.Point(48, 382);
             this.enablePagingGV.Name = "enablePagingGV";
-            this.enablePagingGV.Size = new System.Drawing.Size(174, 23);
+            this.enablePagingGV.Size = new System.Drawing.Size(148, 17);
             this.enablePagingGV.TabIndex = 16;
             this.enablePagingGV.Text = "Enable Paging Gridview";
             this.enablePagingGV.UseVisualStyleBackColor = true;
@@ -313,115 +310,103 @@
             // retypePass
             // 
             this.retypePass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.retypePass.Location = new System.Drawing.Point(177, 256);
-            this.retypePass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.retypePass.Location = new System.Drawing.Point(155, 205);
             this.retypePass.Name = "retypePass";
             this.retypePass.PasswordChar = '*';
-            this.retypePass.Size = new System.Drawing.Size(155, 25);
+            this.retypePass.Size = new System.Drawing.Size(136, 20);
             this.retypePass.TabIndex = 11;
             // 
             // newPass
             // 
             this.newPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.newPass.Location = new System.Drawing.Point(177, 210);
-            this.newPass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.newPass.Location = new System.Drawing.Point(155, 168);
             this.newPass.Name = "newPass";
             this.newPass.PasswordChar = '*';
-            this.newPass.Size = new System.Drawing.Size(155, 25);
+            this.newPass.Size = new System.Drawing.Size(136, 20);
             this.newPass.TabIndex = 12;
             // 
             // txtUsername
             // 
             this.txtUsername.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtUsername.Location = new System.Drawing.Point(177, 111);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtUsername.Location = new System.Drawing.Point(155, 89);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.ReadOnly = true;
-            this.txtUsername.Size = new System.Drawing.Size(155, 25);
+            this.txtUsername.Size = new System.Drawing.Size(136, 20);
             this.txtUsername.TabIndex = 13;
             // 
             // originalPass
             // 
-            this.originalPass.Location = new System.Drawing.Point(177, 164);
-            this.originalPass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.originalPass.Location = new System.Drawing.Point(155, 131);
             this.originalPass.Name = "originalPass";
             this.originalPass.PasswordChar = '*';
-            this.originalPass.Size = new System.Drawing.Size(155, 25);
+            this.originalPass.Size = new System.Drawing.Size(136, 20);
             this.originalPass.TabIndex = 14;
             // 
             // radLabel4
             // 
-            this.radLabel4.Location = new System.Drawing.Point(55, 256);
-            this.radLabel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radLabel4.Location = new System.Drawing.Point(48, 205);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(112, 22);
+            this.radLabel4.Size = new System.Drawing.Size(98, 18);
             this.radLabel4.TabIndex = 4;
             this.radLabel4.Text = "Re-Type Password";
             // 
             // btnChangePass
             // 
-            this.btnChangePass.Location = new System.Drawing.Point(177, 302);
-            this.btnChangePass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnChangePass.Location = new System.Drawing.Point(155, 242);
             this.btnChangePass.Name = "btnChangePass";
-            this.btnChangePass.Size = new System.Drawing.Size(126, 30);
+            this.btnChangePass.Size = new System.Drawing.Size(110, 24);
             this.btnChangePass.TabIndex = 10;
             this.btnChangePass.Text = "Change";
             this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(55, 209);
-            this.radLabel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radLabel3.Location = new System.Drawing.Point(48, 167);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(90, 22);
+            this.radLabel3.Size = new System.Drawing.Size(79, 18);
             this.radLabel3.TabIndex = 5;
             this.radLabel3.Text = "New Password";
             // 
             // radLabel8
             // 
             this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.radLabel8.Location = new System.Drawing.Point(55, 421);
-            this.radLabel8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radLabel8.Location = new System.Drawing.Point(48, 337);
             this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(94, 36);
+            this.radLabel8.Size = new System.Drawing.Size(82, 29);
             this.radLabel8.TabIndex = 6;
             this.radLabel8.Text = "Gridview";
             // 
             // radLabel2
             // 
             this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.radLabel2.Location = new System.Drawing.Point(55, 49);
-            this.radLabel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radLabel2.Location = new System.Drawing.Point(48, 39);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(219, 36);
+            this.radLabel2.Size = new System.Drawing.Size(192, 29);
             this.radLabel2.TabIndex = 7;
             this.radLabel2.Text = "Change the Password";
             // 
             // radLabel6
             // 
-            this.radLabel6.Location = new System.Drawing.Point(55, 114);
-            this.radLabel6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radLabel6.Location = new System.Drawing.Point(48, 91);
             this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(64, 22);
+            this.radLabel6.Size = new System.Drawing.Size(56, 18);
             this.radLabel6.TabIndex = 8;
             this.radLabel6.Text = "Username";
             // 
             // radLabel1
             // 
-            this.radLabel1.Location = new System.Drawing.Point(55, 165);
-            this.radLabel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radLabel1.Location = new System.Drawing.Point(48, 132);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(110, 22);
+            this.radLabel1.Size = new System.Drawing.Size(96, 18);
             this.radLabel1.TabIndex = 9;
             this.radLabel1.Text = "Original Password";
             // 
             // backstageViewPage4
             // 
             this.backstageViewPage4.BackColor = System.Drawing.Color.Transparent;
-            this.backstageViewPage4.Location = new System.Drawing.Point(151, 1);
-            this.backstageViewPage4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.backstageViewPage4.Location = new System.Drawing.Point(132, 1);
             this.backstageViewPage4.Name = "backstageViewPage4";
-            this.backstageViewPage4.Size = new System.Drawing.Size(1274, 689);
+            this.backstageViewPage4.Size = new System.Drawing.Size(1115, 551);
             this.backstageViewPage4.TabIndex = 7;
             // 
             // backstageViewPage2
@@ -429,20 +414,18 @@
             this.backstageViewPage2.BackColor = System.Drawing.Color.Transparent;
             this.backstageViewPage2.Controls.Add(this.btnSaveAs);
             this.backstageViewPage2.Controls.Add(this.radLabel7);
-            this.backstageViewPage2.Location = new System.Drawing.Point(151, 1);
-            this.backstageViewPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.backstageViewPage2.Location = new System.Drawing.Point(132, 1);
             this.backstageViewPage2.Name = "backstageViewPage2";
-            this.backstageViewPage2.Size = new System.Drawing.Size(1274, 689);
+            this.backstageViewPage2.Size = new System.Drawing.Size(1115, 551);
             this.backstageViewPage2.TabIndex = 3;
             // 
             // btnSaveAs
             // 
             this.btnSaveAs.Image = global::SampleApp.Properties.Resources.export3;
             this.btnSaveAs.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnSaveAs.Location = new System.Drawing.Point(65, 130);
-            this.btnSaveAs.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSaveAs.Location = new System.Drawing.Point(57, 104);
             this.btnSaveAs.Name = "btnSaveAs";
-            this.btnSaveAs.Size = new System.Drawing.Size(93, 81);
+            this.btnSaveAs.Size = new System.Drawing.Size(81, 65);
             this.btnSaveAs.TabIndex = 5;
             this.btnSaveAs.Text = "Export Excel";
             this.btnSaveAs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -452,10 +435,9 @@
             // radLabel7
             // 
             this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.radLabel7.Location = new System.Drawing.Point(65, 42);
-            this.radLabel7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radLabel7.Location = new System.Drawing.Point(57, 34);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(72, 36);
+            this.radLabel7.Size = new System.Drawing.Size(63, 29);
             this.radLabel7.TabIndex = 4;
             this.radLabel7.Text = "Export";
             // 
@@ -463,19 +445,17 @@
             // 
             this.backstageViewPage1.BackColor = System.Drawing.Color.Transparent;
             this.backstageViewPage1.Controls.Add(this.radLabel5);
-            this.backstageViewPage1.Location = new System.Drawing.Point(151, 1);
-            this.backstageViewPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.backstageViewPage1.Location = new System.Drawing.Point(132, 1);
             this.backstageViewPage1.Name = "backstageViewPage1";
-            this.backstageViewPage1.Size = new System.Drawing.Size(1274, 689);
+            this.backstageViewPage1.Size = new System.Drawing.Size(1115, 551);
             this.backstageViewPage1.TabIndex = 1;
             // 
             // radLabel5
             // 
             this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.radLabel5.Location = new System.Drawing.Point(61, 50);
-            this.radLabel5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radLabel5.Location = new System.Drawing.Point(53, 40);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(217, 36);
+            this.radLabel5.Size = new System.Drawing.Size(190, 29);
             this.radLabel5.TabIndex = 2;
             this.radLabel5.Text = "Sample Management";
             // 
@@ -555,7 +535,7 @@
             this.btnOrderWorkOrder,
             this.btnOrderWorkSchedule});
             this.radRibbonBarGroup6.Name = "radRibbonBarGroup6";
-            this.radRibbonBarGroup6.Text = "Work Order";
+            this.radRibbonBarGroup6.Text = "Development";
             // 
             // btnOrderWorkOrder
             // 
@@ -574,6 +554,7 @@
             this.btnOrderWorkSchedule.Text = "Work Schedule";
             this.btnOrderWorkSchedule.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOrderWorkSchedule.TextWrap = true;
+            this.btnOrderWorkSchedule.Click += new System.EventHandler(this.btnOrderWorkSchedule_Click);
             // 
             // radRibbonBarGroup5
             // 
@@ -586,6 +567,7 @@
             // 
             // btnOrderReportWorkSchedule
             // 
+            this.btnOrderReportWorkSchedule.Enabled = false;
             this.btnOrderReportWorkSchedule.Image = global::SampleApp.Properties.Resources._1478825357_cmyk_042;
             this.btnOrderReportWorkSchedule.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrderReportWorkSchedule.Name = "btnOrderReportWorkSchedule";
@@ -703,7 +685,8 @@
             // 
             this.ribbonTab3.IsSelected = false;
             this.ribbonTab3.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radRibbonBarGroup7});
+            this.radRibbonBarGroup7,
+            this.radRibbonBarGroup14});
             this.ribbonTab3.Name = "ribbonTab3";
             this.ribbonTab3.Text = "Pattern";
             // 
@@ -711,12 +694,13 @@
             // 
             this.radRibbonBarGroup7.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radButtonElement14,
-            this.radButtonElement15});
+            this.btnPatternMain});
             this.radRibbonBarGroup7.Name = "radRibbonBarGroup7";
             this.radRibbonBarGroup7.Text = "Pattern";
             // 
             // radButtonElement14
             // 
+            this.radButtonElement14.Enabled = false;
             this.radButtonElement14.Image = global::SampleApp.Properties.Resources.request1;
             this.radButtonElement14.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.radButtonElement14.Name = "radButtonElement14";
@@ -724,14 +708,30 @@
             this.radButtonElement14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.radButtonElement14.TextWrap = true;
             // 
-            // radButtonElement15
+            // btnPatternMain
             // 
-            this.radButtonElement15.Image = global::SampleApp.Properties.Resources.pattern2;
-            this.radButtonElement15.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement15.Name = "radButtonElement15";
-            this.radButtonElement15.Text = "Pattern";
-            this.radButtonElement15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement15.TextWrap = true;
+            this.btnPatternMain.Image = global::SampleApp.Properties.Resources.pattern2;
+            this.btnPatternMain.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnPatternMain.Name = "btnPatternMain";
+            this.btnPatternMain.Text = "Pattern";
+            this.btnPatternMain.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPatternMain.TextWrap = true;
+            this.btnPatternMain.Click += new System.EventHandler(this.btnPatternMain_Click);
+            // 
+            // radRibbonBarGroup14
+            // 
+            this.radRibbonBarGroup14.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btnPatternReportControl});
+            this.radRibbonBarGroup14.Name = "radRibbonBarGroup14";
+            this.radRibbonBarGroup14.Text = "Report";
+            // 
+            // btnPatternReportControl
+            // 
+            this.btnPatternReportControl.Image = global::SampleApp.Properties.Resources.history2;
+            this.btnPatternReportControl.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnPatternReportControl.Name = "btnPatternReportControl";
+            this.btnPatternReportControl.Text = "Control of Pattern";
+            this.btnPatternReportControl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // ribbonTab4
             // 
@@ -1030,15 +1030,15 @@
             // MainApp
             // 
             this.AllowAero = false;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SampleApp.Properties.Resources.interp1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1433, 955);
+            this.ClientSize = new System.Drawing.Size(1262, 772);
             this.Controls.Add(this.radRibbonBar1);
             this.Controls.Add(this.bsViewMain);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainApp";
             // 
             // 
@@ -1135,7 +1135,7 @@
         private Telerik.WinControls.UI.RadButtonElement btnOrderWorkSchedule;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup7;
         private Telerik.WinControls.UI.RadButtonElement radButtonElement14;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement15;
+        private Telerik.WinControls.UI.RadButtonElement btnPatternMain;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup8;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup9;
         private Telerik.WinControls.UI.RadButtonElement btnFabricFabricCode;
@@ -1164,5 +1164,7 @@
         private Telerik.WinControls.UI.RadButtonElement btnSewingThread;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup13;
         private Telerik.WinControls.UI.RadButtonElement radButtonElement37;
+        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup14;
+        private Telerik.WinControls.UI.RadButtonElement btnPatternReportControl;
     }
 }

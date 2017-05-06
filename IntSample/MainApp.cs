@@ -1,5 +1,6 @@
 ﻿using Dev.Codes;
 using Dev.Options;
+using Dev.Pattern;
 using Dev.Sales;
 using Newtonsoft.Json;
 using System;
@@ -320,6 +321,28 @@ namespace SampleApp
             {
                 CodeSizeGroup frm = new CodeSizeGroup(this);
                 frm.Text = "Size Group";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btnPatternMain_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("PatternMain"))
+            {
+                PatternMain frm = new PatternMain(this, "");
+                frm.Text = "Pattern Main";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btnOrderWorkSchedule_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("SampleScheduler"))
+            {
+                SampleScheduler frm = new SampleScheduler(this, 0);
+                frm.Text = "Developement Schedule";
                 frm.MdiParent = this;
                 frm.Show();
             }

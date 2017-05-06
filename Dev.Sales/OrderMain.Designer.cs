@@ -43,6 +43,9 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -63,19 +66,29 @@
             this.gvOrderActual = new Telerik.WinControls.UI.RadGridView();
             this.toolTabStrip3 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
-            this.twColorSize = new Telerik.WinControls.UI.Docking.ToolWindow();
-            this.gvColorSize = new Telerik.WinControls.UI.RadGridView();
-            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
+            this.twHistory = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.gvHistory = new Telerik.WinControls.UI.RadGridView();
+            this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
+            this.toolTabStrip4 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.toolWindow1 = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.documentContainer1 = new Telerik.WinControls.UI.Docking.DocumentContainer();
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
             this.toolWindow2 = new Telerik.WinControls.UI.Docking.ToolWindow();
-            this.toolTabStrip2 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
-            this.twStatus = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.radSplitContainer2 = new Telerik.WinControls.UI.RadSplitContainer();
+            this.toolTabStrip5 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
+            this.twColorSize = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.gvColorSize = new Telerik.WinControls.UI.RadGridView();
+            this.toolTabStrip6 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.twFabric = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.gvFabric = new Telerik.WinControls.UI.RadGridView();
+            this.toolTabStrip7 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.twOperation = new Telerik.WinControls.UI.Docking.ToolWindow();
-            this.twHistory = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.gvOperation = new Telerik.WinControls.UI.RadGridView();
+            this.radSplitContainer3 = new Telerik.WinControls.UI.RadSplitContainer();
+            this.toolTabStrip8 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
+            this.twStatus = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.gvProduction = new Telerik.WinControls.UI.RadGridView();
+            this.toolTabStrip9 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.dataSetSizeGroup = new Dev.Sales.Data.DataSetSizeGroup();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -98,22 +111,45 @@
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
-            this.twColorSize.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
-            this.toolTabStrip1.SuspendLayout();
+            this.twHistory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvHistory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvHistory.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
+            this.radSplitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip4)).BeginInit();
+            this.toolTabStrip4.SuspendLayout();
             this.toolWindow1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).BeginInit();
             this.documentContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
             this.documentTabStrip1.SuspendLayout();
             this.toolWindow2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip2)).BeginInit();
-            this.toolTabStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer2)).BeginInit();
+            this.radSplitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip5)).BeginInit();
+            this.toolTabStrip5.SuspendLayout();
+            this.twColorSize.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip6)).BeginInit();
+            this.toolTabStrip6.SuspendLayout();
             this.twFabric.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvFabric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvFabric.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip7)).BeginInit();
+            this.toolTabStrip7.SuspendLayout();
+            this.twOperation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvOperation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvOperation.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer3)).BeginInit();
+            this.radSplitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip8)).BeginInit();
+            this.toolTabStrip8.SuspendLayout();
+            this.twStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvProduction)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvProduction.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip9)).BeginInit();
+            this.toolTabStrip9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSizeGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -403,7 +439,7 @@
             this.gvOrderActual.Name = "gvOrderActual";
             this.gvOrderActual.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvOrderActual.ShowGroupPanel = false;
-            this.gvOrderActual.Size = new System.Drawing.Size(1259, 344);
+            this.gvOrderActual.Size = new System.Drawing.Size(856, 344);
             this.gvOrderActual.TabIndex = 11;
             this.gvOrderActual.Text = "radGridView1";
             this.gvOrderActual.ViewCellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvOrderActual_ViewCellFormatting);
@@ -411,7 +447,7 @@
             this.gvOrderActual.SelectionChanged += new System.EventHandler(this.gvOrderActual_SelectionChanged);
             this.gvOrderActual.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.GV1_Update);
             this.gvOrderActual.ContextMenuOpening += new Telerik.WinControls.UI.ContextMenuOpeningEventHandler(this.gvOrderActual_ContextMenuOpening);
-            this.gvOrderActual.Click += new System.EventHandler(this.GV_Click);
+            this.gvOrderActual.MouseEnter += new System.EventHandler(this.gvOrderActual_MouseEnter);
             // 
             // toolTabStrip3
             // 
@@ -429,17 +465,15 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.twColorSize;
+            this.radDock1.ActiveWindow = this.twHistory;
             this.radDock1.CausesValidation = false;
-            this.radDock1.Controls.Add(this.toolTabStrip1);
-            this.radDock1.Controls.Add(this.documentContainer1);
-            this.radDock1.Controls.Add(this.toolTabStrip2);
+            this.radDock1.Controls.Add(this.radSplitContainer1);
+            this.radDock1.Controls.Add(this.radSplitContainer3);
             this.radDock1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radDock1.IsCleanUpTarget = true;
             this.radDock1.Location = new System.Drawing.Point(0, 0);
             this.radDock1.MainDocumentContainer = this.documentContainer1;
             this.radDock1.Name = "radDock1";
-            this.radDock1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // 
             // 
@@ -449,50 +483,72 @@
             this.radDock1.TabStop = false;
             this.radDock1.Text = "radDock1";
             // 
-            // twColorSize
+            // twHistory
             // 
-            this.twColorSize.Caption = null;
-            this.twColorSize.Controls.Add(this.gvColorSize);
-            this.twColorSize.Font = new System.Drawing.Font("Gulim", 9F);
-            this.twColorSize.Location = new System.Drawing.Point(1, 22);
-            this.twColorSize.Name = "twColorSize";
-            this.twColorSize.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.twColorSize.Size = new System.Drawing.Size(1269, 209);
-            this.twColorSize.Text = "Color and Size";
-            this.twColorSize.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.AutoHide;
-            this.twColorSize.Enter += new System.EventHandler(this.twColorSize_Enter);
+            this.twHistory.Caption = null;
+            this.twHistory.Controls.Add(this.gvHistory);
+            this.twHistory.Font = new System.Drawing.Font("Gulim", 9F);
+            this.twHistory.Location = new System.Drawing.Point(1, 24);
+            this.twHistory.Name = "twHistory";
+            this.twHistory.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Floating;
+            this.twHistory.Size = new System.Drawing.Size(397, 227);
+            this.twHistory.Text = "History";
             // 
-            // gvColorSize
+            // gvHistory
             // 
-            this.gvColorSize.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvColorSize.Location = new System.Drawing.Point(0, 0);
+            this.gvHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvHistory.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
-            this.gvColorSize.MasterTemplate.ViewDefinition = tableViewDefinition2;
-            this.gvColorSize.Name = "gvColorSize";
-            this.gvColorSize.Size = new System.Drawing.Size(1269, 209);
-            this.gvColorSize.TabIndex = 0;
-            this.gvColorSize.Text = "radGridView1";
+            this.gvHistory.MasterTemplate.AllowAddNewRow = false;
+            this.gvHistory.MasterTemplate.MultiSelect = true;
+            this.gvHistory.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvHistory.Name = "gvHistory";
+            this.gvHistory.ShowGroupPanel = false;
+            this.gvHistory.Size = new System.Drawing.Size(397, 227);
+            this.gvHistory.TabIndex = 0;
+            this.gvHistory.Text = "radGridView2";
             // 
-            // toolTabStrip1
+            // radSplitContainer1
             // 
-            this.toolTabStrip1.CanUpdateChildIndex = true;
-            this.toolTabStrip1.CaptionVisible = false;
-            this.toolTabStrip1.Controls.Add(this.toolWindow1);
-            this.toolTabStrip1.Location = new System.Drawing.Point(5, 5);
-            this.toolTabStrip1.Name = "toolTabStrip1";
+            this.radSplitContainer1.CausesValidation = false;
+            this.radSplitContainer1.Controls.Add(this.toolTabStrip4);
+            this.radSplitContainer1.Controls.Add(this.documentContainer1);
+            this.radSplitContainer1.Controls.Add(this.radSplitContainer2);
+            this.radSplitContainer1.IsCleanUpTarget = true;
+            this.radSplitContainer1.Location = new System.Drawing.Point(5, 5);
+            this.radSplitContainer1.Name = "radSplitContainer1";
+            this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.radSplitContainer1.Padding = new System.Windows.Forms.Padding(5);
             // 
             // 
             // 
-            this.toolTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.toolTabStrip1.SelectedIndex = 0;
-            this.toolTabStrip1.Size = new System.Drawing.Size(1271, 65);
-            this.toolTabStrip1.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 65);
-            this.toolTabStrip1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -116);
-            this.toolTabStrip1.TabIndex = 4;
-            this.toolTabStrip1.TabStop = false;
-            this.toolTabStrip1.TabStripVisible = false;
+            this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.radSplitContainer1.Size = new System.Drawing.Size(868, 686);
+            this.radSplitContainer1.SizeInfo.AbsoluteSize = new System.Drawing.Size(868, 257);
+            this.radSplitContainer1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-199, 75);
+            this.radSplitContainer1.TabIndex = 0;
+            this.radSplitContainer1.TabStop = false;
+            // 
+            // toolTabStrip4
+            // 
+            this.toolTabStrip4.CanUpdateChildIndex = true;
+            this.toolTabStrip4.CaptionVisible = false;
+            this.toolTabStrip4.Controls.Add(this.toolWindow1);
+            this.toolTabStrip4.Location = new System.Drawing.Point(0, 0);
+            this.toolTabStrip4.Name = "toolTabStrip4";
+            // 
+            // 
+            // 
+            this.toolTabStrip4.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.toolTabStrip4.SelectedIndex = 0;
+            this.toolTabStrip4.Size = new System.Drawing.Size(868, 65);
+            this.toolTabStrip4.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 65);
+            this.toolTabStrip4.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -116);
+            this.toolTabStrip4.TabIndex = 4;
+            this.toolTabStrip4.TabStop = false;
+            this.toolTabStrip4.TabStripVisible = false;
             // 
             // toolWindow1
             // 
@@ -503,7 +559,7 @@
             this.toolWindow1.Location = new System.Drawing.Point(1, 2);
             this.toolWindow1.Name = "toolWindow1";
             this.toolWindow1.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow1.Size = new System.Drawing.Size(1269, 61);
+            this.toolWindow1.Size = new System.Drawing.Size(866, 61);
             this.toolWindow1.Text = "Search Data";
             this.toolWindow1.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.None;
             // 
@@ -533,7 +589,7 @@
             // 
             this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.documentTabStrip1.SelectedIndex = 0;
-            this.documentTabStrip1.Size = new System.Drawing.Size(1271, 356);
+            this.documentTabStrip1.Size = new System.Drawing.Size(868, 356);
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
             this.documentTabStrip1.TabStripVisible = false;
@@ -547,40 +603,97 @@
             this.toolWindow2.Location = new System.Drawing.Point(6, 6);
             this.toolWindow2.Name = "toolWindow2";
             this.toolWindow2.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow2.Size = new System.Drawing.Size(1259, 344);
+            this.toolWindow2.Size = new System.Drawing.Size(856, 344);
             this.toolWindow2.Text = "Orders";
             // 
-            // toolTabStrip2
+            // radSplitContainer2
             // 
-            this.toolTabStrip2.CanUpdateChildIndex = true;
-            this.toolTabStrip2.CausesValidation = false;
-            this.toolTabStrip2.Controls.Add(this.twStatus);
-            this.toolTabStrip2.Controls.Add(this.twColorSize);
-            this.toolTabStrip2.Controls.Add(this.twFabric);
-            this.toolTabStrip2.Controls.Add(this.twOperation);
-            this.toolTabStrip2.Controls.Add(this.twHistory);
-            this.toolTabStrip2.Location = new System.Drawing.Point(5, 434);
-            this.toolTabStrip2.Name = "toolTabStrip2";
-            // 
+            this.radSplitContainer2.CausesValidation = false;
+            this.radSplitContainer2.Controls.Add(this.toolTabStrip5);
+            this.radSplitContainer2.Controls.Add(this.toolTabStrip6);
+            this.radSplitContainer2.Controls.Add(this.toolTabStrip7);
+            this.radSplitContainer2.IsCleanUpTarget = true;
+            this.radSplitContainer2.Location = new System.Drawing.Point(0, 429);
+            this.radSplitContainer2.Name = "radSplitContainer2";
+            this.radSplitContainer2.Padding = new System.Windows.Forms.Padding(5);
             // 
             // 
-            this.toolTabStrip2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.toolTabStrip2.SelectedIndex = 1;
-            this.toolTabStrip2.Size = new System.Drawing.Size(1271, 257);
-            this.toolTabStrip2.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
-            this.toolTabStrip2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 75);
-            this.toolTabStrip2.TabIndex = 3;
-            this.toolTabStrip2.TabStop = false;
             // 
-            // twStatus
+            this.radSplitContainer2.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.radSplitContainer2.Size = new System.Drawing.Size(868, 257);
+            this.radSplitContainer2.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
+            this.radSplitContainer2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 75);
+            this.radSplitContainer2.TabIndex = 6;
+            this.radSplitContainer2.TabStop = false;
             // 
-            this.twStatus.Caption = null;
-            this.twStatus.Font = new System.Drawing.Font("Gulim", 9F);
-            this.twStatus.Location = new System.Drawing.Point(1, 24);
-            this.twStatus.Name = "twStatus";
-            this.twStatus.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.twStatus.Size = new System.Drawing.Size(1269, 207);
-            this.twStatus.Text = "Production Status";
+            // toolTabStrip5
+            // 
+            this.toolTabStrip5.CanUpdateChildIndex = true;
+            this.toolTabStrip5.CausesValidation = false;
+            this.toolTabStrip5.Controls.Add(this.twColorSize);
+            this.toolTabStrip5.Location = new System.Drawing.Point(0, 0);
+            this.toolTabStrip5.Name = "toolTabStrip5";
+            // 
+            // 
+            // 
+            this.toolTabStrip5.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.toolTabStrip5.SelectedIndex = 0;
+            this.toolTabStrip5.Size = new System.Drawing.Size(419, 257);
+            this.toolTabStrip5.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
+            this.toolTabStrip5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1539188F, 0F);
+            this.toolTabStrip5.SizeInfo.SplitterCorrection = new System.Drawing.Size(163, 75);
+            this.toolTabStrip5.TabIndex = 4;
+            this.toolTabStrip5.TabStop = false;
+            // 
+            // twColorSize
+            // 
+            this.twColorSize.Caption = null;
+            this.twColorSize.Controls.Add(this.gvColorSize);
+            this.twColorSize.Font = new System.Drawing.Font("Gulim", 9F);
+            this.twColorSize.Location = new System.Drawing.Point(1, 22);
+            this.twColorSize.Name = "twColorSize";
+            this.twColorSize.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.twColorSize.Size = new System.Drawing.Size(417, 233);
+            this.twColorSize.Text = "Color and Size";
+            this.twColorSize.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.AutoHide;
+            // 
+            // gvColorSize
+            // 
+            this.gvColorSize.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvColorSize.Location = new System.Drawing.Point(0, 0);
+            // 
+            // 
+            // 
+            this.gvColorSize.MasterTemplate.AllowAddNewRow = false;
+            this.gvColorSize.MasterTemplate.MultiSelect = true;
+            this.gvColorSize.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvColorSize.Name = "gvColorSize";
+            this.gvColorSize.ShowGroupPanel = false;
+            this.gvColorSize.Size = new System.Drawing.Size(417, 233);
+            this.gvColorSize.TabIndex = 0;
+            this.gvColorSize.Text = "radGridView1";
+            this.gvColorSize.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvColorSize_Update);
+            this.gvColorSize.ContextMenuOpening += new Telerik.WinControls.UI.ContextMenuOpeningEventHandler(this.GV_SubContextMenuOpening);
+            this.gvColorSize.MouseEnter += new System.EventHandler(this.gvColorSize_MouseEnter);
+            // 
+            // toolTabStrip6
+            // 
+            this.toolTabStrip6.CanUpdateChildIndex = true;
+            this.toolTabStrip6.CausesValidation = false;
+            this.toolTabStrip6.Controls.Add(this.twFabric);
+            this.toolTabStrip6.Location = new System.Drawing.Point(423, 0);
+            this.toolTabStrip6.Name = "toolTabStrip6";
+            // 
+            // 
+            // 
+            this.toolTabStrip6.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.toolTabStrip6.SelectedIndex = 0;
+            this.toolTabStrip6.Size = new System.Drawing.Size(251, 257);
+            this.toolTabStrip6.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
+            this.toolTabStrip6.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.04154864F, 0F);
+            this.toolTabStrip6.SizeInfo.SplitterCorrection = new System.Drawing.Size(-44, 75);
+            this.toolTabStrip6.TabIndex = 3;
+            this.toolTabStrip6.TabStop = false;
             // 
             // twFabric
             // 
@@ -590,7 +703,7 @@
             this.twFabric.Location = new System.Drawing.Point(1, 22);
             this.twFabric.Name = "twFabric";
             this.twFabric.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.twFabric.Size = new System.Drawing.Size(1269, 209);
+            this.twFabric.Size = new System.Drawing.Size(249, 233);
             this.twFabric.Text = "Fabric";
             this.twFabric.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.AutoHide;
             // 
@@ -601,31 +714,154 @@
             // 
             // 
             // 
-            this.gvFabric.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvFabric.MasterTemplate.AllowAddNewRow = false;
+            this.gvFabric.MasterTemplate.MultiSelect = true;
+            this.gvFabric.MasterTemplate.ViewDefinition = tableViewDefinition4;
             this.gvFabric.Name = "gvFabric";
-            this.gvFabric.Size = new System.Drawing.Size(1269, 209);
+            this.gvFabric.ShowGroupPanel = false;
+            this.gvFabric.Size = new System.Drawing.Size(249, 233);
             this.gvFabric.TabIndex = 0;
             this.gvFabric.Text = "radGridView1";
+            // 
+            // toolTabStrip7
+            // 
+            this.toolTabStrip7.CanUpdateChildIndex = true;
+            this.toolTabStrip7.Controls.Add(this.twOperation);
+            this.toolTabStrip7.Location = new System.Drawing.Point(678, 0);
+            this.toolTabStrip7.Name = "toolTabStrip7";
+            // 
+            // 
+            // 
+            this.toolTabStrip7.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.toolTabStrip7.SelectedIndex = 0;
+            this.toolTabStrip7.Size = new System.Drawing.Size(190, 257);
+            this.toolTabStrip7.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
+            this.toolTabStrip7.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1123702F, 0F);
+            this.toolTabStrip7.SizeInfo.SplitterCorrection = new System.Drawing.Size(-119, 75);
+            this.toolTabStrip7.TabIndex = 5;
+            this.toolTabStrip7.TabStop = false;
             // 
             // twOperation
             // 
             this.twOperation.Caption = null;
+            this.twOperation.Controls.Add(this.gvOperation);
             this.twOperation.Font = new System.Drawing.Font("Gulim", 9F);
             this.twOperation.Location = new System.Drawing.Point(1, 24);
             this.twOperation.Name = "twOperation";
             this.twOperation.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.twOperation.Size = new System.Drawing.Size(1269, 207);
+            this.twOperation.Size = new System.Drawing.Size(188, 231);
             this.twOperation.Text = "Operations";
             // 
-            // twHistory
+            // gvOperation
             // 
-            this.twHistory.Caption = null;
-            this.twHistory.Font = new System.Drawing.Font("Gulim", 9F);
-            this.twHistory.Location = new System.Drawing.Point(1, 24);
-            this.twHistory.Name = "twHistory";
-            this.twHistory.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Floating;
-            this.twHistory.Size = new System.Drawing.Size(1269, 207);
-            this.twHistory.Text = "History";
+            this.gvOperation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvOperation.Location = new System.Drawing.Point(0, 0);
+            // 
+            // 
+            // 
+            this.gvOperation.MasterTemplate.AllowAddNewRow = false;
+            this.gvOperation.MasterTemplate.MultiSelect = true;
+            this.gvOperation.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.gvOperation.Name = "gvOperation";
+            this.gvOperation.ShowGroupPanel = false;
+            this.gvOperation.Size = new System.Drawing.Size(188, 231);
+            this.gvOperation.TabIndex = 0;
+            this.gvOperation.Text = "radGridView1";
+            this.gvOperation.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvOperation_Update);
+            this.gvOperation.ContextMenuOpening += new Telerik.WinControls.UI.ContextMenuOpeningEventHandler(this.GV_SubContextMenuOpening);
+            this.gvOperation.Click += new System.EventHandler(this.gvOperation_Click);
+            this.gvOperation.MouseEnter += new System.EventHandler(this.gvOperation_MouseEnter);
+            // 
+            // radSplitContainer3
+            // 
+            this.radSplitContainer3.Controls.Add(this.toolTabStrip8);
+            this.radSplitContainer3.Controls.Add(this.toolTabStrip9);
+            this.radSplitContainer3.IsCleanUpTarget = true;
+            this.radSplitContainer3.Location = new System.Drawing.Point(877, 5);
+            this.radSplitContainer3.Name = "radSplitContainer3";
+            this.radSplitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.radSplitContainer3.Padding = new System.Windows.Forms.Padding(5);
+            // 
+            // 
+            // 
+            this.radSplitContainer3.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.radSplitContainer3.Size = new System.Drawing.Size(399, 686);
+            this.radSplitContainer3.SizeInfo.AbsoluteSize = new System.Drawing.Size(399, 257);
+            this.radSplitContainer3.SizeInfo.SplitterCorrection = new System.Drawing.Size(199, 75);
+            this.radSplitContainer3.TabIndex = 1;
+            this.radSplitContainer3.TabStop = false;
+            // 
+            // toolTabStrip8
+            // 
+            this.toolTabStrip8.CanUpdateChildIndex = true;
+            this.toolTabStrip8.Controls.Add(this.twStatus);
+            this.toolTabStrip8.Location = new System.Drawing.Point(0, 0);
+            this.toolTabStrip8.Name = "toolTabStrip8";
+            // 
+            // 
+            // 
+            this.toolTabStrip8.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.toolTabStrip8.SelectedIndex = 0;
+            this.toolTabStrip8.Size = new System.Drawing.Size(399, 429);
+            this.toolTabStrip8.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
+            this.toolTabStrip8.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1290323F);
+            this.toolTabStrip8.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 163);
+            this.toolTabStrip8.TabIndex = 3;
+            this.toolTabStrip8.TabStop = false;
+            // 
+            // twStatus
+            // 
+            this.twStatus.Caption = null;
+            this.twStatus.Controls.Add(this.gvProduction);
+            this.twStatus.Font = new System.Drawing.Font("Gulim", 9F);
+            this.twStatus.Location = new System.Drawing.Point(1, 24);
+            this.twStatus.Name = "twStatus";
+            this.twStatus.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.twStatus.Size = new System.Drawing.Size(397, 403);
+            this.twStatus.Text = "Production Status";
+            // 
+            // gvProduction
+            // 
+            this.gvProduction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(240)))), ((int)(((byte)(249)))));
+            this.gvProduction.Cursor = System.Windows.Forms.Cursors.Default;
+            this.gvProduction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvProduction.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.gvProduction.ForeColor = System.Drawing.Color.Black;
+            this.gvProduction.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.gvProduction.Location = new System.Drawing.Point(0, 0);
+            // 
+            // 
+            // 
+            this.gvProduction.MasterTemplate.AllowAddNewRow = false;
+            this.gvProduction.MasterTemplate.MultiSelect = true;
+            this.gvProduction.MasterTemplate.ShowRowHeaderColumn = false;
+            this.gvProduction.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.gvProduction.Name = "gvProduction";
+            this.gvProduction.ReadOnly = true;
+            this.gvProduction.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.gvProduction.ShowGroupPanel = false;
+            this.gvProduction.Size = new System.Drawing.Size(397, 403);
+            this.gvProduction.TabIndex = 0;
+            this.gvProduction.Text = "radGridView3";
+            this.gvProduction.HyperlinkOpened += new Telerik.WinControls.UI.HyperlinkOpenedEventHandler(this.gvProduction_HyperlinkOpened);
+            // 
+            // toolTabStrip9
+            // 
+            this.toolTabStrip9.CanUpdateChildIndex = true;
+            this.toolTabStrip9.Controls.Add(this.twHistory);
+            this.toolTabStrip9.Location = new System.Drawing.Point(0, 433);
+            this.toolTabStrip9.Name = "toolTabStrip9";
+            // 
+            // 
+            // 
+            this.toolTabStrip9.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.toolTabStrip9.SelectedIndex = 0;
+            this.toolTabStrip9.Size = new System.Drawing.Size(399, 253);
+            this.toolTabStrip9.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
+            this.toolTabStrip9.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1290323F);
+            this.toolTabStrip9.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -13);
+            this.toolTabStrip9.TabIndex = 2;
+            this.toolTabStrip9.TabStop = false;
             // 
             // dataSetSizeGroup
             // 
@@ -645,6 +881,8 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "frmOrderActual";
+            this.Activated += new System.EventHandler(this.OrderMain_Activated);
+            this.Deactivate += new System.EventHandler(this.OrderMain_Deactivate);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmOrderActual_FormClosed);
             this.Load += new System.EventHandler(this.frmOrderActual_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -669,22 +907,45 @@
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
-            this.twColorSize.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
-            this.toolTabStrip1.ResumeLayout(false);
+            this.twHistory.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvHistory.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvHistory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
+            this.radSplitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip4)).EndInit();
+            this.toolTabStrip4.ResumeLayout(false);
             this.toolWindow1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).EndInit();
             this.documentContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();
             this.documentTabStrip1.ResumeLayout(false);
             this.toolWindow2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip2)).EndInit();
-            this.toolTabStrip2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer2)).EndInit();
+            this.radSplitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip5)).EndInit();
+            this.toolTabStrip5.ResumeLayout(false);
+            this.twColorSize.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvColorSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip6)).EndInit();
+            this.toolTabStrip6.ResumeLayout(false);
             this.twFabric.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvFabric.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvFabric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip7)).EndInit();
+            this.toolTabStrip7.ResumeLayout(false);
+            this.twOperation.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvOperation.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvOperation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer3)).EndInit();
+            this.radSplitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip8)).EndInit();
+            this.toolTabStrip8.ResumeLayout(false);
+            this.twStatus.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvProduction.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvProduction)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip9)).EndInit();
+            this.toolTabStrip9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSizeGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -723,12 +984,10 @@
         private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip3;
         private Telerik.WinControls.UI.Docking.RadDock radDock1;
         private Telerik.WinControls.UI.Docking.ToolWindow twColorSize;
-        private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip1;
         private Telerik.WinControls.UI.Docking.ToolWindow toolWindow1;
         private Telerik.WinControls.UI.Docking.DocumentContainer documentContainer1;
         private Telerik.WinControls.UI.Docking.DocumentTabStrip documentTabStrip1;
         private Telerik.WinControls.UI.Docking.ToolWindow toolWindow2;
-        private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip2;
         private Telerik.WinControls.UI.Docking.ToolWindow twFabric;
         private Telerik.WinControls.UI.RadGridView gvColorSize;
         private Telerik.WinControls.UI.RadGridView gvFabric;
@@ -736,5 +995,17 @@
         private Telerik.WinControls.UI.Docking.ToolWindow twHistory;
         private Telerik.WinControls.UI.Docking.ToolWindow twStatus;
         private Telerik.WinControls.UI.Docking.ToolWindow twOperation;
+        private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
+        private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip4;
+        private Telerik.WinControls.UI.RadSplitContainer radSplitContainer2;
+        private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip5;
+        private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip6;
+        private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip7;
+        private Telerik.WinControls.UI.RadSplitContainer radSplitContainer3;
+        private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip8;
+        private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip9;
+        private Telerik.WinControls.UI.RadGridView gvHistory;
+        private Telerik.WinControls.UI.RadGridView gvOperation;
+        private Telerik.WinControls.UI.RadGridView gvProduction;
     }
 }

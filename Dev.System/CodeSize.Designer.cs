@@ -331,6 +331,8 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+            this.Deactivate += Form_Deactivate;
+            this.Activated += Form_Activated; 
         }
 
         #endregion

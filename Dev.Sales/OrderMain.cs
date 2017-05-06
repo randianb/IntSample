@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using Dev.Pattern;
 
 namespace Dev.Sales
 {
@@ -19,28 +20,39 @@ namespace Dev.Sales
     {
         #region 1. 변수 설정
 
-        public InheritMDI __main__;                                     // 부모 MDI (하단 상태바 리턴용) 
-        public Dictionary<CommonValues.KeyName, int> _searchKey;        // 쿼리값 value, 쿼리항목 key로 전달 
-        private enum OrderStatus { Normal, Progress, Cancel, Close };   // 오더상태값
-        private bool _bRtn;                                             // 쿼리결과 리턴
-        private DataSet _ds1 = null;                                    // 기본 데이터셋
-        private DataTable _dt = null;                                   // 기본 데이터테이블
-        private Controller.Orders _obj1 = null;                               // 현재 생성된 객체 
-        private RadContextMenu contextMenu;                             // 컨텍스트 메뉴
+        public InheritMDI __main__;                                             // 부모 MDI (하단 상태바 리턴용) 
+        public Dictionary<CommonValues.KeyName, int> _searchKey;                // 쿼리값 value, 쿼리항목 key로 전달 
+        public DataRow InsertedOrderRow = null;
+
+        private enum OrderStatus { Normal, Progress, Cancel, Close };           // 오더상태값
+        
+        private bool _bRtn;                                                     // 쿼리결과 리턴
+        private DataSet _ds1 = null;                                            // 기본 데이터셋
+        private DataTable _dt = null;                                           // 기본 데이터테이블
+        private Controller.Orders _obj1 = null;                                 // 현재 생성된 객체 
+        private Controller.OrderColor _obj2 = null;                             // 현재 생성된 객체 
+        private Controller.Operation _obj3 = null;                             // 현재 생성된 객체 
+        private RadContextMenu contextMenu;                                     // 컨텍스트 메뉴
         private List<CodeContents> lstStatus = new List<CodeContents>();        // 오더상태
+        private List<CodeContents> lstProduction = new List<CodeContents>();    // 생산진행상태 (패턴포함) 
+
         private List<DepartmentName> deptName = new List<DepartmentName>();     // 부서
         private List<CustomerName> custName = new List<CustomerName>();         // 거래처
-        private List<CustomerName> lstVendor = new List<CustomerName>();         // vendor
+        private List<CustomerName> lstVendor = new List<CustomerName>();        // vendor
         private List<CustomerName> embName = new List<CustomerName>();          // 나염업체
         private List<CodeContents> codeName = new List<CodeContents>();         // 코드
-        private List<CodeContents> lstOrigin = new List<CodeContents>();         // Origin country 
+        private List<CodeContents> lstOrigin = new List<CodeContents>();        // Origin country 
         private List<CodeContents> lstBrand = new List<CodeContents>();         // 브랜드
         private List<CodeContents> lstIsPrinting = new List<CodeContents>();    // 나염여부
-        private List<CustomerName> lstUser = new List<CustomerName>();         // 유저명
-        private List<CustomerName> lstSewthread = new List<CustomerName>();         // sewthread
-
+        private List<CustomerName> lstUser = new List<CustomerName>();          // 유저명
+        private List<CustomerName> lstSewthread = new List<CustomerName>();     // sewthread
+        private List<CodeContents> lstColor = new List<CodeContents>();         // 컬러명
+        private List<CodeContents> lstOperation = new List<CodeContents>();         // 공정명
+        private List<Codes.Controller.Sizes> lstSize = new List<Codes.Controller.Sizes>(); 
         private string _layoutfile = "/GVLayoutOrders.xml";
-        public DataRow InsertedOrderRow = null;
+                
+        RadMenuItem mnuNew, mnuDel, mnuHide, mnuShow, menuItem2, menuItem3, menuItem4, mnuWorksheet, 
+            mnuCutting, mnuOutsourcing, mnuSewing, mnuInspecting, mnuPattern = null;
 
         #endregion
 
@@ -71,9 +83,11 @@ namespace Dev.Sales
             Config_DropDownList();      // 상단 DDL 생성 설정
             GV1_CreateColumn(_gv1);     // 그리드뷰 생성
             GV1_LayoutSetting(_gv1);    // 중앙 그리드뷰 설정 
-            Config_ContextMenu();       // 중앙 그리드뷰 컨텍스트 생성 설정 
+            //Config_ContextMenu();       // 중앙 그리드뷰 컨텍스트 생성 설정 
             LoadGVLayout();             // 그리드뷰 레이아웃 복구 
             // DataBinding_GV1(0, null, "", "");   // 중앙 그리드뷰 데이터 
+            GV3_CreateColumn(gvOperation);  // 공정 제목
+            GV4_CreateColumn(gvProduction); // 현황 
         }
         
         /// <summary>
@@ -112,67 +126,93 @@ namespace Dev.Sales
         }
 
         /// <summary>
-        /// 그리드뷰 컨텍스트 메뉴 생성  
+        /// 컨텍스트 메뉴 생성 (메인)
         /// </summary>
         private void Config_ContextMenu()
         {
             contextMenu = new RadContextMenu();
 
+            // 단축키 초기화 
+            Clear_Shortcuts(); 
+
             // 오더 신규 입력
-            RadMenuItem mnuNew = new RadMenuItem("New Order");
+            mnuNew = new RadMenuItem("New Order");
             //mnuNew.Image = Properties.Resources._20_20;
             mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
             mnuNew.Click += new EventHandler(mnuNew_Click);
 
             // 오더 삭제
             //contextMenu = new RadContextMenu();
-            RadMenuItem mnuDel = new RadMenuItem("Remove Order");
+            mnuDel = new RadMenuItem("Remove Order");
             //mnuNew.Image = Properties.Resources._20_20;
             mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
             mnuDel.Click += new EventHandler(mnuDel_Click);
 
             // 열 숨기기
             //contextMenu = new RadContextMenu();
-            RadMenuItem mnuHide = new RadMenuItem("Hide Column");
+            mnuHide = new RadMenuItem("Hide Column");
             mnuHide.Click += new EventHandler(mnuHide_Click);
 
             // 열 보이기
             //contextMenu = new RadContextMenu();
-            RadMenuItem mnuShow = new RadMenuItem("Show all Columns");
+            mnuShow = new RadMenuItem("Show all Columns");
             mnuShow.Click += new EventHandler(mnuShow_Click);
-
-
+            
             // 오더복사
-            RadMenuItem menuItem2 = new RadMenuItem("Copy Order");
+            menuItem2 = new RadMenuItem("Copy Order");
             menuItem2.Click += new EventHandler(mnuCopyOrder_Click);
             menuItem2.Image = Properties.Resources.copy;
             menuItem2.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.C));
 
             // 오더캔슬
-            RadMenuItem menuItem3 = new RadMenuItem("Cancel Order");
+            menuItem3 = new RadMenuItem("Cancel Order");
             menuItem3.Image = Properties.Resources.cancel;
             menuItem3.ForeColor = Color.Red;
             menuItem3.Click += new EventHandler(mnuCancelOrder_Click);
             menuItem3.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.D));
 
             // 오더종료
-            RadMenuItem menuItem4 = new RadMenuItem("Close Order");
+            menuItem4 = new RadMenuItem("Close Order");
             menuItem4.Image = Properties.Resources.locked;
             menuItem4.ForeColor = Color.Blue;
             menuItem4.Click += new EventHandler(mnuCloseOrder_Click);
             menuItem4.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.C));
 
-            // 선적 입력, 수정 
-            RadMenuItem mnuShipment = new RadMenuItem("Edit Shipment Data");
-            mnuShipment.Image = Properties.Resources._20_20;
-            mnuShipment.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
-            mnuShipment.Click += new EventHandler(mnuShipment_Click);
+            // 패턴
+            mnuPattern = new RadMenuItem("Request Pattern");
+            // mnuShipment.Image = Properties.Resources._20_20;
+            mnuPattern.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.P));
+            mnuPattern.Click += new EventHandler(mnuPattern_Click);
 
             // 작업지시서
-            RadMenuItem mnuWorksheet = new RadMenuItem("Edit Worksheets");
+            mnuWorksheet = new RadMenuItem("Edit Worksheets");
             // mnuShipment.Image = Properties.Resources._20_20;
             mnuWorksheet.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
-            mnuWorksheet.Click += new EventHandler(mnuShipment_Click);
+            mnuWorksheet.Click += new EventHandler(mnuWorksheet_Click);
+
+            // 생산 작업지시 (Cutting)
+            mnuCutting = new RadMenuItem("Cutting Order");
+            //mnuCutting.Image = Properties.Resources._20_20;
+            //mnuCutting.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
+            mnuCutting.Click += new EventHandler(mnuCutting_Click);
+
+            // 생산 작업지시 (Outsourcing)
+            mnuOutsourcing = new RadMenuItem("Outsourcing Order");
+            //mnuCutting.Image = Properties.Resources._20_20;
+            //mnuCutting.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
+            mnuOutsourcing.Click += new EventHandler(mnuOutsourcing_Click);
+
+            // 생산 작업지시 (Sewing)
+            mnuSewing = new RadMenuItem("Sewing Order");
+            //mnuCutting.Image = Properties.Resources._20_20;
+            //mnuCutting.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
+            mnuSewing.Click += new EventHandler(mnuSewing_Click);
+
+            // 생산 작업지시 (Inspecting)
+            mnuInspecting = new RadMenuItem("Inspecting Order");
+            //mnuCutting.Image = Properties.Resources._20_20;
+            //mnuCutting.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
+            mnuInspecting.Click += new EventHandler(mnuInspecting_Click);
 
             // 분리선
             RadMenuSeparatorItem separator = new RadMenuSeparatorItem();
@@ -196,41 +236,79 @@ namespace Dev.Sales
             separator.Tag = "seperator";
             contextMenu.Items.Add(separator);
 
-            contextMenu.Items.Add(mnuShipment);
+            //contextMenu.Items.Add(mnuShipment);
             contextMenu.Items.Add(mnuWorksheet);
+            contextMenu.Items.Add(mnuPattern);
+            
+            separator = new RadMenuSeparatorItem();
+            separator.Tag = "seperator";
+            contextMenu.Items.Add(separator);
+
+            contextMenu.Items.Add(mnuCutting);
+            contextMenu.Items.Add(mnuOutsourcing);
+            contextMenu.Items.Add(mnuSewing);
+            contextMenu.Items.Add(mnuInspecting);
 
         }
-
+        
         /// <summary>
-        /// 그리드뷰 컨텍스트 메뉴 생성 (Color, Size) 
+        /// 컨텍스트 메뉴 (컬러사이즈)
         /// </summary>
-        private void Config_ContextMenu_ColorSize()
+        private void Config_ContextMenu_Color()
         {
             contextMenu = new RadContextMenu();
 
-            // 신규 입력
-            RadMenuItem mnuNewColor = new RadMenuItem("New Color");
-            mnuNewColor.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
-            mnuNewColor.Click += new EventHandler(mnuNew_Click);
+            // 단축키 초기화 
+            Clear_Shortcuts(); 
 
-            // 삭제
-            RadMenuItem mnuDelColor = new RadMenuItem("Remove Color");
-            mnuDelColor.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
-            mnuDelColor.Click += new EventHandler(mnuDel_Click);
+            // 오더 신규 입력
+            mnuNew = new RadMenuItem("New");
+            //mnuNew.Image = Properties.Resources._20_20;
+            mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
+            mnuNew.Click += new EventHandler(mnuNewColor_Click);
+
+            // 오더 삭제
+            //contextMenu = new RadContextMenu();
+            mnuDel = new RadMenuItem("Remove");
+            //mnuNew.Image = Properties.Resources._20_20;
+            mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
+            mnuDel.Click += new EventHandler(mnuDelColor_Click);
             
-            // 분리선
-            RadMenuSeparatorItem separator = new RadMenuSeparatorItem();
-            separator.Tag = "seperator";
-
             // 컨텍스트 추가 
-            contextMenu.Items.Add(mnuNewColor);
-            contextMenu.Items.Add(mnuDelColor);
-            contextMenu.Items.Add(separator);
-                      
+            contextMenu.Items.Add(mnuNew);
+            contextMenu.Items.Add(mnuDel);
         }
 
         /// <summary>
-        /// 그리드뷰 컬럼 생성
+        /// 컨텍스트 메뉴 (공정)
+        /// </summary>
+        private void Config_ContextMenu_Operation()
+        {
+            contextMenu = new RadContextMenu();
+
+            // 단축키 초기화 
+            Clear_Shortcuts();
+
+            // 오더 신규 입력
+            mnuNew = new RadMenuItem("New");
+            //mnuNew.Image = Properties.Resources._20_20;
+            mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
+            mnuNew.Click += new EventHandler(mnuNewOperation_Click);
+
+            // 오더 삭제
+            //contextMenu = new RadContextMenu();
+            mnuDel = new RadMenuItem("Remove");
+            //mnuNew.Image = Properties.Resources._20_20;
+            mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
+            mnuDel.Click += new EventHandler(mnuDelOperation_Click);
+
+            // 컨텍스트 추가 
+            contextMenu.Items.Add(mnuNew);
+            contextMenu.Items.Add(mnuDel);
+        }
+
+        /// <summary>
+        /// 그리드뷰 컬럼 생성 (메인)
         /// </summary>
         /// <param name="gv">그리드뷰</param>
         private void GV1_CreateColumn(RadGridView gv)
@@ -353,9 +431,10 @@ namespace Dev.Sales
             cboSizeGrp.DisplayMember = "SizeGroupName";
             cboSizeGrp.FieldName = "SizeGroupIdx";
             cboSizeGrp.HeaderText = "SizeGroup";
+            cboSizeGrp.AutoSizeMode = BestFitColumnMode.AllCells;
             cboSizeGrp.Width = 200;
             gv.Columns.Insert(16, cboSizeGrp);
-            
+                        
             GridViewMultiComboBoxColumn cboSewThread = new GridViewMultiComboBoxColumn();
             cboSewThread.Name = "SewThreadIdx";
             cboSewThread.DataSource = dataSetSizeGroup.DataTableSewThread;
@@ -363,9 +442,10 @@ namespace Dev.Sales
             cboSewThread.DisplayMember = "SewThreadName";
             cboSewThread.FieldName = "SewThreadIdx";
             cboSewThread.HeaderText = "SewThread";
+            cboSewThread.AutoSizeMode = BestFitColumnMode.AllCells;
             cboSewThread.Width = 100;
             gv.Columns.Insert(17, cboSewThread);
-
+            
             GridViewComboBoxColumn cHandler = new GridViewComboBoxColumn();
             cHandler.Name = "Handler";
             cHandler.DataSource = lstUser;
@@ -472,6 +552,303 @@ namespace Dev.Sales
             InspType.IsVisible = false;
             InspType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Insert(29, InspType);
+            
+            #endregion
+        }
+
+        /// <summary>
+        /// 그리드뷰 컬럼 생성 (컬러사이즈)
+        /// </summary>
+        /// <param name="gv">그리드뷰</param>
+        private void GV2_CreateColumn(RadGridView gv)
+        {
+            #region Columns 생성
+
+            gv.MasterTemplate.Columns.Clear(); 
+            gv.DataSource = null; 
+
+            GridViewTextBoxColumn cIdx = new GridViewTextBoxColumn();
+            cIdx.Name = "Idx";
+            cIdx.FieldName = "Idx";
+            cIdx.Width = 50;
+            cIdx.TextAlignment = ContentAlignment.MiddleCenter;
+            cIdx.HeaderText = "ID";
+            cIdx.ReadOnly = true; 
+            gv.Columns.Add(cIdx); 
+
+            GridViewTextBoxColumn cOrderIdx = new GridViewTextBoxColumn();
+            cOrderIdx.Name = "OrderIdx";
+            cOrderIdx.FieldName = "OrderIdx";
+            cOrderIdx.Width = 60;
+            cOrderIdx.TextAlignment = ContentAlignment.MiddleCenter;
+            cOrderIdx.HeaderText = "Order ID";
+            cOrderIdx.ReadOnly = true;
+            gv.Columns.Add(cOrderIdx);
+
+            GridViewComboBoxColumn cColorIdx = new GridViewComboBoxColumn();
+            cColorIdx.Name = "ColorIdx";
+            cColorIdx.FieldName = "ColorIdx";
+            cColorIdx.DataSource = lstColor;
+            cColorIdx.DisplayMember = "Contents";
+            cColorIdx.ValueMember = "CodeIdx";
+            cColorIdx.Width = 120;
+            cColorIdx.TextAlignment = ContentAlignment.MiddleCenter;
+            cColorIdx.HeaderText = "Color";
+            gv.Columns.Add(cColorIdx);
+            
+
+            #region Sizes 
+
+            GridViewTextBoxColumn cSizeIdx1 = new GridViewTextBoxColumn();
+            cSizeIdx1.Name = "SizeIdx1";
+            cSizeIdx1.FieldName = "SizeIdx1";
+            cSizeIdx1.IsVisible = false;
+            gv.Columns.Add(cSizeIdx1);
+
+            GridViewTextBoxColumn cSizeIdx2 = new GridViewTextBoxColumn();
+            cSizeIdx2.Name = "SizeIdx2";
+            cSizeIdx2.FieldName = "SizeIdx2";
+            cSizeIdx2.IsVisible = false;
+            gv.Columns.Add(cSizeIdx2);
+
+            GridViewTextBoxColumn cSizeIdx3 = new GridViewTextBoxColumn();
+            cSizeIdx3.Name = "SizeIdx3";
+            cSizeIdx3.FieldName = "SizeIdx3";
+            cSizeIdx3.IsVisible = false;
+            gv.Columns.Add(cSizeIdx3);
+
+            GridViewTextBoxColumn cSizeIdx4 = new GridViewTextBoxColumn();
+            cSizeIdx4.Name = "SizeIdx4";
+            cSizeIdx4.FieldName = "SizeIdx4";
+            cSizeIdx4.IsVisible = false;
+            gv.Columns.Add(cSizeIdx4);
+
+            GridViewTextBoxColumn cSizeIdx5 = new GridViewTextBoxColumn();
+            cSizeIdx5.Name = "SizeIdx5";
+            cSizeIdx5.FieldName = "SizeIdx5";
+            cSizeIdx5.IsVisible = false;
+            gv.Columns.Add(cSizeIdx5);
+
+            GridViewTextBoxColumn cSizeIdx6 = new GridViewTextBoxColumn();
+            cSizeIdx6.Name = "SizeIdx6";
+            cSizeIdx6.FieldName = "SizeIdx6";
+            cSizeIdx6.IsVisible = false;
+            gv.Columns.Add(cSizeIdx6);
+
+            GridViewTextBoxColumn cSizeIdx7 = new GridViewTextBoxColumn();
+            cSizeIdx7.Name = "SizeIdx7";
+            cSizeIdx7.FieldName = "SizeIdx7";
+            cSizeIdx7.IsVisible = false;
+            gv.Columns.Add(cSizeIdx7);
+
+            GridViewTextBoxColumn cSizeIdx8 = new GridViewTextBoxColumn();
+            cSizeIdx8.Name = "SizeIdx8";
+            cSizeIdx8.FieldName = "SizeIdx8";
+            cSizeIdx8.IsVisible = false;
+            gv.Columns.Add(cSizeIdx8);
+
+            #endregion 
+
+            #region Pcs 
+
+            GridViewDecimalColumn cPcs1 = new GridViewDecimalColumn();
+            cPcs1.Name = "pcs1";
+            cPcs1.FieldName = "pcs1";
+            cPcs1.Width = 70;
+            cPcs1.FormatString = "{0:N0}"; 
+            cPcs1.HeaderText = lstSize[1].SizeName; 
+            gv.Columns.Add(cPcs1);
+
+            GridViewDecimalColumn cPcs2 = new GridViewDecimalColumn();
+            cPcs2.Name = "pcs2";
+            cPcs2.FieldName = "pcs2";
+            cPcs2.Width = 70;
+            cPcs2.FormatString = "{0:N0}";
+            cPcs2.HeaderText = lstSize[2].SizeName;
+            gv.Columns.Add(cPcs2);
+
+            GridViewDecimalColumn cPcs3 = new GridViewDecimalColumn();
+            cPcs3.Name = "pcs3";
+            cPcs3.FieldName = "pcs3";
+            cPcs3.Width = 70;
+            cPcs3.FormatString = "{0:N0}";
+            cPcs3.HeaderText = lstSize[3].SizeName;
+            gv.Columns.Add(cPcs3);
+
+            GridViewDecimalColumn cPcs4 = new GridViewDecimalColumn();
+            cPcs4.Name = "pcs4";
+            cPcs4.FieldName = "pcs4";
+            cPcs4.Width = 70;
+            cPcs4.FormatString = "{0:N0}";
+            cPcs4.HeaderText = lstSize[4].SizeName;
+            gv.Columns.Add(cPcs4);
+
+            GridViewDecimalColumn cPcs5 = new GridViewDecimalColumn();
+            cPcs5.Name = "pcs5";
+            cPcs5.FieldName = "pcs5";
+            cPcs5.Width = 70;
+            cPcs5.FormatString = "{0:N0}";
+            cPcs5.HeaderText = lstSize[5].SizeName;
+            gv.Columns.Add(cPcs5);
+
+            GridViewDecimalColumn cPcs6 = new GridViewDecimalColumn();
+            cPcs6.Name = "pcs6";
+            cPcs6.FieldName = "pcs6";
+            cPcs6.Width = 70;
+            cPcs6.FormatString = "{0:N0}";
+            cPcs6.HeaderText = lstSize[6].SizeName;
+            gv.Columns.Add(cPcs6);
+
+            GridViewDecimalColumn cPcs7 = new GridViewDecimalColumn();
+            cPcs7.Name = "pcs7";
+            cPcs7.FieldName = "pcs7";
+            cPcs7.Width = 70;
+            cPcs7.FormatString = "{0:N0}";
+            cPcs7.HeaderText = lstSize[7].SizeName;
+            gv.Columns.Add(cPcs7);
+
+            GridViewDecimalColumn cPcs8 = new GridViewDecimalColumn();
+            cPcs8.Name = "pcs8";
+            cPcs8.FieldName = "pcs8";
+            cPcs8.Width = 70;
+            cPcs8.FormatString = "{0:N0}";
+            cPcs8.HeaderText = lstSize[8].SizeName;
+            gv.Columns.Add(cPcs8);
+
+            #endregion
+
+            #endregion
+        }
+
+        /// <summary>
+        /// 그리드뷰 컬럼 생성 (공정)
+        /// </summary>
+        /// <param name="gv">그리드뷰</param>
+        private void GV3_CreateColumn(RadGridView gv)
+        {
+            #region Columns 생성
+
+            gv.MasterTemplate.Columns.Clear();
+            gv.DataSource = null;
+
+            GridViewTextBoxColumn cIdx = new GridViewTextBoxColumn();
+            cIdx.Name = "Idx";
+            cIdx.FieldName = "Idx";
+            cIdx.Width = 50;
+            cIdx.TextAlignment = ContentAlignment.MiddleCenter;
+            cIdx.HeaderText = "ID";
+            cIdx.ReadOnly = true;
+            gv.Columns.Add(cIdx);
+
+            GridViewTextBoxColumn cOrderIdx = new GridViewTextBoxColumn();
+            cOrderIdx.Name = "OrderIdx";
+            cOrderIdx.FieldName = "OrderIdx";
+            cOrderIdx.Width = 60;
+            cOrderIdx.TextAlignment = ContentAlignment.MiddleCenter;
+            cOrderIdx.HeaderText = "Order ID";
+            cOrderIdx.ReadOnly = true;
+            gv.Columns.Add(cOrderIdx);
+
+            lstOperation.Clear();
+            lstOperation = codeName.FindAll(
+                delegate (CodeContents code)
+                {
+                    return code.Classification == "Operation";
+                });
+            
+            GridViewComboBoxColumn cOperIdx = new GridViewComboBoxColumn();
+            cOperIdx.Name = "OperationIdx";
+            cOperIdx.FieldName = "OperationIdx";
+            cOperIdx.DataSource = lstOperation;
+            cOperIdx.DisplayMember = "Contents";
+            cOperIdx.ValueMember = "CodeIdx";
+            cOperIdx.Width = 120;
+            cOperIdx.TextAlignment = ContentAlignment.MiddleCenter;
+            cOperIdx.HeaderText = "Operation";
+            gv.Columns.Add(cOperIdx);
+
+            GridViewTextBoxColumn cPriority = new GridViewTextBoxColumn();
+            cPriority.Name = "Priority";
+            cPriority.FieldName = "Priority";
+            cPriority.Width = 70;
+            cPriority.TextAlignment = ContentAlignment.MiddleCenter;
+            cPriority.HeaderText = "Priority";
+            //cPriority.ReadOnly = true;
+            gv.Columns.Add(cPriority);
+
+            GridViewCommandColumn cUpButton = new GridViewCommandColumn();
+            cUpButton.Name = "OperationUp";
+            cUpButton.HeaderText = "Up";
+            cUpButton.Image = Properties.Resources.up_arrow;
+            cUpButton.ImageAlignment = ContentAlignment.MiddleCenter; 
+            cUpButton.Width = 40;
+            gv.Columns.Add(cUpButton);
+
+            GridViewCommandColumn cDownButton = new GridViewCommandColumn();
+            cDownButton.Name = "OperationDown";
+            cDownButton.HeaderText = "Down";
+            cDownButton.Image = Properties.Resources.down_arrow;
+            cDownButton.ImageAlignment = ContentAlignment.MiddleCenter;
+            cDownButton.Width = 40;
+            gv.Columns.Add(cDownButton);
+
+            gv.CommandCellClick += new CommandCellClickEventHandler(GV_CommandCellClick); 
+
+
+            #endregion
+        }
+
+        /// <summary>
+        /// 그리드뷰 컬럼 생성 (진행현황)
+        /// </summary>
+        /// <param name="gv">그리드뷰</param>
+        private void GV4_CreateColumn(RadGridView gv)
+        {
+            #region Columns 생성
+
+            gv.MasterTemplate.Columns.Clear();
+            gv.DataSource = null;
+
+            GridViewComboBoxColumn cOperIdx = new GridViewComboBoxColumn();
+            cOperIdx.Name = "OperationIdx";
+            cOperIdx.FieldName = "OperationIdx";
+            cOperIdx.DataSource = lstOperation;
+            cOperIdx.DisplayMember = "Contents";
+            cOperIdx.ValueMember = "CodeIdx";
+            cOperIdx.Width = 70;
+            cOperIdx.TextAlignment = ContentAlignment.MiddleLeft;
+            cOperIdx.HeaderText = "Operation";
+            cOperIdx.ReadOnly = true;
+            gv.Columns.Add(cOperIdx);
+
+            GridViewHyperlinkColumn  cWorkIdx = new GridViewHyperlinkColumn();
+            cWorkIdx.Name = "WorkOrderIdx";
+            cWorkIdx.FieldName = "WorkOrderIdx";
+            cWorkIdx.Width = 100;
+            cWorkIdx.TextAlignment = ContentAlignment.MiddleCenter;
+            cWorkIdx.HeaderText = "Work ID";
+            cWorkIdx.ReadOnly = true;
+            gv.Columns.Add(cWorkIdx);
+
+            GridViewComboBoxColumn status = new GridViewComboBoxColumn();
+            status.Name = "Status";
+            status.DataSource = lstProduction;
+            status.DisplayMember = "Contents";
+            status.ValueMember = "CodeIdx";
+            status.FieldName = "Status";
+            status.HeaderText = "Status";
+            status.Width = 80;
+            status.ReadOnly = true;
+            gv.Columns.Add(status);
+
+            GridViewTextBoxColumn cTitle = new GridViewTextBoxColumn();
+            cTitle.Name = "Title";
+            cTitle.FieldName = "Title";
+            cTitle.Width = 300;
+            cTitle.TextAlignment = ContentAlignment.MiddleLeft;
+            cTitle.HeaderText = "Title";
+            cTitle.ReadOnly = true;
+            gv.Columns.Add(cTitle);
 
             #endregion
         }
@@ -479,9 +856,9 @@ namespace Dev.Sales
         #endregion
 
         #region 3. 컨트롤 초기 설정
-        
+
         /// <summary>
-        /// 컨텍스트 메뉴 연결 (행높이 설정)
+        /// 컨텍스트 메뉴 연결 (메인, 행높이 설정)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -493,10 +870,20 @@ namespace Dev.Sales
             foreach (RadItem item in e.ContextMenu.Items)
             {
                 if (item.Tag != null && item.Tag.ToString() == "seperator") { }
-                else item.MinSize = new Size(0, 25);
+                else item.MinSize = new Size(0, 22);
             }
         }
-        
+
+        /// <summary>
+        /// 컨텍스트 메뉴 연결 (컬러사이즈)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GV_SubContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
+        {
+            e.ContextMenu = contextMenu.DropDown;
+        }
+
         /// <summary>
         /// 그리드뷰 설정
         /// </summary>
@@ -558,6 +945,31 @@ namespace Dev.Sales
         #endregion
 
         #region 4. 컨텍스트 메뉴 기능
+        
+        private void mnuInspecting_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void mnuSewing_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void mnuOutsourcing_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void mnuCutting_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void mnuWorksheet_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// 선택된 컬럼 숨기기 (셀내에서 선택하도록 한다)
@@ -591,7 +1003,7 @@ namespace Dev.Sales
         }
 
         /// <summary>
-        /// 행 자료삭제
+        /// 행 자료삭제 (메인)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -625,7 +1037,75 @@ namespace Dev.Sales
         }
 
         /// <summary>
-        /// 자료 새로입력 (로그인 사용자의 부서번호로 기본 입력된다) 
+        /// 행 자료삭제 (컬러사이즈)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuDelColor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string str = "";
+                //_gv1.EndEdit();
+
+                // 삭제하기전 삭제될 데이터 확인
+                foreach (GridViewRowInfo row in gvColorSize.SelectedRows)
+                {
+                    if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                    else str += "," + Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                }
+
+                // 해당 자료 삭제여부 확인후, 
+                if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
+                    MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+                {
+                    // 삭제후 새로고침
+                    _bRtn = Controller.OrderColor.Delete(str);
+                    DataBinding_GV2(gvColorSize, Convert.ToInt32(Int.Members.GetCurrentRow(_gv1).Cells["Idx"].Value)); 
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("btnInsert_Click: " + ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// 행 자료삭제 (공정)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuDelOperation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string str = "";
+                //_gv1.EndEdit();
+
+                // 삭제하기전 삭제될 데이터 확인
+                foreach (GridViewRowInfo row in gvOperation.SelectedRows)
+                {
+                    if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                    else str += "," + Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                }
+
+                // 해당 자료 삭제여부 확인후, 
+                if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
+                    MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+                {
+                    // 삭제후 새로고침
+                    _bRtn = Controller.Operation.Delete(str);
+                    DataBinding_GV3(gvOperation, Convert.ToInt32(Int.Members.GetCurrentRow(_gv1).Cells["Idx"].Value));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("btnInsert_Click: " + ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// 신규입력 (메인) 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -654,7 +1134,80 @@ namespace Dev.Sales
         }
 
         /// <summary>
-        /// 신규자료가 입력된후, 입력된 행을 선택 포커싱한다 
+        /// 신규입력 (컬러사이즈)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuNewColor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int orderIdx=0;
+                int colorIdx=0;
+                int sizeIdx1=0;
+                int sizeIdx2 = 0;
+                int sizeIdx3 = 0;
+                int sizeIdx4 = 0;
+                int sizeIdx5 = 0;
+                int sizeIdx6 = 0;
+                int sizeIdx7 = 0;
+                int sizeIdx8 = 0;
+                
+                gvColorSize.EndEdit();
+                GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
+
+                if (row.Cells["Idx"].Value != DBNull.Value) orderIdx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+
+                sizeIdx1 = lstSize[1].SizeIdx;
+                sizeIdx2 = lstSize[2].SizeIdx;
+                sizeIdx3 = lstSize[3].SizeIdx;
+                sizeIdx4 = lstSize[4].SizeIdx;
+                sizeIdx5 = lstSize[5].SizeIdx;
+                sizeIdx6 = lstSize[6].SizeIdx;
+                sizeIdx7 = lstSize[7].SizeIdx;
+                sizeIdx8 = lstSize[8].SizeIdx;
+
+                DataRow rows = Controller.OrderColor.Insert(orderIdx, colorIdx,
+                                                           sizeIdx1, sizeIdx2, sizeIdx3, sizeIdx4, sizeIdx5, sizeIdx6, sizeIdx7, sizeIdx8);
+
+                DataBinding_GV2(gvColorSize, Convert.ToInt32(row.Cells["Idx"].Value.ToString())); 
+                //SetCurrentRow(gvColorSize, Convert.ToInt32(rows["LastIdx"]));   // 신규입력된 행번호로 이동
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
+        }
+        
+        /// <summary>
+        /// 신규입력 (공정)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuNewOperation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int orderIdx = 0;
+                
+                gvOperation.EndEdit();
+                GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
+
+                if (row.Cells["Idx"].Value != DBNull.Value) orderIdx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+                
+                DataRow rows = Controller.Operation.Insert2(orderIdx);
+
+                DataBinding_GV3(gvOperation, Convert.ToInt32(row.Cells["Idx"].Value.ToString()));
+                //SetCurrentRow(gvColorSize, Convert.ToInt32(rows["LastIdx"]));   // 신규입력된 행번호로 이동
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// 메인에서 신규자료가 입력된후, 입력된 행을 선택 포커싱한다 
         /// </summary>
         /// <param name="gv">선택하고자하는 그리드뷰</param>
         /// <param name="row">선택 행(Insert시 신규Idx를 리턴받는다)</param>
@@ -740,6 +1293,16 @@ namespace Dev.Sales
         /// <param name="e"></param>
         private void mnuShipment_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        /// <summary>
+        /// 패턴 요청
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuPattern_Click(object sender, EventArgs e)
+        {
             try
             {
                 // 파일번호 입력하지 않았을 경우
@@ -748,29 +1311,40 @@ namespace Dev.Sales
                     RadMessageBox.Show("Please input the file number", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
                     return;
                 }
-
-                // 오더 금액 입력안되었을 경우
-                if (Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f) <= 0.0)
+                
+                // 스타일 입력안되었을 경우
+                if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")))
                 {
-                    RadMessageBox.Show("Please input the Order Amount", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                    RadMessageBox.Show("Please input the style#", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                    return;
+                }
+                if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") <= 0)
+                {
+                    RadMessageBox.Show("Please input the Size Group", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
                     return;
                 }
 
                 // 파일번호, 오더수량, 금액이 정상 입력되었으면 
                 if (!string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")) &&
-                    Int.Members.GetCurrentRow(_gv1, "OrderQty") > 0 &&
-                    Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f) > 0f)
+                    !string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")) &&
+                    Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") > 0
+                    )
                 {
-                    // shipment내역 입력창 열기 
-                    frmShipment frm = new frmShipment(Int.Members.GetCurrentRow(_gv1, "Idx"),
+                    // 패턴 요청창 열기 
+                    frmPatternRequest frm = new frmPatternRequest(Int.Members.GetCurrentRow(_gv1, "Idx"),
                                                     Int.Members.GetCurrentRow(_gv1, "Fileno", ""),
-                                                    Int.Members.GetCurrentRow(_gv1, "OrderQty"),
-                                                    Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f),
-                                                    Int.Members.GetCurrentRow(_gv1, "ShipCompleted"),
+                                                    Int.Members.GetCurrentRow(_gv1, "Styleno", ""),
+                                                    Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
                                                     Int.Members.GetCurrentRow(_gv1, "Status")
                                                     );
-                    frm.Text = "Shipment";
-                    frm.ShowDialog(this);
+                    frm.Text = "Pattern";
+                    
+                    if (frm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        // RadMessageBox.Show(frm.OrderIdx.ToString());
+                        // Production Status 갱신 
+                        DataBinding_GV4(gvProduction, Int.Members.GetCurrentRow(_gv1, "Idx"));
+                    }
                 }
                 else
                 {
@@ -780,16 +1354,7 @@ namespace Dev.Sales
                         RadMessageBox.Show("Please input the File#");
                         return;
                     }
-                    if (Int.Members.GetCurrentRow(_gv1, "OrderQty") <= 0)
-                    {
-                        RadMessageBox.Show("Please input the order Q'ty");
-                        return;
-                    }
-                    if (Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f) <= 0f)
-                    {
-                        RadMessageBox.Show("Please input the order amount");
-                        return;
-                    }
+                   
                 }
             }
             catch (Exception ex)
@@ -812,7 +1377,7 @@ namespace Dev.Sales
                     RadMessageBox.Show("Please input the file number", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
                     return;
                 }
-                if (Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f) <= 0.0)
+                if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx", 0f) <= 0.0)
                 {
                     RadMessageBox.Show("Please input the Order Amount", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
                     return;
@@ -961,8 +1526,7 @@ namespace Dev.Sales
                                             row["SizeIdx7"].ToString(),
                                             row["SizeIdx8"].ToString());
             }
-
-
+            
             // Sewthread
             //lstSewthread.Add(new CustomerName(0, "", 0));
             _dt = Codes.Controller.SewThread.GetUsablelist(); // CommonController.Getlist(CommonValues.KeyName.SewThread).Tables[0];
@@ -986,21 +1550,37 @@ namespace Dev.Sales
                                             Convert.ToInt32(row["DeptIdx"])));
             }
 
+            // 컬러명 
+            _dt = Codes.Controller.Color.GetUselist().Tables[0];
+
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstColor.Add(new CodeContents(Convert.ToInt32(row["ColorIdx"]),
+                                            row["ColorName"].ToString(),
+                                            ""));
+            }
+                        
             // 오더상태
             lstStatus.Add(new CodeContents(0, "", ""));
             lstStatus.Add(new CodeContents(1, "Progress", ""));
             lstStatus.Add(new CodeContents(2, "Canceled", ""));
             lstStatus.Add(new CodeContents(3, "Shipped", ""));
+            // 생산진행상태
+            lstProduction.Add(new CodeContents(0, "New Work", ""));
+            lstProduction.Add(new CodeContents(1, "Printed Ticket", ""));
+            lstProduction.Add(new CodeContents(2, "Finished Work", ""));
+            lstProduction.Add(new CodeContents(3, "Canceled Work", ""));
         }
 
         /// <summary>
-        /// 검색버튼
+        /// 메인 검색버튼
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             RefleshWithCondition();
+            
         }
 
         /// <summary>
@@ -1037,7 +1617,7 @@ namespace Dev.Sales
         }
 
         /// <summary>
-        /// 메인 그리드뷰 데이터 로딩
+        /// 데이터 로딩 (메인)
         /// </summary>
         /// <param name="KeyCount">0:전체, 2:조건검색</param>
         /// <param name="SearchKey">RefleshWithCondition()에서 검색조건(key, value) 확인</param>
@@ -1071,12 +1651,125 @@ namespace Dev.Sales
             }
         }
         
+        /// <summary>
+        /// 데이터 로딩 (컬러사이즈) 
+        /// </summary>
+        /// <param name="gv"></param>
+        /// <param name="OrderIdx"></param>
+        private void DataBinding_GV2(RadGridView gv, int OrderIdx)
+        {
+            try
+            {
+                gv.DataSource = null;
+
+                _ds1 = Controller.OrderColor.Getlist(OrderIdx);
+                if (_ds1 != null)
+                {
+                    gv.DataSource = _ds1.Tables[0].DefaultView;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("DataBinding " + gv.Name + ": " + ex.Message.ToString());
+            }
+        }
+        
+        /// <summary>
+        /// 데이터 로딩 (공정) 
+        /// </summary>
+        /// <param name="gv"></param>
+        /// <param name="OrderIdx"></param>
+        private void DataBinding_GV3(RadGridView gv, int OrderIdx)
+        {
+            try
+            {
+                gv.DataSource = null;
+
+                _ds1 = Controller.Operation.Getlist(OrderIdx);
+                if (_ds1 != null)
+                {
+                    gv.DataSource = _ds1.Tables[0].DefaultView;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("DataBinding " + gv.Name + ": " + ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// 데이터 로딩 (생산 진행현황) 
+        /// </summary>
+        /// <param name="gv"></param>
+        /// <param name="OrderIdx"></param>
+        private void DataBinding_GV4(RadGridView gv, int OrderIdx)
+        {
+            try
+            {
+                _searchKey = new Dictionary<CommonValues.KeyName, int>();
+                _searchKey.Add(CommonValues.KeyName.OrderIdx, OrderIdx);
+                _searchKey.Add(CommonValues.KeyName.OperationIdx, 0);
+                _searchKey.Add(CommonValues.KeyName.Status, 0);
+
+                //DataBinding_GV4(2, _searchKey, "", null);
+
+                gv.DataSource = null;
+
+                _ds1 = Dev.Controller.WorkOrder.Getlist(_searchKey, "", "");
+                if (_ds1 != null)
+                {
+                    gv.DataSource = _ds1.Tables[0].DefaultView;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("DataBinding " + gv.Name + ": " + ex.Message.ToString());
+            }
+        }
+
         #endregion
 
         #region 6. 컨트롤 이벤트 및 기타 설정
-        
+
+        private void Clear_Shortcuts()
+        {
+            if (mnuNew != null) mnuNew.Shortcuts.Clear();
+            if (mnuDel != null) mnuDel.Shortcuts.Clear();
+            if (mnuHide != null) mnuHide.Shortcuts.Clear();
+            if (mnuShow != null) mnuShow.Shortcuts.Clear();
+            if (menuItem2 != null) menuItem2.Shortcuts.Clear();
+            if (menuItem3 != null) menuItem3.Shortcuts.Clear();
+            if (menuItem4 != null) menuItem4.Shortcuts.Clear();
+            if (mnuWorksheet != null) mnuWorksheet.Shortcuts.Clear();
+            if (mnuCutting != null) mnuCutting.Shortcuts.Clear();
+            if (mnuOutsourcing != null) mnuOutsourcing.Shortcuts.Clear();
+            if (mnuSewing != null) mnuSewing.Shortcuts.Clear();
+            if (mnuInspecting != null) mnuInspecting.Shortcuts.Clear();
+        }
+
         /// <summary>
-        /// 그리드뷰 데이터 변경시 자료 업데이트
+        /// 메인폼 활성화시 컨텍스트 메뉴 로딩 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OrderMain_Activated(object sender, EventArgs e)
+        {
+            Config_ContextMenu();
+        }
+
+        /// <summary>
+        /// 메인폼 비활성화시 생성된 모든 단축키 제거
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OrderMain_Deactivate(object sender, EventArgs e)
+        {
+            Clear_Shortcuts(); 
+        }
+                
+
+        /// <summary>
+        /// 데이터 업데이트 (메인)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1126,6 +1819,11 @@ namespace Dev.Sales
 
                 // 업데이트 (오더캔슬, 선적완료 상태가 아닐경우)
                 if (_obj1.Status != 2 && _obj1.Status != 3) _bRtn=_obj1.Update();
+
+                // 변경된 사이즈 그룹의 사이즈 정보 갱신 
+                lstSize.Clear(); // 기존 저장된 사이즈 초기화 
+                GetSizes(_gv1); // 하단 Color Size 데이터용 Size 정보 업데이트 
+                GV2_CreateColumn(gvColorSize);
             }
             catch (Exception ex)
             {
@@ -1133,9 +1831,195 @@ namespace Dev.Sales
             }
             
         }
-        
+
         /// <summary>
-        /// 그리드뷰 셀포맷팅 (각 이벤트시 수시작동) 
+        /// 데이터 업데이트 (컬러사이즈)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gvColorSize_Update(object sender, GridViewCellEventArgs e)
+        {
+            _bRtn = false;
+
+            try
+            {
+                RadGridView gv = gvColorSize;
+
+                gv.EndEdit();
+                GridViewRowInfo row = Int.Members.GetCurrentRow(gv);  // 현재 행번호 확인
+
+                // 객체생성 및 값 할당
+                _obj2 = new Controller.OrderColor(Convert.ToInt32(row.Cells["Idx"].Value));
+                _obj2.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+                _obj2.OrderIdx = Convert.ToInt32(row.Cells["OrderIdx"].Value.ToString());
+                if (row.Cells["ColorIdx"].Value != DBNull.Value) _obj2.ColorIdx = Convert.ToInt32(row.Cells["ColorIdx"].Value.ToString());
+                if (row.Cells["SizeIdx1"].Value != DBNull.Value) _obj2.SizeIdx1 = Convert.ToInt32(row.Cells["SizeIdx1"].Value.ToString());
+                if (row.Cells["SizeIdx2"].Value != DBNull.Value) _obj2.SizeIdx2 = Convert.ToInt32(row.Cells["SizeIdx2"].Value.ToString());
+                if (row.Cells["SizeIdx3"].Value != DBNull.Value) _obj2.SizeIdx3 = Convert.ToInt32(row.Cells["SizeIdx3"].Value.ToString());
+                if (row.Cells["SizeIdx4"].Value != DBNull.Value) _obj2.SizeIdx4 = Convert.ToInt32(row.Cells["SizeIdx4"].Value.ToString());
+                if (row.Cells["SizeIdx5"].Value != DBNull.Value) _obj2.SizeIdx5 = Convert.ToInt32(row.Cells["SizeIdx5"].Value.ToString());
+                if (row.Cells["SizeIdx6"].Value != DBNull.Value) _obj2.SizeIdx6 = Convert.ToInt32(row.Cells["SizeIdx6"].Value.ToString());
+                if (row.Cells["SizeIdx7"].Value != DBNull.Value) _obj2.SizeIdx7 = Convert.ToInt32(row.Cells["SizeIdx7"].Value.ToString());
+                if (row.Cells["SizeIdx8"].Value != DBNull.Value) _obj2.SizeIdx8 = Convert.ToInt32(row.Cells["SizeIdx8"].Value.ToString());
+
+                if (row.Cells["Pcs1"].Value != DBNull.Value) _obj2.Pcs1 = Convert.ToInt32(row.Cells["Pcs1"].Value.ToString());
+                if (row.Cells["Pcs2"].Value != DBNull.Value) _obj2.Pcs2 = Convert.ToInt32(row.Cells["Pcs2"].Value.ToString());
+                if (row.Cells["Pcs3"].Value != DBNull.Value) _obj2.Pcs3 = Convert.ToInt32(row.Cells["Pcs3"].Value.ToString());
+                if (row.Cells["Pcs4"].Value != DBNull.Value) _obj2.Pcs4 = Convert.ToInt32(row.Cells["Pcs4"].Value.ToString());
+                if (row.Cells["Pcs5"].Value != DBNull.Value) _obj2.Pcs5 = Convert.ToInt32(row.Cells["Pcs5"].Value.ToString());
+                if (row.Cells["Pcs6"].Value != DBNull.Value) _obj2.Pcs6 = Convert.ToInt32(row.Cells["Pcs6"].Value.ToString());
+                if (row.Cells["Pcs7"].Value != DBNull.Value) _obj2.Pcs7 = Convert.ToInt32(row.Cells["Pcs7"].Value.ToString());
+                if (row.Cells["Pcs8"].Value != DBNull.Value) _obj2.Pcs8 = Convert.ToInt32(row.Cells["Pcs8"].Value.ToString());
+
+                // 업데이트
+                _bRtn = _obj2.Update();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("gvColorSize_Update: " + ex.Message.ToString());
+            }
+
+        }
+
+        /// <summary>
+        /// 공정 그리드뷰 클릭 시, 입력된 내역이 있는지 확인 후, 없으면 신규입력 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gvOperation_Click(object sender, EventArgs e)
+        {
+            if (gvOperation.RowCount <= 0)
+            {
+                if (RadMessageBox.Show("There's no operation data.\nWould you like to input the operation data?", "Confirm", MessageBoxButtons.YesNo, RadMessageIcon.Question) 
+                    == DialogResult.Yes)
+                {
+                    bool result = Controller.Operation.Insert(Int.Members.GetCurrentRow(_gv1, "Idx"));
+                    DataBinding_GV3(gvOperation, Int.Members.GetCurrentRow(_gv1, "Idx"));
+                }
+            }
+        }
+
+        /// <summary>
+        /// 데이터 업데이트 (공정)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gvOperation_Update(object sender, GridViewCellEventArgs e)
+        {
+            _bRtn = false;
+
+            try
+            {
+                RadGridView gv = gvOperation;
+
+                gv.EndEdit();
+                GridViewRowInfo row = Int.Members.GetCurrentRow(gv);  // 현재 행번호 확인
+
+                // 객체생성 및 값 할당
+                _obj3 = new Controller.Operation(Convert.ToInt32(row.Cells["Idx"].Value));
+                _obj3.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+                _obj3.OrderIdx = Convert.ToInt32(row.Cells["OrderIdx"].Value.ToString());
+                if (row.Cells["OperationIdx"].Value != DBNull.Value) _obj3.OperationIdx = Convert.ToInt32(row.Cells["OperationIdx"].Value.ToString());
+                if (row.Cells["Priority"].Value != DBNull.Value) _obj3.Priority = Convert.ToInt32(row.Cells["Priority"].Value.ToString());
+                
+                // 업데이트
+                _bRtn = _obj3.Update();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("gvOperation_Update: " + ex.Message.ToString());
+            }
+
+        }
+
+        private void gvProduction_HyperlinkOpened(object sender, HyperlinkOpenedEventArgs e)
+        {
+            CommonController.Close_All_Children(this, "PatternMain");
+            PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
+            form.Text = DateTime.Now.ToLongTimeString();
+            form.MdiParent = this.MdiParent;
+            form.Show();
+        }
+
+        /// <summary>
+        /// 컨텍스트 메뉴 업데이트 (메인) 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gvOrderActual_MouseEnter(object sender, EventArgs e)
+        {
+            _gv1 = (RadGridView)sender;
+            Config_ContextMenu();
+
+            // 멀티행 선택시 컨텍스트 메뉴에서 오더복사 disable
+            if (_gv1.SelectedRows.Count > 1)
+            {
+                contextMenu.Items[6].Enabled = false;
+                contextMenu.Items[6].Shortcuts.Clear();
+            }
+            else
+            {
+                contextMenu.Items[6].Enabled = true;
+                contextMenu.Items[6].Shortcuts.Clear();
+                contextMenu.Items[6].Shortcuts.Add(new RadShortcut(Keys.Control, Keys.C));
+            }
+        }
+
+        /// <summary>
+        /// 컨텍스트 메뉴 업데이트 (컬러사이즈) 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gvColorSize_MouseEnter(object sender, EventArgs e)
+        {
+            Config_ContextMenu_Color();
+        }
+
+        /// <summary>
+        /// 컨텍스트 메뉴 업데이트 (공정) 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gvOperation_MouseEnter(object sender, EventArgs e)
+        {
+            Config_ContextMenu_Operation();
+        }
+
+        /// <summary>
+        /// 컬러사이즈 그리드뷰의 제목 변경으로 위한 사이즈 셋을 불러온다 
+        /// </summary>
+        /// <param name="gv">그리드뷰</param>
+        private void GetSizes(RadGridView gv)
+        {
+            _bRtn = false;
+            try
+            {
+                _gv1.EndEdit();
+                GridViewRowInfo row = Int.Members.GetCurrentRow(gv);  // 현재 행번호 확인
+
+                DataRow dr = Codes.Controller.SizeGroup.Get(Convert.ToInt32(row.Cells["SizeGroupIdx"].Value)); 
+
+                if (dr != null)
+                {
+                    lstSize.Add(new Codes.Controller.Sizes(0,""));
+                    lstSize.Add(new Codes.Controller.Sizes(Convert.ToInt32(dr["SizeIdx1"]), dr["Size1"].ToString()));
+                    lstSize.Add(new Codes.Controller.Sizes(Convert.ToInt32(dr["SizeIdx2"]), dr["Size2"].ToString()));
+                    lstSize.Add(new Codes.Controller.Sizes(Convert.ToInt32(dr["SizeIdx3"]), dr["Size3"].ToString()));
+                    lstSize.Add(new Codes.Controller.Sizes(Convert.ToInt32(dr["SizeIdx4"]), dr["Size4"].ToString()));
+                    lstSize.Add(new Codes.Controller.Sizes(Convert.ToInt32(dr["SizeIdx5"]), dr["Size5"].ToString()));
+                    lstSize.Add(new Codes.Controller.Sizes(Convert.ToInt32(dr["SizeIdx6"]), dr["Size6"].ToString()));
+                    lstSize.Add(new Codes.Controller.Sizes(Convert.ToInt32(dr["SizeIdx7"]), dr["Size7"].ToString()));
+                    lstSize.Add(new Codes.Controller.Sizes(Convert.ToInt32(dr["SizeIdx8"]), dr["Size8"].ToString()));
+                }   
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message); 
+            }
+        }
+
+        /// <summary>
+        /// 그리드뷰 셀포맷팅 (메인) 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1153,19 +2037,59 @@ namespace Dev.Sales
         }
 
         /// <summary>
-        /// 그리드뷰 셀 생성시 DDL의 높이,출력항목수 설정
+        /// 그리드뷰 셀 생성후, DDL설정 (메인)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void MasterTemplate_CellEditorInitialized(object sender, GridViewCellEventArgs e)
         {
             RadMultiColumnComboBoxElement meditor = e.ActiveEditor as RadMultiColumnComboBoxElement;
-            if (meditor != null)
-            {
-                meditor.AutoSizeDropDownToBestFit = true;
-                meditor.AutoSizeDropDownHeight = true;
+            Console.WriteLine(gvColorSize.RowCount.ToString()); 
 
+            if (gvColorSize.RowCount > 0)
+            {
+                if (meditor != null && meditor.ValueMember == "SizeGroupIdx")
+                {
+                    meditor.Enabled = false; 
+                }
             }
+            else
+            {
+                if (meditor != null)
+                {
+                    meditor.Enabled = true;
+                    meditor.AutoSizeDropDownToBestFit = true;
+                    meditor.AutoSizeDropDownHeight = true;
+                    
+                    if (meditor.ValueMember == "SizeGroupIdx")
+                    {
+                        meditor.AutoSizeDropDownColumnMode = BestFitColumnMode.AllCells;
+                        meditor.EditorControl.Columns["SizeGroupIdx"].HeaderText = "ID";
+                        meditor.EditorControl.Columns["Client"].HeaderText = "Buyer";
+                        meditor.EditorControl.Columns["SizeGroupName"].HeaderText = "Size Group";
+                        meditor.EditorControl.Columns["SizeIdx1"].HeaderText = "Size1";
+                        meditor.EditorControl.Columns["SizeIdx2"].HeaderText = "Size2";
+                        meditor.EditorControl.Columns["SizeIdx3"].HeaderText = "Size3";
+                        meditor.EditorControl.Columns["SizeIdx4"].HeaderText = "Size4";
+                        meditor.EditorControl.Columns["SizeIdx5"].HeaderText = "Size5";
+                        meditor.EditorControl.Columns["SizeIdx6"].HeaderText = "Size6";
+                        meditor.EditorControl.Columns["SizeIdx7"].HeaderText = "Size7";
+                        meditor.EditorControl.Columns["SizeIdx8"].HeaderText = "Size8";
+
+                        //meditor.EditorControl.Columns["SizeGroupIdx"].Width = 500;
+
+                    }
+                    else if (meditor.ValueMember == "SewThreadIdx")
+                    {
+                        meditor.AutoSizeDropDownColumnMode = BestFitColumnMode.AllCells;
+                        meditor.EditorControl.Columns["SewThreadIdx"].HeaderText = "ID";
+                        meditor.EditorControl.Columns["SewThreadCustIdx"].HeaderText = "Customer";
+                        meditor.EditorControl.Columns["SewThreadName"].HeaderText = "SewThread";
+                        meditor.EditorControl.Columns["ColorIdx"].HeaderText = "Color";
+                    }
+                }
+            }
+            
 
             // DDL 높이, 출력항목수 설정
             RadDropDownListEditor editor = this._gv1.ActiveEditor as RadDropDownListEditor;
@@ -1196,29 +2120,6 @@ namespace Dev.Sales
         {
             SaveGVLayout(); 
         }
-
-        /// <summary>
-        /// 그리드뷰 행 클릭 (다중선택시 오더복사 disable)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void GV_Click(object sender, EventArgs e)
-        {
-            _gv1 = (RadGridView)sender;
-
-            // 멀티행 선택시 컨텍스트 메뉴에서 오더복사 disable
-            if (_gv1.SelectedRows.Count > 1)
-            {
-                contextMenu.Items[6].Enabled = false;
-                contextMenu.Items[6].Shortcuts.Clear();
-            }
-            else
-            {
-                contextMenu.Items[6].Enabled = true;
-                contextMenu.Items[6].Shortcuts.Clear();
-                contextMenu.Items[6].Shortcuts.Add(new RadShortcut(Keys.Control, Keys.C));
-            }
-        }
         
         /// <summary>
         /// 행 선택시 - 오더캔슬, 마감일때 편집 불가능하도록
@@ -1227,6 +2128,8 @@ namespace Dev.Sales
         /// <param name="e"></param>
         private void gvOrderActual_SelectionChanged(object sender, EventArgs e)
         {
+            lstSize.Clear(); // 기존 저장된 사이즈 초기화 
+            GetSizes(_gv1); // 하단 Color Size 데이터용 Size 정보 업데이트 
 
             if (Int.Members.GetCurrentRow(_gv1, "Status") == 2
                 || Int.Members.GetCurrentRow(_gv1, "Status") == 3)
@@ -1237,6 +2140,70 @@ namespace Dev.Sales
             {
                 Int.Members.GetCurrentRow(_gv1).ViewTemplate.ReadOnly = false;
             }
+
+            // 오더별 사이즈 그룹이 다르므로 컬러사이즈 제목 갱신후 자료갱신
+            GV2_CreateColumn(gvColorSize); 
+            DataBinding_GV2(gvColorSize, Int.Members.GetCurrentRow(_gv1, "Idx"));
+
+            // 공정 자료갱신
+            DataBinding_GV3(gvOperation, Int.Members.GetCurrentRow(_gv1, "Idx"));
+
+            // 생산 진행현황 갱신 
+            DataBinding_GV4(gvProduction, Int.Members.GetCurrentRow(_gv1, "Idx"));
+        }
+
+        /// <summary>
+        /// 공정 순서(Up/Down) 변경버튼 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GV_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.Column.Name == "OperationUp")
+                {
+                    // 해당 row index가 2번째 행부터 
+                    if (gvOperation.CurrentRow.Index > 0)
+                    {
+                        // 행 swap (index from, index to) 
+                        SwapPriority(Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index].Cells["Idx"].Value),
+                                    Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index - 1].Cells["Idx"].Value),
+                                    Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index].Cells["Priority"].Value),
+                                    Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index - 1].Cells["Priority"].Value));
+                    }
+                }
+                else if (e.Column.Name == "OperationDown")
+                {
+                    // 해당 row index가 끝에서부터 2번째 행전부터 
+                    if (gvOperation.CurrentRow.Index < gvOperation.RowCount - 1)
+                    {
+                        // 행 swap (index from, index to) 
+                        SwapPriority(Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index].Cells["Idx"].Value),
+                                    Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index + 1].Cells["Idx"].Value),
+                                    Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index].Cells["Priority"].Value),
+                                    Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index + 1].Cells["Priority"].Value));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                __main__.lblDescription.Text = ex.Message.ToString();
+            }
+
+        }
+
+        /// <summary>
+        /// 행 순서변경 (공정)
+        /// </summary>
+        /// <param name="indexFrom">변경될 행번호</param>
+        /// <param name="indexTo">변경할 행번호</param>
+        /// <param name="priorityFrom">변경될 우선순위</param>
+        /// <param name="priorityTo">변경할 우선순위</param>
+        private void SwapPriority(int indexFrom, int indexTo, int priorityFrom, int priorityTo)
+        {
+            bool result = Controller.Operation.SwapPriority(indexFrom, indexTo, priorityFrom, priorityTo);
+            DataBinding_GV3(gvOperation, Int.Members.GetCurrentRow(_gv1, "Idx"));
         }
 
         #endregion
@@ -1286,16 +2253,6 @@ namespace Dev.Sales
 
 
         #endregion
-
-        private void twColorSize_Enter(object sender, EventArgs e)
-        {
-            //GV1_CreateColumn(_gv1);     // 그리드뷰 생성
-            //GV1_LayoutSetting(_gv1);    // 중앙 그리드뷰 설정 
-            //Config_ContextMenu();       // 중앙 그리드뷰 컨텍스트 생성 설정 
-            
-            // 데이터 조회 
-
-        }
+                
     }
-
 }

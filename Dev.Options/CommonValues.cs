@@ -19,8 +19,9 @@ namespace Dev.Options
 
         // 식별코드: 주로 조회를 위해 컨트롤러 호출시 key로 사용한다
         public enum KeyName {
-            None, DeptIdx, CustIdx, Brand, Pono, Styleno, Fileno, StatusShipment, FabricBody, VsslAir, Destination, SewThread, 
-            EmbelishId1, EmbelishId2, ShipTerm, IsPrinting, Codes, Status, SizeGroup, User, Vendor 
+            None, DeptIdx, CustIdx, CustAll, Brand, Pono, Styleno, Fileno, StatusShipment, FabricBody, VsslAir, Destination, SewThread, 
+            EmbelishId1, EmbelishId2, ShipTerm, IsPrinting, Codes, Status, SizeGroup, User, Vendor, Size, 
+            OrderIdx, OperationIdx, WorkOrderIdx, TicketDate 
         };      
 
         // 클래스명에 매칭된 ID로 해당 분류의 거래처를 검색하기 위한 용도 (code테이블값 변경시 반드시 일치시켜줘야함) 

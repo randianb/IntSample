@@ -2,7 +2,6 @@ D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.csprojResolveAssemblyReference.ca
 D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.CustomAppointmentEditForm.resources
 D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.frmCopyOrder.resources
 D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.frmScheduler.resources
-D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.frmShipment.resources
 D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.Properties.Resources.resources
 D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.csproj.GenerateResource.Cache
 D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.dll.licenses
@@ -34,3 +33,13 @@ D:\git\IntSample\Dev.Sales\bin\Debug\Dev.System.dll
 D:\git\IntSample\Dev.Sales\bin\Debug\Dev.System.pdb
 D:\git\IntSample\Dev.Sales\bin\Debug\Int.Users.dll
 D:\git\IntSample\Dev.Sales\bin\Debug\Int.Costcenter.dll
+D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.frmPatternRequest.resources
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.RichTextEditor.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.RichTextEditor.xml
+D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Controller.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Pattern.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Data.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Controller.pdb
+D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Pattern.pdb
+D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Data.pdb
+D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.SampleScheduler.resources

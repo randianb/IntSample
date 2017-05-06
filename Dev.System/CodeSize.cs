@@ -56,12 +56,27 @@ namespace Dev.Codes
             this.WindowState = FormWindowState.Maximized;  // 창 최대화
             GV1_CreateColumn(_gv1);     // 그리드뷰 생성
             GV1_LayoutSetting(_gv1);    // 중앙 그리드뷰 설정 
-            Config_ContextMenu();       // 중앙 그리드뷰 컨텍스트 생성 설정 
+            //Config_ContextMenu();       // 중앙 그리드뷰 컨텍스트 생성 설정 
             LoadGVLayout();             // 그리드뷰 레이아웃 복구 
             //DataBinding_GV1(0, null, "", "");   // 중앙 그리드뷰 데이터 
         }
-              
 
+        #region 컨텍스트 메뉴 생성 및 제거 
+
+        
+        RadMenuItem mnuNew, mnuDel, mnuHide, mnuShow; 
+        private void Form_Activated(object sender, EventArgs e)
+        {
+            Config_ContextMenu();
+        }
+        private void Form_Deactivate(object sender, EventArgs e)
+        {
+            mnuNew.Shortcuts.Clear();
+            mnuDel.Shortcuts.Clear();
+            mnuHide.Shortcuts.Clear();
+            mnuShow.Shortcuts.Clear();
+        }
+        
         /// <summary>
         /// 그리드뷰 컨텍스트 메뉴 생성  
         /// </summary>
@@ -70,21 +85,21 @@ namespace Dev.Codes
             contextMenu = new RadContextMenu();
 
             // 오더 신규 입력
-            RadMenuItem mnuNew = new RadMenuItem("New Size");
+            mnuNew = new RadMenuItem("New Size");
             mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
             mnuNew.Click += new EventHandler(mnuNew_Click);
 
             // 오더 삭제
-            RadMenuItem mnuDel = new RadMenuItem("Remove Size");
+            mnuDel = new RadMenuItem("Remove Size");
             mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
             mnuDel.Click += new EventHandler(mnuDel_Click);
 
             // 열 숨기기
-            RadMenuItem mnuHide = new RadMenuItem("Hide Column");
+            mnuHide = new RadMenuItem("Hide Column");
             mnuHide.Click += new EventHandler(mnuHide_Click);
 
             // 열 보이기
-            RadMenuItem mnuShow = new RadMenuItem("Show all Columns");
+            mnuShow = new RadMenuItem("Show all Columns");
             mnuShow.Click += new EventHandler(mnuShow_Click);
             
             // 분리선
@@ -100,6 +115,8 @@ namespace Dev.Codes
             contextMenu.Items.Add(mnuShow);
             
         }
+        
+        #endregion
 
         /// <summary>
         /// 그리드뷰 컬럼 생성
@@ -582,7 +599,7 @@ namespace Dev.Codes
 
 
         #endregion
-                
+        
     }
 
 }
