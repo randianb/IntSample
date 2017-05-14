@@ -45,11 +45,11 @@
             this.toolTabStrip3 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
             this.toolWindow2 = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.gvWork = new Telerik.WinControls.UI.RadGanttView();
             this.toolTabStrip4 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.toolWindow1 = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.documentContainer1 = new Telerik.WinControls.UI.Docking.DocumentContainer();
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
-            this.gvWork = new Telerik.WinControls.UI.RadGanttView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCust)).BeginInit();
@@ -67,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
             this.toolWindow2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvWork)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip4)).BeginInit();
             this.toolTabStrip4.SuspendLayout();
             this.toolWindow1.SuspendLayout();
@@ -74,7 +75,6 @@
             this.documentContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
             this.documentTabStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvWork)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -276,6 +276,23 @@
             this.toolWindow2.Size = new System.Drawing.Size(1259, 605);
             this.toolWindow2.Text = "Orders";
             // 
+            // gvWork
+            // 
+            this.gvWork.AllowDrop = true;
+            this.gvWork.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvWork.Location = new System.Drawing.Point(0, 0);
+            this.gvWork.Name = "gvWork";
+            this.gvWork.Ratio = 0.25F;
+            this.gvWork.Size = new System.Drawing.Size(1259, 605);
+            this.gvWork.SplitterWidth = 7;
+            this.gvWork.TabIndex = 1;
+            this.gvWork.Text = "radGanttView1";
+            this.gvWork.ContextMenuOpening += new Telerik.WinControls.UI.GanttViewContextMenuOpeningEventHandler(this.gvWork_ContextMenuOpening);
+            this.gvWork.SelectedItemChanging += new Telerik.WinControls.UI.GanttViewSelectedItemChangingEventHandler(this.gvWork_SelectedItemChanging);
+            this.gvWork.SelectedItemChanged += new Telerik.WinControls.UI.GanttViewSelectedItemChangedEventHandler(this.gvWork_SelectedItemChanged);
+            this.gvWork.ItemChanged += new Telerik.WinControls.UI.GanttViewItemChangedEventhandler(this.gvWork_ItemChanged);
+            this.gvWork.TextViewItemFormatting += new Telerik.WinControls.UI.GanttViewTextViewItemFormattingEventHandler(this.gvWork_TextViewItemFormatting);
+            // 
             // toolTabStrip4
             // 
             this.toolTabStrip4.CanUpdateChildIndex = true;
@@ -339,18 +356,6 @@
             this.documentTabStrip1.TabStop = false;
             this.documentTabStrip1.TabStripVisible = false;
             // 
-            // gvWork
-            // 
-            this.gvWork.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvWork.Location = new System.Drawing.Point(0, 0);
-            this.gvWork.Name = "gvWork";
-            this.gvWork.Ratio = 0.25F;
-            this.gvWork.Size = new System.Drawing.Size(1259, 605);
-            this.gvWork.SplitterWidth = 7;
-            this.gvWork.TabIndex = 1;
-            this.gvWork.Text = "radGanttView1";
-            this.gvWork.TextViewItemFormatting += new Telerik.WinControls.UI.GanttViewTextViewItemFormattingEventHandler(this.gvWork_TextViewItemFormatting);
-            // 
             // SampleScheduler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -383,6 +388,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
             this.toolWindow2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvWork)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip4)).EndInit();
             this.toolTabStrip4.ResumeLayout(false);
             this.toolWindow1.ResumeLayout(false);
@@ -390,7 +396,6 @@
             this.documentContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();
             this.documentTabStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvWork)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

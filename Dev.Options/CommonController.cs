@@ -4,6 +4,8 @@ using System.Data;
 using System.IO;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
+using System.Globalization;
+using System.Threading;
 
 namespace Dev.Options
 {
@@ -19,7 +21,8 @@ namespace Dev.Options
         public static DataSet Getlist(CommonValues.KeyName keyName)
         {
             DataSet ds = new DataSet();
-            
+            DataTable dt = new DataTable(); 
+
             switch (keyName)
             {
                 case CommonValues.KeyName.Brand: 
@@ -69,7 +72,7 @@ namespace Dev.Options
                 // 유저명
                 case CommonValues.KeyName.User:
                     ds = Int.Users.Users.Getlist(UserInfo.DeptIdx); break;
-
+                    
                 default:
                     break;
             }
@@ -146,6 +149,17 @@ namespace Dev.Options
                     f.Close();
                 }
             }
+        }
+
+        /// <summary>
+        /// 날짜변환 
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static DateTime ConvertDate(DateTime dt)
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("ko-KR");
+            return Convert.ToDateTime(dt.ToString("d"));
         }
         #endregion
 

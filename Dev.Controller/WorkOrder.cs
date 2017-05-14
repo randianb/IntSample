@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 
+
 namespace Dev.Controller
 {
     public class WorkOrder
@@ -266,23 +267,55 @@ namespace Dev.Controller
                         
             return ds;
         }
-       
-        //public bool Update()
-        //{
-        //    bool blRtn;
-        //    blRtn = Data.PatternData.Update(_idx, _ordSizeIdx, _techpackDate, _requestedDate, _requested, _completedDate, _confirmed, 
-        //        _completedDate, _sentDate, _received, _remarks, _attached1, _attached2, _attached3, _attached4, _attached5, 
-        //        _attachedUrl1, _attachedUrl2, _attachedUrl3, _attachedUrl4, _attachedUrl5
-        //        );
-        //    return blRtn;
-        //}
         
+        public static DataSet Getlist(Dictionary<CommonValues.KeyName, int> SearchKey, Dictionary<CommonValues.KeyName, string> SearchString)
+        {
+            DataSet ds = new DataSet();
+
+            ds = Data.WorkOrderData.Getlist(SearchKey, SearchString);
+
+            return ds;
+        }
+        public static DataRow Getlist(string Operation, string WorkOrderIdx) 
+        {
+            DataRow dr = Data.WorkOrderData.Getlist(Operation, WorkOrderIdx);
+
+            return dr;
+        }
+        public static bool Update(string WorkOrderIdx, DateTime Start, DateTime End, double Progress, DateTime TicketDate, string Qrcode,
+            int Modified, int Status) 
+        {
+            bool blRtn;
+            blRtn = Data.WorkOrderData.Update(WorkOrderIdx, Start, End, Progress, TicketDate, Qrcode, Modified, Status);
+            return blRtn;
+        }
+        
+        public static bool Update(string WorkOrderIdx, DateTime Start, DateTime End, double Progress, int Modified)
+        {
+            bool blRtn;
+            blRtn = Data.WorkOrderData.Update(WorkOrderIdx, Start, End, Progress, Modified);
+            return blRtn;
+        }
+        public static bool Update(string WorkOrderIdx, DateTime TicketDate, int Status, string Qrcode, int Modified)
+        {
+            bool blRtn;
+            blRtn = Data.WorkOrderData.Update(WorkOrderIdx, TicketDate, Status, Qrcode, Modified);
+            return blRtn;
+        }
+        public static bool Update(string SQL)
+        {
+            bool blRtn;
+            blRtn = Data.WorkOrderData.Update(SQL);
+            return blRtn;
+        }
         //public static bool Delete(string condition)
         //{
         //    bool blRtn;
         //    blRtn = Data.PatternData.Delete(condition);
         //    return blRtn;
         //}
+
+        
 
         #endregion
     }

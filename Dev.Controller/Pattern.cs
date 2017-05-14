@@ -183,14 +183,14 @@ namespace Dev.Controller
                 if (_row["OrdSizeIdx"] != DBNull.Value) _ordSizeIdx = Convert.ToInt32(_row["OrdSizeIdx"]);
                 if (_row["TechpackDate"] != DBNull.Value) _techpackDate = Convert.ToDateTime(_row["TechpackDate"]);
                 if (_row["RequestedDate"] != DBNull.Value) _requestedDate = Convert.ToDateTime(_row["RequestedDate"]);
-                if (_row["Requested"] != DBNull.Value) _requested = Convert.ToInt32(_row["Requested"]);
-                if (_row["ConfirmedDate"] != DBNull.Value) _confirmedDate = Convert.ToDateTime(_row["ConfirmedDate"]);
-                if (_row["Confirmed"] != DBNull.Value) _confirmed = Convert.ToInt32(_row["Confirmed"]);
-                
-                if (_row["CompletedDate"] != DBNull.Value) _completedDate = Convert.ToDateTime(_row["CompletedDate"]);
-                if (_row["SentDate"] != DBNull.Value) _sentDate = Convert.ToDateTime(_row["SentDate"]);
-                if (_row["Received"] != DBNull.Value) _received = Convert.ToInt32(_row["Received"]);
-                if (_row["Remarks"] != DBNull.Value) _remarks = _row["Remarks"].ToString();
+                if (_row["Requested"] != DBNull.Value) _requested = Convert.ToInt32(_row["Requested"]); else _requested = 0;
+                if (_row["ConfirmedDate"] != DBNull.Value) _confirmedDate = Convert.ToDateTime(_row["ConfirmedDate"]); else _confirmedDate = new DateTime(2000, 1, 1);
+                if (_row["Confirmed"] != DBNull.Value) _confirmed = Convert.ToInt32(_row["Confirmed"]); else _confirmed = 0;
+
+                if (_row["CompletedDate"] != DBNull.Value) _completedDate = Convert.ToDateTime(_row["CompletedDate"]); else _completedDate = new DateTime(2000, 1, 1);
+                if (_row["SentDate"] != DBNull.Value) _sentDate = Convert.ToDateTime(_row["SentDate"]); else _sentDate = new DateTime(2000, 1, 1);
+                if (_row["Received"] != DBNull.Value) _received = Convert.ToInt32(_row["Received"]); else _received = 0;
+                if (_row["Remarks"] != DBNull.Value) _remarks = _row["Remarks"].ToString(); else _remarks = ""; 
                 
                 if (_row["Attached1"] != DBNull.Value) _attached1 = _row["Attached1"].ToString();
                 if (_row["Attached2"] != DBNull.Value) _attached2 = _row["Attached2"].ToString();
@@ -230,6 +230,7 @@ namespace Dev.Controller
             _sentDate = DateTime.Now;
             _received = 0;
             _remarks = "";
+
             _attached1 = "";
             _attached2 = "";
             _attached3 = "";
@@ -270,13 +271,13 @@ namespace Dev.Controller
         public bool Update()
         {
             bool blRtn;
-            blRtn = Data.PatternData.Update(_idx, _ordSizeIdx, _techpackDate, _requestedDate, _requested, _completedDate, _confirmed, 
-                _completedDate, _sentDate, _received, _remarks, _attached1, _attached2, _attached3, _attached4, _attached5, 
-                _attachedUrl1, _attachedUrl2, _attachedUrl3, _attachedUrl4, _attachedUrl5
+            blRtn = Data.PatternData.Update(_idx, _techpackDate, _requestedDate, _requested, _confirmedDate, _confirmed, 
+                _completedDate, _sentDate, _received, _remarks 
                 );
             return blRtn;
         }
-        
+
+
         public static bool Delete(string condition)
         {
             bool blRtn;

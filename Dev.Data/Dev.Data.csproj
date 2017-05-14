@@ -49,6 +49,10 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="OrderColorData.cs" />
+    <Compile Include="OrderTypeData.cs" />
+    <Compile Include="FabricData.cs" />
+    <Compile Include="InboundData.cs" />
+    <Compile Include="YarnData.cs" />
     <Compile Include="WorkOrderData.cs" />
     <Compile Include="PatternData.cs" />
     <Compile Include="OrdersData.cs" />

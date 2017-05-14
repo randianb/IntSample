@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrderType.cs" />
+    <Compile Include="Fabric.cs" />
+    <Compile Include="Inbound.cs" />
+    <Compile Include="Yarn.cs" />
     <Compile Include="WorkOrder.cs" />
     <Compile Include="Pattern.cs" />
     <Compile Include="OrderColor.cs" />

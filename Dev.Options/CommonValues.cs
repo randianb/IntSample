@@ -11,6 +11,7 @@ namespace Dev.Options
         #region 전역변수: 향후 json으로 변경필요 (todo) 
 
         public const int packageNo = 100;                        // 패키지번호 = intsample
+        public const string packageName = "intsample"; 
         public static int DDL_DefaultItemsCountInDropDown = 20; // DDL 갯수
         public static int DDL_DropDownHeight = 250;             // DDL 높이
         public static int PropertyValueColumnWidth = 230;       // 프로퍼티 값열 폭 
@@ -21,7 +22,8 @@ namespace Dev.Options
         public enum KeyName {
             None, DeptIdx, CustIdx, CustAll, Brand, Pono, Styleno, Fileno, StatusShipment, FabricBody, VsslAir, Destination, SewThread, 
             EmbelishId1, EmbelishId2, ShipTerm, IsPrinting, Codes, Status, SizeGroup, User, Vendor, Size, 
-            OrderIdx, OperationIdx, WorkOrderIdx, TicketDate 
+            OrderIdx, OperationIdx, WorkOrderIdx, TicketDate, WorkStatus, StartDate, Composition, BurnCount, YarnType, Contents, IsUse,
+            Remark, BuyerIdx, ColorIdx, FabricType, Lotno, FabricIdx, RackNo, Floorno, RackPos, PosX, PosY
         };      
 
         // 클래스명에 매칭된 ID로 해당 분류의 거래처를 검색하기 위한 용도 (code테이블값 변경시 반드시 일치시켜줘야함) 
@@ -39,6 +41,26 @@ namespace Dev.Options
             {"Wash", 33}
         };
 
-        #endregion  
+        public static Dictionary<int, string> DicOrderStatus = new Dictionary<int, string>()
+        {
+            {0, ""},
+            {1, "Progress"},
+            {2, "Canceled"},
+            {3, "Shipped"}
+        };
+
+        public static Dictionary<int, string> DicWorkOrderStatus = new Dictionary<int, string>()
+        {
+            {0, ""},
+            {1, "New Work"},
+            {2, "Printed Ticket"},
+            {3, "Completed"},
+            {4, "Canceled"}
+        };
+
+        public static List<string> ListWorkID = new List<string>();
+        public static string WorkOperation = ""; 
+
+        #endregion
     }
 }

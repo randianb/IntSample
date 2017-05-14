@@ -1,5 +1,8 @@
 ﻿using Dev.Options;
 using Int.Code;
+using Microsoft.Azure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +26,8 @@ namespace Dev.Sales
         private int _orderIdx,  _orderStatus, _sizeGroup = 0;
         private bool _bRtn = false;
         private List<Codes.Controller.Sizes> lstSize = new List<Codes.Controller.Sizes>();
+        private List<string> lstFiles = new List<string>();
+        private List<string> lstFileUrls = new List<string>();
 
         #endregion
 
@@ -74,30 +79,7 @@ namespace Dev.Sales
             
         }
 
-        private void beFiles_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog dlgOpen = new OpenFileDialog())
-            {
-                dlgOpen.Title = "Select Pattern Files";
-                dlgOpen.Multiselect = true; 
-                if (dlgOpen.ShowDialog() == DialogResult.OK)
-                {
-                    listFiles.Items.Clear();
-                    for (int i=0; i<dlgOpen.FileNames.Length; i++)
-                    {
-                        FileOpen_ListView(dlgOpen.FileNames[i], listFiles); 
-                    }
-                }
-            }
-        }
-
-        private void FileOpen_ListView(string fileName, RadListView lstFiles)
-        {
-            if (File.Exists(fileName))
-            {
-                listFiles.Items.Add(fileName); 
-            }
-        }
+        
         #endregion
 
         #region 바인딩 & 이벤트
@@ -107,6 +89,46 @@ namespace Dev.Sales
             this.Close();
         }
 
+        /// <summary>
+        /// 파일 선택창을 열고 선택된 파일을 리스트에 추가한다. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void beFiles_Click(object sender, EventArgs e)
+        {
+            //using (OpenFileDialog dlgOpen = new OpenFileDialog())
+            //{
+            //    dlgOpen.Title = "Select Pattern Files";
+            //    dlgOpen.Multiselect = true;
+            //    if (dlgOpen.ShowDialog() == DialogResult.OK)
+            //    {
+            //        listFiles.Items.Clear();
+            //        for (int i = 0; i < dlgOpen.FileNames.Length; i++)
+            //        {
+            //            FileOpen_ListView(dlgOpen.FileNames[i], listFiles);
+            //        }
+            //    }
+            //}
+        }
+
+        /// <summary>
+        /// 리스트에 선택한 파일목록 추가 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="lstFiles"></param>
+        private void FileOpen_ListView(string fileName, RadListView lstFiles)
+        {
+            if (File.Exists(fileName))
+            {
+                listFiles.Items.Add(fileName);
+            }
+        }
+
+        /// <summary>
+        /// 패턴 요청 버튼 클릭 (파일 및 데이터 저장) 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRequest_Click(object sender, EventArgs e)
         {
             try
@@ -123,13 +145,16 @@ namespace Dev.Sales
                 {
                     DataRow dr = Dev.Controller.Pattern.Insert(_orderIdx, NewCode, Convert.ToInt32(ddlSize.SelectedValue),
                     dtTechPack.Value, DateTime.Today, UserInfo.Idx, txtComment.Text,
-                    "", "", "", "", "",
-                    "", "", "", "", "", UserInfo.Idx);
+                    lstFiles[0].ToString(), lstFiles[1].ToString(), lstFiles[2].ToString(), lstFiles[3].ToString(), lstFiles[4].ToString(),
+                    lstFileUrls[0].ToString(), lstFileUrls[1].ToString(), lstFileUrls[2].ToString(), lstFileUrls[3].ToString(), lstFileUrls[4].ToString(), UserInfo.Idx);
+
+
+                    // 데이터 DB저장 
+                    
 
                     if (dr != null)
                     {
                         // 입력완료 후 그리드뷰 갱신
-                        
                         DialogResult = System.Windows.Forms.DialogResult.OK;
                     }
                     else
@@ -184,5 +209,114 @@ namespace Dev.Sales
         }
 
         #endregion
+
+        #region 파일 다운로드 
+
+        /// <summary>
+        /// azure storage 파일 업로드
+        /// </summary>
+        private void BtnOpenFile_Click(object sender, EventArgs e)
+        {
+            try
+            {    
+                //bool result = Data.UpdateData.DeleteAll(_selectedNode);
+
+                // 스토리지 설정 
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+                    CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+                // 선택된 패키지의 폴더안의 blob 리스트 조회 (updateinterp, updateintsample, ...) 
+                CloudBlobContainer container = blobClient.GetContainerReference(CommonValues.packageName + "pattern");
+                
+                string[] fileNames = GetFiles();
+                
+                if (fileNames != null)
+                {
+                    foreach (string filename in fileNames)
+                    {
+                        // 업데이트 파일 storage저장 
+                        using (var fileStream = System.IO.File.OpenRead(filename))
+                        {
+                            // blob명은 파일명과 같도록 생성
+                            CloudBlockBlob blockBlob = container.GetBlockBlobReference(filename.Substring(filename.LastIndexOf("\\") + 1));
+
+                            blockBlob.UploadFromStream(fileStream);
+
+                            lstFiles.Add(filename.Substring(filename.LastIndexOf("\\") + 1));
+                            lstFileUrls.Add(blockBlob.StorageUri.PrimaryUri.ToString()); 
+                            
+                        }
+
+                    }
+                            
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// 다중 파일 선택
+        /// </summary>
+        /// <returns>string[] filenames</returns>
+        private string[] GetFiles()
+        {
+            string[] fileNames;
+            OpenFileDialog openDialog = new OpenFileDialog();
+
+            openDialog.Filter = "All files|*.*";
+            openDialog.Title = "Select files to upload";
+            openDialog.RestoreDirectory = false;
+            openDialog.Multiselect = true;
+            openDialog.CheckFileExists = false;
+
+            try
+            {
+                DialogResult result = openDialog.ShowDialog();
+
+                if (result == DialogResult.OK && openDialog.FileNames.Length <= 5)
+                {
+                    listFiles.Items.Clear();
+                    
+                    for (int i = 0; i < openDialog.FileNames.Length; i++)
+                    {
+                        FileOpen_ListView(openDialog.FileNames[i], listFiles);
+                    }
+                   
+                    return fileNames = openDialog.FileNames;
+                    
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    return null;
+                }
+                else
+                {
+                    if (MessageBox.Show("Too many files were Selected. Please select files less than 5.",
+                        "Too many files...", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                return null;
+            }
+
+        }
+
+        #endregion 
     }
 }

@@ -303,6 +303,16 @@ namespace SampleApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1494377211_travel_journey_15 {
+            get {
+                object obj = ResourceManager.GetObject("1494377211_travel_journey-15", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap basic3_017_invoice_bill_48 {
             get {
                 object obj = ResourceManager.GetObject("basic3-017_invoice_bill-48", resourceCulture);

@@ -1,0 +1,21 @@
+﻿<RadGridView ShowGroupPanel="False" BackColor="191, 219, 255" ForeColor="Black" Text="radGridView1" Font="Segoe UI, 8.25pt" Cursor="Default" RightToLeft="No" TabIndex="11" ImeMode="NoControl">
+  <MasterTemplate MultiSelect="True" PageSize="50" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" AutoGenerateColumns="False">
+    <Columns>
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="40" FieldName="Idx" Name="Idx" IsVisible="True" HeaderText="ID" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="Contents" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" Width="100" FieldName="Composition" Name="Composition" IsVisible="True" HeaderText="Composition" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="Contents" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" Width="60" FieldName="BurnCount" Name="BurnCount" IsVisible="True" HeaderText="Burn" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="Contents" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" Width="100" FieldName="YarnType" Name="YarnType" IsVisible="True" HeaderText="Yarn Type" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="Contents" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" Width="150" FieldName="Contents1" Name="Contents1" IsVisible="True" HeaderText="Contents1" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Double" Width="60" FieldName="Percent1" Name="Percent1" IsVisible="True" HeaderText="%" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="Contents" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" Width="150" FieldName="Contents2" Name="Contents2" IsVisible="True" HeaderText="Contents2" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Double" Width="60" FieldName="Percent2" Name="Percent2" IsVisible="True" HeaderText="%" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="Contents" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" Width="150" FieldName="Contents3" Name="Contents3" IsVisible="True" HeaderText="Contents3" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Double" Width="60" FieldName="Percent3" Name="Percent3" IsVisible="True" HeaderText="%" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="Contents" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" Width="150" FieldName="Contents4" Name="Contents4" IsVisible="True" HeaderText="Contents4" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Double" Width="60" FieldName="Percent4" Name="Percent4" IsVisible="True" HeaderText="%" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="200" FieldName="Remark" Name="Remark" IsVisible="True" HeaderText="Remark" />
+      <Telerik.WinControls.UI.GridViewCheckBoxColumn DataType="System.Int32" Width="40" FieldName="IsUse" Name="IsUse" IsVisible="True" HeaderText="Use" WrapText="True" />
+    </Columns>
+    <ViewDefinition xsi:type="Telerik.WinControls.UI.TableViewDefinition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+  </MasterTemplate>
+</RadGridView>

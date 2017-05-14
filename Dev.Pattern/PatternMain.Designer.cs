@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -49,22 +49,27 @@
             this.gvOrderActual = new Telerik.WinControls.UI.RadGridView();
             this.toolTabStrip3 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
-            this.twColorSize = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.toolWindow2 = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.toolTabStrip4 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.toolWindow1 = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.documentContainer1 = new Telerik.WinControls.UI.Docking.DocumentContainer();
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
-            this.toolWindow2 = new Telerik.WinControls.UI.Docking.ToolWindow();
-            this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
+            this.twColorSize = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
-            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.chkType101 = new Telerik.WinControls.UI.RadCheckBox();
-            this.chkType102 = new Telerik.WinControls.UI.RadCheckBox();
             this.chkType103 = new Telerik.WinControls.UI.RadCheckBox();
+            this.chkType102 = new Telerik.WinControls.UI.RadCheckBox();
+            this.chkType101 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.chkType211 = new Telerik.WinControls.UI.RadCheckBox();
             this.chkType201 = new Telerik.WinControls.UI.RadCheckBox();
@@ -86,13 +91,9 @@
             this.chkType218 = new Telerik.WinControls.UI.RadCheckBox();
             this.chkType219 = new Telerik.WinControls.UI.RadCheckBox();
             this.chkType220 = new Telerik.WinControls.UI.RadCheckBox();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSaveData = new Telerik.WinControls.UI.RadButton();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
+            this.txtComments = new Telerik.WinControls.UI.RadTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCust)).BeginInit();
@@ -111,30 +112,31 @@
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
-            this.twColorSize.SuspendLayout();
+            this.toolWindow2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip4)).BeginInit();
             this.toolTabStrip4.SuspendLayout();
             this.toolWindow1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
+            this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).BeginInit();
             this.documentContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
             this.documentTabStrip1.SuspendLayout();
-            this.toolWindow2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
-            this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
             this.toolTabStrip1.SuspendLayout();
+            this.twColorSize.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
-            this.radGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
-            this.radGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+            this.radGroupBox1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chkType101)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkType102)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkType103)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkType102)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkType101)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
+            this.radGroupBox2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkType211)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkType201)).BeginInit();
@@ -156,8 +158,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkType218)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkType219)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkType220)).BeginInit();
-            this.tableLayoutPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtComments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -326,36 +328,36 @@
             // 
             this.gvOrderActual.MasterTemplate.AllowAddNewRow = false;
             this.gvOrderActual.MasterTemplate.AutoGenerateColumns = false;
-            gridViewDecimalColumn3.DataType = typeof(int);
-            gridViewDecimalColumn3.EnableExpressionEditor = false;
-            gridViewDecimalColumn3.FieldName = "Idx";
-            gridViewDecimalColumn3.HeaderText = "Idx";
-            gridViewDecimalColumn3.IsAutoGenerated = true;
-            gridViewDecimalColumn3.Name = "Idx";
-            gridViewDecimalColumn3.ReadOnly = true;
-            gridViewDecimalColumn3.Width = 77;
-            gridViewTextBoxColumn5.EnableExpressionEditor = false;
-            gridViewTextBoxColumn5.FieldName = "Styleno";
-            gridViewTextBoxColumn5.HeaderText = "Styleno";
-            gridViewTextBoxColumn5.Name = "Styleno";
-            gridViewTextBoxColumn5.Width = 180;
-            gridViewTextBoxColumn6.EnableExpressionEditor = false;
-            gridViewTextBoxColumn6.FieldName = "Fileno";
-            gridViewTextBoxColumn6.HeaderText = "Fileno";
-            gridViewTextBoxColumn6.Name = "Fileno";
-            gridViewTextBoxColumn6.Width = 128;
+            gridViewDecimalColumn2.DataType = typeof(int);
+            gridViewDecimalColumn2.EnableExpressionEditor = false;
+            gridViewDecimalColumn2.FieldName = "Idx";
+            gridViewDecimalColumn2.HeaderText = "Idx";
+            gridViewDecimalColumn2.IsAutoGenerated = true;
+            gridViewDecimalColumn2.Name = "Idx";
+            gridViewDecimalColumn2.ReadOnly = true;
+            gridViewDecimalColumn2.Width = 77;
+            gridViewTextBoxColumn3.EnableExpressionEditor = false;
+            gridViewTextBoxColumn3.FieldName = "Styleno";
+            gridViewTextBoxColumn3.HeaderText = "Styleno";
+            gridViewTextBoxColumn3.Name = "Styleno";
+            gridViewTextBoxColumn3.Width = 180;
+            gridViewTextBoxColumn4.EnableExpressionEditor = false;
+            gridViewTextBoxColumn4.FieldName = "Fileno";
+            gridViewTextBoxColumn4.HeaderText = "Fileno";
+            gridViewTextBoxColumn4.Name = "Fileno";
+            gridViewTextBoxColumn4.Width = 128;
             this.gvOrderActual.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn3,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6});
+            gridViewDecimalColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4});
             this.gvOrderActual.MasterTemplate.EnablePaging = true;
             this.gvOrderActual.MasterTemplate.MultiSelect = true;
             this.gvOrderActual.MasterTemplate.PageSize = 50;
-            this.gvOrderActual.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvOrderActual.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvOrderActual.Name = "gvOrderActual";
             this.gvOrderActual.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvOrderActual.ShowGroupPanel = false;
-            this.gvOrderActual.Size = new System.Drawing.Size(876, 605);
+            this.gvOrderActual.Size = new System.Drawing.Size(897, 780);
             this.gvOrderActual.TabIndex = 11;
             this.gvOrderActual.Text = "radGridView1";
             this.gvOrderActual.ViewCellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvOrderActual_ViewCellFormatting);
@@ -379,7 +381,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.twColorSize;
+            this.radDock1.ActiveWindow = this.toolWindow2;
             this.radDock1.CausesValidation = false;
             this.radDock1.Controls.Add(this.toolTabStrip4);
             this.radDock1.Controls.Add(this.radSplitContainer1);
@@ -393,22 +395,22 @@
             // 
             // 
             this.radDock1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.radDock1.Size = new System.Drawing.Size(1281, 696);
+            this.radDock1.Size = new System.Drawing.Size(1302, 871);
             this.radDock1.TabIndex = 12;
             this.radDock1.TabStop = false;
             this.radDock1.Text = "radDock1";
             // 
-            // twColorSize
+            // toolWindow2
             // 
-            this.twColorSize.Caption = null;
-            this.twColorSize.Controls.Add(this.tableLayoutPanel2);
-            this.twColorSize.Font = new System.Drawing.Font("Gulim", 9F);
-            this.twColorSize.Location = new System.Drawing.Point(1, 22);
-            this.twColorSize.Name = "twColorSize";
-            this.twColorSize.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.twColorSize.Size = new System.Drawing.Size(377, 593);
-            this.twColorSize.Text = " ";
-            this.twColorSize.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.AutoHide;
+            this.toolWindow2.Caption = null;
+            this.toolWindow2.CloseAction = Telerik.WinControls.UI.Docking.DockWindowCloseAction.Close;
+            this.toolWindow2.Controls.Add(this.gvOrderActual);
+            this.toolWindow2.Font = new System.Drawing.Font("Gulim", 9F);
+            this.toolWindow2.Location = new System.Drawing.Point(6, 6);
+            this.toolWindow2.Name = "toolWindow2";
+            this.toolWindow2.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.toolWindow2.Size = new System.Drawing.Size(897, 780);
+            this.toolWindow2.Text = "Orders";
             // 
             // toolTabStrip4
             // 
@@ -422,7 +424,7 @@
             // 
             this.toolTabStrip4.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.toolTabStrip4.SelectedIndex = 0;
-            this.toolTabStrip4.Size = new System.Drawing.Size(1271, 65);
+            this.toolTabStrip4.Size = new System.Drawing.Size(1292, 65);
             this.toolTabStrip4.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 65);
             this.toolTabStrip4.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -116);
             this.toolTabStrip4.TabIndex = 4;
@@ -438,9 +440,27 @@
             this.toolWindow1.Location = new System.Drawing.Point(1, 2);
             this.toolWindow1.Name = "toolWindow1";
             this.toolWindow1.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow1.Size = new System.Drawing.Size(1269, 61);
+            this.toolWindow1.Size = new System.Drawing.Size(1290, 61);
             this.toolWindow1.Text = "Search Data";
             this.toolWindow1.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.None;
+            // 
+            // radSplitContainer1
+            // 
+            this.radSplitContainer1.CausesValidation = false;
+            this.radSplitContainer1.Controls.Add(this.documentContainer1);
+            this.radSplitContainer1.Controls.Add(this.toolTabStrip1);
+            this.radSplitContainer1.IsCleanUpTarget = true;
+            this.radSplitContainer1.Location = new System.Drawing.Point(5, 74);
+            this.radSplitContainer1.Name = "radSplitContainer1";
+            this.radSplitContainer1.Padding = new System.Windows.Forms.Padding(5);
+            // 
+            // 
+            // 
+            this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.radSplitContainer1.Size = new System.Drawing.Size(1292, 792);
+            this.radSplitContainer1.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 380);
+            this.radSplitContainer1.TabIndex = 5;
+            this.radSplitContainer1.TabStop = false;
             // 
             // documentContainer1
             // 
@@ -468,76 +488,149 @@
             // 
             this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.documentTabStrip1.SelectedIndex = 0;
-            this.documentTabStrip1.Size = new System.Drawing.Size(888, 617);
+            this.documentTabStrip1.Size = new System.Drawing.Size(909, 792);
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
             this.documentTabStrip1.TabStripVisible = false;
-            // 
-            // toolWindow2
-            // 
-            this.toolWindow2.Caption = null;
-            this.toolWindow2.CloseAction = Telerik.WinControls.UI.Docking.DockWindowCloseAction.Close;
-            this.toolWindow2.Controls.Add(this.gvOrderActual);
-            this.toolWindow2.Font = new System.Drawing.Font("Gulim", 9F);
-            this.toolWindow2.Location = new System.Drawing.Point(6, 6);
-            this.toolWindow2.Name = "toolWindow2";
-            this.toolWindow2.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow2.Size = new System.Drawing.Size(876, 605);
-            this.toolWindow2.Text = "Orders";
-            // 
-            // radSplitContainer1
-            // 
-            this.radSplitContainer1.CausesValidation = false;
-            this.radSplitContainer1.Controls.Add(this.documentContainer1);
-            this.radSplitContainer1.Controls.Add(this.toolTabStrip1);
-            this.radSplitContainer1.IsCleanUpTarget = true;
-            this.radSplitContainer1.Location = new System.Drawing.Point(5, 74);
-            this.radSplitContainer1.Name = "radSplitContainer1";
-            this.radSplitContainer1.Padding = new System.Windows.Forms.Padding(5);
-            // 
-            // 
-            // 
-            this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(1271, 617);
-            this.radSplitContainer1.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 380);
-            this.radSplitContainer1.TabIndex = 5;
-            this.radSplitContainer1.TabStop = false;
             // 
             // toolTabStrip1
             // 
             this.toolTabStrip1.CanUpdateChildIndex = true;
             this.toolTabStrip1.CausesValidation = false;
             this.toolTabStrip1.Controls.Add(this.twColorSize);
-            this.toolTabStrip1.Location = new System.Drawing.Point(892, 0);
+            this.toolTabStrip1.Location = new System.Drawing.Point(913, 0);
             this.toolTabStrip1.Name = "toolTabStrip1";
             // 
             // 
             // 
-            this.toolTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.toolTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.toolTabStrip1.SelectedIndex = 0;
-            this.toolTabStrip1.Size = new System.Drawing.Size(379, 617);
+            this.toolTabStrip1.Size = new System.Drawing.Size(379, 792);
             this.toolTabStrip1.SizeInfo.AbsoluteSize = new System.Drawing.Size(379, 233);
             this.toolTabStrip1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1539188F, 0F);
             this.toolTabStrip1.SizeInfo.SplitterCorrection = new System.Drawing.Size(342, 51);
             this.toolTabStrip1.TabIndex = 6;
             this.toolTabStrip1.TabStop = false;
             // 
+            // twColorSize
+            // 
+            this.twColorSize.Caption = null;
+            this.twColorSize.Controls.Add(this.tableLayoutPanel2);
+            this.twColorSize.Font = new System.Drawing.Font("Gulim", 9F);
+            this.twColorSize.Location = new System.Drawing.Point(1, 22);
+            this.twColorSize.Name = "twColorSize";
+            this.twColorSize.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.twColorSize.Size = new System.Drawing.Size(377, 768);
+            this.twColorSize.Text = " ";
+            this.twColorSize.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.AutoHide;
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.radGroupBox3, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.radGroupBox1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.radGroupBox2, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.radGroupBox3, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btnSaveData, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(377, 593);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(377, 768);
             this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // radGroupBox3
+            // 
+            this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox3.BackColor = System.Drawing.Color.Transparent;
+            this.radGroupBox3.Controls.Add(this.tableLayoutPanel7);
+            this.radGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBox3.GroupBoxStyle = Telerik.WinControls.UI.RadGroupBoxStyle.Office;
+            this.radGroupBox3.HeaderText = "Attached files";
+            this.radGroupBox3.Location = new System.Drawing.Point(3, 413);
+            this.radGroupBox3.Name = "radGroupBox3";
+            this.radGroupBox3.Size = new System.Drawing.Size(371, 352);
+            this.radGroupBox3.TabIndex = 2;
+            this.radGroupBox3.Text = "Attached files";
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Controls.Add(this.linkLabel5, 0, 4);
+            this.tableLayoutPanel7.Controls.Add(this.linkLabel4, 0, 3);
+            this.tableLayoutPanel7.Controls.Add(this.linkLabel3, 0, 2);
+            this.tableLayoutPanel7.Controls.Add(this.linkLabel2, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.linkLabel1, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.txtComments, 0, 5);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(2, 18);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 6;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(367, 332);
+            this.tableLayoutPanel7.TabIndex = 0;
+            // 
+            // linkLabel5
+            // 
+            this.linkLabel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.linkLabel5.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel5.Location = new System.Drawing.Point(3, 120);
+            this.linkLabel5.Name = "linkLabel5";
+            this.linkLabel5.Size = new System.Drawing.Size(361, 30);
+            this.linkLabel5.TabIndex = 10;
+            this.linkLabel5.TabStop = true;
+            this.linkLabel5.Text = "linkLabel5";
+            this.linkLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.linkLabel4.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel4.Location = new System.Drawing.Point(3, 90);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(361, 30);
+            this.linkLabel4.TabIndex = 9;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "linkLabel4";
+            this.linkLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.linkLabel3.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel3.Location = new System.Drawing.Point(3, 60);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(361, 30);
+            this.linkLabel3.TabIndex = 8;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "linkLabel3";
+            this.linkLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.linkLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel2.Location = new System.Drawing.Point(3, 30);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(361, 30);
+            this.linkLabel2.TabIndex = 7;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "linkLabel2";
+            this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // radGroupBox1
             // 
@@ -553,6 +646,56 @@
             this.radGroupBox1.TabIndex = 0;
             this.radGroupBox1.Text = "Sample Type I";
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.58823F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.41177F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 118F));
+            this.tableLayoutPanel4.Controls.Add(this.chkType103, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.chkType102, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.chkType101, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(2, 18);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(367, 44);
+            this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // chkType103
+            // 
+            this.chkType103.AutoSize = false;
+            this.chkType103.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkType103.Location = new System.Drawing.Point(251, 3);
+            this.chkType103.Name = "chkType103";
+            this.chkType103.Size = new System.Drawing.Size(113, 38);
+            this.chkType103.TabIndex = 2;
+            this.chkType103.Text = "E Com Exclisive";
+            this.chkType103.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
+            // 
+            // chkType102
+            // 
+            this.chkType102.AutoSize = false;
+            this.chkType102.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkType102.Location = new System.Drawing.Point(116, 3);
+            this.chkType102.Name = "chkType102";
+            this.chkType102.Size = new System.Drawing.Size(129, 38);
+            this.chkType102.TabIndex = 1;
+            this.chkType102.Text = "BULK";
+            this.chkType102.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
+            // 
+            // chkType101
+            // 
+            this.chkType101.AutoSize = false;
+            this.chkType101.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkType101.Location = new System.Drawing.Point(3, 3);
+            this.chkType101.Name = "chkType101";
+            this.chkType101.Size = new System.Drawing.Size(107, 38);
+            this.chkType101.TabIndex = 0;
+            this.chkType101.Text = "TEST";
+            this.chkType101.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
+            // 
             // radGroupBox2
             // 
             this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
@@ -566,67 +709,6 @@
             this.radGroupBox2.Size = new System.Drawing.Size(371, 294);
             this.radGroupBox2.TabIndex = 0;
             this.radGroupBox2.Text = "Sample Type II";
-            // 
-            // radGroupBox3
-            // 
-            this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox3.BackColor = System.Drawing.Color.Transparent;
-            this.radGroupBox3.Controls.Add(this.tableLayoutPanel7);
-            this.radGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox3.GroupBoxStyle = Telerik.WinControls.UI.RadGroupBoxStyle.Office;
-            this.radGroupBox3.HeaderText = "Attached files";
-            this.radGroupBox3.Location = new System.Drawing.Point(3, 373);
-            this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(371, 217);
-            this.radGroupBox3.TabIndex = 0;
-            this.radGroupBox3.Text = "Attached files";
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.58823F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.41177F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
-            this.tableLayoutPanel4.Controls.Add(this.chkType103, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.chkType102, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.chkType101, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(2, 18);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(367, 44);
-            this.tableLayoutPanel4.TabIndex = 0;
-            // 
-            // chkType101
-            // 
-            this.chkType101.AutoSize = false;
-            this.chkType101.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkType101.Location = new System.Drawing.Point(3, 3);
-            this.chkType101.Name = "chkType101";
-            this.chkType101.Size = new System.Drawing.Size(108, 38);
-            this.chkType101.TabIndex = 0;
-            this.chkType101.Text = "TEST";
-            // 
-            // chkType102
-            // 
-            this.chkType102.AutoSize = false;
-            this.chkType102.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkType102.Location = new System.Drawing.Point(117, 3);
-            this.chkType102.Name = "chkType102";
-            this.chkType102.Size = new System.Drawing.Size(130, 38);
-            this.chkType102.TabIndex = 1;
-            this.chkType102.Text = "BULK";
-            // 
-            // chkType103
-            // 
-            this.chkType103.AutoSize = false;
-            this.chkType103.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkType103.Location = new System.Drawing.Point(253, 3);
-            this.chkType103.Name = "chkType103";
-            this.chkType103.Size = new System.Drawing.Size(111, 38);
-            this.chkType103.TabIndex = 2;
-            this.chkType103.Text = "E Com Exclisive";
             // 
             // tableLayoutPanel6
             // 
@@ -679,6 +761,7 @@
             this.chkType211.Size = new System.Drawing.Size(194, 21);
             this.chkType211.TabIndex = 1;
             this.chkType211.Text = "Proto";
+            this.chkType211.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType201
             // 
@@ -689,6 +772,7 @@
             this.chkType201.Size = new System.Drawing.Size(161, 21);
             this.chkType201.TabIndex = 0;
             this.chkType201.Text = "Tailoring";
+            this.chkType201.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType202
             // 
@@ -699,6 +783,7 @@
             this.chkType202.Size = new System.Drawing.Size(161, 21);
             this.chkType202.TabIndex = 0;
             this.chkType202.Text = "Counter";
+            this.chkType202.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType203
             // 
@@ -709,6 +794,7 @@
             this.chkType203.Size = new System.Drawing.Size(161, 21);
             this.chkType203.TabIndex = 0;
             this.chkType203.Text = "Buy meeting";
+            this.chkType203.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType204
             // 
@@ -719,6 +805,7 @@
             this.chkType204.Size = new System.Drawing.Size(161, 21);
             this.chkType204.TabIndex = 0;
             this.chkType204.Text = "Marqueting";
+            this.chkType204.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType205
             // 
@@ -729,6 +816,7 @@
             this.chkType205.Size = new System.Drawing.Size(161, 21);
             this.chkType205.TabIndex = 0;
             this.chkType205.Text = "E Com";
+            this.chkType205.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType206
             // 
@@ -739,6 +827,7 @@
             this.chkType206.Size = new System.Drawing.Size(161, 21);
             this.chkType206.TabIndex = 0;
             this.chkType206.Text = "Florset";
+            this.chkType206.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType207
             // 
@@ -749,6 +838,7 @@
             this.chkType207.Size = new System.Drawing.Size(161, 21);
             this.chkType207.TabIndex = 0;
             this.chkType207.Text = "PR";
+            this.chkType207.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType208
             // 
@@ -759,6 +849,7 @@
             this.chkType208.Size = new System.Drawing.Size(161, 21);
             this.chkType208.TabIndex = 0;
             this.chkType208.Text = "Special Event";
+            this.chkType208.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType209
             // 
@@ -769,6 +860,7 @@
             this.chkType209.Size = new System.Drawing.Size(161, 21);
             this.chkType209.TabIndex = 0;
             this.chkType209.Text = "Merch Approval";
+            this.chkType209.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType210
             // 
@@ -779,6 +871,7 @@
             this.chkType210.Size = new System.Drawing.Size(161, 25);
             this.chkType210.TabIndex = 0;
             this.chkType210.Text = "Order Confirmation";
+            this.chkType210.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType212
             // 
@@ -789,6 +882,7 @@
             this.chkType212.Size = new System.Drawing.Size(194, 21);
             this.chkType212.TabIndex = 1;
             this.chkType212.Text = "ISR";
+            this.chkType212.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType213
             // 
@@ -799,6 +893,7 @@
             this.chkType213.Size = new System.Drawing.Size(194, 21);
             this.chkType213.TabIndex = 1;
             this.chkType213.Text = "Wear Test";
+            this.chkType213.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType214
             // 
@@ -809,6 +904,7 @@
             this.chkType214.Size = new System.Drawing.Size(194, 21);
             this.chkType214.TabIndex = 1;
             this.chkType214.Text = "Fit";
+            this.chkType214.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType215
             // 
@@ -819,6 +915,7 @@
             this.chkType215.Size = new System.Drawing.Size(194, 21);
             this.chkType215.TabIndex = 1;
             this.chkType215.Text = "Size Set";
+            this.chkType215.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType216
             // 
@@ -829,6 +926,7 @@
             this.chkType216.Size = new System.Drawing.Size(194, 21);
             this.chkType216.TabIndex = 1;
             this.chkType216.Text = "P.P.";
+            this.chkType216.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType217
             // 
@@ -839,6 +937,7 @@
             this.chkType217.Size = new System.Drawing.Size(194, 21);
             this.chkType217.TabIndex = 1;
             this.chkType217.Text = "Top";
+            this.chkType217.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType218
             // 
@@ -849,6 +948,7 @@
             this.chkType218.Size = new System.Drawing.Size(194, 21);
             this.chkType218.TabIndex = 1;
             this.chkType218.Text = "Vendor Innovation";
+            this.chkType218.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType219
             // 
@@ -859,6 +959,7 @@
             this.chkType219.Size = new System.Drawing.Size(194, 21);
             this.chkType219.TabIndex = 1;
             this.chkType219.Text = "Wash Approval";
+            this.chkType219.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // chkType220
             // 
@@ -869,99 +970,48 @@
             this.chkType220.Size = new System.Drawing.Size(194, 25);
             this.chkType220.TabIndex = 1;
             this.chkType220.Text = "Other";
-            // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.ColumnCount = 1;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Controls.Add(this.linkLabel5, 0, 4);
-            this.tableLayoutPanel7.Controls.Add(this.linkLabel4, 0, 3);
-            this.tableLayoutPanel7.Controls.Add(this.linkLabel3, 0, 2);
-            this.tableLayoutPanel7.Controls.Add(this.linkLabel2, 0, 1);
-            this.tableLayoutPanel7.Controls.Add(this.btnSaveData, 0, 5);
-            this.tableLayoutPanel7.Controls.Add(this.linkLabel1, 0, 0);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(2, 18);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 6;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(367, 197);
-            this.tableLayoutPanel7.TabIndex = 0;
+            this.chkType220.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
             // btnSaveData
             // 
-            this.btnSaveData.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSaveData.Location = new System.Drawing.Point(3, 153);
+            this.btnSaveData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSaveData.Location = new System.Drawing.Point(3, 373);
             this.btnSaveData.Name = "btnSaveData";
-            this.btnSaveData.Size = new System.Drawing.Size(361, 24);
+            this.btnSaveData.Size = new System.Drawing.Size(371, 34);
             this.btnSaveData.TabIndex = 5;
-            this.btnSaveData.Text = "Save Type and Files";
+            this.btnSaveData.Text = "Save Sample Type";
+            this.btnSaveData.Click += new System.EventHandler(this.btnSaveData_Click);
             // 
             // linkLabel1
             // 
+            this.linkLabel1.AutoSize = true;
             this.linkLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel1.Location = new System.Drawing.Point(3, 0);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(361, 30);
-            this.linkLabel1.TabIndex = 6;
+            this.linkLabel1.TabIndex = 11;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "linkLabel1";
             this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
-            // linkLabel2
+            // txtComments
             // 
-            this.linkLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.linkLabel2.Location = new System.Drawing.Point(3, 30);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(361, 30);
-            this.linkLabel2.TabIndex = 7;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "linkLabel2";
-            this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // linkLabel3
-            // 
-            this.linkLabel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.linkLabel3.Location = new System.Drawing.Point(3, 60);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(361, 30);
-            this.linkLabel3.TabIndex = 8;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "linkLabel3";
-            this.linkLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // linkLabel4
-            // 
-            this.linkLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.linkLabel4.Location = new System.Drawing.Point(3, 90);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(361, 30);
-            this.linkLabel4.TabIndex = 9;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "linkLabel4";
-            this.linkLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // linkLabel5
-            // 
-            this.linkLabel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.linkLabel5.Location = new System.Drawing.Point(3, 120);
-            this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(361, 30);
-            this.linkLabel5.TabIndex = 10;
-            this.linkLabel5.TabStop = true;
-            this.linkLabel5.Text = "linkLabel5";
-            this.linkLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtComments.AutoSize = false;
+            this.txtComments.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtComments.Location = new System.Drawing.Point(3, 153);
+            this.txtComments.Multiline = true;
+            this.txtComments.Name = "txtComments";
+            this.txtComments.ReadOnly = true;
+            this.txtComments.Size = new System.Drawing.Size(361, 176);
+            this.txtComments.TabIndex = 12;
             // 
             // PatternMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1281, 696);
+            this.ClientSize = new System.Drawing.Size(1302, 871);
             this.Controls.Add(this.radDock1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "PatternMain";
@@ -991,30 +1041,32 @@
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
-            this.twColorSize.ResumeLayout(false);
+            this.toolWindow2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip4)).EndInit();
             this.toolTabStrip4.ResumeLayout(false);
             this.toolWindow1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
+            this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).EndInit();
             this.documentContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();
             this.documentTabStrip1.ResumeLayout(false);
-            this.toolWindow2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
-            this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
             this.toolTabStrip1.ResumeLayout(false);
+            this.twColorSize.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
-            this.radGroupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
-            this.radGroupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+            this.radGroupBox1.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chkType101)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkType102)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkType103)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkType102)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkType101)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
+            this.radGroupBox2.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkType211)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkType201)).EndInit();
@@ -1036,8 +1088,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkType218)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkType219)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkType220)).EndInit();
-            this.tableLayoutPanel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtComments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1083,7 +1135,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private Telerik.WinControls.UI.RadCheckBox chkType103;
         private Telerik.WinControls.UI.RadCheckBox chkType102;
@@ -1109,12 +1160,14 @@
         private Telerik.WinControls.UI.RadCheckBox chkType218;
         private Telerik.WinControls.UI.RadCheckBox chkType219;
         private Telerik.WinControls.UI.RadCheckBox chkType220;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBox3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
-        private Telerik.WinControls.UI.RadButton btnSaveData;
         private System.Windows.Forms.LinkLabel linkLabel5;
         private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private Telerik.WinControls.UI.RadButton btnSaveData;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private Telerik.WinControls.UI.RadTextBox txtComments;
     }
 }

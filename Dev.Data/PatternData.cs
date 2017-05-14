@@ -125,11 +125,10 @@ namespace Dev.Data
         /// <summary>
         /// Update
         /// </summary>
-        public static bool Update(int Idx, int OrdSizeIdx, DateTime TechpackDate, DateTime RequestedDate,
+        public static bool Update(int Idx, DateTime TechpackDate, DateTime RequestedDate,
             int Requested, DateTime ConfirmedDate, int Confirmed,
-            DateTime CompletedDate, DateTime SentDate, int Received, string Remarks, 
-            string Attached1, string Attached2, string Attached3, string Attached4, string Attached5,
-            string AttachedUrl1, string AttachedUrl2, string AttachedUrl3, string AttachedUrl4, string AttachedUrl5
+            DateTime CompletedDate, DateTime SentDate, int Received, string Remarks 
+            
             )
         {
             try
@@ -144,10 +143,7 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
                 _cmd.Parameters["@Idx"].Value = Idx;
-
-                _cmd.Parameters.Add("@OrdSizeIdx", SqlDbType.Int, 4);
-                _cmd.Parameters["@OrdSizeIdx"].Value = OrdSizeIdx;
-
+                
                 _cmd.Parameters.Add("@TechpackDate", SqlDbType.DateTime, 8);
                 _cmd.Parameters["@TechpackDate"].Value = TechpackDate;
 
@@ -174,37 +170,7 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@Remarks", SqlDbType.NVarChar, 300);
                 _cmd.Parameters["@Remarks"].Value = Remarks;
-
-                _cmd.Parameters.Add("@Attached1", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached1"].Value = Attached1;
-
-                _cmd.Parameters.Add("@Attached2", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached2"].Value = Attached2;
-
-                _cmd.Parameters.Add("@Attached3", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached3"].Value = Attached3;
-
-                _cmd.Parameters.Add("@Attached4", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached4"].Value = Attached4;
-
-                _cmd.Parameters.Add("@Attached5", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached5"].Value = Attached5;
-
-                _cmd.Parameters.Add("@AttachedUrl1", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl1"].Value = AttachedUrl1;
-
-                _cmd.Parameters.Add("@AttachedUrl2", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl2"].Value = AttachedUrl2;
-
-                _cmd.Parameters.Add("@AttachedUrl3", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl3"].Value = AttachedUrl3;
-
-                _cmd.Parameters.Add("@AttachedUrl4", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl4"].Value = AttachedUrl4;
-
-                _cmd.Parameters.Add("@AttachedUrl5", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl5"].Value = AttachedUrl5;
-
+                
                 _rtn = _cmd.ExecuteNonQuery();
             }
             catch (Exception ex)

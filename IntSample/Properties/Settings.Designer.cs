@@ -33,5 +33,16 @@ namespace SampleApp.Properties {
                 return ((string)(this["INT_SAMPLE_DBConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=dev;Initial Catalog=intsample;User ID=interpcloud;Password=!Icocopuss" +
+            "3109;Encrypt=False;TrustServerCertificate=True")]
+        public string intsample {
+            get {
+                return ((string)(this["intsample"]));
+            }
+        }
     }
 }

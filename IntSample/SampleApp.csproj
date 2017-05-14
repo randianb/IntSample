@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -250,6 +250,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\history2.png" />
+    <None Include="Resources\1494377211_travel_journey-15.png" />
     <Content Include="Resources\int-sample.ico" />
     <None Include="Resources\interp1.png" />
     <None Include="Resources\process-chart-flow-plan-481.png" />
@@ -331,6 +332,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dev.Fabric\Dev.Fabric.csproj">
+      <Project>{7b9273d5-cc8e-4db5-9494-b4cc37f9f25c}</Project>
+      <Name>Dev.Fabric</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dev.Options\Dev.Options.csproj">
       <Project>{cde30aec-043e-4b66-8803-6bb44120624f}</Project>
       <Name>Dev.Options</Name>
@@ -346,6 +351,14 @@
     <ProjectReference Include="..\Dev.System\Dev.Codes.csproj">
       <Project>{3cdcbb62-e373-4537-97a7-659078f56338}</Project>
       <Name>Dev.Codes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dev.WorkOrder\Dev.WorkOrder.csproj">
+      <Project>{cbddb0b6-61ce-4589-89fb-d5c5634920f6}</Project>
+      <Name>Dev.WorkOrder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dev.Yarn\Dev.Yarn.csproj">
+      <Project>{8772989E-6230-4897-B6CB-800F41FE2CE0}</Project>
+      <Name>Dev.Yarn</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

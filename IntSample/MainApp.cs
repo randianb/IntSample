@@ -1,7 +1,10 @@
 ﻿using Dev.Codes;
+using Dev.Fabric;
 using Dev.Options;
 using Dev.Pattern;
 using Dev.Sales;
+using Dev.WorkOrder;
+using Dev.Yarn;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -9,6 +12,7 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace SampleApp
 {
@@ -245,6 +249,18 @@ namespace SampleApp
             return iRtn;
         }
 
+        private RadForm Find_Children(string frm)
+        {
+            foreach (RadForm f in this.MdiChildren)
+            {
+                if (f.Name == frm.ToString())
+                {
+                    return f; 
+                }
+            }
+            return null; 
+        }
+
         private void CheckFolder(string sPath)
         {
             // 폴더 유무확인 및 생성 
@@ -346,6 +362,71 @@ namespace SampleApp
                 frm.MdiParent = this;
                 frm.Show();
             }
+        }
+
+        private void btnOrderWorkOrder_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("WorkOrderMain"))
+            {
+                WorkOrderMain frm = new WorkOrderMain(this, "");
+                frm.Text = "Work Order";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btnOrderReportTicketPrint_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("WorkOrderTicketPrint"))
+            {
+                if (CommonValues.ListWorkID.Count>0)
+                {
+                    WorkOrderTicketPrint frm = new WorkOrderTicketPrint();
+                    frm.Text = "Print Work Ticket";
+                    frm.MdiParent = this;
+                    frm.Show();
+                }
+                else
+                {
+                    RadMessageBox.Show("There's no selected Work Orders. \nPlease select Work Orders.", "Notice", 
+                            MessageBoxButtons.OK, RadMessageIcon.Error);
+                    return; 
+                }
+                
+            }
+        }
+
+        private void btnYarnCodeMain_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("YarnCode"))
+            {
+                YarnCode frm = new YarnCode(this);
+                frm.Text = "Yarn Code";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btnFabricFabricCode_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("FabricCode"))
+            {
+                FabricCode frm = new FabricCode(this);
+                frm.Text = "Fabric Code";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            
+        }
+
+        private void btnFabricInbound_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFabricOutbound_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

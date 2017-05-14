@@ -23,7 +23,6 @@ namespace Dev.Sales
         public Dictionary<CommonValues.KeyName, int> _searchKey;                // 쿼리값 value, 쿼리항목 key로 전달 
         public DataRow InsertedOrderRow = null;
 
-        private enum OrderStatus { Normal, Progress, Cancel, Close };           // 오더상태값
         private bool _bRtn;                                                     // 쿼리결과 리턴
         private DataSet _ds1 = null;                                            // 기본 데이터셋
         private DataTable _dt = null;                                           // 기본 데이터테이블
@@ -47,8 +46,13 @@ namespace Dev.Sales
             base.InitializeComponent(); // parent 컴포넌트에 접근하기 위해 컨트롤을 public으로 지정 > 향후 수정 필요 (todo) 
             InitializeComponent();
             __main__ = main;            // MDI 연결 
-            _orderIdx = OrderIdx; 
+            _orderIdx = OrderIdx;
+
+            this.gvWork.DragDropService.PreviewDragDrop += DragDropService_PreviewDragDrop;
+            this.gvWork.DragDropService.Stopped += DragDropService_Stopped;
         }
+
+        
 
         /// <summary>
         /// Form Load
@@ -117,7 +121,7 @@ namespace Dev.Sales
         
         private void GV1_Create_Columns(RadGanttView gv)
         {
-            //this.radGanttView1.GanttViewElement.GraphicalViewElement.TimelineStart = new DateTime(2017, 10, 1);
+            gv.GanttViewElement.GraphicalViewElement.TimelineStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             //this.radGanttView1.GanttViewElement.GraphicalViewElement.TimelineEnd = new DateTime(2017, 11, 30);
 
             GanttViewTextViewColumn titleColumn = new GanttViewTextViewColumn("Title", "Scheduled Work");
@@ -126,11 +130,24 @@ namespace Dev.Sales
             startColumn.FormatString = "{0:d}";
             GanttViewTextViewColumn endColumn = new GanttViewTextViewColumn("End");
             endColumn.FormatString = "{0:d}";
-
+                        
             gv.GanttViewElement.Columns.Add(titleColumn);
             gv.GanttViewElement.Columns.Add(startColumn);
             gv.GanttViewElement.Columns.Add(endColumn);
+            gv.GanttViewElement.GraphicalViewElement.TimelineRange = TimeRange.Month;
+            gv.GanttViewElement.GraphicalViewElement.LinksHandlesSize = new Size(0, 0);
+
             //this.radGanttView1.ReadOnly = true; 
+            GanttViewTodayIndicatorElement todayIndicator = gv.GanttViewElement.GraphicalViewElement.TodayIndicatorElement;
+            todayIndicator.BackColor = Color.Red;
+            todayIndicator.BackColor2 = Color.Red;
+            GanttViewTimelineTodayIndicatorElement timelineTodayIndicator = gv.GanttViewElement.GraphicalViewElement.TimelineTodayIndicatorElement;
+            timelineTodayIndicator.HorizontalLineWidth = 1;
+            timelineTodayIndicator.BackColor = Color.Red;
+            timelineTodayIndicator.BackColor2 = Color.Red;
+                        
+            gv.GanttViewBehavior = new MyBaseGanttViewBehavior();
+            
         }
 
         #endregion
@@ -152,7 +169,7 @@ namespace Dev.Sales
                     item = new GanttViewDataItem();
                     item.Start = Convert.ToDateTime(row["Start"]);
                     if (row["End"] != DBNull.Value) item.End =  Convert.ToDateTime(row["End"]);
-                    item.Progress = 40m;
+                    if (row["Progress"] != DBNull.Value) item.Progress = Convert.ToDecimal(row["Progress"]); 
                     item.Title =  row["Title"].ToString() + " / " + row["WorkOrderIdx"].ToString();
                     item.Tag = row["OperationIdx"].ToString();
 
@@ -200,13 +217,14 @@ namespace Dev.Sales
                                         row["SizeName"].ToString(),
                                         ""));
             }
-            
-            
-            // 오더상태
-            lstStatus.Add(new CodeContents(0, "", ""));
-            lstStatus.Add(new CodeContents(1, "Progress", ""));
-            lstStatus.Add(new CodeContents(2, "Canceled", ""));
-            lstStatus.Add(new CodeContents(3, "Shipped", ""));
+
+
+            // 오더상태 (CommonValues정의)
+            lstStatus.Add(new CodeContents(0, CommonValues.DicOrderStatus[0], ""));
+            lstStatus.Add(new CodeContents(1, CommonValues.DicOrderStatus[1], ""));
+            lstStatus.Add(new CodeContents(2, CommonValues.DicOrderStatus[2], ""));
+            lstStatus.Add(new CodeContents(3, CommonValues.DicOrderStatus[3], ""));
+
         }
 
         /// <summary>
@@ -241,6 +259,8 @@ namespace Dev.Sales
                     _searchKey.Add(CommonValues.KeyName.CustIdx, Convert.ToInt32(ddlCust.SelectedValue));
                     _searchKey.Add(CommonValues.KeyName.Status, Convert.ToInt32(ddlStatus.SelectedValue));
                     _searchKey.Add(CommonValues.KeyName.Size, Convert.ToInt32(ddlSize.SelectedValue));
+                    _searchKey.Add(CommonValues.KeyName.OrderIdx, 0);
+                    _searchKey.Add(CommonValues.KeyName.OperationIdx, 0);
 
                     DataBinding_GV1(_searchKey, txtFileno.Text.Trim(), txtStyle.Text.Trim());
                 }
@@ -300,54 +320,51 @@ namespace Dev.Sales
                 GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
 
                 // 객체생성 및 값 할당
-                //_obj1           = new Controller.Pattern(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value));
-                //_obj1.Idx       = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
-                //_obj1.Fileno    = row.Cells["Fileno"].Value.ToString();
-                //_obj1.DeptIdx   = Convert.ToInt32(row.Cells["DeptIdx"].Value.ToString());
+                //_obj1 = new Controller.Pattern(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value));
+                //_obj1.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+                //_obj1.Fileno = row.Cells["Fileno"].Value.ToString();
+                //_obj1.DeptIdx = Convert.ToInt32(row.Cells["DeptIdx"].Value.ToString());
                 //if (row.Cells["Reorder"].Value != DBNull.Value) _obj1.Reorder = Convert.ToInt32(row.Cells["Reorder"].Value.ToString());
                 //if (row.Cells["ReorderReason"].Value != DBNull.Value) _obj1.ReorderReason = row.Cells["ReorderReason"].Value.ToString();
-                //if (row.Cells["Indate"].Value != DBNull.Value) _obj1.Indate    = Convert.ToDateTime(row.Cells["Indate"].Value);
-
-                //if (row.Cells["Buyer"].Value != DBNull.Value)           _obj1.Buyer = Convert.ToInt32(row.Cells["Buyer"].Value.ToString());
-                //if (row.Cells["Vendor"].Value != DBNull.Value) _obj1.Vendor = Convert.ToInt32(row.Cells["Vendor"].Value.ToString());
-                //if (row.Cells["Country"].Value != DBNull.Value) _obj1.Country = Convert.ToInt32(row.Cells["Country"].Value.ToString());
-                //if (row.Cells["Pono"].Value != DBNull.Value)            _obj1.Pono = row.Cells["Pono"].Value.ToString();
-                //if (row.Cells["Styleno"].Value != DBNull.Value)         _obj1.Styleno = row.Cells["Styleno"].Value.ToString();
-                //if (row.Cells["SampleType"].Value != DBNull.Value) _obj1.SampleType = row.Cells["SampleType"].Value.ToString();
-                //if (row.Cells["InspType"].Value != DBNull.Value) _obj1.InspType = row.Cells["InspType"].Value.ToString();
-
-                //if (row.Cells["Season"].Value != DBNull.Value)          _obj1.Season = row.Cells["Season"].Value.ToString();
-                //if (row.Cells["Description"].Value != DBNull.Value)     _obj1.Description = row.Cells["Description"].Value.ToString();
-                //if (row.Cells["DeliveryDate"].Value != DBNull.Value)    _obj1.DeliveryDate = Convert.ToDateTime(row.Cells["DeliveryDate"].Value);
-                //if (row.Cells["IsPrinting"].Value != DBNull.Value)      _obj1.IsPrinting = Convert.ToInt32(row.Cells["IsPrinting"].Value.ToString());
-                //if(row.Cells["EmbelishId1"].Value!= DBNull.Value)       _obj1.EmbelishId1 = Convert.ToInt32(row.Cells["EmbelishId1"].Value);
-                //if (row.Cells["EmbelishId2"].Value != DBNull.Value)     _obj1.EmbelishId2 = Convert.ToInt32(row.Cells["EmbelishId2"].Value);
-                //if (row.Cells["SizeGroupIdx"].Value != DBNull.Value) _obj1.SizeGroupIdx = Convert.ToInt32(row.Cells["SizeGroupIdx"].Value);
-                //if (row.Cells["SewThreadIdx"].Value != DBNull.Value) _obj1.SewThreadIdx = Convert.ToInt32(row.Cells["SewThreadIdx"].Value);
-
-                //if (row.Cells["OrderQty"].Value != DBNull.Value)        _obj1.OrderQty = Convert.ToInt32(row.Cells["OrderQty"].Value.ToString());
-                //if (row.Cells["OrderPrice"].Value != DBNull.Value)      _obj1.OrderPrice = Convert.ToDouble(row.Cells["OrderPrice"].Value.ToString());
-                //if (row.Cells["OrderAmount"].Value != DBNull.Value)     _obj1.OrderAmount = Convert.ToDouble(row.Cells["OrderAmount"].Value.ToString());
-
+                //if (row.Cells["Indate"].Value != DBNull.Value) _obj1.Indate = Convert.ToDateTime(row.Cells["Indate"].Value);
+                
                 //if (row.Cells["Remark"].Value != DBNull.Value) _obj1.Remark = row.Cells["Remark"].Value.ToString();
                 //if (row.Cells["TeamRequestedDate"].Value != DBNull.Value) _obj1.TeamRequestedDate = Convert.ToDateTime(row.Cells["TeamRequestedDate"].Value);
                 //if (row.Cells["SplConfirmedDate"].Value != DBNull.Value) _obj1.SplConfirmedDate = Convert.ToDateTime(row.Cells["SplConfirmedDate"].Value);
-                
-                //if (row.Cells["Status"].Value != DBNull.Value)          _obj1.Status = Convert.ToInt32(row.Cells["Status"].Value.ToString());
+
+                //if (row.Cells["Status"].Value != DBNull.Value) _obj1.Status = Convert.ToInt32(row.Cells["Status"].Value.ToString());
 
                 //// 업데이트 (오더캔슬, 선적완료 상태가 아닐경우)
-                //if (_obj1.Status != 2 && _obj1.Status != 3) _bRtn=_obj1.Update();
-
-                // 변경된 사이즈 그룹의 사이즈 정보 갱신 
-                
+                //if (_obj1.Status != 2 && _obj1.Status != 3) _bRtn = _obj1.Update();
                 
             }
             catch (Exception ex)
             {
                 Console.WriteLine("GV1_Update: " + ex.Message.ToString());
             }
-            
         }
+
+        #region GanttView Task Drag and drop 
+
+        private void DragDropService_Stopped(object sender, EventArgs e)
+        {
+            if (data != null)
+            {
+                string[] strTitle = data.Title.Split('/');
+                bool result = Dev.Controller.WorkOrder.Update(strTitle[2].ToString().Trim(), data.Start, data.End, 0.1, Dev.Options.UserInfo.Idx);
+            }
+        }
+        GanttViewDataItem data;
+        private void DragDropService_PreviewDragDrop(object sender, RadDropEventArgs e)
+        {
+            GanttViewTaskElement draggedTaskElement = e.DragInstance as GanttViewTaskElement;
+            if (draggedTaskElement != null)
+            {
+                data = ((GanttGraphicalViewBaseItemElement)draggedTaskElement.Parent).Data;
+            }
+        }
+
+        #endregion 
 
         #endregion
 
@@ -375,6 +392,41 @@ namespace Dev.Sales
                 e.ItemElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
                 e.ItemElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
             }
+        }
+
+        private void gvWork_SelectedItemChanged(object sender, GanttViewSelectedItemChangedEventArgs e)
+        {
+            
+        }
+
+        private void gvWork_SelectedItemChanging(object sender, GanttViewSelectedItemChangingEventArgs e)
+        {
+            //string[] strTitle = e.Item.Title.Split('/');
+            //Console.WriteLine(strTitle[1] + ", " + e.Item.Start + ", " + e.Item.End);
+        }
+
+        private void gvWork_DragDrop(object sender, DragEventArgs e)
+        {
+            //string[] strTitle = gvWork.SelectedItem.Title.Split('/');
+            //Console.WriteLine(strTitle[1] + ", " + gvWork.SelectedItem.Start + ", " + gvWork.SelectedItem.End);
+        }
+        
+        private void gvWork_ItemChanged(object sender, GanttViewItemChangedEventArgs e)
+        {
+            try
+            {
+                string[] strTitle = gvWork.SelectedItem.Title.Split('/');
+                bool result = Dev.Controller.WorkOrder.Update(strTitle[2].ToString().Trim(), gvWork.SelectedItem.Start, gvWork.SelectedItem.End, 0.1, Dev.Options.UserInfo.Idx);
+            }
+            catch(Exception ex)
+            {
+                RadMessageBox.Show(ex.Message); 
+            }
+        }
+
+        private void gvWork_ContextMenuOpening(object sender, GanttViewContextMenuOpeningEventArgs e)
+        {
+            e.Cancel = true; 
         }
     }
 }
