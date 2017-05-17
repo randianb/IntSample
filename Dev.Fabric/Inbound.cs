@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using System.Windows.Forms;
+using Int.Customer;
+using Int.Department;
+using Int.Costcenter; 
 
 namespace Dev.Fabric 
 {
@@ -19,24 +22,31 @@ namespace Dev.Fabric
         #region 1. 변수 설정
 
         public InheritMDI __main__;                                     // 부모 MDI (하단 상태바 리턴용) 
-        public Dictionary<CommonValues.KeyName, string> _searchString;        // 쿼리값 value, 쿼리항목 key로 전달 
+        public Dictionary<CommonValues.KeyName, string> _searchString;  // 쿼리값 value, 쿼리항목 key로 전달 
+        public Dictionary<CommonValues.KeyName, int> _searchKey;        // 쿼리값 value, 쿼리항목 key로 전달 
         private bool _bRtn;                                             // 쿼리결과 리턴
         private DataSet _ds1 = null;                                    // 기본 데이터셋
         private DataTable _dt = null;                                   // 기본 데이터테이블
-        //private Controller.Yarn _obj1 = null;                          // 현재 생성된 객체 
+        private Controller.Inbound _obj1 = null;                        // 현재 생성된 객체 
         private RadContextMenu contextMenu;                             // 컨텍스트 메뉴
-        private List<CodeContents> lstComposition = new List<CodeContents>();        // 
-        private List<CodeContents> lstComposition2 = new List<CodeContents>();        // 
-        private List<CodeContents> lstBurnCount = new List<CodeContents>();        // 
-        private List<CodeContents> lstBurnCount2 = new List<CodeContents>();        // 
-        private List<CodeContents> lstYarnType = new List<CodeContents>();        // 
-        private List<CodeContents> lstYarnType2 = new List<CodeContents>();       // 
-        private List<CodeContents> lstContents = new List<CodeContents>();        // 
-        private List<CodeContents> lstContents1 = new List<CodeContents>();        // 
-        private List<CodeContents> lstContents2 = new List<CodeContents>();        // 
-        private List<CodeContents> lstContents3 = new List<CodeContents>();        // 
-        private List<CodeContents> lstContents4 = new List<CodeContents>();        // 
-        private List<CodeContents> lstIsUse = new List<CodeContents>();        // 
+        private List<CodeContents> lstStatus = new List<CodeContents>();        // 
+        private List<CodeContents> lstStatus2 = new List<CodeContents>();        // 
+        private List<CustomerName> lstBuyer = new List<CustomerName>();        // 
+        private List<CustomerName> lstBuyer2 = new List<CustomerName>();        // 
+        private List<CodeContents> lstColor = new List<CodeContents>();        // 
+        private List<CodeContents> lstColor2 = new List<CodeContents>();        // 
+        private List<Controller.Fabric> lstFabric = new List<Controller.Fabric>();        // 
+        private List<Controller.Fabric> lstFabric2 = new List<Controller.Fabric>();        // 
+        private List<CodeContents> lstFabricType = new List<CodeContents>();        // 
+        private List<CodeContents> lstFabricType2 = new List<CodeContents>();        // 
+        private List<CodeContents> lstRack1 = new List<CodeContents>();       // 
+        private List<CodeContents> lstRack2 = new List<CodeContents>();        // 
+        private List<CodeContents> lstRack3 = new List<CodeContents>();        // 
+        private List<CodeContents> lstRack21 = new List<CodeContents>();       // 
+        private List<CodeContents> lstRack22 = new List<CodeContents>();        // 
+        private List<CodeContents> lstRack23 = new List<CodeContents>();        //
+        private List<CodeContents> codeName = new List<CodeContents>();         // 코드
+        private List<CustomerName> lstDept = new List<CustomerName>();     // 
         
         private string _layoutfile = "/GVLayoutFabricInbound.xml";
 
@@ -97,14 +107,14 @@ namespace Dev.Fabric
             contextMenu = new RadContextMenu();
 
             // 오더 신규 입력
-            mnuNew = new RadMenuItem("New Yarn");
+            mnuNew = new RadMenuItem("New Inbound");
             mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
             mnuNew.Click += new EventHandler(mnuNew_Click);
 
             // 오더 삭제
-            mnuDel = new RadMenuItem("Remove Yarn");
-            mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
-            mnuDel.Click += new EventHandler(mnuDel_Click);
+            //mnuDel = new RadMenuItem("Remove Inbound");
+            //mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
+            //mnuDel.Click += new EventHandler(mnuDel_Click);
 
             // 열 숨기기
             mnuHide = new RadMenuItem("Hide Column");
@@ -120,7 +130,7 @@ namespace Dev.Fabric
 
             // 컨텍스트 추가 
             contextMenu.Items.Add(mnuNew);
-            contextMenu.Items.Add(mnuDel);
+            //contextMenu.Items.Add(mnuDel);
             contextMenu.Items.Add(separator);
 
             contextMenu.Items.Add(mnuHide);
@@ -135,47 +145,66 @@ namespace Dev.Fabric
         /// </summary>
         private void Config_DropDownList()
         {
+            // 
+            ddlStatus.DataSource = lstStatus; 
+            ddlStatus.DisplayMember = "Contents";
+            ddlStatus.ValueMember = "CodeIdx";
+            ddlStatus.AutoCompleteMode = AutoCompleteMode.Suggest; 
+            ddlStatus.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlStatus.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
             // 
-            ddlComposition.DataSource = lstComposition;
-            ddlComposition.DisplayMember = "Contents";
-            ddlComposition.ValueMember = "Contents";
-            ddlComposition.AutoCompleteMode = AutoCompleteMode.Suggest; 
-            ddlComposition.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlComposition.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+            ddlBuyer.DataSource = lstBuyer;
+            ddlBuyer.DisplayMember = "CustName";
+            ddlBuyer.ValueMember = "CustIdx";
+            ddlBuyer.AutoCompleteMode = AutoCompleteMode.Suggest;
+            ddlBuyer.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlBuyer.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+            
+            // 
+            ddlColor.DataSource = lstColor;
+            ddlColor.DisplayMember = "Contents";
+            ddlColor.ValueMember = "CodeIdx";
+            ddlColor.AutoCompleteMode = AutoCompleteMode.Suggest;
+            ddlColor.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlColor.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
             // 
-            ddlBurnCount.DataSource = lstBurnCount;
-            ddlBurnCount.DisplayMember = "Contents";
-            ddlBurnCount.ValueMember = "Contents";
-            ddlBurnCount.AutoCompleteMode = AutoCompleteMode.Suggest;
-            ddlBurnCount.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlBurnCount.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+            ddlFabric.DataSource = lstFabric;
+            ddlFabric.DisplayMember = "LongName";
+            ddlFabric.ValueMember = "Idx";
+            ddlFabric.AutoCompleteMode = AutoCompleteMode.Suggest;
+            ddlFabric.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlFabric.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
             // 
-            ddlContents.DataSource = lstContents;
-            ddlContents.DisplayMember = "Contents";
-            ddlContents.ValueMember = "Contents";
-            ddlContents.AutoCompleteMode = AutoCompleteMode.Suggest;
-            ddlContents.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlContents.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
-
+            ddlFabricType.DataSource = lstFabricType;
+            ddlFabricType.DisplayMember = "Contents";
+            ddlFabricType.ValueMember = "CodeIdx";
+            ddlFabricType.AutoCompleteMode = AutoCompleteMode.Suggest;
+            ddlFabricType.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlFabricType.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
             // 
-            ddlYarnType.DataSource = lstYarnType;
-            ddlYarnType.DisplayMember = "Contents";
-            ddlYarnType.ValueMember = "Contents";
-            ddlYarnType.AutoCompleteMode = AutoCompleteMode.Suggest;
-            ddlYarnType.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlYarnType.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
-
+            ddlRack1.DataSource = lstRack1;
+            ddlRack1.DisplayMember = "Contents";
+            ddlRack1.ValueMember = "CodeIdx";
+            ddlRack1.AutoCompleteMode = AutoCompleteMode.Suggest;
+            ddlRack1.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlRack1.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
             // 
-            ddlUse.DataSource = lstIsUse;
-            ddlUse.DisplayMember = "Contents";
-            ddlUse.ValueMember = "Classification";
-            ddlUse.AutoCompleteMode = AutoCompleteMode.Suggest;
-            ddlUse.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlUse.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
-
+            ddlRack2.DataSource = lstRack2;
+            ddlRack2.DisplayMember = "Contents";
+            ddlRack2.ValueMember = "CodeIdx";
+            ddlRack2.AutoCompleteMode = AutoCompleteMode.Suggest;
+            ddlRack2.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlRack2.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+            // 
+            ddlRack3.DataSource = lstRack3;
+            ddlRack3.DisplayMember = "Contents";
+            ddlRack3.ValueMember = "CodeIdx";
+            ddlRack3.AutoCompleteMode = AutoCompleteMode.Suggest;
+            ddlRack3.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlRack3.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
         }
 
         /// <summary>
@@ -195,150 +224,259 @@ namespace Dev.Fabric
             Idx.TextAlignment = ContentAlignment.MiddleLeft;
             gv.Columns.Add(Idx);
 
-            GridViewComboBoxColumn Composition = new GridViewComboBoxColumn();
-            Composition.Name = "Composition";
-            Composition.DataSource = lstComposition2;
-            Composition.DisplayMember = "Contents";
-            Composition.ValueMember = "Contents";
-            Composition.FieldName = "Composition";
-            Composition.HeaderText = "Composition";
-            Composition.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            Composition.DropDownStyle = RadDropDownStyle.DropDown;
-            Composition.Width = 100;
-            gv.Columns.Add(Composition);
+            GridViewComboBoxColumn Status = new GridViewComboBoxColumn();
+            Status.Name = "Status";
+            Status.DataSource = lstStatus2;
+            Status.DisplayMember = "Contents";
+            Status.ValueMember = "CodeIdx";
+            Status.FieldName = "Status";
+            Status.HeaderText = "Status";
+            Status.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            Status.DropDownStyle = RadDropDownStyle.DropDown;
+            Status.Width = 100;
+            gv.Columns.Add(Status);
 
-            GridViewComboBoxColumn BurnCount = new GridViewComboBoxColumn();
-            BurnCount.Name = "BurnCount";
-            BurnCount.DataSource = lstBurnCount2;
-            BurnCount.DisplayMember = "Contents";
-            BurnCount.ValueMember = "Contents";
-            BurnCount.FieldName = "BurnCount";
-            BurnCount.HeaderText = "Burn";
-            BurnCount.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            BurnCount.DropDownStyle = RadDropDownStyle.DropDown;
-            BurnCount.Width = 60;
-            gv.Columns.Add(BurnCount);
+            GridViewDateTimeColumn IDate = new GridViewDateTimeColumn();
+            IDate.Name = "IDate";
+            IDate.Width = 100;
+            IDate.TextAlignment = ContentAlignment.MiddleCenter;
+            IDate.FormatString = "{0:d}";
+            IDate.FieldName = "IDate";
+            IDate.HeaderText = "Date";
+            IDate.ReadOnly = true;
+            gv.Columns.Add(IDate);
 
-            GridViewComboBoxColumn YarnType = new GridViewComboBoxColumn();
-            YarnType.Name = "YarnType";
-            YarnType.DataSource = lstYarnType2;
-            YarnType.DisplayMember = "Contents";
-            YarnType.ValueMember = "Contents";
-            YarnType.FieldName = "YarnType";
-            YarnType.HeaderText = "Yarn Type";
-            YarnType.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            YarnType.DropDownStyle = RadDropDownStyle.DropDown;
-            YarnType.Width = 100;
-            gv.Columns.Add(YarnType);
 
-            GridViewComboBoxColumn Contents1 = new GridViewComboBoxColumn();
-            Contents1.Name = "Contents1";
-            Contents1.DataSource = lstContents1;
-            Contents1.DisplayMember = "Contents";
-            Contents1.ValueMember = "Contents";
-            Contents1.FieldName = "Contents1";
-            Contents1.HeaderText = "Contents1";
-            Contents1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            Contents1.DropDownStyle = RadDropDownStyle.DropDown;
-            Contents1.Width = 150;
-            gv.Columns.Add(Contents1);
+            GridViewComboBoxColumn BuyerIdx = new GridViewComboBoxColumn();
+            BuyerIdx.Name = "BuyerIdx";
+            BuyerIdx.DataSource = lstBuyer2;
+            BuyerIdx.ValueMember = "CustIdx";
+            BuyerIdx.DisplayMember = "CustName";
+            BuyerIdx.FieldName = "BuyerIdx";
+            BuyerIdx.HeaderText = "Buyer";
+            BuyerIdx.Width = 100;
+            gv.Columns.Insert(3, BuyerIdx);
 
-            GridViewTextBoxColumn Percent1 = new GridViewTextBoxColumn();
-            Percent1.DataType = typeof(double);
-            Percent1.Name = "Percent1";
-            Percent1.FieldName = "Percent1";
-            Percent1.HeaderText = "%";
-            Percent1.Width = 60;
-            Percent1.TextAlignment = ContentAlignment.MiddleCenter;
-            gv.Columns.Add(Percent1);
+            GridViewComboBoxColumn ColorIdx = new GridViewComboBoxColumn();
+            ColorIdx.Name = "ColorIdx";
+            ColorIdx.DataSource = lstColor2;
+            ColorIdx.DisplayMember = "Contents";
+            ColorIdx.ValueMember = "CodeIdx";
+            ColorIdx.FieldName = "ColorIdx";
+            ColorIdx.HeaderText = "Color";
+            ColorIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            ColorIdx.DropDownStyle = RadDropDownStyle.DropDown;
+            ColorIdx.Width = 100;
+            gv.Columns.Add(ColorIdx);
+                        
+            GridViewComboBoxColumn FabricIdx = new GridViewComboBoxColumn();
+            FabricIdx.Name = "FabricIdx";
+            FabricIdx.DataSource = lstFabric2;
+            FabricIdx.DisplayMember = "LongName";
+            FabricIdx.ValueMember = "Idx";
+            FabricIdx.FieldName = "FabricIdx";
+            FabricIdx.HeaderText = "Fabric";
+            FabricIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            FabricIdx.DropDownStyle = RadDropDownStyle.DropDown;
+            FabricIdx.Width = 150; 
+            gv.Columns.Add(FabricIdx);
+
+            GridViewComboBoxColumn FabricType = new GridViewComboBoxColumn();
+            FabricType.Name = "FabricType";
+            FabricType.DataSource = lstFabricType2;
+            FabricType.DisplayMember = "Contents";
+            FabricType.ValueMember = "CodeIdx";
+            FabricType.FieldName = "FabricType";
+            FabricType.HeaderText = "FabricType";
+            FabricType.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            FabricType.DropDownStyle = RadDropDownStyle.DropDown;
+            FabricType.Width = 150;
+            gv.Columns.Add(FabricType);
+                        
+            GridViewTextBoxColumn Artno = new GridViewTextBoxColumn();
+            Artno.Name = "Artno";
+            Artno.FieldName = "Artno";
+            Artno.HeaderText = "Art";
+            Artno.Width = 100;
+            Artno.TextAlignment = ContentAlignment.MiddleCenter;
+            gv.Columns.Add(Artno);
+
+            GridViewTextBoxColumn Lotno = new GridViewTextBoxColumn();
+            Lotno.Name = "Lotno";
+            Lotno.FieldName = "Lotno";
+            Lotno.HeaderText = "Lot#";
+            Lotno.TextAlignment = ContentAlignment.MiddleLeft;
+            Lotno.Width = 100;
+            gv.Columns.Add(Lotno);
+
+            GridViewTextBoxColumn Roll = new GridViewTextBoxColumn();
+            Roll.DataType = typeof(int);
+            Roll.Name = "Roll";
+            Roll.FieldName = "Roll";
+            Roll.HeaderText = "Roll";
+            Roll.Width = 60;
+            Roll.TextAlignment = ContentAlignment.MiddleCenter;
+            gv.Columns.Add(Roll);
+
+            GridViewTextBoxColumn Width = new GridViewTextBoxColumn();
+            Width.DataType = typeof(int);
+            Width.Name = "Width";
+            Width.FieldName = "Width";
+            Width.HeaderText = "Width";
+            Width.Width = 60;
+            Width.TextAlignment = ContentAlignment.MiddleCenter;
+            gv.Columns.Add(Width);
+
+            GridViewTextBoxColumn Kgs = new GridViewTextBoxColumn();
+            Kgs.DataType = typeof(double);
+            Kgs.Name = "Kgs";
+            Kgs.FieldName = "Kgs";
+            Kgs.HeaderText = "Kgs";
+            Kgs.Width = 60;
+            Kgs.TextAlignment = ContentAlignment.MiddleCenter;
+            gv.Columns.Add(Kgs);
+
+            GridViewTextBoxColumn Yds = new GridViewTextBoxColumn();
+            Yds.DataType = typeof(double);
+            Yds.Name = "Yds";
+            Yds.FieldName = "Yds";
+            Yds.HeaderText = "Yds";
+            Yds.Width = 60;
+            Yds.TextAlignment = ContentAlignment.MiddleCenter;
+            gv.Columns.Add(Yds);
+
+            GridViewTextBoxColumn IOCenterIdx = new GridViewTextBoxColumn();
+            IOCenterIdx.Name = "IOCenterIdx";
+            IOCenterIdx.FieldName = "IOCenterIdx";
+            IOCenterIdx.IsVisible = false; 
+            gv.Columns.Add(IOCenterIdx);
             
-            GridViewComboBoxColumn Contents2 = new GridViewComboBoxColumn();
-            Contents2.Name = "Contents2";
-            Contents2.DataSource = lstContents2;
-            Contents2.DisplayMember = "Contents";
-            Contents2.ValueMember = "Contents";
-            Contents2.FieldName = "Contents2";
-            Contents2.HeaderText = "Contents2";
-            Contents2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            Contents2.DropDownStyle = RadDropDownStyle.DropDown;
-            Contents2.Width = 150;
-            gv.Columns.Add(Contents2);
+            GridViewComboBoxColumn IODeptIdx = new GridViewComboBoxColumn();
+            IODeptIdx.Name = "IODeptIdx";
+            IODeptIdx.DataSource = lstDept;
+            IODeptIdx.DisplayMember = "CustName";
+            IODeptIdx.ValueMember = "CustIdx";
+            IODeptIdx.FieldName = "IODeptIdx";
+            IODeptIdx.HeaderText = "In";
+            IODeptIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            IODeptIdx.DropDownStyle = RadDropDownStyle.DropDown;
+            IODeptIdx.Width = 150;
+            gv.Columns.Add(IODeptIdx);
 
-            GridViewTextBoxColumn Percent2 = new GridViewTextBoxColumn();
-            Percent2.DataType = typeof(double);
-            Percent2.Name = "Percent2";
-            Percent2.FieldName = "Percent2";
-            Percent2.HeaderText = "%";
-            Percent2.Width = 60;
-            Percent2.TextAlignment = ContentAlignment.MiddleCenter;
-            gv.Columns.Add(Percent2);
-            
-            GridViewComboBoxColumn Contents3 = new GridViewComboBoxColumn();
-            Contents3.Name = "Contents3";
-            Contents3.DataSource = lstContents3;
-            Contents3.DisplayMember = "Contents";
-            Contents3.ValueMember = "Contents";
-            Contents3.FieldName = "Contents3";
-            Contents3.HeaderText = "Contents3";
-            Contents3.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            Contents3.DropDownStyle = RadDropDownStyle.DropDown;
-            Contents3.Width = 150;
-            gv.Columns.Add(Contents3);
+            GridViewTextBoxColumn Comments = new GridViewTextBoxColumn();
+            Comments.Name = "Comments";
+            Comments.FieldName = "Comments";
+            Comments.HeaderText = "Comments";
+            Comments.TextAlignment = ContentAlignment.MiddleLeft;
+            Comments.Width = 100;
+            gv.Columns.Add(Comments);
 
-            GridViewTextBoxColumn Percent3 = new GridViewTextBoxColumn();
-            Percent3.DataType = typeof(double);
-            Percent3.Name = "Percent3";
-            Percent3.FieldName = "Percent3";
-            Percent3.HeaderText = "%";
-            Percent3.Width = 60;
-            Percent3.TextAlignment = ContentAlignment.MiddleCenter;
-            gv.Columns.Add(Percent3);
-            
-            GridViewComboBoxColumn Contents4 = new GridViewComboBoxColumn();
-            Contents4.Name = "Contents4";
-            Contents4.DataSource = lstContents4;
-            Contents4.DisplayMember = "Contents";
-            Contents4.ValueMember = "Contents";
-            Contents4.FieldName = "Contents4";
-            Contents4.HeaderText = "Contents4";
-            Contents4.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            Contents4.DropDownStyle = RadDropDownStyle.DropDown;
-            Contents4.Width = 150; 
-            gv.Columns.Add(Contents4);
+            GridViewTextBoxColumn WorkOrderIdx = new GridViewTextBoxColumn();
+            WorkOrderIdx.Name = "WorkOrderIdx";
+            WorkOrderIdx.FieldName = "WorkOrderIdx";
+            WorkOrderIdx.HeaderText = "Inbound#";
+            WorkOrderIdx.ReadOnly = true; 
+            WorkOrderIdx.TextAlignment = ContentAlignment.MiddleLeft;
+            WorkOrderIdx.Width = 100;
+            gv.Columns.Add(WorkOrderIdx);
 
-            GridViewTextBoxColumn Percent4 = new GridViewTextBoxColumn();
-            Percent4.DataType = typeof(double);
-            Percent4.Name = "Percent4";
-            Percent4.FieldName = "Percent4";
-            Percent4.HeaderText = "%";
-            Percent4.Width = 60;
-            Percent4.TextAlignment = ContentAlignment.MiddleCenter;
-            gv.Columns.Add(Percent4);
+            GridViewComboBoxColumn RackNo = new GridViewComboBoxColumn();
+            RackNo.Name = "RackNo";
+            RackNo.DataSource = lstRack21;
+            RackNo.DisplayMember = "Contents";
+            RackNo.ValueMember = "CodeIdx";
+            RackNo.FieldName = "RackNo";
+            RackNo.HeaderText = "Rack#";
+            RackNo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            RackNo.DropDownStyle = RadDropDownStyle.DropDown;
+            RackNo.Width = 70;
+            gv.Columns.Add(RackNo);
 
-            GridViewTextBoxColumn Remark = new GridViewTextBoxColumn();
-            Remark.Name = "Remark";
-            Remark.FieldName = "Remark";
-            Remark.HeaderText = "Remark";
-            Remark.TextAlignment = ContentAlignment.MiddleLeft;
-            Remark.Width = 200;
-            gv.Columns.Add(Remark);
-            
-            GridViewCheckBoxColumn cIsUse = new GridViewCheckBoxColumn();
-            cIsUse.DataType = typeof(int);
-            cIsUse.Name = "IsUse";
-            cIsUse.FieldName = "IsUse";
-            cIsUse.HeaderText = "Use";
-            cIsUse.WrapText = true;
-            cIsUse.Width = 40;
-            gv.Columns.Add(cIsUse);
-            
+            GridViewComboBoxColumn Floorno = new GridViewComboBoxColumn();
+            Floorno.Name = "Floorno";
+            Floorno.DataSource = lstRack22;
+            Floorno.DisplayMember = "Contents";
+            Floorno.ValueMember = "CodeIdx";
+            Floorno.FieldName = "Floorno";
+            Floorno.HeaderText = "Floor#";
+            Floorno.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            Floorno.DropDownStyle = RadDropDownStyle.DropDown;
+            Floorno.Width = 70;
+            gv.Columns.Add(Floorno);
+
+            GridViewComboBoxColumn RackPos = new GridViewComboBoxColumn();
+            RackPos.Name = "RackPos";
+            RackPos.DataSource = lstRack23;
+            RackPos.DisplayMember = "Contents";
+            RackPos.ValueMember = "CodeIdx";
+            RackPos.FieldName = "RackPos";
+            RackPos.HeaderText = "Rack Position";
+            RackPos.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            RackPos.DropDownStyle = RadDropDownStyle.DropDown;
+            RackPos.Width = 70;
+            gv.Columns.Add(RackPos);
+
+            GridViewTextBoxColumn PosX = new GridViewTextBoxColumn();
+            PosX.DataType = typeof(int);
+            PosX.Name = "PosX";
+            PosX.FieldName = "PosX";
+            PosX.HeaderText = "Location(X)";
+            PosX.TextAlignment = ContentAlignment.MiddleCenter;
+            PosX.Width = 70;
+            gv.Columns.Add(PosX);
+
+            GridViewTextBoxColumn PosY = new GridViewTextBoxColumn();
+            PosY.DataType = typeof(int);
+            PosY.Name = "PosY";
+            PosY.FieldName = "PosY";
+            PosY.HeaderText = "Location(Y)";
+            PosY.TextAlignment = ContentAlignment.MiddleCenter;
+            PosY.Width = 70;
+            gv.Columns.Add(PosY);
+
+            GridViewTextBoxColumn Qrcode = new GridViewTextBoxColumn();
+            Qrcode.DataType = typeof(int);
+            Qrcode.Name = "Qrcode";
+            Qrcode.FieldName = "Qrcode";
+            Qrcode.HeaderText = "QR Code";
+            Qrcode.IsVisible = false;
+            Qrcode.ReadOnly = true;
+            Qrcode.TextAlignment = ContentAlignment.MiddleLeft;
+            Qrcode.Width = 70;
+            gv.Columns.Add(Qrcode);
+
+            GridViewTextBoxColumn filenm1 = new GridViewTextBoxColumn();
+            filenm1.Name = "filenm1";
+            filenm1.FieldName = "filenm1";
+            filenm1.IsVisible = false; 
+            gv.Columns.Add(filenm1);
+
+            GridViewTextBoxColumn filenm2 = new GridViewTextBoxColumn();
+            filenm2.Name = "filenm2";
+            filenm2.FieldName = "filenm2";
+            filenm2.IsVisible = false;
+            gv.Columns.Add(filenm2);
+
+            GridViewTextBoxColumn fileurl1 = new GridViewTextBoxColumn();
+            fileurl1.Name = "fileurl1";
+            fileurl1.FieldName = "fileurl1";
+            fileurl1.IsVisible = false;
+            gv.Columns.Add(fileurl1);
+
+            GridViewTextBoxColumn fileurl2 = new GridViewTextBoxColumn();
+            fileurl2.Name = "fileurl2";
+            fileurl2.FieldName = "fileurl2";
+            fileurl2.IsVisible = false;
+            gv.Columns.Add(fileurl2);
+
+
             #endregion
         }
 
         #endregion
 
         #region 3. 컨트롤 초기 설정
-        
+
         /// <summary>
         /// 컨텍스트 메뉴 연결 (행높이 설정)
         /// </summary>
@@ -480,7 +618,7 @@ namespace Dev.Fabric
                     MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
                 {
                     // 삭제후 새로고침
-                    _bRtn = Controller.Yarn.Delete(str);
+                    _bRtn = Controller.Inbound.Delete(str);
                     RefleshWithCondition();
                 }
             }
@@ -499,10 +637,11 @@ namespace Dev.Fabric
         {
             try
             {
-                DataRow row = Dev.Controller.Yarn.Insert();
-
-                RefleshWithCondition();
-                SetCurrentRow(_gv1, Convert.ToInt32(row["LastIdx"]));   // 신규입력된 행번호로 이동
+                string WorkOrderIdx = Int.Code.Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 14, "");           // 입고번호 생성 
+                string __QRCode__ = Int.Encryptor.Encrypt(WorkOrderIdx.Trim(), "love1229");
+                DataRow row = Controller.Inbound.Insert(WorkOrderIdx, __QRCode__, UserInfo.CenterIdx, UserInfo.DeptIdx, UserInfo.Idx);  // 신규 입력
+                RefleshWithCondition();                                                                                     // 재조회 
+                SetCurrentRow(_gv1, Convert.ToInt32(row["LastIdx"]));                                                       // 신규입력된 행번호로 이동
             }
             catch (Exception ex)
             {
@@ -550,64 +689,207 @@ namespace Dev.Fabric
         /// </summary>
         private void DataLoading_DDL()
         {
+            // Status 
+            /* -- 1:대기상태, 2:입고(생산처), 3:입고(사용가능 잔량회수), 4:입고(구매처)
+               --5:정상출고, 6:출고(원단불량), 7:판매, 8:폐기, 9:악성재고, 10:공장용보관 */
+            lstStatus.Add(new CodeContents(0, CommonValues.DicFabricInStatus[0], ""));
+            lstStatus.Add(new CodeContents(1, CommonValues.DicFabricInStatus[1], ""));
+            lstStatus.Add(new CodeContents(2, CommonValues.DicFabricInStatus[2], ""));
+            lstStatus.Add(new CodeContents(3, CommonValues.DicFabricInStatus[3], ""));
+            lstStatus.Add(new CodeContents(9, CommonValues.DicFabricInStatus[9], ""));
+            lstStatus.Add(new CodeContents(10, CommonValues.DicFabricInStatus[10], ""));
 
-            //// YarnType
-            //_dt = Data.YarnData.Getlist_YarnType();
+            lstStatus2.Add(new CodeContents(0, CommonValues.DicFabricInStatus[0], ""));
+            lstStatus2.Add(new CodeContents(1, CommonValues.DicFabricInStatus[1], ""));
+            lstStatus2.Add(new CodeContents(2, CommonValues.DicFabricInStatus[2], ""));
+            lstStatus2.Add(new CodeContents(3, CommonValues.DicFabricInStatus[3], ""));
+            lstStatus2.Add(new CodeContents(9, CommonValues.DicFabricInStatus[9], ""));
+            lstStatus2.Add(new CodeContents(10, CommonValues.DicFabricInStatus[10], ""));
 
-            //if (_dt != null)
+            // department    
+            //_dt = CommonController.Getlist(CommonValues.KeyName.DeptIdx).Tables[0];
+
+            //foreach (DataRow row in _dt.Rows)
             //{
-            //    foreach (DataRow row in _dt.Rows)
+            //    // 관리부와 임원은 모든 부서에 접근가능
+            //    if (UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6)
             //    {
-            //        lstYarnType.Add(new CodeContents(0, row["YarnType"].ToString(), ""));
-            //        lstYarnType2.Add(new CodeContents(0, row["YarnType"].ToString(), ""));
+            //        lstDept.Add(new DepartmentName(Convert.ToInt32(row["DeptIdx"]),
+            //                                    row["DeptName"].ToString(),
+            //                                    Convert.ToInt32(row["CostcenterIdx"])));
+            //    }
+            //    // 영업부는 해당 부서 데이터만 접근가능
+            //    else
+            //    {
+            //        if (Convert.ToInt32(row["DeptIdx"]) <= 0 || Convert.ToInt32(row["DeptIdx"]) == UserInfo.DeptIdx)
+            //        {
+            //            lstDept.Add(new DepartmentName(Convert.ToInt32(row["DeptIdx"]),
+            //                                    row["DeptName"].ToString(),
+            //                                    Convert.ToInt32(row["CostcenterIdx"])));
+            //        }
             //    }
             //}
 
-            //// Composition
-            //_dt = Data.YarnData.Getlist_Composition();
+            // Buyer
+            _dt = CommonController.Getlist(CommonValues.KeyName.CustIdx).Tables[0];
 
-            //if (_dt != null)
-            //{
-            //    foreach (DataRow row in _dt.Rows)
-            //    {
-            //        lstComposition.Add(new CodeContents(0, row["Composition"].ToString(), ""));
-            //        lstComposition2.Add(new CodeContents(0, row["Composition"].ToString(), ""));
-            //    }
-            //}
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstBuyer.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
+                                            row["CustName"].ToString(),
+                                            Convert.ToInt32(row["Classification"])));
+                lstBuyer2.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
+                                            row["CustName"].ToString(),
+                                            Convert.ToInt32(row["Classification"])));
+            }
 
-            //// Burncount
-            //_dt = Data.YarnData.Getlist_Burncount();
+            // Color 
+            _dt = Codes.Controller.Color.GetUselist().Tables[0];
+            lstColor.Add(new CodeContents(0, "", ""));
+            lstColor2.Add(new CodeContents(0, "", ""));
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstColor.Add(new CodeContents(Convert.ToInt32(row["ColorIdx"]),
+                                            row["ColorName"].ToString(),
+                                            ""));
+                lstColor2.Add(new CodeContents(Convert.ToInt32(row["ColorIdx"]),
+                                            row["ColorName"].ToString(),
+                                            ""));
+            }
 
-            //if (_dt != null)
-            //{
-            //    foreach (DataRow row in _dt.Rows)
-            //    {
-            //        lstBurnCount.Add(new CodeContents(0, row["Burncount"].ToString(), ""));
-            //        lstBurnCount2.Add(new CodeContents(0, row["Burncount"].ToString(), ""));
-            //    }
-            //}
+            // Fabric IN
+            _dt = CommonController.Getlist(CommonValues.KeyName.Wash).Tables[0];
 
-            //// Yarn Contents
-            //_dt = Data.YarnData.Getlist_YarnContents();
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstDept.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
+                                            row["CustName"].ToString(),
+                                            Convert.ToInt32(row["Classification"])));
+            }
 
-            //if (_dt != null)
-            //{
-            //    foreach (DataRow row in _dt.Rows)
-            //    {
-            //        lstContents.Add(new CodeContents(0, row["Contents"].ToString(), ""));
-            //        lstContents1.Add(new CodeContents(0, row["Contents"].ToString(), ""));
-            //        lstContents2.Add(new CodeContents(0, row["Contents"].ToString(), ""));
-            //        lstContents3.Add(new CodeContents(0, row["Contents"].ToString(), ""));
-            //        lstContents4.Add(new CodeContents(0, row["Contents"].ToString(), ""));
+            // Fabric 
+            _searchString = new Dictionary<CommonValues.KeyName, string>();
+            _searchString.Add(CommonValues.KeyName.Remark, "");
+            _searchString.Add(CommonValues.KeyName.IsUse, "1");
+            _dt = Controller.Fabric.Getlist(_searchString).Tables[0];
 
-            //    }
-            //}
+            lstFabric.Add(new Controller.Fabric(0, "", ""));
+            lstFabric2.Add(new Controller.Fabric(0, "", ""));
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstFabric.Add(new Controller.Fabric(Convert.ToInt32(row["Idx"]),
+                                            row["LongName"].ToString(),
+                                            row["ShortName"].ToString()));
+                lstFabric2.Add(new Controller.Fabric(Convert.ToInt32(row["Idx"]),
+                                            row["LongName"].ToString(),
+                                            row["ShortName"].ToString()));
+            }
 
-            // 오더상태 (CommonValues정의)
-            lstIsUse.Add(new CodeContents(2, "", ""));
-            lstIsUse.Add(new CodeContents(1, "Yes", "1"));
-            lstIsUse.Add(new CodeContents(0, "No", "0"));
+            // 코드
+            _dt = CommonController.Getlist(CommonValues.KeyName.Codes).Tables[0];
+
+            codeName.Add(new CodeContents(0, "", "Fabric Type")); 
+            foreach (DataRow row in _dt.Rows)
+            {
+                codeName.Add(new CodeContents(Convert.ToInt32(row["Idx"]),
+                                            row["Contents"].ToString(),
+                                            row["Classification"].ToString()));
+            }
+
+            // Fabric Type 
             
+            lstFabricType.Clear();
+            lstFabricType = codeName.FindAll(
+                delegate (CodeContents code)
+                {
+                    return code.Classification == "Fabric Type";
+                });
+
+            lstFabricType2.Clear();
+            lstFabricType2 = codeName.FindAll(
+                delegate (CodeContents code)
+                {
+                    return code.Classification == "Fabric Type";
+                });
+
+            // Lot# 
+
+            // Inbound (WorkOrderIdx)
+
+            // Location X
+
+            // Location Y
+
+            // Rack# 
+            lstRack1.Add(new CodeContents(0, "", ""));
+            lstRack1.Add(new CodeContents(1, "1", ""));
+            lstRack1.Add(new CodeContents(2, "2", ""));
+            lstRack1.Add(new CodeContents(3, "3", ""));
+            lstRack1.Add(new CodeContents(4, "4", ""));
+            lstRack1.Add(new CodeContents(5, "5", ""));
+            lstRack1.Add(new CodeContents(6, "6", ""));
+            lstRack1.Add(new CodeContents(7, "7", ""));
+            lstRack1.Add(new CodeContents(8, "8", ""));
+            lstRack1.Add(new CodeContents(9, "9", ""));
+            lstRack1.Add(new CodeContents(10, "10", ""));
+
+            lstRack2.Add(new CodeContents(0, "", ""));
+            lstRack2.Add(new CodeContents(1, "A", ""));
+            lstRack2.Add(new CodeContents(2, "B", ""));
+            lstRack2.Add(new CodeContents(3, "C", ""));
+            lstRack2.Add(new CodeContents(4, "D", ""));
+            lstRack2.Add(new CodeContents(5, "E", ""));
+            lstRack2.Add(new CodeContents(6, "F", ""));
+            lstRack2.Add(new CodeContents(7, "G", ""));
+            lstRack2.Add(new CodeContents(8, "H", ""));
+            lstRack2.Add(new CodeContents(9, "I", ""));
+
+            lstRack3.Add(new CodeContents(0, "", ""));
+            lstRack3.Add(new CodeContents(1, "1", ""));
+            lstRack3.Add(new CodeContents(2, "2", ""));
+            lstRack3.Add(new CodeContents(3, "3", ""));
+            lstRack3.Add(new CodeContents(4, "4", ""));
+            lstRack3.Add(new CodeContents(5, "5", ""));
+            lstRack3.Add(new CodeContents(6, "6", ""));
+            lstRack3.Add(new CodeContents(7, "7", ""));
+            lstRack3.Add(new CodeContents(8, "8", ""));
+            lstRack3.Add(new CodeContents(9, "9", ""));
+            lstRack3.Add(new CodeContents(10, "10", ""));
+
+            lstRack21.Add(new CodeContents(0, "", ""));
+            lstRack21.Add(new CodeContents(1, "1", ""));
+            lstRack21.Add(new CodeContents(2, "2", ""));
+            lstRack21.Add(new CodeContents(3, "3", ""));
+            lstRack21.Add(new CodeContents(4, "4", ""));
+            lstRack21.Add(new CodeContents(5, "5", ""));
+            lstRack21.Add(new CodeContents(6, "6", ""));
+            lstRack21.Add(new CodeContents(7, "7", ""));
+            lstRack21.Add(new CodeContents(8, "8", ""));
+            lstRack21.Add(new CodeContents(9, "9", ""));
+            lstRack21.Add(new CodeContents(10, "10", ""));
+
+            lstRack22.Add(new CodeContents(0, "", ""));
+            lstRack22.Add(new CodeContents(1, "A", ""));
+            lstRack22.Add(new CodeContents(2, "B", ""));
+            lstRack22.Add(new CodeContents(3, "C", ""));
+            lstRack22.Add(new CodeContents(4, "D", ""));
+            lstRack22.Add(new CodeContents(5, "E", ""));
+            lstRack22.Add(new CodeContents(6, "F", ""));
+            lstRack22.Add(new CodeContents(7, "G", ""));
+            lstRack22.Add(new CodeContents(8, "H", ""));
+            lstRack22.Add(new CodeContents(9, "I", ""));
+
+            lstRack23.Add(new CodeContents(0, "", ""));
+            lstRack23.Add(new CodeContents(1, "1", ""));
+            lstRack23.Add(new CodeContents(2, "2", ""));
+            lstRack23.Add(new CodeContents(3, "3", ""));
+            lstRack23.Add(new CodeContents(4, "4", ""));
+            lstRack23.Add(new CodeContents(5, "5", ""));
+            lstRack23.Add(new CodeContents(6, "6", ""));
+            lstRack23.Add(new CodeContents(7, "7", ""));
+            lstRack23.Add(new CodeContents(8, "8", ""));
+            lstRack23.Add(new CodeContents(9, "9", ""));
+            lstRack23.Add(new CodeContents(10, "10", ""));
         }
 
         /// <summary>
@@ -627,20 +909,30 @@ namespace Dev.Fabric
         {
             try
             {
-                if (ddlBurnCount.SelectedValue != null || ddlComposition.SelectedValue != null
-                    || ddlContents.SelectedValue != null || ddlUse.SelectedValue != null
-                    || !string.IsNullOrEmpty(txtRemark.Text) 
-                    || ddlYarnType.SelectedValue != null 
+                if (ddlStatus.SelectedValue != null || ddlBuyer.SelectedValue != null || ddlColor.SelectedValue != null
+                    || ddlFabric.SelectedValue != null || ddlFabricType.SelectedValue != null
+                    || !string.IsNullOrEmpty(txtLotno.Text) || !string.IsNullOrEmpty(txtInboundno.Text)
+                    || !string.IsNullOrEmpty(txtLocationX.Value.ToString()) || !string.IsNullOrEmpty(txtLocationY.Value.ToString())
+                    || ddlRack1.SelectedValue != null || ddlRack2.SelectedValue != null || ddlRack3.SelectedValue != null
                     )
                 {
                     _searchString = new Dictionary<CommonValues.KeyName, string>();
-                    _searchString.Add(CommonValues.KeyName.Composition, ddlComposition.SelectedValue.ToString());
-                    _searchString.Add(CommonValues.KeyName.BurnCount, ddlBurnCount.SelectedValue.ToString());
-                    _searchString.Add(CommonValues.KeyName.Contents, ddlContents.SelectedValue.ToString());
-                    _searchString.Add(CommonValues.KeyName.YarnType, ddlYarnType.SelectedValue.ToString());
-                    _searchString.Add(CommonValues.KeyName.IsUse, ddlUse.SelectedValue.ToString());
-                    _searchString.Add(CommonValues.KeyName.Remark, txtRemark.Text.Trim());
+                    _searchString.Add(CommonValues.KeyName.Lotno, txtLotno.Text.Trim());
+                    _searchString.Add(CommonValues.KeyName.WorkOrderIdx, txtInboundno.Text.Trim());
 
+                    _searchKey = new Dictionary<CommonValues.KeyName, int>();
+                    _searchKey.Add(CommonValues.KeyName.Status, Convert.ToInt32(ddlStatus.SelectedValue));
+                    _searchKey.Add(CommonValues.KeyName.BuyerIdx, Convert.ToInt32(ddlBuyer.SelectedValue));
+                    _searchKey.Add(CommonValues.KeyName.ColorIdx, Convert.ToInt32(ddlColor.SelectedValue));
+                    _searchKey.Add(CommonValues.KeyName.FabricIdx, Convert.ToInt32(ddlFabric.SelectedValue));
+                    _searchKey.Add(CommonValues.KeyName.FabricType, Convert.ToInt32(ddlFabricType.SelectedValue));
+
+                    _searchKey.Add(CommonValues.KeyName.RackNo, Convert.ToInt32(ddlRack1.SelectedValue));
+                    _searchKey.Add(CommonValues.KeyName.Floorno, Convert.ToInt32(ddlRack2.SelectedValue));
+                    _searchKey.Add(CommonValues.KeyName.RackPos, Convert.ToInt32(ddlRack3.SelectedValue));
+                    _searchKey.Add(CommonValues.KeyName.PosX, Convert.ToInt32(txtLocationX.Value));
+                    _searchKey.Add(CommonValues.KeyName.PosY, Convert.ToInt32(txtLocationY.Value));
+                    
                     DataBinding_GV1();
                 }
             }
@@ -661,7 +953,7 @@ namespace Dev.Fabric
             {
                 _gv1.DataSource = null;
                 
-                _ds1 = Dev.Controller.Yarn.Getlist(_searchString);
+                _ds1 = Controller.Inbound.Getlist(_searchString, _searchKey);
 
                 if (_ds1 != null)
                 {
@@ -695,26 +987,44 @@ namespace Dev.Fabric
                 GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
 
                 // 객체생성 및 값 할당
-                //_obj1           = new Controller.Sizes(Convert.ToInt32(row.Cells["SizeIdx"].Value));
-                //_obj1.SizeIdx = Convert.ToInt32(row.Cells["SizeIdx"].Value);
-                //_obj1.SizeName    = row.Cells["SizeName"].Value.ToString();
-                //_obj1.IsUse    = Convert.ToInt32(row.Cells["IsUse"].Value);
+                _obj1 = new Controller.Inbound(Convert.ToInt32(row.Cells["Idx"].Value));
+                _obj1.Idx = Convert.ToInt32(row.Cells["Idx"].Value);
 
-                _bRtn = Dev.Controller.Yarn.Update(Convert.ToInt32(row.Cells["Idx"].Value),
-                                            row.Cells["Composition"].Value.ToString(),
-                                            row.Cells["BurnCount"].Value.ToString(),
-                                            row.Cells["YarnType"].Value.ToString(),
-                                            row.Cells["Contents1"].Value.ToString(),
-                                            row.Cells["Contents2"].Value.ToString(),
-                                            row.Cells["Contents3"].Value.ToString(),
-                                            row.Cells["Contents4"].Value.ToString(),
-                                            Convert.ToDouble(row.Cells["Percent1"].Value),
-                                            Convert.ToDouble(row.Cells["Percent2"].Value),
-                                            Convert.ToDouble(row.Cells["Percent3"].Value),
-                                            Convert.ToDouble(row.Cells["Percent4"].Value),
-                                            row.Cells["Remark"].Value.ToString(),
-                                            Convert.ToInt32(row.Cells["IsUse"].Value)
-                                            );
+                if (row.Cells["Status"].Value != DBNull.Value) _obj1.Status = Convert.ToInt32(row.Cells["Status"].Value);
+                if (row.Cells["IDate"].Value != DBNull.Value) _obj1.IDate = Convert.ToDateTime(row.Cells["IDate"].Value);
+                if (row.Cells["BuyerIdx"].Value != DBNull.Value) _obj1.BuyerIdx = Convert.ToInt32(row.Cells["BuyerIdx"].Value);
+                if (row.Cells["ColorIdx"].Value != DBNull.Value) _obj1.ColorIdx = Convert.ToInt32(row.Cells["ColorIdx"].Value);
+                if (row.Cells["FabricType"].Value != DBNull.Value) _obj1.FabricType = Convert.ToInt32(row.Cells["FabricType"].Value);
+                if (row.Cells["Artno"].Value != DBNull.Value) _obj1.Artno = row.Cells["Artno"].Value.ToString(); else _obj1.Artno = ""; 
+                if (row.Cells["Lotno"].Value != DBNull.Value) _obj1.Lotno = row.Cells["Lotno"].Value.ToString(); else _obj1.Lotno = "";
+                if (row.Cells["FabricIdx"].Value != DBNull.Value) _obj1.FabricIdx = Convert.ToInt32(row.Cells["FabricIdx"].Value);
+                if (row.Cells["Roll"].Value != DBNull.Value) _obj1.Roll = Convert.ToInt32(row.Cells["Roll"].Value);
+                if (row.Cells["Width"].Value != DBNull.Value) _obj1.Width = Convert.ToInt32(row.Cells["Width"].Value);
+
+                if (row.Cells["Kgs"].Value != DBNull.Value) _obj1.Kgs = Convert.ToInt32(row.Cells["Kgs"].Value);
+                if (row.Cells["Yds"].Value != DBNull.Value) _obj1.Yds = Convert.ToInt32(row.Cells["Yds"].Value);
+                //if (row.Cells["RegCenterIdx"].Value != DBNull.Value) _regCenterIdx = Convert.ToInt32(row.Cells["RegCenterIdx"]);
+                //if (row.Cells["RegDeptIdx"].Value != DBNull.Value) _regDeptIdx = Convert.ToInt32(row.Cells["RegDeptIdx"]);
+                //if (row.Cells["RegUserIdx"].Value != DBNull.Value) _regUserIdx = Convert.ToInt32(row.Cells["RegUserIdx"]);
+                //if (row.Cells["RegDate"].Value != DBNull.Value) _regDate = Convert.ToDateTime(row.Cells["RegDate"]);
+                if (row.Cells["IOCenterIdx"].Value != DBNull.Value) _obj1.IOCenterIdx = Convert.ToInt32(row.Cells["IOCenterIdx"].Value);
+                if (row.Cells["IODeptIdx"].Value != DBNull.Value) _obj1.IODeptIdx = Convert.ToInt32(row.Cells["IODeptIdx"].Value);
+                if (row.Cells["Comments"].Value != DBNull.Value) _obj1.Comments = row.Cells["Comments"].Value.ToString(); else _obj1.Comments = "";
+
+                if (row.Cells["WorkOrderIdx"].Value != DBNull.Value) _obj1.WorkOrderIdx = row.Cells["WorkOrderIdx"].Value.ToString();   
+                if (row.Cells["RackNo"].Value != DBNull.Value) _obj1.RackNo = Convert.ToInt32(row.Cells["RackNo"].Value); else _obj1.RackNo = 0;
+                if (row.Cells["Floorno"].Value != DBNull.Value) _obj1.Floorno = Convert.ToInt32(row.Cells["Floorno"].Value); else _obj1.Floorno = 0;
+                if (row.Cells["RackPos"].Value != DBNull.Value) _obj1.RackPos = Convert.ToInt32(row.Cells["RackPos"].Value); else _obj1.RackPos = 0;
+                if (row.Cells["PosX"].Value != DBNull.Value) _obj1.PosX = Convert.ToInt32(row.Cells["PosX"].Value); else _obj1.PosX = 0;
+                if (row.Cells["PosY"].Value != DBNull.Value) _obj1.PosY = Convert.ToInt32(row.Cells["PosY"].Value); else _obj1.PosY = 0;
+                if (row.Cells["Qrcode"].Value != DBNull.Value) _obj1.Qrcode = row.Cells["Qrcode"].Value.ToString(); else _obj1.Qrcode = "";
+
+                if (row.Cells["filenm1"].Value != DBNull.Value) _obj1.Filenm1 = row.Cells["filenm1"].ToString(); else _obj1.Filenm1 = "";
+                if (row.Cells["filenm2"].Value != DBNull.Value) _obj1.Filenm2 = row.Cells["filenm2"].ToString(); else _obj1.Filenm2 = "";
+                if (row.Cells["fileurl1"].Value != DBNull.Value) _obj1.Fileurl1 = row.Cells["fileurl1"].ToString(); else _obj1.Fileurl1 = "";
+                if (row.Cells["fileurl2"].Value != DBNull.Value) _obj1.Fileurl2 = row.Cells["fileurl2"].ToString(); else _obj1.Fileurl2 = "";
+
+                _bRtn = _obj1.Update();
                 if (_bRtn) __main__.lblDescription.Text = "Update Succeed"; 
             }
             catch (Exception ex)
@@ -749,23 +1059,25 @@ namespace Dev.Fabric
         /// <param name="e"></param>
         private void MasterTemplate_CellEditorInitialized(object sender, GridViewCellEventArgs e)
         {
-            //// DDL 높이, 출력항목수 설정
-            //RadDropDownListEditor editor = this._gv1.ActiveEditor as RadDropDownListEditor;
-            //if (editor != null)
-            //{
-            //    ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DefaultItemsCountInDropDown
-            //        = CommonValues.DDL_DefaultItemsCountInDropDown;
-            //    ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DropDownHeight
-            //        = CommonValues.DDL_DropDownHeight; 
-            //}
+            // DDL 높이, 출력항목수 설정
+            RadDropDownListEditor editor = this._gv1.ActiveEditor as RadDropDownListEditor;
+            if (editor != null)
+            {
+                ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DefaultItemsCountInDropDown
+                    = CommonValues.DDL_DefaultItemsCountInDropDown;
+                ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DropDownHeight
+                    = CommonValues.DDL_DropDownHeight;
+                ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DropDownWidth
+                    = ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DropDownWidth * CommonValues.DDL_DropDownWidth; 
+            }
 
-            //// 날짜컬럼의 달력크기 설정
-            //RadDateTimeEditor dtEditor = e.ActiveEditor as RadDateTimeEditor;
-            //if (dtEditor != null)
-            //{
-            //    RadDateTimeEditorElement el = dtEditor.EditorElement as RadDateTimeEditorElement;
-            //    el.CalendarSize = new Size(500, 400);
-            //}
+            // 날짜컬럼의 달력크기 설정
+            RadDateTimeEditor dtEditor = e.ActiveEditor as RadDateTimeEditor;
+            if (dtEditor != null)
+            {
+                RadDateTimeEditorElement el = dtEditor.EditorElement as RadDateTimeEditorElement;
+                el.CalendarSize = new Size(500, 400);
+            }
 
         }
         
@@ -798,6 +1110,11 @@ namespace Dev.Fabric
             //    contextMenu.Items[6].Shortcuts.Clear();
             //    contextMenu.Items[6].Shortcuts.Add(new RadShortcut(Keys.Control, Keys.C));
             //}
+        }
+
+        private void ddlBuyer_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+
         }
 
         /// <summary>

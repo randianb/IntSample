@@ -26,7 +26,7 @@ namespace Dev.Data
         /// <summary>
         /// Insert
         /// </summary>
-        public static DataRow Insert(int RegCenterIdx, int RegDeptIdx, int RegUserIdx)
+        public static DataRow Insert(string WorkOrderIdx, string Qrcode, int RegCenterIdx, int RegDeptIdx, int RegUserIdx)
         {
             try
             {
@@ -39,6 +39,12 @@ namespace Dev.Data
                 _cmd.CommandText = "up_FabricIn_Insert";
                 _cmd.CommandType = CommandType.StoredProcedure;
                 _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _cmd.Parameters.Add("@Qrcode", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@Qrcode"].Value = Qrcode;
 
                 _cmd.Parameters.Add("@RegCenterIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@RegCenterIdx"].Value = RegCenterIdx;
@@ -78,7 +84,7 @@ namespace Dev.Data
         /// </summary>
         public static bool Update(int Idx, int Status, DateTime IDate, int BuyerIdx, int ColorIdx, int FabricType, 
             string Artno, string Lotno, int FabricIdx, int Roll, int Width, double Kgs, double Yds, 
-            int IOCenterIdx, int IODeptIdx, string Comments, int RacknNo, int Floorno, int RackPos, 
+            int IOCenterIdx, int IODeptIdx, string Comments, int RackNo, int Floorno, int RackPos, 
             int PosX, int PosY, string Qrcode, string filenm1, string filenm2, string fileurl1, string fileurl2
             )
         {
@@ -140,8 +146,8 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@Comments", SqlDbType.NVarChar, 80);
                 _cmd.Parameters["@Comments"].Value = Comments;
 
-                _cmd.Parameters.Add("@RacknNo", SqlDbType.TinyInt, 1);
-                _cmd.Parameters["@RacknNo"].Value = RacknNo;
+                _cmd.Parameters.Add("@RackNo", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@RackNo"].Value = RackNo;
 
                 _cmd.Parameters.Add("@Floorno", SqlDbType.TinyInt, 1);
                 _cmd.Parameters["@Floorno"].Value = Floorno;

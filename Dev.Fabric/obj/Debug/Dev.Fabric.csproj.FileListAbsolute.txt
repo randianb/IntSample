@@ -35,3 +35,5 @@ D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.WinControls.RadDock.xml
 D:\git\IntSample\Dev.Fabric\bin\Debug\Dev.Data.pdb
 D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.FabricCode.resources
 D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.Inbound.resources
+D:\git\IntSample\Dev.Fabric\bin\Debug\Dev.System.dll
+D:\git\IntSample\Dev.Fabric\bin\Debug\Dev.System.pdb

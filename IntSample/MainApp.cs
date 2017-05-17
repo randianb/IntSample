@@ -421,7 +421,13 @@ namespace SampleApp
 
         private void btnFabricInbound_Click(object sender, EventArgs e)
         {
-
+            if (Close_All_Children("Inbound"))
+            {
+                Inbound frm = new Inbound(this);
+                frm.Text = "Fabric Inbound";
+                frm.MdiParent = this;
+                frm.Show();
+            }
         }
 
         private void btnFabricOutbound_Click(object sender, EventArgs e)

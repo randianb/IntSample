@@ -325,9 +325,9 @@ namespace Dev.Controller
         #region Methods
 
         // Insert
-        public static DataRow Insert(int RegCenterIdx, int RegDeptIdx, int RegUserIdx)
+        public static DataRow Insert(string WorkOrderIdx, string Qrcode, int RegCenterIdx, int RegDeptIdx, int RegUserIdx)
         {
-            DataRow row = Data.InboundData.Insert(RegCenterIdx, RegDeptIdx, RegUserIdx);
+            DataRow row = Data.InboundData.Insert(WorkOrderIdx, Qrcode, RegCenterIdx, RegDeptIdx, RegUserIdx);
             return row;
         }
 
@@ -346,7 +346,6 @@ namespace Dev.Controller
             return ds;
         }
         
-
         public bool Update()
         {
             bool blRtn;

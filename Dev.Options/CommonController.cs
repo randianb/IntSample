@@ -28,6 +28,9 @@ namespace Dev.Options
                 case CommonValues.KeyName.Brand: 
                     ds = Data.CommonData.GetlistCode("Brand"); break;
 
+                case CommonValues.KeyName.Wash:
+                    ds = Int.Customer.Customer.Getlist(33); break;
+
                 case CommonValues.KeyName.IsPrinting:
                     ds = Data.CommonData.GetlistCode("IsPrinting"); break; 
 

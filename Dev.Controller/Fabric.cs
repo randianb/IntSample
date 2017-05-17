@@ -151,6 +151,13 @@ namespace Dev.Controller
             }
         }
         
+        public Fabric(int Idx, string longName, string shortName)
+        {
+            _Idx = Idx;
+            _longName = longName;
+            _shortName = shortName; 
+        }
+
         private void Initializer()
         {
             _Idx = 0;

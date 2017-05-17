@@ -36,6 +36,18 @@
     <Reference Include="Int.Code">
       <HintPath>..\lib\Int.Code.dll</HintPath>
     </Reference>
+    <Reference Include="Int.Costcenter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Int.Costcenter.dll</HintPath>
+    </Reference>
+    <Reference Include="Int.Customer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Int.Customer.dll</HintPath>
+    </Reference>
+    <Reference Include="Int.Department, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Int.Department.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -81,8 +93,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controller\" />
-    <Folder Include="Data\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
@@ -106,9 +116,17 @@
       <Project>{74fe1db0-b001-4006-aa25-2a4c5b881629}</Project>
       <Name>Dev.Controller</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dev.Data\Dev.Data.csproj">
+      <Project>{20693ead-e522-4bdb-b7e9-312b9c4755e0}</Project>
+      <Name>Dev.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dev.Options\Dev.Options.csproj">
       <Project>{cde30aec-043e-4b66-8803-6bb44120624f}</Project>
       <Name>Dev.Options</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dev.System\Dev.Codes.csproj">
+      <Project>{3cdcbb62-e373-4537-97a7-659078f56338}</Project>
+      <Name>Dev.Codes</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
