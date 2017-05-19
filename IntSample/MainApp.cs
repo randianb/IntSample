@@ -434,5 +434,26 @@ namespace SampleApp
         {
 
         }
+
+        private void btnFabricCodePrint_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("PrintQRCode"))
+            {
+                if (CommonValues.ListWorkID.Count > 0)
+                {
+                    PrintQRCode frm = new PrintQRCode();
+                    frm.Text = "Print QR Code";
+                    frm.MdiParent = this;
+                    frm.Show();
+                }
+                else
+                {
+                    RadMessageBox.Show("There's no selected valid items. \nPlease select the Fabric or Rack.", "Notice",
+                            MessageBoxButtons.OK, RadMessageIcon.Error);
+                    return;
+                }
+
+            }
+        }
     }
 }

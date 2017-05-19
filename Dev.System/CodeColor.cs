@@ -25,10 +25,11 @@ namespace Dev.Codes
         private bool _bRtn;                                             // 쿼리결과 리턴
         private DataSet _ds1 = null;                                    // 기본 데이터셋
         private DataTable _dt = null;                                   // 기본 데이터테이블
-        private Controller.Color _obj1 = null;                               // 현재 생성된 객체 
+        private Controller.Color _obj1 = null;                          // 현재 생성된 객체 
         private RadContextMenu contextMenu;                             // 컨텍스트 메뉴
         
         private string _layoutfile = "/GVLayoutCodeColor.xml";
+        RadMenuItem mnuNew, mnuDel, mnuHide, mnuShow = null;
 
         #endregion
 
@@ -69,22 +70,24 @@ namespace Dev.Codes
         {
             contextMenu = new RadContextMenu();
 
+            Clear_Shortcuts(); 
+
             // 오더 신규 입력
-            RadMenuItem mnuNew = new RadMenuItem("New Color");
+            mnuNew = new RadMenuItem("New Color");
             mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
             mnuNew.Click += new EventHandler(mnuNew_Click);
 
             // 오더 삭제
-            RadMenuItem mnuDel = new RadMenuItem("Remove Color");
+            mnuDel = new RadMenuItem("Remove Color");
             mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
             mnuDel.Click += new EventHandler(mnuDel_Click);
 
             // 열 숨기기
-            RadMenuItem mnuHide = new RadMenuItem("Hide Column");
+            mnuHide = new RadMenuItem("Hide Column");
             mnuHide.Click += new EventHandler(mnuHide_Click);
 
             // 열 보이기
-            RadMenuItem mnuShow = new RadMenuItem("Show all Columns");
+            mnuShow = new RadMenuItem("Show all Columns");
             mnuShow.Click += new EventHandler(mnuShow_Click);
             
             // 분리선
@@ -546,9 +549,36 @@ namespace Dev.Codes
             //}
         }
 
+        private void gvMain_MouseEnter(object sender, EventArgs e)
+        {
+            Config_ContextMenu(); 
+        }
+
+        private void CodeColor_Activated(object sender, EventArgs e)
+        {
+            Config_ContextMenu(); 
+        }
+
+        private void CodeColor_Deactivate(object sender, EventArgs e)
+        {
+            Clear_Shortcuts(); 
+        }
+
         #endregion
 
         #region 7. 기능 멤버
+
+        /// <summary>
+        /// 단축키 초기화 
+        /// </summary>
+        private void Clear_Shortcuts()
+        {
+            if (mnuNew != null) { mnuNew.Shortcuts.Clear(); }
+            if (mnuDel != null) { mnuDel.Shortcuts.Clear(); }
+            if (mnuHide != null) { mnuHide.Shortcuts.Clear(); }
+            if (mnuShow != null) { mnuShow.Shortcuts.Clear(); }
+
+        }
 
         /// <summary>
         /// 그리드뷰 레이아웃 복구 (/conf에 그리드별로 저장함) 

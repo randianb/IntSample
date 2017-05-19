@@ -1559,17 +1559,18 @@ namespace Dev.Sales
                                             row["ColorName"].ToString(),
                                             ""));
             }
-                        
+
             // 오더상태
-            lstStatus.Add(new CodeContents(0, "", ""));
-            lstStatus.Add(new CodeContents(1, "Progress", ""));
-            lstStatus.Add(new CodeContents(2, "Canceled", ""));
-            lstStatus.Add(new CodeContents(3, "Shipped", ""));
+            lstStatus.Add(new CodeContents(0, CommonValues.DicOrderStatus[0], ""));
+            lstStatus.Add(new CodeContents(1, CommonValues.DicOrderStatus[1], ""));
+            lstStatus.Add(new CodeContents(2, CommonValues.DicOrderStatus[2], ""));
+            lstStatus.Add(new CodeContents(3, CommonValues.DicOrderStatus[3], ""));
+
             // 생산진행상태
-            lstProduction.Add(new CodeContents(0, "New Work", ""));
-            lstProduction.Add(new CodeContents(1, "Printed Ticket", ""));
-            lstProduction.Add(new CodeContents(2, "Finished Work", ""));
-            lstProduction.Add(new CodeContents(3, "Canceled Work", ""));
+            lstProduction.Add(new CodeContents(0, CommonValues.DicWorkOrderStatus[0], ""));
+            lstProduction.Add(new CodeContents(1, CommonValues.DicWorkOrderStatus[1], ""));
+            lstProduction.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
+            lstProduction.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
         }
 
         /// <summary>

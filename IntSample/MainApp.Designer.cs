@@ -88,6 +88,7 @@
             this.btnFabricCodelist = new Telerik.WinControls.UI.RadButtonElement();
             this.btnFabricReportInbound = new Telerik.WinControls.UI.RadButtonElement();
             this.btnFabricReportOutbound = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnFabricCodePrint = new Telerik.WinControls.UI.RadButtonElement();
             this.btnFabricReportStock = new Telerik.WinControls.UI.RadButtonElement();
             this.btnFabricReportWarehouse = new Telerik.WinControls.UI.RadButtonElement();
             this.ribbonTab3 = new Telerik.WinControls.UI.RibbonTab();
@@ -247,6 +248,9 @@
             this.radRibbonBar1.StartButtonImage = ((System.Drawing.Image)(resources.GetObject("radRibbonBar1.StartButtonImage")));
             this.radRibbonBar1.TabIndex = 0;
             this.radRibbonBar1.Text = "MainApp";
+            ((Telerik.WinControls.UI.RadRibbonBarElement)(this.radRibbonBar1.GetChildAt(0))).Text = "MainApp";
+            ((Telerik.WinControls.UI.RadApplicationMenuButtonElement)(this.radRibbonBar1.GetChildAt(0).GetChildAt(5))).Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            ((Telerik.WinControls.UI.RadApplicationMenuButtonElement)(this.radRibbonBar1.GetChildAt(0).GetChildAt(5))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
             // 
             // bsViewMain
             // 
@@ -264,7 +268,7 @@
             this.bsViewMain.Name = "bsViewMain";
             this.bsViewMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.bsViewMain.SelectedItem = this.bsAbout;
-            this.bsViewMain.Size = new System.Drawing.Size(1247, 552);
+            this.bsViewMain.Size = new System.Drawing.Size(1262, 566);
             this.bsViewMain.TabIndex = 3;
             this.bsViewMain.Leave += new System.EventHandler(this.bsViewMain_Leave);
             // 
@@ -449,7 +453,7 @@
             this.backstageViewPage1.Controls.Add(this.radLabel5);
             this.backstageViewPage1.Location = new System.Drawing.Point(132, 1);
             this.backstageViewPage1.Name = "backstageViewPage1";
-            this.backstageViewPage1.Size = new System.Drawing.Size(1115, 551);
+            this.backstageViewPage1.Size = new System.Drawing.Size(1130, 565);
             this.backstageViewPage1.TabIndex = 1;
             // 
             // radLabel5
@@ -771,6 +775,7 @@
             // radRibbonBarGroup9
             // 
             this.radRibbonBarGroup9.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btnFabricCodePrint,
             this.btnFabricCodelist,
             this.btnFabricReportInbound,
             this.btnFabricReportOutbound,
@@ -782,7 +787,7 @@
             // btnFabricCodelist
             // 
             this.btnFabricCodelist.Enabled = false;
-            this.btnFabricCodelist.Image = global::SampleApp.Properties.Resources._1486706565_barcode1;
+            this.btnFabricCodelist.Image = global::SampleApp.Properties.Resources._698918_icon_86_document_list_48;
             this.btnFabricCodelist.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricCodelist.Name = "btnFabricCodelist";
             this.btnFabricCodelist.Text = "Code List";
@@ -808,6 +813,16 @@
             this.btnFabricReportOutbound.Text = "Outbound";
             this.btnFabricReportOutbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricReportOutbound.TextWrap = true;
+            // 
+            // btnFabricCodePrint
+            // 
+            this.btnFabricCodePrint.Image = global::SampleApp.Properties.Resources.qrcode_48;
+            this.btnFabricCodePrint.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnFabricCodePrint.Name = "btnFabricCodePrint";
+            this.btnFabricCodePrint.Text = "Print QR-Code";
+            this.btnFabricCodePrint.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnFabricCodePrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnFabricCodePrint.Click += new System.EventHandler(this.btnFabricCodePrint_Click);
             // 
             // btnFabricReportStock
             // 
@@ -1208,5 +1223,6 @@
         private Telerik.WinControls.UI.RadButtonElement btnPatternReportControl;
         private Telerik.WinControls.UI.RadButtonElement btnOrderReportTicketPrint;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup15;
+        private Telerik.WinControls.UI.RadButtonElement btnFabricCodePrint;
     }
 }

@@ -64,6 +64,7 @@ namespace Dev.Fabric
             InitializeComponent();
             __main__ = main;            // MDI 연결 
             _gv1 = this.gvMain;  // 그리드뷰 일반화를 위해 변수 별도 저장
+            toolWindow3.AutoHide();  
         }
 
         /// <summary>
@@ -1134,6 +1135,22 @@ namespace Dev.Fabric
             //{
             //    Int.Members.GetCurrentRow(_gv1).ViewTemplate.ReadOnly = false;
             //}
+
+            CommonValues.ListWorkID.Clear();
+            CommonValues.WorkOperation = "Fabric";
+
+            // 선택된 모든 행에 대해 
+            foreach (GridViewRowInfo row in _gv1.SelectedRows)
+            {
+                if (string.IsNullOrEmpty(row.Cells["Qrcode"].Value.ToString().Trim()))
+                {
+                }
+                else
+                {
+                    Console.WriteLine(row.Cells["WorkOrderIdx"].Value.ToString().Trim()); 
+                    CommonValues.ListWorkID.Add(row.Cells["WorkOrderIdx"].Value.ToString().Trim());
+                }
+            }
         }
 
         #endregion

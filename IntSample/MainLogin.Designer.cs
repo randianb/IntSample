@@ -56,9 +56,9 @@
             this.radLabel3.Location = new System.Drawing.Point(12, 11);
             this.radLabel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(167, 18);
+            this.radLabel3.Size = new System.Drawing.Size(149, 18);
             this.radLabel3.TabIndex = 18;
-            this.radLabel3.Text = "Login to Sample Management";
+            this.radLabel3.Text = "Login to Development ERP";
             // 
             // txtPassword
             // 

@@ -313,6 +313,16 @@ namespace SampleApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _698918_icon_86_document_list_48 {
+            get {
+                object obj = ResourceManager.GetObject("698918-icon-86-document-list-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap basic3_017_invoice_bill_48 {
             get {
                 object obj = ResourceManager.GetObject("basic3-017_invoice_bill-48", resourceCulture);
@@ -836,6 +846,16 @@ namespace SampleApp.Properties {
         internal static System.Drawing.Bitmap process_chart_flow_plan_481 {
             get {
                 object obj = ResourceManager.GetObject("process-chart-flow-plan-481", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap qrcode_48 {
+            get {
+                object obj = ResourceManager.GetObject("qrcode-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

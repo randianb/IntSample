@@ -34,6 +34,8 @@ namespace Dev.Fabric
 
         private string _layoutfile = "/GVLayoutFabricCode.xml";
 
+        RadMenuItem mnuNew, mnuDel, mnuHide, mnuShow;
+
         #endregion
 
         #region 2. 초기로드 및 컨트롤 생성
@@ -70,7 +72,7 @@ namespace Dev.Fabric
         #region 컨텍스트 메뉴 생성 및 제거 
 
         
-        RadMenuItem mnuNew, mnuDel, mnuHide, mnuShow; 
+        
         private void Form_Activated(object sender, EventArgs e)
         {
             Config_ContextMenu();
@@ -90,13 +92,15 @@ namespace Dev.Fabric
         {
             contextMenu = new RadContextMenu();
 
+            Clear_Shortcuts(); 
+
             // 오더 신규 입력
-            mnuNew = new RadMenuItem("New Yarn");
+            mnuNew = new RadMenuItem("New Fabric");
             mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
             mnuNew.Click += new EventHandler(mnuNew_Click);
 
             // 오더 삭제
-            mnuDel = new RadMenuItem("Remove Yarn");
+            mnuDel = new RadMenuItem("Remove Fabric");
             mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
             mnuDel.Click += new EventHandler(mnuDel_Click);
 
@@ -724,8 +728,8 @@ namespace Dev.Fabric
                 // 객체생성 및 값 할당
                 _obj1 = new Controller.Fabric(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value));
                 _obj1.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
-                if (row.Cells["LongName"].Value != DBNull.Value) _obj1.LongName = row.Cells["LongName"].Value.ToString();
-                if (row.Cells["ShortName"].Value != DBNull.Value) _obj1.ShortName = row.Cells["ShortName"].Value.ToString();
+                if (row.Cells["LongName"].Value != DBNull.Value) _obj1.LongName = row.Cells["LongName"].Value.ToString(); else _obj1.LongName = ""; 
+                if (row.Cells["ShortName"].Value != DBNull.Value) _obj1.ShortName = row.Cells["ShortName"].Value.ToString(); else _obj1.ShortName = "";
 
                 if (row.Cells["Yarn1"].Value != DBNull.Value) _obj1.Yarn1 = Convert.ToInt32(row.Cells["Yarn1"].Value.ToString());
                 if (row.Cells["Yarn2"].Value != DBNull.Value) _obj1.Yarn2 = Convert.ToInt32(row.Cells["Yarn2"].Value.ToString());
@@ -872,9 +876,36 @@ namespace Dev.Fabric
             //}
         }
 
+        private void gvMain_MouseEnter(object sender, EventArgs e)
+        {
+            Config_ContextMenu(); 
+        }
+
+        private void FabricCode_Activated(object sender, EventArgs e)
+        {
+            Config_ContextMenu(); 
+        }
+
+        private void FabricCode_Deactivate(object sender, EventArgs e)
+        {
+            Clear_Shortcuts(); 
+        }
+
         #endregion
 
         #region 7. 기능 멤버 (변경필요없음)
+
+        /// <summary>
+        /// 단축키 초기화 
+        /// </summary>
+        private void Clear_Shortcuts()
+        {
+            if (mnuNew != null) { mnuNew.Shortcuts.Clear(); }
+            if (mnuDel != null) { mnuDel.Shortcuts.Clear(); }
+            if (mnuHide != null) { mnuHide.Shortcuts.Clear(); }
+            if (mnuShow != null) { mnuShow.Shortcuts.Clear(); }
+
+        }
 
         /// <summary>
         /// 그리드뷰 레이아웃 복구 (/conf에 그리드별로 저장함) 

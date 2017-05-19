@@ -235,8 +235,7 @@ namespace Dev.Data
                 return null;
             }
         }
-
-
+        
         /// <summary>
         /// Getlist: 전체 목록조회
         /// </summary>
@@ -354,7 +353,47 @@ namespace Dev.Data
             }
         }
 
+        public static DataRow Getlist(string WorkOrderIdx)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
 
+                _cmd.CommandText = "up_FabricIn_List3";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+                
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+                
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                _dr = _ds.Tables[0].Rows[0];
+                return _dr;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public static bool Delete(string DeleteIdx)
         {

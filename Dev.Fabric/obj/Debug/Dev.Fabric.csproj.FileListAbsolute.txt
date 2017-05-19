@@ -37,3 +37,15 @@ D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.FabricCode.resources
 D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.Inbound.resources
 D:\git\IntSample\Dev.Fabric\bin\Debug\Dev.System.dll
 D:\git\IntSample\Dev.Fabric\bin\Debug\Dev.System.pdb
+D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.Reporting.dll
+D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.Reporting.Services.HttpClient.dll
+D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.Reporting.XpsRendering.dll
+D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.ReportViewer.WinForms.dll
+D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.Reporting.pdb
+D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.Reporting.xml
+D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.Reporting.XpsRendering.pdb
+D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.Reporting.XpsRendering.xml
+D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.ReportViewer.WinForms.pdb
+D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.ReportViewer.WinForms.xml
+D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.PrintQRCode.resources
+D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.Reports.rptPrintQRCode.resources

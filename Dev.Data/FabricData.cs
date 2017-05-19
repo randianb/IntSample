@@ -88,7 +88,7 @@ namespace Dev.Data
                 _cmd.Parameters["@LongName"].Value = LongName;
 
                 _cmd.Parameters.Add("@ShortName", SqlDbType.NVarChar, 30);
-                _cmd.Parameters["@ShortName"].Value = ShortName==null?"": ShortName;
+                _cmd.Parameters["@ShortName"].Value = ShortName;
 
                 _cmd.Parameters.Add("@Yarn1", SqlDbType.Int, 4);
                 _cmd.Parameters["@Yarn1"].Value = Yarn1;

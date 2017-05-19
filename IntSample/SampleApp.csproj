@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -249,8 +249,10 @@
     <None Include="Resources\outbound2.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\qrcode-48.png" />
     <None Include="Resources\history2.png" />
     <None Include="Resources\1494377211_travel_journey-15.png" />
+    <None Include="Resources\698918-icon-86-document-list-48.png" />
     <Content Include="Resources\int-sample.ico" />
     <None Include="Resources\interp1.png" />
     <None Include="Resources\process-chart-flow-plan-481.png" />

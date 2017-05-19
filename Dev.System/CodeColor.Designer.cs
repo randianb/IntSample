@@ -33,31 +33,31 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.lblTime = new Telerik.WinControls.UI.RadLabel();
-            this.btnSearch = new Telerik.WinControls.UI.RadButton();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.txtColor = new Telerik.WinControls.UI.RadTextBox();
+            this.btnSearch = new Telerik.WinControls.UI.RadButton();
             this.gvMain = new Telerik.WinControls.UI.RadGridView();
             this.toolTabStrip3 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
-            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.toolWindow1 = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.documentContainer1 = new Telerik.WinControls.UI.Docking.DocumentContainer();
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
             this.toolWindow2 = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblTime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
+            this.toolWindow1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
             this.toolTabStrip1.SuspendLayout();
-            this.toolWindow1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).BeginInit();
             this.documentContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
@@ -126,20 +126,11 @@
             this.lblTime.Text = "0";
             this.lblTime.Visible = false;
             // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(203, 23);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(94, 24);
-            this.btnSearch.TabIndex = 7;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
             // radLabel5
             // 
             this.radLabel5.Location = new System.Drawing.Point(3, 3);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(33, 18);
+            this.radLabel5.Size = new System.Drawing.Size(33, 14);
             this.radLabel5.TabIndex = 3;
             this.radLabel5.Text = "Color";
             // 
@@ -149,6 +140,15 @@
             this.txtColor.Name = "txtColor";
             this.txtColor.Size = new System.Drawing.Size(194, 20);
             this.txtColor.TabIndex = 8;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(203, 23);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(94, 24);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // gvMain
             // 
@@ -180,6 +180,7 @@
             this.gvMain.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.GV1_Update);
             this.gvMain.ContextMenuOpening += new Telerik.WinControls.UI.ContextMenuOpeningEventHandler(this.gvOrderActual_ContextMenuOpening);
             this.gvMain.Click += new System.EventHandler(this.gvOrderActual_Click);
+            this.gvMain.MouseEnter += new System.EventHandler(this.gvMain_MouseEnter);
             // 
             // toolTabStrip3
             // 
@@ -197,7 +198,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.toolWindow1;
+            this.radDock1.ActiveWindow = this.toolWindow2;
             this.radDock1.CausesValidation = false;
             this.radDock1.Controls.Add(this.toolTabStrip1);
             this.radDock1.Controls.Add(this.documentContainer1);
@@ -215,6 +216,19 @@
             this.radDock1.TabIndex = 12;
             this.radDock1.TabStop = false;
             this.radDock1.Text = "radDock1";
+            // 
+            // toolWindow1
+            // 
+            this.toolWindow1.Caption = null;
+            this.toolWindow1.Controls.Add(this.tableLayoutPanel5);
+            this.toolWindow1.DocumentButtons = Telerik.WinControls.UI.Docking.DocumentStripButtons.None;
+            this.toolWindow1.Font = new System.Drawing.Font("Gulim", 9F);
+            this.toolWindow1.Location = new System.Drawing.Point(1, 2);
+            this.toolWindow1.Name = "toolWindow1";
+            this.toolWindow1.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.toolWindow1.Size = new System.Drawing.Size(1269, 61);
+            this.toolWindow1.Text = "Search Data";
+            this.toolWindow1.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.None;
             // 
             // toolTabStrip1
             // 
@@ -235,19 +249,6 @@
             this.toolTabStrip1.TabIndex = 4;
             this.toolTabStrip1.TabStop = false;
             this.toolTabStrip1.TabStripVisible = false;
-            // 
-            // toolWindow1
-            // 
-            this.toolWindow1.Caption = null;
-            this.toolWindow1.Controls.Add(this.tableLayoutPanel5);
-            this.toolWindow1.DocumentButtons = Telerik.WinControls.UI.Docking.DocumentStripButtons.None;
-            this.toolWindow1.Font = new System.Drawing.Font("Gulim", 9F);
-            this.toolWindow1.Location = new System.Drawing.Point(1, 2);
-            this.toolWindow1.Name = "toolWindow1";
-            this.toolWindow1.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow1.Size = new System.Drawing.Size(1269, 61);
-            this.toolWindow1.Text = "Search Data";
-            this.toolWindow1.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.None;
             // 
             // documentContainer1
             // 
@@ -305,23 +306,25 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "frmOrderActual";
+            this.Activated += new System.EventHandler(this.CodeColor_Activated);
+            this.Deactivate += new System.EventHandler(this.CodeColor_Deactivate);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmOrderActual_FormClosed);
             this.Load += new System.EventHandler(this.frmCodeColor_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
+            this.toolWindow1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
             this.toolTabStrip1.ResumeLayout(false);
-            this.toolWindow1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).EndInit();
             this.documentContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();

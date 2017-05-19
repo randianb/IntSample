@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.gvMain = new Telerik.WinControls.UI.RadGridView();
@@ -112,7 +112,7 @@
             this.gvMain.MasterTemplate.AutoGenerateColumns = false;
             this.gvMain.MasterTemplate.MultiSelect = true;
             this.gvMain.MasterTemplate.PageSize = 50;
-            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvMain.Name = "gvMain";
             this.gvMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvMain.ShowGroupPanel = false;
@@ -125,6 +125,7 @@
             this.gvMain.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.GV1_Update);
             this.gvMain.ContextMenuOpening += new Telerik.WinControls.UI.ContextMenuOpeningEventHandler(this.gvOrderActual_ContextMenuOpening);
             this.gvMain.Click += new System.EventHandler(this.gvOrderActual_Click);
+            this.gvMain.MouseEnter += new System.EventHandler(this.gvMain_MouseEnter);
             // 
             // toolTabStrip3
             // 
@@ -308,6 +309,8 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Fabric Code";
+            this.Activated += new System.EventHandler(this.FabricCode_Activated);
+            this.Deactivate += new System.EventHandler(this.FabricCode_Deactivate);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmOrderActual_FormClosed);
             this.Load += new System.EventHandler(this.frmCodeSize_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

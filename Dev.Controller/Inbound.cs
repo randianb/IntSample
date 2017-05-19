@@ -339,6 +339,12 @@ namespace Dev.Controller
             return ds;
         }
 
+        public static DataRow Getlist(string WorkOrderIdx)
+        {
+            DataRow dr = Data.InboundData.Getlist(WorkOrderIdx);
+            return dr;
+        }
+
         public static DataSet Getlist(Dictionary<CommonValues.KeyName, string> SearchString, Dictionary<CommonValues.KeyName, int> SearchKey)
         {
             DataSet ds = new DataSet();

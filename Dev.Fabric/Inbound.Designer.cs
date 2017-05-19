@@ -60,13 +60,13 @@
             this.ddlRack1 = new Telerik.WinControls.UI.RadDropDownList();
             this.ddlRack2 = new Telerik.WinControls.UI.RadDropDownList();
             this.ddlRack3 = new Telerik.WinControls.UI.RadDropDownList();
+            this.txtLocationX = new Telerik.WinControls.UI.RadMaskedEditBox();
+            this.txtLocationY = new Telerik.WinControls.UI.RadMaskedEditBox();
             this.radSplitContainer2 = new Telerik.WinControls.UI.RadSplitContainer();
             this.documentContainer1 = new Telerik.WinControls.UI.Docking.DocumentContainer();
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
             this.toolTabStrip2 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.toolWindow3 = new Telerik.WinControls.UI.Docking.ToolWindow();
-            this.txtLocationX = new Telerik.WinControls.UI.RadMaskedEditBox();
-            this.txtLocationY = new Telerik.WinControls.UI.RadMaskedEditBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain.MasterTemplate)).BeginInit();
@@ -100,6 +100,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlRack1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRack2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRack3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLocationX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLocationY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer2)).BeginInit();
             this.radSplitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).BeginInit();
@@ -108,8 +110,6 @@
             this.documentTabStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip2)).BeginInit();
             this.toolTabStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLocationX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLocationY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -187,7 +187,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.toolWindow2;
+            this.radDock1.ActiveWindow = this.toolWindow3;
             this.radDock1.CausesValidation = false;
             this.radDock1.Controls.Add(this.toolTabStrip4);
             this.radDock1.Controls.Add(this.radSplitContainer2);
@@ -506,6 +506,28 @@
             this.ddlRack3.Size = new System.Drawing.Size(95, 18);
             this.ddlRack3.TabIndex = 6;
             // 
+            // txtLocationX
+            // 
+            this.txtLocationX.Location = new System.Drawing.Point(132, 70);
+            this.txtLocationX.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
+            this.txtLocationX.Name = "txtLocationX";
+            this.txtLocationX.Size = new System.Drawing.Size(154, 20);
+            this.txtLocationX.TabIndex = 19;
+            this.txtLocationX.TabStop = false;
+            this.txtLocationX.Text = "0";
+            this.txtLocationX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtLocationY
+            // 
+            this.txtLocationY.Location = new System.Drawing.Point(292, 70);
+            this.txtLocationY.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
+            this.txtLocationY.Name = "txtLocationY";
+            this.txtLocationY.Size = new System.Drawing.Size(118, 20);
+            this.txtLocationY.TabIndex = 20;
+            this.txtLocationY.TabStop = false;
+            this.txtLocationY.Text = "0";
+            this.txtLocationY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // radSplitContainer2
             // 
             this.radSplitContainer2.Controls.Add(this.documentContainer1);
@@ -582,28 +604,6 @@
             this.toolWindow3.Size = new System.Drawing.Size(267, 777);
             this.toolWindow3.Text = "Outbound";
             // 
-            // txtLocationX
-            // 
-            this.txtLocationX.Location = new System.Drawing.Point(132, 70);
-            this.txtLocationX.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
-            this.txtLocationX.Name = "txtLocationX";
-            this.txtLocationX.Size = new System.Drawing.Size(154, 20);
-            this.txtLocationX.TabIndex = 19;
-            this.txtLocationX.TabStop = false;
-            this.txtLocationX.Text = "0";
-            this.txtLocationX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtLocationY
-            // 
-            this.txtLocationY.Location = new System.Drawing.Point(292, 70);
-            this.txtLocationY.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
-            this.txtLocationY.Name = "txtLocationY";
-            this.txtLocationY.Size = new System.Drawing.Size(118, 20);
-            this.txtLocationY.TabIndex = 20;
-            this.txtLocationY.TabStop = false;
-            this.txtLocationY.Text = "0";
-            this.txtLocationY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // Inbound
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -654,6 +654,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlRack1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRack2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRack3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLocationX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLocationY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer2)).EndInit();
             this.radSplitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).EndInit();
@@ -662,8 +664,6 @@
             this.documentTabStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip2)).EndInit();
             this.toolTabStrip2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtLocationX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLocationY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
