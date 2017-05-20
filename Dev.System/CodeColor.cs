@@ -147,14 +147,20 @@ namespace Dev.Codes
             cIsUse.WrapText = true;
             cIsUse.Width = 40;
             gv.Columns.Add(cIsUse);
-            
+
+            GridViewTextBoxColumn SameColor = new GridViewTextBoxColumn();
+            SameColor.Name = "SameColor";
+            SameColor.FieldName = "SameColor";
+            SameColor.IsVisible = false; 
+            gv.Columns.Add(SameColor);
+
             #endregion
         }
 
         #endregion
 
         #region 3. 컨트롤 초기 설정
-        
+
         /// <summary>
         /// 컨텍스트 메뉴 연결 (행높이 설정)
         /// </summary>
@@ -199,12 +205,12 @@ namespace Dev.Codes
             #region Config Cell Conditions: 상태에 따른 행스타일 변경
 
             // 캔슬오더 색상변경
-            //Font f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Strikeout);
-            //ConditionalFormattingObject obj = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "2", "", true);
-            //obj.RowForeColor = Color.Black;
-            //obj.RowBackColor = Color.FromArgb(255, 255, 230, 230);
-            //obj.RowFont = f;
-            //gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj);
+            Font f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Strikeout);
+            ConditionalFormattingObject obj = new ConditionalFormattingObject("MyCondition", ConditionTypes.Greater, "2", "", true);
+            obj.RowForeColor = Color.Black;
+            obj.RowBackColor = Color.FromArgb(255, 255, 230, 230);
+            obj.RowFont = f;
+            gv.Columns["SameColor"].ConditionalFormattingObjectList.Add(obj);
 
             //// 마감오더 색상변경
             //f = new Font(new FontFamily("Segoe UI"), 8.25f);
