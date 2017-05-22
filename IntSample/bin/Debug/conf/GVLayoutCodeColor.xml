@@ -2,17 +2,17 @@
   <MasterTemplate MultiSelect="True" PageSize="50" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" AutoGenerateColumns="False">
     <Columns>
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="ColorIdx" Name="ColorIdx" IsVisible="True" HeaderText="ID" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="300" FieldName="ColorName" Name="ColorName" SortOrder="Ascending" IsVisible="True" HeaderText="ColorName" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="20" FieldName="Classification" Name="Classification" IsVisible="True" HeaderText="Classification" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="300" FieldName="ColorName" Name="ColorName" SortOrder="Descending" IsVisible="True" HeaderText="ColorName" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="20" FieldName="Classification" Name="Classification" IsVisible="False" HeaderText="Classification" />
       <Telerik.WinControls.UI.GridViewCheckBoxColumn DataType="System.Int32" Width="40" FieldName="IsUse" Name="IsUse" IsVisible="True" HeaderText="Use" WrapText="True" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn FieldName="SameColor" Name="SameColor" IsVisible="True">
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="SameColor" Name="SameColor" IsVisible="False">
         <ConditionalFormattingObjectList>
-          <Telerik.WinControls.UI.ConditionalFormattingObject ConditionType="Greater" TValue1="2" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="255, 230, 230" RowFont="Segoe UI, 8.25pt, style=Strikeout" Name="MyCondition" ApplyToRow="True" />
+          <Telerik.WinControls.UI.ConditionalFormattingObject ConditionType="Greater" TValue1="1" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="255, 230, 230" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />
         </ConditionalFormattingObjectList>
       </Telerik.WinControls.UI.GridViewTextBoxColumn>
     </Columns>
     <SortDescriptors>
-      <Telerik.WinControls.Data.SortDescriptor PropertyName="ColorName" />
+      <Telerik.WinControls.Data.SortDescriptor PropertyName="ColorName" Direction="Descending" />
     </SortDescriptors>
     <ViewDefinition xsi:type="Telerik.WinControls.UI.TableViewDefinition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
   </MasterTemplate>

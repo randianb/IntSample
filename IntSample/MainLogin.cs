@@ -107,7 +107,7 @@ namespace SampleApp
             if (R!=null)
             {
                 txtUsername.Text = (string)R.GetValue("intid");
-                txtPassword.Text = (string)R.GetValue("intkey");
+                //txtPassword.Text = (string)R.GetValue("intkey");
                 R.Close();
                 btnLogin.PerformClick(); 
             }
@@ -150,7 +150,7 @@ namespace SampleApp
             }
             if (string.IsNullOrEmpty(strPasswd) || strPasswd == "password")
             {
-                RadMessageBox.Show("Please input the Password", "Error", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                //RadMessageBox.Show("Please input the Password", "Error", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
                 return;
             }
 
@@ -166,7 +166,7 @@ namespace SampleApp
                         R = Registry.CurrentUser.CreateSubKey(__savedInfo__);
                     }
                     R.SetValue("intid", strUserid);
-                    R.SetValue("intkey", strPasswd);
+                    //R.SetValue("intkey", strPasswd);
                     R.Close();
                 }
 

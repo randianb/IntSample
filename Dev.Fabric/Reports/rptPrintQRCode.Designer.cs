@@ -16,7 +16,6 @@ namespace Dev.Fabric.Reports
             this.textBox3 = new Telerik.Reporting.TextBox();
             this.textBox5 = new Telerik.Reporting.TextBox();
             this.barcode1 = new Telerik.Reporting.Barcode();
-            this.textBox1 = new Telerik.Reporting.TextBox();
             this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -27,8 +26,7 @@ namespace Dev.Fabric.Reports
             this.textBox2,
             this.textBox3,
             this.textBox5,
-            this.barcode1,
-            this.textBox1});
+            this.barcode1});
             this.detail.Name = "detail";
             // 
             // textBox2
@@ -63,27 +61,15 @@ namespace Dev.Fabric.Reports
             this.barcode1.BarAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             qrCodeEncoder1.ECI = Telerik.Reporting.Barcodes.QRCode.ECIMode.ISO8859_3;
             qrCodeEncoder1.ErrorCorrectionLevel = Telerik.Reporting.Barcodes.QRCode.ErrorCorrectionLevel.Q;
-            qrCodeEncoder1.FNC1 = Telerik.Reporting.Barcodes.QRCode.FNC1Mode.FirstPosition;
-            qrCodeEncoder1.Version = 8;
+            qrCodeEncoder1.FNC1 = Telerik.Reporting.Barcodes.QRCode.FNC1Mode.SecondPosition;
+            qrCodeEncoder1.Version = 10;
             this.barcode1.Encoder = qrCodeEncoder1;
             this.barcode1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.099999949336051941D), Telerik.Reporting.Drawing.Unit.Cm(0.099999949336051941D));
+            this.barcode1.Module = Telerik.Reporting.Drawing.Unit.Point(4D);
             this.barcode1.Name = "barcode1";
             this.barcode1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.5000002384185791D), Telerik.Reporting.Drawing.Unit.Cm(3.5000002384185791D));
             this.barcode1.Stretch = true;
             this.barcode1.Value = "= Fields.Qrcode";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(1.2999999523162842D), Telerik.Reporting.Drawing.Unit.Cm(1.6000000238418579D));
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.1999999284744263D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
-            this.textBox1.Style.BackgroundColor = System.Drawing.Color.White;
-            this.textBox1.Style.Color = System.Drawing.Color.Black;
-            this.textBox1.Style.Font.Bold = false;
-            this.textBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(7D);
-            this.textBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox1.Value = "INT, S.A.";
             // 
             // sqlDataSource1
             // 
@@ -122,6 +108,5 @@ namespace Dev.Fabric.Reports
         private Telerik.Reporting.TextBox textBox3;
         private Telerik.Reporting.TextBox textBox5;
         private Telerik.Reporting.Barcode barcode1;
-        private Telerik.Reporting.TextBox textBox1;
     }
 }

@@ -205,8 +205,8 @@ namespace Dev.Codes
             #region Config Cell Conditions: 상태에 따른 행스타일 변경
 
             // 캔슬오더 색상변경
-            Font f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Strikeout);
-            ConditionalFormattingObject obj = new ConditionalFormattingObject("MyCondition", ConditionTypes.Greater, "2", "", true);
+            Font f = new Font(new FontFamily("Segoe UI"), 8.25f);
+            ConditionalFormattingObject obj = new ConditionalFormattingObject("MyCondition", ConditionTypes.Greater, "1", "", true);
             obj.RowForeColor = Color.Black;
             obj.RowBackColor = Color.FromArgb(255, 255, 230, 230);
             obj.RowFont = f;
