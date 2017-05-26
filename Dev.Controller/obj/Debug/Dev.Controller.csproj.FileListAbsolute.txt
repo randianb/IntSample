@@ -13,3 +13,10 @@ D:\git\IntSample\Dev.Controller\bin\Debug\Dev.Options.pdb
 D:\git\IntSample\Dev.Controller\obj\Debug\Dev.Controller.csprojResolveAssemblyReference.cache
 D:\git\IntSample\Dev.Controller\obj\Debug\Dev.Controller.dll
 D:\git\IntSample\Dev.Controller\obj\Debug\Dev.Controller.pdb
+D:\git\IntSample\Dev.Controller\bin\Debug\Telerik.WinControls.UI.dll
+D:\git\IntSample\Dev.Controller\bin\Debug\Telerik.WinControls.GridView.dll
+D:\git\IntSample\Dev.Controller\bin\Debug\Telerik.WinControls.dll
+D:\git\IntSample\Dev.Controller\bin\Debug\TelerikCommon.dll
+D:\git\IntSample\Dev.Controller\bin\Debug\Telerik.WinControls.UI.xml
+D:\git\IntSample\Dev.Controller\bin\Debug\Telerik.WinControls.GridView.xml
+D:\git\IntSample\Dev.Controller\bin\Debug\Telerik.WinControls.xml

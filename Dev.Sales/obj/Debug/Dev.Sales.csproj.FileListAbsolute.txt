@@ -82,3 +82,17 @@ D:\git\IntSample\Dev.Sales\bin\Debug\ko\System.Spatial.resources.dll
 D:\git\IntSample\Dev.Sales\bin\Debug\ru\System.Spatial.resources.dll
 D:\git\IntSample\Dev.Sales\bin\Debug\zh-Hans\System.Spatial.resources.dll
 D:\git\IntSample\Dev.Sales\bin\Debug\zh-Hant\System.Spatial.resources.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.GridView.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.RadDock.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.RichTextEditor.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.Scheduler.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.Themes.TelerikMetroTouch.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.UI.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\TelerikCommon.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.xml
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.GridView.xml
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.RadDock.xml
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.RichTextEditor.xml
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.Scheduler.xml
+D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.WinControls.UI.xml
