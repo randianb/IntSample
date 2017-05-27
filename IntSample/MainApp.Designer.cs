@@ -85,10 +85,10 @@
             this.btnFabricOutbound = new Telerik.WinControls.UI.RadButtonElement();
             this.btnFabricStock = new Telerik.WinControls.UI.RadButtonElement();
             this.radRibbonBarGroup9 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.btnFabricCodePrint = new Telerik.WinControls.UI.RadButtonElement();
             this.btnFabricCodelist = new Telerik.WinControls.UI.RadButtonElement();
             this.btnFabricReportInbound = new Telerik.WinControls.UI.RadButtonElement();
             this.btnFabricReportOutbound = new Telerik.WinControls.UI.RadButtonElement();
-            this.btnFabricCodePrint = new Telerik.WinControls.UI.RadButtonElement();
             this.btnFabricReportStock = new Telerik.WinControls.UI.RadButtonElement();
             this.btnFabricReportWarehouse = new Telerik.WinControls.UI.RadButtonElement();
             this.ribbonTab3 = new Telerik.WinControls.UI.RibbonTab();
@@ -708,7 +708,7 @@
             // 
             // ribbonTab4
             // 
-            this.ribbonTab4.IsSelected = true;
+            this.ribbonTab4.IsSelected = false;
             this.ribbonTab4.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup15,
             this.radRibbonBarGroup8,
@@ -784,6 +784,16 @@
             this.radRibbonBarGroup9.Name = "radRibbonBarGroup9";
             this.radRibbonBarGroup9.Text = "Report";
             // 
+            // btnFabricCodePrint
+            // 
+            this.btnFabricCodePrint.Image = global::SampleApp.Properties.Resources.qrcode_48;
+            this.btnFabricCodePrint.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnFabricCodePrint.Name = "btnFabricCodePrint";
+            this.btnFabricCodePrint.Text = "Print QR-Code";
+            this.btnFabricCodePrint.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnFabricCodePrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnFabricCodePrint.Click += new System.EventHandler(this.btnFabricCodePrint_Click);
+            // 
             // btnFabricCodelist
             // 
             this.btnFabricCodelist.Enabled = false;
@@ -813,16 +823,6 @@
             this.btnFabricReportOutbound.Text = "Outbound";
             this.btnFabricReportOutbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricReportOutbound.TextWrap = true;
-            // 
-            // btnFabricCodePrint
-            // 
-            this.btnFabricCodePrint.Image = global::SampleApp.Properties.Resources.qrcode_48;
-            this.btnFabricCodePrint.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnFabricCodePrint.Name = "btnFabricCodePrint";
-            this.btnFabricCodePrint.Text = "Print QR-Code";
-            this.btnFabricCodePrint.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnFabricCodePrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnFabricCodePrint.Click += new System.EventHandler(this.btnFabricCodePrint_Click);
             // 
             // btnFabricReportStock
             // 
@@ -1008,7 +1008,7 @@
             // 
             // ribbonTab7
             // 
-            this.ribbonTab7.IsSelected = false;
+            this.ribbonTab7.IsSelected = true;
             this.ribbonTab7.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup12,
             this.radRibbonBarGroup13});

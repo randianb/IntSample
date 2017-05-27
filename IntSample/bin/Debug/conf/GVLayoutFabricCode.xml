@@ -3,7 +3,7 @@
     <Columns>
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="40" FieldName="Idx" Name="Idx" IsVisible="True" HeaderText="ID" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="300" FieldName="LongName" Name="LongName" IsVisible="True" HeaderText="Long Name" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="150" FieldName="ShortName" Name="ShortName" IsVisible="True" HeaderText="Short Name" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="254" FieldName="ShortName" Name="ShortName" IsVisible="True" HeaderText="Short Name" />
       <Telerik.WinControls.UI.GridViewMultiComboBoxColumn ValueMember="Idx" DisplayMember="YarnName" AutoCompleteMode="Suggest" DataType="System.Int32" Width="150" FieldName="Yarn1" Name="Yarn1" IsVisible="True" HeaderText="Yarn1" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Double" Width="60" FieldName="Percent1" Name="Percent1" IsVisible="True" HeaderText="%" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewMultiComboBoxColumn ValueMember="Idx" DisplayMember="YarnName" AutoCompleteMode="Suggest" DataType="System.Int32" Width="150" FieldName="Yarn2" Name="Yarn2" IsVisible="True" HeaderText="Yarn2" />
