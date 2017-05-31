@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics;
+using Int.Authority;
 
 namespace SampleApp
 {
@@ -16,6 +17,10 @@ namespace SampleApp
     {
         const string RegRoot = @"Software\INT\SampleApp";
         private string __savedInfo__ = RegRoot + @"\savedLog";
+
+        // delegate form closed시 detail payment에 바이어코드 및 날짜 전달 
+        public delegate void FormSendDataHandler(int UserIdx);
+        public event FormSendDataHandler FormSendEvent;
 
         public MainLogin() 
         {
@@ -176,7 +181,27 @@ namespace SampleApp
                 UserInfo.DeptIdx = Convert.ToInt32(dr["deptidx"]);
                 UserInfo.ReportNo = Convert.ToInt32(dr["reportno"]);
                 UserInfo.CenterIdx = Convert.ToInt32(dr["costcenteridx"]);
-                
+                UserInfo.GroupIdx = Convert.ToInt32(dr["GroupIdx"]);
+                UserInfo.IsLeader = Convert.ToInt32(dr["IsLeader"]);
+
+                // 코스트센터 또는 부서가 사용불가일때 접속차단 
+                if (Convert.ToInt32(dr["useCenter"]) != 1)
+                {
+                    RadMessageBox.Show("This is not authorized the Cost center.", "Error", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                    return;
+                }
+                if (Convert.ToInt32(dr["useDept"]) != 1)
+                {
+                    RadMessageBox.Show("This is not authorized the Department.", "Error", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                    return;
+                }
+
+                // 사용자 권한정보 저장 (로그인시 한번만)
+                DataTable dt = Authority.Getlist(UserInfo.Idx, 0, 0, 0).Tables[0];
+                if (dt != null)
+                {
+                    UserInfo.DtAuthority = dt;
+                }
                 //MainApp frm = new MainApp();
                 //frm.Show();
 
@@ -207,6 +232,9 @@ namespace SampleApp
         private void MainLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (UserInfo.Idx <= 0) Application.Exit();
+
+            this.FormSendEvent(UserInfo.Idx);
+            this.Dispose();
         }
     }
 }

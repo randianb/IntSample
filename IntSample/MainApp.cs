@@ -7,6 +7,7 @@ using Dev.WorkOrder;
 using Dev.Yarn;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
@@ -199,6 +200,7 @@ namespace SampleApp
                 if (UserInfo.Idx <= 0)
                 {
                     MainLogin loginWnd = new MainLogin();
+                    loginWnd.FormSendEvent += new MainLogin.FormSendDataHandler(DieaseUpdateEventMethod);
                     loginWnd.ShowDialog();
                     lblServerInfo.Text = "Connected to " + Int.Members.IntSampleConnectionString.Substring(12, 20);
                 }
@@ -227,6 +229,25 @@ namespace SampleApp
                     Console.WriteLine(ex.Message);
                 }
             }
+        }
+
+        private void DieaseUpdateEventMethod(int UserIdx)
+        {
+            Dictionary<int, RadItem> lstMenu = new Dictionary<int, RadItem>();
+            lstMenu.Add(4, btnOrderPlan); lstMenu.Add(6, btnOrderActual); lstMenu.Add(7, btnSchedule); lstMenu.Add(8, radButtonElement1);
+            lstMenu.Add(9, radButtonElement3); lstMenu.Add(10, radButtonElement2); lstMenu.Add(12, radButtonElement4); lstMenu.Add(13, radButtonElement5);
+            lstMenu.Add(11, btnPOStatus); lstMenu.Add(5, btnCodesBuyer); lstMenu.Add(14, btnCodesColor); lstMenu.Add(15, btnCodesSizeGroup);
+            lstMenu.Add(16, btnCodesSize);
+
+            foreach (int menuNo in lstMenu.Keys)
+            {
+                if (string.IsNullOrEmpty(CheckAuth.ValidCheck(CommonValues.packageNo, menuNo, 0)) ||
+                    CheckAuth.ValidCheck(CommonValues.packageNo, menuNo, 0) == "000")
+                {
+                    lstMenu[menuNo].Enabled = false;
+                }
+            }
+
         }
 
         #region Methods 

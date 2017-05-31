@@ -68,6 +68,7 @@
     <Reference Include="Telerik.WinControls.UI, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckAuth.cs" />
     <Compile Include="CommonController.cs" />
     <Compile Include="CommonValues.cs" />
     <Compile Include="ConfigStruct.cs" />

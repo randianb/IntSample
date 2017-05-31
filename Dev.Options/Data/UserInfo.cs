@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,9 @@ namespace Dev.Options
         private static int _deptIdx;        // 부서번호
         private static int _reportNo;       // 리포트 번호 (영업부 구분용) 
         private static int _centerIdx;      // 비용센터번호 
+        private static int _groupIdx;       // 그룹번호 (같은 영업부내 다른 그룹) 
+        private static int _isLeader;       // 팀장권한 부여구분
+        private static DataTable _dtAuthority;  // 사용자권한 테이블
 
         public static int Idx
         {
@@ -47,6 +51,22 @@ namespace Dev.Options
         {
             get { return _centerIdx; }
             set { _centerIdx = value; }
+        }
+
+        public static int GroupIdx
+        {
+            get { return _groupIdx; }
+            set { _groupIdx = value; }
+        }
+        public static int IsLeader
+        {
+            get { return _isLeader; }
+            set { _isLeader = value; }
+        }
+        public static DataTable DtAuthority
+        {
+            get { return _dtAuthority; }
+            set { _dtAuthority = value; }
         }
     }
 

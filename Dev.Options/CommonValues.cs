@@ -69,8 +69,8 @@ namespace Dev.Options
             {10, "10: Inventory(Factory)"}
         };
         
-        public static List<string> ListWorkID = new List<string>();
-        public static string WorkOperation = ""; 
+        public static List<string> ListWorkID = new List<string>();     // 티켓발행용 WorkID 리스트 임시보관
+        public static string WorkOperation = "";                        // 공정구분
 
         #endregion
     }

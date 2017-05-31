@@ -519,6 +519,7 @@
             this.btnOrderOrder.Image = global::SampleApp.Properties.Resources._1478825277_ordering1;
             this.btnOrderOrder.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrderOrder.Name = "btnOrderOrder";
+            this.btnOrderOrder.Tag = "18";
             this.btnOrderOrder.Text = "Order";
             this.btnOrderOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOrderOrder.TextWrap = true;
@@ -539,6 +540,7 @@
             this.btnOrderWorkSheet.Image = global::SampleApp.Properties.Resources.sheet1;
             this.btnOrderWorkSheet.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrderWorkSheet.Name = "btnOrderWorkSheet";
+            this.btnOrderWorkSheet.Tag = "19";
             this.btnOrderWorkSheet.Text = "Worksheet";
             this.btnOrderWorkSheet.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOrderWorkSheet.TextWrap = true;
@@ -548,6 +550,7 @@
             this.btnOrderWorkOrder.Image = global::SampleApp.Properties.Resources.workorder1;
             this.btnOrderWorkOrder.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrderWorkOrder.Name = "btnOrderWorkOrder";
+            this.btnOrderWorkOrder.Tag = "20";
             this.btnOrderWorkOrder.Text = "Work Order";
             this.btnOrderWorkOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOrderWorkOrder.TextWrap = true;
@@ -558,6 +561,7 @@
             this.btnOrderWorkSchedule.Image = global::SampleApp.Properties.Resources._1478825357_cmyk_043;
             this.btnOrderWorkSchedule.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrderWorkSchedule.Name = "btnOrderWorkSchedule";
+            this.btnOrderWorkSchedule.Tag = "21";
             this.btnOrderWorkSchedule.Text = "Work Schedule";
             this.btnOrderWorkSchedule.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOrderWorkSchedule.TextWrap = true;
@@ -578,6 +582,7 @@
             this.btnOrderReportTicketPrint.Image = global::SampleApp.Properties.Resources._1494377211_travel_journey_15;
             this.btnOrderReportTicketPrint.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrderReportTicketPrint.Name = "btnOrderReportTicketPrint";
+            this.btnOrderReportTicketPrint.Tag = "22";
             this.btnOrderReportTicketPrint.Text = "Work Ticket";
             this.btnOrderReportTicketPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOrderReportTicketPrint.Click += new System.EventHandler(this.btnOrderReportTicketPrint_Click);
@@ -588,6 +593,7 @@
             this.btnOrderReportWorkSchedule.Image = global::SampleApp.Properties.Resources._1478825357_cmyk_042;
             this.btnOrderReportWorkSchedule.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrderReportWorkSchedule.Name = "btnOrderReportWorkSchedule";
+            this.btnOrderReportWorkSchedule.Tag = "25";
             this.btnOrderReportWorkSchedule.Text = "Work Schedule";
             this.btnOrderReportWorkSchedule.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOrderReportWorkSchedule.TextWrap = true;
@@ -598,6 +604,7 @@
             this.btnOrderReportOrderStatus.Image = global::SampleApp.Properties.Resources._1478825321_product_sales_report1;
             this.btnOrderReportOrderStatus.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrderReportOrderStatus.Name = "btnOrderReportOrderStatus";
+            this.btnOrderReportOrderStatus.Tag = "23";
             this.btnOrderReportOrderStatus.Text = "Order Status";
             this.btnOrderReportOrderStatus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOrderReportOrderStatus.TextWrap = true;
@@ -608,13 +615,14 @@
             this.btnOrderReportProductHistory.Image = global::SampleApp.Properties.Resources.history1;
             this.btnOrderReportProductHistory.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrderReportProductHistory.Name = "btnOrderReportProductHistory";
+            this.btnOrderReportProductHistory.Tag = "24";
             this.btnOrderReportProductHistory.Text = "Product History";
             this.btnOrderReportProductHistory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOrderReportProductHistory.TextWrap = true;
             // 
             // ribbonTab1
             // 
-            this.ribbonTab1.IsSelected = false;
+            this.ribbonTab1.IsSelected = true;
             this.ribbonTab1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup1,
             this.radRibbonBarGroup2,
@@ -1008,7 +1016,7 @@
             // 
             // ribbonTab7
             // 
-            this.ribbonTab7.IsSelected = true;
+            this.ribbonTab7.IsSelected = false;
             this.ribbonTab7.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup12,
             this.radRibbonBarGroup13});
