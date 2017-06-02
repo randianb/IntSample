@@ -73,6 +73,10 @@
     <Reference Include="Int.Authority">
       <HintPath>..\..\Interp\lib\Int.Authority.dll</HintPath>
     </Reference>
+    <Reference Include="Int.Customer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Int.Customer.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -252,6 +256,7 @@
     <None Include="Resources\outbound2.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\shop-78-48.png" />
     <None Include="Resources\qrcode-48.png" />
     <None Include="Resources\history2.png" />
     <None Include="Resources\1494377211_travel_journey-15.png" />

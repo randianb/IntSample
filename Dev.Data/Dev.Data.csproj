@@ -48,6 +48,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="OutboundData.cs" />
     <Compile Include="OrderColorData.cs" />
     <Compile Include="OrderTypeData.cs" />
     <Compile Include="FabricData.cs" />

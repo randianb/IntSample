@@ -4,6 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using Telerik.WinControls;
 
 namespace Dev.Options
 {
@@ -40,5 +42,25 @@ namespace Dev.Options
             return result;
         }
 
+        public static void ShowMessage(int mode)
+        {
+            string _modeText_ = "";
+            try
+            {
+                switch (mode)
+                {
+                    case 0: _modeText_ = "read"; break;
+                    case 1: _modeText_ = "edit"; break;
+                    case 2: _modeText_ = "delete"; break;
+                }
+                RadMessageBox.Show("You don't have permission to " + _modeText_ + " the data.", "Info", 
+                                    MessageBoxButtons.OK, RadMessageIcon.Info);
+                return; 
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
     }
 }

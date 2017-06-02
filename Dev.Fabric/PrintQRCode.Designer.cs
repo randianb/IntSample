@@ -39,7 +39,7 @@
             this.reportViewer1.Size = new System.Drawing.Size(1050, 646);
             this.reportViewer1.TabIndex = 0;
             // 
-            // PrintQRCode_Load
+            // PrintQRCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -47,6 +47,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Name = "PrintQRCode";
             this.Text = "Report Viewer Form";
+            this.Deactivate += new System.EventHandler(this.PrintQRCode_Deactivate);
             this.Load += new System.EventHandler(this.PrintQRCode_Load);
             this.ResumeLayout(false);
 

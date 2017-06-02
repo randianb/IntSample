@@ -21,13 +21,15 @@ namespace Dev.Fabric.Reports
             // 
             // detail
             // 
-            this.detail.Height = Telerik.Reporting.Drawing.Unit.Cm(5.9000000953674316D);
+            this.detail.CanShrink = false;
+            this.detail.Height = Telerik.Reporting.Drawing.Unit.Mm(152.39999389648438D);
             this.detail.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.textBox2,
             this.textBox3,
             this.textBox5,
             this.barcode1});
             this.detail.Name = "detail";
+            this.detail.PageBreak = Telerik.Reporting.PageBreak.None;
             // 
             // textBox2
             // 
@@ -87,7 +89,7 @@ namespace Dev.Fabric.Reports
             this.Name = "rptPrintQRCode";
             this.PageSettings.ContinuousPaper = false;
             this.PageSettings.Landscape = false;
-            this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Mm(1.2999999523162842D), Telerik.Reporting.Drawing.Unit.Mm(1.2999999523162842D), Telerik.Reporting.Drawing.Unit.Mm(1.2999999523162842D), Telerik.Reporting.Drawing.Unit.Mm(1.2999999523162842D));
+            this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.Custom;
             this.PageSettings.PaperSize = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(101.59999847412109D), Telerik.Reporting.Drawing.Unit.Mm(152.39999389648438D));
             styleRule1.Selectors.AddRange(new Telerik.Reporting.Drawing.ISelector[] {
@@ -97,7 +99,7 @@ namespace Dev.Fabric.Reports
             styleRule1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.StyleSheet.AddRange(new Telerik.Reporting.Drawing.StyleRule[] {
             styleRule1});
-            this.Width = Telerik.Reporting.Drawing.Unit.Cm(9.8999996185302734D);
+            this.Width = Telerik.Reporting.Drawing.Unit.Mm(99D);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }

@@ -993,5 +993,10 @@ namespace Dev.WorkOrder
                 
             }
         }
+
+        private void lvQRCode_Click(object sender, EventArgs e)
+        {
+            txtBarcode.Select();
+        }
     }
 }

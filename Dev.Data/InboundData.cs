@@ -192,6 +192,58 @@ namespace Dev.Data
         }
 
         /// <summary>
+        /// 코드스캔시 적재위치 업데이트 
+        /// </summary>
+        public static bool UpdateIn(string WorkOrderIdx, DateTime Indate, int RackNo, int Floorno, int RackPos, int PosX, int PosY
+            )
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = "up_FabricIn_Inbound";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+                
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 12);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _cmd.Parameters.Add("@Indate", SqlDbType.DateTime, 8);
+                _cmd.Parameters["@Indate"].Value = Indate;
+
+                _cmd.Parameters.Add("@RackNo", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@RackNo"].Value = RackNo;
+
+                _cmd.Parameters.Add("@Floorno", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@Floorno"].Value = Floorno;
+
+                _cmd.Parameters.Add("@RackPos", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@RackPos"].Value = RackPos;
+
+                _cmd.Parameters.Add("@PosX", SqlDbType.SmallInt, 2);
+                _cmd.Parameters["@PosX"].Value = PosX;
+
+                _cmd.Parameters.Add("@PosY", SqlDbType.SmallInt, 2);
+                _cmd.Parameters["@PosY"].Value = PosY;
+                
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
+        /// <summary>
         /// Get: 해당 ID조회 
         /// </summary>
         public static DataRow Get(int Idx)
@@ -278,7 +330,7 @@ namespace Dev.Data
         }
         
         public static DataSet Getlist(Dictionary<CommonValues.KeyName, string> SearchString, 
-                                        Dictionary<CommonValues.KeyName, int> SearchKey)
+                                        Dictionary<CommonValues.KeyName, int> SearchKey, string indate)
         {
             try
             {
@@ -328,6 +380,10 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@PosY", SqlDbType.SmallInt, 2);
                 _cmd.Parameters["@PosY"].Value = SearchKey[CommonValues.KeyName.PosY];
+
+                _cmd.Parameters.Add("@indate", SqlDbType.NVarChar, 10);
+                _cmd.Parameters["@indate"].Value = (indate=="2000-01-01" ? "" : indate);
+
 
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);

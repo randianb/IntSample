@@ -61,6 +61,12 @@
     <Reference Include="TelerikCommon, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeLocation.Designer.cs">
+      <DependentUpon>CodeLocation.cs</DependentUpon>
+    </Compile>
     <Compile Include="CodeSizeGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,10 +85,12 @@
     <Compile Include="CodeSize.Designer.cs">
       <DependentUpon>CodeSize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controller\Location.cs" />
     <Compile Include="Controller\SizeGroup.cs" />
     <Compile Include="Controller\SewThread.cs" />
     <Compile Include="Controller\Sizes.cs" />
     <Compile Include="Controller\Color.cs" />
+    <Compile Include="Data\LocationData.cs" />
     <Compile Include="Data\SizeData.cs" />
     <Compile Include="Data\SizeGroupData.cs" />
     <Compile Include="Data\SewThreadData.cs" />
@@ -101,6 +109,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CodeLocation.resx">
+      <DependentUpon>CodeLocation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CodeSizeGroup.resx">
       <DependentUpon>CodeSizeGroup.cs</DependentUpon>
     </EmbeddedResource>

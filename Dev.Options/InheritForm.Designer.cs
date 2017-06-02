@@ -28,9 +28,24 @@
         /// </summary>
         public void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // InheritForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(292, 270);
+            this.Name = "InheritForm";
+            // 
+            // 
+            // 
+            this.RootElement.ApplyShapeToControl = true;
             this.Text = "InheritForm";
+            this.Load += new System.EventHandler(this.InheritForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion

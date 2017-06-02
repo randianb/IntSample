@@ -30,3 +30,4 @@ D:\git\IntSample\Dev.System\bin\Debug\Telerik.WinControls.GridView.xml
 D:\git\IntSample\Dev.System\bin\Debug\Telerik.WinControls.RadDock.xml
 D:\git\IntSample\Dev.System\bin\Debug\Telerik.WinControls.Scheduler.xml
 D:\git\IntSample\Dev.System\bin\Debug\Telerik.WinControls.UI.xml
+D:\git\IntSample\Dev.System\obj\Debug\Dev.Codes.CodeLocation.resources

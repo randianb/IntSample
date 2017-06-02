@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Outbound.cs" />
     <Compile Include="OrderType.cs" />
     <Compile Include="Fabric.cs" />
     <Compile Include="Inbound.cs" />

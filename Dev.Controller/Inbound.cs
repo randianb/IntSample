@@ -345,10 +345,10 @@ namespace Dev.Controller
             return dr;
         }
 
-        public static DataSet Getlist(Dictionary<CommonValues.KeyName, string> SearchString, Dictionary<CommonValues.KeyName, int> SearchKey)
+        public static DataSet Getlist(Dictionary<CommonValues.KeyName, string> SearchString, Dictionary<CommonValues.KeyName, int> SearchKey, string indate)
         {
             DataSet ds = new DataSet();
-            ds = Data.InboundData.Getlist(SearchString, SearchKey);
+            ds = Data.InboundData.Getlist(SearchString, SearchKey, indate);
             return ds;
         }
         
@@ -361,7 +361,17 @@ namespace Dev.Controller
                                         _posX, _posY, _qrcode, _filenm1, _filenm2, _fileurl1, _fileurl2);
             return blRtn;
         }
-        
+
+        /// <summary>
+        /// 코드스캔시 적재위치 업데이트 
+        /// </summary>
+        public static bool UpdateIn(string WorkOrderIdx, DateTime Indate, int RackNo, int Floorno, int RackPos, int PosX, int PosY)
+        {
+            bool blRtn;
+            blRtn = Data.InboundData.UpdateIn(WorkOrderIdx, Indate, RackNo, Floorno, RackPos, PosX, PosY);
+            return blRtn;
+        }
+
         // Multiple Delete
         public static bool Delete(string condition)
         {

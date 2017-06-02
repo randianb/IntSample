@@ -5,9 +5,11 @@ using Dev.Pattern;
 using Dev.Sales;
 using Dev.WorkOrder;
 using Dev.Yarn;
+using Int.Customer;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
@@ -19,10 +21,13 @@ namespace SampleApp
 {
     public partial class MainApp : InheritMDI 
     {
+        private List<CustomerName> lstBuyer = new List<CustomerName>();
+        private DataTable _dt = null;
+
         public MainApp()
         {
             InitializeComponent();
-            this.Text = "INT Sample Management"; 
+            this.Text = "INT Development Management"; 
             this.radRibbonBar1.QuickAccessToolBar.InnerItem.Fill.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             this.WindowState = FormWindowState.Maximized;
         }
@@ -30,6 +35,29 @@ namespace SampleApp
         private void bsExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void FillBuyerlist()
+        {
+            // 바이어
+            _dt = CommonController.Getlist(CommonValues.KeyName.CustIdx).Tables[0];
+
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstBuyer.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
+                                            row["CustName"].ToString(),
+                                            Convert.ToInt32(row["Classification"])));
+
+            }
+
+            ddlNewOrderBuyer.DataSource = lstBuyer;
+            ddlNewOrderBuyer.DisplayMember = "CustName";
+            ddlNewOrderBuyer.ValueMember = "CustIdx";
+            ddlNewOrderBuyer.DefaultItemsCountInDropDown = CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlNewOrderBuyer.DropDownHeight = CommonValues.DDL_DropDownHeight;
+
+
+
         }
 
         private void bsOptions_Click(object sender, EventArgs e)
@@ -54,6 +82,7 @@ namespace SampleApp
 
                     enablePagingGV.Checked = cs.enablePaging;
                     enableSearchRow.Checked = cs.enableSearchRow;
+                    ddlNewOrderBuyer.SelectedValue = cs.NewOrderBuyerIdx;
                 }
                 // 없으면 기본값으로 새로 만듬 
                 else
@@ -62,6 +91,7 @@ namespace SampleApp
                     {
                         enablePaging = true,
                         enableSearchRow = false,
+                        NewOrderBuyerIdx = 0,
                     };
 
                     string confStr = JsonConvert.SerializeObject(cs, Formatting.Indented);
@@ -177,13 +207,14 @@ namespace SampleApp
 
                 cs.enablePaging = enablePagingGV.Checked;
                 cs.enableSearchRow = enableSearchRow.Checked;
+                cs.NewOrderBuyerIdx = Convert.ToInt32(ddlNewOrderBuyer.SelectedValue);
 
                 string confStr = JsonConvert.SerializeObject(cs, Formatting.Indented);
                 System.IO.File.WriteAllText(path, confStr);
 
                 CommonValues.enablePaging = enablePagingGV.Checked;
                 CommonValues.enableSearchRow = enableSearchRow.Checked;
-
+                CommonValues.NewOrderBuyerIdx = Convert.ToInt32(ddlNewOrderBuyer.SelectedValue);
             }
             catch (Exception ex)
             {
@@ -212,6 +243,7 @@ namespace SampleApp
                 try
                 {
                     CheckFolder(url);
+                    FillBuyerlist();
 
                     if (System.IO.File.Exists(path))
                     {
@@ -221,7 +253,7 @@ namespace SampleApp
                         cs = JsonConvert.DeserializeObject<ConfigStruct>(confStr);
                         CommonValues.enablePaging = cs.enablePaging;
                         CommonValues.enableSearchRow = cs.enableSearchRow;
-
+                        CommonValues.NewOrderBuyerIdx = cs.NewOrderBuyerIdx;
                     }
                 }
                 catch (Exception ex)
@@ -231,13 +263,41 @@ namespace SampleApp
             }
         }
 
+        /// <summary>
+        /// 로그인시 메뉴 각 버튼 name, tag를 권한테이블과 비교하여 권한이 없는 경우 disable한다
+        /// </summary>
+        /// <param name="UserIdx"></param>
         private void DieaseUpdateEventMethod(int UserIdx)
         {
             Dictionary<int, RadItem> lstMenu = new Dictionary<int, RadItem>();
-            lstMenu.Add(4, btnOrderPlan); lstMenu.Add(6, btnOrderActual); lstMenu.Add(7, btnSchedule); lstMenu.Add(8, radButtonElement1);
-            lstMenu.Add(9, radButtonElement3); lstMenu.Add(10, radButtonElement2); lstMenu.Add(12, radButtonElement4); lstMenu.Add(13, radButtonElement5);
-            lstMenu.Add(11, btnPOStatus); lstMenu.Add(5, btnCodesBuyer); lstMenu.Add(14, btnCodesColor); lstMenu.Add(15, btnCodesSizeGroup);
-            lstMenu.Add(16, btnCodesSize);
+            
+            // Order
+            lstMenu.Add(18, btnOrderOrder); lstMenu.Add(19, btnOrderWorkSheet); lstMenu.Add(20, btnOrderWorkOrder); lstMenu.Add(21, btnOrderWorkSchedule);
+            lstMenu.Add(22, btnOrderReportTicketPrint); lstMenu.Add(25, btnOrderReportWorkSchedule); lstMenu.Add(23, btnOrderReportOrderStatus);
+            lstMenu.Add(24, btnOrderReportProductHistory);
+
+            // Yarn
+            lstMenu.Add(54, btnYarnCodeMain); lstMenu.Add(53, btnYarnPurchase); lstMenu.Add(55, btnYarnManager); lstMenu.Add(56, btnYarnInbound);
+            lstMenu.Add(57, btnYarnOutbound); lstMenu.Add(58, btnYarnStock);
+
+            // Fabric
+            lstMenu.Add(26, btnFabricFabricCode); lstMenu.Add(27, btnFabricInbound); lstMenu.Add(28, btnFabricOutbound); lstMenu.Add(29, btnFabricStock);
+            lstMenu.Add(30, btnFabricCodePrint); lstMenu.Add(31, btnFabricCodelist); lstMenu.Add(32, btnFabricReportInbound); lstMenu.Add(33, btnFabricReportOutbound);
+            lstMenu.Add(34, btnFabricReportStock); lstMenu.Add(35, btnFabricReportWarehouse); 
+
+            // Pattern
+            lstMenu.Add(36, btnPatternRequest); lstMenu.Add(37, btnPatternMain); lstMenu.Add(38, btnPatternReportControl);
+
+            // Production
+            lstMenu.Add(39, btnProductCutting); lstMenu.Add(40, btnProductPrinting); lstMenu.Add(41, btnProductEmbroidery); lstMenu.Add(42, btnProductSewing);
+            lstMenu.Add(43, btnProductInspection);
+
+            // Outbound
+            lstMenu.Add(44, btnOutboundFabric); lstMenu.Add(45, btnOutboundCutted); lstMenu.Add(46, btnOutboundFinished); 
+
+            // System
+            lstMenu.Add(47, btnSystemColor); lstMenu.Add(48, btnSizeGroup); lstMenu.Add(49, btnSize); lstMenu.Add(50, btnSewingThread);
+            lstMenu.Add(51, btnSystemApproval); lstMenu.Add(59, btnLocation);
 
             foreach (int menuNo in lstMenu.Keys)
             {
@@ -453,7 +513,14 @@ namespace SampleApp
 
         private void btnFabricOutbound_Click(object sender, EventArgs e)
         {
-
+            if (Close_All_Children("Outbound"))
+            {
+                Outbound frm = new Outbound(this);
+                frm.Text = "Fabric Outbound";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            
         }
 
         private void btnFabricCodePrint_Click(object sender, EventArgs e)
@@ -474,6 +541,17 @@ namespace SampleApp
                     return;
                 }
 
+            }
+        }
+
+        private void btnLocation_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("CodeLocation"))
+            {
+                CodeLocation frm = new CodeLocation(this);
+                frm.Text = "Location Code";
+                frm.MdiParent = this;
+                frm.Show();
             }
         }
     }

@@ -10,7 +10,8 @@ using Telerik.WinControls.UI;
 using System.Windows.Forms;
 using Int.Customer;
 using Int.Department;
-using Int.Costcenter; 
+using Int.Costcenter;
+using System.Globalization;
 
 namespace Dev.Fabric 
 {
@@ -49,6 +50,7 @@ namespace Dev.Fabric
         private List<CustomerName> lstDept = new List<CustomerName>();     // 
         
         private string _layoutfile = "/GVLayoutFabricInbound.xml";
+        private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 27, 0);   // 패키지번호, 프로그램번호, 윈도우번호
 
         #endregion
 
@@ -64,7 +66,9 @@ namespace Dev.Fabric
             InitializeComponent();
             __main__ = main;            // MDI 연결 
             _gv1 = this.gvMain;  // 그리드뷰 일반화를 위해 변수 별도 저장
-            toolWindow3.AutoHide();  
+            toolWindow3.AutoHide();
+
+            
         }
 
         /// <summary>
@@ -82,6 +86,8 @@ namespace Dev.Fabric
             Config_ContextMenu();       // 중앙 그리드뷰 컨텍스트 생성 설정 
             LoadGVLayout();             // 그리드뷰 레이아웃 복구 
             //DataBinding_GV1(0, null, "", "");   // 중앙 그리드뷰 데이터 
+
+            
         }
 
         #region 컨텍스트 메뉴 생성 및 제거 
@@ -291,7 +297,7 @@ namespace Dev.Fabric
             FabricType.HeaderText = "FabricType";
             FabricType.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             FabricType.DropDownStyle = RadDropDownStyle.DropDown;
-            FabricType.Width = 150;
+            FabricType.Width = 100;
             gv.Columns.Add(FabricType);
                         
             GridViewTextBoxColumn Artno = new GridViewTextBoxColumn();
@@ -363,24 +369,7 @@ namespace Dev.Fabric
             IODeptIdx.DropDownStyle = RadDropDownStyle.DropDown;
             IODeptIdx.Width = 150;
             gv.Columns.Add(IODeptIdx);
-
-            GridViewTextBoxColumn Comments = new GridViewTextBoxColumn();
-            Comments.Name = "Comments";
-            Comments.FieldName = "Comments";
-            Comments.HeaderText = "Comments";
-            Comments.TextAlignment = ContentAlignment.MiddleLeft;
-            Comments.Width = 100;
-            gv.Columns.Add(Comments);
-
-            GridViewTextBoxColumn WorkOrderIdx = new GridViewTextBoxColumn();
-            WorkOrderIdx.Name = "WorkOrderIdx";
-            WorkOrderIdx.FieldName = "WorkOrderIdx";
-            WorkOrderIdx.HeaderText = "Inbound#";
-            WorkOrderIdx.ReadOnly = true; 
-            WorkOrderIdx.TextAlignment = ContentAlignment.MiddleLeft;
-            WorkOrderIdx.Width = 100;
-            gv.Columns.Add(WorkOrderIdx);
-
+            
             GridViewComboBoxColumn RackNo = new GridViewComboBoxColumn();
             RackNo.Name = "RackNo";
             RackNo.DataSource = lstRack21;
@@ -411,7 +400,7 @@ namespace Dev.Fabric
             RackPos.DisplayMember = "Contents";
             RackPos.ValueMember = "CodeIdx";
             RackPos.FieldName = "RackPos";
-            RackPos.HeaderText = "Rack Position";
+            RackPos.HeaderText = "Rack\nPosition";
             RackPos.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             RackPos.DropDownStyle = RadDropDownStyle.DropDown;
             RackPos.Width = 70;
@@ -421,7 +410,7 @@ namespace Dev.Fabric
             PosX.DataType = typeof(int);
             PosX.Name = "PosX";
             PosX.FieldName = "PosX";
-            PosX.HeaderText = "Location(X)";
+            PosX.HeaderText = "Location\n(X)";
             PosX.TextAlignment = ContentAlignment.MiddleCenter;
             PosX.Width = 70;
             gv.Columns.Add(PosX);
@@ -430,7 +419,7 @@ namespace Dev.Fabric
             PosY.DataType = typeof(int);
             PosY.Name = "PosY";
             PosY.FieldName = "PosY";
-            PosY.HeaderText = "Location(Y)";
+            PosY.HeaderText = "Location\n(Y)";
             PosY.TextAlignment = ContentAlignment.MiddleCenter;
             PosY.Width = 70;
             gv.Columns.Add(PosY);
@@ -470,6 +459,22 @@ namespace Dev.Fabric
             fileurl2.IsVisible = false;
             gv.Columns.Add(fileurl2);
 
+            GridViewTextBoxColumn Comments = new GridViewTextBoxColumn();
+            Comments.Name = "Comments";
+            Comments.FieldName = "Comments";
+            Comments.HeaderText = "Comments";
+            Comments.TextAlignment = ContentAlignment.MiddleLeft;
+            Comments.Width = 100;
+            gv.Columns.Add(Comments);
+
+            GridViewTextBoxColumn WorkOrderIdx = new GridViewTextBoxColumn();
+            WorkOrderIdx.Name = "WorkOrderIdx";
+            WorkOrderIdx.FieldName = "WorkOrderIdx";
+            WorkOrderIdx.HeaderText = "Inbound#";
+            WorkOrderIdx.ReadOnly = true;
+            WorkOrderIdx.TextAlignment = ContentAlignment.MiddleLeft;
+            WorkOrderIdx.Width = 100;
+            gv.Columns.Add(WorkOrderIdx);
 
             #endregion
         }
@@ -607,21 +612,27 @@ namespace Dev.Fabric
                 string str = "";
                 //_gv1.EndEdit();
 
-                // 삭제하기전 삭제될 데이터 확인
-                foreach (GridViewRowInfo row in _gv1.SelectedRows)
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                if (Convert.ToInt16(__AUTHCODE__.Substring(2, 1).Trim()) > 0)
                 {
-                    if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["Idx"].Value).ToString();
-                    else str += "," + Convert.ToInt32(row.Cells["Idx"].Value).ToString();
-                }
+                    // 삭제하기전 삭제될 데이터 확인
+                    foreach (GridViewRowInfo row in _gv1.SelectedRows)
+                    {
+                        if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                        else str += "," + Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                    }
 
-                // 해당 자료 삭제여부 확인후, 
-                if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
-                    MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
-                {
-                    // 삭제후 새로고침
-                    _bRtn = Controller.Inbound.Delete(str);
-                    RefleshWithCondition();
+                    // 해당 자료 삭제여부 확인후, 
+                    if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
+                        MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+                    {
+                        // 삭제후 새로고침
+                        _bRtn = Controller.Inbound.Delete(str);
+                        RefleshWithCondition();
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -638,11 +649,18 @@ namespace Dev.Fabric
         {
             try
             {
-                string WorkOrderIdx = Int.Code.Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 14, "");           // 입고번호 생성 
-                string __QRCode__ = Int.Encryptor.Encrypt(WorkOrderIdx.Trim(), "love1229");
-                DataRow row = Controller.Inbound.Insert(WorkOrderIdx, __QRCode__, UserInfo.CenterIdx, UserInfo.DeptIdx, UserInfo.Idx);  // 신규 입력
-                RefleshWithCondition();                                                                                     // 재조회 
-                SetCurrentRow(_gv1, Convert.ToInt32(row["LastIdx"]));                                                       // 신규입력된 행번호로 이동
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                if (Convert.ToInt16(__AUTHCODE__.Substring(1, 1).Trim()) > 0)
+                {
+                    string WorkOrderIdx = Int.Code.Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 14, "");           // 입고번호 생성 
+                                                                                                                                // 입고번호 생성과 동시에 QR코드 생성
+                    string __QRCode__ = Int.Encryptor.Encrypt(WorkOrderIdx.Trim(), "love1229");
+                    DataRow row = Controller.Inbound.Insert(WorkOrderIdx, __QRCode__, UserInfo.CenterIdx, UserInfo.DeptIdx, UserInfo.Idx);  // 신규 입력
+                    RefleshWithCondition();                                                                                     // 재조회 
+                    SetCurrentRow(_gv1, Convert.ToInt32(row["LastIdx"]));                                                       // 신규입력된 행번호로 이동
+                }
+                
             }
             catch (Exception ex)
             {
@@ -697,6 +715,7 @@ namespace Dev.Fabric
             lstStatus.Add(new CodeContents(1, CommonValues.DicFabricInStatus[1], ""));
             lstStatus.Add(new CodeContents(2, CommonValues.DicFabricInStatus[2], ""));
             lstStatus.Add(new CodeContents(3, CommonValues.DicFabricInStatus[3], ""));
+            lstStatus.Add(new CodeContents(4, CommonValues.DicFabricInStatus[4], ""));
             lstStatus.Add(new CodeContents(9, CommonValues.DicFabricInStatus[9], ""));
             lstStatus.Add(new CodeContents(10, CommonValues.DicFabricInStatus[10], ""));
 
@@ -704,6 +723,7 @@ namespace Dev.Fabric
             lstStatus2.Add(new CodeContents(1, CommonValues.DicFabricInStatus[1], ""));
             lstStatus2.Add(new CodeContents(2, CommonValues.DicFabricInStatus[2], ""));
             lstStatus2.Add(new CodeContents(3, CommonValues.DicFabricInStatus[3], ""));
+            lstStatus2.Add(new CodeContents(4, CommonValues.DicFabricInStatus[4], ""));
             lstStatus2.Add(new CodeContents(9, CommonValues.DicFabricInStatus[9], ""));
             lstStatus2.Add(new CodeContents(10, CommonValues.DicFabricInStatus[10], ""));
 
@@ -934,6 +954,9 @@ namespace Dev.Fabric
                     _searchKey.Add(CommonValues.KeyName.PosX, Convert.ToInt32(txtLocationX.Value));
                     _searchKey.Add(CommonValues.KeyName.PosY, Convert.ToInt32(txtLocationY.Value));
                     
+                    CultureInfo ci = new CultureInfo("ko-KR");
+                    Console.WriteLine(dtInboundDate.Value.ToString("d",ci)); 
+
                     DataBinding_GV1();
                 }
             }
@@ -953,16 +976,23 @@ namespace Dev.Fabric
             try
             {
                 _gv1.DataSource = null;
-                
-                _ds1 = Controller.Inbound.Getlist(_searchString, _searchKey);
 
-                if (_ds1 != null)
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                if (Convert.ToInt16(__AUTHCODE__.Substring(0, 1).Trim()) > 0)
                 {
-                    _gv1.DataSource = _ds1.Tables[0].DefaultView;
-                    __main__.lblRows.Text = _gv1.RowCount.ToString() + " Rows"; 
-                    _gv1.EnablePaging = CommonValues.enablePaging;
-                    _gv1.AllowSearchRow = CommonValues.enableSearchRow; 
+                    CultureInfo ci = new CultureInfo("ko-KR");
+                    _ds1 = Controller.Inbound.Getlist(_searchString, _searchKey, dtInboundDate.Value.ToString("d", ci));
+
+                    if (_ds1 != null)
+                    {
+                        _gv1.DataSource = _ds1.Tables[0].DefaultView;
+                        __main__.lblRows.Text = _gv1.RowCount.ToString() + " Rows";
+                        _gv1.EnablePaging = CommonValues.enablePaging;
+                        _gv1.AllowSearchRow = CommonValues.enableSearchRow;
+                    }
                 }
+                    
             }
             catch (Exception ex)
             {
@@ -987,46 +1017,55 @@ namespace Dev.Fabric
                 _gv1.EndEdit();
                 GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
 
-                // 객체생성 및 값 할당
-                _obj1 = new Controller.Inbound(Convert.ToInt32(row.Cells["Idx"].Value));
-                _obj1.Idx = Convert.ToInt32(row.Cells["Idx"].Value);
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    // 객체생성 및 값 할당
+                    _obj1 = new Controller.Inbound(Convert.ToInt32(row.Cells["Idx"].Value));
+                    _obj1.Idx = Convert.ToInt32(row.Cells["Idx"].Value);
 
-                if (row.Cells["Status"].Value != DBNull.Value) _obj1.Status = Convert.ToInt32(row.Cells["Status"].Value);
-                if (row.Cells["IDate"].Value != DBNull.Value) _obj1.IDate = Convert.ToDateTime(row.Cells["IDate"].Value);
-                if (row.Cells["BuyerIdx"].Value != DBNull.Value) _obj1.BuyerIdx = Convert.ToInt32(row.Cells["BuyerIdx"].Value);
-                if (row.Cells["ColorIdx"].Value != DBNull.Value) _obj1.ColorIdx = Convert.ToInt32(row.Cells["ColorIdx"].Value);
-                if (row.Cells["FabricType"].Value != DBNull.Value) _obj1.FabricType = Convert.ToInt32(row.Cells["FabricType"].Value);
-                if (row.Cells["Artno"].Value != DBNull.Value) _obj1.Artno = row.Cells["Artno"].Value.ToString(); else _obj1.Artno = ""; 
-                if (row.Cells["Lotno"].Value != DBNull.Value) _obj1.Lotno = row.Cells["Lotno"].Value.ToString(); else _obj1.Lotno = "";
-                if (row.Cells["FabricIdx"].Value != DBNull.Value) _obj1.FabricIdx = Convert.ToInt32(row.Cells["FabricIdx"].Value);
-                if (row.Cells["Roll"].Value != DBNull.Value) _obj1.Roll = Convert.ToInt32(row.Cells["Roll"].Value);
-                if (row.Cells["Width"].Value != DBNull.Value) _obj1.Width = Convert.ToInt32(row.Cells["Width"].Value);
+                    if (row.Cells["Status"].Value != DBNull.Value) _obj1.Status = Convert.ToInt32(row.Cells["Status"].Value);
+                    if (row.Cells["IDate"].Value != DBNull.Value) _obj1.IDate = Convert.ToDateTime(row.Cells["IDate"].Value);
+                    if (row.Cells["BuyerIdx"].Value != DBNull.Value) _obj1.BuyerIdx = Convert.ToInt32(row.Cells["BuyerIdx"].Value);
+                    if (row.Cells["ColorIdx"].Value != DBNull.Value) _obj1.ColorIdx = Convert.ToInt32(row.Cells["ColorIdx"].Value);
+                    if (row.Cells["FabricType"].Value != DBNull.Value) _obj1.FabricType = Convert.ToInt32(row.Cells["FabricType"].Value);
+                    if (row.Cells["Artno"].Value != DBNull.Value) _obj1.Artno = row.Cells["Artno"].Value.ToString(); else _obj1.Artno = "";
+                    if (row.Cells["Lotno"].Value != DBNull.Value) _obj1.Lotno = row.Cells["Lotno"].Value.ToString(); else _obj1.Lotno = "";
+                    if (row.Cells["FabricIdx"].Value != DBNull.Value) _obj1.FabricIdx = Convert.ToInt32(row.Cells["FabricIdx"].Value);
+                    if (row.Cells["Roll"].Value != DBNull.Value) _obj1.Roll = Convert.ToInt32(row.Cells["Roll"].Value);
+                    if (row.Cells["Width"].Value != DBNull.Value) _obj1.Width = Convert.ToInt32(row.Cells["Width"].Value);
 
-                if (row.Cells["Kgs"].Value != DBNull.Value) _obj1.Kgs = Convert.ToInt32(row.Cells["Kgs"].Value);
-                if (row.Cells["Yds"].Value != DBNull.Value) _obj1.Yds = Convert.ToInt32(row.Cells["Yds"].Value);
-                //if (row.Cells["RegCenterIdx"].Value != DBNull.Value) _regCenterIdx = Convert.ToInt32(row.Cells["RegCenterIdx"]);
-                //if (row.Cells["RegDeptIdx"].Value != DBNull.Value) _regDeptIdx = Convert.ToInt32(row.Cells["RegDeptIdx"]);
-                //if (row.Cells["RegUserIdx"].Value != DBNull.Value) _regUserIdx = Convert.ToInt32(row.Cells["RegUserIdx"]);
-                //if (row.Cells["RegDate"].Value != DBNull.Value) _regDate = Convert.ToDateTime(row.Cells["RegDate"]);
-                if (row.Cells["IOCenterIdx"].Value != DBNull.Value) _obj1.IOCenterIdx = Convert.ToInt32(row.Cells["IOCenterIdx"].Value);
-                if (row.Cells["IODeptIdx"].Value != DBNull.Value) _obj1.IODeptIdx = Convert.ToInt32(row.Cells["IODeptIdx"].Value);
-                if (row.Cells["Comments"].Value != DBNull.Value) _obj1.Comments = row.Cells["Comments"].Value.ToString(); else _obj1.Comments = "";
+                    if (row.Cells["Kgs"].Value != DBNull.Value) _obj1.Kgs = Convert.ToInt32(row.Cells["Kgs"].Value);
+                    if (row.Cells["Yds"].Value != DBNull.Value) _obj1.Yds = Convert.ToInt32(row.Cells["Yds"].Value);
+                    //if (row.Cells["RegCenterIdx"].Value != DBNull.Value) _regCenterIdx = Convert.ToInt32(row.Cells["RegCenterIdx"]);
+                    //if (row.Cells["RegDeptIdx"].Value != DBNull.Value) _regDeptIdx = Convert.ToInt32(row.Cells["RegDeptIdx"]);
+                    //if (row.Cells["RegUserIdx"].Value != DBNull.Value) _regUserIdx = Convert.ToInt32(row.Cells["RegUserIdx"]);
+                    //if (row.Cells["RegDate"].Value != DBNull.Value) _regDate = Convert.ToDateTime(row.Cells["RegDate"]);
+                    if (row.Cells["IOCenterIdx"].Value != DBNull.Value) _obj1.IOCenterIdx = Convert.ToInt32(row.Cells["IOCenterIdx"].Value);
+                    if (row.Cells["IODeptIdx"].Value != DBNull.Value) _obj1.IODeptIdx = Convert.ToInt32(row.Cells["IODeptIdx"].Value);
+                    if (row.Cells["Comments"].Value != DBNull.Value) _obj1.Comments = row.Cells["Comments"].Value.ToString(); else _obj1.Comments = "";
 
-                if (row.Cells["WorkOrderIdx"].Value != DBNull.Value) _obj1.WorkOrderIdx = row.Cells["WorkOrderIdx"].Value.ToString();   
-                if (row.Cells["RackNo"].Value != DBNull.Value) _obj1.RackNo = Convert.ToInt32(row.Cells["RackNo"].Value); else _obj1.RackNo = 0;
-                if (row.Cells["Floorno"].Value != DBNull.Value) _obj1.Floorno = Convert.ToInt32(row.Cells["Floorno"].Value); else _obj1.Floorno = 0;
-                if (row.Cells["RackPos"].Value != DBNull.Value) _obj1.RackPos = Convert.ToInt32(row.Cells["RackPos"].Value); else _obj1.RackPos = 0;
-                if (row.Cells["PosX"].Value != DBNull.Value) _obj1.PosX = Convert.ToInt32(row.Cells["PosX"].Value); else _obj1.PosX = 0;
-                if (row.Cells["PosY"].Value != DBNull.Value) _obj1.PosY = Convert.ToInt32(row.Cells["PosY"].Value); else _obj1.PosY = 0;
-                if (row.Cells["Qrcode"].Value != DBNull.Value) _obj1.Qrcode = row.Cells["Qrcode"].Value.ToString(); else _obj1.Qrcode = "";
+                    if (row.Cells["WorkOrderIdx"].Value != DBNull.Value) _obj1.WorkOrderIdx = row.Cells["WorkOrderIdx"].Value.ToString();
+                    if (row.Cells["RackNo"].Value != DBNull.Value) _obj1.RackNo = Convert.ToInt32(row.Cells["RackNo"].Value); else _obj1.RackNo = 0;
+                    if (row.Cells["Floorno"].Value != DBNull.Value) _obj1.Floorno = Convert.ToInt32(row.Cells["Floorno"].Value); else _obj1.Floorno = 0;
+                    if (row.Cells["RackPos"].Value != DBNull.Value) _obj1.RackPos = Convert.ToInt32(row.Cells["RackPos"].Value); else _obj1.RackPos = 0;
+                    if (row.Cells["PosX"].Value != DBNull.Value) _obj1.PosX = Convert.ToInt32(row.Cells["PosX"].Value); else _obj1.PosX = 0;
+                    if (row.Cells["PosY"].Value != DBNull.Value) _obj1.PosY = Convert.ToInt32(row.Cells["PosY"].Value); else _obj1.PosY = 0;
+                    if (row.Cells["Qrcode"].Value != DBNull.Value) _obj1.Qrcode = row.Cells["Qrcode"].Value.ToString(); else _obj1.Qrcode = "";
 
-                if (row.Cells["filenm1"].Value != DBNull.Value) _obj1.Filenm1 = row.Cells["filenm1"].ToString(); else _obj1.Filenm1 = "";
-                if (row.Cells["filenm2"].Value != DBNull.Value) _obj1.Filenm2 = row.Cells["filenm2"].ToString(); else _obj1.Filenm2 = "";
-                if (row.Cells["fileurl1"].Value != DBNull.Value) _obj1.Fileurl1 = row.Cells["fileurl1"].ToString(); else _obj1.Fileurl1 = "";
-                if (row.Cells["fileurl2"].Value != DBNull.Value) _obj1.Fileurl2 = row.Cells["fileurl2"].ToString(); else _obj1.Fileurl2 = "";
+                    if (row.Cells["filenm1"].Value != DBNull.Value) _obj1.Filenm1 = row.Cells["filenm1"].ToString(); else _obj1.Filenm1 = "";
+                    if (row.Cells["filenm2"].Value != DBNull.Value) _obj1.Filenm2 = row.Cells["filenm2"].ToString(); else _obj1.Filenm2 = "";
+                    if (row.Cells["fileurl1"].Value != DBNull.Value) _obj1.Fileurl1 = row.Cells["fileurl1"].ToString(); else _obj1.Fileurl1 = "";
+                    if (row.Cells["fileurl2"].Value != DBNull.Value) _obj1.Fileurl2 = row.Cells["fileurl2"].ToString(); else _obj1.Fileurl2 = "";
 
-                _bRtn = _obj1.Update();
-                if (_bRtn) __main__.lblDescription.Text = "Update Succeed"; 
+                    _bRtn = _obj1.Update();
+                    if (_bRtn) __main__.lblDescription.Text = "Update Succeed";
+                }
+                    
             }
             catch (Exception ex)
             {
@@ -1049,6 +1088,18 @@ namespace Dev.Fabric
             if (element != null)
             {
                 element.Font = f;
+
+                if (e.CellElement.ColumnInfo.Name == "RackNo" || e.CellElement.ColumnInfo.Name == "Floorno" || e.CellElement.ColumnInfo.Name == "RackPos" ||
+                    e.CellElement.ColumnInfo.Name == "PosX" || e.CellElement.ColumnInfo.Name == "PosY") 
+                {
+                    e.CellElement.ForeColor = Color.Blue;
+                    e.CellElement.BackColor = Color.LightYellow;
+                }
+                else
+                {
+                    e.CellElement.ResetValue(LightVisualElement.ForeColorProperty, ValueResetFlags.Local);
+                    e.CellElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                }
             }
             
         }
@@ -1118,6 +1169,226 @@ namespace Dev.Fabric
 
         }
 
+        private void gvMain_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            
+        }
+
+        private void lvQRCode_VisualItemFormatting(object sender, ListViewVisualItemEventArgs e)
+        {
+            
+        }
+
+        private void lvQRCode_ItemValueChanged(object sender, ListViewItemValueChangedEventArgs e)
+        {
+            if (lvQRCode.Items.Count <= 0)
+            {
+                btnSaveData.Enabled = false;
+            }
+            else
+            {
+                btnSaveData.Enabled = true;
+            }
+        }
+
+        
+        private void txtBarcode_KeyDown(object sender, KeyEventArgs e)
+        {
+            string CodeType, WorkOrderIdx = "";
+            
+            if (e.KeyCode == Keys.Enter && !string.IsNullOrEmpty(txtBarcode.Text.Trim()))
+            {
+                // Location 코드체크 
+                if (txtBarcode.Text.Trim().Substring(0,3).ToUpper()=="LOC")
+                {
+                    CodeType = "Location"; 
+                    WorkOrderIdx = txtBarcode.Text.Trim();
+                    lvQRCode.Items.Add(CodeType, WorkOrderIdx, "");
+                }
+                // 원단 코드체크 
+                else
+                {
+                    CodeType = "Fabric";
+                    // 복호화
+                    WorkOrderIdx = Decryptor(txtBarcode.Text.Trim());
+                    //Console.WriteLine(CodeType + " === " + txtBarcode.Text.Trim() + " === " + WorkOrderIdx); 
+                    // 값이없으면
+                    if (string.IsNullOrEmpty(WorkOrderIdx.Trim())) { }
+                    // 길이가 14, 12가 아니면
+                    else if (WorkOrderIdx.Length != 14 && WorkOrderIdx.Length != 12) { }
+                    // I로 시작하지 않으면 
+                    else if (WorkOrderIdx.Substring(0, 1) != "I") { }
+                    // 쿼리생성 
+                    else
+                    {
+                        lvQRCode.Items.Add(CodeType, WorkOrderIdx, "");
+                    }
+                }
+                btnSaveData.Enabled = true;
+                txtBarcode.Text = "";
+                txtBarcode.Select();
+            }
+            else
+            {
+                //Console.WriteLine(e.KeyCode.ToString());
+            }
+        }
+        
+        private void toggleWay_ValueChanged(object sender, EventArgs e)
+        {
+            txtBarcode.Select();
+        }
+
+        private void btnSaveData_Click(object sender, EventArgs e)
+        {
+            string Category = "", Code = "";
+            string startCategory="", startCode = "";
+            string FabricCode = "", LocationCode = ""; 
+
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    if (lvQRCode.Items.Count > 0)
+                    {
+                        // Inbound
+                        if (toggleWay.Value)
+                        {
+                            string temp = "";
+
+                            // 연속으로 중복된 코드제거 
+                            foreach (ListViewDataItem item in lvQRCode.Items)
+                            {
+                                if (item[1].ToString() == temp)
+                                {
+                                    item[2] = "D";
+                                }
+                                else
+                                {
+                                    item[2] = "";
+                                    temp = item[1].ToString();
+                                }
+                            }
+
+                            foreach (ListViewDataItem item in lvQRCode.Items)
+                            {
+                                // 중복되지 않은 코드라면 정상처리 
+                                if (item[2].ToString() != "D")
+                                {
+                                    Category = item[0].ToString();
+                                    Code = item[1].ToString();
+
+                                    // 처음 들어오는 코드일때
+                                    if (string.IsNullOrEmpty(startCategory) || string.IsNullOrEmpty(startCode))
+                                    {
+                                        // 시작코드만 저장하고 
+                                        startCategory = item[0].ToString().Trim();
+                                        startCode = item[1].ToString().Trim();
+                                    }
+                                    // 두번째 들어오는 코드일때 
+                                    else
+                                    {
+                                        // 같은 종류의 코드가 연속되면 경고메시지를 출력후, 마지막에 읽어드린 코드로 진행한다
+                                        if (startCategory == item[0].ToString().Trim())
+                                        {
+                                            RadMessageBox.Show("[" + startCode + "] and [" + item[1].ToString().Trim() + "] are the same category.\n" + 
+                                                "The system will process with the last code [" + item[1].ToString().Trim() + ".", "Warning", 
+                                                MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                                            
+                                            // 시작코드 저장후 다음 행 이동 
+                                            startCategory = item[0].ToString().Trim();
+                                            startCode = item[1].ToString().Trim();
+                                        }
+                                        else
+                                        {
+                                            // 원단정보가 먼저 스캔되었다면 
+                                            if (startCategory == "Fabric")
+                                            {
+                                                FabricCode = startCode;
+                                                LocationCode = item[1].ToString().Trim();
+                                            }
+                                            // 적재위치정보가 먼저 스캔되었다면 
+                                            else if (startCategory == "Location")
+                                            {
+                                                FabricCode = item[1].ToString().Trim();
+                                                LocationCode = startCode;
+                                            }
+
+                                            string[] codeStr = LocationCode.Split(',');
+                                            if (codeStr.Length > 0)
+                                            {
+                                                // 입고번호를 통해 적재위치 갱신
+                                                bool result = Controller.Inbound.UpdateIn(FabricCode, DateTime.Now,  Convert.ToInt32(codeStr[7].Trim()), 
+                                                                                           Convert.ToInt32(codeStr[8].Trim()), Convert.ToInt32(codeStr[9].Trim()),
+                                                                                           Convert.ToInt32(codeStr[5].Trim()), Convert.ToInt32(codeStr[6].Trim()));
+                                            }
+                                        }
+                                    }
+
+                                }
+                                __main__.lblDescription.Text = "It's saved the Fabric Inbound data. Please review the data.";
+                                dtInboundDate.Value = Convert.ToDateTime(DateTime.Today);
+                                RefleshWithCondition();
+                            }
+                        }
+                        // Outbound
+                        else
+                        {
+
+                        }
+                        //foreach (ListViewDataItem item in lvQRCode.Items)
+                        //{
+                        //    // 복호화
+                        //    WorkOrderIdx = Decryptor(item.Value.ToString());
+
+                        //    // 값이없으면
+                        //    if (!string.IsNullOrEmpty(WorkOrderIdx.Trim()))
+                        //    {
+                        //        item.Value = "Invalid code - " + item.Value;
+                        //    }
+                        //    // 길이가 14, 12가 아니면
+                        //    else if (WorkOrderIdx.Length != 14 && WorkOrderIdx.Length != 12)
+                        //    {
+                        //        item.Value = "Invalid code - " + item.Value;
+                        //    }
+                        //    // S, D, O로 시작하지 않으면 
+                        //    else if (WorkOrderIdx.Substring(0, 1) != "S" && WorkOrderIdx.Substring(0, 1) != "D" && WorkOrderIdx.Substring(0, 1) != "O")
+                        //    {
+                        //        item.Value = "Invalid code - " + item.Value;
+                        //    }
+                        //    // 쿼리생성 
+                        //    else
+                        //    {
+                        //        SQL += "Update WorkOrder set Status=2 where WorkOrderIdx=" + WorkOrderIdx + "  ";
+                        //    }
+                        //}
+                        //// 쿼리가 있으면 작업상태 일괄 업데이트 
+                        //if (SQL != "")
+                        //{
+                        //    bool result = Controller.WorkOrder.Update(SQL);
+                        //    if (result) __main__.lblDescription.Text = "Update Succeed";
+                        //}
+                    }
+                }
+                    
+            }
+            catch (Exception ex)
+            {
+                __main__.lblDescription.Text = ex.Message;
+            }
+        }
+
+
+        private void lvQRCode_Click(object sender, EventArgs e)
+        {
+            txtBarcode.Select();
+        }
+
         /// <summary>
         /// 행 선택시 - 오더캔슬, 마감일때 편집 불가능하도록
         /// </summary>
@@ -1147,16 +1418,39 @@ namespace Dev.Fabric
                 }
                 else
                 {
-                    Console.WriteLine(row.Cells["WorkOrderIdx"].Value.ToString().Trim()); 
+                    //Console.WriteLine(row.Cells["WorkOrderIdx"].Value.ToString().Trim()); 
                     CommonValues.ListWorkID.Add(row.Cells["WorkOrderIdx"].Value.ToString().Trim());
                 }
             }
+        }
+
+        private void radLabel12_DoubleClick(object sender, EventArgs e)
+        {
+            dtInboundDate.Value = Convert.ToDateTime("2000-01-01"); 
         }
 
         #endregion
 
         #region 7. 기능 멤버 (변경필요없음)
 
+        /// <summary>
+        // QR읽은후 복호화 
+        /// </summary>
+        /// <param name="origin"></param>
+        /// <returns></returns>
+        private string Decryptor(string origin)
+        {
+            string result = "";
+
+            try
+            {
+                return result = Int.Encryptor.Decrypt(origin, "love1229");
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
         /// <summary>
         /// 그리드뷰 레이아웃 복구 (/conf에 그리드별로 저장함) 
         /// </summary>
@@ -1201,6 +1495,5 @@ namespace Dev.Fabric
         #endregion
         
     }
-
     
 }

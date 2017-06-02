@@ -13,6 +13,9 @@ namespace Dev.Options
             
         }
 
-        
+        private void InheritForm_Load(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

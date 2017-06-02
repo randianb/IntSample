@@ -1,4 +1,5 @@
 {
   "enablePaging": false,
-  "enableSearchRow": false
+  "enableSearchRow": false,
+  "NewOrderBuyerIdx": 15
 }

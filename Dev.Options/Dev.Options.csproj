@@ -90,6 +90,9 @@
     <Compile Include="VersionStruct.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="InheritForm.resx">
+      <DependentUpon>InheritForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InheritMDI.resx">
       <DependentUpon>InheritMDI.cs</DependentUpon>
     </EmbeddedResource>

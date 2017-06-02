@@ -131,3 +131,4 @@ D:\git\IntSample\IntSample\bin\Debug\Telerik.Windows.Documents.Core.xml
 D:\git\IntSample\IntSample\bin\Debug\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.xml
 D:\git\IntSample\IntSample\bin\Debug\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.xml
 D:\git\IntSample\IntSample\bin\Debug\Telerik.Windows.Zip.xml
+D:\git\IntSample\IntSample\bin\Debug\Int.Authority.dll

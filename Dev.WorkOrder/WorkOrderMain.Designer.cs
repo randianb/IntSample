@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -370,7 +370,7 @@
             this.gvOrderActual.MasterTemplate.EnablePaging = true;
             this.gvOrderActual.MasterTemplate.MultiSelect = true;
             this.gvOrderActual.MasterTemplate.PageSize = 50;
-            this.gvOrderActual.MasterTemplate.ViewDefinition = tableViewDefinition7;
+            this.gvOrderActual.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvOrderActual.Name = "gvOrderActual";
             this.gvOrderActual.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvOrderActual.ShowGroupPanel = false;
@@ -585,6 +585,7 @@
             this.lvQRCode.Text = "radListView1";
             this.lvQRCode.VisualItemFormatting += new Telerik.WinControls.UI.ListViewVisualItemEventHandler(this.lvQRCode_VisualItemFormatting);
             this.lvQRCode.ItemValueChanged += new Telerik.WinControls.UI.ListViewItemValueChangedEventHandler(this.lvQRCode_ItemValueChanged);
+            this.lvQRCode.Click += new System.EventHandler(this.lvQRCode_Click);
             // 
             // btnSaveData
             // 
@@ -645,7 +646,7 @@
             this.txtBarcode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtBarcode.Location = new System.Drawing.Point(3, 746);
             this.txtBarcode.Name = "txtBarcode";
-            this.txtBarcode.Size = new System.Drawing.Size(371, 20);
+            this.txtBarcode.Size = new System.Drawing.Size(371, 19);
             this.txtBarcode.TabIndex = 7;
             this.txtBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBarcode_KeyDown);
             // 

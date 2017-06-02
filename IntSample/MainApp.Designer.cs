@@ -32,6 +32,8 @@
             this.radRibbonBar1 = new Telerik.WinControls.UI.RadRibbonBar();
             this.bsViewMain = new Telerik.WinControls.UI.RadRibbonBarBackstageView();
             this.backstageViewPage3 = new Telerik.WinControls.UI.BackstageViewPage();
+            this.ddlNewOrderBuyer = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.enableSearchRow = new System.Windows.Forms.CheckBox();
             this.enablePagingGV = new System.Windows.Forms.CheckBox();
             this.retypePass = new Telerik.WinControls.UI.RadTextBox();
@@ -71,12 +73,12 @@
             this.radRibbonBarGroup1 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.btnYarnCodeMain = new Telerik.WinControls.UI.RadButtonElement();
             this.radRibbonBarGroup2 = new Telerik.WinControls.UI.RadRibbonBarGroup();
-            this.radButtonElement2 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement3 = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnYarnPurchase = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnYarnManager = new Telerik.WinControls.UI.RadButtonElement();
             this.radRibbonBarGroup3 = new Telerik.WinControls.UI.RadRibbonBarGroup();
-            this.radButtonElement4 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement5 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement6 = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnYarnInbound = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnYarnOutbound = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnYarnStock = new Telerik.WinControls.UI.RadButtonElement();
             this.ribbonTab4 = new Telerik.WinControls.UI.RibbonTab();
             this.radRibbonBarGroup15 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.btnFabricFabricCode = new Telerik.WinControls.UI.RadButtonElement();
@@ -93,35 +95,38 @@
             this.btnFabricReportWarehouse = new Telerik.WinControls.UI.RadButtonElement();
             this.ribbonTab3 = new Telerik.WinControls.UI.RibbonTab();
             this.radRibbonBarGroup7 = new Telerik.WinControls.UI.RadRibbonBarGroup();
-            this.radButtonElement14 = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnPatternRequest = new Telerik.WinControls.UI.RadButtonElement();
             this.btnPatternMain = new Telerik.WinControls.UI.RadButtonElement();
             this.radRibbonBarGroup14 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.btnPatternReportControl = new Telerik.WinControls.UI.RadButtonElement();
             this.ribbonTab5 = new Telerik.WinControls.UI.RibbonTab();
             this.radRibbonBarGroup10 = new Telerik.WinControls.UI.RadRibbonBarGroup();
-            this.radButtonElement25 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement26 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement27 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement28 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement29 = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnProductCutting = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnProductPrinting = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnProductEmbroidery = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnProductSewing = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnProductInspection = new Telerik.WinControls.UI.RadButtonElement();
             this.ribbonTab6 = new Telerik.WinControls.UI.RibbonTab();
             this.radRibbonBarGroup11 = new Telerik.WinControls.UI.RadRibbonBarGroup();
-            this.radButtonElement30 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement31 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement32 = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnOutboundFabric = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnOutboundCutted = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnOutboundFinished = new Telerik.WinControls.UI.RadButtonElement();
             this.ribbonTab7 = new Telerik.WinControls.UI.RibbonTab();
             this.radRibbonBarGroup12 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.btnSystemColor = new Telerik.WinControls.UI.RadButtonElement();
             this.btnSizeGroup = new Telerik.WinControls.UI.RadButtonElement();
             this.btnSize = new Telerik.WinControls.UI.RadButtonElement();
             this.btnSewingThread = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnLocation = new Telerik.WinControls.UI.RadButtonElement();
             this.radRibbonBarGroup13 = new Telerik.WinControls.UI.RadRibbonBarGroup();
-            this.radButtonElement37 = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnSystemApproval = new Telerik.WinControls.UI.RadButtonElement();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRibbonBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsViewMain)).BeginInit();
             this.bsViewMain.SuspendLayout();
             this.backstageViewPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlNewOrderBuyer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retypePass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.newPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername)).BeginInit();
@@ -275,6 +280,8 @@
             // backstageViewPage3
             // 
             this.backstageViewPage3.BackColor = System.Drawing.Color.Transparent;
+            this.backstageViewPage3.Controls.Add(this.ddlNewOrderBuyer);
+            this.backstageViewPage3.Controls.Add(this.radLabel9);
             this.backstageViewPage3.Controls.Add(this.enableSearchRow);
             this.backstageViewPage3.Controls.Add(this.enablePagingGV);
             this.backstageViewPage3.Controls.Add(this.retypePass);
@@ -290,13 +297,29 @@
             this.backstageViewPage3.Controls.Add(this.radLabel1);
             this.backstageViewPage3.Location = new System.Drawing.Point(132, 1);
             this.backstageViewPage3.Name = "backstageViewPage3";
-            this.backstageViewPage3.Size = new System.Drawing.Size(1115, 551);
+            this.backstageViewPage3.Size = new System.Drawing.Size(1130, 565);
             this.backstageViewPage3.TabIndex = 5;
+            // 
+            // ddlNewOrderBuyer
+            // 
+            this.ddlNewOrderBuyer.Location = new System.Drawing.Point(48, 483);
+            this.ddlNewOrderBuyer.Name = "ddlNewOrderBuyer";
+            this.ddlNewOrderBuyer.Size = new System.Drawing.Size(243, 20);
+            this.ddlNewOrderBuyer.TabIndex = 18;
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.radLabel9.Location = new System.Drawing.Point(48, 447);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(129, 29);
+            this.radLabel9.TabIndex = 17;
+            this.radLabel9.Text = "Favorite Buyer";
             // 
             // enableSearchRow
             // 
             this.enableSearchRow.AutoSize = true;
-            this.enableSearchRow.Location = new System.Drawing.Point(48, 414);
+            this.enableSearchRow.Location = new System.Drawing.Point(48, 382);
             this.enableSearchRow.Name = "enableSearchRow";
             this.enableSearchRow.Size = new System.Drawing.Size(124, 17);
             this.enableSearchRow.TabIndex = 15;
@@ -306,7 +329,7 @@
             // enablePagingGV
             // 
             this.enablePagingGV.AutoSize = true;
-            this.enablePagingGV.Location = new System.Drawing.Point(48, 382);
+            this.enablePagingGV.Location = new System.Drawing.Point(48, 350);
             this.enablePagingGV.Name = "enablePagingGV";
             this.enablePagingGV.Size = new System.Drawing.Size(148, 17);
             this.enablePagingGV.TabIndex = 16;
@@ -376,7 +399,7 @@
             // radLabel8
             // 
             this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.radLabel8.Location = new System.Drawing.Point(48, 337);
+            this.radLabel8.Location = new System.Drawing.Point(48, 305);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(82, 29);
             this.radLabel8.TabIndex = 6;
@@ -412,7 +435,7 @@
             this.backstageViewPage4.BackColor = System.Drawing.Color.Transparent;
             this.backstageViewPage4.Location = new System.Drawing.Point(132, 1);
             this.backstageViewPage4.Name = "backstageViewPage4";
-            this.backstageViewPage4.Size = new System.Drawing.Size(1115, 551);
+            this.backstageViewPage4.Size = new System.Drawing.Size(1130, 565);
             this.backstageViewPage4.TabIndex = 7;
             // 
             // backstageViewPage2
@@ -422,7 +445,7 @@
             this.backstageViewPage2.Controls.Add(this.radLabel7);
             this.backstageViewPage2.Location = new System.Drawing.Point(132, 1);
             this.backstageViewPage2.Name = "backstageViewPage2";
-            this.backstageViewPage2.Size = new System.Drawing.Size(1115, 551);
+            this.backstageViewPage2.Size = new System.Drawing.Size(1130, 565);
             this.backstageViewPage2.TabIndex = 3;
             // 
             // btnSaveAs
@@ -461,9 +484,9 @@
             this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 14F);
             this.radLabel5.Location = new System.Drawing.Point(53, 40);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(190, 29);
+            this.radLabel5.Size = new System.Drawing.Size(241, 29);
             this.radLabel5.TabIndex = 2;
-            this.radLabel5.Text = "Sample Management";
+            this.radLabel5.Text = "Development Management";
             // 
             // bsAbout
             // 
@@ -589,7 +612,6 @@
             // 
             // btnOrderReportWorkSchedule
             // 
-            this.btnOrderReportWorkSchedule.Enabled = false;
             this.btnOrderReportWorkSchedule.Image = global::SampleApp.Properties.Resources._1478825357_cmyk_042;
             this.btnOrderReportWorkSchedule.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrderReportWorkSchedule.Name = "btnOrderReportWorkSchedule";
@@ -600,7 +622,6 @@
             // 
             // btnOrderReportOrderStatus
             // 
-            this.btnOrderReportOrderStatus.Enabled = false;
             this.btnOrderReportOrderStatus.Image = global::SampleApp.Properties.Resources._1478825321_product_sales_report1;
             this.btnOrderReportOrderStatus.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrderReportOrderStatus.Name = "btnOrderReportOrderStatus";
@@ -611,7 +632,6 @@
             // 
             // btnOrderReportProductHistory
             // 
-            this.btnOrderReportProductHistory.Enabled = false;
             this.btnOrderReportProductHistory.Image = global::SampleApp.Properties.Resources.history1;
             this.btnOrderReportProductHistory.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrderReportProductHistory.Name = "btnOrderReportProductHistory";
@@ -622,7 +642,7 @@
             // 
             // ribbonTab1
             // 
-            this.ribbonTab1.IsSelected = true;
+            this.ribbonTab1.IsSelected = false;
             this.ribbonTab1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup1,
             this.radRibbonBarGroup2,
@@ -642,6 +662,7 @@
             this.btnYarnCodeMain.Image = global::SampleApp.Properties.Resources.basic3_064_database_482;
             this.btnYarnCodeMain.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnYarnCodeMain.Name = "btnYarnCodeMain";
+            this.btnYarnCodeMain.Tag = "54";
             this.btnYarnCodeMain.Text = "코드";
             this.btnYarnCodeMain.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnYarnCodeMain.TextWrap = true;
@@ -650,73 +671,73 @@
             // radRibbonBarGroup2
             // 
             this.radRibbonBarGroup2.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radButtonElement2,
-            this.radButtonElement3});
+            this.btnYarnPurchase,
+            this.btnYarnManager});
             this.radRibbonBarGroup2.Name = "radRibbonBarGroup2";
             this.radRibbonBarGroup2.Text = "Management";
             // 
-            // radButtonElement2
+            // btnYarnPurchase
             // 
-            this.radButtonElement2.Enabled = false;
-            this.radButtonElement2.Image = global::SampleApp.Properties.Resources.help_desk_482;
-            this.radButtonElement2.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement2.Name = "radButtonElement2";
-            this.radButtonElement2.Text = "발주요청";
-            this.radButtonElement2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement2.TextWrap = true;
+            this.btnYarnPurchase.Image = global::SampleApp.Properties.Resources.help_desk_482;
+            this.btnYarnPurchase.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnYarnPurchase.Name = "btnYarnPurchase";
+            this.btnYarnPurchase.Tag = "53";
+            this.btnYarnPurchase.Text = "발주요청";
+            this.btnYarnPurchase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnYarnPurchase.TextWrap = true;
             // 
-            // radButtonElement3
+            // btnYarnManager
             // 
-            this.radButtonElement3.Enabled = false;
-            this.radButtonElement3.Image = global::SampleApp.Properties.Resources.basic3_017_invoice_bill_482;
-            this.radButtonElement3.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement3.Name = "radButtonElement3";
-            this.radButtonElement3.Text = "원사관리";
-            this.radButtonElement3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement3.TextWrap = true;
+            this.btnYarnManager.Image = global::SampleApp.Properties.Resources.basic3_017_invoice_bill_482;
+            this.btnYarnManager.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnYarnManager.Name = "btnYarnManager";
+            this.btnYarnManager.Tag = "55";
+            this.btnYarnManager.Text = "원사관리";
+            this.btnYarnManager.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnYarnManager.TextWrap = true;
             // 
             // radRibbonBarGroup3
             // 
             this.radRibbonBarGroup3.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radButtonElement4,
-            this.radButtonElement5,
-            this.radButtonElement6});
+            this.btnYarnInbound,
+            this.btnYarnOutbound,
+            this.btnYarnStock});
             this.radRibbonBarGroup3.Name = "radRibbonBarGroup3";
             this.radRibbonBarGroup3.Text = "Report";
             // 
-            // radButtonElement4
+            // btnYarnInbound
             // 
-            this.radButtonElement4.Enabled = false;
-            this.radButtonElement4.Image = global::SampleApp.Properties.Resources.inbound4;
-            this.radButtonElement4.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement4.Name = "radButtonElement4";
-            this.radButtonElement4.Text = "입고";
-            this.radButtonElement4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement4.TextWrap = true;
+            this.btnYarnInbound.Image = global::SampleApp.Properties.Resources.inbound4;
+            this.btnYarnInbound.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnYarnInbound.Name = "btnYarnInbound";
+            this.btnYarnInbound.Tag = "56";
+            this.btnYarnInbound.Text = "입고";
+            this.btnYarnInbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnYarnInbound.TextWrap = true;
             // 
-            // radButtonElement5
+            // btnYarnOutbound
             // 
-            this.radButtonElement5.Enabled = false;
-            this.radButtonElement5.Image = global::SampleApp.Properties.Resources.outbound3;
-            this.radButtonElement5.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement5.Name = "radButtonElement5";
-            this.radButtonElement5.Text = "출고";
-            this.radButtonElement5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement5.TextWrap = true;
+            this.btnYarnOutbound.Image = global::SampleApp.Properties.Resources.outbound3;
+            this.btnYarnOutbound.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnYarnOutbound.Name = "btnYarnOutbound";
+            this.btnYarnOutbound.Tag = "57";
+            this.btnYarnOutbound.Text = "출고";
+            this.btnYarnOutbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnYarnOutbound.TextWrap = true;
             // 
-            // radButtonElement6
+            // btnYarnStock
             // 
-            this.radButtonElement6.Enabled = false;
-            this.radButtonElement6.Image = global::SampleApp.Properties.Resources.basic3_019_presentation_keynote_482;
-            this.radButtonElement6.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement6.Name = "radButtonElement6";
-            this.radButtonElement6.Text = "재고";
-            this.radButtonElement6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement6.TextWrap = true;
+            this.btnYarnStock.Image = global::SampleApp.Properties.Resources.basic3_019_presentation_keynote_482;
+            this.btnYarnStock.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnYarnStock.Name = "btnYarnStock";
+            this.btnYarnStock.Tag = "58";
+            this.btnYarnStock.Text = "재고";
+            this.btnYarnStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnYarnStock.TextWrap = true;
             // 
             // ribbonTab4
             // 
-            this.ribbonTab4.IsSelected = false;
+            this.ribbonTab4.IsSelected = true;
             this.ribbonTab4.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup15,
             this.radRibbonBarGroup8,
@@ -736,6 +757,7 @@
             this.btnFabricFabricCode.Image = global::SampleApp.Properties.Resources.fabric2;
             this.btnFabricFabricCode.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricFabricCode.Name = "btnFabricFabricCode";
+            this.btnFabricFabricCode.Tag = "26";
             this.btnFabricFabricCode.Text = "Fabric Code";
             this.btnFabricFabricCode.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricFabricCode.TextWrap = true;
@@ -755,6 +777,7 @@
             this.btnFabricInbound.Image = global::SampleApp.Properties.Resources.inbound5;
             this.btnFabricInbound.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricInbound.Name = "btnFabricInbound";
+            this.btnFabricInbound.Tag = "27";
             this.btnFabricInbound.Text = "Inbound";
             this.btnFabricInbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricInbound.TextWrap = true;
@@ -765,6 +788,7 @@
             this.btnFabricOutbound.Image = global::SampleApp.Properties.Resources.outbound4;
             this.btnFabricOutbound.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricOutbound.Name = "btnFabricOutbound";
+            this.btnFabricOutbound.Tag = "28";
             this.btnFabricOutbound.Text = "Outbound";
             this.btnFabricOutbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricOutbound.TextWrap = true;
@@ -772,10 +796,10 @@
             // 
             // btnFabricStock
             // 
-            this.btnFabricStock.Enabled = false;
             this.btnFabricStock.Image = global::SampleApp.Properties.Resources.stock1;
             this.btnFabricStock.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricStock.Name = "btnFabricStock";
+            this.btnFabricStock.Tag = "29";
             this.btnFabricStock.Text = "Stock";
             this.btnFabricStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricStock.TextWrap = true;
@@ -797,6 +821,7 @@
             this.btnFabricCodePrint.Image = global::SampleApp.Properties.Resources.qrcode_48;
             this.btnFabricCodePrint.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricCodePrint.Name = "btnFabricCodePrint";
+            this.btnFabricCodePrint.Tag = "30";
             this.btnFabricCodePrint.Text = "Print QR-Code";
             this.btnFabricCodePrint.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricCodePrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -804,50 +829,50 @@
             // 
             // btnFabricCodelist
             // 
-            this.btnFabricCodelist.Enabled = false;
             this.btnFabricCodelist.Image = global::SampleApp.Properties.Resources._698918_icon_86_document_list_48;
             this.btnFabricCodelist.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricCodelist.Name = "btnFabricCodelist";
+            this.btnFabricCodelist.Tag = "31";
             this.btnFabricCodelist.Text = "Code List";
             this.btnFabricCodelist.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricCodelist.TextWrap = true;
             // 
             // btnFabricReportInbound
             // 
-            this.btnFabricReportInbound.Enabled = false;
             this.btnFabricReportInbound.Image = global::SampleApp.Properties.Resources.inbound6;
             this.btnFabricReportInbound.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricReportInbound.Name = "btnFabricReportInbound";
+            this.btnFabricReportInbound.Tag = "32";
             this.btnFabricReportInbound.Text = "Inbound";
             this.btnFabricReportInbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricReportInbound.TextWrap = true;
             // 
             // btnFabricReportOutbound
             // 
-            this.btnFabricReportOutbound.Enabled = false;
             this.btnFabricReportOutbound.Image = global::SampleApp.Properties.Resources.outbound5;
             this.btnFabricReportOutbound.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricReportOutbound.Name = "btnFabricReportOutbound";
+            this.btnFabricReportOutbound.Tag = "33";
             this.btnFabricReportOutbound.Text = "Outbound";
             this.btnFabricReportOutbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricReportOutbound.TextWrap = true;
             // 
             // btnFabricReportStock
             // 
-            this.btnFabricReportStock.Enabled = false;
             this.btnFabricReportStock.Image = global::SampleApp.Properties.Resources.stock_481;
             this.btnFabricReportStock.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricReportStock.Name = "btnFabricReportStock";
+            this.btnFabricReportStock.Tag = "34";
             this.btnFabricReportStock.Text = "Stock";
             this.btnFabricReportStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricReportStock.TextWrap = true;
             // 
             // btnFabricReportWarehouse
             // 
-            this.btnFabricReportWarehouse.Enabled = false;
             this.btnFabricReportWarehouse.Image = global::SampleApp.Properties.Resources._1487998625_fork11;
             this.btnFabricReportWarehouse.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricReportWarehouse.Name = "btnFabricReportWarehouse";
+            this.btnFabricReportWarehouse.Tag = "35";
             this.btnFabricReportWarehouse.Text = "Warehouse";
             this.btnFabricReportWarehouse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricReportWarehouse.TextWrap = true;
@@ -864,26 +889,27 @@
             // radRibbonBarGroup7
             // 
             this.radRibbonBarGroup7.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radButtonElement14,
+            this.btnPatternRequest,
             this.btnPatternMain});
             this.radRibbonBarGroup7.Name = "radRibbonBarGroup7";
             this.radRibbonBarGroup7.Text = "Pattern";
             // 
-            // radButtonElement14
+            // btnPatternRequest
             // 
-            this.radButtonElement14.Enabled = false;
-            this.radButtonElement14.Image = global::SampleApp.Properties.Resources.request1;
-            this.radButtonElement14.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement14.Name = "radButtonElement14";
-            this.radButtonElement14.Text = "Request";
-            this.radButtonElement14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement14.TextWrap = true;
+            this.btnPatternRequest.Image = global::SampleApp.Properties.Resources.request1;
+            this.btnPatternRequest.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnPatternRequest.Name = "btnPatternRequest";
+            this.btnPatternRequest.Tag = "36";
+            this.btnPatternRequest.Text = "Request";
+            this.btnPatternRequest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPatternRequest.TextWrap = true;
             // 
             // btnPatternMain
             // 
             this.btnPatternMain.Image = global::SampleApp.Properties.Resources.pattern2;
             this.btnPatternMain.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnPatternMain.Name = "btnPatternMain";
+            this.btnPatternMain.Tag = "37";
             this.btnPatternMain.Text = "Pattern";
             this.btnPatternMain.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPatternMain.TextWrap = true;
@@ -898,10 +924,10 @@
             // 
             // btnPatternReportControl
             // 
-            this.btnPatternReportControl.Enabled = false;
             this.btnPatternReportControl.Image = global::SampleApp.Properties.Resources.history2;
             this.btnPatternReportControl.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnPatternReportControl.Name = "btnPatternReportControl";
+            this.btnPatternReportControl.Tag = "38";
             this.btnPatternReportControl.Text = "Control of Pattern";
             this.btnPatternReportControl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -916,62 +942,66 @@
             // radRibbonBarGroup10
             // 
             this.radRibbonBarGroup10.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radButtonElement25,
-            this.radButtonElement26,
-            this.radButtonElement27,
-            this.radButtonElement28,
-            this.radButtonElement29});
+            this.btnProductCutting,
+            this.btnProductPrinting,
+            this.btnProductEmbroidery,
+            this.btnProductSewing,
+            this.btnProductInspection});
             this.radRibbonBarGroup10.Name = "radRibbonBarGroup10";
             this.radRibbonBarGroup10.Text = "Production";
             // 
-            // radButtonElement25
+            // btnProductCutting
             // 
-            this.radButtonElement25.Image = global::SampleApp.Properties.Resources.cut1;
-            this.radButtonElement25.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement25.Name = "radButtonElement25";
-            this.radButtonElement25.Text = "Cutting";
-            this.radButtonElement25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement25.TextWrap = true;
+            this.btnProductCutting.Image = global::SampleApp.Properties.Resources.cut1;
+            this.btnProductCutting.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnProductCutting.Name = "btnProductCutting";
+            this.btnProductCutting.Tag = "39";
+            this.btnProductCutting.Text = "Cutting";
+            this.btnProductCutting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnProductCutting.TextWrap = true;
             // 
-            // radButtonElement26
+            // btnProductPrinting
             // 
-            this.radButtonElement26.Image = global::SampleApp.Properties.Resources.print1;
-            this.radButtonElement26.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement26.Name = "radButtonElement26";
-            this.radButtonElement26.Text = "Printing";
-            this.radButtonElement26.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement26.TextWrap = true;
+            this.btnProductPrinting.Image = global::SampleApp.Properties.Resources.print1;
+            this.btnProductPrinting.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnProductPrinting.Name = "btnProductPrinting";
+            this.btnProductPrinting.Tag = "40";
+            this.btnProductPrinting.Text = "Printing";
+            this.btnProductPrinting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnProductPrinting.TextWrap = true;
             // 
-            // radButtonElement27
+            // btnProductEmbroidery
             // 
-            this.radButtonElement27.Image = global::SampleApp.Properties.Resources.embroidery1;
-            this.radButtonElement27.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement27.Name = "radButtonElement27";
-            this.radButtonElement27.Text = "Embroidery";
-            this.radButtonElement27.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement27.TextWrap = true;
+            this.btnProductEmbroidery.Image = global::SampleApp.Properties.Resources.embroidery1;
+            this.btnProductEmbroidery.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnProductEmbroidery.Name = "btnProductEmbroidery";
+            this.btnProductEmbroidery.Tag = "41";
+            this.btnProductEmbroidery.Text = "Embroidery";
+            this.btnProductEmbroidery.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnProductEmbroidery.TextWrap = true;
             // 
-            // radButtonElement28
+            // btnProductSewing
             // 
-            this.radButtonElement28.Image = global::SampleApp.Properties.Resources.sew1;
-            this.radButtonElement28.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement28.Name = "radButtonElement28";
-            this.radButtonElement28.Text = "Sewing";
-            this.radButtonElement28.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement28.TextWrap = true;
+            this.btnProductSewing.Image = global::SampleApp.Properties.Resources.sew1;
+            this.btnProductSewing.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnProductSewing.Name = "btnProductSewing";
+            this.btnProductSewing.Tag = "42";
+            this.btnProductSewing.Text = "Sewing";
+            this.btnProductSewing.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnProductSewing.TextWrap = true;
             // 
-            // radButtonElement29
+            // btnProductInspection
             // 
-            this.radButtonElement29.Image = global::SampleApp.Properties.Resources.inspect1;
-            this.radButtonElement29.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement29.Name = "radButtonElement29";
-            this.radButtonElement29.Text = "Inspection";
-            this.radButtonElement29.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement29.TextWrap = true;
+            this.btnProductInspection.Image = global::SampleApp.Properties.Resources.inspect1;
+            this.btnProductInspection.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnProductInspection.Name = "btnProductInspection";
+            this.btnProductInspection.Tag = "43";
+            this.btnProductInspection.Text = "Inspection";
+            this.btnProductInspection.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnProductInspection.TextWrap = true;
             // 
             // ribbonTab6
             // 
-            this.ribbonTab6.Enabled = false;
             this.ribbonTab6.IsSelected = false;
             this.ribbonTab6.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup11});
@@ -981,38 +1011,41 @@
             // radRibbonBarGroup11
             // 
             this.radRibbonBarGroup11.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radButtonElement30,
-            this.radButtonElement31,
-            this.radButtonElement32});
+            this.btnOutboundFabric,
+            this.btnOutboundCutted,
+            this.btnOutboundFinished});
             this.radRibbonBarGroup11.Name = "radRibbonBarGroup11";
             this.radRibbonBarGroup11.Text = "Outbound";
             // 
-            // radButtonElement30
+            // btnOutboundFabric
             // 
-            this.radButtonElement30.Image = global::SampleApp.Properties.Resources.fabric3;
-            this.radButtonElement30.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement30.Name = "radButtonElement30";
-            this.radButtonElement30.Text = "Fabric";
-            this.radButtonElement30.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement30.TextWrap = true;
+            this.btnOutboundFabric.Image = global::SampleApp.Properties.Resources.fabric3;
+            this.btnOutboundFabric.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnOutboundFabric.Name = "btnOutboundFabric";
+            this.btnOutboundFabric.Tag = "44";
+            this.btnOutboundFabric.Text = "Fabric";
+            this.btnOutboundFabric.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnOutboundFabric.TextWrap = true;
             // 
-            // radButtonElement31
+            // btnOutboundCutted
             // 
-            this.radButtonElement31.Image = global::SampleApp.Properties.Resources.cut2;
-            this.radButtonElement31.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement31.Name = "radButtonElement31";
-            this.radButtonElement31.Text = "Cutted";
-            this.radButtonElement31.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement31.TextWrap = true;
+            this.btnOutboundCutted.Image = global::SampleApp.Properties.Resources.cut2;
+            this.btnOutboundCutted.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnOutboundCutted.Name = "btnOutboundCutted";
+            this.btnOutboundCutted.Tag = "45";
+            this.btnOutboundCutted.Text = "Cutted";
+            this.btnOutboundCutted.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnOutboundCutted.TextWrap = true;
             // 
-            // radButtonElement32
+            // btnOutboundFinished
             // 
-            this.radButtonElement32.Image = global::SampleApp.Properties.Resources._1478816448_line_741;
-            this.radButtonElement32.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement32.Name = "radButtonElement32";
-            this.radButtonElement32.Text = "Finished";
-            this.radButtonElement32.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement32.TextWrap = true;
+            this.btnOutboundFinished.Image = global::SampleApp.Properties.Resources._1478816448_line_741;
+            this.btnOutboundFinished.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnOutboundFinished.Name = "btnOutboundFinished";
+            this.btnOutboundFinished.Tag = "46";
+            this.btnOutboundFinished.Text = "Finished";
+            this.btnOutboundFinished.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnOutboundFinished.TextWrap = true;
             // 
             // ribbonTab7
             // 
@@ -1029,7 +1062,8 @@
             this.btnSystemColor,
             this.btnSizeGroup,
             this.btnSize,
-            this.btnSewingThread});
+            this.btnSewingThread,
+            this.btnLocation});
             this.radRibbonBarGroup12.Name = "radRibbonBarGroup12";
             this.radRibbonBarGroup12.Text = "Code";
             // 
@@ -1038,6 +1072,7 @@
             this.btnSystemColor.Image = global::SampleApp.Properties.Resources._1486706735_themes1;
             this.btnSystemColor.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSystemColor.Name = "btnSystemColor";
+            this.btnSystemColor.Tag = "47";
             this.btnSystemColor.Text = "Color";
             this.btnSystemColor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSystemColor.TextWrap = true;
@@ -1048,6 +1083,7 @@
             this.btnSizeGroup.Image = global::SampleApp.Properties.Resources._1486706861_5360___Dzone1;
             this.btnSizeGroup.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSizeGroup.Name = "btnSizeGroup";
+            this.btnSizeGroup.Tag = "48";
             this.btnSizeGroup.Text = "Size Group";
             this.btnSizeGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSizeGroup.TextWrap = true;
@@ -1058,6 +1094,7 @@
             this.btnSize.Image = global::SampleApp.Properties.Resources._13_481;
             this.btnSize.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSize.Name = "btnSize";
+            this.btnSize.Tag = "49";
             this.btnSize.Text = "Size";
             this.btnSize.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSize.TextWrap = true;
@@ -1068,27 +1105,39 @@
             this.btnSewingThread.Image = global::SampleApp.Properties.Resources.thread_brodery_clothes_482;
             this.btnSewingThread.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSewingThread.Name = "btnSewingThread";
+            this.btnSewingThread.Tag = "50";
             this.btnSewingThread.Text = "Sewing Thread";
             this.btnSewingThread.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSewingThread.TextWrap = true;
             this.btnSewingThread.Click += new System.EventHandler(this.btnSewingThread_Click);
             // 
+            // btnLocation
+            // 
+            this.btnLocation.Image = global::SampleApp.Properties.Resources.shop_78_48;
+            this.btnLocation.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnLocation.Name = "btnLocation";
+            this.btnLocation.Tag = "59";
+            this.btnLocation.Text = "Location";
+            this.btnLocation.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnLocation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnLocation.Click += new System.EventHandler(this.btnLocation_Click);
+            // 
             // radRibbonBarGroup13
             // 
             this.radRibbonBarGroup13.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radButtonElement37});
+            this.btnSystemApproval});
             this.radRibbonBarGroup13.Name = "radRibbonBarGroup13";
             this.radRibbonBarGroup13.Text = "Others";
             // 
-            // radButtonElement37
+            // btnSystemApproval
             // 
-            this.radButtonElement37.Enabled = false;
-            this.radButtonElement37.Image = global::SampleApp.Properties.Resources.process_chart_flow_plan_481;
-            this.radButtonElement37.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement37.Name = "radButtonElement37";
-            this.radButtonElement37.Text = "Approval";
-            this.radButtonElement37.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement37.TextWrap = true;
+            this.btnSystemApproval.Image = global::SampleApp.Properties.Resources.process_chart_flow_plan_481;
+            this.btnSystemApproval.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnSystemApproval.Name = "btnSystemApproval";
+            this.btnSystemApproval.Tag = "51";
+            this.btnSystemApproval.Text = "Approval";
+            this.btnSystemApproval.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSystemApproval.TextWrap = true;
             // 
             // MainApp
             // 
@@ -1118,6 +1167,8 @@
             this.bsViewMain.ResumeLayout(false);
             this.backstageViewPage3.ResumeLayout(false);
             this.backstageViewPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlNewOrderBuyer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.retypePass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.newPass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername)).EndInit();
@@ -1166,12 +1217,12 @@
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup1;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup2;
         private Telerik.WinControls.UI.RadButtonElement btnYarnCodeMain;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement2;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement3;
+        private Telerik.WinControls.UI.RadButtonElement btnYarnPurchase;
+        private Telerik.WinControls.UI.RadButtonElement btnYarnManager;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup3;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement4;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement5;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement6;
+        private Telerik.WinControls.UI.RadButtonElement btnYarnInbound;
+        private Telerik.WinControls.UI.RadButtonElement btnYarnOutbound;
+        private Telerik.WinControls.UI.RadButtonElement btnYarnStock;
         private System.Windows.Forms.CheckBox enableSearchRow;
         private System.Windows.Forms.CheckBox enablePagingGV;
         private Telerik.WinControls.UI.RadTextBox retypePass;
@@ -1197,7 +1248,7 @@
         private Telerik.WinControls.UI.RadButtonElement btnOrderWorkOrder;
         private Telerik.WinControls.UI.RadButtonElement btnOrderWorkSchedule;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup7;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement14;
+        private Telerik.WinControls.UI.RadButtonElement btnPatternRequest;
         private Telerik.WinControls.UI.RadButtonElement btnPatternMain;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup8;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup9;
@@ -1211,26 +1262,29 @@
         private Telerik.WinControls.UI.RadButtonElement btnFabricReportStock;
         private Telerik.WinControls.UI.RadButtonElement btnFabricReportWarehouse;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup10;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement25;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement26;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement27;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement28;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement29;
+        private Telerik.WinControls.UI.RadButtonElement btnProductCutting;
+        private Telerik.WinControls.UI.RadButtonElement btnProductPrinting;
+        private Telerik.WinControls.UI.RadButtonElement btnProductEmbroidery;
+        private Telerik.WinControls.UI.RadButtonElement btnProductSewing;
+        private Telerik.WinControls.UI.RadButtonElement btnProductInspection;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup11;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement30;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement31;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement32;
+        private Telerik.WinControls.UI.RadButtonElement btnOutboundFabric;
+        private Telerik.WinControls.UI.RadButtonElement btnOutboundCutted;
+        private Telerik.WinControls.UI.RadButtonElement btnOutboundFinished;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup12;
         private Telerik.WinControls.UI.RadButtonElement btnSystemColor;
         private Telerik.WinControls.UI.RadButtonElement btnSizeGroup;
         private Telerik.WinControls.UI.RadButtonElement btnSize;
         private Telerik.WinControls.UI.RadButtonElement btnSewingThread;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup13;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement37;
+        private Telerik.WinControls.UI.RadButtonElement btnSystemApproval;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup14;
         private Telerik.WinControls.UI.RadButtonElement btnPatternReportControl;
         private Telerik.WinControls.UI.RadButtonElement btnOrderReportTicketPrint;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup15;
         private Telerik.WinControls.UI.RadButtonElement btnFabricCodePrint;
+        private Telerik.WinControls.UI.RadDropDownList ddlNewOrderBuyer;
+        private Telerik.WinControls.UI.RadLabel radLabel9;
+        private Telerik.WinControls.UI.RadButtonElement btnLocation;
     }
 }
