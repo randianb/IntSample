@@ -25,6 +25,7 @@ namespace Dev.Fabric
         {
             try
             {
+                // 원단코드, 랙코드 구분
                 switch (CommonValues.WorkOperation.Trim())
                 {
                     case "Fabric": LoadingFabric(); break;
@@ -39,6 +40,9 @@ namespace Dev.Fabric
             
         }
         
+        /// <summary>
+        /// 창고 랙에 부착할 QR코드 (랙이 적재할 장소구분 - 143:원단창고, 144:부자재창고, 145:완성창고 >> 코드관리에서 입력관리) 
+        /// </summary>
         private void LoadingLocation()
         {
             try
@@ -89,6 +93,9 @@ namespace Dev.Fabric
             }
         }
 
+        /// <summary>
+        /// 원단봉지에 부착할 QR코드
+        /// </summary>
         private void LoadingFabric()
         {
             try

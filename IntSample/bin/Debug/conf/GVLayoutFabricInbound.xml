@@ -2,10 +2,10 @@
   <MasterTemplate MultiSelect="True" PageSize="50" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" AutoGenerateColumns="False">
     <Columns>
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="40" FieldName="Idx" Name="Idx" IsVisible="True" HeaderText="ID" />
-      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="100" FieldName="Status" Name="Status" IsVisible="True" HeaderText="Status" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="96" FieldName="Status" Name="Status" IsVisible="True" HeaderText="Status" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatString="{0:d}" Width="100" FieldName="IDate" Name="IDate" IsVisible="True" ReadOnly="True" HeaderText="Date" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CustIdx" DisplayMember="CustName" DataType="System.Int32" Width="100" FieldName="BuyerIdx" Name="BuyerIdx" IsVisible="True" HeaderText="Buyer" />
-      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="100" FieldName="ColorIdx" Name="ColorIdx" IsVisible="True" HeaderText="Color" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="Contents" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" Width="200" FieldName="ColorIdx" Name="ColorIdx" IsVisible="True" HeaderText="Color" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="Idx" DisplayMember="LongName" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="150" FieldName="FabricIdx" Name="FabricIdx" IsVisible="True" HeaderText="Fabric" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="100" FieldName="FabricType" Name="FabricType" IsVisible="True" HeaderText="FabricType" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="Artno" Name="Artno" IsVisible="True" HeaderText="Art" TextAlignment="MiddleCenter" />

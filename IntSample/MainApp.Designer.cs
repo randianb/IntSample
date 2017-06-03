@@ -1157,6 +1157,7 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "MainApp";
+            this.Activated += new System.EventHandler(this.MainApp_Activated);
             this.Load += new System.EventHandler(this.MainApp_Load);
             this.Controls.SetChildIndex(this.bsViewMain, 0);
             this.Controls.SetChildIndex(this.radRibbonBar1, 0);

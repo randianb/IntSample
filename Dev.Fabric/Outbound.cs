@@ -23,6 +23,8 @@ namespace Dev.Fabric
         #region 1. 변수 설정
 
         public InheritMDI __main__;                                     // 부모 MDI (하단 상태바 리턴용) 
+        private string _searchDate = "";
+        private string _outNo = "";
         public Dictionary<CommonValues.KeyName, string> _searchString;  // 쿼리값 value, 쿼리항목 key로 전달 
         public Dictionary<CommonValues.KeyName, int> _searchKey;        // 쿼리값 value, 쿼리항목 key로 전달 
         private bool _bRtn;                                             // 쿼리결과 리턴
@@ -56,13 +58,14 @@ namespace Dev.Fabric
         /// Initializer - InheritMDI 상속
         /// </summary>
         /// <param name="main"></param>
-        public Outbound(InheritMDI main)
+        public Outbound(InheritMDI main, string searchDate, string outNo)
         {
             base.InitializeComponent(); // parent 컴포넌트에 접근하기 위해 컨트롤을 public으로 지정 > 향후 수정 필요 (todo) 
             InitializeComponent();
             __main__ = main;            // MDI 연결 
             _gv1 = this.gvMain;  // 그리드뷰 일반화를 위해 변수 별도 저장
-            
+            _searchDate = searchDate;
+            _outNo = outNo; 
         }
 
         /// <summary>
@@ -79,9 +82,55 @@ namespace Dev.Fabric
             GV1_LayoutSetting(_gv1);    // 중앙 그리드뷰 설정 
             Config_ContextMenu();       // 중앙 그리드뷰 컨텍스트 생성 설정 
             LoadGVLayout();             // 그리드뷰 레이아웃 복구 
-            //DataBinding_GV1(0, null, "", "");   // 중앙 그리드뷰 데이터 
-
             
+            // 시작시 초기 날짜가 있는 경우, 데이터 즉시 조회
+            if (!string.IsNullOrEmpty(_searchDate) || !string.IsNullOrEmpty(_outNo))
+            {
+                try
+                {
+                    _gv1.DataSource = null;
+
+                    /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                    /// 읽기: 0, 쓰기: 1, 삭제: 2
+                    int _mode_ = 0;
+                    if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                        CheckAuth.ShowMessage(_mode_);
+                    else
+                    {
+                        _searchString = new Dictionary<CommonValues.KeyName, string>();
+                        _searchString.Add(CommonValues.KeyName.Lotno, "");
+                        _searchString.Add(CommonValues.KeyName.WorkOrderIdx, _outNo);
+                        _searchString.Add(CommonValues.KeyName.ColorIdx, "");
+
+                        _searchKey = new Dictionary<CommonValues.KeyName, int>();
+                        _searchKey.Add(CommonValues.KeyName.Status, 0);
+                        _searchKey.Add(CommonValues.KeyName.BuyerIdx, 0);
+                        
+                        _searchKey.Add(CommonValues.KeyName.FabricIdx, 0);
+                        _searchKey.Add(CommonValues.KeyName.FabricType, 0);
+
+                        _searchKey.Add(CommonValues.KeyName.InIdx, 0);
+                        _searchKey.Add(CommonValues.KeyName.Handler, 0);
+                        _searchKey.Add(CommonValues.KeyName.OrderIdx, 0);
+
+                        CultureInfo ci = new CultureInfo("ko-KR");
+                        _ds1 = Controller.Outbound.Getlist(_searchString, _searchKey, dtOutboundDate.Value.ToString("d", ci));
+
+                        if (_ds1 != null)
+                        {
+                            _gv1.DataSource = _ds1.Tables[0].DefaultView;
+                            __main__.lblRows.Text = _gv1.RowCount.ToString() + " Rows";
+                            _gv1.EnablePaging = CommonValues.enablePaging;
+                            _gv1.AllowSearchRow = CommonValues.enableSearchRow;
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("DataBindingGv1: " + ex.Message.ToString());
+                }
+            }
         }
 
         #region 컨텍스트 메뉴 생성 및 제거 
@@ -113,9 +162,9 @@ namespace Dev.Fabric
             mnuNew.Click += new EventHandler(mnuNew_Click);
 
             // 오더 삭제
-            //mnuDel = new RadMenuItem("Remove Inbound");
-            //mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
-            //mnuDel.Click += new EventHandler(mnuDel_Click);
+            mnuDel = new RadMenuItem("Cancel Outbound");
+            mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
+            mnuDel.Click += new EventHandler(mnuDel_Click);
 
             // 열 숨기기
             mnuHide = new RadMenuItem("Hide Column");
@@ -130,8 +179,8 @@ namespace Dev.Fabric
             separator.Tag = "seperator";
 
             // 컨텍스트 추가 
-            contextMenu.Items.Add(mnuNew);
-            //contextMenu.Items.Add(mnuDel);
+            //contextMenu.Items.Add(mnuNew);
+            contextMenu.Items.Add(mnuDel);
             contextMenu.Items.Add(separator);
 
             contextMenu.Items.Add(mnuHide);
@@ -165,7 +214,7 @@ namespace Dev.Fabric
             // 
             ddlColor.DataSource = lstColor;
             ddlColor.DisplayMember = "Contents";
-            ddlColor.ValueMember = "CodeIdx";
+            ddlColor.ValueMember = "Contents";
             ddlColor.AutoCompleteMode = AutoCompleteMode.Suggest;
             ddlColor.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
             ddlColor.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
@@ -214,7 +263,7 @@ namespace Dev.Fabric
             Status.HeaderText = "Status";
             Status.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             Status.DropDownStyle = RadDropDownStyle.DropDown;
-            Status.Width = 100;
+            Status.Width = 150;
             gv.Columns.Add(Status);
 
             GridViewDateTimeColumn IDate = new GridViewDateTimeColumn();
@@ -242,12 +291,12 @@ namespace Dev.Fabric
             ColorIdx.Name = "ColorIdx";
             ColorIdx.DataSource = lstColor2;
             ColorIdx.DisplayMember = "Contents";
-            ColorIdx.ValueMember = "CodeIdx";
+            ColorIdx.ValueMember = "Contents";
             ColorIdx.FieldName = "ColorIdx";
             ColorIdx.HeaderText = "Color";
             ColorIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             ColorIdx.DropDownStyle = RadDropDownStyle.DropDown;
-            ColorIdx.Width = 100;
+            ColorIdx.Width = 200;
             gv.Columns.Add(ColorIdx);
                         
             GridViewComboBoxColumn FabricIdx = new GridViewComboBoxColumn();
@@ -331,16 +380,11 @@ namespace Dev.Fabric
             IOCenterIdx.FieldName = "IOCenterIdx";
             IOCenterIdx.IsVisible = false; 
             gv.Columns.Add(IOCenterIdx);
-            
-            GridViewComboBoxColumn IODeptIdx = new GridViewComboBoxColumn();
+
+            GridViewTextBoxColumn IODeptIdx = new GridViewTextBoxColumn();
             IODeptIdx.Name = "IODeptIdx";
-            IODeptIdx.DataSource = lstDept;
-            IODeptIdx.DisplayMember = "CustName";
-            IODeptIdx.ValueMember = "CustIdx";
-            IODeptIdx.FieldName = "IODeptIdx";
+            IODeptIdx.FieldName = "DeptNm";
             IODeptIdx.HeaderText = "In";
-            IODeptIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            IODeptIdx.DropDownStyle = RadDropDownStyle.DropDown;
             IODeptIdx.Width = 150;
             gv.Columns.Add(IODeptIdx);
 
@@ -383,16 +427,15 @@ namespace Dev.Fabric
             InIdx.Name = "InIdx";
             InIdx.FieldName = "InIdx";
             InIdx.HeaderText = "In#";
-            InIdx.IsVisible = false; 
+            InIdx.ReadOnly = true;  
             InIdx.Width = 50;
             gv.Columns.Add(InIdx);
 
-            GridViewTextBoxColumn IsOut = new GridViewTextBoxColumn();
+            GridViewCheckBoxColumn IsOut = new GridViewCheckBoxColumn();
             IsOut.Name = "IsOut";
             IsOut.FieldName = "IsOut";
-            IsOut.HeaderText = "IsOut";
-            IsOut.IsVisible = false;
-            IsOut.Width = 50;
+            IsOut.HeaderText = "Out";
+            IsOut.Width = 40;
             gv.Columns.Add(IsOut);
             
 
@@ -456,7 +499,7 @@ namespace Dev.Fabric
 
             //// 마감오더 색상변경
             f = new Font(new FontFamily("Segoe UI"), 8.25f);
-            ConditionalFormattingObject obj2 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "1", "", true);
+            ConditionalFormattingObject obj2 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "True", "", true);
             obj2.RowForeColor = Color.Black;
             obj2.RowBackColor = Color.FromArgb(255, 220, 255, 240);
             obj2.RowFont = f;
@@ -544,7 +587,7 @@ namespace Dev.Fabric
                     }
 
                     // 해당 자료 삭제여부 확인후, 
-                    if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
+                    if (RadMessageBox.Show("Do you want to cancel this item?\n(ID: " + str + ")", "Confirm",
                         MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
                     {
                         // 삭제후 새로고침
@@ -569,17 +612,17 @@ namespace Dev.Fabric
         {
             try
             {
-                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
-                /// 읽기: 0, 쓰기: 1, 삭제: 2
-                if (Convert.ToInt16(__AUTHCODE__.Substring(1, 1).Trim()) > 0)
-                {
-                    string WorkOrderIdx = Int.Code.Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 14, "");           // 입고번호 생성 
-                                                                                                                                // 입고번호 생성과 동시에 QR코드 생성
-                    string __QRCode__ = Int.Encryptor.Encrypt(WorkOrderIdx.Trim(), "love1229");
-                    DataRow row = Controller.Inbound.Insert(WorkOrderIdx, __QRCode__, UserInfo.CenterIdx, UserInfo.DeptIdx, UserInfo.Idx);  // 신규 입력
-                    RefleshWithCondition();                                                                                     // 재조회 
-                    SetCurrentRow(_gv1, Convert.ToInt32(row["LastIdx"]));                                                       // 신규입력된 행번호로 이동
-                }
+                ///// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                ///// 읽기: 0, 쓰기: 1, 삭제: 2
+                //if (Convert.ToInt16(__AUTHCODE__.Substring(1, 1).Trim()) > 0)
+                //{
+                //    string WorkOrderIdx = Int.Code.Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 14, "");           // 입고번호 생성 
+                //                                                                                                                // 입고번호 생성과 동시에 QR코드 생성
+                //    string __QRCode__ = Int.Encryptor.Encrypt(WorkOrderIdx.Trim(), "love1229");
+                //    DataRow row = Controller.Inbound.Insert(WorkOrderIdx, __QRCode__, UserInfo.CenterIdx, UserInfo.DeptIdx, UserInfo.Idx);  // 신규 입력
+                //    RefleshWithCondition();                                                                                     // 재조회 
+                //    SetCurrentRow(_gv1, Convert.ToInt32(row["LastIdx"]));                                                       // 신규입력된 행번호로 이동
+                //}
                 
             }
             catch (Exception ex)
@@ -765,11 +808,11 @@ namespace Dev.Fabric
                     _searchString = new Dictionary<CommonValues.KeyName, string>();
                     _searchString.Add(CommonValues.KeyName.Lotno, txtLotno.Text.Trim());
                     _searchString.Add(CommonValues.KeyName.WorkOrderIdx, txtOutboundno.Text.Trim());
+                    _searchString.Add(CommonValues.KeyName.ColorIdx, "");
 
                     _searchKey = new Dictionary<CommonValues.KeyName, int>();
                     _searchKey.Add(CommonValues.KeyName.Status, Convert.ToInt32(ddlStatus.SelectedValue));
                     _searchKey.Add(CommonValues.KeyName.BuyerIdx, Convert.ToInt32(ddlBuyer.SelectedValue));
-                    _searchKey.Add(CommonValues.KeyName.ColorIdx, Convert.ToInt32(ddlColor.SelectedValue));
                     _searchKey.Add(CommonValues.KeyName.FabricIdx, Convert.ToInt32(ddlFabric.SelectedValue));
                     _searchKey.Add(CommonValues.KeyName.FabricType, Convert.ToInt32(ddlFabricType.SelectedValue));
 
@@ -845,43 +888,35 @@ namespace Dev.Fabric
                 else
                 {
                     // 객체생성 및 값 할당
-                    //_obj1 = new Controller.Inbound(Convert.ToInt32(row.Cells["Idx"].Value));
-                    //_obj1.Idx = Convert.ToInt32(row.Cells["Idx"].Value);
+                    _obj1 = new Controller.Outbound(Convert.ToInt32(row.Cells["Idx"].Value));
+                    _obj1.Idx = Convert.ToInt32(row.Cells["Idx"].Value);
 
                     //if (row.Cells["Status"].Value != DBNull.Value) _obj1.Status = Convert.ToInt32(row.Cells["Status"].Value);
-                    //if (row.Cells["IDate"].Value != DBNull.Value) _obj1.IDate = Convert.ToDateTime(row.Cells["IDate"].Value);
-                    //if (row.Cells["BuyerIdx"].Value != DBNull.Value) _obj1.BuyerIdx = Convert.ToInt32(row.Cells["BuyerIdx"].Value);
-                    //if (row.Cells["ColorIdx"].Value != DBNull.Value) _obj1.ColorIdx = Convert.ToInt32(row.Cells["ColorIdx"].Value);
-                    //if (row.Cells["FabricType"].Value != DBNull.Value) _obj1.FabricType = Convert.ToInt32(row.Cells["FabricType"].Value);
-                    //if (row.Cells["Artno"].Value != DBNull.Value) _obj1.Artno = row.Cells["Artno"].Value.ToString(); else _obj1.Artno = "";
-                    //if (row.Cells["Lotno"].Value != DBNull.Value) _obj1.Lotno = row.Cells["Lotno"].Value.ToString(); else _obj1.Lotno = "";
-                    //if (row.Cells["FabricIdx"].Value != DBNull.Value) _obj1.FabricIdx = Convert.ToInt32(row.Cells["FabricIdx"].Value);
-                    //if (row.Cells["Roll"].Value != DBNull.Value) _obj1.Roll = Convert.ToInt32(row.Cells["Roll"].Value);
-                    //if (row.Cells["Width"].Value != DBNull.Value) _obj1.Width = Convert.ToInt32(row.Cells["Width"].Value);
+                    if (row.Cells["IDate"].Value != DBNull.Value) _obj1.IDate = Convert.ToDateTime(row.Cells["IDate"].Value);
+                    if (row.Cells["BuyerIdx"].Value != DBNull.Value) _obj1.BuyerIdx = Convert.ToInt32(row.Cells["BuyerIdx"].Value);
+                    if (row.Cells["ColorIdx"].Value != DBNull.Value) _obj1.ColorIdx = Convert.ToString(row.Cells["ColorIdx"].Value);
+                    if (row.Cells["FabricType"].Value != DBNull.Value) _obj1.FabricType = Convert.ToInt32(row.Cells["FabricType"].Value);
+                    if (row.Cells["Artno"].Value != DBNull.Value) _obj1.Artno = row.Cells["Artno"].Value.ToString(); else _obj1.Artno = "";
+                    if (row.Cells["Lotno"].Value != DBNull.Value) _obj1.Lotno = row.Cells["Lotno"].Value.ToString(); else _obj1.Lotno = "";
+                    if (row.Cells["FabricIdx"].Value != DBNull.Value) _obj1.FabricIdx = Convert.ToInt32(row.Cells["FabricIdx"].Value);
+                    if (row.Cells["Roll"].Value != DBNull.Value) _obj1.Roll = Convert.ToInt32(row.Cells["Roll"].Value);
+                    if (row.Cells["Width"].Value != DBNull.Value) _obj1.Width = Convert.ToInt32(row.Cells["Width"].Value);
 
-                    //if (row.Cells["Kgs"].Value != DBNull.Value) _obj1.Kgs = Convert.ToInt32(row.Cells["Kgs"].Value);
-                    //if (row.Cells["Yds"].Value != DBNull.Value) _obj1.Yds = Convert.ToInt32(row.Cells["Yds"].Value);
-                    ////if (row.Cells["RegCenterIdx"].Value != DBNull.Value) _regCenterIdx = Convert.ToInt32(row.Cells["RegCenterIdx"]);
-                    ////if (row.Cells["RegDeptIdx"].Value != DBNull.Value) _regDeptIdx = Convert.ToInt32(row.Cells["RegDeptIdx"]);
-                    ////if (row.Cells["RegUserIdx"].Value != DBNull.Value) _regUserIdx = Convert.ToInt32(row.Cells["RegUserIdx"]);
-                    ////if (row.Cells["RegDate"].Value != DBNull.Value) _regDate = Convert.ToDateTime(row.Cells["RegDate"]);
+                    if (row.Cells["Kgs"].Value != DBNull.Value) _obj1.Kgs = Convert.ToInt32(row.Cells["Kgs"].Value);
+                    if (row.Cells["Yds"].Value != DBNull.Value) _obj1.Yds = Convert.ToInt32(row.Cells["Yds"].Value);
+                    //if (row.Cells["RegCenterIdx"].Value != DBNull.Value) _regCenterIdx = Convert.ToInt32(row.Cells["RegCenterIdx"]);
+                    //if (row.Cells["RegDeptIdx"].Value != DBNull.Value) _regDeptIdx = Convert.ToInt32(row.Cells["RegDeptIdx"]);
+                    //if (row.Cells["RegUserIdx"].Value != DBNull.Value) _regUserIdx = Convert.ToInt32(row.Cells["RegUserIdx"]);
+                    //if (row.Cells["RegDate"].Value != DBNull.Value) _regDate = Convert.ToDateTime(row.Cells["RegDate"]);
                     //if (row.Cells["IOCenterIdx"].Value != DBNull.Value) _obj1.IOCenterIdx = Convert.ToInt32(row.Cells["IOCenterIdx"].Value);
                     //if (row.Cells["IODeptIdx"].Value != DBNull.Value) _obj1.IODeptIdx = Convert.ToInt32(row.Cells["IODeptIdx"].Value);
-                    //if (row.Cells["Comments"].Value != DBNull.Value) _obj1.Comments = row.Cells["Comments"].Value.ToString(); else _obj1.Comments = "";
+                    if (row.Cells["OrderIdx"].Value != DBNull.Value) _obj1.OrderIdx = Convert.ToInt32(row.Cells["OrderIdx"].Value); else _obj1.OrderIdx = 0;
 
-                    //if (row.Cells["WorkOrderIdx"].Value != DBNull.Value) _obj1.WorkOrderIdx = row.Cells["WorkOrderIdx"].Value.ToString();
-                    //if (row.Cells["RackNo"].Value != DBNull.Value) _obj1.RackNo = Convert.ToInt32(row.Cells["RackNo"].Value); else _obj1.RackNo = 0;
-                    //if (row.Cells["Floorno"].Value != DBNull.Value) _obj1.Floorno = Convert.ToInt32(row.Cells["Floorno"].Value); else _obj1.Floorno = 0;
-                    //if (row.Cells["RackPos"].Value != DBNull.Value) _obj1.RackPos = Convert.ToInt32(row.Cells["RackPos"].Value); else _obj1.RackPos = 0;
-                    //if (row.Cells["PosX"].Value != DBNull.Value) _obj1.PosX = Convert.ToInt32(row.Cells["PosX"].Value); else _obj1.PosX = 0;
-                    //if (row.Cells["PosY"].Value != DBNull.Value) _obj1.PosY = Convert.ToInt32(row.Cells["PosY"].Value); else _obj1.PosY = 0;
-                    //if (row.Cells["Qrcode"].Value != DBNull.Value) _obj1.Qrcode = row.Cells["Qrcode"].Value.ToString(); else _obj1.Qrcode = "";
+                    if (row.Cells["Comments"].Value != DBNull.Value) _obj1.Comments = row.Cells["Comments"].Value.ToString(); else _obj1.Comments = "";
 
-                    //if (row.Cells["filenm1"].Value != DBNull.Value) _obj1.Filenm1 = row.Cells["filenm1"].ToString(); else _obj1.Filenm1 = "";
-                    //if (row.Cells["filenm2"].Value != DBNull.Value) _obj1.Filenm2 = row.Cells["filenm2"].ToString(); else _obj1.Filenm2 = "";
-                    //if (row.Cells["fileurl1"].Value != DBNull.Value) _obj1.Fileurl1 = row.Cells["fileurl1"].ToString(); else _obj1.Fileurl1 = "";
-                    //if (row.Cells["fileurl2"].Value != DBNull.Value) _obj1.Fileurl2 = row.Cells["fileurl2"].ToString(); else _obj1.Fileurl2 = "";
-
+                    if (row.Cells["Handler"].Value != DBNull.Value) _obj1.Handler = Convert.ToInt32(row.Cells["Handler"].Value); else _obj1.Handler = 0;
+                    if (row.Cells["IsOut"].Value != DBNull.Value) _obj1.IsOut = Convert.ToInt32(row.Cells["IsOut"].Value); else _obj1.IsOut = 0;
+                    
                     _bRtn = _obj1.Update();
                     if (_bRtn) __main__.lblDescription.Text = "Update Succeed";
                 }
@@ -1001,12 +1036,37 @@ namespace Dev.Fabric
         /// <param name="e"></param>
         private void gvOrderActual_SelectionChanged(object sender, EventArgs e)
         {
-
+            if (Int.Members.GetCurrentRow(_gv1, "IsOut") == 1)
+            {
+                Int.Members.GetCurrentRow(_gv1).ViewTemplate.ReadOnly = true;
+            }
+            else
+            {
+                Int.Members.GetCurrentRow(_gv1).ViewTemplate.ReadOnly = false;
+            }
         }
 
         private void radLabel12_DoubleClick(object sender, EventArgs e)
         {
             dtOutboundDate.Value = Convert.ToDateTime("2000-01-01"); 
+        }
+
+        private void gvMain_EditorRequired(object sender, EditorRequiredEventArgs e)
+        {
+            if (e.EditorType == typeof(RadDropDownListEditor))
+            {
+                e.EditorType = typeof(Dev.Controller.MyDDLEditor);
+            }
+
+        }
+
+        private void gvMain_CreateCell(object sender, GridViewCreateCellEventArgs e)
+        {
+            if (e.CellType == typeof(GridComboBoxCellElement) && e.Column.Name == "ColorIdx")
+            {
+                e.CellElement = new Dev.Controller.MyCombBoxCellElement(e.Column as GridViewDataColumn, e.Row);
+            }
+
         }
 
         #endregion

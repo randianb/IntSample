@@ -58,12 +58,15 @@ namespace SampleApp
                     // 버전 확인한후
                     foreach(VersionStruct ver in versionList)
                     {
+                        CommonValues.verNo =ver.Version.ToString();
+
                         DataRow dr = Data.LoginData.FindUpdateInfo(
                                 CommonValues.packageNo,
                                 ver.FileName, 
                                 Math.Round(ver.Version,2), 
                                 ver.AppliedDate
                         );
+                        
                         if (dr == null)
                         {
                             IsDiffVersion = true; 
@@ -183,7 +186,7 @@ namespace SampleApp
                 UserInfo.CenterIdx = Convert.ToInt32(dr["costcenteridx"]);
                 UserInfo.GroupIdx = Convert.ToInt32(dr["GroupIdx"]);
                 UserInfo.IsLeader = Convert.ToInt32(dr["IsLeader"]);
-
+                
                 // 코스트센터 또는 부서가 사용불가일때 접속차단 
                 if (Convert.ToInt32(dr["useCenter"]) != 1)
                 {

@@ -82,7 +82,7 @@ namespace Dev.Data
         /// <summary>
         /// Update
         /// </summary>
-        public static bool Update(int Idx, int Status, DateTime IDate, int BuyerIdx, int ColorIdx, int FabricType, 
+        public static bool Update(int Idx, int Status, DateTime IDate, int BuyerIdx, string ColorIdx, int FabricType, 
             string Artno, string Lotno, int FabricIdx, int Roll, int Width, double Kgs, double Yds, 
             int IOCenterIdx, int IODeptIdx, string Comments, int RackNo, int Floorno, int RackPos, 
             int PosX, int PosY, string Qrcode, string filenm1, string filenm2, string fileurl1, string fileurl2
@@ -110,7 +110,7 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@BuyerIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@BuyerIdx"].Value = BuyerIdx;
 
-                _cmd.Parameters.Add("@ColorIdx", SqlDbType.Int, 4);
+                _cmd.Parameters.Add("@ColorIdx", SqlDbType.NVarChar, 30);
                 _cmd.Parameters["@ColorIdx"].Value = ColorIdx;
 
                 _cmd.Parameters.Add("@FabricType", SqlDbType.Int, 4);
@@ -351,8 +351,8 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@BuyerIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@BuyerIdx"].Value = SearchKey[CommonValues.KeyName.BuyerIdx];
 
-                _cmd.Parameters.Add("@ColorIdx", SqlDbType.Int, 4);
-                _cmd.Parameters["@ColorIdx"].Value = SearchKey[CommonValues.KeyName.ColorIdx];
+                _cmd.Parameters.Add("@ColorIdx", SqlDbType.NVarChar, 30);
+                _cmd.Parameters["@ColorIdx"].Value = SearchString[CommonValues.KeyName.ColorIdx];
 
                 _cmd.Parameters.Add("@FabricType", SqlDbType.Int, 4);
                 _cmd.Parameters["@FabricType"].Value = SearchKey[CommonValues.KeyName.FabricType];

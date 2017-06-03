@@ -13,7 +13,7 @@ namespace Dev.Controller
         private int _status; 
         private DateTime _iDate;
         private int _buyerIdx;
-        private int _colorIdx;
+        private string _colorIdx;
         private int _fabricType;
         private string _artno;
         private string _lotno;
@@ -66,7 +66,7 @@ namespace Dev.Controller
             set { _buyerIdx = value; }
         }
         // 
-        public int ColorIdx
+        public string ColorIdx
         {
             get { return _colorIdx; }
             set { _colorIdx = value; }
@@ -206,7 +206,7 @@ namespace Dev.Controller
                 if (_row["Status"] != DBNull.Value) _status = Convert.ToInt32(_row["Status"]);
                 if (_row["IDate"] != DBNull.Value) _iDate = Convert.ToDateTime(_row["IDate"]);
                 if (_row["BuyerIdx"] != DBNull.Value) _buyerIdx = Convert.ToInt32(_row["BuyerIdx"]);
-                if (_row["ColorIdx"] != DBNull.Value) _colorIdx = Convert.ToInt32(_row["ColorIdx"]);
+                if (_row["ColorIdx"] != DBNull.Value) _colorIdx = Convert.ToString(_row["ColorIdx"]);
                 if (_row["FabricType"] != DBNull.Value) _fabricType = Convert.ToInt32(_row["FabricType"]);
                 if (_row["Artno"] != DBNull.Value) _artno = _row["Artno"].ToString();
                 if (_row["Lotno"] != DBNull.Value) _lotno = _row["Lotno"].ToString();
@@ -243,7 +243,7 @@ namespace Dev.Controller
             _status = 0;
             _iDate = DateTime.Now; 
             _buyerIdx = 0;
-            _colorIdx = 0;
+            _colorIdx = "";
             _fabricType = 0;
             _artno = ""; 
             _lotno = "";
@@ -274,10 +274,10 @@ namespace Dev.Controller
         /// 스캔 출고
         /// </summary>
         public static DataRow Insert(string InWorkOrderIdx, int Status, int RegCenterIdx, int RegDeptIdx, int RegUserIdx, int IOCenterIdx, int IODeptIdx,
-                int OrderIdx, string WorkOrderIdx, int InIdx)
+                int OrderIdx, string WorkOrderIdx)
         {
             DataRow row = Data.OutboundData.Insert(InWorkOrderIdx, Status, RegCenterIdx, RegDeptIdx, RegUserIdx, IOCenterIdx, IODeptIdx,
-                OrderIdx, WorkOrderIdx, InIdx);
+                OrderIdx, WorkOrderIdx);
             return row;
         }
         /// <summary>
@@ -299,9 +299,9 @@ namespace Dev.Controller
         public bool Update()
         {
             bool blRtn;
-            blRtn = Data.OutboundData.Update(_Idx, _status, _iDate, _buyerIdx, _colorIdx, _fabricType,
+            blRtn = Data.OutboundData.Update(_Idx, _iDate, _buyerIdx, _colorIdx, _fabricType,
                                         _artno, _lotno, _fabricIdx, _roll, _width, _kgs, _yds,
-                                        _iOCenterIdx, _iODeptIdx, _orderIdx, _comments, _handler, _inIdx, _isOut);
+                                        _orderIdx, _comments, _handler, _inIdx, _isOut);
             return blRtn;
         }
         

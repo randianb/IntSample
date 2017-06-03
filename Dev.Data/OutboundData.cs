@@ -27,7 +27,7 @@ namespace Dev.Data
         /// 스캔 출고
         /// </summary>
         public static DataRow Insert(string InWorkOrderIdx, int Status, int RegCenterIdx, int RegDeptIdx, int RegUserIdx, int IOCenterIdx, int IODeptIdx, 
-                int OrderIdx, string WorkOrderIdx, int InIdx)
+                int OrderIdx, string WorkOrderIdx)
         {
             try
             {
@@ -68,9 +68,6 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
                 _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
                 
-                _cmd.Parameters.Add("@InIdx", SqlDbType.Int, 4);
-                _cmd.Parameters["@InIdx"].Value = InIdx;
-
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);
             }
@@ -157,9 +154,9 @@ namespace Dev.Data
         /// <summary>
         /// Update
         /// </summary>
-        public static bool Update(int Idx, int Status, DateTime IDate, int BuyerIdx, int ColorIdx, int FabricType, 
+        public static bool Update(int Idx, DateTime IDate, int BuyerIdx, string ColorIdx, int FabricType, 
             string Artno, string Lotno, int FabricIdx, int Roll, int Width, double Kgs, double Yds, 
-            int IOCenterIdx, int IODeptIdx, int OrderIdx, string Comments, int Handler, int InIdx, int IsOut )
+            int OrderIdx, string Comments, int Handler, int InIdx, int IsOut )
         {
             try
             {
@@ -173,17 +170,14 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
                 _cmd.Parameters["@Idx"].Value = Idx;
-
-                _cmd.Parameters.Add("@Status", SqlDbType.TinyInt, 1);
-                _cmd.Parameters["@Status"].Value = Status;
-
+                
                 _cmd.Parameters.Add("@IDate", SqlDbType.DateTime, 8);
                 _cmd.Parameters["@IDate"].Value = IDate;
 
                 _cmd.Parameters.Add("@BuyerIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@BuyerIdx"].Value = BuyerIdx;
 
-                _cmd.Parameters.Add("@ColorIdx", SqlDbType.Int, 4);
+                _cmd.Parameters.Add("@ColorIdx", SqlDbType.NVarChar, 30);
                 _cmd.Parameters["@ColorIdx"].Value = ColorIdx;
 
                 _cmd.Parameters.Add("@FabricType", SqlDbType.Int, 4);
@@ -210,12 +204,6 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@Yds", SqlDbType.Float, 4);
                 _cmd.Parameters["@Yds"].Value = Yds;
                 
-                _cmd.Parameters.Add("@IOCenterIdx", SqlDbType.Int, 4);
-                _cmd.Parameters["@IOCenterIdx"].Value = IOCenterIdx;
-
-                _cmd.Parameters.Add("@IODeptIdx", SqlDbType.Int, 4);
-                _cmd.Parameters["@IODeptIdx"].Value = IODeptIdx;
-
                 _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
                 
@@ -228,7 +216,7 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@InIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@InIdx"].Value = InIdx;
 
-                _cmd.Parameters.Add("@IsOut", SqlDbType.Int, 4);
+                _cmd.Parameters.Add("@IsOut", SqlDbType.TinyInt, 1);
                 _cmd.Parameters["@IsOut"].Value = IsOut;
                                 
                 _rtn = _cmd.ExecuteNonQuery();
@@ -314,8 +302,8 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@BuyerIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@BuyerIdx"].Value = SearchKey[CommonValues.KeyName.BuyerIdx];
 
-                _cmd.Parameters.Add("@ColorIdx", SqlDbType.Int, 4);
-                _cmd.Parameters["@ColorIdx"].Value = SearchKey[CommonValues.KeyName.ColorIdx];
+                _cmd.Parameters.Add("@ColorIdx", SqlDbType.NVarChar, 30);
+                _cmd.Parameters["@ColorIdx"].Value = SearchString[CommonValues.KeyName.ColorIdx];
 
                 _cmd.Parameters.Add("@FabricType", SqlDbType.Int, 4);
                 _cmd.Parameters["@FabricType"].Value = SearchKey[CommonValues.KeyName.FabricType];
@@ -339,7 +327,7 @@ namespace Dev.Data
                 _cmd.Parameters["@InIdx"].Value = SearchKey[CommonValues.KeyName.InIdx];
 
                 _cmd.Parameters.Add("@indate", SqlDbType.NVarChar, 10);
-                _cmd.Parameters["@indate"].Value = (indate == "2000-01-01" ? "" : indate);
+                _cmd.Parameters["@indate"].Value = (indate == "2000-01-01" || string.IsNullOrEmpty(indate) ? "" : indate);
 
 
                 _adapter.SelectCommand = _cmd;

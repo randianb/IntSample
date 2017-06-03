@@ -515,7 +515,7 @@ namespace SampleApp
         {
             if (Close_All_Children("Outbound"))
             {
-                Outbound frm = new Outbound(this);
+                Outbound frm = new Outbound(this, "", "");
                 frm.Text = "Fabric Outbound";
                 frm.MdiParent = this;
                 frm.Show();
@@ -553,6 +553,11 @@ namespace SampleApp
                 frm.MdiParent = this;
                 frm.Show();
             }
+        }
+
+        private void MainApp_Activated(object sender, EventArgs e)
+        {
+            this.Text = "INT Development Management Ver"+CommonValues.verNo; 
         }
     }
 }
