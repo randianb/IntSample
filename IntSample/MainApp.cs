@@ -559,5 +559,51 @@ namespace SampleApp
         {
             this.Text = "INT Development Management Ver"+CommonValues.verNo; 
         }
+
+        private void btnFabricCodelist_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("rptFabricCode"))
+            {
+                rptFabricCode frm = new rptFabricCode();
+                frm.Text = "Fabric Code";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            
+        }
+
+        private void btnFabricReportInbound_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("frmPrintInbound"))
+            {
+                frmPrintInbound frm = new frmPrintInbound();
+                frm.Text = "Fabric Inbound";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            
+        }
+
+        private void btnFabricReportOutbound_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("frmPrintOutbound"))
+            {
+                frmPrintOutbound frm = new frmPrintOutbound();
+                frm.Text = "Fabric Outbound";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            
+        }
+
+        private void btnFabricReportWarehouse_Click(object sender, EventArgs e)
+        {
+            
+                Warehouse frm = new Warehouse(this);
+                frm.Text = "Fabric Warehouse";
+                //frm.MdiParent = this;
+                frm.Show();
+            
+        }
     }
 }

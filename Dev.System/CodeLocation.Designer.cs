@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.gvMain = new Telerik.WinControls.UI.RadGridView();
@@ -130,14 +130,15 @@
             this.gvMain.MasterTemplate.AutoGenerateColumns = false;
             this.gvMain.MasterTemplate.EnablePaging = true;
             this.gvMain.MasterTemplate.MultiSelect = true;
-            this.gvMain.MasterTemplate.PageSize = 50;
-            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvMain.MasterTemplate.PageSize = 45;
+            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvMain.Name = "gvMain";
             this.gvMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvMain.ShowGroupPanel = false;
             this.gvMain.Size = new System.Drawing.Size(1271, 847);
             this.gvMain.TabIndex = 11;
             this.gvMain.Text = "radGridView1";
+            this.gvMain.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvMain_CellFormatting);
             this.gvMain.ViewCellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvOrderActual_ViewCellFormatting);
             this.gvMain.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.MasterTemplate_CellEditorInitialized);
             this.gvMain.SelectionChanged += new System.EventHandler(this.gvOrderActual_SelectionChanged);
@@ -348,7 +349,7 @@
             this.ddlRack1.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlRack1.Location = new System.Drawing.Point(3, 3);
             this.ddlRack1.Name = "ddlRack1";
-            this.ddlRack1.Size = new System.Drawing.Size(83, 20);
+            this.ddlRack1.Size = new System.Drawing.Size(83, 23);
             this.ddlRack1.TabIndex = 6;
             // 
             // ddlRack2
@@ -358,7 +359,7 @@
             this.ddlRack2.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlRack2.Location = new System.Drawing.Point(92, 3);
             this.ddlRack2.Name = "ddlRack2";
-            this.ddlRack2.Size = new System.Drawing.Size(83, 20);
+            this.ddlRack2.Size = new System.Drawing.Size(83, 23);
             this.ddlRack2.TabIndex = 6;
             // 
             // ddlRack3
@@ -368,7 +369,7 @@
             this.ddlRack3.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlRack3.Location = new System.Drawing.Point(181, 3);
             this.ddlRack3.Name = "ddlRack3";
-            this.ddlRack3.Size = new System.Drawing.Size(85, 20);
+            this.ddlRack3.Size = new System.Drawing.Size(85, 23);
             this.ddlRack3.TabIndex = 6;
             // 
             // radLabel7

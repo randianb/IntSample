@@ -833,32 +833,40 @@ namespace Dev.Pattern
         /// <param name="e"></param>
         private void gvOrderActual_SelectionChanged(object sender, EventArgs e)
         {
-            if (Int.Members.GetCurrentRow(_gv1, "Status") == 2
+            try
+            {
+                if (Int.Members.GetCurrentRow(_gv1, "Status") == 2
                 || Int.Members.GetCurrentRow(_gv1, "Status") == 3)
-            {
-                Int.Members.GetCurrentRow(_gv1).ViewTemplate.ReadOnly = true;
+                {
+                    Int.Members.GetCurrentRow(_gv1).ViewTemplate.ReadOnly = true;
+                }
+                else
+                {
+                    Int.Members.GetCurrentRow(_gv1).ViewTemplate.ReadOnly = false;
+                }
+
+                // 행변경시 우측 샘플타입도 변경해준다 
+                DataBinding_GV2(Int.Members.GetCurrentRow(_gv1, "OrderIdx"), Int.Members.GetCurrentRow(_gv1, "OrdSizeIdx"));
+
+                GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
+
+                if (row.Cells["Attached1"].Value != DBNull.Value) linkLabel1.Text = row.Cells["Attached1"].Value.ToString();
+                if (row.Cells["Attached2"].Value != DBNull.Value) linkLabel2.Text = row.Cells["Attached2"].Value.ToString();
+                if (row.Cells["Attached3"].Value != DBNull.Value) linkLabel3.Text = row.Cells["Attached3"].Value.ToString();
+                if (row.Cells["Attached4"].Value != DBNull.Value) linkLabel4.Text = row.Cells["Attached4"].Value.ToString();
+                if (row.Cells["Attached5"].Value != DBNull.Value) linkLabel5.Text = row.Cells["Attached5"].Value.ToString();
+                if (row.Cells["Comments"].Value != DBNull.Value) txtComments.Text = row.Cells["Comments"].Value.ToString();
+                //linkLabel1.Tag = "";
+                //linkLabel2.Tag = "";
+                //linkLabel3.Tag = "";
+                //linkLabel4.Tag = "";
+                //linkLabel5.Tag = "";
             }
-            else
+            catch(Exception ex)
             {
-                Int.Members.GetCurrentRow(_gv1).ViewTemplate.ReadOnly = false;
+
             }
 
-            // 행변경시 우측 샘플타입도 변경해준다 
-            DataBinding_GV2(Int.Members.GetCurrentRow(_gv1, "OrderIdx"), Int.Members.GetCurrentRow(_gv1, "OrdSizeIdx"));
-
-            GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
-            
-            if (row.Cells["Attached1"].Value != DBNull.Value) linkLabel1.Text = row.Cells["Attached1"].Value.ToString();
-            if (row.Cells["Attached2"].Value != DBNull.Value) linkLabel2.Text = row.Cells["Attached2"].Value.ToString();
-            if (row.Cells["Attached3"].Value != DBNull.Value) linkLabel3.Text = row.Cells["Attached3"].Value.ToString();
-            if (row.Cells["Attached4"].Value != DBNull.Value) linkLabel4.Text = row.Cells["Attached4"].Value.ToString();
-            if (row.Cells["Attached5"].Value != DBNull.Value) linkLabel5.Text = row.Cells["Attached5"].Value.ToString();
-            if (row.Cells["Comments"].Value != DBNull.Value) txtComments.Text = row.Cells["Comments"].Value.ToString();
-            //linkLabel1.Tag = "";
-            //linkLabel2.Tag = "";
-            //linkLabel3.Tag = "";
-            //linkLabel4.Tag = "";
-            //linkLabel5.Tag = "";
         }
 
         /// <summary>
@@ -991,32 +999,43 @@ namespace Dev.Pattern
 
         private void LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CheckFolder(@"C:\INT\Data\updateintsample");
-            Download_File("updateintsample", ((System.Windows.Forms.LinkLabel)sender).Text);
-            Process process = new Process();
-            process.StartInfo.FileName = @"C:\INT\Data\updateintsample\" + ((System.Windows.Forms.LinkLabel)sender).Text.Trim();
-            process.Start();
+            try
+            {
+                CheckFolder(@"C:\INT\Data\intsamplepattern");
+                Download_File("intsamplepattern", ((System.Windows.Forms.LinkLabel)sender).Text);
+                Process process = new Process();
+                process.StartInfo.FileName = @"C:\INT\Data\intsamplepattern\" + ((System.Windows.Forms.LinkLabel)sender).Text.Trim();
+                process.Start();
+            }
+            catch(Exception ex) {  }
         }
         
         private void Download_File(string containerurl, string filename)
         {
-            // Retrieve storage account from connection string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                CloudConfigurationManager.GetSetting("StorageConnectionString"));
-
-            // Create the blob client.
-            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-
-            // Retrieve reference to a previously created container.
-            CloudBlobContainer container = blobClient.GetContainerReference(containerurl);
-
-            // Retrieve reference to a blob named "photo1.jpg".
-            CloudBlockBlob blockBlob = container.GetBlockBlobReference(filename);
-
-            // Save blob contents to a file.
-            using (var fileStream = System.IO.File.OpenWrite(@"C:\INT\Data\" + containerurl + @"\" + filename))
+            try
             {
-                blockBlob.DownloadToStream(fileStream);
+                // Retrieve storage account from connection string.
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+                    CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
+                // Create the blob client.
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+                // Retrieve reference to a previously created container.
+                CloudBlobContainer container = blobClient.GetContainerReference(containerurl);
+
+                // Retrieve reference to a blob named "photo1.jpg".
+                CloudBlockBlob blockBlob = container.GetBlockBlobReference(filename);
+
+                // Save blob contents to a file.
+                using (var fileStream = System.IO.File.OpenWrite(@"C:\INT\Data\" + containerurl + @"\" + filename))
+                {
+                    blockBlob.DownloadToStream(fileStream);
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
 

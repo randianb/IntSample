@@ -625,6 +625,7 @@
             this.toggleWay.Size = new System.Drawing.Size(180, 28);
             this.toggleWay.TabIndex = 7;
             this.toggleWay.Text = "radToggleSwitch1";
+            this.toggleWay.Value = false;
             this.toggleWay.ValueChanged += new System.EventHandler(this.toggleWay_ValueChanged);
             // 
             // toggleMode

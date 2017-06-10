@@ -43,8 +43,12 @@
     <Reference Include="Telerik.WinControls.UI, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FabricMapInfo.cs" />
+    <Compile Include="Cutting.cs" />
+    <Compile Include="Worksheet.cs" />
     <Compile Include="MyCombBoxCellElement.cs" />
     <Compile Include="MyDDLEditor.cs" />
+    <Compile Include="OrderFabric.cs" />
     <Compile Include="Outbound.cs" />
     <Compile Include="OrderType.cs" />
     <Compile Include="Fabric.cs" />

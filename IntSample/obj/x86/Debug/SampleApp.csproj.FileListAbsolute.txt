@@ -112,7 +112,6 @@ D:\git\IntSample\IntSample\bin\Debug\Dev.Yarn.pdb
 D:\git\IntSample\IntSample\bin\Debug\Dev.Fabric.dll
 D:\git\IntSample\IntSample\bin\Debug\Dev.Fabric.pdb
 D:\git\IntSample\IntSample\bin\Debug\TelerikExport.dll
-D:\git\IntSample\IntSample\bin\Debug\Telerik.WinControls.RadMap.dll
 D:\git\IntSample\IntSample\bin\Debug\Telerik.WinControls.Scheduler.dll
 D:\git\IntSample\IntSample\bin\Debug\Telerik.Windows.Documents.Fixed.dll
 D:\git\IntSample\IntSample\bin\Debug\Telerik.Documents.SpreadsheetStreaming.dll
@@ -122,7 +121,6 @@ D:\git\IntSample\IntSample\bin\Debug\Telerik.Windows.Documents.Spreadsheet.Forma
 D:\git\IntSample\IntSample\bin\Debug\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll
 D:\git\IntSample\IntSample\bin\Debug\Telerik.Windows.Zip.dll
 D:\git\IntSample\IntSample\bin\Debug\TelerikExport.xml
-D:\git\IntSample\IntSample\bin\Debug\Telerik.WinControls.RadMap.xml
 D:\git\IntSample\IntSample\bin\Debug\Telerik.WinControls.Scheduler.xml
 D:\git\IntSample\IntSample\bin\Debug\Telerik.Windows.Documents.Fixed.xml
 D:\git\IntSample\IntSample\bin\Debug\Telerik.Documents.SpreadsheetStreaming.xml
@@ -132,3 +130,5 @@ D:\git\IntSample\IntSample\bin\Debug\Telerik.Windows.Documents.Spreadsheet.Forma
 D:\git\IntSample\IntSample\bin\Debug\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.xml
 D:\git\IntSample\IntSample\bin\Debug\Telerik.Windows.Zip.xml
 D:\git\IntSample\IntSample\bin\Debug\Int.Authority.dll
+D:\git\IntSample\IntSample\bin\Debug\Telerik.WinControls.RichTextEditor.dll
+D:\git\IntSample\IntSample\bin\Debug\Telerik.WinControls.RichTextEditor.xml

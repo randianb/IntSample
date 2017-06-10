@@ -171,14 +171,7 @@ namespace Dev.Codes
             Idx.TextAlignment = ContentAlignment.MiddleLeft;
             gv.Columns.Add(Idx);
 
-            GridViewTextBoxColumn LocationName = new GridViewTextBoxColumn();
-            LocationName.Name = "LocationName";
-            LocationName.FieldName = "LocationName";
-            LocationName.HeaderText = "Location";
-            LocationName.Width = 100;
-            LocationName.TextAlignment = ContentAlignment.MiddleLeft;
-            gv.Columns.Add(LocationName);
-
+            
             GridViewComboBoxColumn Warehouse = new GridViewComboBoxColumn();
             Warehouse.Name = "Warehouse";
             Warehouse.DataSource = lstWarehouse;
@@ -191,24 +184,6 @@ namespace Dev.Codes
             Warehouse.Width = 100;
             gv.Columns.Add(Warehouse);
 
-            GridViewTextBoxColumn PosX = new GridViewTextBoxColumn();
-            PosX.DataType = typeof(int);
-            PosX.Name = "PosX";
-            PosX.FieldName = "PosX";
-            PosX.HeaderText = "PosX";
-            PosX.Width = 60;
-            PosX.TextAlignment = ContentAlignment.MiddleLeft;
-            gv.Columns.Add(PosX);
-
-            GridViewTextBoxColumn PosY = new GridViewTextBoxColumn();
-            PosY.DataType = typeof(int);
-            PosY.Name = "PosY";
-            PosY.FieldName = "PosY";
-            PosY.HeaderText = "PosY";
-            PosY.Width = 60;
-            PosY.TextAlignment = ContentAlignment.MiddleLeft;
-            gv.Columns.Add(PosY);
-
             GridViewComboBoxColumn RackNo = new GridViewComboBoxColumn();
             RackNo.Name = "RackNo";
             RackNo.DataSource = lstRack1;
@@ -216,6 +191,7 @@ namespace Dev.Codes
             RackNo.ValueMember = "CodeIdx";
             RackNo.FieldName = "RackNo";
             RackNo.HeaderText = "RackNo";
+            RackNo.TextAlignment = ContentAlignment.MiddleCenter; 
             RackNo.AutoCompleteMode = AutoCompleteMode.Suggest;
             RackNo.DropDownStyle = RadDropDownStyle.DropDownList;
             RackNo.Width = 70;
@@ -228,6 +204,7 @@ namespace Dev.Codes
             Floorno.ValueMember = "CodeIdx";
             Floorno.FieldName = "Floorno";
             Floorno.HeaderText = "Floorno";
+            Floorno.TextAlignment = ContentAlignment.MiddleCenter;
             Floorno.AutoCompleteMode = AutoCompleteMode.Suggest;
             Floorno.DropDownStyle = RadDropDownStyle.DropDownList;
             Floorno.Width = 70;
@@ -240,11 +217,30 @@ namespace Dev.Codes
             RackPos.ValueMember = "CodeIdx";
             RackPos.FieldName = "RackPos";
             RackPos.HeaderText = "RackPos";
+            RackPos.TextAlignment = ContentAlignment.MiddleCenter;
             RackPos.AutoCompleteMode = AutoCompleteMode.Suggest;
             RackPos.DropDownStyle = RadDropDownStyle.DropDownList;
             RackPos.Width = 70;
             gv.Columns.Add(RackPos);
 
+            GridViewTextBoxColumn PosX = new GridViewTextBoxColumn();
+            PosX.DataType = typeof(int);
+            PosX.Name = "PosX";
+            PosX.FieldName = "PosX";
+            PosX.HeaderText = "PosX";
+            PosX.Width = 60;
+            PosX.TextAlignment = ContentAlignment.MiddleCenter;
+            gv.Columns.Add(PosX);
+
+            GridViewTextBoxColumn PosY = new GridViewTextBoxColumn();
+            PosY.DataType = typeof(int);
+            PosY.Name = "PosY";
+            PosY.FieldName = "PosY";
+            PosY.HeaderText = "PosY";
+            PosY.Width = 60;
+            PosY.TextAlignment = ContentAlignment.MiddleCenter;
+            gv.Columns.Add(PosY);
+            
             GridViewTextBoxColumn Remark = new GridViewTextBoxColumn();
             Remark.Name = "Remark";
             Remark.FieldName = "Remark";
@@ -252,6 +248,14 @@ namespace Dev.Codes
             Remark.Width = 200;
             Remark.TextAlignment = ContentAlignment.MiddleLeft;
             gv.Columns.Add(Remark);
+
+            GridViewTextBoxColumn LocationName = new GridViewTextBoxColumn();
+            LocationName.Name = "LocationName";
+            LocationName.FieldName = "LocationName";
+            LocationName.HeaderText = "Location";
+            LocationName.Width = 100;
+            LocationName.TextAlignment = ContentAlignment.MiddleLeft;
+            gv.Columns.Add(LocationName);
 
             GridViewCheckBoxColumn IsUse = new GridViewCheckBoxColumn();
             IsUse.DataType = typeof(int);
@@ -276,6 +280,7 @@ namespace Dev.Codes
             CreateCode.DefaultText = "Create";
             CreateCode.FieldName = "CreateCode";
             CreateCode.HeaderText = "Create QR";
+            CreateCode.TextAlignment = ContentAlignment.MiddleCenter; 
             CreateCode.Width = 80;
             CreateCode.Tag = "CreateCode";
             gv.MasterTemplate.Columns.Add(CreateCode);
@@ -666,7 +671,7 @@ namespace Dev.Codes
                         _gv1.DataSource = _ds1.Tables[0].DefaultView;
                         // 조회 후, 상태알림 및 설정적용
                         __main__.lblRows.Text = _gv1.RowCount.ToString() + " Rows";
-                        _gv1.EnablePaging = CommonValues.enablePaging;
+                        _gv1.EnablePaging = true; //CommonValues.enablePaging;
                         _gv1.AllowSearchRow = CommonValues.enableSearchRow;
                     }
                 }
@@ -870,6 +875,29 @@ namespace Dev.Codes
         private void CodeColor_Deactivate(object sender, EventArgs e)
         {
             Clear_Shortcuts(); 
+        }
+
+        private void gvMain_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            if (e.CellElement.ColumnInfo.HeaderText == "RackNo" || e.CellElement.ColumnInfo.HeaderText == "Floorno" ||
+                    e.CellElement.ColumnInfo.HeaderText == "RackPos")
+            {
+                e.CellElement.DrawFill = true;
+                e.CellElement.BackColor = Color.LemonChiffon;
+                e.CellElement.GradientStyle = Telerik.WinControls.GradientStyles.Solid;
+            }
+            else if (e.CellElement.ColumnInfo.HeaderText == "PosX" || e.CellElement.ColumnInfo.HeaderText == "PosY")
+            {
+                e.CellElement.DrawFill = true;
+                e.CellElement.BackColor = Color.LightGreen;
+                e.CellElement.GradientStyle = Telerik.WinControls.GradientStyles.Solid;
+            }
+            else
+            {
+                e.CellElement.ResetValue(LightVisualElement.DrawFillProperty, Telerik.WinControls.ValueResetFlags.Local);
+                e.CellElement.ResetValue(VisualElement.BackColorProperty, ValueResetFlags.Local);
+                e.CellElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+            }
         }
 
         #endregion

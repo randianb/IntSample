@@ -26,7 +26,7 @@ namespace Dev.Sales.Data
         /// <summary>
         /// Insert
         /// </summary>
-        public static DataRow Insert(int OrderIdx, int ColorIdx, 
+        public static DataRow Insert(int OrderIdx, string ColorIdx, 
             int SizeIdx1, int SizeIdx2, int SizeIdx3, int SizeIdx4, int SizeIdx5, int SizeIdx6, int SizeIdx7, int SizeIdx8
             )
         {
@@ -45,7 +45,7 @@ namespace Dev.Sales.Data
                 _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
 
-                _cmd.Parameters.Add("@ColorIdx", SqlDbType.Int, 4);
+                _cmd.Parameters.Add("@ColorIdx", SqlDbType.NVarChar, 30);
                 _cmd.Parameters["@ColorIdx"].Value = ColorIdx;
                 
                 _cmd.Parameters.Add("@SizeIdx1", SqlDbType.Int, 4);
@@ -99,7 +99,7 @@ namespace Dev.Sales.Data
         /// <summary>
         /// Update
         /// </summary>
-        public static bool Update(int Idx, int ColorIdx,
+        public static bool Update(int Idx, string ColorIdx,
             int Pcs1, int Pcs2, int Pcs3, int Pcs4, int Pcs5, int Pcs6, int Pcs7, int Pcs8
             )
         {
@@ -116,7 +116,7 @@ namespace Dev.Sales.Data
                 _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
                 _cmd.Parameters["@Idx"].Value = Idx;
                 
-                _cmd.Parameters.Add("@ColorIdx", SqlDbType.Int, 4);
+                _cmd.Parameters.Add("@ColorIdx", SqlDbType.NVarChar, 30);
                 _cmd.Parameters["@ColorIdx"].Value = ColorIdx;
                 
                 _cmd.Parameters.Add("@Pcs1", SqlDbType.Int, 4);

@@ -76,32 +76,38 @@ namespace SampleApp
                     // 버전이 다르다면 업데이트
                     if(IsDiffVersion)
                     {
-                        if (RadMessageBox.Show("프로그램이 업데이트 되었습니다.\n지금 업데이트 하시겠습니까?", "Confirm",
+                        if (RadMessageBox.Show("The program was updated.\nDo you want to update now?", "Confirm",
                         MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
                         {
                             // 업데이트 
                             UpdateRun("INTUpdate.exe");
-                            Application.Exit();
+                            this.DialogResult = DialogResult.Abort;
+                            Environment.Exit(0);
                         }
                         else
                         {
-                            Application.Exit();
+                            this.DialogResult = DialogResult.Abort;
+                            Environment.Exit(0);
+                            return;
                         }
                     }
                 }
                 else
                 {
                     //버전 파일이 없다면
-                    if (RadMessageBox.Show("설치된 내역에 업데이트 정보가 없습니다.\n지금 업데이트 하시겠습니까?", "Confirm",
+                    if (RadMessageBox.Show("There's no version information.\nDo you want to update the system?", "Confirm",
                         MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
                     {
                         // 업데이트 
                         UpdateRun("INTUpdate.exe");
-                        Application.Exit();
+                        this.DialogResult = DialogResult.Abort;
+                        Environment.Exit(0);
                     }
                     else
                     {
-                        Application.Exit();
+                        this.DialogResult = DialogResult.Abort;
+                        Environment.Exit(0);
+                        return;
                     }
                 }
             }
@@ -130,7 +136,7 @@ namespace SampleApp
             }
             else
             {
-                RadMessageBox.Show("업데이트 파일이 존재하지 않습니다.\n관리부에 문의해주시기 바랍니다.", "Warning", MessageBoxButtons.OK,
+                RadMessageBox.Show("There's no updated files.\nPlease contact to IT Team.", "Warning", MessageBoxButtons.OK,
                     RadMessageIcon.Error);
                 return; 
             }
@@ -234,10 +240,15 @@ namespace SampleApp
 
         private void MainLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (UserInfo.Idx <= 0) Application.Exit();
-
-            this.FormSendEvent(UserInfo.Idx);
-            this.Dispose();
+            if (UserInfo.Idx <= 0)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                this.FormSendEvent(UserInfo.Idx);
+                this.Dispose();
+            }
         }
     }
 }

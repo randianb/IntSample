@@ -351,7 +351,14 @@ namespace Dev.Controller
             ds = Data.InboundData.Getlist(SearchString, SearchKey, indate);
             return ds;
         }
-        
+
+        public static DataSet GetlistWareHouse(Dictionary<CommonValues.KeyName, string> SearchString, Dictionary<CommonValues.KeyName, int> SearchKey, string indate)
+        {
+            DataSet ds = new DataSet();
+            ds = Data.InboundData.GetlistWareHouse(SearchString, SearchKey, indate);
+            return ds;
+        }
+
         public bool Update()
         {
             bool blRtn;

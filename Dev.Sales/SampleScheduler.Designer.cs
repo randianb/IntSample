@@ -288,8 +288,6 @@
             this.gvWork.TabIndex = 1;
             this.gvWork.Text = "radGanttView1";
             this.gvWork.ContextMenuOpening += new Telerik.WinControls.UI.GanttViewContextMenuOpeningEventHandler(this.gvWork_ContextMenuOpening);
-            this.gvWork.SelectedItemChanging += new Telerik.WinControls.UI.GanttViewSelectedItemChangingEventHandler(this.gvWork_SelectedItemChanging);
-            this.gvWork.SelectedItemChanged += new Telerik.WinControls.UI.GanttViewSelectedItemChangedEventHandler(this.gvWork_SelectedItemChanged);
             this.gvWork.ItemChanged += new Telerik.WinControls.UI.GanttViewItemChangedEventhandler(this.gvWork_ItemChanged);
             this.gvWork.TextViewItemFormatting += new Telerik.WinControls.UI.GanttViewTextViewItemFormattingEventHandler(this.gvWork_TextViewItemFormatting);
             // 

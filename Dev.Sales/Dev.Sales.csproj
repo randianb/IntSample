@@ -98,6 +98,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.WinControls, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.GridView, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RadDiagram, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.RadDock, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.RichTextEditor, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.Scheduler, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
@@ -115,6 +116,12 @@
     </Compile>
     <Compile Include="CustomAppointmentEditForm.Designer.cs">
       <DependentUpon>CustomAppointmentEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomRibbonUI.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataSetSizeGroup.cs">
+      <DependentUpon>DataSetSizeGroup.xsd</DependentUpon>
     </Compile>
     <Compile Include="Data\DataSetSizeGroup.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -144,11 +151,29 @@
     <Compile Include="frmCopyOrder.Designer.cs">
       <DependentUpon>frmCopyOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPrintingRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrintingRequest.Designer.cs">
+      <DependentUpon>frmPrintingRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNewOrder.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmNewOrder.designer.cs">
       <DependentUpon>frmNewOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCuttingRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCuttingRequest.Designer.cs">
+      <DependentUpon>frmCuttingRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWorkSheets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWorkSheets.Designer.cs">
+      <DependentUpon>frmWorkSheets.cs</DependentUpon>
     </Compile>
     <Compile Include="MyBaseGanttViewBehavior.cs" />
     <Compile Include="OrderMain.cs">
@@ -181,6 +206,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="WorkSheetPageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkSheetPageControl.Designer.cs">
+      <DependentUpon>WorkSheetPageControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CustomAppointmentEditForm.resx">
@@ -189,8 +220,17 @@
     <EmbeddedResource Include="frmCopyOrder.resx">
       <DependentUpon>frmCopyOrder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPrintingRequest.resx">
+      <DependentUpon>frmPrintingRequest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmNewOrder.resx">
       <DependentUpon>frmNewOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCuttingRequest.resx">
+      <DependentUpon>frmCuttingRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWorkSheets.resx">
+      <DependentUpon>frmWorkSheets.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderMain.resx">
       <DependentUpon>OrderMain.cs</DependentUpon>
@@ -208,6 +248,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkSheetPageControl.resx">
+      <DependentUpon>WorkSheetPageControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +376,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\red_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1480109121_new-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BT_copy-202.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1480109121_new-241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel-202.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\interp2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

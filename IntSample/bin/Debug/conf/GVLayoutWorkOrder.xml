@@ -1,5 +1,5 @@
 ﻿<RadGridView ShowGroupPanel="False" BackColor="191, 219, 255" ForeColor="Black" Text="radGridView1" Font="Segoe UI, 8.25pt" Cursor="Default" RightToLeft="No" TabIndex="11" ImeMode="NoControl">
-  <MasterTemplate MultiSelect="True" EnablePaging="True" PageSize="50" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" AutoGenerateColumns="False">
+  <MasterTemplate MultiSelect="True" PageSize="50" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" AutoGenerateColumns="False">
     <Columns>
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="CustName" Name="Buyer" IsVisible="True" ReadOnly="True" HeaderText="Buyer" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="OperationIdx" Name="Operation" IsVisible="True" ReadOnly="True" HeaderText="Operation" />
@@ -10,7 +10,7 @@
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatString="{0:d}" Width="100" FieldName="Start" Name="StartDate" IsVisible="True" ReadOnly="True" HeaderText="Start Date" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="100" FieldName="wstatus" Name="WorkStatus" IsVisible="True" HeaderText="Work Status" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatString="{0:d}" Width="100" FieldName="TicketDate" Name="TicketDate" IsVisible="True" HeaderText="Ticket Date" TextAlignment="MiddleCenter" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="118" FieldName="Qrcode" Name="Qrcode" IsVisible="True" ReadOnly="True" HeaderText="Qrcode" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="132" FieldName="Qrcode" Name="Qrcode" IsVisible="True" ReadOnly="True" HeaderText="Qrcode" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" FieldName="wstatus" Name="Status" IsVisible="False" />
     </Columns>
     <ViewDefinition xsi:type="Telerik.WinControls.UI.TableViewDefinition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />

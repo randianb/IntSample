@@ -33,6 +33,7 @@
             Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn1 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Category");
             Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn2 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Code");
             Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn3 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "State");
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.gvMain = new Telerik.WinControls.UI.RadGridView();
@@ -49,7 +50,6 @@
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.ddlBuyer = new Telerik.WinControls.UI.RadDropDownList();
-            this.ddlFabric = new Telerik.WinControls.UI.RadDropDownList();
             this.ddlFabricType = new Telerik.WinControls.UI.RadDropDownList();
             this.txtLotno = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
@@ -94,6 +94,8 @@
             this.ddlCenter = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.up_Customers_List_BuyerTableAdapter1 = new Dev.Sales.dsOrderPlanTableAdapters.up_Customers_List_BuyerTableAdapter();
+            this.dataSetSizeGroup = new Dev.Sales.Data.DataSetSizeGroup();
+            this.ddlFabric = new Telerik.WinControls.UI.RadMultiColumnComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain.MasterTemplate)).BeginInit();
@@ -113,7 +115,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlBuyer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlFabricType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLotno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
@@ -165,6 +166,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlOutMode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCenter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetSizeGroup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -342,7 +347,6 @@
             this.tableLayoutPanel5.Controls.Add(this.radLabel5, 3, 0);
             this.tableLayoutPanel5.Controls.Add(this.radLabel4, 5, 0);
             this.tableLayoutPanel5.Controls.Add(this.ddlBuyer, 1, 1);
-            this.tableLayoutPanel5.Controls.Add(this.ddlFabric, 3, 1);
             this.tableLayoutPanel5.Controls.Add(this.ddlFabricType, 4, 1);
             this.tableLayoutPanel5.Controls.Add(this.txtLotno, 5, 1);
             this.tableLayoutPanel5.Controls.Add(this.radLabel7, 0, 2);
@@ -359,6 +363,7 @@
             this.tableLayoutPanel5.Controls.Add(this.radLabel9, 4, 0);
             this.tableLayoutPanel5.Controls.Add(this.dtInboundDate, 4, 3);
             this.tableLayoutPanel5.Controls.Add(this.txtInboundno, 0, 3);
+            this.tableLayoutPanel5.Controls.Add(this.ddlFabric, 3, 1);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(6, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 4;
@@ -431,16 +436,6 @@
             this.ddlBuyer.Size = new System.Drawing.Size(154, 20);
             this.ddlBuyer.TabIndex = 10;
             this.ddlBuyer.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlBuyer_SelectedIndexChanged);
-            // 
-            // ddlFabric
-            // 
-            this.ddlFabric.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.ddlFabric.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ddlFabric.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlFabric.Location = new System.Drawing.Point(373, 24);
-            this.ddlFabric.Name = "ddlFabric";
-            this.ddlFabric.Size = new System.Drawing.Size(344, 20);
-            this.ddlFabric.TabIndex = 5;
             // 
             // ddlFabricType
             // 
@@ -978,6 +973,41 @@
             // 
             this.up_Customers_List_BuyerTableAdapter1.ClearBeforeFill = true;
             // 
+            // dataSetSizeGroup
+            // 
+            this.dataSetSizeGroup.DataSetName = "DataSetSizeGroup";
+            this.dataSetSizeGroup.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // ddlFabric
+            // 
+            this.ddlFabric.Dock = System.Windows.Forms.DockStyle.Fill;
+            // 
+            // ddlFabric.NestedRadGridView
+            // 
+            this.ddlFabric.EditorControl.BackColor = System.Drawing.SystemColors.Window;
+            this.ddlFabric.EditorControl.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ddlFabric.EditorControl.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ddlFabric.EditorControl.Location = new System.Drawing.Point(0, 0);
+            // 
+            // 
+            // 
+            this.ddlFabric.EditorControl.MasterTemplate.AllowAddNewRow = false;
+            this.ddlFabric.EditorControl.MasterTemplate.AllowCellContextMenu = false;
+            this.ddlFabric.EditorControl.MasterTemplate.AllowColumnChooser = false;
+            this.ddlFabric.EditorControl.MasterTemplate.EnableGrouping = false;
+            this.ddlFabric.EditorControl.MasterTemplate.ShowFilteringRow = false;
+            this.ddlFabric.EditorControl.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.ddlFabric.EditorControl.Name = "NestedRadGridView";
+            this.ddlFabric.EditorControl.ReadOnly = true;
+            this.ddlFabric.EditorControl.ShowGroupPanel = false;
+            this.ddlFabric.EditorControl.Size = new System.Drawing.Size(240, 150);
+            this.ddlFabric.EditorControl.TabIndex = 0;
+            this.ddlFabric.Location = new System.Drawing.Point(373, 24);
+            this.ddlFabric.Name = "ddlFabric";
+            this.ddlFabric.Size = new System.Drawing.Size(344, 20);
+            this.ddlFabric.TabIndex = 24;
+            this.ddlFabric.TabStop = false;
+            // 
             // Inbound
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1013,7 +1043,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlBuyer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlFabricType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLotno)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
@@ -1068,6 +1097,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlOutMode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCenter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetSizeGroup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1101,7 +1134,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadButton btnSearch;
-        private Telerik.WinControls.UI.RadDropDownList ddlFabric;
         private Telerik.WinControls.UI.RadDropDownList ddlColor;
         private Telerik.WinControls.UI.RadDropDownList ddlBuyer;
         private Telerik.WinControls.UI.RadTextBox txtLotno;
@@ -1145,5 +1177,7 @@
         private Telerik.WinControls.UI.RadDropDownList ddlOutMode;
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
         private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip5;
+        private Sales.Data.DataSetSizeGroup dataSetSizeGroup;
+        private Telerik.WinControls.UI.RadMultiColumnComboBox ddlFabric;
     }
 }

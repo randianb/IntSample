@@ -267,7 +267,15 @@ namespace Dev.Controller
                         
             return ds;
         }
-        
+        public static DataSet Getlist2(Dictionary<CommonValues.KeyName, int> SearchKey, string WorkOrderIdx, string TicketDate)
+        {
+            DataSet ds = new DataSet();
+
+            ds = Data.WorkOrderData.Getlist2(SearchKey, WorkOrderIdx, TicketDate);
+
+            return ds;
+        }
+
         public static DataSet Getlist(Dictionary<CommonValues.KeyName, int> SearchKey, Dictionary<CommonValues.KeyName, string> SearchString)
         {
             DataSet ds = new DataSet();

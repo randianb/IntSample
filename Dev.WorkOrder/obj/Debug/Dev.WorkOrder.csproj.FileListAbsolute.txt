@@ -48,3 +48,5 @@ D:\git\IntSample\Dev.WorkOrder\bin\Debug\Telerik.WinControls.GridView.xml
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Telerik.WinControls.RadDock.xml
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Telerik.WinControls.Scheduler.xml
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Telerik.WinControls.UI.xml
+D:\git\IntSample\Dev.WorkOrder\bin\Debug\Telerik.WinControls.RichTextEditor.dll
+D:\git\IntSample\Dev.WorkOrder\bin\Debug\Telerik.WinControls.RichTextEditor.xml

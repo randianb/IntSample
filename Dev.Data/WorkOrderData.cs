@@ -416,6 +416,67 @@ namespace Dev.Data
         }
 
         /// <summary>
+        /// 스케쥴화면에서 기본 스케쥴 조회용
+        /// </summary>
+        /// <param name="SearchKey"></param>
+        /// <param name="WorkOrderIdx"></param>
+        /// <param name="TicketDate"></param>
+        /// <returns></returns>
+        public static DataSet Getlist2(Dictionary<CommonValues.KeyName, int> SearchKey, string WorkOrderIdx, string TicketDate)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_WorkOrder_List5";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = SearchKey[CommonValues.KeyName.OrderIdx];
+
+                _cmd.Parameters.Add("@OperationIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OperationIdx"].Value = SearchKey[CommonValues.KeyName.OperationIdx];
+
+                _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
+                _cmd.Parameters["@Status"].Value = SearchKey[CommonValues.KeyName.Status];
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 40);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _cmd.Parameters.Add("@TicketDate", SqlDbType.NVarChar, 10);
+                _cmd.Parameters["@TicketDate"].Value = TicketDate;
+
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// 작업관리화면 조회용
         /// </summary>
         /// <param name="SearchKey"></param>

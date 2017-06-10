@@ -17,6 +17,13 @@ namespace Dev.Controller
         private int _yarn3;
         private int _yarn4;
         private int _yarn5;
+
+        private string _yarnnm1;
+        private string _yarnnm2;
+        private string _yarnnm3;
+        private string _yarnnm4;
+        private string _yarnnm5;
+
         private double _percent1;
         private double _percent2;
         private double _percent3;
@@ -156,6 +163,26 @@ namespace Dev.Controller
             _Idx = Idx;
             _longName = longName;
             _shortName = shortName; 
+        }
+
+        public Fabric(int Idx, string longName, string shortName, 
+            string yarnnm1, double per1, string yarnnm2, double per2, string yarnnm3, double per3, string yarnnm4, double per4, string yarnnm5, double per5)
+        {
+            _Idx = Idx;
+            _longName = longName;
+            _shortName = shortName;
+
+            _yarnnm1 = yarnnm1;
+            _percent1 = per1;
+            _yarnnm2 = yarnnm2;
+            _percent2 = per2;
+            _yarnnm3 = yarnnm3;
+            _percent3 = per3;
+            _yarnnm4 = yarnnm4;
+            _percent4 = per4;
+            _yarnnm5 = yarnnm5;
+            _percent5 = per5;
+
         }
 
         private void Initializer()

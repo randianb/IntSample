@@ -285,7 +285,7 @@ namespace Dev.Sales
             {
                 gvWork.DataSource = null;
 
-                _ds1 = Dev.Controller.WorkOrder.Getlist(SearchKey, fileno, TicketDate);
+                _ds1 = Dev.Controller.WorkOrder.Getlist2(SearchKey, fileno, TicketDate);
                 if (_ds1 != null)
                 {
                     //_gv1.DataSource = _ds1.Tables[0].DefaultView;
@@ -401,8 +401,7 @@ namespace Dev.Sales
 
         private void gvWork_SelectedItemChanging(object sender, GanttViewSelectedItemChangingEventArgs e)
         {
-            //string[] strTitle = e.Item.Title.Split('/');
-            //Console.WriteLine(strTitle[1] + ", " + e.Item.Start + ", " + e.Item.End);
+            
         }
 
         private void gvWork_DragDrop(object sender, DragEventArgs e)
@@ -411,12 +410,30 @@ namespace Dev.Sales
             //Console.WriteLine(strTitle[1] + ", " + gvWork.SelectedItem.Start + ", " + gvWork.SelectedItem.End);
         }
         
+        /// <summary>
+        /// 스케쥴러 아이템 변경시 업데이트
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gvWork_ItemChanged(object sender, GanttViewItemChangedEventArgs e)
         {
             try
             {
                 string[] strTitle = gvWork.SelectedItem.Title.Split('/');
-                bool result = Dev.Controller.WorkOrder.Update(strTitle[2].ToString().Trim(), gvWork.SelectedItem.Start, gvWork.SelectedItem.End, 0.1, Dev.Options.UserInfo.Idx);
+
+                // 패턴 
+                if (gvWork.SelectedItem.Tag.ToString().Trim() == "110")
+                {
+                    bool result = Dev.Controller.WorkOrder.Update(strTitle[2].ToString().Trim(),
+                            gvWork.SelectedItem.Start, gvWork.SelectedItem.End, 0.1, Dev.Options.UserInfo.Idx);
+                }
+                // 재단
+                else if (gvWork.SelectedItem.Tag.ToString().Trim() == "111")
+                {
+                    bool result = Dev.Controller.WorkOrder.Update(strTitle[3].ToString().Trim(),
+                            gvWork.SelectedItem.Start, gvWork.SelectedItem.End, 0.1, Dev.Options.UserInfo.Idx);
+                }
+
             }
             catch(Exception ex)
             {

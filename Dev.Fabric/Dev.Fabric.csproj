@@ -83,11 +83,17 @@
     <Reference Include="TelerikCommon, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FabricWarehouse.cs">
+    <Compile Include="frmPrintOutbound.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FabricWarehouse.Designer.cs">
-      <DependentUpon>FabricWarehouse.cs</DependentUpon>
+    <Compile Include="frmPrintOutbound.Designer.cs">
+      <DependentUpon>frmPrintOutbound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warehouse.Designer.cs">
+      <DependentUpon>Warehouse.cs</DependentUpon>
     </Compile>
     <Compile Include="Outbound.cs">
       <SubType>Form</SubType>
@@ -119,6 +125,24 @@
     <Compile Include="PrintQRCode.Designer.cs">
       <DependentUpon>PrintQRCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptOutbound.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptOutbound.Designer.cs">
+      <DependentUpon>rptOutbound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptInbound.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptInbound.Designer.cs">
+      <DependentUpon>rptInbound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptFabricCodeForm.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptFabricCodeForm.Designer.cs">
+      <DependentUpon>rptFabricCodeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rptPrintLocationCode.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -132,13 +156,28 @@
       <DependentUpon>rptPrintQRCode.cs</DependentUpon>
     </Compile>
     <Compile Include="FabricQRStruct.cs" />
+    <Compile Include="frmPrintInbound.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrintInbound.Designer.cs">
+      <DependentUpon>frmPrintInbound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="rptFabricCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rptFabricCode.Designer.cs">
+      <DependentUpon>rptFabricCode.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FabricWarehouse.resx">
-      <DependentUpon>FabricWarehouse.cs</DependentUpon>
+    <EmbeddedResource Include="frmPrintOutbound.resx">
+      <DependentUpon>frmPrintOutbound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Warehouse.resx">
+      <DependentUpon>Warehouse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Outbound.resx">
       <DependentUpon>Outbound.cs</DependentUpon>
@@ -157,11 +196,26 @@
     <EmbeddedResource Include="PrintQRCode.resx">
       <DependentUpon>PrintQRCode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptOutbound.resx">
+      <DependentUpon>rptOutbound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptInbound.resx">
+      <DependentUpon>rptInbound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptFabricCodeForm.resx">
+      <DependentUpon>rptFabricCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptPrintLocationCode.resx">
       <DependentUpon>rptPrintLocationCode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptPrintQRCode.resx">
       <DependentUpon>rptPrintQRCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrintInbound.resx">
+      <DependentUpon>frmPrintInbound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptFabricCode.resx">
+      <DependentUpon>rptFabricCode.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

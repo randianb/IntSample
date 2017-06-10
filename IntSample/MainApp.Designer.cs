@@ -517,7 +517,7 @@
             // 
             // ribbonTab2
             // 
-            this.ribbonTab2.IsSelected = false;
+            this.ribbonTab2.IsSelected = true;
             this.ribbonTab2.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup4,
             this.radRibbonBarGroup6,
@@ -737,7 +737,7 @@
             // 
             // ribbonTab4
             // 
-            this.ribbonTab4.IsSelected = true;
+            this.ribbonTab4.IsSelected = false;
             this.ribbonTab4.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup15,
             this.radRibbonBarGroup8,
@@ -836,6 +836,7 @@
             this.btnFabricCodelist.Text = "Code List";
             this.btnFabricCodelist.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricCodelist.TextWrap = true;
+            this.btnFabricCodelist.Click += new System.EventHandler(this.btnFabricCodelist_Click);
             // 
             // btnFabricReportInbound
             // 
@@ -846,6 +847,7 @@
             this.btnFabricReportInbound.Text = "Inbound";
             this.btnFabricReportInbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricReportInbound.TextWrap = true;
+            this.btnFabricReportInbound.Click += new System.EventHandler(this.btnFabricReportInbound_Click);
             // 
             // btnFabricReportOutbound
             // 
@@ -856,6 +858,7 @@
             this.btnFabricReportOutbound.Text = "Outbound";
             this.btnFabricReportOutbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricReportOutbound.TextWrap = true;
+            this.btnFabricReportOutbound.Click += new System.EventHandler(this.btnFabricReportOutbound_Click);
             // 
             // btnFabricReportStock
             // 
@@ -876,6 +879,7 @@
             this.btnFabricReportWarehouse.Text = "Warehouse";
             this.btnFabricReportWarehouse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricReportWarehouse.TextWrap = true;
+            this.btnFabricReportWarehouse.Click += new System.EventHandler(this.btnFabricReportWarehouse_Click);
             // 
             // ribbonTab3
             // 

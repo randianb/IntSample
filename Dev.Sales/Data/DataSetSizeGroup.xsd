@@ -40,6 +40,44 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="DataTableFabric" msprop:Generator_TableClassName="DataTableFabricDataTable" msprop:Generator_TableVarName="tableDataTableFabric" msprop:Generator_RowChangedName="DataTableFabricRowChanged" msprop:Generator_TablePropName="DataTableFabric" msprop:Generator_RowDeletingName="DataTableFabricRowDeleting" msprop:Generator_RowChangingName="DataTableFabricRowChanging" msprop:Generator_RowEvHandlerName="DataTableFabricRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableFabricRowDeleted" msprop:Generator_RowClassName="DataTableFabricRow" msprop:Generator_UserTableName="DataTableFabric" msprop:Generator_RowEvArgName="DataTableFabricRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Idx" msprop:Generator_ColumnVarNameInTable="columnIdx" msprop:Generator_ColumnPropNameInRow="Idx" msprop:Generator_ColumnPropNameInTable="IdxColumn" msprop:Generator_UserColumnName="Idx" type="xs:string" minOccurs="0" />
+              <xs:element name="LongName" msprop:Generator_ColumnVarNameInTable="columnLongName" msprop:Generator_ColumnPropNameInRow="LongName" msprop:Generator_ColumnPropNameInTable="LongNameColumn" msprop:Generator_UserColumnName="LongName" type="xs:string" minOccurs="0" />
+              <xs:element name="ShortName" msprop:Generator_ColumnVarNameInTable="columnShortName" msprop:Generator_ColumnPropNameInRow="ShortName" msprop:Generator_ColumnPropNameInTable="ShortNameColumn" msprop:Generator_UserColumnName="ShortName" type="xs:string" minOccurs="0" />
+              <xs:element name="Yarnnm1" msprop:Generator_ColumnVarNameInTable="columnYarnnm1" msprop:Generator_ColumnPropNameInRow="Yarnnm1" msprop:Generator_ColumnPropNameInTable="Yarnnm1Column" msprop:Generator_UserColumnName="Yarnnm1" type="xs:string" minOccurs="0" />
+              <xs:element name="Percent1" msprop:Generator_ColumnVarNameInTable="columnPercent1" msprop:Generator_ColumnPropNameInRow="Percent1" msprop:Generator_ColumnPropNameInTable="Percent1Column" msprop:Generator_UserColumnName="Percent1" type="xs:string" minOccurs="0" />
+              <xs:element name="Yarnnm2" msprop:Generator_ColumnVarNameInTable="columnYarnnm2" msprop:Generator_ColumnPropNameInRow="Yarnnm2" msprop:Generator_ColumnPropNameInTable="Yarnnm2Column" msprop:Generator_UserColumnName="Yarnnm2" type="xs:string" minOccurs="0" />
+              <xs:element name="Percent2" msprop:Generator_ColumnVarNameInTable="columnPercent2" msprop:Generator_ColumnPropNameInRow="Percent2" msprop:Generator_ColumnPropNameInTable="Percent2Column" msprop:Generator_UserColumnName="Percent2" type="xs:string" minOccurs="0" />
+              <xs:element name="Yarnnm3" msprop:Generator_ColumnVarNameInTable="columnYarnnm3" msprop:Generator_ColumnPropNameInRow="Yarnnm3" msprop:Generator_ColumnPropNameInTable="Yarnnm3Column" msprop:Generator_UserColumnName="Yarnnm3" type="xs:string" minOccurs="0" />
+              <xs:element name="Percent3" msprop:Generator_ColumnVarNameInTable="columnPercent3" msprop:Generator_ColumnPropNameInRow="Percent3" msprop:Generator_ColumnPropNameInTable="Percent3Column" msprop:Generator_UserColumnName="Percent3" type="xs:string" minOccurs="0" />
+              <xs:element name="Yarnnm4" msprop:Generator_ColumnVarNameInTable="columnYarnnm4" msprop:Generator_ColumnPropNameInRow="Yarnnm4" msprop:Generator_ColumnPropNameInTable="Yarnnm4Column" msprop:Generator_UserColumnName="Yarnnm4" type="xs:string" minOccurs="0" />
+              <xs:element name="Percent4" msprop:Generator_ColumnVarNameInTable="columnPercent4" msprop:Generator_ColumnPropNameInRow="Percent4" msprop:Generator_ColumnPropNameInTable="Percent4Column" msprop:Generator_UserColumnName="Percent4" type="xs:string" minOccurs="0" />
+              <xs:element name="Yarnnm5" msprop:Generator_ColumnVarNameInTable="columnYarnnm5" msprop:Generator_ColumnPropNameInRow="Yarnnm5" msprop:Generator_ColumnPropNameInTable="Yarnnm5Column" msprop:Generator_UserColumnName="Yarnnm5" type="xs:string" minOccurs="0" />
+              <xs:element name="Percent5" msprop:Generator_ColumnVarNameInTable="columnPercent5" msprop:Generator_ColumnPropNameInRow="Percent5" msprop:Generator_ColumnPropNameInTable="Percent5Column" msprop:Generator_UserColumnName="Percent5" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTableFabric2" msprop:Generator_TableClassName="DataTableFabric2DataTable" msprop:Generator_TableVarName="tableDataTableFabric2" msprop:Generator_TablePropName="DataTableFabric2" msprop:Generator_RowDeletingName="DataTableFabric2RowDeleting" msprop:Generator_RowChangingName="DataTableFabric2RowChanging" msprop:Generator_RowEvHandlerName="DataTableFabric2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableFabric2RowDeleted" msprop:Generator_UserTableName="DataTableFabric2" msprop:Generator_RowChangedName="DataTableFabric2RowChanged" msprop:Generator_RowEvArgName="DataTableFabric2RowChangeEvent" msprop:Generator_RowClassName="DataTableFabric2Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Idx" msprop:Generator_ColumnVarNameInTable="columnIdx" msprop:Generator_ColumnPropNameInRow="Idx" msprop:Generator_ColumnPropNameInTable="IdxColumn" msprop:Generator_UserColumnName="Idx" type="xs:string" minOccurs="0" />
+              <xs:element name="LongName" msprop:Generator_ColumnVarNameInTable="columnLongName" msprop:Generator_ColumnPropNameInRow="LongName" msprop:Generator_ColumnPropNameInTable="LongNameColumn" msprop:Generator_UserColumnName="LongName" type="xs:string" minOccurs="0" />
+              <xs:element name="ShortName" msprop:Generator_ColumnVarNameInTable="columnShortName" msprop:Generator_ColumnPropNameInRow="ShortName" msprop:Generator_ColumnPropNameInTable="ShortNameColumn" msprop:Generator_UserColumnName="ShortName" type="xs:string" minOccurs="0" />
+              <xs:element name="Yarnnm1" msprop:Generator_ColumnVarNameInTable="columnYarnnm1" msprop:Generator_ColumnPropNameInRow="Yarnnm1" msprop:Generator_ColumnPropNameInTable="Yarnnm1Column" msprop:Generator_UserColumnName="Yarnnm1" type="xs:string" minOccurs="0" />
+              <xs:element name="Percent1" msprop:Generator_ColumnVarNameInTable="columnPercent1" msprop:Generator_ColumnPropNameInRow="Percent1" msprop:Generator_ColumnPropNameInTable="Percent1Column" msprop:Generator_UserColumnName="Percent1" type="xs:string" minOccurs="0" />
+              <xs:element name="Yarnnm2" msprop:Generator_ColumnVarNameInTable="columnYarnnm2" msprop:Generator_ColumnPropNameInRow="Yarnnm2" msprop:Generator_ColumnPropNameInTable="Yarnnm2Column" msprop:Generator_UserColumnName="Yarnnm2" type="xs:string" minOccurs="0" />
+              <xs:element name="Percent2" msprop:Generator_ColumnVarNameInTable="columnPercent2" msprop:Generator_ColumnPropNameInRow="Percent2" msprop:Generator_ColumnPropNameInTable="Percent2Column" msprop:Generator_UserColumnName="Percent2" type="xs:string" minOccurs="0" />
+              <xs:element name="Yarnnm3" msprop:Generator_ColumnVarNameInTable="columnYarnnm3" msprop:Generator_ColumnPropNameInRow="Yarnnm3" msprop:Generator_ColumnPropNameInTable="Yarnnm3Column" msprop:Generator_UserColumnName="Yarnnm3" type="xs:string" minOccurs="0" />
+              <xs:element name="Percent3" msprop:Generator_ColumnVarNameInTable="columnPercent3" msprop:Generator_ColumnPropNameInRow="Percent3" msprop:Generator_ColumnPropNameInTable="Percent3Column" msprop:Generator_UserColumnName="Percent3" type="xs:string" minOccurs="0" />
+              <xs:element name="Yarnnm4" msprop:Generator_ColumnVarNameInTable="columnYarnnm4" msprop:Generator_ColumnPropNameInRow="Yarnnm4" msprop:Generator_ColumnPropNameInTable="Yarnnm4Column" msprop:Generator_UserColumnName="Yarnnm4" type="xs:string" minOccurs="0" />
+              <xs:element name="Percent4" msprop:Generator_ColumnVarNameInTable="columnPercent4" msprop:Generator_ColumnPropNameInRow="Percent4" msprop:Generator_ColumnPropNameInTable="Percent4Column" msprop:Generator_UserColumnName="Percent4" type="xs:string" minOccurs="0" />
+              <xs:element name="Yarnnm5" msprop:Generator_ColumnVarNameInTable="columnYarnnm5" msprop:Generator_ColumnPropNameInRow="Yarnnm5" msprop:Generator_ColumnPropNameInTable="Yarnnm5Column" msprop:Generator_UserColumnName="Yarnnm5" type="xs:string" minOccurs="0" />
+              <xs:element name="Percent5" msprop:Generator_ColumnVarNameInTable="columnPercent5" msprop:Generator_ColumnPropNameInRow="Percent5" msprop:Generator_ColumnPropNameInTable="Percent5Column" msprop:Generator_UserColumnName="Percent5" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>

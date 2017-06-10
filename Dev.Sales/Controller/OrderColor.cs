@@ -9,7 +9,7 @@ namespace Dev.Sales.Controller
 
         private int _idx;
         private int _orderIdx;
-        private int _colorIdx;
+        private string _colorIdx;
 
         private int _sizeIdx1;
         private int _sizeIdx2;
@@ -49,7 +49,7 @@ namespace Dev.Sales.Controller
             set { _orderIdx = value; }
         }
         //
-        public int ColorIdx
+        public string ColorIdx
         {
             get { return _colorIdx; }
             set { _colorIdx = value; }
@@ -152,7 +152,7 @@ namespace Dev.Sales.Controller
             {
                 _idx = Convert.ToInt32(_row["Idx"]);
                 if (_row["OrderIdx"] != DBNull.Value) _orderIdx = Convert.ToInt32(_row["OrderIdx"]);
-                if (_row["ColorIdx"] != DBNull.Value) _colorIdx = Convert.ToInt32(_row["ColorIdx"]);
+                if (_row["ColorIdx"] != DBNull.Value) _colorIdx = Convert.ToString(_row["ColorIdx"]);
                 
                 if (_row["SizeIdx1"] != DBNull.Value) _sizeIdx1 = Convert.ToInt32(_row["SizeIdx1"]);
                 if (_row["SizeIdx2"] != DBNull.Value) _sizeIdx2 = Convert.ToInt32(_row["SizeIdx2"]);
@@ -182,7 +182,7 @@ namespace Dev.Sales.Controller
         {
             _idx = 0;
             _orderIdx = 0;
-            _colorIdx = 0;
+            _colorIdx = "";
             
             _sizeIdx1 = 0;
             _sizeIdx2 = 0;
@@ -208,7 +208,7 @@ namespace Dev.Sales.Controller
 
         #region Methods
         
-        public static DataRow Insert(int OrderIdx, int ColorIdx,
+        public static DataRow Insert(int OrderIdx, string ColorIdx,
             int SizeIdx1, int SizeIdx2, int SizeIdx3, int SizeIdx4, int SizeIdx5, int SizeIdx6, int SizeIdx7, int SizeIdx8)
         {
             DataRow row = Data.OrderColorData.Insert(OrderIdx, ColorIdx,

@@ -409,6 +409,245 @@ namespace Dev.Data
             }
         }
 
+        // Warehouse 기본 조회 
+        public static DataSet GetlistWareHouse(Dictionary<CommonValues.KeyName, string> SearchString,
+                                        Dictionary<CommonValues.KeyName, int> SearchKey, string indate)
+        {
+            try
+            {
+
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_FabricIn_List5";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
+                _cmd.Parameters["@Status"].Value = SearchKey[CommonValues.KeyName.Status];
+
+                _cmd.Parameters.Add("@BuyerIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@BuyerIdx"].Value = SearchKey[CommonValues.KeyName.BuyerIdx];
+
+                _cmd.Parameters.Add("@ColorIdx", SqlDbType.NVarChar, 30);
+                _cmd.Parameters["@ColorIdx"].Value = SearchString[CommonValues.KeyName.ColorIdx];
+
+                _cmd.Parameters.Add("@FabricType", SqlDbType.Int, 4);
+                _cmd.Parameters["@FabricType"].Value = SearchKey[CommonValues.KeyName.FabricType];
+
+                _cmd.Parameters.Add("@Lotno", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Lotno"].Value = SearchString[CommonValues.KeyName.Lotno];
+
+                _cmd.Parameters.Add("@FabricIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@FabricIdx"].Value = SearchKey[CommonValues.KeyName.FabricIdx];
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@WorkOrderIdx"].Value = SearchString[CommonValues.KeyName.WorkOrderIdx];
+
+                _cmd.Parameters.Add("@RackNo", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@RackNo"].Value = SearchKey[CommonValues.KeyName.RackNo];
+
+                _cmd.Parameters.Add("@Floorno", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@Floorno"].Value = SearchKey[CommonValues.KeyName.Floorno];
+
+                _cmd.Parameters.Add("@RackPos", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@RackPos"].Value = SearchKey[CommonValues.KeyName.RackPos];
+
+                _cmd.Parameters.Add("@PosX", SqlDbType.SmallInt, 2);
+                _cmd.Parameters["@PosX"].Value = SearchKey[CommonValues.KeyName.PosX];
+
+                _cmd.Parameters.Add("@PosY", SqlDbType.SmallInt, 2);
+                _cmd.Parameters["@PosY"].Value = SearchKey[CommonValues.KeyName.PosY];
+
+                _cmd.Parameters.Add("@indate", SqlDbType.NVarChar, 10);
+                _cmd.Parameters["@indate"].Value = (indate == "2000-01-01" ? "" : indate);
+
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        // Warehouse 최근 2주치 조회 
+        public static DataSet GetlistWareHouse2(Dictionary<CommonValues.KeyName, string> SearchString,
+                                        Dictionary<CommonValues.KeyName, int> SearchKey, string indate)
+        {
+            try
+            {
+
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_FabricIn_List6";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
+                _cmd.Parameters["@Status"].Value = 0;
+
+                _cmd.Parameters.Add("@BuyerIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@BuyerIdx"].Value = 0;
+
+                _cmd.Parameters.Add("@ColorIdx", SqlDbType.NVarChar, 30);
+                _cmd.Parameters["@ColorIdx"].Value = "";
+
+                _cmd.Parameters.Add("@FabricType", SqlDbType.Int, 4);
+                _cmd.Parameters["@FabricType"].Value = 0;
+
+                _cmd.Parameters.Add("@Lotno", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Lotno"].Value = "";
+
+                _cmd.Parameters.Add("@FabricIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@FabricIdx"].Value = 0;
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@WorkOrderIdx"].Value = "";
+
+                _cmd.Parameters.Add("@RackNo", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@RackNo"].Value = 0;
+
+                _cmd.Parameters.Add("@Floorno", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@Floorno"].Value = 0;
+
+                _cmd.Parameters.Add("@RackPos", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@RackPos"].Value = 0;
+
+                _cmd.Parameters.Add("@PosX", SqlDbType.SmallInt, 2);
+                _cmd.Parameters["@PosX"].Value = 0;
+
+                _cmd.Parameters.Add("@PosY", SqlDbType.SmallInt, 2);
+                _cmd.Parameters["@PosY"].Value = 0;
+                
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        // 리포트 
+        public static DataSet GetlistReport(Dictionary<CommonValues.KeyName, string> SearchString,
+                                        Dictionary<CommonValues.KeyName, int> SearchKey, string indate)
+        {
+            try
+            {
+
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_FabricIn_List4";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
+                _cmd.Parameters["@Status"].Value = SearchKey[CommonValues.KeyName.Status];
+
+                _cmd.Parameters.Add("@BuyerIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@BuyerIdx"].Value = SearchKey[CommonValues.KeyName.BuyerIdx];
+
+                _cmd.Parameters.Add("@ColorIdx", SqlDbType.NVarChar, 30);
+                _cmd.Parameters["@ColorIdx"].Value = SearchString[CommonValues.KeyName.ColorIdx];
+
+                _cmd.Parameters.Add("@FabricType", SqlDbType.Int, 4);
+                _cmd.Parameters["@FabricType"].Value = SearchKey[CommonValues.KeyName.FabricType];
+
+                _cmd.Parameters.Add("@Lotno", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Lotno"].Value = SearchString[CommonValues.KeyName.Lotno];
+
+                _cmd.Parameters.Add("@FabricIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@FabricIdx"].Value = SearchKey[CommonValues.KeyName.FabricIdx];
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@WorkOrderIdx"].Value = SearchString[CommonValues.KeyName.WorkOrderIdx];
+
+                _cmd.Parameters.Add("@RackNo", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@RackNo"].Value = SearchKey[CommonValues.KeyName.RackNo];
+
+                _cmd.Parameters.Add("@Floorno", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@Floorno"].Value = SearchKey[CommonValues.KeyName.Floorno];
+
+                _cmd.Parameters.Add("@RackPos", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@RackPos"].Value = SearchKey[CommonValues.KeyName.RackPos];
+
+                _cmd.Parameters.Add("@PosX", SqlDbType.SmallInt, 2);
+                _cmd.Parameters["@PosX"].Value = SearchKey[CommonValues.KeyName.PosX];
+
+                _cmd.Parameters.Add("@PosY", SqlDbType.SmallInt, 2);
+                _cmd.Parameters["@PosY"].Value = SearchKey[CommonValues.KeyName.PosY];
+
+                _cmd.Parameters.Add("@indate", SqlDbType.NVarChar, 10);
+                _cmd.Parameters["@indate"].Value = (indate == "2000-01-01" ? "" : indate);
+
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static DataRow Getlist(string WorkOrderIdx)
         {
             try

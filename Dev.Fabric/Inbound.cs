@@ -184,13 +184,15 @@ namespace Dev.Fabric
             ddlColor.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
             // 
-            ddlFabric.DataSource = lstFabric;
-            ddlFabric.DisplayMember = "LongName";
+            ddlFabric.DataSource = dataSetSizeGroup.DataTableFabric2;
+            ddlFabric.DisplayMember = "ShortName";
             ddlFabric.ValueMember = "Idx";
-            ddlFabric.AutoCompleteMode = AutoCompleteMode.Suggest;
-            ddlFabric.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlFabric.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
-
+            ddlFabric.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            ddlFabric.AutoSizeDropDownColumnMode = BestFitColumnMode.AllCells;
+            ddlFabric.AutoSizeDropDownHeight = true;
+            ddlFabric.DropDownStyle = RadDropDownStyle.DropDown;
+            ddlFabric.AutoSizeDropDownToBestFit = true; 
+            
             // 
             ddlFabricType.DataSource = lstFabricType;
             ddlFabricType.DisplayMember = "Contents";
@@ -290,19 +292,20 @@ namespace Dev.Fabric
             ColorIdx.DropDownStyle = RadDropDownStyle.DropDown;
             ColorIdx.Width = 200;
             gv.Columns.Add(ColorIdx);
-                        
-            GridViewComboBoxColumn FabricIdx = new GridViewComboBoxColumn();
+
+            GridViewMultiComboBoxColumn FabricIdx = new GridViewMultiComboBoxColumn();
             FabricIdx.Name = "FabricIdx";
-            FabricIdx.DataSource = lstFabric2;
-            FabricIdx.DisplayMember = "LongName";
+            FabricIdx.DataSource = dataSetSizeGroup.DataTableFabric;
             FabricIdx.ValueMember = "Idx";
+            FabricIdx.DisplayMember = "ShortName";
             FabricIdx.FieldName = "FabricIdx";
             FabricIdx.HeaderText = "Fabric";
+            FabricIdx.AutoSizeMode = BestFitColumnMode.AllCells;
             FabricIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             FabricIdx.DropDownStyle = RadDropDownStyle.DropDown;
-            FabricIdx.Width = 150; 
+            FabricIdx.Width = 150;
             gv.Columns.Add(FabricIdx);
-
+            
             GridViewComboBoxColumn FabricType = new GridViewComboBoxColumn();
             FabricType.Name = "FabricType";
             FabricType.DataSource = lstFabricType2;
@@ -320,7 +323,7 @@ namespace Dev.Fabric
             Artno.FieldName = "Artno";
             Artno.HeaderText = "Art";
             Artno.Width = 100;
-            Artno.TextAlignment = ContentAlignment.MiddleCenter;
+            Artno.TextAlignment = ContentAlignment.MiddleLeft;
             gv.Columns.Add(Artno);
 
             GridViewTextBoxColumn Lotno = new GridViewTextBoxColumn();
@@ -384,7 +387,15 @@ namespace Dev.Fabric
             IODeptIdx.DropDownStyle = RadDropDownStyle.DropDown;
             IODeptIdx.Width = 150;
             gv.Columns.Add(IODeptIdx);
-            
+
+            GridViewTextBoxColumn Comments = new GridViewTextBoxColumn();
+            Comments.Name = "Comments";
+            Comments.FieldName = "Comments";
+            Comments.HeaderText = "Comments";
+            Comments.TextAlignment = ContentAlignment.MiddleLeft;
+            Comments.Width = 100;
+            gv.Columns.Add(Comments);
+
             GridViewComboBoxColumn RackNo = new GridViewComboBoxColumn();
             RackNo.Name = "RackNo";
             RackNo.DataSource = lstRack21;
@@ -444,7 +455,7 @@ namespace Dev.Fabric
             Qrcode.Name = "Qrcode";
             Qrcode.FieldName = "Qrcode";
             Qrcode.HeaderText = "QR Code";
-            Qrcode.IsVisible = false;
+            Qrcode.IsVisible = true;
             Qrcode.ReadOnly = true;
             Qrcode.TextAlignment = ContentAlignment.MiddleLeft;
             Qrcode.Width = 70;
@@ -473,15 +484,7 @@ namespace Dev.Fabric
             fileurl2.FieldName = "fileurl2";
             fileurl2.IsVisible = false;
             gv.Columns.Add(fileurl2);
-
-            GridViewTextBoxColumn Comments = new GridViewTextBoxColumn();
-            Comments.Name = "Comments";
-            Comments.FieldName = "Comments";
-            Comments.HeaderText = "Comments";
-            Comments.TextAlignment = ContentAlignment.MiddleLeft;
-            Comments.Width = 100;
-            gv.Columns.Add(Comments);
-
+            
             GridViewTextBoxColumn WorkOrderIdx = new GridViewTextBoxColumn();
             WorkOrderIdx.Name = "WorkOrderIdx";
             WorkOrderIdx.FieldName = "WorkOrderIdx";
@@ -875,7 +878,7 @@ namespace Dev.Fabric
                 {
                     string WorkOrderIdx = Int.Code.Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 14, "");           // 입고번호 생성 
                                                                                                                                 // 입고번호 생성과 동시에 QR코드 생성
-                    string __QRCode__ = Int.Encryptor.Encrypt(WorkOrderIdx.Trim(), "love1229");
+                    string __QRCode__ = WorkOrderIdx.Trim(); //Int.Encryptor.Encrypt(WorkOrderIdx.Trim(), "love1229");
                     DataRow row = Controller.Inbound.Insert(WorkOrderIdx, __QRCode__, UserInfo.CenterIdx, UserInfo.DeptIdx, UserInfo.Idx);  // 신규 입력
                     RefleshWithCondition();                                                                                     // 재조회 
                     SetCurrentRow(_gv1, Convert.ToInt32(row["LastIdx"]));                                                       // 신규입력된 행번호로 이동
@@ -1000,21 +1003,50 @@ namespace Dev.Fabric
             }
 
             // Fabric 
+            //_searchString = new Dictionary<CommonValues.KeyName, string>();
+            //_searchString.Add(CommonValues.KeyName.Remark, "");
+            //_searchString.Add(CommonValues.KeyName.IsUse, "1");
+            //_dt = Controller.Fabric.Getlist(_searchString).Tables[0];
+
+            //lstFabric.Add(new Controller.Fabric(0, "", ""));
+            //lstFabric2.Add(new Controller.Fabric(0, "", ""));
+            //foreach (DataRow row in _dt.Rows)
+            //{
+            //    lstFabric.Add(new Controller.Fabric(Convert.ToInt32(row["Idx"]),
+            //                                row["LongName"].ToString(),
+            //                                row["ShortName"].ToString()));
+            //    lstFabric2.Add(new Controller.Fabric(Convert.ToInt32(row["Idx"]),
+            //                                row["LongName"].ToString(),
+            //                                row["ShortName"].ToString()));
+            //}
+
+            // Fabric 
             _searchString = new Dictionary<CommonValues.KeyName, string>();
             _searchString.Add(CommonValues.KeyName.Remark, "");
             _searchString.Add(CommonValues.KeyName.IsUse, "1");
-            _dt = Controller.Fabric.Getlist(_searchString).Tables[0];
+            _dt = Dev.Controller.Fabric.Getlist(_searchString).Tables[0];
 
-            lstFabric.Add(new Controller.Fabric(0, "", ""));
-            lstFabric2.Add(new Controller.Fabric(0, "", ""));
+            dataSetSizeGroup.DataTableFabric.Rows.Add(0, "", "", "", 0f, "", 0f, "", 0f, "", 0f, "", 0f);
+            dataSetSizeGroup.DataTableFabric2.Rows.Add(0, "", "", "", 0f, "", 0f, "", 0f, "", 0f, "", 0f);
             foreach (DataRow row in _dt.Rows)
             {
-                lstFabric.Add(new Controller.Fabric(Convert.ToInt32(row["Idx"]),
-                                            row["LongName"].ToString(),
-                                            row["ShortName"].ToString()));
-                lstFabric2.Add(new Controller.Fabric(Convert.ToInt32(row["Idx"]),
-                                            row["LongName"].ToString(),
-                                            row["ShortName"].ToString()));
+                dataSetSizeGroup.DataTableFabric.Rows.Add(Convert.ToInt32(row["Idx"]),
+                                            row["LongName"].ToString(), row["ShortName"].ToString(),
+                                            row["Yarnnm1"] == DBNull.Value ? "" : row["Yarnnm1"].ToString(), row["Percent1"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent1"]),
+                                            row["Yarnnm2"] == DBNull.Value ? "" : row["Yarnnm2"].ToString(), row["Percent2"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent2"]),
+                                            row["Yarnnm3"] == DBNull.Value ? "" : row["Yarnnm3"].ToString(), row["Percent3"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent3"]),
+                                            row["Yarnnm4"] == DBNull.Value ? "" : row["Yarnnm4"].ToString(), row["Percent4"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent4"]),
+                                            row["Yarnnm5"] == DBNull.Value ? "" : row["Yarnnm5"].ToString(), row["Percent5"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent5"])
+                                            );
+
+                dataSetSizeGroup.DataTableFabric2.Rows.Add(Convert.ToInt32(row["Idx"]),
+                                            row["LongName"].ToString(), row["ShortName"].ToString(),
+                                            row["Yarnnm1"] == DBNull.Value ? "" : row["Yarnnm1"].ToString(), row["Percent1"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent1"]),
+                                            row["Yarnnm2"] == DBNull.Value ? "" : row["Yarnnm2"].ToString(), row["Percent2"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent2"]),
+                                            row["Yarnnm3"] == DBNull.Value ? "" : row["Yarnnm3"].ToString(), row["Percent3"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent3"]),
+                                            row["Yarnnm4"] == DBNull.Value ? "" : row["Yarnnm4"].ToString(), row["Percent4"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent4"]),
+                                            row["Yarnnm5"] == DBNull.Value ? "" : row["Yarnnm5"].ToString(), row["Percent5"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent5"])
+                                            );
             }
 
             // 코드
@@ -1323,6 +1355,39 @@ namespace Dev.Fabric
         /// <param name="e"></param>
         private void MasterTemplate_CellEditorInitialized(object sender, GridViewCellEventArgs e)
         {
+            RadMultiColumnComboBoxElement meditor = e.ActiveEditor as RadMultiColumnComboBoxElement;
+
+            if (_gv1.RowCount > 0)
+            {
+                if (meditor != null)
+                {
+                    meditor.Enabled = true;
+                    meditor.AutoSizeDropDownToBestFit = true;
+                    meditor.AutoSizeDropDownHeight = false;
+                    meditor.DropDownHeight = 400;
+
+                    if (meditor.ValueMember == "FabricIdx")
+                    {
+                        meditor.AutoSizeDropDownColumnMode = BestFitColumnMode.AllCells;
+                        meditor.EditorControl.Columns["Idx"].HeaderText = "ID";
+                        meditor.EditorControl.Columns["ShortName"].HeaderText = "Fabric";
+                        //meditor.EditorControl.Columns["ShortName"].Width = 150;
+                        meditor.EditorControl.Columns["Yarnnm1"].HeaderText = "Yarn1";
+                        meditor.EditorControl.Columns["Percent1"].HeaderText = "%";
+                        meditor.EditorControl.Columns["Yarnnm2"].HeaderText = "Yarn2";
+                        meditor.EditorControl.Columns["Percent2"].HeaderText = "%";
+                        meditor.EditorControl.Columns["Yarnnm3"].HeaderText = "Yarn3";
+                        meditor.EditorControl.Columns["Percent3"].HeaderText = "%";
+                        meditor.EditorControl.Columns["Yarnnm4"].HeaderText = "Yarn4";
+                        meditor.EditorControl.Columns["Percent4"].HeaderText = "%";
+                        meditor.EditorControl.Columns["Yarnnm5"].HeaderText = "Yarn5";
+                        meditor.EditorControl.Columns["Percent5"].HeaderText = "%";
+
+                    }
+
+                }
+            }
+
             // DDL 높이, 출력항목수 설정
             RadDropDownListEditor editor = this._gv1.ActiveEditor as RadDropDownListEditor;
             if (editor != null)
@@ -1433,7 +1498,7 @@ namespace Dev.Fabric
                     {
                         CodeType = "Fabric";
                         // 복호화
-                        WorkOrderIdx = Decryptor(txtBarcode.Text.Trim());
+                        WorkOrderIdx = txtBarcode.Text.Trim(); //Decryptor(txtBarcode.Text.Trim());
                         //Console.WriteLine(CodeType + " === " + txtBarcode.Text.Trim() + " === " + WorkOrderIdx); 
                         // 값이없으면
                         if (string.IsNullOrEmpty(WorkOrderIdx.Trim())) { }
@@ -1773,7 +1838,51 @@ namespace Dev.Fabric
                                                                         codeOutMode, UserInfo.CenterIdx, UserInfo.DeptIdx, UserInfo.Idx,
                                                                         codeCenter, codeDept, 0, WorkOrderIdx);
 
-                                __main__.lblDescription.Text = "In#" + Convert.ToString(row.Cells["WorkOrderIdx"].Value) + " is shipped out to Out#" + WorkOrderIdx; 
+                                __main__.lblDescription.Text = "In#" + Convert.ToString(row.Cells["WorkOrderIdx"].Value) + " is shipped out to Out#" + WorkOrderIdx;
+
+                                GridViewRowInfo orow = Int.Members.GetCurrentRow(_gv1);
+
+                                // 시작시 초기 날짜가 있는 경우, 데이터 즉시 조회
+                                if (Convert.ToInt32(orow.Cells["Idx"].Value) > 0)
+                                {
+                                    try
+                                    {
+                                        gvOutbound.DataSource = null;
+                                                                                
+                                        _searchString = new Dictionary<CommonValues.KeyName, string>();
+                                        _searchString.Add(CommonValues.KeyName.Lotno, "");
+                                        _searchString.Add(CommonValues.KeyName.WorkOrderIdx, "");
+                                        _searchString.Add(CommonValues.KeyName.ColorIdx, "");
+
+                                        _searchKey = new Dictionary<CommonValues.KeyName, int>();
+                                        _searchKey.Add(CommonValues.KeyName.Status, 0);
+                                        _searchKey.Add(CommonValues.KeyName.BuyerIdx, 0);
+
+                                        _searchKey.Add(CommonValues.KeyName.FabricIdx, 0);
+                                        _searchKey.Add(CommonValues.KeyName.FabricType, 0);
+
+                                        _searchKey.Add(CommonValues.KeyName.InIdx, Convert.ToInt32(orow.Cells["Idx"].Value));
+                                        _searchKey.Add(CommonValues.KeyName.Handler, 0);
+                                        _searchKey.Add(CommonValues.KeyName.OrderIdx, 0);
+
+                                        CultureInfo ci = new CultureInfo("ko-KR");
+                                        _ds1 = Controller.Outbound.Getlist(_searchString, _searchKey, "");
+
+                                        if (_ds1 != null)
+                                        {
+                                            gvOutbound.DataSource = _ds1.Tables[0].DefaultView;
+                                            gvOutbound.EnablePaging = CommonValues.enablePaging;
+                                            gvOutbound.AllowSearchRow = CommonValues.enableSearchRow;
+                                        }
+                                        
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine("DataBindingGv1: " + ex.Message.ToString());
+                                    }
+                                }
+                                AddSummaryRows();
+
                             }
                             else
                             {

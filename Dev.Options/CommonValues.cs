@@ -68,8 +68,8 @@ namespace Dev.Options
             {2, "2: Inbound(Customer)"},            // 입고(생산처)
             {3, "3: Inbound(Remain)"},              // 입고(사용가능 잔량회수)
             {4, "4: Buying"},                       // 입고(구매처)
-            {9, "9: Inventory(Malicious)"},         // 악성재고
-            {10, "10: Inventory(Factory)"}          // 공장용보관
+            {9, "9: Malicious Inventory"},         // 악성재고
+            {10, "10: Factory Inventory"}          // 공장용보관
         };
 
         public static Dictionary<int, string> DicFabricOutStatus = new Dictionary<int, string>()

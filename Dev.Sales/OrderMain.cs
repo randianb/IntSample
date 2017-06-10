@@ -21,6 +21,7 @@ namespace Dev.Sales
         #region 1. 변수 설정
 
         public InheritMDI __main__;                                             // 부모 MDI (하단 상태바 리턴용) 
+        public Dictionary<CommonValues.KeyName, string> _searchString;  // 쿼리값 value, 쿼리항목 key로 전달 
         public Dictionary<CommonValues.KeyName, int> _searchKey;                // 쿼리값 value, 쿼리항목 key로 전달 
         public DataRow InsertedOrderRow = null;
 
@@ -32,6 +33,8 @@ namespace Dev.Sales
         private Controller.Orders _obj1 = null;                                 // 현재 생성된 객체 
         private Controller.OrderColor _obj2 = null;                             // 현재 생성된 객체 
         private Controller.Operation _obj3 = null;                             // 현재 생성된 객체 
+        private Dev.Controller.OrderFabric _obj4 = null;                             // 현재 생성된 객체 
+
         private RadContextMenu contextMenu;                                     // 컨텍스트 메뉴
         private List<CodeContents> lstStatus = new List<CodeContents>();        // 오더상태
         private List<CodeContents> lstProduction = new List<CodeContents>();    // 생산진행상태 (패턴포함) 
@@ -54,6 +57,8 @@ namespace Dev.Sales
         RadMenuItem mnuNew, mnuDel, mnuHide, mnuShow, menuItem2, menuItem3, menuItem4, mnuWorksheet, 
             mnuCutting, mnuOutsourcing, mnuSewing, mnuInspecting, mnuPattern = null;
 
+        private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 18, 0);   // 패키지번호, 프로그램번호, 윈도우번호
+        
         #endregion
 
         #region 2. 초기로드 및 컨트롤 생성
@@ -83,11 +88,11 @@ namespace Dev.Sales
             Config_DropDownList();      // 상단 DDL 생성 설정
             GV1_CreateColumn(_gv1);     // 그리드뷰 생성
             GV1_LayoutSetting(_gv1);    // 중앙 그리드뷰 설정 
-            //Config_ContextMenu();       // 중앙 그리드뷰 컨텍스트 생성 설정 
             LoadGVLayout();             // 그리드뷰 레이아웃 복구 
-            // DataBinding_GV1(0, null, "", "");   // 중앙 그리드뷰 데이터 
+            
             GV3_CreateColumn(gvOperation);  // 공정 제목
             GV4_CreateColumn(gvProduction); // 현황 
+            GV5_CreateColumn(gvFabric); // 원단수량
         }
         
         /// <summary>
@@ -189,7 +194,7 @@ namespace Dev.Sales
             // mnuShipment.Image = Properties.Resources._20_20;
             mnuWorksheet.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
             mnuWorksheet.Click += new EventHandler(mnuWorksheet_Click);
-
+            
             // 생산 작업지시 (Cutting)
             mnuCutting = new RadMenuItem("Cutting Order");
             //mnuCutting.Image = Properties.Resources._20_20;
@@ -219,35 +224,47 @@ namespace Dev.Sales
             separator.Tag = "seperator";
 
             // 컨텍스트 추가 
-            contextMenu.Items.Add(mnuNew);
-            contextMenu.Items.Add(mnuDel);
-            contextMenu.Items.Add(separator);
-
-            contextMenu.Items.Add(mnuHide);
-            contextMenu.Items.Add(mnuShow);
-            separator = new RadMenuSeparatorItem();
-            separator.Tag = "seperator";
-            contextMenu.Items.Add(separator);
-
-            contextMenu.Items.Add(menuItem2);
-            contextMenu.Items.Add(menuItem3);
-            contextMenu.Items.Add(menuItem4);
-            separator = new RadMenuSeparatorItem();
-            separator.Tag = "seperator";
-            contextMenu.Items.Add(separator);
-
-            //contextMenu.Items.Add(mnuShipment);
-            contextMenu.Items.Add(mnuWorksheet);
-            contextMenu.Items.Add(mnuPattern);
             
-            separator = new RadMenuSeparatorItem();
-            separator.Tag = "seperator";
-            contextMenu.Items.Add(separator);
+            // 차후 영업부, 개발실 메뉴별 권한 분리필요
+            // 영업부 직원
+            //if (UserInfo.CenterIdx == 1)
+            //{
+                contextMenu.Items.Add(mnuNew);
+                contextMenu.Items.Add(mnuDel);
+                contextMenu.Items.Add(separator);
 
-            contextMenu.Items.Add(mnuCutting);
-            contextMenu.Items.Add(mnuOutsourcing);
-            contextMenu.Items.Add(mnuSewing);
-            contextMenu.Items.Add(mnuInspecting);
+                contextMenu.Items.Add(mnuHide);
+                contextMenu.Items.Add(mnuShow);
+                separator = new RadMenuSeparatorItem();
+                separator.Tag = "seperator";
+                contextMenu.Items.Add(separator);
+
+                contextMenu.Items.Add(menuItem2);
+                contextMenu.Items.Add(menuItem3);
+                contextMenu.Items.Add(menuItem4);
+                separator = new RadMenuSeparatorItem();
+                separator.Tag = "seperator";
+                contextMenu.Items.Add(separator);
+                contextMenu.Items.Add(mnuWorksheet);
+                contextMenu.Items.Add(mnuPattern);
+            //}
+
+            //// 개발실 직원 
+            //if (UserInfo.CenterIdx!=1)
+            //{
+                contextMenu.Items.Add(mnuHide);
+                contextMenu.Items.Add(mnuShow);
+
+                separator = new RadMenuSeparatorItem();
+                separator.Tag = "seperator";
+                contextMenu.Items.Add(separator);
+
+                contextMenu.Items.Add(mnuCutting);
+                contextMenu.Items.Add(mnuOutsourcing);
+                contextMenu.Items.Add(mnuSewing);
+                contextMenu.Items.Add(mnuInspecting);
+
+            //}
 
         }
         
@@ -274,6 +291,34 @@ namespace Dev.Sales
             mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
             mnuDel.Click += new EventHandler(mnuDelColor_Click);
             
+            // 컨텍스트 추가 
+            contextMenu.Items.Add(mnuNew);
+            contextMenu.Items.Add(mnuDel);
+        }
+
+        /// <summary>
+        /// 컨텍스트 메뉴 (원단)
+        /// </summary>
+        private void Config_ContextMenu_Fabric()
+        {
+            contextMenu = new RadContextMenu();
+
+            // 단축키 초기화 
+            Clear_Shortcuts();
+
+            // 오더 신규 입력
+            mnuNew = new RadMenuItem("New");
+            //mnuNew.Image = Properties.Resources._20_20;
+            mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
+            mnuNew.Click += new EventHandler(mnuNewFabric_Click);
+
+            // 오더 삭제
+            //contextMenu = new RadContextMenu();
+            mnuDel = new RadMenuItem("Remove");
+            //mnuNew.Image = Properties.Resources._20_20;
+            mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
+            mnuDel.Click += new EventHandler(mnuDelFabric_Click);
+
             // 컨텍스트 추가 
             contextMenu.Items.Add(mnuNew);
             contextMenu.Items.Add(mnuDel);
@@ -583,6 +628,7 @@ namespace Dev.Sales
             cOrderIdx.TextAlignment = ContentAlignment.MiddleCenter;
             cOrderIdx.HeaderText = "Order ID";
             cOrderIdx.ReadOnly = true;
+            cOrderIdx.IsVisible = false;
             gv.Columns.Add(cOrderIdx);
 
             GridViewComboBoxColumn cColorIdx = new GridViewComboBoxColumn();
@@ -590,7 +636,7 @@ namespace Dev.Sales
             cColorIdx.FieldName = "ColorIdx";
             cColorIdx.DataSource = lstColor;
             cColorIdx.DisplayMember = "Contents";
-            cColorIdx.ValueMember = "CodeIdx";
+            cColorIdx.ValueMember = "Contents";
             cColorIdx.Width = 120;
             cColorIdx.TextAlignment = ContentAlignment.MiddleCenter;
             cColorIdx.HeaderText = "Color";
@@ -747,6 +793,7 @@ namespace Dev.Sales
             cOrderIdx.TextAlignment = ContentAlignment.MiddleCenter;
             cOrderIdx.HeaderText = "Order ID";
             cOrderIdx.ReadOnly = true;
+            cOrderIdx.IsVisible = false;
             gv.Columns.Add(cOrderIdx);
 
             lstOperation.Clear();
@@ -853,6 +900,71 @@ namespace Dev.Sales
             #endregion
         }
 
+        /// <summary>
+        /// 그리드뷰 컬럼 생성 (원단수량)
+        /// </summary>
+        /// <param name="gv">그리드뷰</param>
+        private void GV5_CreateColumn(RadGridView gv)
+        {
+            #region Columns 생성
+
+            gv.MasterTemplate.Columns.Clear();
+            gv.DataSource = null;
+
+            GridViewTextBoxColumn cIdx = new GridViewTextBoxColumn();
+            cIdx.Name = "Idx";
+            cIdx.FieldName = "Idx";
+            cIdx.Width = 50;
+            cIdx.TextAlignment = ContentAlignment.MiddleCenter;
+            cIdx.HeaderText = "ID";
+            cIdx.ReadOnly = true;
+            gv.Columns.Add(cIdx);
+
+            GridViewTextBoxColumn cOrderIdx = new GridViewTextBoxColumn();
+            cOrderIdx.Name = "OrderIdx";
+            cOrderIdx.FieldName = "OrderIdx";
+            cOrderIdx.Width = 60;
+            cOrderIdx.TextAlignment = ContentAlignment.MiddleCenter;
+            cOrderIdx.HeaderText = "Order ID";
+            cOrderIdx.ReadOnly = true;
+            cOrderIdx.IsVisible = false;
+            gv.Columns.Add(cOrderIdx);
+
+            GridViewMultiComboBoxColumn FabricIdx = new GridViewMultiComboBoxColumn();
+            FabricIdx.Name = "FabricIdx";
+            FabricIdx.DataSource = dataSetSizeGroup.DataTableFabric;
+            FabricIdx.ValueMember = "Idx";
+            FabricIdx.DisplayMember = "ShortName";
+            FabricIdx.FieldName = "FabricIdx";
+            FabricIdx.HeaderText = "Fabric";
+            FabricIdx.AutoSizeMode = BestFitColumnMode.AllCells;
+            FabricIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend; 
+            FabricIdx.DropDownStyle = RadDropDownStyle.DropDown; 
+            FabricIdx.Width = 200;
+            gv.Columns.Add(FabricIdx);
+            
+            GridViewTextBoxColumn Yds = new GridViewTextBoxColumn();
+            Yds.DataType = typeof(double); 
+            Yds.Name = "Yds";
+            Yds.FieldName = "Yds";
+            Yds.Width = 70;
+            Yds.FormatString = "{0:N2}";
+            Yds.TextAlignment = ContentAlignment.MiddleRight;
+            Yds.HeaderText = "Yds";
+            gv.Columns.Add(Yds);
+
+            GridViewTextBoxColumn Remark = new GridViewTextBoxColumn();
+            Remark.Name = "Remark";
+            Remark.FieldName = "Remark";
+            Remark.Width = 140;
+            Remark.TextAlignment = ContentAlignment.MiddleLeft;
+            Remark.HeaderText = "Remark";
+            gv.Columns.Add(Remark);
+
+
+            #endregion
+        }
+
         #endregion
 
         #region 3. 컨트롤 초기 설정
@@ -880,6 +992,11 @@ namespace Dev.Sales
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void GV_SubContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
+        {
+            e.ContextMenu = contextMenu.DropDown;
+        }
+
+        private void gvFabric_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
         {
             e.ContextMenu = contextMenu.DropDown;
         }
@@ -963,12 +1080,142 @@ namespace Dev.Sales
 
         private void mnuCutting_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    // 파일번호 입력하지 않았을 경우
+                    if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                    {
+                        RadMessageBox.Show("Please input the file number", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 스타일 입력안되었을 경우
+                    if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")))
+                    {
+                        RadMessageBox.Show("Please input the style#", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+                    if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") <= 0)
+                    {
+                        RadMessageBox.Show("Please input the Size Group", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 파일번호, 오더수량, 금액이 정상 입력되었으면 
+                    if (!string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")) &&
+                        !string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")) &&
+                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") > 0
+                        )
+                    {
+                        // 워크시트 열기 
+                        frmCuttingRequest frm = new frmCuttingRequest(Int.Members.GetCurrentRow(_gv1, "Idx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Fileno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "Styleno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Status")
+                                                        );
+                        frm.Text = "Cutting Order";
+
+                        if (frm.ShowDialog(this) == DialogResult.OK)
+                        {
+                            // Production Status 갱신 
+                            DataBinding_GV4(gvProduction, Int.Members.GetCurrentRow(_gv1, "Idx"));
+                        }
+                    }
+                    else
+                    {
+                        // 에러 메시지
+                        if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                        {
+                            RadMessageBox.Show("Please input the File#");
+                            return;
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
         }
 
         private void mnuWorksheet_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    // 파일번호 입력하지 않았을 경우
+                    if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                    {
+                        RadMessageBox.Show("Please input the file number", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 스타일 입력안되었을 경우
+                    if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")))
+                    {
+                        RadMessageBox.Show("Please input the style#", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+                    if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") <= 0)
+                    {
+                        RadMessageBox.Show("Please input the Size Group", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 파일번호, 오더수량, 금액이 정상 입력되었으면 
+                    if (!string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")) &&
+                        !string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")) &&
+                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") > 0
+                        )
+                    {
+                        // 워크시트 열기 
+                        frmWorkSheets frm = new frmWorkSheets(Int.Members.GetCurrentRow(_gv1, "Idx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Fileno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "Styleno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Status")
+                                                        );
+                        frm.Text = "Worksheet";
+
+                        if (frm.ShowDialog(this) == DialogResult.OK)
+                        {
+                            // Production Status 갱신 
+                            DataBinding_GV4(gvProduction, Int.Members.GetCurrentRow(_gv1, "Idx"));
+                        }
+                    }
+                    else
+                    {
+                        // 에러 메시지
+                        if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                        {
+                            RadMessageBox.Show("Please input the File#");
+                            return;
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
@@ -1014,21 +1261,31 @@ namespace Dev.Sales
                 string str = "";
                 //_gv1.EndEdit();
 
-                // 삭제하기전 삭제될 데이터 확인
-                foreach (GridViewRowInfo row in _gv1.SelectedRows)
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 2;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
                 {
-                    if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["Idx"].Value).ToString();
-                    else str += "," + Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                    // 삭제하기전 삭제될 데이터 확인
+                    foreach (GridViewRowInfo row in _gv1.SelectedRows)
+                    {
+                        if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                        else str += "," + Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                    }
+
+                    // 해당 자료 삭제여부 확인후, 
+                    if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
+                        MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+                    {
+                        // 삭제후 새로고침
+                        _bRtn = Controller.Orders.Delete(str);
+                        RefleshWithCondition();
+                    }
                 }
 
-                // 해당 자료 삭제여부 확인후, 
-                if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
-                    MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
-                {
-                    // 삭제후 새로고침
-                    _bRtn = Controller.Orders.Delete(str);
-                    RefleshWithCondition();
-                }
+                    
             }
             catch (Exception ex)
             {
@@ -1048,21 +1305,76 @@ namespace Dev.Sales
                 string str = "";
                 //_gv1.EndEdit();
 
-                // 삭제하기전 삭제될 데이터 확인
-                foreach (GridViewRowInfo row in gvColorSize.SelectedRows)
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 2;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
                 {
-                    if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["Idx"].Value).ToString();
-                    else str += "," + Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                    // 삭제하기전 삭제될 데이터 확인
+                    foreach (GridViewRowInfo row in gvColorSize.SelectedRows)
+                    {
+                        if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                        else str += "," + Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                    }
+
+                    // 해당 자료 삭제여부 확인후, 
+                    if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
+                        MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+                    {
+                        // 삭제후 새로고침
+                        _bRtn = Controller.OrderColor.Delete(str);
+                        DataBinding_GV2(gvColorSize, Convert.ToInt32(Int.Members.GetCurrentRow(_gv1).Cells["Idx"].Value));
+                    }
                 }
 
-                // 해당 자료 삭제여부 확인후, 
-                if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
-                    MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("btnInsert_Click: " + ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// 행 자료삭제 (원단)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuDelFabric_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string str = "";
+                //_gv1.EndEdit();
+
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 2;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
                 {
-                    // 삭제후 새로고침
-                    _bRtn = Controller.OrderColor.Delete(str);
-                    DataBinding_GV2(gvColorSize, Convert.ToInt32(Int.Members.GetCurrentRow(_gv1).Cells["Idx"].Value)); 
+                    // 삭제하기전 삭제될 데이터 확인
+                    foreach (GridViewRowInfo row in gvFabric.SelectedRows)
+                    {
+                        if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                        else str += "," + Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                    }
+
+                    // 해당 자료 삭제여부 확인후, 
+                    if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
+                        MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+                    {
+                        // 삭제후 새로고침
+                        _bRtn = Dev.Controller.OrderFabric.Delete(str);
+
+                        DataBinding_GV5(gvFabric, Convert.ToInt32(Int.Members.GetCurrentRow(_gv1).Cells["Idx"].Value));
+                    }
                 }
+
+
             }
             catch (Exception ex)
             {
@@ -1082,21 +1394,31 @@ namespace Dev.Sales
                 string str = "";
                 //_gv1.EndEdit();
 
-                // 삭제하기전 삭제될 데이터 확인
-                foreach (GridViewRowInfo row in gvOperation.SelectedRows)
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 2;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
                 {
-                    if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["Idx"].Value).ToString();
-                    else str += "," + Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                    // 삭제하기전 삭제될 데이터 확인
+                    foreach (GridViewRowInfo row in gvOperation.SelectedRows)
+                    {
+                        if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                        else str += "," + Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                    }
+
+                    // 해당 자료 삭제여부 확인후, 
+                    if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
+                        MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+                    {
+                        // 삭제후 새로고침
+                        _bRtn = Controller.Operation.Delete(str);
+                        DataBinding_GV3(gvOperation, Convert.ToInt32(Int.Members.GetCurrentRow(_gv1).Cells["Idx"].Value));
+                    }
                 }
 
-                // 해당 자료 삭제여부 확인후, 
-                if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
-                    MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
-                {
-                    // 삭제후 새로고침
-                    _bRtn = Controller.Operation.Delete(str);
-                    DataBinding_GV3(gvOperation, Convert.ToInt32(Int.Members.GetCurrentRow(_gv1).Cells["Idx"].Value));
-                }
+                
             }
             catch (Exception ex)
             {
@@ -1113,17 +1435,24 @@ namespace Dev.Sales
         {
             try
             {
-                //if (_gv1.RowCount > 0)
-                //{
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
                     frmNewOrder newOrder = new frmNewOrder(this);
                     newOrder.ShowDialog();
-                    
+
                     if (InsertedOrderRow != null)
                     {
                         RefleshWithCondition();
                         SetCurrentRow(_gv1, Convert.ToInt32(InsertedOrderRow["LastIdx"]));   // 신규입력된 행번호로 이동
 
                     }
+                }
+                
                     
                 //}
             }
@@ -1143,7 +1472,7 @@ namespace Dev.Sales
             try
             {
                 int orderIdx=0;
-                int colorIdx=0;
+                string colorIdx="";
                 int sizeIdx1=0;
                 int sizeIdx2 = 0;
                 int sizeIdx3 = 0;
@@ -1152,33 +1481,80 @@ namespace Dev.Sales
                 int sizeIdx6 = 0;
                 int sizeIdx7 = 0;
                 int sizeIdx8 = 0;
-                
-                gvColorSize.EndEdit();
-                GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
 
-                if (row.Cells["Idx"].Value != DBNull.Value) orderIdx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    gvColorSize.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
 
-                sizeIdx1 = lstSize[1].SizeIdx;
-                sizeIdx2 = lstSize[2].SizeIdx;
-                sizeIdx3 = lstSize[3].SizeIdx;
-                sizeIdx4 = lstSize[4].SizeIdx;
-                sizeIdx5 = lstSize[5].SizeIdx;
-                sizeIdx6 = lstSize[6].SizeIdx;
-                sizeIdx7 = lstSize[7].SizeIdx;
-                sizeIdx8 = lstSize[8].SizeIdx;
+                    if (row.Cells["Idx"].Value != DBNull.Value) orderIdx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
 
-                DataRow rows = Controller.OrderColor.Insert(orderIdx, colorIdx,
-                                                           sizeIdx1, sizeIdx2, sizeIdx3, sizeIdx4, sizeIdx5, sizeIdx6, sizeIdx7, sizeIdx8);
+                    sizeIdx1 = lstSize[1].SizeIdx;
+                    sizeIdx2 = lstSize[2].SizeIdx;
+                    sizeIdx3 = lstSize[3].SizeIdx;
+                    sizeIdx4 = lstSize[4].SizeIdx;
+                    sizeIdx5 = lstSize[5].SizeIdx;
+                    sizeIdx6 = lstSize[6].SizeIdx;
+                    sizeIdx7 = lstSize[7].SizeIdx;
+                    sizeIdx8 = lstSize[8].SizeIdx;
 
-                DataBinding_GV2(gvColorSize, Convert.ToInt32(row.Cells["Idx"].Value.ToString())); 
-                //SetCurrentRow(gvColorSize, Convert.ToInt32(rows["LastIdx"]));   // 신규입력된 행번호로 이동
+                    DataRow rows = Controller.OrderColor.Insert(orderIdx, colorIdx,
+                                                               sizeIdx1, sizeIdx2, sizeIdx3, sizeIdx4, sizeIdx5, sizeIdx6, sizeIdx7, sizeIdx8);
+
+                    DataBinding_GV2(gvColorSize, Convert.ToInt32(row.Cells["Idx"].Value.ToString()));
+                    //SetCurrentRow(gvColorSize, Convert.ToInt32(rows["LastIdx"]));   // 신규입력된 행번호로 이동
+                }
+
+
             }
             catch (Exception ex)
             {
                 RadMessageBox.Show(ex.Message);
             }
         }
-        
+
+        /// <summary>
+        /// 신규입력 (원단)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuNewFabric_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int orderIdx = 0;
+                
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    gvFabric.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
+
+                    if (row.Cells["Idx"].Value != DBNull.Value) orderIdx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+                    
+                    DataRow rows = Dev.Controller.OrderFabric.Insert(orderIdx);
+
+                    DataBinding_GV5(gvFabric, Convert.ToInt32(row.Cells["Idx"].Value.ToString()));
+                    //SetCurrentRow(gvColorSize, Convert.ToInt32(rows["LastIdx"]));   // 신규입력된 행번호로 이동
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
+        }
+
         /// <summary>
         /// 신규입력 (공정)
         /// </summary>
@@ -1189,16 +1565,25 @@ namespace Dev.Sales
             try
             {
                 int orderIdx = 0;
-                
-                gvOperation.EndEdit();
-                GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
 
-                if (row.Cells["Idx"].Value != DBNull.Value) orderIdx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
-                
-                DataRow rows = Controller.Operation.Insert2(orderIdx);
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    gvOperation.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
 
-                DataBinding_GV3(gvOperation, Convert.ToInt32(row.Cells["Idx"].Value.ToString()));
-                //SetCurrentRow(gvColorSize, Convert.ToInt32(rows["LastIdx"]));   // 신규입력된 행번호로 이동
+                    if (row.Cells["Idx"].Value != DBNull.Value) orderIdx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+
+                    DataRow rows = Controller.Operation.Insert2(orderIdx);
+
+                    DataBinding_GV3(gvOperation, Convert.ToInt32(row.Cells["Idx"].Value.ToString()));
+                    //SetCurrentRow(gvColorSize, Convert.ToInt32(rows["LastIdx"]));   // 신규입력된 행번호로 이동
+                }
+
             }
             catch (Exception ex)
             {
@@ -1242,13 +1627,22 @@ namespace Dev.Sales
         /// <param name="e"></param>
         private void mnuCloseOrder_Click(object sender, EventArgs e)
         {
-            if (RadMessageBox.Show("Do you want to close this order?", "Confirm", MessageBoxButtons.YesNo, RadMessageIcon.Question)
-                == DialogResult.Yes)
+            /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+            /// 읽기: 0, 쓰기: 1, 삭제: 2
+            int _mode_ = 1;
+            if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                CheckAuth.ShowMessage(_mode_);
+            else
             {
-                bool result = Data.OrdersData.CloseOrder(Int.Members.GetCurrentRow(_gv1, "Idx"));
-                if (result)
-                    RadMessageBox.Show("Closed", "Info", MessageBoxButtons.OK, RadMessageIcon.Info);
+                if (RadMessageBox.Show("Do you want to close this order?", "Confirm", MessageBoxButtons.YesNo, RadMessageIcon.Question)
+                == DialogResult.Yes)
+                {
+                    bool result = Data.OrdersData.CloseOrder(Int.Members.GetCurrentRow(_gv1, "Idx"));
+                    if (result)
+                        RadMessageBox.Show("Closed", "Info", MessageBoxButtons.OK, RadMessageIcon.Info);
+                }
             }
+            
         }
 
         /// <summary>
@@ -1263,21 +1657,30 @@ namespace Dev.Sales
                 string str = "";
                 //_gv1.EndEdit();
 
-                // 삭제하기전 삭제될 데이터 확인
-                foreach (GridViewRowInfo row in _gv1.SelectedRows)
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
                 {
-                    if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["Idx"].Value).ToString();
-                    else str += "," + Convert.ToInt32(row.Cells["Idx"].Value).ToString();
-                }
+                    // 삭제하기전 삭제될 데이터 확인
+                    foreach (GridViewRowInfo row in _gv1.SelectedRows)
+                    {
+                        if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                        else str += "," + Convert.ToInt32(row.Cells["Idx"].Value).ToString();
+                    }
 
-                // 해당 자료 삭제여부 확인후, 
-                if (RadMessageBox.Show("Do you want to cancel this item?\n(ID: " + str + ")", "Confirm",
-                    MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
-                {
-                    bool result = Data.OrdersData.CancelOrder(Int.Members.GetCurrentRow(_gv1, "Idx"));
-                    if (result)
-                        RadMessageBox.Show("Canceled", "Info", MessageBoxButtons.OK, RadMessageIcon.Info);
+                    // 해당 자료 삭제여부 확인후, 
+                    if (RadMessageBox.Show("Do you want to cancel this item?\n(ID: " + str + ")", "Confirm",
+                        MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+                    {
+                        bool result = Data.OrdersData.CancelOrder(Int.Members.GetCurrentRow(_gv1, "Idx"));
+                        if (result)
+                            RadMessageBox.Show("Canceled", "Info", MessageBoxButtons.OK, RadMessageIcon.Info);
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -1305,57 +1708,66 @@ namespace Dev.Sales
         {
             try
             {
-                // 파일번호 입력하지 않았을 경우
-                if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
-                {
-                    RadMessageBox.Show("Please input the file number", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
-                    return;
-                }
-                
-                // 스타일 입력안되었을 경우
-                if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")))
-                {
-                    RadMessageBox.Show("Please input the style#", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
-                    return;
-                }
-                if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") <= 0)
-                {
-                    RadMessageBox.Show("Please input the Size Group", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
-                    return;
-                }
-
-                // 파일번호, 오더수량, 금액이 정상 입력되었으면 
-                if (!string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")) &&
-                    !string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")) &&
-                    Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") > 0
-                    )
-                {
-                    // 패턴 요청창 열기 
-                    frmPatternRequest frm = new frmPatternRequest(Int.Members.GetCurrentRow(_gv1, "Idx"),
-                                                    Int.Members.GetCurrentRow(_gv1, "Fileno", ""),
-                                                    Int.Members.GetCurrentRow(_gv1, "Styleno", ""),
-                                                    Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
-                                                    Int.Members.GetCurrentRow(_gv1, "Status")
-                                                    );
-                    frm.Text = "Pattern";
-                    
-                    if (frm.ShowDialog(this) == DialogResult.OK)
-                    {
-                        // RadMessageBox.Show(frm.OrderIdx.ToString());
-                        // Production Status 갱신 
-                        DataBinding_GV4(gvProduction, Int.Members.GetCurrentRow(_gv1, "Idx"));
-                    }
-                }
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
                 else
                 {
-                    // 에러 메시지
+                    // 파일번호 입력하지 않았을 경우
                     if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
                     {
-                        RadMessageBox.Show("Please input the File#");
+                        RadMessageBox.Show("Please input the file number", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
                         return;
                     }
-                   
+
+                    // 스타일 입력안되었을 경우
+                    if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")))
+                    {
+                        RadMessageBox.Show("Please input the style#", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+                    if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") <= 0)
+                    {
+                        RadMessageBox.Show("Please input the Size Group", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 파일번호, 오더수량, 금액이 정상 입력되었으면 
+                    if (!string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")) &&
+                        !string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")) &&
+                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") > 0
+                        )
+                    {
+                        // 패턴 요청창 열기 
+                        frmPatternRequest frm = new frmPatternRequest(Int.Members.GetCurrentRow(_gv1, "Idx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Fileno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "Styleno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Status")
+                                                        );
+                        frm.Text = "Pattern";
+
+                        if (frm.ShowDialog(this) == DialogResult.OK)
+                        {
+                            // RadMessageBox.Show(frm.OrderIdx.ToString());
+                            // Production Status 갱신 
+                            DataBinding_GV4(gvProduction, Int.Members.GetCurrentRow(_gv1, "Idx"));
+                        }
+                    }
+                    else
+                    {
+                        // 에러 메시지
+                        if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                        {
+                            RadMessageBox.Show("Please input the File#");
+                            return;
+                        }
+
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -1372,59 +1784,69 @@ namespace Dev.Sales
         {
             try
             {
-                if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
-                {
-                    RadMessageBox.Show("Please input the file number", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
-                    return;
-                }
-                if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx", 0f) <= 0.0)
-                {
-                    RadMessageBox.Show("Please input the Order Amount", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
-                    return;
-                }
-
-                // 파일번호, 오더수량, 금액이 정상 입력되어 있으면 
-                if (!string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")) &&
-                    Int.Members.GetCurrentRow(_gv1, "OrderQty") > 0 &&
-                    Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f) > 0f)
-                {
-                    if (RadMessageBox.Show("Do you want to copy?", "Confirm", MessageBoxButtons.YesNo, RadMessageIcon.Question)
-                        == DialogResult.Yes)
-                    {
-                        // 복사창 열기 
-                        frmCopyOrder frm = new frmCopyOrder(Int.Members.GetCurrentRow(_gv1, "Idx"),
-                                                        Int.Members.GetCurrentRow(_gv1, "Fileno", ""),
-                                                        Int.Members.GetCurrentRow(_gv1, "OrderQty"),
-                                                        Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f),
-                                                        Int.Members.GetCurrentRow(_gv1, "ShipCompleted"));
-                        frm.Text = "Copy Order";
-                        if (frm.ShowDialog(this) == DialogResult.OK)
-                        {
-                            RadMessageBox.Show(frm.Copied.ToString() + " copied.", "Info", MessageBoxButtons.OK, RadMessageIcon.Info);
-                            RefleshWithCondition();
-                        }
-                    }
-
-                }
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
                 else
                 {
-                    // 에러 메시지
                     if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
                     {
-                        RadMessageBox.Show("Please input the File#");
+                        RadMessageBox.Show("Please input the file number", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
                         return;
                     }
-                    if (Int.Members.GetCurrentRow(_gv1, "OrderQty") <= 0)
+                    if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx", 0f) <= 0.0)
                     {
-                        RadMessageBox.Show("Please input the order Q'ty");
+                        RadMessageBox.Show("Please input the Order Amount", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
                         return;
                     }
-                    if (Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f) <= 0f)
+
+                    // 파일번호, 오더수량, 금액이 정상 입력되어 있으면 
+                    if (!string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")) &&
+                        Int.Members.GetCurrentRow(_gv1, "OrderQty") > 0 &&
+                        Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f) > 0f)
                     {
-                        RadMessageBox.Show("Please input the order amount");
-                        return;
+                        if (RadMessageBox.Show("Do you want to copy?", "Confirm", MessageBoxButtons.YesNo, RadMessageIcon.Question)
+                            == DialogResult.Yes)
+                        {
+                            // 복사창 열기 
+                            frmCopyOrder frm = new frmCopyOrder(Int.Members.GetCurrentRow(_gv1, "Idx"),
+                                                            Int.Members.GetCurrentRow(_gv1, "Fileno", ""),
+                                                            Int.Members.GetCurrentRow(_gv1, "OrderQty"),
+                                                            Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f),
+                                                            Int.Members.GetCurrentRow(_gv1, "ShipCompleted"));
+                            frm.Text = "Copy Order";
+                            if (frm.ShowDialog(this) == DialogResult.OK)
+                            {
+                                RadMessageBox.Show(frm.Copied.ToString() + " copied.", "Info", MessageBoxButtons.OK, RadMessageIcon.Info);
+                                RefleshWithCondition();
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        // 에러 메시지
+                        if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                        {
+                            RadMessageBox.Show("Please input the File#");
+                            return;
+                        }
+                        if (Int.Members.GetCurrentRow(_gv1, "OrderQty") <= 0)
+                        {
+                            RadMessageBox.Show("Please input the order Q'ty");
+                            return;
+                        }
+                        if (Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f) <= 0f)
+                        {
+                            RadMessageBox.Show("Please input the order amount");
+                            return;
+                        }
                     }
                 }
+
+                
             }
             catch (Exception ex)
             {
@@ -1448,7 +1870,7 @@ namespace Dev.Sales
             foreach (DataRow row in _dt.Rows)
             {
                 // 관리부와 임원은 모든 부서에 접근가능
-                if (UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6)
+                if (UserInfo.CenterIdx != 1 || UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6)
                 {
                     deptName.Add(new DepartmentName(Convert.ToInt32(row["DeptIdx"]),
                                                 row["DeptName"].ToString(),
@@ -1537,6 +1959,25 @@ namespace Dev.Sales
                                             row["SewThreadCustIdx"].ToString(),
                                             row["SewThreadName"].ToString(),
                                             row["ColorIdx"].ToString());
+            }
+
+            // Fabric 
+            _searchString = new Dictionary<CommonValues.KeyName, string>();
+            _searchString.Add(CommonValues.KeyName.Remark, "");
+            _searchString.Add(CommonValues.KeyName.IsUse, "1");
+            _dt = Dev.Controller.Fabric.Getlist(_searchString).Tables[0];
+
+            dataSetSizeGroup.DataTableFabric.Rows.Add(0, "", "", "", 0f, "", 0f, "", 0f, "", 0f, "", 0f);
+            foreach (DataRow row in _dt.Rows)
+            {
+                dataSetSizeGroup.DataTableFabric.Rows.Add(Convert.ToInt32(row["Idx"]), 
+                                            row["LongName"].ToString(), row["ShortName"].ToString(),
+                                            row["Yarnnm1"]==DBNull.Value ? "" : row["Yarnnm1"].ToString(), row["Percent1"] ==DBNull.Value ? 0f : Convert.ToInt32(row["Percent1"]),
+                                            row["Yarnnm2"] == DBNull.Value ? "" : row["Yarnnm2"].ToString(), row["Percent2"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent2"]),
+                                            row["Yarnnm3"] == DBNull.Value ? "" : row["Yarnnm3"].ToString(), row["Percent3"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent3"]),
+                                            row["Yarnnm4"] == DBNull.Value ? "" : row["Yarnnm4"].ToString(), row["Percent4"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent4"]),
+                                            row["Yarnnm5"] == DBNull.Value ? "" : row["Yarnnm5"].ToString(), row["Percent5"] == DBNull.Value ? 0f : Convert.ToInt32(row["Percent5"])
+                                            );
             }
 
             // Username
@@ -1628,23 +2069,33 @@ namespace Dev.Sales
         {
             try
             {
-                //조회시간
-                //Stopwatch sw = new Stopwatch();
-                //sw.Start(); 
-
-                _gv1.DataSource = null;
-                
-                _ds1 = Controller.Orders.Getlist(KeyCount, SearchKey, fileno, styleno);
-                if (_ds1 != null)
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 0;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
                 {
-                    _gv1.DataSource = _ds1.Tables[0].DefaultView;
-                    // 조회 후, 상태알림 및 설정적용
-                    __main__.lblRows.Text = _gv1.RowCount.ToString() + " Rows"; 
-                    _gv1.EnablePaging = CommonValues.enablePaging;
-                    _gv1.AllowSearchRow = CommonValues.enableSearchRow; 
+                    //조회시간
+                    //Stopwatch sw = new Stopwatch();
+                    //sw.Start(); 
+
+                    _gv1.DataSource = null;
+
+                    _ds1 = Controller.Orders.Getlist(KeyCount, SearchKey, fileno, styleno);
+                    if (_ds1 != null)
+                    {
+                        _gv1.DataSource = _ds1.Tables[0].DefaultView;
+                        // 조회 후, 상태알림 및 설정적용
+                        __main__.lblRows.Text = _gv1.RowCount.ToString() + " Rows";
+                        _gv1.EnablePaging = CommonValues.enablePaging;
+                        _gv1.AllowSearchRow = CommonValues.enableSearchRow;
+                    }
+                    //sw.Stop();
+                    //lblTime.Text = sw.Elapsed.ToString();
                 }
-                //sw.Stop();
-                //lblTime.Text = sw.Elapsed.ToString();
+
+
             }
             catch (Exception ex)
             {
@@ -1674,7 +2125,30 @@ namespace Dev.Sales
                 Console.WriteLine("DataBinding " + gv.Name + ": " + ex.Message.ToString());
             }
         }
-        
+
+        /// <summary>
+        /// 데이터 로딩 (원단) 
+        /// </summary>
+        /// <param name="gv"></param>
+        /// <param name="OrderIdx"></param>
+        private void DataBinding_GV5(RadGridView gv, int OrderIdx)
+        {
+            try
+            {
+                gv.DataSource = null;
+
+                _ds1 = Dev.Controller.OrderFabric.Getlist(OrderIdx);
+                if (_ds1 != null)
+                {
+                    gv.DataSource = _ds1.Tables[0].DefaultView;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("DataBinding " + gv.Name + ": " + ex.Message.ToString());
+            }
+        }
+
         /// <summary>
         /// 데이터 로딩 (공정) 
         /// </summary>
@@ -1779,52 +2253,61 @@ namespace Dev.Sales
             _bRtn = false;
             try
             {
-                _gv1.EndEdit();
-                GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0) // || UserInfo.CenterIdx!=1) 차후 영업부만 수정할수 있도록 권한제거 필요 
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    _gv1.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
 
-                // 객체생성 및 값 할당
-                _obj1           = new Controller.Orders(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value));
-                _obj1.Idx       = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
-                _obj1.Fileno    = row.Cells["Fileno"].Value.ToString();
-                _obj1.DeptIdx   = Convert.ToInt32(row.Cells["DeptIdx"].Value.ToString());
-                if (row.Cells["Reorder"].Value != DBNull.Value) _obj1.Reorder = Convert.ToInt32(row.Cells["Reorder"].Value.ToString());
-                if (row.Cells["ReorderReason"].Value != DBNull.Value) _obj1.ReorderReason = row.Cells["ReorderReason"].Value.ToString();
-                if (row.Cells["Indate"].Value != DBNull.Value) _obj1.Indate    = Convert.ToDateTime(row.Cells["Indate"].Value);
+                    // 객체생성 및 값 할당
+                    _obj1 = new Controller.Orders(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value));
+                    _obj1.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+                    _obj1.Fileno = row.Cells["Fileno"].Value.ToString();
+                    _obj1.DeptIdx = Convert.ToInt32(row.Cells["DeptIdx"].Value.ToString());
+                    if (row.Cells["Reorder"].Value != DBNull.Value) _obj1.Reorder = Convert.ToInt32(row.Cells["Reorder"].Value.ToString());
+                    if (row.Cells["ReorderReason"].Value != DBNull.Value) _obj1.ReorderReason = row.Cells["ReorderReason"].Value.ToString();
+                    if (row.Cells["Indate"].Value != DBNull.Value) _obj1.Indate = Convert.ToDateTime(row.Cells["Indate"].Value);
 
-                if (row.Cells["Buyer"].Value != DBNull.Value)           _obj1.Buyer = Convert.ToInt32(row.Cells["Buyer"].Value.ToString());
-                if (row.Cells["Vendor"].Value != DBNull.Value) _obj1.Vendor = Convert.ToInt32(row.Cells["Vendor"].Value.ToString());
-                if (row.Cells["Country"].Value != DBNull.Value) _obj1.Country = Convert.ToInt32(row.Cells["Country"].Value.ToString());
-                if (row.Cells["Pono"].Value != DBNull.Value)            _obj1.Pono = row.Cells["Pono"].Value.ToString();
-                if (row.Cells["Styleno"].Value != DBNull.Value)         _obj1.Styleno = row.Cells["Styleno"].Value.ToString();
-                if (row.Cells["SampleType"].Value != DBNull.Value) _obj1.SampleType = row.Cells["SampleType"].Value.ToString();
-                if (row.Cells["InspType"].Value != DBNull.Value) _obj1.InspType = row.Cells["InspType"].Value.ToString();
+                    if (row.Cells["Buyer"].Value != DBNull.Value) _obj1.Buyer = Convert.ToInt32(row.Cells["Buyer"].Value.ToString());
+                    if (row.Cells["Vendor"].Value != DBNull.Value) _obj1.Vendor = Convert.ToInt32(row.Cells["Vendor"].Value.ToString());
+                    if (row.Cells["Country"].Value != DBNull.Value) _obj1.Country = Convert.ToInt32(row.Cells["Country"].Value.ToString());
+                    if (row.Cells["Pono"].Value != DBNull.Value) _obj1.Pono = row.Cells["Pono"].Value.ToString();
+                    if (row.Cells["Styleno"].Value != DBNull.Value) _obj1.Styleno = row.Cells["Styleno"].Value.ToString();
+                    if (row.Cells["SampleType"].Value != DBNull.Value) _obj1.SampleType = row.Cells["SampleType"].Value.ToString();
+                    if (row.Cells["InspType"].Value != DBNull.Value) _obj1.InspType = row.Cells["InspType"].Value.ToString();
 
-                if (row.Cells["Season"].Value != DBNull.Value)          _obj1.Season = row.Cells["Season"].Value.ToString();
-                if (row.Cells["Description"].Value != DBNull.Value)     _obj1.Description = row.Cells["Description"].Value.ToString();
-                if (row.Cells["DeliveryDate"].Value != DBNull.Value)    _obj1.DeliveryDate = Convert.ToDateTime(row.Cells["DeliveryDate"].Value);
-                if (row.Cells["IsPrinting"].Value != DBNull.Value)      _obj1.IsPrinting = Convert.ToInt32(row.Cells["IsPrinting"].Value.ToString());
-                if(row.Cells["EmbelishId1"].Value!= DBNull.Value)       _obj1.EmbelishId1 = Convert.ToInt32(row.Cells["EmbelishId1"].Value);
-                if (row.Cells["EmbelishId2"].Value != DBNull.Value)     _obj1.EmbelishId2 = Convert.ToInt32(row.Cells["EmbelishId2"].Value);
-                if (row.Cells["SizeGroupIdx"].Value != DBNull.Value) _obj1.SizeGroupIdx = Convert.ToInt32(row.Cells["SizeGroupIdx"].Value);
-                if (row.Cells["SewThreadIdx"].Value != DBNull.Value) _obj1.SewThreadIdx = Convert.ToInt32(row.Cells["SewThreadIdx"].Value);
+                    if (row.Cells["Season"].Value != DBNull.Value) _obj1.Season = row.Cells["Season"].Value.ToString();
+                    if (row.Cells["Description"].Value != DBNull.Value) _obj1.Description = row.Cells["Description"].Value.ToString();
+                    if (row.Cells["DeliveryDate"].Value != DBNull.Value) _obj1.DeliveryDate = Convert.ToDateTime(row.Cells["DeliveryDate"].Value);
+                    if (row.Cells["IsPrinting"].Value != DBNull.Value) _obj1.IsPrinting = Convert.ToInt32(row.Cells["IsPrinting"].Value.ToString());
+                    if (row.Cells["EmbelishId1"].Value != DBNull.Value) _obj1.EmbelishId1 = Convert.ToInt32(row.Cells["EmbelishId1"].Value);
+                    if (row.Cells["EmbelishId2"].Value != DBNull.Value) _obj1.EmbelishId2 = Convert.ToInt32(row.Cells["EmbelishId2"].Value);
+                    if (row.Cells["SizeGroupIdx"].Value != DBNull.Value) _obj1.SizeGroupIdx = Convert.ToInt32(row.Cells["SizeGroupIdx"].Value);
+                    if (row.Cells["SewThreadIdx"].Value != DBNull.Value) _obj1.SewThreadIdx = Convert.ToInt32(row.Cells["SewThreadIdx"].Value);
 
-                if (row.Cells["OrderQty"].Value != DBNull.Value)        _obj1.OrderQty = Convert.ToInt32(row.Cells["OrderQty"].Value.ToString());
-                if (row.Cells["OrderPrice"].Value != DBNull.Value)      _obj1.OrderPrice = Convert.ToDouble(row.Cells["OrderPrice"].Value.ToString());
-                if (row.Cells["OrderAmount"].Value != DBNull.Value)     _obj1.OrderAmount = Convert.ToDouble(row.Cells["OrderAmount"].Value.ToString());
+                    if (row.Cells["OrderQty"].Value != DBNull.Value) _obj1.OrderQty = Convert.ToInt32(row.Cells["OrderQty"].Value.ToString());
+                    if (row.Cells["OrderPrice"].Value != DBNull.Value) _obj1.OrderPrice = Convert.ToDouble(row.Cells["OrderPrice"].Value.ToString());
+                    if (row.Cells["OrderAmount"].Value != DBNull.Value) _obj1.OrderAmount = Convert.ToDouble(row.Cells["OrderAmount"].Value.ToString());
 
-                if (row.Cells["Remark"].Value != DBNull.Value) _obj1.Remark = row.Cells["Remark"].Value.ToString();
-                if (row.Cells["TeamRequestedDate"].Value != DBNull.Value) _obj1.TeamRequestedDate = Convert.ToDateTime(row.Cells["TeamRequestedDate"].Value);
-                if (row.Cells["SplConfirmedDate"].Value != DBNull.Value) _obj1.SplConfirmedDate = Convert.ToDateTime(row.Cells["SplConfirmedDate"].Value);
+                    if (row.Cells["Remark"].Value != DBNull.Value) _obj1.Remark = row.Cells["Remark"].Value.ToString();
+                    if (row.Cells["TeamRequestedDate"].Value != DBNull.Value) _obj1.TeamRequestedDate = Convert.ToDateTime(row.Cells["TeamRequestedDate"].Value);
+                    if (row.Cells["SplConfirmedDate"].Value != DBNull.Value) _obj1.SplConfirmedDate = Convert.ToDateTime(row.Cells["SplConfirmedDate"].Value);
+
+                    if (row.Cells["Status"].Value != DBNull.Value) _obj1.Status = Convert.ToInt32(row.Cells["Status"].Value.ToString());
+
+                    // 업데이트 (오더캔슬, 선적완료 상태가 아닐경우)
+                    if (_obj1.Status != 2 && _obj1.Status != 3) _bRtn = _obj1.Update();
+
+                    // 변경된 사이즈 그룹의 사이즈 정보 갱신 
+                    lstSize.Clear(); // 기존 저장된 사이즈 초기화 
+                    GetSizes(_gv1); // 하단 Color Size 데이터용 Size 정보 업데이트 
+                    GV2_CreateColumn(gvColorSize);
+                }
                 
-                if (row.Cells["Status"].Value != DBNull.Value)          _obj1.Status = Convert.ToInt32(row.Cells["Status"].Value.ToString());
-
-                // 업데이트 (오더캔슬, 선적완료 상태가 아닐경우)
-                if (_obj1.Status != 2 && _obj1.Status != 3) _bRtn=_obj1.Update();
-
-                // 변경된 사이즈 그룹의 사이즈 정보 갱신 
-                lstSize.Clear(); // 기존 저장된 사이즈 초기화 
-                GetSizes(_gv1); // 하단 Color Size 데이터용 Size 정보 업데이트 
-                GV2_CreateColumn(gvColorSize);
             }
             catch (Exception ex)
             {
@@ -1846,34 +2329,86 @@ namespace Dev.Sales
             {
                 RadGridView gv = gvColorSize;
 
-                gv.EndEdit();
-                GridViewRowInfo row = Int.Members.GetCurrentRow(gv);  // 현재 행번호 확인
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    gv.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(gv);  // 현재 행번호 확인
 
-                // 객체생성 및 값 할당
-                _obj2 = new Controller.OrderColor(Convert.ToInt32(row.Cells["Idx"].Value));
-                _obj2.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
-                _obj2.OrderIdx = Convert.ToInt32(row.Cells["OrderIdx"].Value.ToString());
-                if (row.Cells["ColorIdx"].Value != DBNull.Value) _obj2.ColorIdx = Convert.ToInt32(row.Cells["ColorIdx"].Value.ToString());
-                if (row.Cells["SizeIdx1"].Value != DBNull.Value) _obj2.SizeIdx1 = Convert.ToInt32(row.Cells["SizeIdx1"].Value.ToString());
-                if (row.Cells["SizeIdx2"].Value != DBNull.Value) _obj2.SizeIdx2 = Convert.ToInt32(row.Cells["SizeIdx2"].Value.ToString());
-                if (row.Cells["SizeIdx3"].Value != DBNull.Value) _obj2.SizeIdx3 = Convert.ToInt32(row.Cells["SizeIdx3"].Value.ToString());
-                if (row.Cells["SizeIdx4"].Value != DBNull.Value) _obj2.SizeIdx4 = Convert.ToInt32(row.Cells["SizeIdx4"].Value.ToString());
-                if (row.Cells["SizeIdx5"].Value != DBNull.Value) _obj2.SizeIdx5 = Convert.ToInt32(row.Cells["SizeIdx5"].Value.ToString());
-                if (row.Cells["SizeIdx6"].Value != DBNull.Value) _obj2.SizeIdx6 = Convert.ToInt32(row.Cells["SizeIdx6"].Value.ToString());
-                if (row.Cells["SizeIdx7"].Value != DBNull.Value) _obj2.SizeIdx7 = Convert.ToInt32(row.Cells["SizeIdx7"].Value.ToString());
-                if (row.Cells["SizeIdx8"].Value != DBNull.Value) _obj2.SizeIdx8 = Convert.ToInt32(row.Cells["SizeIdx8"].Value.ToString());
+                    // 객체생성 및 값 할당
+                    _obj2 = new Controller.OrderColor(Convert.ToInt32(row.Cells["Idx"].Value));
+                    _obj2.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+                    _obj2.OrderIdx = Convert.ToInt32(row.Cells["OrderIdx"].Value.ToString());
+                    if (row.Cells["ColorIdx"].Value != DBNull.Value) _obj2.ColorIdx = row.Cells["ColorIdx"].Value.ToString();
+                    if (row.Cells["SizeIdx1"].Value != DBNull.Value) _obj2.SizeIdx1 = Convert.ToInt32(row.Cells["SizeIdx1"].Value.ToString());
+                    if (row.Cells["SizeIdx2"].Value != DBNull.Value) _obj2.SizeIdx2 = Convert.ToInt32(row.Cells["SizeIdx2"].Value.ToString());
+                    if (row.Cells["SizeIdx3"].Value != DBNull.Value) _obj2.SizeIdx3 = Convert.ToInt32(row.Cells["SizeIdx3"].Value.ToString());
+                    if (row.Cells["SizeIdx4"].Value != DBNull.Value) _obj2.SizeIdx4 = Convert.ToInt32(row.Cells["SizeIdx4"].Value.ToString());
+                    if (row.Cells["SizeIdx5"].Value != DBNull.Value) _obj2.SizeIdx5 = Convert.ToInt32(row.Cells["SizeIdx5"].Value.ToString());
+                    if (row.Cells["SizeIdx6"].Value != DBNull.Value) _obj2.SizeIdx6 = Convert.ToInt32(row.Cells["SizeIdx6"].Value.ToString());
+                    if (row.Cells["SizeIdx7"].Value != DBNull.Value) _obj2.SizeIdx7 = Convert.ToInt32(row.Cells["SizeIdx7"].Value.ToString());
+                    if (row.Cells["SizeIdx8"].Value != DBNull.Value) _obj2.SizeIdx8 = Convert.ToInt32(row.Cells["SizeIdx8"].Value.ToString());
 
-                if (row.Cells["Pcs1"].Value != DBNull.Value) _obj2.Pcs1 = Convert.ToInt32(row.Cells["Pcs1"].Value.ToString());
-                if (row.Cells["Pcs2"].Value != DBNull.Value) _obj2.Pcs2 = Convert.ToInt32(row.Cells["Pcs2"].Value.ToString());
-                if (row.Cells["Pcs3"].Value != DBNull.Value) _obj2.Pcs3 = Convert.ToInt32(row.Cells["Pcs3"].Value.ToString());
-                if (row.Cells["Pcs4"].Value != DBNull.Value) _obj2.Pcs4 = Convert.ToInt32(row.Cells["Pcs4"].Value.ToString());
-                if (row.Cells["Pcs5"].Value != DBNull.Value) _obj2.Pcs5 = Convert.ToInt32(row.Cells["Pcs5"].Value.ToString());
-                if (row.Cells["Pcs6"].Value != DBNull.Value) _obj2.Pcs6 = Convert.ToInt32(row.Cells["Pcs6"].Value.ToString());
-                if (row.Cells["Pcs7"].Value != DBNull.Value) _obj2.Pcs7 = Convert.ToInt32(row.Cells["Pcs7"].Value.ToString());
-                if (row.Cells["Pcs8"].Value != DBNull.Value) _obj2.Pcs8 = Convert.ToInt32(row.Cells["Pcs8"].Value.ToString());
+                    if (row.Cells["Pcs1"].Value != DBNull.Value) _obj2.Pcs1 = Convert.ToInt32(row.Cells["Pcs1"].Value.ToString());
+                    if (row.Cells["Pcs2"].Value != DBNull.Value) _obj2.Pcs2 = Convert.ToInt32(row.Cells["Pcs2"].Value.ToString());
+                    if (row.Cells["Pcs3"].Value != DBNull.Value) _obj2.Pcs3 = Convert.ToInt32(row.Cells["Pcs3"].Value.ToString());
+                    if (row.Cells["Pcs4"].Value != DBNull.Value) _obj2.Pcs4 = Convert.ToInt32(row.Cells["Pcs4"].Value.ToString());
+                    if (row.Cells["Pcs5"].Value != DBNull.Value) _obj2.Pcs5 = Convert.ToInt32(row.Cells["Pcs5"].Value.ToString());
+                    if (row.Cells["Pcs6"].Value != DBNull.Value) _obj2.Pcs6 = Convert.ToInt32(row.Cells["Pcs6"].Value.ToString());
+                    if (row.Cells["Pcs7"].Value != DBNull.Value) _obj2.Pcs7 = Convert.ToInt32(row.Cells["Pcs7"].Value.ToString());
+                    if (row.Cells["Pcs8"].Value != DBNull.Value) _obj2.Pcs8 = Convert.ToInt32(row.Cells["Pcs8"].Value.ToString());
 
-                // 업데이트
-                _bRtn = _obj2.Update();
+                    // 업데이트
+                    _bRtn = _obj2.Update();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("gvColorSize_Update: " + ex.Message.ToString());
+            }
+
+        }
+
+        /// <summary>
+        /// 데이터 업데이트 (원단)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gvFabric_Update(object sender, GridViewCellEventArgs e)
+        {
+            _bRtn = false;
+
+            try
+            {
+                RadGridView gv = gvFabric;
+
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    gv.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(gv);  // 현재 행번호 확인
+
+                    // 객체생성 및 값 할당
+                    _obj4 = new Dev.Controller.OrderFabric(Convert.ToInt32(row.Cells["Idx"].Value));
+                    _obj4.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+                    _obj4.OrderIdx = Convert.ToInt32(row.Cells["OrderIdx"].Value.ToString());
+                    if (row.Cells["FabricIdx"].Value != DBNull.Value) _obj4.FabricIdx = Convert.ToInt32(row.Cells["FabricIdx"].Value.ToString());
+                    if (row.Cells["Yds"].Value != DBNull.Value) _obj4.Yds = Convert.ToDouble(row.Cells["Yds"].Value.ToString());
+                    if (row.Cells["Remark"].Value != DBNull.Value) _obj4.Remark = row.Cells["Remark"].Value.ToString();
+                    
+                    // 업데이트
+                    _bRtn = _obj4.Update();
+                }
+
             }
             catch (Exception ex)
             {
@@ -1889,15 +2424,24 @@ namespace Dev.Sales
         /// <param name="e"></param>
         private void gvOperation_Click(object sender, EventArgs e)
         {
-            if (gvOperation.RowCount <= 0)
+            /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+            /// 읽기: 0, 쓰기: 1, 삭제: 2
+            int _mode_ = 1;
+            if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                CheckAuth.ShowMessage(_mode_);
+            else
             {
-                if (RadMessageBox.Show("There's no operation data.\nWould you like to input the operation data?", "Confirm", MessageBoxButtons.YesNo, RadMessageIcon.Question) 
-                    == DialogResult.Yes)
+                if (gvOperation.RowCount <= 0)
                 {
-                    bool result = Controller.Operation.Insert(Int.Members.GetCurrentRow(_gv1, "Idx"));
-                    DataBinding_GV3(gvOperation, Int.Members.GetCurrentRow(_gv1, "Idx"));
+                    if (RadMessageBox.Show("There's no operation data.\nWould you like to input the operation data?", "Confirm", MessageBoxButtons.YesNo, RadMessageIcon.Question)
+                        == DialogResult.Yes)
+                    {
+                        bool result = Controller.Operation.Insert(Int.Members.GetCurrentRow(_gv1, "Idx"));
+                        DataBinding_GV3(gvOperation, Int.Members.GetCurrentRow(_gv1, "Idx"));
+                    }
                 }
             }
+            
         }
 
         /// <summary>
@@ -1913,18 +2457,27 @@ namespace Dev.Sales
             {
                 RadGridView gv = gvOperation;
 
-                gv.EndEdit();
-                GridViewRowInfo row = Int.Members.GetCurrentRow(gv);  // 현재 행번호 확인
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    gv.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(gv);  // 현재 행번호 확인
 
-                // 객체생성 및 값 할당
-                _obj3 = new Controller.Operation(Convert.ToInt32(row.Cells["Idx"].Value));
-                _obj3.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
-                _obj3.OrderIdx = Convert.ToInt32(row.Cells["OrderIdx"].Value.ToString());
-                if (row.Cells["OperationIdx"].Value != DBNull.Value) _obj3.OperationIdx = Convert.ToInt32(row.Cells["OperationIdx"].Value.ToString());
-                if (row.Cells["Priority"].Value != DBNull.Value) _obj3.Priority = Convert.ToInt32(row.Cells["Priority"].Value.ToString());
+                    // 객체생성 및 값 할당
+                    _obj3 = new Controller.Operation(Convert.ToInt32(row.Cells["Idx"].Value));
+                    _obj3.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+                    _obj3.OrderIdx = Convert.ToInt32(row.Cells["OrderIdx"].Value.ToString());
+                    if (row.Cells["OperationIdx"].Value != DBNull.Value) _obj3.OperationIdx = Convert.ToInt32(row.Cells["OperationIdx"].Value.ToString());
+                    if (row.Cells["Priority"].Value != DBNull.Value) _obj3.Priority = Convert.ToInt32(row.Cells["Priority"].Value.ToString());
+
+                    // 업데이트
+                    _bRtn = _obj3.Update();
+                }
                 
-                // 업데이트
-                _bRtn = _obj3.Update();
             }
             catch (Exception ex)
             {
@@ -1935,13 +2488,24 @@ namespace Dev.Sales
 
         private void gvProduction_HyperlinkOpened(object sender, HyperlinkOpenedEventArgs e)
         {
-            CommonController.Close_All_Children(this, "PatternMain");
-            PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
-            form.Text = DateTime.Now.ToLongTimeString();
-            form.MdiParent = this.MdiParent;
-            form.Show();
+            /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+            /// 읽기: 0, 쓰기: 1, 삭제: 2
+            int _mode_ = 0;
+            if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                CheckAuth.ShowMessage(_mode_);
+            else
+            {
+                CommonController.Close_All_Children(this, "PatternMain");
+                PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
+                form.Text = DateTime.Now.ToLongTimeString();
+                form.MdiParent = this.MdiParent;
+                form.Show();
+            }
+
+            
         }
 
+        
         /// <summary>
         /// 컨텍스트 메뉴 업데이트 (메인) 
         /// </summary>
@@ -1974,6 +2538,16 @@ namespace Dev.Sales
         private void gvColorSize_MouseEnter(object sender, EventArgs e)
         {
             Config_ContextMenu_Color();
+        }
+
+        /// <summary>
+        /// 컨텍스트 메뉴 업데이트 (원단) 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gvFabric_MouseEnter(object sender, EventArgs e)
+        {
+            Config_ContextMenu_Fabric();
         }
 
         /// <summary>
@@ -2045,7 +2619,37 @@ namespace Dev.Sales
         private void MasterTemplate_CellEditorInitialized(object sender, GridViewCellEventArgs e)
         {
             RadMultiColumnComboBoxElement meditor = e.ActiveEditor as RadMultiColumnComboBoxElement;
-            Console.WriteLine(gvColorSize.RowCount.ToString()); 
+            
+            if (gvFabric.RowCount > 0)
+            {
+                if (meditor != null)
+                {
+                    meditor.Enabled = true;
+                    meditor.AutoSizeDropDownToBestFit = true;
+                    meditor.AutoSizeDropDownHeight = false;
+                    meditor.DropDownHeight = 400; 
+
+                    if (meditor.ValueMember == "FabricIdx")
+                    {
+                        meditor.AutoSizeDropDownColumnMode = BestFitColumnMode.AllCells;
+                        meditor.EditorControl.Columns["Idx"].HeaderText = "ID";
+                        meditor.EditorControl.Columns["ShortName"].HeaderText = "Fabric";
+                        //meditor.EditorControl.Columns["ShortName"].Width = 150;
+                        meditor.EditorControl.Columns["Yarnnm1"].HeaderText = "Yarn1";
+                        meditor.EditorControl.Columns["Percent1"].HeaderText = "%";
+                        meditor.EditorControl.Columns["Yarnnm2"].HeaderText = "Yarn2";
+                        meditor.EditorControl.Columns["Percent2"].HeaderText = "%";
+                        meditor.EditorControl.Columns["Yarnnm3"].HeaderText = "Yarn3";
+                        meditor.EditorControl.Columns["Percent3"].HeaderText = "%";
+                        meditor.EditorControl.Columns["Yarnnm4"].HeaderText = "Yarn4";
+                        meditor.EditorControl.Columns["Percent4"].HeaderText = "%";
+                        meditor.EditorControl.Columns["Yarnnm5"].HeaderText = "Yarn5";
+                        meditor.EditorControl.Columns["Percent5"].HeaderText = "%";
+
+                    }
+                    
+                }
+            }
 
             if (gvColorSize.RowCount > 0)
             {
@@ -2091,7 +2695,6 @@ namespace Dev.Sales
                 }
             }
             
-
             // DDL 높이, 출력항목수 설정
             RadDropDownListEditor editor = this._gv1.ActiveEditor as RadDropDownListEditor;
             if (editor != null)
@@ -2151,6 +2754,9 @@ namespace Dev.Sales
 
             // 생산 진행현황 갱신 
             DataBinding_GV4(gvProduction, Int.Members.GetCurrentRow(_gv1, "Idx"));
+
+            // 원단현황
+            DataBinding_GV5(gvFabric, Int.Members.GetCurrentRow(_gv1, "Idx"));
         }
 
         /// <summary>
@@ -2203,8 +2809,17 @@ namespace Dev.Sales
         /// <param name="priorityTo">변경할 우선순위</param>
         private void SwapPriority(int indexFrom, int indexTo, int priorityFrom, int priorityTo)
         {
-            bool result = Controller.Operation.SwapPriority(indexFrom, indexTo, priorityFrom, priorityTo);
-            DataBinding_GV3(gvOperation, Int.Members.GetCurrentRow(_gv1, "Idx"));
+            /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+            /// 읽기: 0, 쓰기: 1, 삭제: 2
+            int _mode_ = 1;
+            if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                CheckAuth.ShowMessage(_mode_);
+            else
+            {
+                bool result = Controller.Operation.SwapPriority(indexFrom, indexTo, priorityFrom, priorityTo);
+                DataBinding_GV3(gvOperation, Int.Members.GetCurrentRow(_gv1, "Idx"));
+            }
+            
         }
 
         #endregion

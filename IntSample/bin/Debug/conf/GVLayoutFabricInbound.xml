@@ -2,13 +2,13 @@
   <MasterTemplate MultiSelect="True" PageSize="50" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" AutoGenerateColumns="False">
     <Columns>
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="40" FieldName="Idx" Name="Idx" IsVisible="True" HeaderText="ID" />
-      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="96" FieldName="Status" Name="Status" IsVisible="True" HeaderText="Status" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="100" FieldName="Status" Name="Status" IsVisible="True" HeaderText="Status" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatString="{0:d}" Width="100" FieldName="IDate" Name="IDate" IsVisible="True" ReadOnly="True" HeaderText="Date" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CustIdx" DisplayMember="CustName" DataType="System.Int32" Width="100" FieldName="BuyerIdx" Name="BuyerIdx" IsVisible="True" HeaderText="Buyer" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="Contents" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" Width="200" FieldName="ColorIdx" Name="ColorIdx" IsVisible="True" HeaderText="Color" />
-      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="Idx" DisplayMember="LongName" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="150" FieldName="FabricIdx" Name="FabricIdx" IsVisible="True" HeaderText="Fabric" />
+      <Telerik.WinControls.UI.GridViewMultiComboBoxColumn ValueMember="Idx" DisplayMember="ShortName" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" Width="150" FieldName="FabricIdx" Name="FabricIdx" IsVisible="True" HeaderText="Fabric" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="100" FieldName="FabricType" Name="FabricType" IsVisible="True" HeaderText="FabricType" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="Artno" Name="Artno" IsVisible="True" HeaderText="Art" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="Artno" Name="Artno" IsVisible="True" HeaderText="Art" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="Lotno" Name="Lotno" IsVisible="True" HeaderText="Lot#" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="60" FieldName="Roll" Name="Roll" IsVisible="True" HeaderText="Roll" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="60" FieldName="Width" Name="Width" IsVisible="True" HeaderText="Width" TextAlignment="MiddleCenter" />
@@ -16,17 +16,17 @@
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Double" Width="60" FieldName="Yds" Name="Yds" IsVisible="True" HeaderText="Yds" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="IOCenterIdx" Name="IOCenterIdx" IsVisible="False" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CustIdx" DisplayMember="CustName" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="150" FieldName="IODeptIdx" Name="IODeptIdx" IsVisible="True" HeaderText="In" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="Comments" Name="Comments" IsVisible="True" HeaderText="Comments" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="70" FieldName="RackNo" Name="RackNo" IsVisible="True" HeaderText="Rack#" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="70" FieldName="Floorno" Name="Floorno" IsVisible="True" HeaderText="Floor#" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="70" FieldName="RackPos" Name="RackPos" IsVisible="True" HeaderText="Rack&#xA;Position" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="70" FieldName="PosX" Name="PosX" IsVisible="True" HeaderText="Location&#xA;(X)" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="70" FieldName="PosY" Name="PosY" IsVisible="True" HeaderText="Location&#xA;(Y)" TextAlignment="MiddleCenter" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="70" FieldName="Qrcode" Name="Qrcode" IsVisible="False" ReadOnly="True" HeaderText="QR Code" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="70" FieldName="Qrcode" Name="Qrcode" IsVisible="True" ReadOnly="True" HeaderText="QR Code" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn FieldName="filenm1" Name="filenm1" IsVisible="False" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn FieldName="filenm2" Name="filenm2" IsVisible="False" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn FieldName="fileurl1" Name="fileurl1" IsVisible="False" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn FieldName="fileurl2" Name="fileurl2" IsVisible="False" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="Comments" Name="Comments" IsVisible="True" HeaderText="Comments" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="WorkOrderIdx" Name="WorkOrderIdx" IsVisible="True" ReadOnly="True" HeaderText="Inbound#" />
     </Columns>
     <ViewDefinition xsi:type="Telerik.WinControls.UI.TableViewDefinition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />

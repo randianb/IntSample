@@ -656,7 +656,7 @@ namespace Dev.WorkOrder
                 toggleWay.Enabled = false;
                 toggleMode.Value = false;
                 toggleMode.Enabled = true;
-
+                
                 lvQRCode.Items.Clear(); 
 
                 // 선택된 오더상태에 따라 읽기수정 가능여부 설정 
@@ -685,6 +685,7 @@ namespace Dev.WorkOrder
                     {
                         btnSaveData.Text = "Print QR";
                         btnSaveData.Tag = "qr";
+                        txtBarcode.Enabled = false;
                     }
                     // 생성된 QR코드가 있으면 발행불가상태 및 QR읽기모드 활성화, 
                     // 저장버튼은 비활성화 해두고 리스트에 읽어들인 WorkID가 있을때 활성화 한다 
@@ -697,6 +698,7 @@ namespace Dev.WorkOrder
                         btnSaveData.Enabled = false;
                         toggleWay.Enabled = true;
                         toggleMode.Value = true;
+                        txtBarcode.Enabled = true; 
                     }
                     // 맨처음 태그는 버튼 태그를 저장해두고 
                     if (string.IsNullOrEmpty(TagName))
@@ -719,6 +721,7 @@ namespace Dev.WorkOrder
                     toggleWay.Enabled = false;
                     toggleMode.Value = false;
                     toggleMode.Enabled = false;
+                    txtBarcode.Enabled = false; 
                 }
             }
             catch(Exception ex)
@@ -740,6 +743,8 @@ namespace Dev.WorkOrder
 
             try
             {
+                #region QR 생성 모드 
+                                
                 // 선택된 행들에 QR코드 생성 및 티켓출력
                 if (btnSaveData.Tag.ToString() == "qr")
                 {
@@ -774,7 +779,11 @@ namespace Dev.WorkOrder
                         RadMessageBox.Show("QR: " + ex.Message);
                     }
                 }
-                // 리딩된 리스트박스의 QR코드저장 
+
+                #endregion
+
+                #region 리딩된 리스트박스의 QR코드저장, Concept: 출고시 작업물 현황완료 상태로 전환 (2>3), 입고시 외주작업물 현황 >> 현재 구분필요없음 차후 용도 
+
                 else if (btnSaveData.Tag.ToString() == "save")
                 {
 
@@ -784,6 +793,7 @@ namespace Dev.WorkOrder
                         {
                             // 복호화
                             WorkOrderIdx = Decryptor(item.Value.ToString());
+
                             // 값이없으면
                             if (!string.IsNullOrEmpty(WorkOrderIdx.Trim()))
                             {
@@ -802,7 +812,7 @@ namespace Dev.WorkOrder
                             // 쿼리생성 
                             else
                             {
-                                SQL += "Update WorkOrder set Status=2 where WorkOrderIdx=" + WorkOrderIdx + "  "; 
+                                SQL += "Update WorkOrder set Status=3 where WorkOrderIdx=" + WorkOrderIdx + "  "; 
                             }
                         }
                         // 쿼리가 있으면 작업상태 일괄 업데이트 
@@ -813,8 +823,10 @@ namespace Dev.WorkOrder
                         }
                     }
                 }
+
+                #endregion
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 __main__.lblDescription.Text = ex.Message; 
             }
@@ -912,6 +924,7 @@ namespace Dev.WorkOrder
                 btnSaveData.Text = "Save QR";
                 btnSaveData.Tag = "save";
                 btnSaveData.Enabled = false;
+                txtBarcode.Enabled = true; 
             }
             txtBarcode.Select(); 
             

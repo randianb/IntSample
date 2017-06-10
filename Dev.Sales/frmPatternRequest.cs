@@ -27,7 +27,9 @@ namespace Dev.Sales
         private bool _bRtn = false;
         private List<Codes.Controller.Sizes> lstSize = new List<Codes.Controller.Sizes>();
         private List<string> lstFiles = new List<string>();
+        private List<string> lstFiles2 = new List<string>();
         private List<string> lstFileUrls = new List<string>();
+        private List<string> lstFileUrls2 = new List<string>();
 
         #endregion
 
@@ -143,10 +145,22 @@ namespace Dev.Sales
 
                 if (!string.IsNullOrEmpty(NewCode))
                 {
+                    for (int i=0; i<=4; i++)
+                    {
+                        lstFiles2.Add(""); lstFileUrls2.Add(""); 
+                    }
+                    if (lstFiles.Count>0)
+                    {
+                        for (int i = 0; i < lstFiles.Count; i++)
+                        {
+                            if (!string.IsNullOrEmpty(lstFiles[i])) lstFiles2[i] = lstFiles[i]; lstFileUrls2[i] = lstFileUrls[i];
+                        }
+                    }
+                    
                     DataRow dr = Dev.Controller.Pattern.Insert(_orderIdx, NewCode, Convert.ToInt32(ddlSize.SelectedValue),
                     dtTechPack.Value, DateTime.Today, UserInfo.Idx, txtComment.Text,
-                    lstFiles[0].ToString(), lstFiles[1].ToString(), lstFiles[2].ToString(), lstFiles[3].ToString(), lstFiles[4].ToString(),
-                    lstFileUrls[0].ToString(), lstFileUrls[1].ToString(), lstFileUrls[2].ToString(), lstFileUrls[3].ToString(), lstFileUrls[4].ToString(), UserInfo.Idx);
+                    lstFiles2[0].ToString(), lstFiles2[1].ToString(), lstFiles2[2].ToString(), lstFiles2[3].ToString(), lstFiles2[4].ToString(),
+                    lstFileUrls2[0].ToString(), lstFileUrls2[1].ToString(), lstFileUrls2[2].ToString(), lstFileUrls2[3].ToString(), lstFileUrls2[4].ToString(), UserInfo.Idx);
 
 
                     // 데이터 DB저장 
