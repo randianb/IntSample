@@ -74,3 +74,5 @@ D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.WinControls.RichTextEditor.dll
 D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.WinControls.RichTextEditor.xml
 D:\git\IntSample\Dev.Fabric\bin\Debug\Dev.Production.dll
 D:\git\IntSample\Dev.Fabric\bin\Debug\Dev.Production.pdb
+D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.frmPrintStock.resources
+D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.Reports.rptStock.resources

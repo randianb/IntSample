@@ -617,5 +617,17 @@ namespace SampleApp
                 frm.Show();
             } 
         }
+
+        private void btnFabricReportStock_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("frmPrintStock"))
+            {
+                frmPrintStock frm = new frmPrintStock();
+                frm.Text = "Fabric Stock";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            
+        }
     }
 }

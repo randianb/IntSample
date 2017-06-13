@@ -83,11 +83,23 @@
     <Reference Include="TelerikCommon, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmPrintStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrintStock.Designer.cs">
+      <DependentUpon>frmPrintStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPrintOutbound.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPrintOutbound.Designer.cs">
       <DependentUpon>frmPrintOutbound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptStock.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptStock.Designer.cs">
+      <DependentUpon>rptStock.cs</DependentUpon>
     </Compile>
     <Compile Include="Warehouse.cs">
       <SubType>Form</SubType>
@@ -173,8 +185,14 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmPrintStock.resx">
+      <DependentUpon>frmPrintStock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPrintOutbound.resx">
       <DependentUpon>frmPrintOutbound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptStock.resx">
+      <DependentUpon>rptStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Warehouse.resx">
       <DependentUpon>Warehouse.cs</DependentUpon>
