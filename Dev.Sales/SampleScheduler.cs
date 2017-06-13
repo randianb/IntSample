@@ -377,13 +377,13 @@ namespace Dev.Sales
             if (e.Item.Tag.ToString() == "110")
             {
                 e.ItemElement.DrawFill = true;
-                e.ItemElement.BackColor = Color.LightGreen;
+                e.ItemElement.BackColor = Color.LemonChiffon;
                 e.ItemElement.GradientStyle = GradientStyles.Solid;
             }
             else if (e.Item.Tag.ToString() == "111")
             {
                 e.ItemElement.DrawFill = true;
-                e.ItemElement.BackColor = Color.Yellow;
+                e.ItemElement.BackColor = Color.Honeydew;
                 e.ItemElement.GradientStyle = GradientStyles.Solid;
             }
             else
@@ -444,6 +444,28 @@ namespace Dev.Sales
         private void gvWork_ContextMenuOpening(object sender, GanttViewContextMenuOpeningEventArgs e)
         {
             e.Cancel = true; 
+        }
+
+        private void gvWork_GraphicalViewItemFormatting(object sender, GanttViewGraphicalViewItemFormattingEventArgs e)
+        {
+            if (e.Item.Tag.ToString()=="110")
+            {
+                e.ItemElement.TaskElement.DrawFill = true; 
+                e.ItemElement.TaskElement.BackColor = Color.LemonChiffon;
+                e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid; 
+            }
+            else if (e.Item.Tag.ToString() == "111")
+            {
+                e.ItemElement.TaskElement.DrawFill = true;
+                e.ItemElement.TaskElement.BackColor = Color.Honeydew;
+                e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid;
+            }
+            else
+            {
+                e.ItemElement.TaskElement.ResetValue(LightVisualElement.DrawBorderProperty, ValueResetFlags.Local);
+                e.ItemElement.TaskElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                e.ItemElement.TaskElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+            }
         }
     }
 }

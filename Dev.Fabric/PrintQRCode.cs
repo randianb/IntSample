@@ -114,6 +114,8 @@ namespace Dev.Fabric
                         workOrder.ColorIdx = row["ColorIdx"].ToString();
                         workOrder.FabricIdx = row["FabricIdx"].ToString();
                         workOrder.FabricType = row["FabricType"].ToString();
+                        workOrder.Lotno = row["Lotno"].ToString();
+                        workOrder.Yds = row["Yds"].ToString(); 
                         lstWorkOrder.Add(workOrder);
                     }
                 }

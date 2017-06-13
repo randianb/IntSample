@@ -2,6 +2,7 @@
 using Dev.Fabric;
 using Dev.Options;
 using Dev.Pattern;
+using Dev.Production;
 using Dev.Sales;
 using Dev.WorkOrder;
 using Dev.Yarn;
@@ -604,6 +605,17 @@ namespace SampleApp
                 //frm.MdiParent = this;
                 frm.Show();
             
+        }
+
+        private void btnProductCutting_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("CuttingMain"))
+            {
+                CuttingMain frm = new CuttingMain(this, "");
+                frm.Text = "Cutting Main";
+                frm.MdiParent = this;
+                frm.Show();
+            } 
         }
     }
 }

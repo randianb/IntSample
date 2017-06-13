@@ -96,7 +96,7 @@ namespace Dev.Data
         /// <summary>
         /// Update
         /// </summary>
-        public static bool Update(int Idx, string OrdColorIdx, int OrdSizeIdx, DateTime CuttedDate, double OrdYds, int OrdQty, string CuttedNo, int CuttedQty, 
+        public static bool Update(int Idx, DateTime CuttedDate, string CuttedNo, int CuttedQty, 
             int FabricIdx, string Remarks 
             )
         {
@@ -112,22 +112,10 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
                 _cmd.Parameters["@Idx"].Value = Idx;
-
-                _cmd.Parameters.Add("@OrdColorIdx", SqlDbType.NVarChar, 30);
-                _cmd.Parameters["@OrdColorIdx"].Value = OrdColorIdx;
-
-                _cmd.Parameters.Add("@OrdSizeIdx", SqlDbType.Int, 4);
-                _cmd.Parameters["@OrdSizeIdx"].Value = OrdSizeIdx;
                 
                 _cmd.Parameters.Add("@CuttedDate", SqlDbType.DateTime, 8);
                 _cmd.Parameters["@CuttedDate"].Value = CuttedDate;
-
-                _cmd.Parameters.Add("@OrdYds", SqlDbType.Float, 8);
-                _cmd.Parameters["@OrdYds"].Value = OrdYds;
-
-                _cmd.Parameters.Add("@OrdQty", SqlDbType.Int, 4);
-                _cmd.Parameters["@OrdQty"].Value = OrdQty;
-
+                
                 _cmd.Parameters.Add("@CuttedNo", SqlDbType.NVarChar, 2);
                 _cmd.Parameters["@CuttedNo"].Value = CuttedNo;
 
@@ -281,7 +269,7 @@ namespace Dev.Data
                 _cmd.Parameters["@Remarks"].Value = SearchString[CommonValues.KeyName.Remark];
 
                 _cmd.Parameters.Add("@CuttedDate", SqlDbType.NVarChar, 10);
-                _cmd.Parameters["@CuttedDate"].Value = SearchString[CommonValues.KeyName.StartDate];
+                _cmd.Parameters["@CuttedDate"].Value = SearchString[CommonValues.KeyName.StartDate]=="2000-01-01" ? "" : SearchString[CommonValues.KeyName.StartDate];
 
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);

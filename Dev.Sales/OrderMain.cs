@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using Dev.Pattern;
+using Dev.Production;
 
 namespace Dev.Sales
 {
@@ -34,6 +35,7 @@ namespace Dev.Sales
         private Controller.OrderColor _obj2 = null;                             // 현재 생성된 객체 
         private Controller.Operation _obj3 = null;                             // 현재 생성된 객체 
         private Dev.Controller.OrderFabric _obj4 = null;                             // 현재 생성된 객체 
+        private GridViewRowInfo CurrentStatusRow = null; 
 
         private RadContextMenu contextMenu;                                     // 컨텍스트 메뉴
         private List<CodeContents> lstStatus = new List<CodeContents>();        // 오더상태
@@ -638,7 +640,9 @@ namespace Dev.Sales
             cColorIdx.DisplayMember = "Contents";
             cColorIdx.ValueMember = "Contents";
             cColorIdx.Width = 120;
-            cColorIdx.TextAlignment = ContentAlignment.MiddleCenter;
+            cColorIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cColorIdx.DropDownStyle = RadDropDownStyle.DropDown;
+            cColorIdx.TextAlignment = ContentAlignment.MiddleLeft;
             cColorIdx.HeaderText = "Color";
             gv.Columns.Add(cColorIdx);
             
@@ -2495,11 +2499,29 @@ namespace Dev.Sales
                 CheckAuth.ShowMessage(_mode_);
             else
             {
-                CommonController.Close_All_Children(this, "PatternMain");
-                PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
-                form.Text = DateTime.Now.ToLongTimeString();
-                form.MdiParent = this.MdiParent;
-                form.Show();
+                // Worksheet일 경우, 
+                if (e.Cell.Value.ToString().Trim().Length>12)
+                {
+                    if (e.Cell.Value.ToString().Trim().Substring(11,1)=="P")
+                    {
+                        CommonController.Close_All_Children(this, "PatternMain");
+                        PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
+                        form.Text = "Pattern Main"; // DateTime.Now.ToLongTimeString();
+                        form.MdiParent = this.MdiParent;
+                        form.Show();
+                    }
+                    
+                }
+                // Cutting 
+                else if(e.Cell.Value.ToString().Trim().Substring(1, 1) == "C")
+                {
+                    CommonController.Close_All_Children(this, "CuttingMain");
+                    CuttingMain form = new CuttingMain(__main__, e.Cell.Value.ToString());
+                    form.Text = "Cutting Main";
+                    form.MdiParent = this.MdiParent;
+                    form.Show();
+                }
+                
             }
 
             
@@ -2528,6 +2550,34 @@ namespace Dev.Sales
                 contextMenu.Items[6].Shortcuts.Clear();
                 contextMenu.Items[6].Shortcuts.Add(new RadShortcut(Keys.Control, Keys.C));
             }
+        }
+
+        private void gvColorSize_EditorRequired(object sender, EditorRequiredEventArgs e)
+        {
+            if (e.EditorType == typeof(RadDropDownListEditor))
+            {
+                e.EditorType = typeof(Dev.Controller.MyDDLEditor);
+            }
+
+        }
+
+        private void gvColorSize_CreateCell(object sender, GridViewCreateCellEventArgs e)
+        {
+            if (e.CellType == typeof(GridComboBoxCellElement) && e.Column.Name == "ColorIdx")
+            {
+                e.CellElement = new Dev.Controller.MyCombBoxCellElement(e.Column as GridViewDataColumn, e.Row);
+            }
+
+        }
+
+        private void gvProduction_HyperlinkOpening(object sender, HyperlinkOpeningEventArgs e)
+        {
+            
+        }
+
+        private void gvProduction_SelectionChanged(object sender, EventArgs e)
+        {
+            
         }
 
         /// <summary>
@@ -2704,7 +2754,16 @@ namespace Dev.Sales
                 ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DropDownHeight
                     = CommonValues.DDL_DropDownHeight;
             }
-                       
+
+            RadDropDownListEditor editor2 = this.gvColorSize.ActiveEditor as RadDropDownListEditor;
+            if (editor2 != null)
+            {
+                ((RadDropDownListEditorElement)((RadDropDownListEditor)this.gvColorSize.ActiveEditor).EditorElement).DefaultItemsCountInDropDown
+                    = CommonValues.DDL_DefaultItemsCountInDropDown;
+                ((RadDropDownListEditorElement)((RadDropDownListEditor)this.gvColorSize.ActiveEditor).EditorElement).DropDownHeight
+                    = CommonValues.DDL_DropDownHeight;
+            }
+
             // 날짜컬럼의 달력크기 설정
             RadDateTimeEditor dtEditor = e.ActiveEditor as RadDateTimeEditor;
             if (dtEditor != null)

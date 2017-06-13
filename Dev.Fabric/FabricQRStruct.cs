@@ -12,8 +12,11 @@ namespace Dev.Fabric
         public string ColorIdx { get; set;  }           // 컬러
         public string FabricIdx { get; set; }           // 원단
         public string FabricType { get; set; }           // Single, Rib
+        public string Lotno { get; set; }           // Single, Rib
+        public string Yds { get; set; }           // Single, Rib
+
     }
-    
+
     /// <summary>
     /// 원단창고내 랙 또는 적재위치 구분용 스티커 발행용
     /// </summary>

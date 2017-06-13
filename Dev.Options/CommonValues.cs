@@ -75,6 +75,7 @@ namespace Dev.Options
         public static Dictionary<int, string> DicFabricOutStatus = new Dictionary<int, string>()
         {
             {0, ""},
+            {3, "3: Inbound(Remain)"},              // 입고(사용가능 잔량회수)
             {5, "5: Outbound(Normal)"},             // 정상출고
             {6, "6: Outbound(Bad)"},                // 출고(원단불량)
             {7, "7: Sales"},                        // 판매

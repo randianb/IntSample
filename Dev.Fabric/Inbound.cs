@@ -91,6 +91,7 @@ namespace Dev.Fabric
             GV1_CreateColumn(_gv1);     // 그리드뷰 생성
             GV2_CreateColumn(gvOutbound);     // 그리드뷰 생성
             GV1_LayoutSetting(_gv1);    // 중앙 그리드뷰 설정 
+            GV2_LayoutSetting(gvOutbound);    // 중앙 그리드뷰 설정 
             Config_ContextMenu();       // 중앙 그리드뷰 컨텍스트 생성 설정 
             LoadGVLayout();             // 그리드뷰 레이아웃 복구 
 
@@ -559,15 +560,15 @@ namespace Dev.Fabric
             ColorIdx.Width = 170;
             gv.Columns.Add(ColorIdx);
 
-            GridViewComboBoxColumn FabricIdx = new GridViewComboBoxColumn();
+            GridViewTextBoxColumn FabricIdx = new GridViewTextBoxColumn();
             FabricIdx.Name = "FabricIdx";
-            FabricIdx.DataSource = lstFabric2;
-            FabricIdx.DisplayMember = "LongName";
-            FabricIdx.ValueMember = "Idx";
-            FabricIdx.FieldName = "FabricIdx";
+            //FabricIdx.DataSource = lstFabric2;
+            //FabricIdx.DisplayMember = "LongName";
+            //FabricIdx.ValueMember = "Idx";
+            FabricIdx.FieldName = "FabricNm";
             FabricIdx.HeaderText = "Fabric";
-            FabricIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            FabricIdx.DropDownStyle = RadDropDownStyle.DropDown;
+            //FabricIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //FabricIdx.DropDownStyle = RadDropDownStyle.DropDown;
             FabricIdx.Width = 150;
             gv.Columns.Add(FabricIdx);
 
@@ -625,7 +626,7 @@ namespace Dev.Fabric
             Kgs.Width = 60;
             Kgs.TextAlignment = ContentAlignment.MiddleCenter;
             gv.Columns.Add(Kgs);
-
+            
             GridViewTextBoxColumn Yds = new GridViewTextBoxColumn();
             Yds.DataType = typeof(double);
             Yds.Name = "Yds";
@@ -756,6 +757,70 @@ namespace Dev.Fabric
             //obj.RowBackColor = Color.FromArgb(255, 255, 230, 230);
             //obj.RowFont = f;
             //gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj);
+
+            //// 마감오더 색상변경
+            //f = new Font(new FontFamily("Segoe UI"), 8.25f);
+            //ConditionalFormattingObject obj2 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "3", "", true);
+            //obj2.RowForeColor = Color.Black;
+            //obj2.RowBackColor = Color.FromArgb(255, 220, 255, 240);
+            //obj2.RowFont = f;
+            //gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj2);
+
+            //// 선적완료 색상변경
+            //f = new Font(new FontFamily("Segoe UI"), 8.25f);
+            //ConditionalFormattingObject obj3 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "1", "", true);
+            //obj3.RowForeColor = Color.Black;
+            //obj3.RowFont = f;
+            //gv.Columns["ShipCompleted"].ConditionalFormattingObjectList.Add(obj3);
+
+            //f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
+            //ConditionalFormattingObject obj4 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "0", "", true);
+            //obj4.RowForeColor = Color.Black;
+            //obj4.RowFont = f;
+            //gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj4);
+
+            //f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
+            //ConditionalFormattingObject obj5 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "1", "", true);
+            //obj5.RowForeColor = Color.Black;
+            //obj5.RowFont = f;
+            //gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj5);
+
+            #endregion
+
+        }
+        /// <summary>
+        /// 그리드뷰 설정
+        /// </summary>
+        /// <param name="gv">그리드뷰</param>
+        private void GV2_LayoutSetting(RadGridView gv)
+        {
+            #region Config Gridview 
+
+            //gv.Dock = DockStyle.Fill;
+            //gv.AllowAddNewRow = false;
+            //gv.AllowCellContextMenu = true;
+            //gv.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.None;
+            //gv.AllowColumnHeaderContextMenu = false;
+            //gv.EnableGrouping = false;
+            //gv.MasterView.TableHeaderRow.MinHeight = 50;
+
+            //gv.GridViewElement.PagingPanelElement.NumericButtonsCount = 15;
+            //gv.GridViewElement.PagingPanelElement.ShowFastBackButton = false;
+            //gv.GridViewElement.PagingPanelElement.ShowFastForwardButton = false;
+
+            //gv.MultiSelect = true;
+
+            #endregion
+
+            #region Config Cell Conditions: 상태에 따른 행스타일 변경
+
+            // 캔슬오더 색상변경
+            Font f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
+            ConditionalFormattingObject obj = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "3", "", true);
+            obj.RowForeColor = Color.Blue;
+            obj.RowBackColor = Color.White; 
+            obj.RowFont = f;
+            gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj);
 
             //// 마감오더 색상변경
             //f = new Font(new FontFamily("Segoe UI"), 8.25f);
@@ -951,6 +1016,7 @@ namespace Dev.Fabric
             lstStatus2.Add(new CodeContents(10, CommonValues.DicFabricInStatus[10], ""));
 
             lstOutStatus.Add(new CodeContents(0, CommonValues.DicFabricOutStatus[0], ""));
+            lstOutStatus.Add(new CodeContents(3, CommonValues.DicFabricOutStatus[3], ""));
             lstOutStatus.Add(new CodeContents(5, CommonValues.DicFabricOutStatus[5], ""));
             lstOutStatus.Add(new CodeContents(6, CommonValues.DicFabricOutStatus[6], ""));
             lstOutStatus.Add(new CodeContents(7, CommonValues.DicFabricOutStatus[7], ""));
@@ -958,6 +1024,7 @@ namespace Dev.Fabric
             lstOutStatus.Add(new CodeContents(11, CommonValues.DicFabricOutStatus[11], ""));
 
             lstOutStatus2.Add(new CodeContents(0, CommonValues.DicFabricOutStatus[0], ""));
+            lstOutStatus2.Add(new CodeContents(3, CommonValues.DicFabricOutStatus[3], ""));
             lstOutStatus2.Add(new CodeContents(5, CommonValues.DicFabricOutStatus[5], ""));
             lstOutStatus2.Add(new CodeContents(6, CommonValues.DicFabricOutStatus[6], ""));
             lstOutStatus2.Add(new CodeContents(7, CommonValues.DicFabricOutStatus[7], ""));
@@ -1498,7 +1565,9 @@ namespace Dev.Fabric
                     {
                         CodeType = "Fabric";
                         // 복호화
-                        WorkOrderIdx = txtBarcode.Text.Trim(); //Decryptor(txtBarcode.Text.Trim());
+                        WorkOrderIdx = txtBarcode.Text.Trim(); //.Replace("-", "/").Replace("`", "-"); //Decryptor(txtBarcode.Text.Trim());
+                        WorkOrderIdx = WorkOrderIdx.Substring(0, 3) + "-" + WorkOrderIdx.Substring(4); 
+                        //WorkOrderIdx.Replace("`", "-"); 
                         //Console.WriteLine(CodeType + " === " + txtBarcode.Text.Trim() + " === " + WorkOrderIdx); 
                         // 값이없으면
                         if (string.IsNullOrEmpty(WorkOrderIdx.Trim())) { }
@@ -1509,6 +1578,7 @@ namespace Dev.Fabric
                         // 쿼리생성 
                         else
                         {
+                            
                             lvQRCode.Items.Add(CodeType, WorkOrderIdx, "");
                         }
                     }
@@ -1624,6 +1694,7 @@ namespace Dev.Fabric
                                 if (item[1].ToString() == temp)
                                 {
                                     item[2] = "D";
+                                    // continue; 
                                 }
                                 else
                                 {
@@ -1653,9 +1724,9 @@ namespace Dev.Fabric
                                         // 같은 종류의 코드가 연속되면 경고메시지를 출력후, 마지막에 읽어드린 코드로 진행한다
                                         if (startCategory == item[0].ToString().Trim())
                                         {
-                                            RadMessageBox.Show("[" + startCode + "] and [" + item[1].ToString().Trim() + "] are the same category.\n" +
-                                                "The system will process with the last code [" + item[1].ToString().Trim() + ".", "Warning",
-                                                MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                                            //RadMessageBox.Show("[" + startCode + "] and [" + item[1].ToString().Trim() + "] are the same category.\n" +
+                                            //    "The system will process with the last code [" + item[1].ToString().Trim() + ".", "Warning",
+                                            //    MessageBoxButtons.OK, RadMessageIcon.Exclamation);
 
                                             // 시작코드 저장후 다음 행 이동 
                                             startCategory = item[0].ToString().Trim();
@@ -1770,9 +1841,9 @@ namespace Dev.Fabric
                                             // 같은 종류의 코드가 연속되면 경고메시지를 출력후, 마지막에 읽어드린 코드로 진행한다
                                             if (startCategory == item[0].ToString().Trim())
                                             {
-                                                RadMessageBox.Show("[" + startCode + "] and [" + item[1].ToString().Trim() + "] are the same category.\n" +
-                                                    "The system will process with the last code [" + item[1].ToString().Trim() + ".", "Warning",
-                                                    MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                                                //RadMessageBox.Show("[" + startCode + "] and [" + item[1].ToString().Trim() + "] are the same category.\n" +
+                                                //    "The system will process with the last code [" + item[1].ToString().Trim() + ".", "Warning",
+                                                //    MessageBoxButtons.OK, RadMessageIcon.Exclamation);
 
                                                 // 시작코드 저장후 다음 행 이동 
                                                 startCategory = item[0].ToString().Trim();
@@ -2073,7 +2144,7 @@ namespace Dev.Fabric
                     ddlCenter.DataSource = null;
                     ddlDept.DataSource = null;
 
-                    if (code == 5 || code == 6 || code == 11)
+                    if (code == 3 || code == 5 || code == 6 || code == 11)
                     {
                         _dt = Int.Costcenter.Costcenter.Getlist().Tables[0];
 
@@ -2362,13 +2433,14 @@ namespace Dev.Fabric
 
             summaryItem = new GridViewSummaryItem();
             summaryItem.Name = "Kgs";
-            summaryItem.AggregateExpression = Convert.ToDouble(row.Cells["Kgs"].Value == DBNull.Value ? 0 : row.Cells["Kgs"].Value) + "-Sum(Kgs)";
+            // Status=3(Return remained fabric) 
+            summaryItem.AggregateExpression = Convert.ToDouble(row.Cells["Kgs"].Value == DBNull.Value ? 0 : row.Cells["Kgs"].Value) + "-Sum(IIF(Status=3, Kgs*-1.0, Kgs))";
             summaryItem.FormatString = "{0:N2}";
             summaryRowItem.Add(summaryItem);
 
             summaryItem = new GridViewSummaryItem();
             summaryItem.Name = "Yds";
-            summaryItem.AggregateExpression = Convert.ToDouble(row.Cells["Yds"].Value == DBNull.Value ? 0 : row.Cells["Yds"].Value) + "-Sum(Yds)";
+            summaryItem.AggregateExpression = Convert.ToDouble(row.Cells["Yds"].Value == DBNull.Value ? 0 : row.Cells["Yds"].Value) + "-Sum(IIF(Status=3, Yds*-1.0, Yds))";
             summaryItem.FormatString = "{0:N2}";
             summaryRowItem.Add(summaryItem);
 

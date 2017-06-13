@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn1 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Category");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn2 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Code");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn3 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "State");
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn4 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Category");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn5 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Code");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn6 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "State");
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.gvMain = new Telerik.WinControls.UI.RadGridView();
@@ -69,6 +69,7 @@
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.dtInboundDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.txtInboundno = new Telerik.WinControls.UI.RadTextBox();
+            this.ddlFabric = new Telerik.WinControls.UI.RadMultiColumnComboBox();
             this.radSplitContainer2 = new Telerik.WinControls.UI.RadSplitContainer();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.documentContainer1 = new Telerik.WinControls.UI.Docking.DocumentContainer();
@@ -95,7 +96,6 @@
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.up_Customers_List_BuyerTableAdapter1 = new Dev.Sales.dsOrderPlanTableAdapters.up_Customers_List_BuyerTableAdapter();
             this.dataSetSizeGroup = new Dev.Sales.Data.DataSetSizeGroup();
-            this.ddlFabric = new Telerik.WinControls.UI.RadMultiColumnComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain.MasterTemplate)).BeginInit();
@@ -134,6 +134,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtInboundDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInboundno)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer2)).BeginInit();
             this.radSplitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
@@ -167,9 +170,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlCenter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSizeGroup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -217,7 +217,7 @@
             this.gvMain.MasterTemplate.AutoGenerateColumns = false;
             this.gvMain.MasterTemplate.MultiSelect = true;
             this.gvMain.MasterTemplate.PageSize = 50;
-            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition4;
             this.gvMain.Name = "gvMain";
             this.gvMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvMain.ShowGroupPanel = false;
@@ -288,7 +288,7 @@
             // 
             // 
             this.gvOutbound.MasterTemplate.AllowAddNewRow = false;
-            this.gvOutbound.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvOutbound.MasterTemplate.ViewDefinition = tableViewDefinition5;
             this.gvOutbound.Name = "gvOutbound";
             this.gvOutbound.ReadOnly = true;
             this.gvOutbound.ShowGroupPanel = false;
@@ -623,6 +623,36 @@
             this.txtInboundno.Size = new System.Drawing.Size(123, 20);
             this.txtInboundno.TabIndex = 15;
             // 
+            // ddlFabric
+            // 
+            this.ddlFabric.Dock = System.Windows.Forms.DockStyle.Fill;
+            // 
+            // ddlFabric.NestedRadGridView
+            // 
+            this.ddlFabric.EditorControl.BackColor = System.Drawing.SystemColors.Window;
+            this.ddlFabric.EditorControl.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ddlFabric.EditorControl.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ddlFabric.EditorControl.Location = new System.Drawing.Point(0, 0);
+            // 
+            // 
+            // 
+            this.ddlFabric.EditorControl.MasterTemplate.AllowAddNewRow = false;
+            this.ddlFabric.EditorControl.MasterTemplate.AllowCellContextMenu = false;
+            this.ddlFabric.EditorControl.MasterTemplate.AllowColumnChooser = false;
+            this.ddlFabric.EditorControl.MasterTemplate.EnableGrouping = false;
+            this.ddlFabric.EditorControl.MasterTemplate.ShowFilteringRow = false;
+            this.ddlFabric.EditorControl.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.ddlFabric.EditorControl.Name = "NestedRadGridView";
+            this.ddlFabric.EditorControl.ReadOnly = true;
+            this.ddlFabric.EditorControl.ShowGroupPanel = false;
+            this.ddlFabric.EditorControl.Size = new System.Drawing.Size(240, 150);
+            this.ddlFabric.EditorControl.TabIndex = 0;
+            this.ddlFabric.Location = new System.Drawing.Point(373, 24);
+            this.ddlFabric.Name = "ddlFabric";
+            this.ddlFabric.Size = new System.Drawing.Size(344, 20);
+            this.ddlFabric.TabIndex = 24;
+            this.ddlFabric.TabStop = false;
+            // 
             // radSplitContainer2
             // 
             this.radSplitContainer2.Controls.Add(this.radSplitContainer1);
@@ -809,15 +839,15 @@
             // 
             // lvQRCode
             // 
-            listViewDetailColumn1.HeaderText = "Category";
-            listViewDetailColumn1.Width = 70F;
-            listViewDetailColumn2.HeaderText = "Code";
-            listViewDetailColumn3.HeaderText = "State";
-            listViewDetailColumn3.Width = 50F;
+            listViewDetailColumn4.HeaderText = "Category";
+            listViewDetailColumn4.Width = 70F;
+            listViewDetailColumn5.HeaderText = "Code";
+            listViewDetailColumn6.HeaderText = "State";
+            listViewDetailColumn6.Width = 50F;
             this.lvQRCode.Columns.AddRange(new Telerik.WinControls.UI.ListViewDetailColumn[] {
-            listViewDetailColumn1,
-            listViewDetailColumn2,
-            listViewDetailColumn3});
+            listViewDetailColumn4,
+            listViewDetailColumn5,
+            listViewDetailColumn6});
             this.lvQRCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvQRCode.ItemSpacing = -1;
             this.lvQRCode.Location = new System.Drawing.Point(2, 18);
@@ -978,36 +1008,6 @@
             this.dataSetSizeGroup.DataSetName = "DataSetSizeGroup";
             this.dataSetSizeGroup.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // ddlFabric
-            // 
-            this.ddlFabric.Dock = System.Windows.Forms.DockStyle.Fill;
-            // 
-            // ddlFabric.NestedRadGridView
-            // 
-            this.ddlFabric.EditorControl.BackColor = System.Drawing.SystemColors.Window;
-            this.ddlFabric.EditorControl.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ddlFabric.EditorControl.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ddlFabric.EditorControl.Location = new System.Drawing.Point(0, 0);
-            // 
-            // 
-            // 
-            this.ddlFabric.EditorControl.MasterTemplate.AllowAddNewRow = false;
-            this.ddlFabric.EditorControl.MasterTemplate.AllowCellContextMenu = false;
-            this.ddlFabric.EditorControl.MasterTemplate.AllowColumnChooser = false;
-            this.ddlFabric.EditorControl.MasterTemplate.EnableGrouping = false;
-            this.ddlFabric.EditorControl.MasterTemplate.ShowFilteringRow = false;
-            this.ddlFabric.EditorControl.MasterTemplate.ViewDefinition = tableViewDefinition3;
-            this.ddlFabric.EditorControl.Name = "NestedRadGridView";
-            this.ddlFabric.EditorControl.ReadOnly = true;
-            this.ddlFabric.EditorControl.ShowGroupPanel = false;
-            this.ddlFabric.EditorControl.Size = new System.Drawing.Size(240, 150);
-            this.ddlFabric.EditorControl.TabIndex = 0;
-            this.ddlFabric.Location = new System.Drawing.Point(373, 24);
-            this.ddlFabric.Name = "ddlFabric";
-            this.ddlFabric.Size = new System.Drawing.Size(344, 20);
-            this.ddlFabric.TabIndex = 24;
-            this.ddlFabric.TabStop = false;
-            // 
             // Inbound
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1063,6 +1063,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtInboundDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInboundno)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer2)).EndInit();
             this.radSplitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
@@ -1098,9 +1101,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlCenter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSizeGroup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

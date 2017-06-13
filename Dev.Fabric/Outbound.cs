@@ -675,6 +675,7 @@ namespace Dev.Fabric
             /* -- 1:대기상태, 2:입고(생산처), 3:입고(사용가능 잔량회수), 4:입고(구매처)
                --5:정상출고, 6:출고(원단불량), 7:판매, 8:폐기, 9:악성재고, 10:공장용보관, 11: 재고조정 */
             lstStatus.Add(new CodeContents(0, CommonValues.DicFabricOutStatus[0], ""));
+            lstStatus.Add(new CodeContents(3, CommonValues.DicFabricOutStatus[3], ""));
             lstStatus.Add(new CodeContents(5, CommonValues.DicFabricOutStatus[5], ""));
             lstStatus.Add(new CodeContents(6, CommonValues.DicFabricOutStatus[6], ""));
             lstStatus.Add(new CodeContents(7, CommonValues.DicFabricOutStatus[7], ""));
@@ -682,6 +683,7 @@ namespace Dev.Fabric
             lstStatus.Add(new CodeContents(11, CommonValues.DicFabricOutStatus[11], ""));
 
             lstStatus2.Add(new CodeContents(0, CommonValues.DicFabricOutStatus[0], ""));
+            lstStatus2.Add(new CodeContents(3, CommonValues.DicFabricOutStatus[3], ""));
             lstStatus2.Add(new CodeContents(5, CommonValues.DicFabricOutStatus[5], ""));
             lstStatus2.Add(new CodeContents(6, CommonValues.DicFabricOutStatus[6], ""));
             lstStatus2.Add(new CodeContents(7, CommonValues.DicFabricOutStatus[7], ""));

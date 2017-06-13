@@ -854,25 +854,25 @@ namespace Dev.Fabric
                     lstFabricMapInfo.Add(mapInfo);
 
                     // Cell포맷팅에서 해당 데이터를 찾기위해 태그에 인덱스를 저장해둔다 
-                    this._gv1.Rows[Convert.ToInt32(row["PosY"])].Cells[Convert.ToInt32(row["PosX"])].Tag = rowInfo;
+                    this._gv1.Rows[Convert.ToInt32(row["PosY"]) - 1].Cells[COLUMNCOUNT - Convert.ToInt32(row["PosX"])].Tag = rowInfo;
                     rowInfo++; 
 
                     switch (Convert.ToInt32(row["Status"]))
                     {
                         case 2:
-                            this._gv1.Rows[Convert.ToInt32(row["PosY"])].Cells[Convert.ToInt32(row["PosX"])].Style.BackColor = Color.YellowGreen;
+                            this._gv1.Rows[Convert.ToInt32(row["PosY"]) - 1].Cells[COLUMNCOUNT - Convert.ToInt32(row["PosX"])].Style.BackColor = Color.YellowGreen;
                             break;
                         case 3:
-                            this._gv1.Rows[Convert.ToInt32(row["PosY"])].Cells[Convert.ToInt32(row["PosX"])].Style.BackColor = Color.DeepSkyBlue;
+                            this._gv1.Rows[Convert.ToInt32(row["PosY"]) - 1].Cells[COLUMNCOUNT - Convert.ToInt32(row["PosX"])].Style.BackColor = Color.DeepSkyBlue;
                             break;
                         case 4:
-                            this._gv1.Rows[Convert.ToInt32(row["PosY"])].Cells[Convert.ToInt32(row["PosX"])].Style.BackColor = Color.Gold;
+                            this._gv1.Rows[Convert.ToInt32(row["PosY"]) - 1].Cells[COLUMNCOUNT - Convert.ToInt32(row["PosX"])].Style.BackColor = Color.Gold;
                             break;
                         case 9:
-                            this._gv1.Rows[Convert.ToInt32(row["PosY"])].Cells[Convert.ToInt32(row["PosX"])].Style.BackColor = Color.Salmon;
+                            this._gv1.Rows[Convert.ToInt32(row["PosY"]) - 1].Cells[COLUMNCOUNT - Convert.ToInt32(row["PosX"])].Style.BackColor = Color.Salmon;
                             break;
                         case 10:
-                            this._gv1.Rows[Convert.ToInt32(row["PosY"])].Cells[Convert.ToInt32(row["PosX"])].Style.BackColor = Color.Violet;
+                            this._gv1.Rows[Convert.ToInt32(row["PosY"]) - 1].Cells[COLUMNCOUNT - Convert.ToInt32(row["PosX"])].Style.BackColor = Color.Violet;
                             break;
 
                     }

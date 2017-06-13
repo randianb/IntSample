@@ -183,7 +183,7 @@ namespace Dev.Controller
         public bool Update()
         {
             bool blRtn;
-            blRtn = Data.CuttingData.Update(_idx, _ordColorIdx, _ordSizeIdx, _cuttedDate, _ordYds, _ordQty, _cuttedNo, _cuttedQty,
+            blRtn = Data.CuttingData.Update(_idx, _cuttedDate, _cuttedNo, _cuttedQty,
                                             _fabricIdx,  _remarks);
             return blRtn;
         }

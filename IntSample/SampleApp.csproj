@@ -354,6 +354,10 @@
       <Project>{645bd20a-5723-40f4-9d9f-8684a1e1a83d}</Project>
       <Name>Dev.Pattern</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dev.Production\Dev.Production.csproj">
+      <Project>{C490F6B9-D87B-4EEF-BCD7-B57964CFD136}</Project>
+      <Name>Dev.Production</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dev.Sales\Dev.Sales.csproj">
       <Project>{367beb2f-64c6-4376-90c4-cd4b396b56f7}</Project>
       <Name>Dev.Sales</Name>

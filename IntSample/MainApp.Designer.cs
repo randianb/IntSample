@@ -963,6 +963,7 @@
             this.btnProductCutting.Text = "Cutting";
             this.btnProductCutting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnProductCutting.TextWrap = true;
+            this.btnProductCutting.Click += new System.EventHandler(this.btnProductCutting_Click);
             // 
             // btnProductPrinting
             // 

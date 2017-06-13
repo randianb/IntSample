@@ -671,7 +671,7 @@ namespace Dev.Codes
                         _gv1.DataSource = _ds1.Tables[0].DefaultView;
                         // 조회 후, 상태알림 및 설정적용
                         __main__.lblRows.Text = _gv1.RowCount.ToString() + " Rows";
-                        _gv1.EnablePaging = true; //CommonValues.enablePaging;
+                        _gv1.EnablePaging = CommonValues.enablePaging;
                         _gv1.AllowSearchRow = CommonValues.enableSearchRow;
                     }
                 }
