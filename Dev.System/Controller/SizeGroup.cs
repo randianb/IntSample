@@ -205,6 +205,13 @@ namespace Dev.Codes.Controller
             return ds;
         }
 
+        public static DataSet Getlist(int Client, int DeptIdx)
+        {
+            DataSet ds = new DataSet();
+            ds = Data.SizeGroupData.Getlist(Client, DeptIdx);
+            return ds;
+        }
+
         public static DataRow Get(int SizeGroupIdx)
         {
             DataRow dr = Data.SizeGroupData.Get(SizeGroupIdx);

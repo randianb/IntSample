@@ -451,7 +451,15 @@ namespace Dev.Codes
         {
             try
             {
-                DataBinding_GV1(Convert.ToInt32(ddlCust.SelectedValue));
+                _searchKey = new Dictionary<CommonValues.KeyName, int>();
+
+                // 영업부인경우, 해당 부서만 조회할수 있도록 제한 
+                if (UserInfo.ReportNo < 9)
+                    _searchKey.Add(CommonValues.KeyName.DeptIdx, UserInfo.DeptIdx);
+                else
+                    _searchKey.Add(CommonValues.KeyName.DeptIdx, 0);
+
+                DataBinding_GV1(Convert.ToInt32(ddlCust.SelectedValue), _searchKey[CommonValues.KeyName.DeptIdx]);
             }
             catch (Exception ex)
             {
@@ -464,7 +472,7 @@ namespace Dev.Codes
         /// 메인 그리드뷰 데이터 로딩
         /// </summary>
         /// <param name="ColorName">컬러명</param>
-        private void DataBinding_GV1(int CustIdx)
+        private void DataBinding_GV1(int CustIdx, int DeptIdx)
         {
             try
             {
@@ -474,7 +482,7 @@ namespace Dev.Codes
 
                 _gv1.DataSource = null;
                 
-                _ds1 = Controller.SizeGroup.Getlist(CustIdx);
+                _ds1 = Controller.SizeGroup.Getlist(CustIdx, DeptIdx);
                 
                 if (_ds1 != null)
                 {

@@ -289,7 +289,51 @@ namespace Dev.Codes.Data
                 return null;
             }
         }
-        
+
+        public static DataSet Getlist(int Client, int DeptIdx)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_SizeGroup_List2";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Client", SqlDbType.Int, 4);
+                _cmd.Parameters["@Client"].Value = Client;
+
+                _cmd.Parameters.Add("@DeptIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@DeptIdx"].Value = DeptIdx;
+
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if (_ds != null)
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         /// <summary>
         /// Getlist: 전체 목록조회
