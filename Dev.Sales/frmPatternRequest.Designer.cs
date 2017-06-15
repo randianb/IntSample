@@ -90,10 +90,10 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 4;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.09091F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.90909F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 179F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 407F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.89313F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.10687F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 173F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 398F));
             this.tableLayoutPanel3.Controls.Add(this.btnCancel, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnRequest, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -106,18 +106,18 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(266, 3);
+            this.btnCancel.Location = new System.Drawing.Point(281, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(173, 33);
+            this.btnCancel.Size = new System.Drawing.Size(167, 33);
             this.btnCancel.TabIndex = 16;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnRequest
             // 
-            this.btnRequest.Location = new System.Drawing.Point(93, 3);
+            this.btnRequest.Location = new System.Drawing.Point(125, 3);
             this.btnRequest.Name = "btnRequest";
-            this.btnRequest.Size = new System.Drawing.Size(167, 33);
+            this.btnRequest.Size = new System.Drawing.Size(150, 33);
             this.btnRequest.TabIndex = 15;
             this.btnRequest.Text = "Request Pattern";
             this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
@@ -126,8 +126,8 @@
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 760F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 734F));
             this.tableLayoutPanel1.Controls.Add(this.radLabel7, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblStyle, 1, 1);
@@ -176,7 +176,7 @@
             // 
             // lblStyle
             // 
-            this.lblStyle.Location = new System.Drawing.Point(93, 33);
+            this.lblStyle.Location = new System.Drawing.Point(119, 33);
             this.lblStyle.Name = "lblStyle";
             this.lblStyle.Size = new System.Drawing.Size(55, 18);
             this.lblStyle.TabIndex = 1;
@@ -185,7 +185,7 @@
             // lblFileno
             // 
             this.lblFileno.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.lblFileno.Location = new System.Drawing.Point(93, 3);
+            this.lblFileno.Location = new System.Drawing.Point(119, 3);
             this.lblFileno.Name = "lblFileno";
             this.lblFileno.Size = new System.Drawing.Size(59, 18);
             this.lblFileno.TabIndex = 1;
@@ -209,7 +209,7 @@
             // 
             // lblStatus
             // 
-            this.lblStatus.Location = new System.Drawing.Point(93, 63);
+            this.lblStatus.Location = new System.Drawing.Point(119, 63);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(55, 18);
             this.lblStatus.TabIndex = 1;
@@ -242,7 +242,7 @@
             // ddlSize
             // 
             this.ddlSize.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlSize.Location = new System.Drawing.Point(93, 123);
+            this.ddlSize.Location = new System.Drawing.Point(119, 123);
             this.ddlSize.Name = "ddlSize";
             this.ddlSize.Size = new System.Drawing.Size(203, 20);
             this.ddlSize.TabIndex = 2;
@@ -250,7 +250,7 @@
             // 
             // beFiles
             // 
-            this.beFiles.Location = new System.Drawing.Point(93, 153);
+            this.beFiles.Location = new System.Drawing.Point(119, 153);
             this.beFiles.Name = "beFiles";
             this.beFiles.Size = new System.Drawing.Size(340, 20);
             this.beFiles.TabIndex = 3;
@@ -260,9 +260,9 @@
             // listFiles
             // 
             this.listFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listFiles.Location = new System.Drawing.Point(93, 183);
+            this.listFiles.Location = new System.Drawing.Point(119, 183);
             this.listFiles.Name = "listFiles";
-            this.listFiles.Size = new System.Drawing.Size(754, 165);
+            this.listFiles.Size = new System.Drawing.Size(728, 165);
             this.listFiles.TabIndex = 4;
             this.listFiles.Text = "radListView1";
             // 
@@ -270,15 +270,15 @@
             // 
             this.txtComment.AutoSize = false;
             this.txtComment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtComment.Location = new System.Drawing.Point(93, 354);
+            this.txtComment.Location = new System.Drawing.Point(119, 354);
             this.txtComment.Multiline = true;
             this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(754, 189);
+            this.txtComment.Size = new System.Drawing.Size(728, 189);
             this.txtComment.TabIndex = 6;
             // 
             // dtTechPack
             // 
-            this.dtTechPack.Location = new System.Drawing.Point(93, 93);
+            this.dtTechPack.Location = new System.Drawing.Point(119, 93);
             this.dtTechPack.Name = "dtTechPack";
             this.dtTechPack.Size = new System.Drawing.Size(164, 20);
             this.dtTechPack.TabIndex = 7;

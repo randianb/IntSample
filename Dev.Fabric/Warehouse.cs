@@ -848,8 +848,9 @@ namespace Dev.Fabric
                     mapInfo.Kgs = "Kgs: " + Convert.ToDouble(row["Kgs"]).ToString() + " kgs";
                     mapInfo.Yds = "Yds: " + Convert.ToDouble(row["Yds"]).ToString() + " yds";
                     mapInfo.Coords = "X, Y: " + Convert.ToInt32(row["PosX"]).ToString() + ", " + Convert.ToInt32(row["PosY"]).ToString();
-                    mapInfo.CoordsRack = Convert.ToInt32(row["RackNo"]).ToString() + "" + Convert.ToChar(Convert.ToInt32(row["Floorno"]) + 64) + "" 
-                            + Convert.ToInt32(row["RackPos"]).ToString();
+                    if (Convert.ToInt32(row["RackNo"]) <= 0) mapInfo.CoordsRack = ""; 
+                    else mapInfo.CoordsRack = Convert.ToInt32(row["RackNo"]).ToString() + "" + Convert.ToChar(Convert.ToInt32(row["Floorno"]) + 64) + ""
+                                            + Convert.ToInt32(row["RackPos"]).ToString();
 
                     lstFabricMapInfo.Add(mapInfo);
 
