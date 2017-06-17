@@ -2,8 +2,8 @@
 [
   {
     "ProgramIdx": 0,
-    "Version": 1.52,
-    "AppliedDate": "2017-06-13T08:26:12.347",
+    "Version": 1.53,
+    "AppliedDate": "2017-06-14T08:26:12.347",
     "UploadUrl": "https://intfile.blob.core.windows.net/updateinterp/update.zip",
     "FileName": "update.zip",
     "IsUse": 1

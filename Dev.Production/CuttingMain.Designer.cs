@@ -287,7 +287,6 @@
             // 
             // dtCutted
             // 
-            this.dtCutted.Culture = new System.Globalization.CultureInfo("ko-KR");
             this.dtCutted.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtCutted.Location = new System.Drawing.Point(860, 23);
             this.dtCutted.Name = "dtCutted";
@@ -335,6 +334,7 @@
             this.gvMain.SelectionChanged += new System.EventHandler(this.gvOrderActual_SelectionChanged);
             this.gvMain.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.GV1_Update);
             this.gvMain.ContextMenuOpening += new Telerik.WinControls.UI.ContextMenuOpeningEventHandler(this.gvMain_ContextMenuOpening);
+            this.gvMain.Click += new System.EventHandler(this.gvMain_Click);
             // 
             // toolTabStrip3
             // 

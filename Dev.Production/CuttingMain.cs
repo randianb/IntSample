@@ -744,5 +744,10 @@ namespace Dev.Production
         {
             e.Cancel = true; 
         }
+
+        private void gvMain_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
