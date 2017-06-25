@@ -96,7 +96,7 @@ namespace Dev.Data
         /// <summary>
         /// Update
         /// </summary>
-        public static bool Update(int Idx, DateTime CuttedDate, string CuttedNo, int CuttedQty, 
+        public static bool Update(int Idx, DateTime CuttedDate, string CuttedNo, int CuttedQty, int CuttedPQty, 
             int FabricIdx, string Remarks 
             )
         {

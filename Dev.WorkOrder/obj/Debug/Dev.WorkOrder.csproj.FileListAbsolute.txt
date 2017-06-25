@@ -52,3 +52,5 @@ D:\git\IntSample\Dev.WorkOrder\bin\Debug\Telerik.WinControls.RichTextEditor.dll
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Telerik.WinControls.RichTextEditor.xml
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Production.dll
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Production.pdb
+D:\git\IntSample\Dev.WorkOrder\obj\Debug\Dev.WorkOrder.Reports.rptWorkOrderCuttingTicket.resources
+D:\git\IntSample\Dev.WorkOrder\obj\Debug\Dev.WorkOrder.Reports.rptWorkOrderPatternTicket.resources

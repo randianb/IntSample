@@ -1079,7 +1079,72 @@ namespace Dev.Sales
 
         private void mnuOutsourcing_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    // 파일번호 입력하지 않았을 경우
+                    if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                    {
+                        RadMessageBox.Show("Please input the file number", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 스타일 입력안되었을 경우
+                    if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")))
+                    {
+                        RadMessageBox.Show("Please input the style#", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+                    if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") <= 0)
+                    {
+                        RadMessageBox.Show("Please input the Size Group", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 파일번호, 오더수량, 금액이 정상 입력되었으면 
+                    if (!string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")) &&
+                        !string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")) &&
+                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") > 0
+                        )
+                    {
+                        // 워크시트 열기 
+                        frmPrintingRequest frm = new frmPrintingRequest(Int.Members.GetCurrentRow(_gv1, "Idx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Fileno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "Styleno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Status")
+                                                        );
+                        frm.Text = "Outsourcing WorkOrder";
+
+                        if (frm.ShowDialog(this) == DialogResult.OK)
+                        {
+                            // Production Status 갱신 
+                            DataBinding_GV4(gvProduction, Int.Members.GetCurrentRow(_gv1, "Idx"));
+                        }
+                    }
+                    else
+                    {
+                        // 에러 메시지
+                        if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                        {
+                            RadMessageBox.Show("Please input the File#");
+                            return;
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
         }
 
         private void mnuCutting_Click(object sender, EventArgs e)
@@ -1125,7 +1190,7 @@ namespace Dev.Sales
                                                         Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
                                                         Int.Members.GetCurrentRow(_gv1, "Status")
                                                         );
-                        frm.Text = "Cutting Order";
+                        frm.Text = "Cutting WorkOrder";
 
                         if (frm.ShowDialog(this) == DialogResult.OK)
                         {
@@ -1751,7 +1816,7 @@ namespace Dev.Sales
                                                         Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
                                                         Int.Members.GetCurrentRow(_gv1, "Status")
                                                         );
-                        frm.Text = "Pattern";
+                        frm.Text = "Pattern WorkOrder";
 
                         if (frm.ShowDialog(this) == DialogResult.OK)
                         {

@@ -18,6 +18,9 @@ namespace Dev.WorkOrder
         public string Size { get; set; }           // 사이즈
         public string SampleType { get; set; }           // 샘플타입
         public string Color { get; set; }           // 컬러
+        public double Yds { get; set; }           // 컬러
+        public int Qty { get; set; }           // 컬러
+        public DateTime OrderDate { get; set; }      // 발행일 
         public DateTime TicketDate { get; set; }      // 발행일 
     }
 

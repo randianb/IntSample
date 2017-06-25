@@ -103,6 +103,18 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptWorkOrderPatternTicket.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptWorkOrderPatternTicket.Designer.cs">
+      <DependentUpon>rptWorkOrderPatternTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptWorkOrderCuttingTicket.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptWorkOrderCuttingTicket.Designer.cs">
+      <DependentUpon>rptWorkOrderCuttingTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rptWorkOrderTicket.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -129,6 +141,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\rptWorkOrderPatternTicket.resx">
+      <DependentUpon>rptWorkOrderPatternTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptWorkOrderCuttingTicket.resx">
+      <DependentUpon>rptWorkOrderCuttingTicket.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptWorkOrderTicket.resx">
       <DependentUpon>rptWorkOrderTicket.cs</DependentUpon>
     </EmbeddedResource>

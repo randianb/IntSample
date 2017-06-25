@@ -328,8 +328,7 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@indate", SqlDbType.NVarChar, 10);
                 _cmd.Parameters["@indate"].Value = (indate == "2000-01-01" || string.IsNullOrEmpty(indate) ? "" : indate);
-
-
+                
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);
 

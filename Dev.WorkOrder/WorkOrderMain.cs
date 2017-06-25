@@ -763,11 +763,11 @@ namespace Dev.WorkOrder
                                             " already created QR Code.", "Notice", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
                                     return;
                                 }
-                                __QRCode__ = Int.Encryptor.Encrypt(row.Cells["WorkOrderIdx"].Value.ToString().Trim(), "love1229");
+                                __QRCode__ = row.Cells["WorkOrderIdx"].Value.ToString().Trim(); //Int.Encryptor.Encrypt(row.Cells["WorkOrderIdx"].Value.ToString().Trim(), "love1229");
 
                                 //update QR code
                                 _bRtn = Controller.WorkOrder.Update(row.Cells["WorkOrderIdx"].Value.ToString().Trim(),
-                                                        row.Cells["TicketDate"].Value == DBNull.Value ? new DateTime(2000, 1, 1) : Convert.ToDateTime(row.Cells["TicketDate"].Value),
+                                                        row.Cells["TicketDate"].Value == DBNull.Value ? DateTime.Now : Convert.ToDateTime(row.Cells["TicketDate"].Value),
                                                         2, __QRCode__, UserInfo.Idx);
                                 __main__.lblRows.Text = "Created QR Codes";
                             }
@@ -782,7 +782,7 @@ namespace Dev.WorkOrder
 
                 #endregion
 
-                #region 리딩된 리스트박스의 QR코드저장, Concept: 출고시 작업물 현황완료 상태로 전환 (2>3), 입고시 외주작업물 현황 >> 현재 구분필요없음 차후 용도 
+                #region 리딩된 리스트박스의 QR코드저장, Concept: 출고시 작업물 현황완료 상태로 전환 (2>3), 입고시 외주작업물 현황 >> 170623 현재 구분필요없음 차후 용도 
 
                 else if (btnSaveData.Tag.ToString() == "save")
                 {
@@ -792,7 +792,7 @@ namespace Dev.WorkOrder
                         foreach (ListViewDataItem item in lvQRCode.Items)
                         {
                             // 복호화
-                            WorkOrderIdx = Decryptor(item.Value.ToString());
+                            WorkOrderIdx = item.Value.ToString(); // Decryptor(item.Value.ToString());
 
                             // 값이없으면
                             if (!string.IsNullOrEmpty(WorkOrderIdx.Trim()))
@@ -800,11 +800,11 @@ namespace Dev.WorkOrder
                                 item.Value = "Invalid code - " + item.Value;
                             }
                             // 길이가 14, 12가 아니면
-                            else if (WorkOrderIdx.Length != 14 && WorkOrderIdx.Length != 12) 
+                            else if (WorkOrderIdx.Length != 14 && WorkOrderIdx.Length != 12 && WorkOrderIdx.Length != 11) 
                             {
                                 item.Value = "Invalid code - " + item.Value;
                             }
-                            // S, D, O로 시작하지 않으면 
+                            // S, D, O로 시작하지 않으면 - S:Sample, D:Development, O:Outbound
                             else if (WorkOrderIdx.Substring(0, 1) != "S" && WorkOrderIdx.Substring(0, 1) != "D" && WorkOrderIdx.Substring(0, 1) != "O")
                             {
                                 item.Value = "Invalid code - " + item.Value;

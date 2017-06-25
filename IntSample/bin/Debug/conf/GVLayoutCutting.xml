@@ -11,16 +11,18 @@
       <Telerik.WinControls.UI.GridViewComboBoxColumn Width="70" FieldName="OrdSizeIdx" Name="OrdSizeIdx" IsVisible="True" ReadOnly="True" HeaderText="Size" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="70" FieldName="OrdQty" Name="OrdQty" IsVisible="True" ReadOnly="True" HeaderText="Order Q'ty" TextAlignment="MiddleRight" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatString="{0:d}" Width="100" FieldName="OrdDate" Name="OrdDate" IsVisible="True" ReadOnly="True" HeaderText="Requested" TextAlignment="MiddleCenter" />
-      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="Idx" DisplayMember="LongName" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="150" FieldName="FabricIdx" Name="FabricIdx" IsVisible="True" HeaderText="Fabric" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="Idx" DisplayMember="LongName" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="200" FieldName="FabricIdx" Name="FabricIdx" IsVisible="True" HeaderText="Fabric" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn CustomFormat="{d}" FormatString="{0:d}" Width="100" FieldName="CuttedDate" Name="CuttedDate" IsVisible="True" HeaderText="Cutted" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn MaxLength="2" FieldName="CuttedNo" Name="CuttedNo" IsVisible="True" HeaderText="Cut#" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="70" FieldName="CuttedQty" Name="CuttedQty" IsVisible="True" HeaderText="Cutted Q'ty" TextAlignment="MiddleRight" />
-      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="70" FieldName="Status" Name="Status" IsVisible="True" ReadOnly="True" HeaderText="Status">
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="70" FieldName="Balance" Name="Balance" Expression="OrdQty-CuttedQty" EnableExpressionEditor="True" IsVisible="True" HeaderText="Balance" TextAlignment="MiddleRight" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="70" FieldName="CuttedPQty" Name="CuttedPQty" IsVisible="True" HeaderText="Part Q'ty" TextAlignment="MiddleRight" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="100" FieldName="Status" Name="Status" IsVisible="True" ReadOnly="True" HeaderText="Status">
         <ConditionalFormattingObjectList>
-          <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="2" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="255, 230, 230" RowFont="Segoe UI, 8.25pt, style=Strikeout" Name="MyCondition" ApplyToRow="True" />
+          <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="4" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="255, 230, 230" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />
           <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="3" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="220, 255, 240" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />
           <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="0" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />
-          <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="1" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />
+          <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="2" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="Lavender" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />
         </ConditionalFormattingObjectList>
       </Telerik.WinControls.UI.GridViewComboBoxColumn>
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="150" FieldName="Remarks" Name="Remarks" IsVisible="True" HeaderText="Remarks" />

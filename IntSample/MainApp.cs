@@ -303,7 +303,7 @@ namespace SampleApp
             foreach (int menuNo in lstMenu.Keys)
             {
                 if (string.IsNullOrEmpty(CheckAuth.ValidCheck(CommonValues.packageNo, menuNo, 0)) ||
-                    CheckAuth.ValidCheck(CommonValues.packageNo, menuNo, 0) == "000")
+                    CheckAuth.ValidCheck(CommonValues.packageNo, menuNo, 0) == "00000")
                 {
                     lstMenu[menuNo].Enabled = false;
                 }

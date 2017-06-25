@@ -284,6 +284,7 @@ namespace Dev.Controller
 
             return ds;
         }
+        // 티켓 출력시 각 workorder 조회 
         public static DataRow Getlist(string Operation, string WorkOrderIdx) 
         {
             DataRow dr = Data.WorkOrderData.Getlist(Operation, WorkOrderIdx);

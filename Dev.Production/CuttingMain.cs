@@ -238,7 +238,7 @@ namespace Dev.Production
             FabricIdx.HeaderText = "Fabric";
             FabricIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             FabricIdx.DropDownStyle = RadDropDownStyle.DropDown;
-            FabricIdx.Width = 150;
+            FabricIdx.Width = 200;
             gv.Columns.Add(FabricIdx);
 
             GridViewDateTimeColumn CuttedDate = new GridViewDateTimeColumn();
@@ -266,6 +266,24 @@ namespace Dev.Production
             CuttedQty.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gv.Columns.Add(CuttedQty);
 
+            GridViewTextBoxColumn Balance = new GridViewTextBoxColumn();
+            Balance.Name = "Balance";
+            Balance.FieldName = "Balance";
+            Balance.HeaderText = "Balance";
+            Balance.Width = 70;
+            Balance.EnableExpressionEditor = true;
+            Balance.Expression = "OrdQty-CuttedQty"; 
+            Balance.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gv.Columns.Add(Balance);
+            
+            GridViewTextBoxColumn CuttedPQty = new GridViewTextBoxColumn();
+            CuttedPQty.Name = "CuttedPQty";
+            CuttedPQty.FieldName = "CuttedPQty";
+            CuttedPQty.HeaderText = "Part Q'ty";
+            CuttedPQty.Width = 70;
+            CuttedPQty.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gv.Columns.Add(CuttedPQty);
+
             GridViewComboBoxColumn status = new GridViewComboBoxColumn();
             status.Name = "Status";
             status.DataSource = lstStatus;
@@ -274,7 +292,7 @@ namespace Dev.Production
             status.FieldName = "Status";
             status.HeaderText = "Status";
             status.ReadOnly = true; 
-            status.Width = 70;
+            status.Width = 100;
             gv.Columns.Add(status);
 
             GridViewTextBoxColumn Remarks = new GridViewTextBoxColumn();
@@ -320,8 +338,8 @@ namespace Dev.Production
             #region Config Cell Conditions: 오더상태에 따라 행스타일 변경
 
             // 캔슬오더 색상변경
-            Font f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Strikeout);
-            ConditionalFormattingObject obj = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "2", "", true);
+            Font f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
+            ConditionalFormattingObject obj = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "4", "", true);
             obj.RowForeColor = Color.Black;
             obj.RowBackColor = Color.FromArgb(255, 255, 230, 230);
             obj.RowFont = f;
@@ -342,8 +360,9 @@ namespace Dev.Production
             gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj4);
 
             f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
-            ConditionalFormattingObject obj5 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "1", "", true);
+            ConditionalFormattingObject obj5 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "2", "", true);
             obj5.RowForeColor = Color.Black;
+            obj5.RowBackColor = Color.Lavender; 
             obj5.RowFont = f;
             gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj5);
 
@@ -553,6 +572,7 @@ namespace Dev.Production
 
                 if (row.Cells["CuttedNo"].Value != DBNull.Value) _obj1.CuttedNo = row.Cells["CuttedNo"].Value.ToString(); else _obj1.CuttedNo = ""; 
                 if (row.Cells["CuttedQty"].Value != DBNull.Value) _obj1.CuttedQty = Convert.ToInt32(row.Cells["CuttedQty"].Value.ToString()); else _obj1.CuttedQty = 0;
+                if (row.Cells["CuttedPQty"].Value != DBNull.Value) _obj1.CuttedPQty = Convert.ToInt32(row.Cells["CuttedPQty"].Value.ToString()); else _obj1.CuttedPQty = 0;
                 if (row.Cells["FabricIdx"].Value != DBNull.Value) _obj1.FabricIdx = Convert.ToInt32(row.Cells["FabricIdx"].Value.ToString()); else _obj1.FabricIdx = 0;
                 if (row.Cells["Remarks"].Value != DBNull.Value) _obj1.Remarks = row.Cells["Remarks"].Value.ToString(); else _obj1.Remarks = "";
 

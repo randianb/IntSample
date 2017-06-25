@@ -21,6 +21,7 @@ namespace Dev.Controller
 
         private string _cuttedNo;
         private int _cuttedQty;
+        private int _cuttedPQty;
         private int _fabricIdx;
         private string _remarks;
         
@@ -95,6 +96,11 @@ namespace Dev.Controller
             get { return _cuttedQty; }
             set { _cuttedQty = value; }
         }
+        public int CuttedPQty
+        {
+            get { return _cuttedPQty; }
+            set { _cuttedPQty = value; }
+        }
         public int FabricIdx
         {
             get { return _fabricIdx; }
@@ -130,6 +136,7 @@ namespace Dev.Controller
 
                 if (_row["CuttedNo"] != DBNull.Value) _cuttedNo = _row["CuttedNo"].ToString();
                 if (_row["CuttedQty"] != DBNull.Value) _cuttedQty = Convert.ToInt32(_row["CuttedQty"]); else _cuttedQty = 0;
+                if (_row["CuttedPQty"] != DBNull.Value) _cuttedPQty = Convert.ToInt32(_row["CuttedPQty"]); else _cuttedPQty = 0;
                 if (_row["FabricIdx"] != DBNull.Value) _fabricIdx = Convert.ToInt32(_row["FabricIdx"]); else _fabricIdx = 0;
                 if (_row["Remarks"] != DBNull.Value) _remarks = _row["Remarks"].ToString(); else _remarks = ""; 
                 
@@ -153,6 +160,7 @@ namespace Dev.Controller
             _cuttedDate = DateTime.Now;
             _cuttedNo = "";
             _cuttedQty = 0;
+            _cuttedPQty = 0;
             _fabricIdx = 0;
             _remarks = "";
     }
@@ -183,7 +191,7 @@ namespace Dev.Controller
         public bool Update()
         {
             bool blRtn;
-            blRtn = Data.CuttingData.Update(_idx, _cuttedDate, _cuttedNo, _cuttedQty,
+            blRtn = Data.CuttingData.Update(_idx, _cuttedDate, _cuttedNo, _cuttedQty, _cuttedPQty, 
                                             _fabricIdx,  _remarks);
             return blRtn;
         }

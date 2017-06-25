@@ -31,7 +31,7 @@ namespace Dev.WorkOrder
                 switch (CommonValues.WorkOperation.Trim())
                 {
                     case "Pattern": LoadingPattern(); break;
-                    case "Cutting": LoadingPattern(); break;
+                    case "Cut": LoadingCutting(); break;
 
                     default: break;
                 }
@@ -71,7 +71,7 @@ namespace Dev.WorkOrder
                     }
                 }
 
-                rptWorkOrderTicket report = new rptWorkOrderTicket();
+                rptWorkOrderPatternTicket report = new rptWorkOrderPatternTicket();
                 reportViewer1.Report = report;
                 reportViewer1.ZoomMode = Telerik.ReportViewer.WinForms.ZoomMode.FullPage;
                 reportViewer1.ViewMode = Telerik.ReportViewer.WinForms.ViewMode.PrintPreview; 
@@ -108,13 +108,18 @@ namespace Dev.WorkOrder
                         workOrder.Buyer = row["Buyer"].ToString();
                         workOrder.Handler = row["Handler"].ToString();
                         workOrder.Size = row["Size"].ToString();
+                        workOrder.Color = row["Color"].ToString();
+                        workOrder.Fabric = row["Fabric"].ToString();
+                        workOrder.Yds = Convert.ToDouble(row["Yds"].ToString());
+                        workOrder.Qty = Convert.ToInt32(row["Qty"].ToString());
                         workOrder.SampleType = row["SampleType"].ToString();
+                        if (row["OrderDate"] != DBNull.Value) workOrder.OrderDate = Convert.ToDateTime(row["OrderDate"]);
                         if (row["TicketDate"] != DBNull.Value) workOrder.TicketDate = Convert.ToDateTime(row["TicketDate"]);
                         lstWorkOrder.Add(workOrder);
                     }
                 }
 
-                rptWorkOrderTicket report = new rptWorkOrderTicket();
+                rptWorkOrderCuttingTicket report = new rptWorkOrderCuttingTicket();
                 reportViewer1.Report = report;
                 reportViewer1.ZoomMode = Telerik.ReportViewer.WinForms.ZoomMode.FullPage;
                 reportViewer1.ViewMode = Telerik.ReportViewer.WinForms.ViewMode.PrintPreview;

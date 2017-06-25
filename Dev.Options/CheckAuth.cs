@@ -13,7 +13,7 @@ namespace Dev.Options
     {
         public static string ValidCheck(int PackageIdx, int ProgramIdx, int WindowIdx)
         {
-            string result = "000";
+            string result = "00000";
 
             // 프로그램번호만 있는 경우 
             if (ProgramIdx > 0 && WindowIdx <= 0)
@@ -27,7 +27,9 @@ namespace Dev.Options
                     {
                         result = Convert.ToInt32(row["AuthRead"]).ToString().Trim() +
                                  Convert.ToInt32(row["AuthEdit"]).ToString().Trim() +
-                                 Convert.ToInt32(row["AuthDelete"]).ToString().Trim();
+                                 Convert.ToInt32(row["AuthDelete"]).ToString().Trim() +
+                                 Convert.ToInt32(row["AuthCenter"]).ToString().Trim() +
+                                 Convert.ToInt32(row["AuthDept"]).ToString().Trim();
                     }
                     // 권한 테이블에서 프로그램 권한이 있는지 확인 
                     else if (Convert.ToInt32(row["PackageIdx"]) == PackageIdx &&
@@ -35,7 +37,9 @@ namespace Dev.Options
                     {
                         result = Convert.ToInt32(row["AuthRead"]).ToString().Trim() +
                                  Convert.ToInt32(row["AuthEdit"]).ToString().Trim() +
-                                 Convert.ToInt32(row["AuthDelete"]).ToString().Trim();
+                                 Convert.ToInt32(row["AuthDelete"]).ToString().Trim() +
+                                 Convert.ToInt32(row["AuthCenter"]).ToString().Trim() +
+                                 Convert.ToInt32(row["AuthDept"]).ToString().Trim();
                     }
                 }
             }
