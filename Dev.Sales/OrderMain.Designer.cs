@@ -41,11 +41,11 @@
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -67,8 +67,8 @@
             this.gvOrderActual = new Telerik.WinControls.UI.RadGridView();
             this.toolTabStrip3 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
-            this.twStatus = new Telerik.WinControls.UI.Docking.ToolWindow();
-            this.gvProduction = new Telerik.WinControls.UI.RadGridView();
+            this.toolWindow3 = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.gvWorksheet = new Telerik.WinControls.UI.RadGridView();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.toolTabStrip4 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.toolWindow1 = new Telerik.WinControls.UI.Docking.ToolWindow();
@@ -87,9 +87,9 @@
             this.gvOperation = new Telerik.WinControls.UI.RadGridView();
             this.radSplitContainer3 = new Telerik.WinControls.UI.RadSplitContainer();
             this.toolTabStrip8 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
+            this.twStatus = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.gvProduction = new Telerik.WinControls.UI.RadGridView();
             this.toolTabStrip9 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
-            this.toolWindow3 = new Telerik.WinControls.UI.Docking.ToolWindow();
-            this.gvWorksheet = new Telerik.WinControls.UI.RadGridView();
             this.twHistory = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.gvHistory = new Telerik.WinControls.UI.RadGridView();
             this.dataSetSizeGroup = new Dev.Sales.Data.DataSetSizeGroup();
@@ -115,9 +115,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
-            this.twStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvProduction)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvProduction.MasterTemplate)).BeginInit();
+            this.toolWindow3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvWorksheet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvWorksheet.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip4)).BeginInit();
@@ -149,11 +149,11 @@
             this.radSplitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip8)).BeginInit();
             this.toolTabStrip8.SuspendLayout();
+            this.twStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvProduction)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvProduction.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip9)).BeginInit();
             this.toolTabStrip9.SuspendLayout();
-            this.toolWindow3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvWorksheet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvWorksheet.MasterTemplate)).BeginInit();
             this.twHistory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvHistory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvHistory.MasterTemplate)).BeginInit();
@@ -491,43 +491,29 @@
             this.radDock1.TabStop = false;
             this.radDock1.Text = "radDock1";
             // 
-            // twStatus
+            // toolWindow3
             // 
-            this.twStatus.Caption = null;
-            this.twStatus.Controls.Add(this.gvProduction);
-            this.twStatus.Font = new System.Drawing.Font("Gulim", 9F);
-            this.twStatus.Location = new System.Drawing.Point(1, 24);
-            this.twStatus.Name = "twStatus";
-            this.twStatus.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.twStatus.Size = new System.Drawing.Size(397, 403);
-            this.twStatus.Text = "Production";
+            this.toolWindow3.Caption = null;
+            this.toolWindow3.Controls.Add(this.gvWorksheet);
+            this.toolWindow3.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.toolWindow3.Location = new System.Drawing.Point(1, 24);
+            this.toolWindow3.Name = "toolWindow3";
+            this.toolWindow3.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.toolWindow3.Size = new System.Drawing.Size(397, 203);
+            this.toolWindow3.Text = "WorkSheet";
             // 
-            // gvProduction
+            // gvWorksheet
             // 
-            this.gvProduction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(240)))), ((int)(((byte)(249)))));
-            this.gvProduction.Cursor = System.Windows.Forms.Cursors.Default;
-            this.gvProduction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvProduction.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.gvProduction.ForeColor = System.Drawing.Color.Black;
-            this.gvProduction.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.gvProduction.Location = new System.Drawing.Point(0, 0);
+            this.gvWorksheet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvWorksheet.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
-            this.gvProduction.MasterTemplate.AllowAddNewRow = false;
-            this.gvProduction.MasterTemplate.MultiSelect = true;
-            this.gvProduction.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvProduction.MasterTemplate.ViewDefinition = tableViewDefinition6;
-            this.gvProduction.Name = "gvProduction";
-            this.gvProduction.ReadOnly = true;
-            this.gvProduction.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.gvProduction.ShowGroupPanel = false;
-            this.gvProduction.Size = new System.Drawing.Size(397, 403);
-            this.gvProduction.TabIndex = 0;
-            this.gvProduction.Text = "radGridView3";
-            this.gvProduction.SelectionChanged += new System.EventHandler(this.gvProduction_SelectionChanged);
-            this.gvProduction.HyperlinkOpening += new Telerik.WinControls.UI.HyperlinkOpeningEventHandler(this.gvProduction_HyperlinkOpening);
-            this.gvProduction.HyperlinkOpened += new Telerik.WinControls.UI.HyperlinkOpenedEventHandler(this.gvProduction_HyperlinkOpened);
+            this.gvWorksheet.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvWorksheet.Name = "gvWorksheet";
+            this.gvWorksheet.Size = new System.Drawing.Size(397, 203);
+            this.gvWorksheet.TabIndex = 0;
+            this.gvWorksheet.Text = "radGridView1";
             // 
             // radSplitContainer1
             // 
@@ -834,6 +820,43 @@
             this.toolTabStrip8.TabIndex = 3;
             this.toolTabStrip8.TabStop = false;
             // 
+            // twStatus
+            // 
+            this.twStatus.Caption = null;
+            this.twStatus.Controls.Add(this.gvProduction);
+            this.twStatus.Font = new System.Drawing.Font("Gulim", 9F);
+            this.twStatus.Location = new System.Drawing.Point(1, 24);
+            this.twStatus.Name = "twStatus";
+            this.twStatus.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.twStatus.Size = new System.Drawing.Size(397, 403);
+            this.twStatus.Text = "Production";
+            // 
+            // gvProduction
+            // 
+            this.gvProduction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(240)))), ((int)(((byte)(249)))));
+            this.gvProduction.Cursor = System.Windows.Forms.Cursors.Default;
+            this.gvProduction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvProduction.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.gvProduction.ForeColor = System.Drawing.Color.Black;
+            this.gvProduction.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.gvProduction.Location = new System.Drawing.Point(0, 0);
+            // 
+            // 
+            // 
+            this.gvProduction.MasterTemplate.AllowAddNewRow = false;
+            this.gvProduction.MasterTemplate.MultiSelect = true;
+            this.gvProduction.MasterTemplate.ShowRowHeaderColumn = false;
+            this.gvProduction.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.gvProduction.Name = "gvProduction";
+            this.gvProduction.ReadOnly = true;
+            this.gvProduction.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.gvProduction.ShowGroupPanel = false;
+            this.gvProduction.Size = new System.Drawing.Size(397, 403);
+            this.gvProduction.TabIndex = 0;
+            this.gvProduction.Text = "radGridView3";
+            this.gvProduction.SelectionChanged += new System.EventHandler(this.gvProduction_SelectionChanged);
+            this.gvProduction.HyperlinkOpened += new Telerik.WinControls.UI.HyperlinkOpenedEventHandler(this.gvProduction_HyperlinkOpened);
+            // 
             // toolTabStrip9
             // 
             this.toolTabStrip9.CanUpdateChildIndex = true;
@@ -852,30 +875,6 @@
             this.toolTabStrip9.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -13);
             this.toolTabStrip9.TabIndex = 2;
             this.toolTabStrip9.TabStop = false;
-            // 
-            // toolWindow3
-            // 
-            this.toolWindow3.Caption = null;
-            this.toolWindow3.Controls.Add(this.gvWorksheet);
-            this.toolWindow3.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.toolWindow3.Location = new System.Drawing.Point(1, 24);
-            this.toolWindow3.Name = "toolWindow3";
-            this.toolWindow3.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow3.Size = new System.Drawing.Size(397, 203);
-            this.toolWindow3.Text = "WorkSheet";
-            // 
-            // gvWorksheet
-            // 
-            this.gvWorksheet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvWorksheet.Location = new System.Drawing.Point(0, 0);
-            // 
-            // 
-            // 
-            this.gvWorksheet.MasterTemplate.ViewDefinition = tableViewDefinition2;
-            this.gvWorksheet.Name = "gvWorksheet";
-            this.gvWorksheet.Size = new System.Drawing.Size(397, 203);
-            this.gvWorksheet.TabIndex = 0;
-            this.gvWorksheet.Text = "radGridView1";
             // 
             // twHistory
             // 
@@ -962,9 +961,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
-            this.twStatus.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvProduction.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvProduction)).EndInit();
+            this.toolWindow3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvWorksheet.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvWorksheet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip4)).EndInit();
@@ -996,11 +995,11 @@
             this.radSplitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip8)).EndInit();
             this.toolTabStrip8.ResumeLayout(false);
+            this.twStatus.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvProduction.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvProduction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip9)).EndInit();
             this.toolTabStrip9.ResumeLayout(false);
-            this.toolWindow3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvWorksheet.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvWorksheet)).EndInit();
             this.twHistory.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvHistory.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvHistory)).EndInit();

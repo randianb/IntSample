@@ -1,5 +1,6 @@
 ﻿using Dev.Options;
 using Int.Code;
+using Int.Customer;
 using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -21,15 +22,19 @@ namespace Dev.Sales
     public partial class frmPrintingRequest : Telerik.WinControls.UI.RadForm
     {
         #region 변수 선언
+
+        private DataTable _dt = null;                                           // 기본 데이터테이블
+        private DataSet _ds1 = null;                                            // 기본 데이터셋
         
+        public Dictionary<CommonValues.KeyName, int> _searchKey;                // 쿼리값 value, 쿼리항목 key로 전달 
+
         private string _fileNo, _styleNo = "";
         private int _orderIdx,  _orderStatus, _sizeGroup = 0;
         private bool _bRtn = false;
         private List<Codes.Controller.Sizes> lstSize = new List<Codes.Controller.Sizes>();
-        private List<string> lstFiles = new List<string>();
-        private List<string> lstFiles2 = new List<string>();
-        private List<string> lstFileUrls = new List<string>();
-        private List<string> lstFileUrls2 = new List<string>();
+        private List<CustomerName> custName = new List<CustomerName>();         // 거래처
+
+        private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 40, 0);   // 패키지번호, 프로그램번호, 윈도우번호
 
         #endregion
 
@@ -67,6 +72,10 @@ namespace Dev.Sales
 
         private void frmPatternRequest_Load(object sender, EventArgs e)
         {
+            DataLoading_DDL(); 
+            GV1_CreateColumn(gvCutted);
+            RefleshWithCondition();
+            GV2_CreateColumn(gvOutSource);
             //GetSizes(_sizeGroup);
             //ddlSize.DataSource = lstSize;
             //ddlSize.DisplayMember = "sizeName";
@@ -78,10 +87,283 @@ namespace Dev.Sales
             //    OpenFileDialog dialog = (OpenFileDialog)beFiles.Dialog;
             //    dialog.Multiselect = true;
             //}
-            
+
         }
 
-        
+        /// <summary>
+        /// 그리드뷰 컬럼 생성 (재단완료내역)
+        /// </summary>
+        /// <param name="gv">그리드뷰</param>
+        private void GV1_CreateColumn(RadGridView gv)
+        {
+            #region Columns 생성
+
+            GridViewTextBoxColumn Idx = new GridViewTextBoxColumn();
+            Idx.DataType = typeof(int);
+            Idx.Name = "Idx";
+            Idx.FieldName = "Idx";
+            Idx.HeaderText = "ID";
+            Idx.Width = 40;
+            Idx.ReadOnly = true;
+            Idx.IsVisible = false;
+            Idx.TextAlignment = ContentAlignment.MiddleLeft;
+            gv.Columns.Add(Idx);
+
+            GridViewTextBoxColumn orderidx = new GridViewTextBoxColumn();
+            orderidx.Name = "OrderIdx";
+            orderidx.FieldName = "OrderIdx";
+            orderidx.IsVisible = false;
+            gv.Columns.Add(orderidx);
+            
+            GridViewTextBoxColumn WorkOrderIdx = new GridViewTextBoxColumn();
+            WorkOrderIdx.Name = "WorkOrderIdx";
+            WorkOrderIdx.FieldName = "WorkOrderIdx";
+            WorkOrderIdx.HeaderText = "Work ID";
+            WorkOrderIdx.Width = 100;
+            WorkOrderIdx.ReadOnly = true;
+            WorkOrderIdx.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            gv.Columns.Add(WorkOrderIdx);
+
+            GridViewTextBoxColumn OrdColorIdx = new GridViewTextBoxColumn();
+            OrdColorIdx.Name = "OrdColorIdx";
+            OrdColorIdx.FieldName = "OrdColorIdx";
+            OrdColorIdx.HeaderText = "Color";
+            OrdColorIdx.Width = 150;
+            OrdColorIdx.ReadOnly = true;
+            OrdColorIdx.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            gv.Columns.Add(OrdColorIdx);
+
+            GridViewComboBoxColumn cboSize = new GridViewComboBoxColumn();
+            cboSize.Name = "OrdSizeIdx";
+            cboSize.FieldName = "OrdSizeIdx";
+            cboSize.HeaderText = "Size";
+            cboSize.ReadOnly = true;
+            cboSize.Width = 70;
+            gv.Columns.Add(cboSize);
+            
+            GridViewTextBoxColumn FabricIdx = new GridViewTextBoxColumn();
+            FabricIdx.Name = "FabricIdx";
+            FabricIdx.FieldName = "FabricIdx";
+            FabricIdx.HeaderText = "Fabric";
+            FabricIdx.Width = 200;
+            FabricIdx.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            FabricIdx.ReadOnly = true;
+            gv.Columns.Add(FabricIdx);
+            
+            GridViewDateTimeColumn CuttedDate = new GridViewDateTimeColumn();
+            CuttedDate.Name = "CuttedDate";
+            CuttedDate.FieldName = "CuttedDate";
+            CuttedDate.Width = 100;
+            CuttedDate.TextAlignment = ContentAlignment.MiddleCenter;
+            CuttedDate.CustomFormat = "{d}";
+            CuttedDate.FormatString = "{0:d}";
+            CuttedDate.HeaderText = "Cutted";
+            gv.Columns.Add(CuttedDate);
+            
+            GridViewTextBoxColumn CuttedQty = new GridViewTextBoxColumn();
+            CuttedQty.Name = "CuttedQty";
+            CuttedQty.FieldName = "CuttedQty";
+            CuttedQty.HeaderText = "Cutted Q'ty";
+            CuttedQty.Width = 70;
+            CuttedQty.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gv.Columns.Add(CuttedQty);
+            
+            GridViewTextBoxColumn CuttedPQty = new GridViewTextBoxColumn();
+            CuttedPQty.Name = "CuttedPQty";
+            CuttedPQty.FieldName = "CuttedPQty";
+            CuttedPQty.HeaderText = "Part Q'ty";
+            CuttedPQty.Width = 70;
+            CuttedPQty.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gv.Columns.Add(CuttedPQty);
+            
+            GridViewTextBoxColumn Remarks = new GridViewTextBoxColumn();
+            Remarks.Name = "Remarks";
+            Remarks.FieldName = "Remarks";
+            Remarks.HeaderText = "Remarks";
+            Remarks.Width = 150;
+            gv.Columns.Add(Remarks);
+
+            GridViewTextBoxColumn SizeIdx = new GridViewTextBoxColumn();
+            SizeIdx.Name = "SizeIdx";
+            SizeIdx.FieldName = "SizeIdx";
+            SizeIdx.IsVisible = false;
+            gv.Columns.Add(SizeIdx);
+
+
+            #endregion
+        }
+
+        /// <summary>
+        /// 그리드뷰 컬럼 생성 (외주요청내역)
+        /// </summary>
+        /// <param name="gv">그리드뷰</param>
+        private void GV2_CreateColumn(RadGridView gv)
+        {
+            #region Columns 생성
+
+            GridViewTextBoxColumn CuttedIdx = new GridViewTextBoxColumn();
+            CuttedIdx.Name = "CuttedIdx";
+            CuttedIdx.FieldName = "CuttedIdx";
+            CuttedIdx.HeaderText = "ID";
+            CuttedIdx.Width = 40;
+            CuttedIdx.ReadOnly = true;
+            CuttedIdx.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            gv.Columns.Add(CuttedIdx);
+
+            GridViewTextBoxColumn OrdColorIdx = new GridViewTextBoxColumn();
+            OrdColorIdx.Name = "OrdColorIdx";
+            OrdColorIdx.FieldName = "OrdColorIdx";
+            OrdColorIdx.HeaderText = "Color";
+            OrdColorIdx.Width = 150;
+            OrdColorIdx.ReadOnly = true;
+            OrdColorIdx.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            gv.Columns.Add(OrdColorIdx);
+
+            GridViewComboBoxColumn cboSize = new GridViewComboBoxColumn();
+            cboSize.Name = "OrdSizeIdx";
+            cboSize.FieldName = "OrdSizeIdx";
+            cboSize.HeaderText = "Size";
+            cboSize.ReadOnly = true;
+            cboSize.Width = 70;
+            gv.Columns.Add(cboSize);
+
+            GridViewTextBoxColumn SizeIdx = new GridViewTextBoxColumn();
+            SizeIdx.Name = "SizeIdx";
+            SizeIdx.FieldName = "SizeIdx";
+            SizeIdx.IsVisible = false;
+            gv.Columns.Add(SizeIdx);
+
+            GridViewTextBoxColumn OrdQty = new GridViewTextBoxColumn();
+            OrdQty.Name = "OrdQty";
+            OrdQty.FieldName = "OrdQty";
+            OrdQty.Width = 80;
+            OrdQty.TextAlignment = ContentAlignment.MiddleRight;
+            OrdQty.HeaderText = "Order Q'ty";
+            gv.Columns.Add(OrdQty);
+
+            GridViewComboBoxColumn RcvdFrom = new GridViewComboBoxColumn();
+            RcvdFrom.Name = "RcvdFrom";
+            RcvdFrom.DataSource = custName;
+            RcvdFrom.DisplayMember = "CustName";
+            RcvdFrom.ValueMember = "CustIdx";
+            RcvdFrom.FieldName = "RcvdFrom";
+            RcvdFrom.HeaderText = "Out";
+            RcvdFrom.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            RcvdFrom.DropDownStyle = RadDropDownStyle.DropDown;
+            RcvdFrom.Width = 200;
+            gv.Columns.Add(RcvdFrom);
+            
+            GridViewTextBoxColumn Remarks = new GridViewTextBoxColumn();
+            Remarks.Name = "Remarks";
+            Remarks.FieldName = "Remarks";
+            Remarks.HeaderText = "Remarks";
+            Remarks.Width = 150;
+            gv.Columns.Add(Remarks);
+
+            #endregion
+        }
+
+        /// <summary>
+        /// Dropdownlist 데이터 로딩
+        /// </summary>
+        private void DataLoading_DDL()
+        {
+            try
+            {
+                // Cutted 
+                //_dt = Dev.Controller.OrderFabric.Getlist(_orderIdx).Tables[0];
+
+                //foreach (DataRow row in _dt.Rows)
+                //{
+                //    lstFabric.Add(new CodeContents(Convert.ToInt32(row["Idx"]), row["FabricNm"].ToString(), ""));
+                //}
+
+                //// Username
+                //lstUser.Add(new CustomerName(0, "", 0));
+                //_dt = CommonController.Getlist(CommonValues.KeyName.User).Tables[0];
+
+                //foreach (DataRow row in _dt.Rows)
+                //{
+                //    lstUser.Add(new CustomerName(Convert.ToInt32(row["UserIdx"]),
+                //                                row["UserName"].ToString(),
+                //                                Convert.ToInt32(row["DeptIdx"])));
+                //}
+
+                // Embelishment
+                _dt = CommonController.Getlist(CommonValues.KeyName.EmbelishId1).Tables[0];
+
+                foreach (DataRow row in _dt.Rows)
+                {
+                    custName.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
+                                                row["CustName"].ToString(),
+                                                Convert.ToInt32(row["Classification"])));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+
+        /// <summary>
+        /// 메인 검색버튼
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            RefleshWithCondition();
+        }
+
+        /// <summary>
+        /// 검색조건을 이용한 자료 새로고침
+        /// </summary>
+        private void RefleshWithCondition()
+        {
+            try
+            {
+                if (_orderIdx>0)
+                {
+                    _searchKey = new Dictionary<CommonValues.KeyName, int>();
+                    _searchKey.Add(CommonValues.KeyName.OrderIdx, _orderIdx);
+                    DataBinding_GV1(_searchKey);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+        }
+
+        /// <summary>
+        /// 데이터 로딩 (메인)
+        /// </summary>
+        /// <param name="KeyCount">0:전체, 2:조건검색</param>
+        /// <param name="SearchKey">RefleshWithCondition()에서 검색조건(key, value) 확인</param>
+        /// <param name="fileno">검색조건: 파일번호</param>
+        /// <param name="styleno">검색조건: 스타일번호</param>
+        private void DataBinding_GV1(Dictionary<CommonValues.KeyName, int> SearchKey)
+        {
+            try
+            {
+                gvCutted.DataSource = null;
+
+                _ds1 = Dev.Controller.Cutting.Getlist(SearchKey);
+                if (_ds1 != null)
+                {
+                    gvCutted.DataSource = _ds1.Tables[0].DefaultView;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("DataBindingGv1: " + ex.Message.ToString());
+            }
+        }
+
         #endregion
 
         #region 바인딩 & 이벤트
@@ -91,43 +373,89 @@ namespace Dev.Sales
             this.Close();
         }
 
-        /// <summary>
-        /// 파일 선택창을 열고 선택된 파일을 리스트에 추가한다. 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void beFiles_Click(object sender, EventArgs e)
+        private void btnMove_Click(object sender, EventArgs e)
         {
-            //using (OpenFileDialog dlgOpen = new OpenFileDialog())
-            //{
-            //    dlgOpen.Title = "Select Pattern Files";
-            //    dlgOpen.Multiselect = true;
-            //    if (dlgOpen.ShowDialog() == DialogResult.OK)
-            //    {
-            //        listFiles.Items.Clear();
-            //        for (int i = 0; i < dlgOpen.FileNames.Length; i++)
-            //        {
-            //            FileOpen_ListView(dlgOpen.FileNames[i], listFiles);
-            //        }
-            //    }
-            //}
-        }
-
-        /// <summary>
-        /// 리스트에 선택한 파일목록 추가 
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <param name="lstFiles"></param>
-        private void FileOpen_ListView(string fileName, RadListView lstFiles)
-        {
-            if (File.Exists(fileName))
+            try
             {
-                listFiles.Items.Add(fileName);
+                if (gvCutted.SelectedRows.Count <= 0)
+                {
+                    RadMessageBox.Show("Please select the cutted q'ty.");
+                    return;
+                }                
+                
+                foreach (GridViewRowInfo rowColor in gvCutted.SelectedRows)
+                {
+                    
+                    // 사이즈수량 컬럼이면서 값이 존재하는 경우만
+                    //if (cellColor.ColumnInfo.Index > 2 && Convert.ToInt32(cellColor.Value) > 0)
+                    //{
+                        gvOutSource.Rows.Add(rowColor.Cells["Idx"].Value, rowColor.Cells["OrdColorIdx"].Value, rowColor.Cells["OrdSizeIdx"].Value, 
+                                        rowColor.Cells["SizeIdx"].Value, Convert.ToInt32(rowColor.Cells["CuttedQty"].Value));
+                    //}
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
         /// <summary>
-        /// 패턴 요청 버튼 클릭 (파일 및 데이터 저장) 
+        /// 그리드뷰 셀 생성후, DDL설정 (메인)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MasterTemplate_CellEditorInitialized(object sender, GridViewCellEventArgs e)
+        {
+            try
+            {
+                //RadMultiColumnComboBoxElement meditor = e.ActiveEditor as RadMultiColumnComboBoxElement;
+
+                //if (meditor != null)
+                //{
+                //    meditor.Enabled = false;
+                //}
+
+                // DDL 높이, 출력항목수 설정
+                RadDropDownListEditor editor = this.gvOutSource.ActiveEditor as RadDropDownListEditor;
+                if (editor != null)
+                {
+                    ((RadDropDownListEditorElement)((RadDropDownListEditor)this.gvOutSource.ActiveEditor).EditorElement).DefaultItemsCountInDropDown
+                        = CommonValues.DDL_DefaultItemsCountInDropDown;
+                    ((RadDropDownListEditorElement)((RadDropDownListEditor)this.gvOutSource.ActiveEditor).EditorElement).DropDownHeight
+                        = CommonValues.DDL_DropDownHeight;
+                }
+
+                //// 날짜컬럼의 달력크기 설정
+                //RadDateTimeEditor dtEditor = e.ActiveEditor as RadDateTimeEditor;
+                //if (dtEditor != null)
+                //{
+                //    RadDateTimeEditorElement el = dtEditor.EditorElement as RadDateTimeEditorElement;
+                //    //el.NullDate = new DateTime(2000, 1, 1);
+                //    //el.NullText = "";
+                //    el.CalendarSize = new Size(500, 400);
+
+                //    if (el.Value.ToString().Length > 10)
+                //    {
+                //        Console.WriteLine(el.Value.ToString().Substring(0, 10));
+                //        if (el.Value.ToString().Substring(0, 10) == "2000-01-01")
+                //        {
+                //            el.Value = Convert.ToDateTime(null);
+                //        }
+                //    }
+
+                //}
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// 외주 요청 버튼 클릭
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -135,47 +463,34 @@ namespace Dev.Sales
         {
             try
             {
-                string NewCode = Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 5, _fileNo);
+                DataRow dr = null;
+                string NewCode = "";
 
-                //if (Convert.ToInt32(ddlSize.SelectedValue) <= 0)
-                //{
-                //    RadMessageBox.Show("Please input the Size", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
-                //    return;
-                //}
-
-                if (!string.IsNullOrEmpty(NewCode))
+                if (gvOutSource.Rows.Count <= 0)
                 {
-                    for (int i=0; i<=4; i++)
-                    {
-                        lstFiles2.Add(""); lstFileUrls2.Add(""); 
-                    }
-                    if (lstFiles.Count>0)
-                    {
-                        for (int i = 0; i < lstFiles.Count; i++)
-                        {
-                            if (!string.IsNullOrEmpty(lstFiles[i])) lstFiles2[i] = lstFiles[i]; lstFileUrls2[i] = lstFileUrls[i];
-                        }
-                    }
-                    
-                    //DataRow dr = Dev.Controller.Pattern.Insert(_orderIdx, NewCode, Convert.ToInt32(ddlSize.SelectedValue),
-                    //dtTechPack.Value, DateTime.Today, UserInfo.Idx, txtComment.Text,
-                    //lstFiles2[0].ToString(), lstFiles2[1].ToString(), lstFiles2[2].ToString(), lstFiles2[3].ToString(), lstFiles2[4].ToString(),
-                    //lstFileUrls2[0].ToString(), lstFileUrls2[1].ToString(), lstFileUrls2[2].ToString(), lstFileUrls2[3].ToString(), lstFileUrls2[4].ToString(), UserInfo.Idx);
-
-
-                    // 데이터 DB저장 
-                    
-
-                    //if (dr != null)
-                    //{
-                    //    // 입력완료 후 그리드뷰 갱신
-                    //    DialogResult = System.Windows.Forms.DialogResult.OK;
-                    //}
-                    //else
-                    //{
-                    //    //lblResult.Text = "Failed to input the data.";
-                    //}
+                    RadMessageBox.Show("Please select the cutted Q'ty", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                    return;
                 }
+
+                // 데이터 DB저장 
+                foreach (GridViewRowInfo row in gvOutSource.Rows)
+                {
+                    NewCode = Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 7, "");
+
+                    if (!string.IsNullOrEmpty(NewCode))
+                    {
+                        dr = Dev.Controller.Printing.Insert(_orderIdx, Convert.ToInt32(row.Cells["CuttedIdx"].Value), NewCode, "", 
+                            row.Cells["OrdColorIdx"].Value.ToString().Trim(),
+                            Convert.ToInt32(row.Cells["SizeIdx"].Value), Convert.ToInt32(row.Cells["OrdQty"].Value),
+                            DateTime.Now, 0, 
+                            Convert.ToInt32(row.Cells["RcvdFrom"].Value), 
+                            row.Cells["Remarks"].Value==null ? "" : row.Cells["Remarks"].Value.ToString().Trim(), 
+                            UserInfo.Idx);
+                    }
+                }
+
+                // 입력완료 후 그리드뷰 갱신
+                DialogResult = System.Windows.Forms.DialogResult.OK;
             }
             catch (Exception ex)
             {
@@ -223,114 +538,6 @@ namespace Dev.Sales
         }
 
         #endregion
-
-        #region 파일 다운로드 
-
-        /// <summary>
-        /// azure storage 파일 업로드
-        /// </summary>
-        private void BtnOpenFile_Click(object sender, EventArgs e)
-        {
-            try
-            {    
-                //bool result = Data.UpdateData.DeleteAll(_selectedNode);
-
-                // 스토리지 설정 
-                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                    CloudConfigurationManager.GetSetting("StorageConnectionString"));
-
-                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-
-                // 선택된 패키지의 폴더안의 blob 리스트 조회 (updateinterp, updateintsample, ...) 
-                CloudBlobContainer container = blobClient.GetContainerReference(CommonValues.packageName + "pattern");
-                
-                string[] fileNames = GetFiles();
-                
-                if (fileNames != null)
-                {
-                    foreach (string filename in fileNames)
-                    {
-                        // 업데이트 파일 storage저장 
-                        using (var fileStream = System.IO.File.OpenRead(filename))
-                        {
-                            // blob명은 파일명과 같도록 생성
-                            CloudBlockBlob blockBlob = container.GetBlockBlobReference(filename.Substring(filename.LastIndexOf("\\") + 1));
-
-                            blockBlob.UploadFromStream(fileStream);
-
-                            lstFiles.Add(filename.Substring(filename.LastIndexOf("\\") + 1));
-                            lstFileUrls.Add(blockBlob.StorageUri.PrimaryUri.ToString()); 
-                            
-                        }
-
-                    }
-                            
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-        }
-
-        /// <summary>
-        /// 다중 파일 선택
-        /// </summary>
-        /// <returns>string[] filenames</returns>
-        private string[] GetFiles()
-        {
-            string[] fileNames;
-            OpenFileDialog openDialog = new OpenFileDialog();
-
-            openDialog.Filter = "All files|*.*";
-            openDialog.Title = "Select files to upload";
-            openDialog.RestoreDirectory = false;
-            openDialog.Multiselect = true;
-            openDialog.CheckFileExists = false;
-
-            try
-            {
-                DialogResult result = openDialog.ShowDialog();
-
-                if (result == DialogResult.OK && openDialog.FileNames.Length <= 5)
-                {
-                    listFiles.Items.Clear();
-                    
-                    for (int i = 0; i < openDialog.FileNames.Length; i++)
-                    {
-                        FileOpen_ListView(openDialog.FileNames[i], listFiles);
-                    }
-                   
-                    return fileNames = openDialog.FileNames;
-                    
-                }
-                else if (result == DialogResult.Cancel)
-                {
-                    return null;
-                }
-                else
-                {
-                    if (MessageBox.Show("Too many files were Selected. Please select files less than 5.",
-                        "Too many files...", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        return null;
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                RadMessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                return null;
-            }
-
-        }
-
-        #endregion 
+        
     }
 }

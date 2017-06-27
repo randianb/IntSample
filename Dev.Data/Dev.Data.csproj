@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmbroideryData.cs" />
+    <Compile Include="PrintingData.cs" />
     <Compile Include="DataSetSizeGroup.Designer.cs">
       <DependentUpon>DataSetSizeGroup.xsd</DependentUpon>
       <AutoGen>True</AutoGen>

@@ -629,5 +629,37 @@ namespace SampleApp
             }
             
         }
+
+        private void btnProductPrinting_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("PrintingMain"))
+            {
+                PrintingMain frm = new PrintingMain(this, "");
+                frm.Text = "Printing Main";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btnProductEmbroidery_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("EmbroideryMain"))
+            {
+                EmbroideryMain frm = new EmbroideryMain(this, "");
+                frm.Text = "Embroidery Main";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btnProductSewing_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnProductInspection_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

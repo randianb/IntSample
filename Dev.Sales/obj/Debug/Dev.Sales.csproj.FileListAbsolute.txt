@@ -104,3 +104,4 @@ D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.frmPrintingRequest.resources
 D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.frmCuttingRequest.resources
 D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Production.dll
 D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Production.pdb
+D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.frmEmbroideryRequest.resources

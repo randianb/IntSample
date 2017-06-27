@@ -975,6 +975,7 @@
             this.btnProductPrinting.Text = "Printing";
             this.btnProductPrinting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnProductPrinting.TextWrap = true;
+            this.btnProductPrinting.Click += new System.EventHandler(this.btnProductPrinting_Click);
             // 
             // btnProductEmbroidery
             // 
@@ -985,6 +986,7 @@
             this.btnProductEmbroidery.Text = "Embroidery";
             this.btnProductEmbroidery.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnProductEmbroidery.TextWrap = true;
+            this.btnProductEmbroidery.Click += new System.EventHandler(this.btnProductEmbroidery_Click);
             // 
             // btnProductSewing
             // 
@@ -995,6 +997,7 @@
             this.btnProductSewing.Text = "Sewing";
             this.btnProductSewing.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnProductSewing.TextWrap = true;
+            this.btnProductSewing.Click += new System.EventHandler(this.btnProductSewing_Click);
             // 
             // btnProductInspection
             // 
@@ -1005,6 +1008,7 @@
             this.btnProductInspection.Text = "Inspection";
             this.btnProductInspection.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnProductInspection.TextWrap = true;
+            this.btnProductInspection.Click += new System.EventHandler(this.btnProductInspection_Click);
             // 
             // ribbonTab6
             // 

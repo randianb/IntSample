@@ -59,6 +59,18 @@
     <Reference Include="TelerikCommon, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmbroideryMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmbroideryMain.Designer.cs">
+      <DependentUpon>EmbroideryMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintingMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintingMain.Designer.cs">
+      <DependentUpon>PrintingMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="CuttingMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +80,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EmbroideryMain.resx">
+      <DependentUpon>EmbroideryMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintingMain.resx">
+      <DependentUpon>PrintingMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CuttingMain.resx">
       <DependentUpon>CuttingMain.cs</DependentUpon>
     </EmbeddedResource>

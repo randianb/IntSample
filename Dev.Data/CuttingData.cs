@@ -122,6 +122,9 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@CuttedQty", SqlDbType.Int, 4);
                 _cmd.Parameters["@CuttedQty"].Value = CuttedQty;
 
+                _cmd.Parameters.Add("@CuttedPQty", SqlDbType.Int, 4);
+                _cmd.Parameters["@CuttedPQty"].Value = CuttedPQty;
+                
                 _cmd.Parameters.Add("@FabricIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@FabricIdx"].Value = FabricIdx;
 
@@ -294,7 +297,48 @@ namespace Dev.Data
                 return null;
             }
         }
-        
+
+        public static DataSet Getlist(Dictionary<CommonValues.KeyName, int> SearchKey)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_Cutting_List3";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+                                
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = SearchKey[CommonValues.KeyName.OrderIdx];
+                
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static bool Delete(string condition)
         {
             try

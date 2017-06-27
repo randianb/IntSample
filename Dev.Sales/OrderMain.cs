@@ -57,7 +57,7 @@ namespace Dev.Sales
         private string _layoutfile = "/GVLayoutOrders.xml";
                 
         RadMenuItem mnuNew, mnuDel, mnuHide, mnuShow, menuItem2, menuItem3, menuItem4, mnuWorksheet, 
-            mnuCutting, mnuOutsourcing, mnuSewing, mnuInspecting, mnuPattern = null;
+            mnuCutting, mnuOutsourcing, mnuEmbroidery, mnuSewing, mnuInspecting, mnuPattern = null;
 
         private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 18, 0);   // 패키지번호, 프로그램번호, 윈도우번호
         
@@ -203,12 +203,18 @@ namespace Dev.Sales
             //mnuCutting.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
             mnuCutting.Click += new EventHandler(mnuCutting_Click);
 
-            // 생산 작업지시 (Outsourcing)
-            mnuOutsourcing = new RadMenuItem("Outsourcing Order");
+            // 생산 작업지시 (Printing)
+            mnuOutsourcing = new RadMenuItem("Printing Order");
             //mnuCutting.Image = Properties.Resources._20_20;
             //mnuCutting.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
             mnuOutsourcing.Click += new EventHandler(mnuOutsourcing_Click);
 
+            // 생산 작업지시 (Embroidery)
+            mnuEmbroidery = new RadMenuItem("Embroidery Order");
+            //mnuCutting.Image = Properties.Resources._20_20;
+            //mnuCutting.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
+            mnuEmbroidery.Click += new EventHandler(mnuEmbroidery_Click);
+            
             // 생산 작업지시 (Sewing)
             mnuSewing = new RadMenuItem("Sewing Order");
             //mnuCutting.Image = Properties.Resources._20_20;
@@ -263,13 +269,16 @@ namespace Dev.Sales
 
                 contextMenu.Items.Add(mnuCutting);
                 contextMenu.Items.Add(mnuOutsourcing);
+                contextMenu.Items.Add(mnuEmbroidery);
                 contextMenu.Items.Add(mnuSewing);
                 contextMenu.Items.Add(mnuInspecting);
 
             //}
 
         }
+
         
+
         /// <summary>
         /// 컨텍스트 메뉴 (컬러사이즈)
         /// </summary>
@@ -1076,6 +1085,75 @@ namespace Dev.Sales
         {
             throw new NotImplementedException();
         }
+        private void mnuEmbroidery_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    // 파일번호 입력하지 않았을 경우
+                    if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                    {
+                        RadMessageBox.Show("Please input the file number", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 스타일 입력안되었을 경우
+                    if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")))
+                    {
+                        RadMessageBox.Show("Please input the style#", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+                    if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") <= 0)
+                    {
+                        RadMessageBox.Show("Please input the Size Group", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 파일번호, 오더수량, 금액이 정상 입력되었으면 
+                    if (!string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")) &&
+                        !string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")) &&
+                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") > 0
+                        )
+                    {
+                        // 워크시트 열기 
+                        frmEmbroideryRequest frm = new frmEmbroideryRequest(Int.Members.GetCurrentRow(_gv1, "Idx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Fileno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "Styleno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Status")
+                                                        );
+                        frm.Text = "Embroidery WorkOrder";
+
+                        if (frm.ShowDialog(this) == DialogResult.OK)
+                        {
+                            // Production Status 갱신 
+                            DataBinding_GV4(gvProduction, Int.Members.GetCurrentRow(_gv1, "Idx"));
+                        }
+                    }
+                    else
+                    {
+                        // 에러 메시지
+                        if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                        {
+                            RadMessageBox.Show("Please input the File#");
+                            return;
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
+        }
 
         private void mnuOutsourcing_Click(object sender, EventArgs e)
         {
@@ -1120,7 +1198,7 @@ namespace Dev.Sales
                                                         Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
                                                         Int.Members.GetCurrentRow(_gv1, "Status")
                                                         );
-                        frm.Text = "Outsourcing WorkOrder";
+                        frm.Text = "Printing WorkOrder";
 
                         if (frm.ShowDialog(this) == DialogResult.OK)
                         {
@@ -2586,7 +2664,24 @@ namespace Dev.Sales
                     form.MdiParent = this.MdiParent;
                     form.Show();
                 }
-                
+                // Printing 
+                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DP")
+                {
+                    CommonController.Close_All_Children(this, "PrintingMain");
+                    PrintingMain form = new PrintingMain(__main__, e.Cell.Value.ToString());
+                    form.Text = "Printing Main";
+                    form.MdiParent = this.MdiParent;
+                    form.Show();
+                }
+                // Embroidery 
+                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DE")
+                {
+                    CommonController.Close_All_Children(this, "EmbroideryMain");
+                    EmbroideryMain form = new EmbroideryMain(__main__, e.Cell.Value.ToString());
+                    form.Text = "Embroidery Main";
+                    form.MdiParent = this.MdiParent;
+                    form.Show();
+                }
             }
 
             

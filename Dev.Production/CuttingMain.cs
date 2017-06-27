@@ -585,7 +585,7 @@ namespace Dev.Production
                     _obj1.CuttedDate = new DateTime(2000, 1, 1);
                 }
                 
-                // 업데이트 (오더캔슬, 선적완료 상태가 아닐경우)
+                // 업데이트
                 _bRtn = _obj1.Update();
                 __main__.lblRows.Text = "Updated Cutting Info";
 

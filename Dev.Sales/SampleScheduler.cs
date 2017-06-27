@@ -31,6 +31,8 @@ namespace Dev.Sales
         private List<CustomerName> custName = new List<CustomerName>();         // 거래처
         private List<CodeContents> codeName = new List<CodeContents>();         // 코드
         private List<CodeContents> sizeName = new List<CodeContents>();
+        private List<DepartmentName> deptName = new List<DepartmentName>();     // 부서
+        private List<CodeContents> lstOperation = new List<CodeContents>();     // 공정명
         private int _orderIdx; 
         
         #endregion
@@ -70,8 +72,13 @@ namespace Dev.Sales
             _searchKey.Add(CommonValues.KeyName.OrderIdx, _orderIdx);
             _searchKey.Add(CommonValues.KeyName.OperationIdx, 0);
             _searchKey.Add(CommonValues.KeyName.Status, 0);
+            _searchKey = new Dictionary<CommonValues.KeyName, int>();
+            _searchKey.Add(CommonValues.KeyName.CustIdx, 0);
+            _searchKey.Add(CommonValues.KeyName.DeptIdx, 0);
+            _searchKey.Add(CommonValues.KeyName.Status, 0);
+            _searchKey.Add(CommonValues.KeyName.Size, 0);
 
-            DataBinding_GV1(_searchKey, "", "");   // 중앙 그리드뷰 데이터 
+            DataBinding_GV1(_searchKey, "", "", "");   // 중앙 그리드뷰 데이터 
             
             // 다른 폼으로부터 전달된 Work ID가 있을 경우, 해당 ID로 조회 
             //if (!string.IsNullOrEmpty(_workOrderIdx))
@@ -90,6 +97,13 @@ namespace Dev.Sales
         /// </summary>
         private void Config_DropDownList()
         {
+            // 부서 
+            ddlDept.DataSource = deptName;
+            ddlDept.DisplayMember = "DeptName";
+            ddlDept.ValueMember = "DeptIdx";
+            ddlDept.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlDept.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+
             // 사이즈 
             ddlSize.DataSource = sizeName;
             ddlSize.DisplayMember = "Contents";
@@ -111,7 +125,19 @@ namespace Dev.Sales
             ddlStatus.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
             ddlStatus.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
-            
+            // 공정
+            lstOperation.Clear();
+            lstOperation = codeName.FindAll(
+                delegate (CodeContents code)
+                {
+                    return code.Classification == "Operation";
+                });
+            lstOperation.Insert(0, new CodeContents(0, "", ""));
+            ddlOperation.DataSource = lstOperation;
+            ddlOperation.DisplayMember = "Contents";
+            ddlOperation.ValueMember = "CodeIdx";
+            ddlOperation.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlOperation.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
         }
         
         
@@ -183,7 +209,30 @@ namespace Dev.Sales
         /// </summary>
         private void DataLoading_DDL()
         {
-            
+            // 부서    
+            _dt = CommonController.Getlist(CommonValues.KeyName.DeptIdx).Tables[0];
+
+            foreach (DataRow row in _dt.Rows)
+            {
+                // 관리부와 임원은 모든 부서에 접근가능
+                if (UserInfo.CenterIdx != 1 || UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6)
+                {
+                    deptName.Add(new DepartmentName(Convert.ToInt32(row["DeptIdx"]),
+                                                row["DeptName"].ToString(),
+                                                Convert.ToInt32(row["CostcenterIdx"])));
+                }
+                // 영업부는 해당 부서 데이터만 접근가능
+                else
+                {
+                    if (Convert.ToInt32(row["DeptIdx"]) <= 0 || Convert.ToInt32(row["DeptIdx"]) == UserInfo.DeptIdx)
+                    {
+                        deptName.Add(new DepartmentName(Convert.ToInt32(row["DeptIdx"]),
+                                                row["DeptName"].ToString(),
+                                                Convert.ToInt32(row["CostcenterIdx"])));
+                    }
+                }
+            }
+
             // 바이어
             _dt = CommonController.Getlist(CommonValues.KeyName.CustAll).Tables[0];
 
@@ -254,22 +303,21 @@ namespace Dev.Sales
                     if (UserInfo.ReportNo < 9)
                         _searchKey.Add(CommonValues.KeyName.DeptIdx, UserInfo.DeptIdx);
                     else
-                        _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlSize.SelectedValue));
+                        _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlDept.SelectedValue));
 
                     _searchKey.Add(CommonValues.KeyName.CustIdx, Convert.ToInt32(ddlCust.SelectedValue));
                     _searchKey.Add(CommonValues.KeyName.Status, Convert.ToInt32(ddlStatus.SelectedValue));
                     _searchKey.Add(CommonValues.KeyName.Size, Convert.ToInt32(ddlSize.SelectedValue));
                     _searchKey.Add(CommonValues.KeyName.OrderIdx, 0);
-                    _searchKey.Add(CommonValues.KeyName.OperationIdx, 0);
+                    _searchKey.Add(CommonValues.KeyName.OperationIdx, Convert.ToInt32(ddlOperation.SelectedValue));
 
-                    DataBinding_GV1(_searchKey, txtFileno.Text.Trim(), txtStyle.Text.Trim());
+                    DataBinding_GV1(_searchKey, txtFileno.Text.Trim(), txtStyle.Text.Trim(), "");
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
             }
-
         }
 
         /// <summary>
@@ -279,13 +327,13 @@ namespace Dev.Sales
         /// <param name="SearchKey">RefleshWithCondition()에서 검색조건(key, value) 확인</param>
         /// <param name="fileno">검색조건: 파일번호</param>
         /// <param name="styleno">검색조건: 스타일번호</param>
-        private void DataBinding_GV1(Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string TicketDate)
+        private void DataBinding_GV1(Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string styleno, string TicketDate)
         {
             try
             {
                 gvWork.DataSource = null;
-
-                _ds1 = Dev.Controller.WorkOrder.Getlist2(SearchKey, fileno, TicketDate);
+                gvWork.Items.Clear(); 
+                _ds1 = Dev.Controller.WorkOrder.Getlist2(SearchKey, fileno, styleno, TicketDate);
                 if (_ds1 != null)
                 {
                     //_gv1.DataSource = _ds1.Tables[0].DefaultView;
@@ -377,7 +425,7 @@ namespace Dev.Sales
             if (e.Item.Tag.ToString() == "110")
             {
                 e.ItemElement.DrawFill = true;
-                e.ItemElement.BackColor = Color.LemonChiffon;
+                e.ItemElement.BackColor = Color.Cornsilk;
                 e.ItemElement.GradientStyle = GradientStyles.Solid;
             }
             else if (e.Item.Tag.ToString() == "111")
@@ -386,8 +434,37 @@ namespace Dev.Sales
                 e.ItemElement.BackColor = Color.Honeydew;
                 e.ItemElement.GradientStyle = GradientStyles.Solid;
             }
+            else if (e.Item.Tag.ToString() == "112")
+            {
+                e.ItemElement.DrawFill = true;
+                e.ItemElement.ForeColor = Color.White;
+                e.ItemElement.BackColor = Color.MediumSlateBlue;
+                e.ItemElement.GradientStyle = GradientStyles.Solid;
+            }
+            else if (e.Item.Tag.ToString() == "113")
+            {
+                e.ItemElement.DrawFill = true;
+                e.ItemElement.ForeColor = Color.Black;
+                e.ItemElement.BackColor = Color.LightGreen;
+                e.ItemElement.GradientStyle = GradientStyles.Solid;
+            }
+            else if (e.Item.Tag.ToString() == "114")
+            {
+                e.ItemElement.DrawFill = true;
+                e.ItemElement.ForeColor = Color.White;
+                e.ItemElement.BackColor = Color.DodgerBlue;
+                e.ItemElement.GradientStyle = GradientStyles.Solid;
+            }
+            else if (e.Item.Tag.ToString() == "115")
+            {
+                e.ItemElement.DrawFill = true;
+                e.ItemElement.ForeColor = Color.Black;
+                e.ItemElement.BackColor = Color.Gold;
+                e.ItemElement.GradientStyle = GradientStyles.Solid;
+            }
             else
             {
+                e.ItemElement.ResetValue(LightVisualElement.ForeColorProperty, ValueResetFlags.Local);
                 e.ItemElement.ResetValue(LightVisualElement.DrawBorderProperty, ValueResetFlags.Local);
                 e.ItemElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
                 e.ItemElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
@@ -424,16 +501,19 @@ namespace Dev.Sales
                 // 패턴 
                 if (gvWork.SelectedItem.Tag.ToString().Trim() == "110")
                 {
-                    bool result = Dev.Controller.WorkOrder.Update(strTitle[2].ToString().Trim(),
+                    int valueIndex = strTitle.Length == 3 ? 2 : 3; 
+                    bool result = Dev.Controller.WorkOrder.Update(strTitle[valueIndex].ToString().Trim(),
                             gvWork.SelectedItem.Start, gvWork.SelectedItem.End, 0.1, Dev.Options.UserInfo.Idx);
                 }
-                // 재단
-                else if (gvWork.SelectedItem.Tag.ToString().Trim() == "111")
+                // Cut / Print / Embroidery
+                else if (gvWork.SelectedItem.Tag.ToString().Trim() == "111" || gvWork.SelectedItem.Tag.ToString().Trim() == "112" ||
+                        gvWork.SelectedItem.Tag.ToString().Trim() == "113")
                 {
-                    bool result = Dev.Controller.WorkOrder.Update(strTitle[3].ToString().Trim(),
+                    int valueIndex = strTitle.Length == 4 ? 3 : 4;
+                    bool result = Dev.Controller.WorkOrder.Update(strTitle[valueIndex].ToString().Trim(),
                             gvWork.SelectedItem.Start, gvWork.SelectedItem.End, 0.1, Dev.Options.UserInfo.Idx);
                 }
-
+                
             }
             catch(Exception ex)
             {
@@ -451,7 +531,7 @@ namespace Dev.Sales
             if (e.Item.Tag.ToString()=="110")
             {
                 e.ItemElement.TaskElement.DrawFill = true; 
-                e.ItemElement.TaskElement.BackColor = Color.LemonChiffon;
+                e.ItemElement.TaskElement.BackColor = Color.Cornsilk;
                 e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid; 
             }
             else if (e.Item.Tag.ToString() == "111")
@@ -460,8 +540,37 @@ namespace Dev.Sales
                 e.ItemElement.TaskElement.BackColor = Color.Honeydew;
                 e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid;
             }
+            else if (e.Item.Tag.ToString() == "112")
+            {
+                e.ItemElement.TaskElement.DrawFill = true;
+                e.ItemElement.TaskElement.ForeColor = Color.White; 
+                e.ItemElement.TaskElement.BackColor = Color.MediumSlateBlue;
+                e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid;
+            }
+            else if (e.Item.Tag.ToString() == "113")
+            {
+                e.ItemElement.TaskElement.DrawFill = true;
+                e.ItemElement.TaskElement.ForeColor = Color.Black;
+                e.ItemElement.TaskElement.BackColor = Color.LightGreen;
+                e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid;
+            }
+            else if (e.Item.Tag.ToString() == "114")
+            {
+                e.ItemElement.TaskElement.DrawFill = true;
+                e.ItemElement.TaskElement.ForeColor = Color.White;
+                e.ItemElement.TaskElement.BackColor = Color.DodgerBlue;
+                e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid;
+            }
+            else if (e.Item.Tag.ToString() == "115")
+            {
+                e.ItemElement.TaskElement.DrawFill = true;
+                e.ItemElement.TaskElement.ForeColor = Color.Black;
+                e.ItemElement.TaskElement.BackColor = Color.Gold;
+                e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid;
+            }
             else
             {
+                e.ItemElement.TaskElement.ResetValue(LightVisualElement.ForeColorProperty, ValueResetFlags.Local);
                 e.ItemElement.TaskElement.ResetValue(LightVisualElement.DrawBorderProperty, ValueResetFlags.Local);
                 e.ItemElement.TaskElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
                 e.ItemElement.TaskElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
@@ -109,7 +109,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.82758F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.17241F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 284F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 445F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 446F));
             this.tableLayoutPanel3.Controls.Add(this.btnCancel, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnRequest, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -122,7 +122,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(759, 3);
+            this.btnCancel.Location = new System.Drawing.Point(758, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(167, 33);
             this.btnCancel.TabIndex = 16;
@@ -131,7 +131,7 @@
             // 
             // btnRequest
             // 
-            this.btnRequest.Location = new System.Drawing.Point(569, 3);
+            this.btnRequest.Location = new System.Drawing.Point(568, 3);
             this.btnRequest.Name = "btnRequest";
             this.btnRequest.Size = new System.Drawing.Size(163, 33);
             this.btnRequest.TabIndex = 15;
@@ -255,7 +255,7 @@
             // 
             this.gvCutting.MasterTemplate.AllowAddNewRow = false;
             this.gvCutting.MasterTemplate.MultiSelect = true;
-            this.gvCutting.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.gvCutting.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvCutting.Name = "gvCutting";
             this.gvCutting.ShowGroupPanel = false;
             this.gvCutting.Size = new System.Drawing.Size(621, 422);
@@ -299,7 +299,7 @@
             this.gvFabric.MasterTemplate.AllowAddNewRow = false;
             this.gvFabric.MasterTemplate.AllowEditRow = false;
             this.gvFabric.MasterTemplate.MultiSelect = true;
-            this.gvFabric.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.gvFabric.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvFabric.Name = "gvFabric";
             this.gvFabric.ReadOnly = true;
             this.gvFabric.ShowGroupPanel = false;
@@ -318,7 +318,7 @@
             this.gvColorSize.MasterTemplate.AllowEditRow = false;
             this.gvColorSize.MasterTemplate.MultiSelect = true;
             this.gvColorSize.MasterTemplate.SelectionMode = Telerik.WinControls.UI.GridViewSelectionMode.CellSelect;
-            this.gvColorSize.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.gvColorSize.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvColorSize.Name = "gvColorSize";
             this.gvColorSize.ReadOnly = true;
             this.gvColorSize.ShowGroupPanel = false;

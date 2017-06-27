@@ -43,6 +43,8 @@
     <Reference Include="Telerik.WinControls.UI, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Embroidery.cs" />
+    <Compile Include="Printing.cs" />
     <Compile Include="FabricMapInfo.cs" />
     <Compile Include="Cutting.cs" />
     <Compile Include="Worksheet.cs" />

@@ -151,6 +151,12 @@
     <Compile Include="frmCopyOrder.Designer.cs">
       <DependentUpon>frmCopyOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmEmbroideryRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmbroideryRequest.Designer.cs">
+      <DependentUpon>frmEmbroideryRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPrintingRequest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCopyOrder.resx">
       <DependentUpon>frmCopyOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmbroideryRequest.resx">
+      <DependentUpon>frmEmbroideryRequest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrintingRequest.resx">
       <DependentUpon>frmPrintingRequest.cs</DependentUpon>

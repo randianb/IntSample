@@ -279,6 +279,51 @@ namespace Dev.Data
             else return false;
         }
 
+        /// <summary>
+        /// 작업오더관리 화면에서 QR코드 리딩하여 현황 업데이트시 사용
+        /// </summary>
+        /// <param name="WorkOrderIdx"></param>
+        /// <param name="Start"></param>
+        /// <param name="End"></param>
+        /// <param name="Progress"></param>
+        /// <param name="Modified"></param>
+        /// <returns></returns>
+        public static bool Update(int CID, string WorkOrderIdx, int Modified)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = "up_WorkOrder_Update5";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@CID", SqlDbType.Int, 4);
+                _cmd.Parameters["@CID"].Value = CID;
+                
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+                
+                _cmd.Parameters.Add("@Modified", SqlDbType.Int, 4);
+                _cmd.Parameters["@Modified"].Value = Modified;
+
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
         public static bool Update(string SQL)
         {
             try
@@ -422,7 +467,7 @@ namespace Dev.Data
         /// <param name="WorkOrderIdx"></param>
         /// <param name="TicketDate"></param>
         /// <returns></returns>
-        public static DataSet Getlist2(Dictionary<CommonValues.KeyName, int> SearchKey, string WorkOrderIdx, string TicketDate)
+        public static DataSet Getlist2(Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string styleno, string TicketDate)
         {
             try
             {
@@ -436,6 +481,15 @@ namespace Dev.Data
                 _cmd.CommandType = CommandType.StoredProcedure;
                 _cmd.Connection = _conn;
 
+                _cmd.Parameters.Add("@DeptIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@DeptIdx"].Value = SearchKey[CommonValues.KeyName.DeptIdx];
+
+                _cmd.Parameters.Add("@CustIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@CustIdx"].Value = SearchKey[CommonValues.KeyName.CustIdx];
+                
+                _cmd.Parameters.Add("@Size", SqlDbType.Int, 4);
+                _cmd.Parameters["@Size"].Value = SearchKey[CommonValues.KeyName.Size];
+                
                 _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@OrderIdx"].Value = SearchKey[CommonValues.KeyName.OrderIdx];
 
@@ -445,8 +499,11 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
                 _cmd.Parameters["@Status"].Value = SearchKey[CommonValues.KeyName.Status];
 
-                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 40);
-                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+                _cmd.Parameters.Add("@Fileno", SqlDbType.NVarChar, 10);
+                _cmd.Parameters["@Fileno"].Value = fileno;
+
+                _cmd.Parameters.Add("@Styleno", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Styleno"].Value = styleno;
 
                 _cmd.Parameters.Add("@TicketDate", SqlDbType.NVarChar, 10);
                 _cmd.Parameters["@TicketDate"].Value = TicketDate;

@@ -11,6 +11,8 @@ using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using System.Diagnostics;
 using System.IO;
+using Dev.Pattern;
+using Dev.Production;
 
 namespace Dev.WorkOrder
 {
@@ -43,7 +45,8 @@ namespace Dev.WorkOrder
         private List<CodeContents> lstOperation = new List<CodeContents>();     // 공정명
         private string _layoutfile = "/GVLayoutWorkOrder.xml";
         private string _workOrderIdx;
-        private string __QRCode__ = ""; 
+        private string __QRCode__ = "";
+        private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 20, 0);   // 패키지번호, 프로그램번호, 윈도우번호
 
         #endregion
 
@@ -182,14 +185,14 @@ namespace Dev.WorkOrder
             Styleno.ReadOnly = true;
             Styleno.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Add(Styleno);
-
-            GridViewTextBoxColumn WorkOrderIdx = new GridViewTextBoxColumn();
+            
+            GridViewHyperlinkColumn WorkOrderIdx = new GridViewHyperlinkColumn();
             WorkOrderIdx.Name = "WorkOrderIdx";
             WorkOrderIdx.FieldName = "WorkOrderIdx";
-            WorkOrderIdx.HeaderText = "Work ID";
             WorkOrderIdx.Width = 100;
+            WorkOrderIdx.TextAlignment = ContentAlignment.MiddleLeft;
+            WorkOrderIdx.HeaderText = "Work ID";
             WorkOrderIdx.ReadOnly = true;
-            WorkOrderIdx.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Add(WorkOrderIdx);
 
             GridViewTextBoxColumn Title = new GridViewTextBoxColumn();
@@ -245,7 +248,7 @@ namespace Dev.WorkOrder
             status.DataSource = lstWorkStatus;
             status.DisplayMember = "Contents";
             status.ValueMember = "CodeIdx";
-            status.FieldName = "wstatus";
+            status.FieldName = "status";
             status.IsVisible = false;
             gv.Columns.Add(status);
 
@@ -285,26 +288,27 @@ namespace Dev.WorkOrder
             #region Config Cell Conditions: 오더상태에 따라 행스타일 변경
 
             //// 캔슬오더 색상변경
-            //Font f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Strikeout);
-            //ConditionalFormattingObject obj = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "2", "", true);
-            //obj.RowForeColor = Color.Black;
-            //obj.RowBackColor = Color.FromArgb(255, 255, 230, 230);
-            //obj.RowFont = f;
-            //gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj);
+            Font f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
+            ConditionalFormattingObject obj = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "4", "", true);
+            obj.RowForeColor = Color.Black;
+            obj.RowBackColor = Color.FromArgb(255, 255, 230, 230);
+            obj.RowFont = f;
+            gv.Columns["WorkStatus"].ConditionalFormattingObjectList.Add(obj);
 
             //// 마감오더 색상변경
-            //f = new Font(new FontFamily("Segoe UI"), 8.25f);
-            //ConditionalFormattingObject obj2 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "3", "", true);
-            //obj2.RowForeColor = Color.Black;
-            //obj2.RowBackColor = Color.FromArgb(255, 220, 255, 240);
-            //obj2.RowFont = f;
-            //gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj2);
-            
-            //f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
-            //ConditionalFormattingObject obj4 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "0", "", true);
-            //obj4.RowForeColor = Color.Black;
-            //obj4.RowFont = f;
-            //gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj4);
+            f = new Font(new FontFamily("Segoe UI"), 8.25f);
+            ConditionalFormattingObject obj2 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "3", "", true);
+            obj2.RowForeColor = Color.Black;
+            obj2.RowBackColor = Color.FromArgb(255, 220, 255, 240);
+            obj2.RowFont = f;
+            gv.Columns["WorkStatus"].ConditionalFormattingObjectList.Add(obj2);
+
+            f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
+            ConditionalFormattingObject obj4 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "2", "", true);
+            obj4.RowForeColor = Color.Black;
+            obj4.RowBackColor = Color.PapayaWhip; 
+            obj4.RowFont = f;
+            gv.Columns["WorkStatus"].ConditionalFormattingObjectList.Add(obj4);
 
             //f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
             //ConditionalFormattingObject obj5 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "1", "", true);
@@ -660,7 +664,7 @@ namespace Dev.WorkOrder
                 lvQRCode.Items.Clear(); 
 
                 // 선택된 오더상태에 따라 읽기수정 가능여부 설정 
-                if (Int.Members.GetCurrentRow(_gv1, "Status") == 2
+                if (Int.Members.GetCurrentRow(_gv1, "Status") == 4
                     || Int.Members.GetCurrentRow(_gv1, "Status") == 3)
                 {
                     Int.Members.GetCurrentRow(_gv1).ViewTemplate.ReadOnly = true;
@@ -795,7 +799,7 @@ namespace Dev.WorkOrder
                             WorkOrderIdx = item.Value.ToString(); // Decryptor(item.Value.ToString());
 
                             // 값이없으면
-                            if (!string.IsNullOrEmpty(WorkOrderIdx.Trim()))
+                            if (string.IsNullOrEmpty(WorkOrderIdx.Trim()))
                             {
                                 item.Value = "Invalid code - " + item.Value;
                             }
@@ -812,14 +816,31 @@ namespace Dev.WorkOrder
                             // 쿼리생성 
                             else
                             {
-                                SQL += "Update WorkOrder set Status=3 where WorkOrderIdx=" + WorkOrderIdx + "  "; 
+                                SQL += "Update WorkOrder set Status=3 where WorkOrderIdx='" + WorkOrderIdx + "'; ";
+                                // Cutting
+                                if (WorkOrderIdx.Substring(0, 2) == "DC")
+                                {
+                                    SQL += "update Cutting set CuttedDate = dbo.GetLocalDate(default), CuttedQty = OrdQty where isnull(WorkOrderIdx,'')='" + WorkOrderIdx + "'; ";
+                                }
+                                // Printing
+                                else if (WorkOrderIdx.Substring(0, 2) == "DP")
+                                {
+                                    SQL += "update Printing set RcvdDate=dbo.GetLocalDate(default), RcvdQty=OrdQty where isnull(WorkOrderIdx,'')='" + WorkOrderIdx + "'; ";
+                                }
+                                // Embroidery
+                                else if (WorkOrderIdx.Substring(0, 2) == "DE")
+                                {
+                                    SQL += "update Embroidery set RcvdDate=dbo.GetLocalDate(default), RcvdQty=OrdQty where isnull(WorkOrderIdx,'')='" + WorkOrderIdx + "'; ";
+                                }
+                                //if (result) RadMessageBox.Show("Update Succeed");
                             }
                         }
                         // 쿼리가 있으면 작업상태 일괄 업데이트 
                         if (SQL!="")
                         {
                             bool result = Controller.WorkOrder.Update(SQL);
-                            if (result) __main__.lblDescription.Text = "Update Succeed";
+                            if (result) RadMessageBox.Show("Update Succeed");
+                            // __main__.lblDescription.Text = "Update Succeed";
                         }
                     }
                 }
@@ -1010,6 +1031,58 @@ namespace Dev.WorkOrder
         private void lvQRCode_Click(object sender, EventArgs e)
         {
             txtBarcode.Select();
+        }
+
+        private void gvOrderActual_HyperlinkOpened(object sender, HyperlinkOpenedEventArgs e)
+        {
+            /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+            /// 읽기: 0, 쓰기: 1, 삭제: 2
+            int _mode_ = 0;
+            if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                CheckAuth.ShowMessage(_mode_);
+            else
+            {
+                // Worksheet일 경우, 
+                if (e.Cell.Value.ToString().Trim().Length > 12)
+                {
+                    if (e.Cell.Value.ToString().Trim().Substring(11, 1) == "P")
+                    {
+                        CommonController.Close_All_Children(this, "PatternMain");
+                        PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
+                        form.Text = "Pattern Main"; // DateTime.Now.ToLongTimeString();
+                        form.MdiParent = this.MdiParent;
+                        form.Show();
+                    }
+
+                }
+                // Cutting 
+                else if (e.Cell.Value.ToString().Trim().Substring(1, 1) == "C")
+                {
+                    CommonController.Close_All_Children(this, "CuttingMain");
+                    CuttingMain form = new CuttingMain(__main__, e.Cell.Value.ToString());
+                    form.Text = "Cutting Main";
+                    form.MdiParent = this.MdiParent;
+                    form.Show();
+                }
+                // Printing 
+                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DP")
+                {
+                    CommonController.Close_All_Children(this, "PrintingMain");
+                    PrintingMain form = new PrintingMain(__main__, e.Cell.Value.ToString());
+                    form.Text = "Printing Main";
+                    form.MdiParent = this.MdiParent;
+                    form.Show();
+                }
+                // Embroidery 
+                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DE")
+                {
+                    CommonController.Close_All_Children(this, "EmbroideryMain");
+                    EmbroideryMain form = new EmbroideryMain(__main__, e.Cell.Value.ToString());
+                    form.Text = "Embroidery Main";
+                    form.MdiParent = this.MdiParent;
+                    form.Show();
+                }
+            }
         }
     }
 }

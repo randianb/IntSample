@@ -267,11 +267,11 @@ namespace Dev.Controller
                         
             return ds;
         }
-        public static DataSet Getlist2(Dictionary<CommonValues.KeyName, int> SearchKey, string WorkOrderIdx, string TicketDate)
+        public static DataSet Getlist2(Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string styleno, string TicketDate)
         {
             DataSet ds = new DataSet();
 
-            ds = Data.WorkOrderData.Getlist2(SearchKey, WorkOrderIdx, TicketDate);
+            ds = Data.WorkOrderData.Getlist2(SearchKey, fileno, styleno, TicketDate);
 
             return ds;
         }
@@ -309,6 +309,12 @@ namespace Dev.Controller
         {
             bool blRtn;
             blRtn = Data.WorkOrderData.Update(WorkOrderIdx, TicketDate, Status, Qrcode, Modified);
+            return blRtn;
+        }
+        public static bool Update(int CID, string WorkOrderIdx, int Modified)
+        {
+            bool blRtn;
+            blRtn = Data.WorkOrderData.Update(CID, WorkOrderIdx, Modified);
             return blRtn;
         }
         public static bool Update(string SQL)

@@ -187,7 +187,16 @@ namespace Dev.Controller
                         
             return ds;
         }
-       
+
+        public static DataSet Getlist(Dictionary<CommonValues.KeyName, int> SearchKey)
+        {
+            DataSet ds = new DataSet();
+
+            ds = Data.CuttingData.Getlist(SearchKey);
+
+            return ds;
+        }
+
         public bool Update()
         {
             bool blRtn;

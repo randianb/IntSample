@@ -211,6 +211,10 @@
       <Project>{cde30aec-043e-4b66-8803-6bb44120624f}</Project>
       <Name>Dev.Options</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dev.Production\Dev.Production.csproj">
+      <Project>{c490f6b9-d87b-4eef-bcd7-b57964cfd136}</Project>
+      <Name>Dev.Production</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dev.Sales\Dev.Sales.csproj">
       <Project>{367BEB2F-64C6-4376-90C4-CD4B396B56F7}</Project>
       <Name>Dev.Sales</Name>
