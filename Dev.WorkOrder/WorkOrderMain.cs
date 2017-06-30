@@ -21,6 +21,7 @@ namespace Dev.WorkOrder
     /// </summary>
     public partial class WorkOrderMain : InheritForm
     {
+        
         #region 1. 변수 설정
 
         public InheritMDI __main__;                                             // 부모 MDI (하단 상태바 리턴용) 
