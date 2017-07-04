@@ -31,23 +31,28 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.ddlCust = new Telerik.WinControls.UI.RadDropDownList();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.ddlStatus = new Telerik.WinControls.UI.RadDropDownList();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.ddlSize = new Telerik.WinControls.UI.RadDropDownList();
-            this.txtFileno = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.txtStyle = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.btnSearch = new Telerik.WinControls.UI.RadButton();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlCust = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlDept = new Telerik.WinControls.UI.RadDropDownList();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
+            this.btnSearch = new Telerik.WinControls.UI.RadButton();
+            this.txtStyle = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.txtFileno = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlStatus = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlOperation = new Telerik.WinControls.UI.RadDropDownList();
             this.toolTabStrip3 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
             this.toolWindow2 = new Telerik.WinControls.UI.Docking.ToolWindow();
@@ -56,30 +61,30 @@
             this.toolWindow1 = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.documentContainer1 = new Telerik.WinControls.UI.Docking.DocumentContainer();
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
-            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
-            this.ddlDept = new Telerik.WinControls.UI.RadDropDownList();
-            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
-            this.ddlOperation = new Telerik.WinControls.UI.RadDropDownList();
-            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCust)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFileno)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStyle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCust)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlDept)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStyle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFileno)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlOperation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
@@ -92,11 +97,6 @@
             this.documentContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
             this.documentTabStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlDept)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlOperation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -164,48 +164,6 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(1401, 54);
             this.tableLayoutPanel5.TabIndex = 14;
             // 
-            // ddlCust
-            // 
-            this.ddlCust.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.ddlCust.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlCust.Location = new System.Drawing.Point(110, 23);
-            this.ddlCust.Name = "ddlCust";
-            this.ddlCust.Size = new System.Drawing.Size(139, 20);
-            this.ddlCust.TabIndex = 4;
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Location = new System.Drawing.Point(481, 3);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(37, 18);
-            this.radLabel3.TabIndex = 3;
-            this.radLabel3.Text = "Status";
-            // 
-            // ddlStatus
-            // 
-            this.ddlStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.ddlStatus.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlStatus.Location = new System.Drawing.Point(481, 23);
-            this.ddlStatus.Name = "ddlStatus";
-            this.ddlStatus.Size = new System.Drawing.Size(108, 20);
-            this.ddlStatus.TabIndex = 6;
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.Location = new System.Drawing.Point(110, 3);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(34, 18);
-            this.radLabel2.TabIndex = 3;
-            this.radLabel2.Text = "Buyer";
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(255, 3);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(26, 18);
-            this.radLabel1.TabIndex = 1;
-            this.radLabel1.Text = "Size";
-            // 
             // ddlSize
             // 
             this.ddlSize.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
@@ -216,44 +174,47 @@
             this.ddlSize.Size = new System.Drawing.Size(98, 20);
             this.ddlSize.TabIndex = 5;
             // 
-            // txtFileno
+            // radLabel1
             // 
-            this.txtFileno.Location = new System.Drawing.Point(595, 23);
-            this.txtFileno.Name = "txtFileno";
-            this.txtFileno.Size = new System.Drawing.Size(116, 20);
-            this.txtFileno.TabIndex = 8;
+            this.radLabel1.Location = new System.Drawing.Point(255, 3);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(26, 14);
+            this.radLabel1.TabIndex = 1;
+            this.radLabel1.Text = "Size";
             // 
-            // radLabel5
+            // ddlCust
             // 
-            this.radLabel5.Location = new System.Drawing.Point(595, 3);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(88, 18);
-            this.radLabel5.TabIndex = 3;
-            this.radLabel5.Text = "File# / Work ID#";
+            this.ddlCust.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ddlCust.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlCust.Location = new System.Drawing.Point(110, 23);
+            this.ddlCust.Name = "ddlCust";
+            this.ddlCust.Size = new System.Drawing.Size(139, 20);
+            this.ddlCust.TabIndex = 4;
             // 
-            // txtStyle
+            // radLabel2
             // 
-            this.txtStyle.Location = new System.Drawing.Point(717, 23);
-            this.txtStyle.Name = "txtStyle";
-            this.txtStyle.Size = new System.Drawing.Size(131, 20);
-            this.txtStyle.TabIndex = 9;
+            this.radLabel2.Location = new System.Drawing.Point(110, 3);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(34, 14);
+            this.radLabel2.TabIndex = 3;
+            this.radLabel2.Text = "Buyer";
             // 
-            // radLabel6
+            // radLabel11
             // 
-            this.radLabel6.Location = new System.Drawing.Point(717, 3);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(37, 18);
-            this.radLabel6.TabIndex = 3;
-            this.radLabel6.Text = "Style#";
+            this.radLabel11.Location = new System.Drawing.Point(3, 3);
+            this.radLabel11.Name = "radLabel11";
+            this.radLabel11.Size = new System.Drawing.Size(66, 14);
+            this.radLabel11.TabIndex = 3;
+            this.radLabel11.Text = "Department";
             // 
-            // btnSearch
+            // ddlDept
             // 
-            this.btnSearch.Location = new System.Drawing.Point(854, 23);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(85, 24);
-            this.btnSearch.TabIndex = 7;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.ddlDept.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ddlDept.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlDept.Location = new System.Drawing.Point(3, 23);
+            this.ddlDept.Name = "ddlDept";
+            this.ddlDept.Size = new System.Drawing.Size(101, 20);
+            this.ddlDept.TabIndex = 4;
             // 
             // tableLayoutPanel2
             // 
@@ -284,7 +245,7 @@
             this.radLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel4.Location = new System.Drawing.Point(3, 3);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(67, 22);
+            this.radLabel4.Size = new System.Drawing.Size(66, 22);
             this.radLabel4.TabIndex = 0;
             this.radLabel4.Text = "Pattern";
             this.radLabel4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -294,9 +255,9 @@
             this.radLabel7.AutoSize = false;
             this.radLabel7.BackColor = System.Drawing.Color.Honeydew;
             this.radLabel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radLabel7.Location = new System.Drawing.Point(76, 3);
+            this.radLabel7.Location = new System.Drawing.Point(75, 3);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(67, 22);
+            this.radLabel7.Size = new System.Drawing.Size(66, 22);
             this.radLabel7.TabIndex = 0;
             this.radLabel7.Text = "Cutting";
             this.radLabel7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -307,35 +268,120 @@
             this.radLabel8.BackColor = System.Drawing.Color.MediumSlateBlue;
             this.radLabel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel8.ForeColor = System.Drawing.Color.White;
-            this.radLabel8.Location = new System.Drawing.Point(149, 3);
+            this.radLabel8.Location = new System.Drawing.Point(147, 3);
             this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(67, 22);
+            this.radLabel8.Size = new System.Drawing.Size(66, 22);
             this.radLabel8.TabIndex = 0;
             this.radLabel8.Text = "Printing";
             this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // radLabel10
+            // 
+            this.radLabel10.AutoSize = false;
+            this.radLabel10.BackColor = System.Drawing.Color.Gold;
+            this.radLabel10.Location = new System.Drawing.Point(363, 3);
+            this.radLabel10.Name = "radLabel10";
+            this.radLabel10.Size = new System.Drawing.Size(67, 22);
+            this.radLabel10.TabIndex = 0;
+            this.radLabel10.Text = "Inspecting";
+            this.radLabel10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // radLabel9
             // 
             this.radLabel9.AutoSize = false;
             this.radLabel9.BackColor = System.Drawing.Color.DodgerBlue;
             this.radLabel9.ForeColor = System.Drawing.Color.White;
-            this.radLabel9.Location = new System.Drawing.Point(295, 3);
+            this.radLabel9.Location = new System.Drawing.Point(291, 3);
             this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(67, 22);
+            this.radLabel9.Size = new System.Drawing.Size(66, 22);
             this.radLabel9.TabIndex = 0;
             this.radLabel9.Text = "Sewing";
             this.radLabel9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // radLabel10
+            // radLabel13
             // 
-            this.radLabel10.AutoSize = false;
-            this.radLabel10.BackColor = System.Drawing.Color.Gold;
-            this.radLabel10.Location = new System.Drawing.Point(368, 3);
-            this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Size = new System.Drawing.Size(67, 22);
-            this.radLabel10.TabIndex = 0;
-            this.radLabel10.Text = "Inspecting";
-            this.radLabel10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radLabel13.AutoSize = false;
+            this.radLabel13.BackColor = System.Drawing.Color.LightGreen;
+            this.radLabel13.ForeColor = System.Drawing.Color.Black;
+            this.radLabel13.Location = new System.Drawing.Point(219, 3);
+            this.radLabel13.Name = "radLabel13";
+            this.radLabel13.Size = new System.Drawing.Size(66, 22);
+            this.radLabel13.TabIndex = 0;
+            this.radLabel13.Text = "Embroidery";
+            this.radLabel13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(854, 23);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(85, 24);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtStyle
+            // 
+            this.txtStyle.Location = new System.Drawing.Point(717, 23);
+            this.txtStyle.Name = "txtStyle";
+            this.txtStyle.Size = new System.Drawing.Size(131, 20);
+            this.txtStyle.TabIndex = 9;
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.Location = new System.Drawing.Point(717, 3);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(37, 14);
+            this.radLabel6.TabIndex = 3;
+            this.radLabel6.Text = "Style#";
+            // 
+            // txtFileno
+            // 
+            this.txtFileno.Location = new System.Drawing.Point(595, 23);
+            this.txtFileno.Name = "txtFileno";
+            this.txtFileno.Size = new System.Drawing.Size(116, 20);
+            this.txtFileno.TabIndex = 8;
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Location = new System.Drawing.Point(595, 3);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(88, 14);
+            this.radLabel5.TabIndex = 3;
+            this.radLabel5.Text = "File# / Work ID#";
+            // 
+            // ddlStatus
+            // 
+            this.ddlStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ddlStatus.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlStatus.Location = new System.Drawing.Point(481, 23);
+            this.ddlStatus.Name = "ddlStatus";
+            this.ddlStatus.Size = new System.Drawing.Size(108, 20);
+            this.ddlStatus.TabIndex = 6;
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(481, 3);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(67, 18);
+            this.radLabel3.TabIndex = 3;
+            this.radLabel3.Text = "Work Status";
+            // 
+            // radLabel12
+            // 
+            this.radLabel12.Location = new System.Drawing.Point(359, 3);
+            this.radLabel12.Name = "radLabel12";
+            this.radLabel12.Size = new System.Drawing.Size(57, 14);
+            this.radLabel12.TabIndex = 3;
+            this.radLabel12.Text = "Operation";
+            // 
+            // ddlOperation
+            // 
+            this.ddlOperation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ddlOperation.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlOperation.Location = new System.Drawing.Point(359, 23);
+            this.ddlOperation.Name = "ddlOperation";
+            this.ddlOperation.Size = new System.Drawing.Size(116, 20);
+            this.ddlOperation.TabIndex = 5;
             // 
             // toolTabStrip3
             // 
@@ -463,52 +509,6 @@
             this.documentTabStrip1.TabStop = false;
             this.documentTabStrip1.TabStripVisible = false;
             // 
-            // radLabel11
-            // 
-            this.radLabel11.Location = new System.Drawing.Point(3, 3);
-            this.radLabel11.Name = "radLabel11";
-            this.radLabel11.Size = new System.Drawing.Size(66, 18);
-            this.radLabel11.TabIndex = 3;
-            this.radLabel11.Text = "Department";
-            // 
-            // ddlDept
-            // 
-            this.ddlDept.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.ddlDept.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlDept.Location = new System.Drawing.Point(3, 23);
-            this.ddlDept.Name = "ddlDept";
-            this.ddlDept.Size = new System.Drawing.Size(101, 20);
-            this.ddlDept.TabIndex = 4;
-            // 
-            // radLabel12
-            // 
-            this.radLabel12.Location = new System.Drawing.Point(359, 3);
-            this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(57, 18);
-            this.radLabel12.TabIndex = 3;
-            this.radLabel12.Text = "Operation";
-            // 
-            // ddlOperation
-            // 
-            this.ddlOperation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.ddlOperation.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlOperation.Location = new System.Drawing.Point(359, 23);
-            this.ddlOperation.Name = "ddlOperation";
-            this.ddlOperation.Size = new System.Drawing.Size(116, 20);
-            this.ddlOperation.TabIndex = 5;
-            // 
-            // radLabel13
-            // 
-            this.radLabel13.AutoSize = false;
-            this.radLabel13.BackColor = System.Drawing.Color.LightGreen;
-            this.radLabel13.ForeColor = System.Drawing.Color.Black;
-            this.radLabel13.Location = new System.Drawing.Point(222, 3);
-            this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(67, 22);
-            this.radLabel13.TabIndex = 0;
-            this.radLabel13.Text = "Embroidery";
-            this.radLabel13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // SampleScheduler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -526,23 +526,28 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCust)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFileno)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStyle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCust)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlDept)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStyle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFileno)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlOperation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
@@ -555,11 +560,6 @@
             this.documentContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();
             this.documentTabStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlDept)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlOperation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

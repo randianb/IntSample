@@ -833,6 +833,16 @@ namespace Dev.WorkOrder
                                 {
                                     SQL += "update Embroidery set RcvdDate=dbo.GetLocalDate(default), RcvdQty=OrdQty where isnull(WorkOrderIdx,'')='" + WorkOrderIdx + "'; ";
                                 }
+                                // Sewing
+                                else if (WorkOrderIdx.Substring(0, 2) == "DS")
+                                {
+                                    SQL += "update Sewing set WorkDate=dbo.GetLocalDate(default), WorkQty=OrdQty where isnull(WorkOrderIdx,'')='" + WorkOrderIdx + "'; ";
+                                }
+                                // Inspection
+                                else if (WorkOrderIdx.Substring(0, 2) == "DN")
+                                {
+                                    SQL += "update Inspecting set InspCompletedDate=dbo.GetLocalDate(default) where isnull(WorkOrderIdx,'')='" + WorkOrderIdx + "'; ";
+                                }
                                 //if (result) RadMessageBox.Show("Update Succeed");
                             }
                         }
@@ -1080,6 +1090,24 @@ namespace Dev.WorkOrder
                     CommonController.Close_All_Children(this, "EmbroideryMain");
                     EmbroideryMain form = new EmbroideryMain(__main__, e.Cell.Value.ToString());
                     form.Text = "Embroidery Main";
+                    form.MdiParent = this.MdiParent;
+                    form.Show();
+                }
+                // Sewing 
+                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DS")
+                {
+                    CommonController.Close_All_Children(this, "SewingMain");
+                    SewingMain form = new SewingMain(__main__, e.Cell.Value.ToString());
+                    form.Text = "Sewing Main";
+                    form.MdiParent = this.MdiParent;
+                    form.Show();
+                }
+                // Inspection 
+                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DN")
+                {
+                    CommonController.Close_All_Children(this, "InspectionMain");
+                    InspectionMain form = new InspectionMain(__main__, e.Cell.Value.ToString());
+                    form.Text = "Inspection Main";
                     form.MdiParent = this.MdiParent;
                     form.Show();
                 }

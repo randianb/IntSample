@@ -42,7 +42,7 @@ namespace Dev.Options
 
                 case CommonValues.KeyName.Destination:
                     ds = Data.CommonData.GetlistCode("Destination"); break;
-
+                    
                 case CommonValues.KeyName.Codes:
                     ds = Data.CommonData.GetlistCode(""); break;
 
@@ -65,7 +65,7 @@ namespace Dev.Options
 
                 case CommonValues.KeyName.Vendor:
                     ds = Int.Customer.Customer.Getlist(30); break;     // Sew Vendor
-
+                    
                 // 나염여부 
                 case CommonValues.KeyName.EmbelishId1:
                     ds = Int.Customer.Customer.Getlist(CommonValues.DictionaryCodeClass["Embllishment"]); break;

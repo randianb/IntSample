@@ -1078,12 +1078,142 @@ namespace Dev.Sales
         
         private void mnuInspecting_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    // 파일번호 입력하지 않았을 경우
+                    if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                    {
+                        RadMessageBox.Show("Please input the file number", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 스타일 입력안되었을 경우
+                    if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")))
+                    {
+                        RadMessageBox.Show("Please input the style#", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+                    if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") <= 0)
+                    {
+                        RadMessageBox.Show("Please input the Size Group", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 파일번호, 오더수량, 금액이 정상 입력되었으면 
+                    if (!string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")) &&
+                        !string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")) &&
+                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") > 0
+                        )
+                    {
+                        // 워크시트 열기 
+                        frmInspectingRequest frm = new frmInspectingRequest(Int.Members.GetCurrentRow(_gv1, "Idx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Fileno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "Styleno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Status")
+                                                        );
+                        frm.Text = "Inspection WorkOrder";
+
+                        if (frm.ShowDialog(this) == DialogResult.OK)
+                        {
+                            // Production Status 갱신 
+                            DataBinding_GV4(gvProduction, Int.Members.GetCurrentRow(_gv1, "Idx"));
+                        }
+                    }
+                    else
+                    {
+                        // 에러 메시지
+                        if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                        {
+                            RadMessageBox.Show("Please input the File#");
+                            return;
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
         }
 
         private void mnuSewing_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    // 파일번호 입력하지 않았을 경우
+                    if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                    {
+                        RadMessageBox.Show("Please input the file number", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 스타일 입력안되었을 경우
+                    if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")))
+                    {
+                        RadMessageBox.Show("Please input the style#", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+                    if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") <= 0)
+                    {
+                        RadMessageBox.Show("Please input the Size Group", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 파일번호, 오더수량, 금액이 정상 입력되었으면 
+                    if (!string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")) &&
+                        !string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")) &&
+                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") > 0
+                        )
+                    {
+                        // 워크시트 열기 
+                        frmSewingRequest frm = new frmSewingRequest(Int.Members.GetCurrentRow(_gv1, "Idx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Fileno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "Styleno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
+                                                        Int.Members.GetCurrentRow(_gv1, "Status")
+                                                        );
+                        frm.Text = "Sewing WorkOrder";
+
+                        if (frm.ShowDialog(this) == DialogResult.OK)
+                        {
+                            // Production Status 갱신 
+                            DataBinding_GV4(gvProduction, Int.Members.GetCurrentRow(_gv1, "Idx"));
+                        }
+                    }
+                    else
+                    {
+                        // 에러 메시지
+                        if (string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")))
+                        {
+                            RadMessageBox.Show("Please input the File#");
+                            return;
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
         }
         private void mnuEmbroidery_Click(object sender, EventArgs e)
         {
@@ -1155,6 +1285,11 @@ namespace Dev.Sales
             }
         }
 
+        /// <summary>
+        /// Printing 나염
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mnuOutsourcing_Click(object sender, EventArgs e)
         {
             try
@@ -2679,6 +2814,24 @@ namespace Dev.Sales
                     CommonController.Close_All_Children(this, "EmbroideryMain");
                     EmbroideryMain form = new EmbroideryMain(__main__, e.Cell.Value.ToString());
                     form.Text = "Embroidery Main";
+                    form.MdiParent = this.MdiParent;
+                    form.Show();
+                }
+                // Sewing
+                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DS")
+                {
+                    CommonController.Close_All_Children(this, "SewingMain");
+                    SewingMain form = new SewingMain(__main__, e.Cell.Value.ToString());
+                    form.Text = "Sewing Main";
+                    form.MdiParent = this.MdiParent;
+                    form.Show();
+                }
+                // Inspection
+                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DN")
+                {
+                    CommonController.Close_All_Children(this, "InspectionMain");
+                    InspectionMain form = new InspectionMain(__main__, e.Cell.Value.ToString());
+                    form.Text = "Inspection Main";
                     form.MdiParent = this.MdiParent;
                     form.Show();
                 }

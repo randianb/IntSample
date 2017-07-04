@@ -147,7 +147,7 @@ namespace Dev.Sales
         
         private void GV1_Create_Columns(RadGanttView gv)
         {
-            gv.GanttViewElement.GraphicalViewElement.TimelineStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            gv.GanttViewElement.GraphicalViewElement.TimelineStart = DateTime.Now.AddDays(-90); //new DateTime(DateTime.Now.Year, DateTime.Now.Month, 15);
             //this.radGanttView1.GanttViewElement.GraphicalViewElement.TimelineEnd = new DateTime(2017, 11, 30);
 
             GanttViewTextViewColumn titleColumn = new GanttViewTextViewColumn("Title", "Scheduled Work");
@@ -162,8 +162,9 @@ namespace Dev.Sales
             gv.GanttViewElement.Columns.Add(endColumn);
             gv.GanttViewElement.GraphicalViewElement.TimelineRange = TimeRange.Month;
             gv.GanttViewElement.GraphicalViewElement.LinksHandlesSize = new Size(0, 0);
-
+            
             //this.radGanttView1.ReadOnly = true; 
+
             GanttViewTodayIndicatorElement todayIndicator = gv.GanttViewElement.GraphicalViewElement.TodayIndicatorElement;
             todayIndicator.BackColor = Color.Red;
             todayIndicator.BackColor2 = Color.Red;
@@ -269,11 +270,11 @@ namespace Dev.Sales
 
 
             // 오더상태 (CommonValues정의)
-            lstStatus.Add(new CodeContents(0, CommonValues.DicOrderStatus[0], ""));
-            lstStatus.Add(new CodeContents(1, CommonValues.DicOrderStatus[1], ""));
-            lstStatus.Add(new CodeContents(2, CommonValues.DicOrderStatus[2], ""));
-            lstStatus.Add(new CodeContents(3, CommonValues.DicOrderStatus[3], ""));
-
+            lstStatus.Add(new CodeContents(0, CommonValues.DicWorkOrderStatus[0], ""));
+            lstStatus.Add(new CodeContents(1, CommonValues.DicWorkOrderStatus[1], ""));
+            lstStatus.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
+            lstStatus.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
+            lstStatus.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
         }
 
         /// <summary>
@@ -342,6 +343,8 @@ namespace Dev.Sales
                     //_gv1.AllowSearchRow = CommonValues.enableSearchRow;
 
                     GV1_Create_Rows(gvWork);
+                    // 현재시간으로 스크롤
+                    gvWork.GanttViewElement.GraphicalViewElement.ScrollTo(DateTime.Now);
                 }
             }
             catch (Exception ex)

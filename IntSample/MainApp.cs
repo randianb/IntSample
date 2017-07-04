@@ -654,12 +654,24 @@ namespace SampleApp
 
         private void btnProductSewing_Click(object sender, EventArgs e)
         {
-
+            if (Close_All_Children("SewingMain"))
+            {
+                SewingMain frm = new SewingMain(this, "");
+                frm.Text = "Sewing Main";
+                frm.MdiParent = this;
+                frm.Show();
+            }
         }
 
         private void btnProductInspection_Click(object sender, EventArgs e)
         {
-
+            if (Close_All_Children("InspectionMain"))
+            {
+                InspectionMain frm = new InspectionMain(this, "");
+                frm.Text = "Inspection Main";
+                frm.MdiParent = this;
+                frm.Show();
+            }
         }
     }
 }

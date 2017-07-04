@@ -55,6 +55,7 @@
     <Reference Include="Telerik.WinControls, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.GridView, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Telerik.WinControls.RadDock, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="TelerikCommon, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
@@ -64,6 +65,18 @@
     </Compile>
     <Compile Include="EmbroideryMain.Designer.cs">
       <DependentUpon>EmbroideryMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InspectionMain.Designer.cs">
+      <DependentUpon>InspectionMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SewingMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SewingMain.Designer.cs">
+      <DependentUpon>SewingMain.cs</DependentUpon>
     </Compile>
     <Compile Include="PrintingMain.cs">
       <SubType>Form</SubType>
@@ -82,6 +95,12 @@
   <ItemGroup>
     <EmbeddedResource Include="EmbroideryMain.resx">
       <DependentUpon>EmbroideryMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InspectionMain.resx">
+      <DependentUpon>InspectionMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SewingMain.resx">
+      <DependentUpon>SewingMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintingMain.resx">
       <DependentUpon>PrintingMain.cs</DependentUpon>

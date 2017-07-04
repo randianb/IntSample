@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmbroideryData.cs" />
+    <Compile Include="InspectingData.cs" />
+    <Compile Include="SewingData.cs" />
     <Compile Include="PrintingData.cs" />
     <Compile Include="DataSetSizeGroup.Designer.cs">
       <DependentUpon>DataSetSizeGroup.xsd</DependentUpon>
