@@ -382,7 +382,7 @@ namespace Dev.Sales
             cboDept.DisplayMember = "DeptName";
             cboDept.FieldName = "DeptIdx";
             cboDept.HeaderText = "Department";
-            cboDept.Width = 70;
+            cboDept.Width = 50;
             gv.Columns.Insert(1, cboDept);
 
             gv.Columns["Indate"].Width = 90;
@@ -400,7 +400,7 @@ namespace Dev.Sales
             cboBuyer.Width = 100;
             gv.Columns.Insert(3, cboBuyer);
             
-            gv.Columns["Pono"].Width = 120;
+            gv.Columns["Pono"].Width = 100;
             gv.Columns["Pono"].TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns["Pono"].HeaderText = "PO#";
 
@@ -431,9 +431,10 @@ namespace Dev.Sales
             
             gv.Columns["Season"].Width = 60;
             gv.Columns["Season"].TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            gv.Columns["Season"].IsVisible = false; 
             gv.Columns["Season"].HeaderText = "Season";
 
-            gv.Columns["Description"].Width = 200;
+            gv.Columns["Description"].Width = 170;
             gv.Columns["Description"].TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns["Description"].HeaderText = "Description";
             
@@ -488,7 +489,7 @@ namespace Dev.Sales
             cboSizeGrp.FieldName = "SizeGroupIdx";
             cboSizeGrp.HeaderText = "SizeGroup";
             cboSizeGrp.AutoSizeMode = BestFitColumnMode.AllCells;
-            cboSizeGrp.Width = 200;
+            cboSizeGrp.Width = 130;
             gv.Columns.Insert(16, cboSizeGrp);
                         
             GridViewMultiComboBoxColumn cboSewThread = new GridViewMultiComboBoxColumn();
@@ -499,7 +500,7 @@ namespace Dev.Sales
             cboSewThread.FieldName = "SewThreadIdx";
             cboSewThread.HeaderText = "SewThread";
             cboSewThread.AutoSizeMode = BestFitColumnMode.AllCells;
-            cboSewThread.Width = 100;
+            cboSewThread.Width = 70;
             gv.Columns.Insert(17, cboSewThread);
             
             GridViewComboBoxColumn cHandler = new GridViewComboBoxColumn();
@@ -519,10 +520,12 @@ namespace Dev.Sales
             gv.Columns["OrderPrice"].Width = 50;
             gv.Columns["OrderPrice"].FormatString = "{0:N2}";
             gv.Columns["OrderPrice"].HeaderText = "U/Price\n($)";
+            gv.Columns["OrderPrice"].IsVisible = false; 
 
             gv.Columns["OrderAmount"].Width = 100;
             gv.Columns["OrderAmount"].FormatString = "{0:N2}";
             gv.Columns["OrderAmount"].HeaderText = "Amount($)";
+            gv.Columns["OrderAmount"].IsVisible = false;
 
             GridViewTextBoxColumn remark = new GridViewTextBoxColumn();
             remark.Name = "Remark";
@@ -1993,7 +1996,7 @@ namespace Dev.Sales
                 /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
                 /// 읽기: 0, 쓰기: 1, 삭제: 2
                 int _mode_ = 1;
-                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0 && UserInfo.DeptIdx!=11) // 캐드실 인원은 요청작성할수 있도록 한다
                     CheckAuth.ShowMessage(_mode_);
                 else
                 {
@@ -2321,7 +2324,7 @@ namespace Dev.Sales
                     _searchKey = new Dictionary<CommonValues.KeyName, int>();
 
                     // 영업부인경우, 해당 부서만 조회할수 있도록 제한 
-                    if (UserInfo.ReportNo < 9)
+                    if (UserInfo.ReportNo < 9 && UserInfo.CenterIdx!=4)
                         _searchKey.Add(CommonValues.KeyName.DeptIdx, UserInfo.DeptIdx);
                     else
                         _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlDept.SelectedValue));
@@ -2777,63 +2780,82 @@ namespace Dev.Sales
                 CheckAuth.ShowMessage(_mode_);
             else
             {
-                // Worksheet일 경우, 
-                if (e.Cell.Value.ToString().Trim().Length>12)
+                if (UserInfo.CenterIdx==4 && UserInfo.DeptIdx==11) // 개발실 캐드실 별도 분리 
                 {
-                    if (e.Cell.Value.ToString().Trim().Substring(11,1)=="P")
+                    // Worksheet일 경우, 
+                    if (e.Cell.Value.ToString().Trim().Length > 12)
                     {
-                        CommonController.Close_All_Children(this, "PatternMain");
-                        PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
-                        form.Text = "Pattern Main"; // DateTime.Now.ToLongTimeString();
+                        if (e.Cell.Value.ToString().Trim().Substring(11, 1) == "P")
+                        {
+                            CommonController.Close_All_Children(this, "PatternMain");
+                            PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
+                            form.Text = "Pattern Main"; // DateTime.Now.ToLongTimeString();
+                            form.MdiParent = this.MdiParent;
+                            form.Show();
+                        }
+
+                    }
+                }
+                else
+                {
+                    // Worksheet일 경우, 
+                    if (e.Cell.Value.ToString().Trim().Length > 12)
+                    {
+                        if (e.Cell.Value.ToString().Trim().Substring(11, 1) == "P")
+                        {
+                            CommonController.Close_All_Children(this, "PatternMain");
+                            PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
+                            form.Text = "Pattern Main"; // DateTime.Now.ToLongTimeString();
+                            form.MdiParent = this.MdiParent;
+                            form.Show();
+                        }
+
+                    }
+                    // Cutting 
+                    else if (e.Cell.Value.ToString().Trim().Substring(1, 1) == "C")
+                    {
+                        CommonController.Close_All_Children(this, "CuttingMain");
+                        CuttingMain form = new CuttingMain(__main__, e.Cell.Value.ToString());
+                        form.Text = "Cutting Main";
                         form.MdiParent = this.MdiParent;
                         form.Show();
                     }
-                    
-                }
-                // Cutting 
-                else if(e.Cell.Value.ToString().Trim().Substring(1, 1) == "C")
-                {
-                    CommonController.Close_All_Children(this, "CuttingMain");
-                    CuttingMain form = new CuttingMain(__main__, e.Cell.Value.ToString());
-                    form.Text = "Cutting Main";
-                    form.MdiParent = this.MdiParent;
-                    form.Show();
-                }
-                // Printing 
-                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DP")
-                {
-                    CommonController.Close_All_Children(this, "PrintingMain");
-                    PrintingMain form = new PrintingMain(__main__, e.Cell.Value.ToString());
-                    form.Text = "Printing Main";
-                    form.MdiParent = this.MdiParent;
-                    form.Show();
-                }
-                // Embroidery 
-                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DE")
-                {
-                    CommonController.Close_All_Children(this, "EmbroideryMain");
-                    EmbroideryMain form = new EmbroideryMain(__main__, e.Cell.Value.ToString());
-                    form.Text = "Embroidery Main";
-                    form.MdiParent = this.MdiParent;
-                    form.Show();
-                }
-                // Sewing
-                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DS")
-                {
-                    CommonController.Close_All_Children(this, "SewingMain");
-                    SewingMain form = new SewingMain(__main__, e.Cell.Value.ToString());
-                    form.Text = "Sewing Main";
-                    form.MdiParent = this.MdiParent;
-                    form.Show();
-                }
-                // Inspection
-                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DN")
-                {
-                    CommonController.Close_All_Children(this, "InspectionMain");
-                    InspectionMain form = new InspectionMain(__main__, e.Cell.Value.ToString());
-                    form.Text = "Inspection Main";
-                    form.MdiParent = this.MdiParent;
-                    form.Show();
+                    // Printing 
+                    else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DP")
+                    {
+                        CommonController.Close_All_Children(this, "PrintingMain");
+                        PrintingMain form = new PrintingMain(__main__, e.Cell.Value.ToString());
+                        form.Text = "Printing Main";
+                        form.MdiParent = this.MdiParent;
+                        form.Show();
+                    }
+                    // Embroidery 
+                    else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DE")
+                    {
+                        CommonController.Close_All_Children(this, "EmbroideryMain");
+                        EmbroideryMain form = new EmbroideryMain(__main__, e.Cell.Value.ToString());
+                        form.Text = "Embroidery Main";
+                        form.MdiParent = this.MdiParent;
+                        form.Show();
+                    }
+                    // Sewing
+                    else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DS")
+                    {
+                        CommonController.Close_All_Children(this, "SewingMain");
+                        SewingMain form = new SewingMain(__main__, e.Cell.Value.ToString());
+                        form.Text = "Sewing Main";
+                        form.MdiParent = this.MdiParent;
+                        form.Show();
+                    }
+                    // Inspection
+                    else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DN")
+                    {
+                        CommonController.Close_All_Children(this, "InspectionMain");
+                        InspectionMain form = new InspectionMain(__main__, e.Cell.Value.ToString());
+                        form.Text = "Inspection Main";
+                        form.MdiParent = this.MdiParent;
+                        form.Show();
+                    }
                 }
             }
 
@@ -3140,28 +3162,36 @@ namespace Dev.Sales
         {
             try
             {
-                if (e.Column.Name == "OperationUp")
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
                 {
-                    // 해당 row index가 2번째 행부터 
-                    if (gvOperation.CurrentRow.Index > 0)
+                    if (e.Column.Name == "OperationUp")
                     {
-                        // 행 swap (index from, index to) 
-                        SwapPriority(Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index].Cells["Idx"].Value),
-                                    Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index - 1].Cells["Idx"].Value),
-                                    Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index].Cells["Priority"].Value),
-                                    Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index - 1].Cells["Priority"].Value));
+                        // 해당 row index가 2번째 행부터 
+                        if (gvOperation.CurrentRow.Index > 0)
+                        {
+                            // 행 swap (index from, index to) 
+                            SwapPriority(Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index].Cells["Idx"].Value),
+                                        Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index - 1].Cells["Idx"].Value),
+                                        Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index].Cells["Priority"].Value),
+                                        Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index - 1].Cells["Priority"].Value));
+                        }
                     }
-                }
-                else if (e.Column.Name == "OperationDown")
-                {
-                    // 해당 row index가 끝에서부터 2번째 행전부터 
-                    if (gvOperation.CurrentRow.Index < gvOperation.RowCount - 1)
+                    else if (e.Column.Name == "OperationDown")
                     {
-                        // 행 swap (index from, index to) 
-                        SwapPriority(Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index].Cells["Idx"].Value),
-                                    Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index + 1].Cells["Idx"].Value),
-                                    Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index].Cells["Priority"].Value),
-                                    Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index + 1].Cells["Priority"].Value));
+                        // 해당 row index가 끝에서부터 2번째 행전부터 
+                        if (gvOperation.CurrentRow.Index < gvOperation.RowCount - 1)
+                        {
+                            // 행 swap (index from, index to) 
+                            SwapPriority(Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index].Cells["Idx"].Value),
+                                        Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index + 1].Cells["Idx"].Value),
+                                        Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index].Cells["Priority"].Value),
+                                        Convert.ToInt32(gvOperation.ChildRows[gvOperation.CurrentRow.Index + 1].Cells["Priority"].Value));
+                        }
                     }
                 }
             }

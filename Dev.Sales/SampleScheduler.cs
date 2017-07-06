@@ -151,7 +151,7 @@ namespace Dev.Sales
             //this.radGanttView1.GanttViewElement.GraphicalViewElement.TimelineEnd = new DateTime(2017, 11, 30);
 
             GanttViewTextViewColumn titleColumn = new GanttViewTextViewColumn("Title", "Scheduled Work");
-            titleColumn.Width = 200;
+            titleColumn.Width = 300;
             GanttViewTextViewColumn startColumn = new GanttViewTextViewColumn("Start");
             startColumn.FormatString = "{0:d}";
             GanttViewTextViewColumn endColumn = new GanttViewTextViewColumn("End");
@@ -510,9 +510,10 @@ namespace Dev.Sales
                 }
                 // Cut / Print / Embroidery
                 else if (gvWork.SelectedItem.Tag.ToString().Trim() == "111" || gvWork.SelectedItem.Tag.ToString().Trim() == "112" ||
-                        gvWork.SelectedItem.Tag.ToString().Trim() == "113")
+                        gvWork.SelectedItem.Tag.ToString().Trim() == "113" || gvWork.SelectedItem.Tag.ToString().Trim() == "114" || 
+                        gvWork.SelectedItem.Tag.ToString().Trim() == "115")
                 {
-                    int valueIndex = strTitle.Length == 4 ? 3 : 4;
+                    int valueIndex = strTitle.Length == 5 ? 4 : 5;
                     bool result = Dev.Controller.WorkOrder.Update(strTitle[valueIndex].ToString().Trim(),
                             gvWork.SelectedItem.Start, gvWork.SelectedItem.End, 0.1, Dev.Options.UserInfo.Idx);
                 }

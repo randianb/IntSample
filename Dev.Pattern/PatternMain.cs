@@ -782,36 +782,43 @@ namespace Dev.Pattern
         /// <param name="e"></param>
         private void MasterTemplate_CellEditorInitialized(object sender, GridViewCellEventArgs e)
         {
-            RadMultiColumnComboBoxElement meditor = e.ActiveEditor as RadMultiColumnComboBoxElement;
+            try
+            {
+                RadMultiColumnComboBoxElement meditor = e.ActiveEditor as RadMultiColumnComboBoxElement;
 
-            if (meditor != null )
-            {
-                meditor.Enabled = false;
-            }
-            
-            // DDL 높이, 출력항목수 설정
-            RadDropDownListEditor editor = this._gv1.ActiveEditor as RadDropDownListEditor;
-            if (editor != null)
-            {
-                ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DefaultItemsCountInDropDown
-                    = CommonValues.DDL_DefaultItemsCountInDropDown;
-                ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DropDownHeight
-                    = CommonValues.DDL_DropDownHeight;
-            }
-                       
-            // 날짜컬럼의 달력크기 설정
-            RadDateTimeEditor dtEditor = e.ActiveEditor as RadDateTimeEditor;            
-            if (dtEditor != null)
-            {
-                RadDateTimeEditorElement el = dtEditor.EditorElement as RadDateTimeEditorElement;
-                //el.NullDate = new DateTime(2000, 1, 1);
-                //el.NullText = "";
-                el.CalendarSize = new Size(500, 400);
-
-                if (el.Value.ToString().Substring(0, 10) == "2000-01-01")
+                if (meditor != null)
                 {
-                    el.Value = Convert.ToDateTime(null); 
+                    meditor.Enabled = false;
                 }
+
+                // DDL 높이, 출력항목수 설정
+                RadDropDownListEditor editor = this._gv1.ActiveEditor as RadDropDownListEditor;
+                if (editor != null)
+                {
+                    ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DefaultItemsCountInDropDown
+                        = CommonValues.DDL_DefaultItemsCountInDropDown;
+                    ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DropDownHeight
+                        = CommonValues.DDL_DropDownHeight;
+                }
+
+                // 날짜컬럼의 달력크기 설정
+                RadDateTimeEditor dtEditor = e.ActiveEditor as RadDateTimeEditor;
+                if (dtEditor != null)
+                {
+                    RadDateTimeEditorElement el = dtEditor.EditorElement as RadDateTimeEditorElement;
+                    //el.NullDate = new DateTime(2000, 1, 1);
+                    //el.NullText = "";
+                    el.CalendarSize = new Size(500, 400);
+
+                    if (el.Value.ToString().Substring(0, 10) == "2000-01-01")
+                    {
+                        el.Value = Convert.ToDateTime(null);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                
             }
 
         }

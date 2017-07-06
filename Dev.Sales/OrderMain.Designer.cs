@@ -406,6 +406,7 @@
             gridViewTextBoxColumn6.EnableExpressionEditor = false;
             gridViewTextBoxColumn6.Expression = "GETMONTH(DeliveryDate)";
             gridViewTextBoxColumn6.HeaderText = "DelMon";
+            gridViewTextBoxColumn6.IsVisible = false;
             gridViewTextBoxColumn6.Name = "DelMon";
             gridViewTextBoxColumn6.ReadOnly = true;
             gridViewTextBoxColumn6.Width = 128;
@@ -443,11 +444,12 @@
             this.gvOrderActual.MasterTemplate.EnablePaging = true;
             this.gvOrderActual.MasterTemplate.MultiSelect = true;
             this.gvOrderActual.MasterTemplate.PageSize = 50;
+            this.gvOrderActual.MasterTemplate.ShowRowHeaderColumn = false;
             this.gvOrderActual.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvOrderActual.Name = "gvOrderActual";
             this.gvOrderActual.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvOrderActual.ShowGroupPanel = false;
-            this.gvOrderActual.Size = new System.Drawing.Size(856, 344);
+            this.gvOrderActual.Size = new System.Drawing.Size(741, 344);
             this.gvOrderActual.TabIndex = 11;
             this.gvOrderActual.Text = "radGridView1";
             this.gvOrderActual.ViewCellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvOrderActual_ViewCellFormatting);
@@ -499,7 +501,7 @@
             this.toolWindow3.Location = new System.Drawing.Point(1, 24);
             this.toolWindow3.Name = "toolWindow3";
             this.toolWindow3.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow3.Size = new System.Drawing.Size(397, 203);
+            this.toolWindow3.Size = new System.Drawing.Size(512, 203);
             this.toolWindow3.Text = "WorkSheet";
             // 
             // gvWorksheet
@@ -511,7 +513,7 @@
             // 
             this.gvWorksheet.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvWorksheet.Name = "gvWorksheet";
-            this.gvWorksheet.Size = new System.Drawing.Size(397, 203);
+            this.gvWorksheet.Size = new System.Drawing.Size(512, 203);
             this.gvWorksheet.TabIndex = 0;
             this.gvWorksheet.Text = "radGridView1";
             // 
@@ -530,9 +532,9 @@
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.radSplitContainer1.Size = new System.Drawing.Size(868, 686);
-            this.radSplitContainer1.SizeInfo.AbsoluteSize = new System.Drawing.Size(868, 257);
-            this.radSplitContainer1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-199, 75);
+            this.radSplitContainer1.Size = new System.Drawing.Size(753, 686);
+            this.radSplitContainer1.SizeInfo.AbsoluteSize = new System.Drawing.Size(753, 257);
+            this.radSplitContainer1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-314, 75);
             this.radSplitContainer1.TabIndex = 0;
             this.radSplitContainer1.TabStop = false;
             // 
@@ -548,7 +550,7 @@
             // 
             this.toolTabStrip4.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.toolTabStrip4.SelectedIndex = 0;
-            this.toolTabStrip4.Size = new System.Drawing.Size(868, 65);
+            this.toolTabStrip4.Size = new System.Drawing.Size(753, 65);
             this.toolTabStrip4.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 65);
             this.toolTabStrip4.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -116);
             this.toolTabStrip4.TabIndex = 4;
@@ -564,7 +566,7 @@
             this.toolWindow1.Location = new System.Drawing.Point(1, 2);
             this.toolWindow1.Name = "toolWindow1";
             this.toolWindow1.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow1.Size = new System.Drawing.Size(866, 61);
+            this.toolWindow1.Size = new System.Drawing.Size(751, 61);
             this.toolWindow1.Text = "Search Data";
             this.toolWindow1.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.None;
             // 
@@ -594,7 +596,7 @@
             // 
             this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.documentTabStrip1.SelectedIndex = 0;
-            this.documentTabStrip1.Size = new System.Drawing.Size(868, 356);
+            this.documentTabStrip1.Size = new System.Drawing.Size(753, 356);
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
             this.documentTabStrip1.TabStripVisible = false;
@@ -608,7 +610,7 @@
             this.toolWindow2.Location = new System.Drawing.Point(6, 6);
             this.toolWindow2.Name = "toolWindow2";
             this.toolWindow2.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow2.Size = new System.Drawing.Size(856, 344);
+            this.toolWindow2.Size = new System.Drawing.Size(741, 344);
             this.toolWindow2.Text = "Orders";
             // 
             // radSplitContainer2
@@ -625,7 +627,7 @@
             // 
             // 
             this.radSplitContainer2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.radSplitContainer2.Size = new System.Drawing.Size(868, 257);
+            this.radSplitContainer2.Size = new System.Drawing.Size(753, 257);
             this.radSplitContainer2.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
             this.radSplitContainer2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 75);
             this.radSplitContainer2.TabIndex = 6;
@@ -643,7 +645,7 @@
             // 
             this.toolTabStrip5.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.toolTabStrip5.SelectedIndex = 0;
-            this.toolTabStrip5.Size = new System.Drawing.Size(419, 257);
+            this.toolTabStrip5.Size = new System.Drawing.Size(363, 257);
             this.toolTabStrip5.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
             this.toolTabStrip5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1539188F, 0F);
             this.toolTabStrip5.SizeInfo.SplitterCorrection = new System.Drawing.Size(163, 75);
@@ -658,7 +660,7 @@
             this.twColorSize.Location = new System.Drawing.Point(1, 22);
             this.twColorSize.Name = "twColorSize";
             this.twColorSize.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.twColorSize.Size = new System.Drawing.Size(417, 233);
+            this.twColorSize.Size = new System.Drawing.Size(361, 233);
             this.twColorSize.Text = "Color and Size";
             this.twColorSize.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.AutoHide;
             // 
@@ -674,7 +676,7 @@
             this.gvColorSize.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvColorSize.Name = "gvColorSize";
             this.gvColorSize.ShowGroupPanel = false;
-            this.gvColorSize.Size = new System.Drawing.Size(417, 233);
+            this.gvColorSize.Size = new System.Drawing.Size(361, 233);
             this.gvColorSize.TabIndex = 0;
             this.gvColorSize.Text = "radGridView1";
             this.gvColorSize.CreateCell += new Telerik.WinControls.UI.GridViewCreateCellEventHandler(this.gvColorSize_CreateCell);
@@ -688,14 +690,14 @@
             this.toolTabStrip6.CanUpdateChildIndex = true;
             this.toolTabStrip6.CausesValidation = false;
             this.toolTabStrip6.Controls.Add(this.twFabric);
-            this.toolTabStrip6.Location = new System.Drawing.Point(423, 0);
+            this.toolTabStrip6.Location = new System.Drawing.Point(367, 0);
             this.toolTabStrip6.Name = "toolTabStrip6";
             // 
             // 
             // 
             this.toolTabStrip6.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.toolTabStrip6.SelectedIndex = 0;
-            this.toolTabStrip6.Size = new System.Drawing.Size(251, 257);
+            this.toolTabStrip6.Size = new System.Drawing.Size(217, 257);
             this.toolTabStrip6.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
             this.toolTabStrip6.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.04154864F, 0F);
             this.toolTabStrip6.SizeInfo.SplitterCorrection = new System.Drawing.Size(-44, 75);
@@ -710,7 +712,7 @@
             this.twFabric.Location = new System.Drawing.Point(1, 22);
             this.twFabric.Name = "twFabric";
             this.twFabric.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.twFabric.Size = new System.Drawing.Size(249, 233);
+            this.twFabric.Size = new System.Drawing.Size(215, 233);
             this.twFabric.Text = "Fabric";
             this.twFabric.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.AutoHide;
             // 
@@ -726,7 +728,7 @@
             this.gvFabric.MasterTemplate.ViewDefinition = tableViewDefinition4;
             this.gvFabric.Name = "gvFabric";
             this.gvFabric.ShowGroupPanel = false;
-            this.gvFabric.Size = new System.Drawing.Size(249, 233);
+            this.gvFabric.Size = new System.Drawing.Size(215, 233);
             this.gvFabric.TabIndex = 0;
             this.gvFabric.Text = "radGridView1";
             this.gvFabric.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.MasterTemplate_CellEditorInitialized);
@@ -738,14 +740,14 @@
             // 
             this.toolTabStrip7.CanUpdateChildIndex = true;
             this.toolTabStrip7.Controls.Add(this.twOperation);
-            this.toolTabStrip7.Location = new System.Drawing.Point(678, 0);
+            this.toolTabStrip7.Location = new System.Drawing.Point(588, 0);
             this.toolTabStrip7.Name = "toolTabStrip7";
             // 
             // 
             // 
             this.toolTabStrip7.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.toolTabStrip7.SelectedIndex = 0;
-            this.toolTabStrip7.Size = new System.Drawing.Size(190, 257);
+            this.toolTabStrip7.Size = new System.Drawing.Size(165, 257);
             this.toolTabStrip7.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
             this.toolTabStrip7.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1123702F, 0F);
             this.toolTabStrip7.SizeInfo.SplitterCorrection = new System.Drawing.Size(-119, 75);
@@ -760,7 +762,7 @@
             this.twOperation.Location = new System.Drawing.Point(1, 24);
             this.twOperation.Name = "twOperation";
             this.twOperation.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.twOperation.Size = new System.Drawing.Size(188, 231);
+            this.twOperation.Size = new System.Drawing.Size(163, 231);
             this.twOperation.Text = "Operations";
             // 
             // gvOperation
@@ -775,7 +777,7 @@
             this.gvOperation.MasterTemplate.ViewDefinition = tableViewDefinition5;
             this.gvOperation.Name = "gvOperation";
             this.gvOperation.ShowGroupPanel = false;
-            this.gvOperation.Size = new System.Drawing.Size(188, 231);
+            this.gvOperation.Size = new System.Drawing.Size(163, 231);
             this.gvOperation.TabIndex = 0;
             this.gvOperation.Text = "radGridView1";
             this.gvOperation.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvOperation_Update);
@@ -788,7 +790,7 @@
             this.radSplitContainer3.Controls.Add(this.toolTabStrip8);
             this.radSplitContainer3.Controls.Add(this.toolTabStrip9);
             this.radSplitContainer3.IsCleanUpTarget = true;
-            this.radSplitContainer3.Location = new System.Drawing.Point(877, 5);
+            this.radSplitContainer3.Location = new System.Drawing.Point(762, 5);
             this.radSplitContainer3.Name = "radSplitContainer3";
             this.radSplitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             this.radSplitContainer3.Padding = new System.Windows.Forms.Padding(5);
@@ -796,9 +798,9 @@
             // 
             // 
             this.radSplitContainer3.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.radSplitContainer3.Size = new System.Drawing.Size(399, 686);
-            this.radSplitContainer3.SizeInfo.AbsoluteSize = new System.Drawing.Size(399, 257);
-            this.radSplitContainer3.SizeInfo.SplitterCorrection = new System.Drawing.Size(199, 75);
+            this.radSplitContainer3.Size = new System.Drawing.Size(514, 686);
+            this.radSplitContainer3.SizeInfo.AbsoluteSize = new System.Drawing.Size(514, 257);
+            this.radSplitContainer3.SizeInfo.SplitterCorrection = new System.Drawing.Size(314, 75);
             this.radSplitContainer3.TabIndex = 1;
             this.radSplitContainer3.TabStop = false;
             // 
@@ -813,7 +815,7 @@
             // 
             this.toolTabStrip8.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.toolTabStrip8.SelectedIndex = 0;
-            this.toolTabStrip8.Size = new System.Drawing.Size(399, 429);
+            this.toolTabStrip8.Size = new System.Drawing.Size(514, 429);
             this.toolTabStrip8.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
             this.toolTabStrip8.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1290323F);
             this.toolTabStrip8.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 163);
@@ -828,7 +830,7 @@
             this.twStatus.Location = new System.Drawing.Point(1, 24);
             this.twStatus.Name = "twStatus";
             this.twStatus.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.twStatus.Size = new System.Drawing.Size(397, 403);
+            this.twStatus.Size = new System.Drawing.Size(512, 403);
             this.twStatus.Text = "Production";
             // 
             // gvProduction
@@ -851,7 +853,7 @@
             this.gvProduction.ReadOnly = true;
             this.gvProduction.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvProduction.ShowGroupPanel = false;
-            this.gvProduction.Size = new System.Drawing.Size(397, 403);
+            this.gvProduction.Size = new System.Drawing.Size(512, 403);
             this.gvProduction.TabIndex = 0;
             this.gvProduction.Text = "radGridView3";
             this.gvProduction.SelectionChanged += new System.EventHandler(this.gvProduction_SelectionChanged);
@@ -869,7 +871,7 @@
             // 
             this.toolTabStrip9.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.toolTabStrip9.SelectedIndex = 0;
-            this.toolTabStrip9.Size = new System.Drawing.Size(399, 253);
+            this.toolTabStrip9.Size = new System.Drawing.Size(514, 253);
             this.toolTabStrip9.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 257);
             this.toolTabStrip9.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1290323F);
             this.toolTabStrip9.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -13);

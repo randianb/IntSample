@@ -138,15 +138,16 @@ namespace Dev.Sales
             GridViewTextBoxColumn FabricIdx = new GridViewTextBoxColumn();
             FabricIdx.Name = "FabricIdx";
             FabricIdx.FieldName = "FabricIdx";
-            CutSizeIdx.IsVisible = false;
+            FabricIdx.IsVisible = false;
             gv.Columns.Add(FabricIdx);
 
             GridViewTextBoxColumn FabricNm = new GridViewTextBoxColumn();
             FabricNm.Name = "FabricNm";
             FabricNm.FieldName = "FabricNm";
-            FabricNm.Width = 150;
+            FabricNm.Width = 200;
             FabricNm.TextAlignment = ContentAlignment.MiddleLeft;
             FabricNm.HeaderText = "Fabric";
+            FabricNm.ReadOnly = true; 
             gv.Columns.Add(FabricNm);
             
             #endregion
