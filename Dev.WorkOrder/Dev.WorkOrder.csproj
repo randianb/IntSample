@@ -103,6 +103,30 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptWorkOrderInspectionTicket.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptWorkOrderInspectionTicket.Designer.cs">
+      <DependentUpon>rptWorkOrderInspectionTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptWorkOrderSewTicket.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptWorkOrderSewTicket.Designer.cs">
+      <DependentUpon>rptWorkOrderSewTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptWorkOrderEmbroideryTicket.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptWorkOrderEmbroideryTicket.Designer.cs">
+      <DependentUpon>rptWorkOrderEmbroideryTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptWorkOrderPrintTicket.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptWorkOrderPrintTicket.Designer.cs">
+      <DependentUpon>rptWorkOrderPrintTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rptWorkOrderPatternTicket.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -141,6 +165,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\rptWorkOrderInspectionTicket.resx">
+      <DependentUpon>rptWorkOrderInspectionTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptWorkOrderSewTicket.resx">
+      <DependentUpon>rptWorkOrderSewTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptWorkOrderEmbroideryTicket.resx">
+      <DependentUpon>rptWorkOrderEmbroideryTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptWorkOrderPrintTicket.resx">
+      <DependentUpon>rptWorkOrderPrintTicket.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptWorkOrderPatternTicket.resx">
       <DependentUpon>rptWorkOrderPatternTicket.cs</DependentUpon>
     </EmbeddedResource>

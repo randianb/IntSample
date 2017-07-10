@@ -214,6 +214,7 @@ namespace Dev.Production
             cboSize.FieldName = "OrdSizeIdx";
             cboSize.HeaderText = "Size";
             cboSize.ReadOnly = true;
+            cboSize.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             cboSize.Width = 70;
             gv.Columns.Add(cboSize);
 

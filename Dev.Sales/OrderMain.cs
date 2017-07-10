@@ -29,6 +29,7 @@ namespace Dev.Sales
         private enum OrderStatus { Normal, Progress, Cancel, Close };           // 오더상태값
         
         private bool _bRtn;                                                     // 쿼리결과 리턴
+        private string __FileNo__ = ""; 
         private DataSet _ds1 = null;                                            // 기본 데이터셋
         private DataTable _dt = null;                                           // 기본 데이터테이블
         private Controller.Orders _obj1 = null;                                 // 현재 생성된 객체 
@@ -69,11 +70,12 @@ namespace Dev.Sales
         /// Initializer - InheritMDI 상속
         /// </summary>
         /// <param name="main"></param>
-        public OrderMain(InheritMDI main)
+        public OrderMain(InheritMDI main, string fileno)
         {
             base.InitializeComponent(); // parent 컴포넌트에 접근하기 위해 컨트롤을 public으로 지정 > 향후 수정 필요 (todo) 
             InitializeComponent();
-            __main__ = main;            // MDI 연결 
+            __main__ = main;            // MDI 연결
+            __FileNo__ = fileno; 
             _gv1 = this.gvOrderActual;  // 그리드뷰 일반화를 위해 변수 별도 저장
             
         }
@@ -95,6 +97,12 @@ namespace Dev.Sales
             GV3_CreateColumn(gvOperation);  // 공정 제목
             GV4_CreateColumn(gvProduction); // 현황 
             GV5_CreateColumn(gvFabric); // 원단수량
+
+            if (!string.IsNullOrEmpty(__FileNo__))
+            {
+                txtFileno.Text = __FileNo__;
+                RefleshWithCondition(); 
+            }
         }
         
         /// <summary>

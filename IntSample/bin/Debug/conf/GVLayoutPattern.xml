@@ -7,7 +7,7 @@
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="130" FieldName="Styleno" Name="Styleno" EnableExpressionEditor="False" IsVisible="True" ReadOnly="True" HeaderText="Style#" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="90" FieldName="Fileno" Name="Fileno" EnableExpressionEditor="False" IsVisible="True" ReadOnly="True" HeaderText="INT File #" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="WorkOrderIdx" Name="WorkOrderIdx" IsVisible="True" ReadOnly="True" HeaderText="Work ID" />
-      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="70" FieldName="OrdSizeIdx" Name="OrdSizeIdx" IsVisible="True" ReadOnly="True" HeaderText="Size" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="70" FieldName="OrdSizeIdx" Name="OrdSizeIdx" IsVisible="True" ReadOnly="True" HeaderText="Size" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatString="{0:d}" Width="100" FieldName="TechpackDate" Name="TechpackDate" IsVisible="True" ReadOnly="True" HeaderText="Techpack Date" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatString="{0:d}" Width="100" FieldName="RequestedDate" Name="RequestedDate" IsVisible="True" ReadOnly="True" HeaderText="RequestedDate" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CustIdx" DisplayMember="CustName" DataType="System.Int32" Width="100" FieldName="Requested" Name="Requested" IsVisible="True" ReadOnly="True" HeaderText="Requested" />

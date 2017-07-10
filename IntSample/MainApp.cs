@@ -330,6 +330,22 @@ namespace SampleApp
 
             return iRtn;
         }
+        private bool Close_Wnd_Children(string frm)
+        {
+            bool iRtn = true;
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.ToString())
+                {
+                    iRtn = true;
+                    f.Close();
+                }
+                
+            }
+
+            return iRtn;
+        }
 
         private RadForm Find_Children(string frm)
         {
@@ -373,7 +389,7 @@ namespace SampleApp
         {
             if (Close_All_Children("OrderMain"))
             {
-                OrderMain frm = new OrderMain(this);
+                OrderMain frm = new OrderMain(this, "");
                 frm.Text = "Orders";
                 frm.MdiParent = this;
                 frm.Show();
@@ -459,7 +475,7 @@ namespace SampleApp
 
         private void btnOrderReportTicketPrint_Click(object sender, EventArgs e)
         {
-            if (Close_All_Children("WorkOrderTicketPrint"))
+            if (Close_Wnd_Children("WorkOrderTicketPrint"))
             {
                 if (CommonValues.ListWorkID.Count>0)
                 {

@@ -1,5 +1,5 @@
 ﻿<RadGridView ShowGroupPanel="False" BackColor="191, 219, 255" ForeColor="Black" Text="radGridView1" Font="Segoe UI, 8.25pt" Cursor="Default" RightToLeft="No" TabIndex="11" ImeMode="NoControl">
-  <MasterTemplate MultiSelect="True" EnablePaging="True" PageSize="50" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" ReadOnly="True" AutoGenerateColumns="False">
+  <MasterTemplate MultiSelect="True" PageSize="50" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" AutoGenerateColumns="False">
     <Columns>
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="40" FieldName="Idx" Name="Idx" IsVisible="True" ReadOnly="True" HeaderText="ID" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="OrderIdx" Name="OrderIdx" IsVisible="False" />
@@ -8,7 +8,7 @@
       <Telerik.WinControls.UI.GridViewComboBoxColumn Width="80" FieldName="Fileno" Name="Fileno" IsVisible="True" ReadOnly="True" HeaderText="File#" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="WorkOrderIdx" Name="WorkOrderIdx" IsVisible="True" ReadOnly="True" HeaderText="Work ID&#xA;(Inspect)" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="150" FieldName="OrdColorIdx" Name="OrdColorIdx" IsVisible="True" ReadOnly="True" HeaderText="Color" />
-      <Telerik.WinControls.UI.GridViewComboBoxColumn Width="70" FieldName="OrdSizeIdx" Name="OrdSizeIdx" IsVisible="True" ReadOnly="True" HeaderText="Size" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn Width="70" FieldName="OrdSizeIdx" Name="OrdSizeIdx" IsVisible="True" ReadOnly="True" HeaderText="Size" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="70" FieldName="WorkQty" Name="WorkQty" IsVisible="True" ReadOnly="True" HeaderText="Q'ty" TextAlignment="MiddleRight" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="150" FieldName="TDName" Name="TDName" IsVisible="True" ReadOnly="True" HeaderText="T/D" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatString="{0:d}" Width="100" FieldName="InspRequestedDate" Name="InspRequestedDate" IsVisible="True" ReadOnly="True" HeaderText="Requested" TextAlignment="MiddleCenter" />

@@ -151,20 +151,26 @@ namespace Dev.Sales
             //this.radGanttView1.GanttViewElement.GraphicalViewElement.TimelineEnd = new DateTime(2017, 11, 30);
 
             GanttViewTextViewColumn titleColumn = new GanttViewTextViewColumn("Title", "Scheduled Work");
-            titleColumn.Width = 300;
+            titleColumn.Width = 320;
             GanttViewTextViewColumn startColumn = new GanttViewTextViewColumn("Start");
             startColumn.FormatString = "{0:d}";
+            startColumn.Width = 80;
             GanttViewTextViewColumn endColumn = new GanttViewTextViewColumn("End");
             endColumn.FormatString = "{0:d}";
-                        
+            endColumn.Width = 80;
+            GanttViewTextViewColumn statColumn = new GanttViewTextViewColumn("Tag", "Status");
+            //statColumn.FieldName = "stat"; 
+            statColumn.Width = 110;
+
             gv.GanttViewElement.Columns.Add(titleColumn);
             gv.GanttViewElement.Columns.Add(startColumn);
             gv.GanttViewElement.Columns.Add(endColumn);
-            gv.GanttViewElement.GraphicalViewElement.TimelineRange = TimeRange.Month;
-            gv.GanttViewElement.GraphicalViewElement.LinksHandlesSize = new Size(0, 0);
+            gv.GanttViewElement.Columns.Add(statColumn);
             
-            //this.radGanttView1.ReadOnly = true; 
+            gv.GanttViewElement.GraphicalViewElement.LinksHandlesSize = new Size(0, 0);
 
+            //this.radGanttView1.ReadOnly = true; 
+            
             GanttViewTodayIndicatorElement todayIndicator = gv.GanttViewElement.GraphicalViewElement.TodayIndicatorElement;
             todayIndicator.BackColor = Color.Red;
             todayIndicator.BackColor2 = Color.Red;
@@ -198,8 +204,7 @@ namespace Dev.Sales
                     if (row["End"] != DBNull.Value) item.End =  Convert.ToDateTime(row["End"]);
                     if (row["Progress"] != DBNull.Value) item.Progress = Convert.ToDecimal(row["Progress"]); 
                     item.Title =  row["Title"].ToString() + " / " + row["WorkOrderIdx"].ToString();
-                    item.Tag = row["OperationIdx"].ToString();
-
+                    item.Tag = row["OperationIdx"].ToString() + " / " + row["stat"].ToString();
                     this.gvWork.Items.Add(item); 
                 }
             }
@@ -341,9 +346,18 @@ namespace Dev.Sales
                     //__main__.lblRows.Text = _gv1.RowCount.ToString() + " Rows";
                     //_gv1.EnablePaging = CommonValues.enablePaging;
                     //_gv1.AllowSearchRow = CommonValues.enableSearchRow;
-
                     GV1_Create_Rows(gvWork);
-                    // 현재시간으로 스크롤
+
+                    if (ViewHourly.Checked)
+                    {
+                        gvWork.GanttViewElement.GraphicalViewElement.TimelineRange = TimeRange.Day;
+                        gvWork.GanttViewElement.GraphicalViewElement.OnePixelTime = TimeSpan.FromMinutes(2);
+                    }
+                    else
+                    {
+                        gvWork.GanttViewElement.GraphicalViewElement.TimelineRange = TimeRange.Month;
+                    }
+                    // Scroll TimelineIndicator to Present time
                     gvWork.GanttViewElement.GraphicalViewElement.ScrollTo(DateTime.Now);
                 }
             }
@@ -425,40 +439,41 @@ namespace Dev.Sales
 
         private void gvWork_TextViewItemFormatting(object sender, GanttViewTextViewItemFormattingEventArgs e)
         {
-            if (e.Item.Tag.ToString() == "110")
+            
+            if (e.Item.Tag.ToString().Split('/')[0].Trim() == "110")
             {
                 e.ItemElement.DrawFill = true;
                 e.ItemElement.BackColor = Color.Cornsilk;
                 e.ItemElement.GradientStyle = GradientStyles.Solid;
             }
-            else if (e.Item.Tag.ToString() == "111")
+            else if (e.Item.Tag.ToString().Split('/')[0].Trim() == "111")
             {
                 e.ItemElement.DrawFill = true;
                 e.ItemElement.BackColor = Color.Honeydew;
                 e.ItemElement.GradientStyle = GradientStyles.Solid;
             }
-            else if (e.Item.Tag.ToString() == "112")
+            else if (e.Item.Tag.ToString().Split('/')[0].Trim() == "112")
             {
                 e.ItemElement.DrawFill = true;
                 e.ItemElement.ForeColor = Color.White;
                 e.ItemElement.BackColor = Color.MediumSlateBlue;
                 e.ItemElement.GradientStyle = GradientStyles.Solid;
             }
-            else if (e.Item.Tag.ToString() == "113")
+            else if (e.Item.Tag.ToString().Split('/')[0].Trim() == "113")
             {
                 e.ItemElement.DrawFill = true;
                 e.ItemElement.ForeColor = Color.Black;
                 e.ItemElement.BackColor = Color.LightGreen;
                 e.ItemElement.GradientStyle = GradientStyles.Solid;
             }
-            else if (e.Item.Tag.ToString() == "114")
+            else if (e.Item.Tag.ToString().Split('/')[0].Trim() == "114")
             {
                 e.ItemElement.DrawFill = true;
                 e.ItemElement.ForeColor = Color.White;
                 e.ItemElement.BackColor = Color.DodgerBlue;
                 e.ItemElement.GradientStyle = GradientStyles.Solid;
             }
-            else if (e.Item.Tag.ToString() == "115")
+            else if (e.Item.Tag.ToString().Split('/')[0].Trim() == "115")
             {
                 e.ItemElement.DrawFill = true;
                 e.ItemElement.ForeColor = Color.Black;
@@ -472,6 +487,8 @@ namespace Dev.Sales
                 e.ItemElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
                 e.ItemElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
             }
+            
+            if (e.ItemElement.Name!="") { Console.WriteLine(e.ItemElement.Name);  }
         }
 
         private void gvWork_SelectedItemChanged(object sender, GanttViewSelectedItemChangedEventArgs e)
@@ -532,40 +549,40 @@ namespace Dev.Sales
 
         private void gvWork_GraphicalViewItemFormatting(object sender, GanttViewGraphicalViewItemFormattingEventArgs e)
         {
-            if (e.Item.Tag.ToString()=="110")
+            if (e.Item.Tag.ToString().Split('/')[0].Trim() == "110")
             {
                 e.ItemElement.TaskElement.DrawFill = true; 
                 e.ItemElement.TaskElement.BackColor = Color.Cornsilk;
                 e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid; 
             }
-            else if (e.Item.Tag.ToString() == "111")
+            else if (e.Item.Tag.ToString().Split('/')[0].Trim() == "111")
             {
                 e.ItemElement.TaskElement.DrawFill = true;
                 e.ItemElement.TaskElement.BackColor = Color.Honeydew;
                 e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid;
             }
-            else if (e.Item.Tag.ToString() == "112")
+            else if (e.Item.Tag.ToString().Split('/')[0].Trim() == "112")
             {
                 e.ItemElement.TaskElement.DrawFill = true;
                 e.ItemElement.TaskElement.ForeColor = Color.White; 
                 e.ItemElement.TaskElement.BackColor = Color.MediumSlateBlue;
                 e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid;
             }
-            else if (e.Item.Tag.ToString() == "113")
+            else if (e.Item.Tag.ToString().Split('/')[0].Trim() == "113")
             {
                 e.ItemElement.TaskElement.DrawFill = true;
                 e.ItemElement.TaskElement.ForeColor = Color.Black;
                 e.ItemElement.TaskElement.BackColor = Color.LightGreen;
                 e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid;
             }
-            else if (e.Item.Tag.ToString() == "114")
+            else if (e.Item.Tag.ToString().Split('/')[0].Trim() == "114")
             {
                 e.ItemElement.TaskElement.DrawFill = true;
                 e.ItemElement.TaskElement.ForeColor = Color.White;
                 e.ItemElement.TaskElement.BackColor = Color.DodgerBlue;
                 e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid;
             }
-            else if (e.Item.Tag.ToString() == "115")
+            else if (e.Item.Tag.ToString().Split('/')[0].Trim() == "115")
             {
                 e.ItemElement.TaskElement.DrawFill = true;
                 e.ItemElement.TaskElement.ForeColor = Color.Black;

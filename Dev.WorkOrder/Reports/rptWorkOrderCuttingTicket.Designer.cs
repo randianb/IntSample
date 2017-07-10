@@ -248,6 +248,8 @@ namespace Dev.WorkOrder.Reports
             // 
             // textBox6
             // 
+            this.textBox6.Culture = new System.Globalization.CultureInfo("en-US");
+            this.textBox6.Format = "{0:G}";
             this.textBox6.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(4.1002006530761719D), Telerik.Reporting.Drawing.Unit.Cm(4.5008001327514648D));
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(9.59959888458252D), Telerik.Reporting.Drawing.Unit.Cm(0.7999996542930603D));
@@ -266,7 +268,7 @@ namespace Dev.WorkOrder.Reports
             this.textBox7.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
             this.textBox7.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             this.textBox7.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox7.Value = "= \"Style# \" + Fields.Styleno";
+            this.textBox7.Value = "= Fields.Styleno";
             // 
             // textBox8
             // 
@@ -277,7 +279,7 @@ namespace Dev.WorkOrder.Reports
             this.textBox8.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
             this.textBox8.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             this.textBox8.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox8.Value = "= \"File# \" + Fields.Fileno";
+            this.textBox8.Value = "= Fields.Fileno";
             // 
             // textBox9
             // 

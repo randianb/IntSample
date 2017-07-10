@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.IO;
 using Dev.Pattern;
 using Dev.Production;
+using Dev.Sales;
 
 namespace Dev.WorkOrder
 {
@@ -155,7 +156,7 @@ namespace Dev.WorkOrder
             Buyer.Name = "Buyer";
             Buyer.FieldName = "CustName";
             Buyer.HeaderText = "Buyer";
-            Buyer.Width = 100;
+            Buyer.Width = 140;
             Buyer.ReadOnly = true;
             Buyer.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Add(Buyer);
@@ -169,7 +170,7 @@ namespace Dev.WorkOrder
             Operation.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Add(Operation);
 
-            GridViewTextBoxColumn Fileno = new GridViewTextBoxColumn();
+            GridViewHyperlinkColumn Fileno = new GridViewHyperlinkColumn();
             Fileno.Name = "Fileno";
             Fileno.FieldName = "Fileno";
             Fileno.HeaderText = "File #";
@@ -177,6 +178,15 @@ namespace Dev.WorkOrder
             Fileno.ReadOnly = true;
             Fileno.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Add(Fileno);
+
+            GridViewTextBoxColumn OrderType = new GridViewTextBoxColumn();
+            OrderType.Name = "OrderType";
+            OrderType.FieldName = "OrderType";
+            OrderType.HeaderText = "Sample\nType";
+            OrderType.Width = 60;
+            OrderType.ReadOnly = true;
+            OrderType.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gv.Columns.Add(OrderType);
 
             GridViewTextBoxColumn Styleno = new GridViewTextBoxColumn();
             Styleno.Name = "Styleno";
@@ -200,7 +210,7 @@ namespace Dev.WorkOrder
             Title.Name = "Title";
             Title.FieldName = "Title";
             Title.HeaderText = "Title";
-            Title.Width = 150;
+            Title.Width = 300;
             Title.ReadOnly = true;
             Title.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Add(Title);
@@ -662,11 +672,11 @@ namespace Dev.WorkOrder
                 toggleMode.Value = false;
                 toggleMode.Enabled = true;
                 
-                lvQRCode.Items.Clear(); 
-
+                lvQRCode.Items.Clear();
+                
                 // 선택된 오더상태에 따라 읽기수정 가능여부 설정 
-                if (Int.Members.GetCurrentRow(_gv1, "Status") == 4
-                    || Int.Members.GetCurrentRow(_gv1, "Status") == 3)
+                if (Int.Members.GetCurrentRow(_gv1, "WorkStatus") == 4
+                    || Int.Members.GetCurrentRow(_gv1, "WorkStatus") == 3)
                 {
                     Int.Members.GetCurrentRow(_gv1).ViewTemplate.ReadOnly = true;
                 }
@@ -685,8 +695,17 @@ namespace Dev.WorkOrder
                 // 선택된 모든 행에 대해 
                 foreach (GridViewRowInfo row in _gv1.SelectedRows)
                 {
+                    if (Convert.ToInt32(row.Cells["WorkStatus"].Value) == 3 || Convert.ToInt32(row.Cells["WorkStatus"].Value) == 4)
+                    {
+                        btnSaveData.Text = "Print QR";
+                        btnSaveData.Tag = "qr";
+                        btnSaveData.Enabled = false;
+                        toggleWay.Enabled = true;
+                        toggleMode.Value = true;
+                        txtBarcode.Enabled = true;
+                    }
                     // 생성된 QR코드가 없으면 발행가능 상태
-                    if (string.IsNullOrEmpty(row.Cells["Qrcode"].Value.ToString().Trim()))
+                    else if (string.IsNullOrEmpty(row.Cells["Qrcode"].Value.ToString().Trim()))
                     {
                         btnSaveData.Text = "Print QR";
                         btnSaveData.Tag = "qr";
@@ -768,6 +787,13 @@ namespace Dev.WorkOrder
                                             " already created QR Code.", "Notice", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
                                     return;
                                 }
+                                // 작업완료 또는 취소된 건은 제외 
+                                if (Convert.ToInt32(row.Cells["WorkStatus"].Value)==3 || Convert.ToInt32(row.Cells["WorkStatus"].Value) == 4)
+                                {
+                                    RadMessageBox.Show("This work was finished or canceled", "Error");
+                                    return; 
+                                }
+
                                 __QRCode__ = row.Cells["WorkOrderIdx"].Value.ToString().Trim(); //Int.Encryptor.Encrypt(row.Cells["WorkOrderIdx"].Value.ToString().Trim(), "love1229");
 
                                 //update QR code
@@ -1004,16 +1030,23 @@ namespace Dev.WorkOrder
         /// <param name="e"></param>
         private void txtBarcode_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && !string.IsNullOrEmpty(txtBarcode.Text.Trim()))
+            try
             {
-                lvQRCode.Items.Add(txtBarcode.Text.Trim());
-                btnSaveData.Enabled = true;
-                txtBarcode.Text = "";
-                txtBarcode.Select(); 
+                if (e.KeyCode == Keys.Enter && !string.IsNullOrEmpty(txtBarcode.Text.Trim()))
+                {
+                    lvQRCode.Items.Add(txtBarcode.Text.Trim());
+                    btnSaveData.Enabled = true;
+                    txtBarcode.Text = "";
+                    txtBarcode.Select();
+                }
+                else
+                {
+                    //Console.WriteLine(e.KeyCode.ToString());
+                }
             }
-            else
+            catch(Exception ex)
             {
-                //Console.WriteLine(e.KeyCode.ToString());
+                Console.WriteLine(ex.Message); 
             }
         }
 
@@ -1024,18 +1057,25 @@ namespace Dev.WorkOrder
         /// <param name="e"></param>
         private void lvQRCode_VisualItemFormatting(object sender, ListViewVisualItemEventArgs e)
         {
-            if (e.VisualItem.Text.Substring(0, 5)=="Inval")
+            try
             {
-                e.VisualItem.NumberOfColors = 1;
-                e.VisualItem.BackColor = Color.Red;
-                e.VisualItem.ForeColor = Color.White;
+                if (e.VisualItem.Text.Substring(0, 5) == "Inval")
+                {
+                    e.VisualItem.NumberOfColors = 1;
+                    e.VisualItem.BackColor = Color.Red;
+                    e.VisualItem.ForeColor = Color.White;
+                }
+                else
+                {
+                    e.VisualItem.ResetValue(LightVisualElement.NumberOfColorsProperty, Telerik.WinControls.ValueResetFlags.Local);
+                    e.VisualItem.ResetValue(LightVisualElement.BackColorProperty, Telerik.WinControls.ValueResetFlags.Local);
+                    e.VisualItem.ResetValue(LightVisualElement.ForeColorProperty, Telerik.WinControls.ValueResetFlags.Local);
+
+                }
             }
-            else
+            catch(Exception ex)
             {
-                e.VisualItem.ResetValue(LightVisualElement.NumberOfColorsProperty, Telerik.WinControls.ValueResetFlags.Local);
-                e.VisualItem.ResetValue(LightVisualElement.BackColorProperty, Telerik.WinControls.ValueResetFlags.Local);
-                e.VisualItem.ResetValue(LightVisualElement.ForeColorProperty, Telerik.WinControls.ValueResetFlags.Local);
-                
+                Console.WriteLine(ex.Message); 
             }
         }
 
@@ -1046,71 +1086,87 @@ namespace Dev.WorkOrder
 
         private void gvOrderActual_HyperlinkOpened(object sender, HyperlinkOpenedEventArgs e)
         {
-            /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
-            /// 읽기: 0, 쓰기: 1, 삭제: 2
-            int _mode_ = 0;
-            if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
-                CheckAuth.ShowMessage(_mode_);
-            else
+            try
             {
-                // Worksheet일 경우, 
-                if (e.Cell.Value.ToString().Trim().Length > 12)
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 0;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
                 {
-                    if (e.Cell.Value.ToString().Trim().Substring(11, 1) == "P")
+                    // File번호일 경우, 
+                    if (e.Cell.Value.ToString().Trim().Length < 11 && e.Cell.Value.ToString().Trim().Substring(0, 1) == "S")
                     {
-                        CommonController.Close_All_Children(this, "PatternMain");
-                        PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
-                        form.Text = "Pattern Main"; // DateTime.Now.ToLongTimeString();
+                        CommonController.Close_All_Children(this, "OrderMain");
+                        OrderMain form = new OrderMain(__main__, e.Cell.Value.ToString());
+                        form.Text = "Order Main"; // DateTime.Now.ToLongTimeString();
                         form.MdiParent = this.MdiParent;
                         form.Show();
                     }
+                    // Worksheet일 경우, 
+                    else if (e.Cell.Value.ToString().Trim().Length > 12)
+                    {
+                        if (e.Cell.Value.ToString().Trim().Substring(11, 1) == "P")
+                        {
+                            CommonController.Close_All_Children(this, "PatternMain");
+                            PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
+                            form.Text = "Pattern Main"; // DateTime.Now.ToLongTimeString();
+                            form.MdiParent = this.MdiParent;
+                            form.Show();
+                        }
 
+                    }
+                    // Cutting 
+                    else if (e.Cell.Value.ToString().Trim().Substring(1, 1) == "C")
+                    {
+                        CommonController.Close_All_Children(this, "CuttingMain");
+                        CuttingMain form = new CuttingMain(__main__, e.Cell.Value.ToString());
+                        form.Text = "Cutting Main";
+                        form.MdiParent = this.MdiParent;
+                        form.Show();
+                    }
+                    // Printing 
+                    else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DP")
+                    {
+                        CommonController.Close_All_Children(this, "PrintingMain");
+                        PrintingMain form = new PrintingMain(__main__, e.Cell.Value.ToString());
+                        form.Text = "Printing Main";
+                        form.MdiParent = this.MdiParent;
+                        form.Show();
+                    }
+                    // Embroidery 
+                    else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DE")
+                    {
+                        CommonController.Close_All_Children(this, "EmbroideryMain");
+                        EmbroideryMain form = new EmbroideryMain(__main__, e.Cell.Value.ToString());
+                        form.Text = "Embroidery Main";
+                        form.MdiParent = this.MdiParent;
+                        form.Show();
+                    }
+                    // Sewing 
+                    else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DS")
+                    {
+                        CommonController.Close_All_Children(this, "SewingMain");
+                        SewingMain form = new SewingMain(__main__, e.Cell.Value.ToString());
+                        form.Text = "Sewing Main";
+                        form.MdiParent = this.MdiParent;
+                        form.Show();
+                    }
+                    // Inspection 
+                    else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DN")
+                    {
+                        CommonController.Close_All_Children(this, "InspectionMain");
+                        InspectionMain form = new InspectionMain(__main__, e.Cell.Value.ToString());
+                        form.Text = "Inspection Main";
+                        form.MdiParent = this.MdiParent;
+                        form.Show();
+                    }
                 }
-                // Cutting 
-                else if (e.Cell.Value.ToString().Trim().Substring(1, 1) == "C")
-                {
-                    CommonController.Close_All_Children(this, "CuttingMain");
-                    CuttingMain form = new CuttingMain(__main__, e.Cell.Value.ToString());
-                    form.Text = "Cutting Main";
-                    form.MdiParent = this.MdiParent;
-                    form.Show();
-                }
-                // Printing 
-                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DP")
-                {
-                    CommonController.Close_All_Children(this, "PrintingMain");
-                    PrintingMain form = new PrintingMain(__main__, e.Cell.Value.ToString());
-                    form.Text = "Printing Main";
-                    form.MdiParent = this.MdiParent;
-                    form.Show();
-                }
-                // Embroidery 
-                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DE")
-                {
-                    CommonController.Close_All_Children(this, "EmbroideryMain");
-                    EmbroideryMain form = new EmbroideryMain(__main__, e.Cell.Value.ToString());
-                    form.Text = "Embroidery Main";
-                    form.MdiParent = this.MdiParent;
-                    form.Show();
-                }
-                // Sewing 
-                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DS")
-                {
-                    CommonController.Close_All_Children(this, "SewingMain");
-                    SewingMain form = new SewingMain(__main__, e.Cell.Value.ToString());
-                    form.Text = "Sewing Main";
-                    form.MdiParent = this.MdiParent;
-                    form.Show();
-                }
-                // Inspection 
-                else if (e.Cell.Value.ToString().Trim().Substring(0, 2) == "DN")
-                {
-                    CommonController.Close_All_Children(this, "InspectionMain");
-                    InspectionMain form = new InspectionMain(__main__, e.Cell.Value.ToString());
-                    form.Text = "Inspection Main";
-                    form.MdiParent = this.MdiParent;
-                    form.Show();
-                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message); 
             }
         }
     }

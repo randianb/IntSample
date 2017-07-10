@@ -206,7 +206,7 @@ namespace SampleApp
                 }
 
                 // 사용자 권한정보 저장 (로그인시 한번만)
-                DataTable dt = Authority.Getlist(UserInfo.Idx, 0, 0, 0).Tables[0];
+                DataTable dt = Authority.Getlist(UserInfo.Idx, CommonValues.packageNo, 0, 0).Tables[0];
                 if (dt != null)
                 {
                     UserInfo.DtAuthority = dt;
