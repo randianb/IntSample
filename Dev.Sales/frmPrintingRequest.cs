@@ -295,7 +295,7 @@ namespace Dev.Sales
                 foreach (DataRow row in _dt.Rows)
                 {
                     custName.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
-                                                row["CustName"].ToString(),
+                                                row["CustNameEN"].ToString(),
                                                 Convert.ToInt32(row["Classification"])));
                 }
 

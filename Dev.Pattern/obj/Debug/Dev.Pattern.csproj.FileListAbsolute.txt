@@ -86,3 +86,11 @@ D:\git\IntSample\Dev.Pattern\bin\Debug\Telerik.WinControls.GridView.xml
 D:\git\IntSample\Dev.Pattern\bin\Debug\Telerik.WinControls.RadDock.xml
 D:\git\IntSample\Dev.Pattern\bin\Debug\Telerik.WinControls.Scheduler.xml
 D:\git\IntSample\Dev.Pattern\bin\Debug\Telerik.WinControls.UI.xml
+D:\git\IntSample\Dev.Pattern\bin\Debug\Telerik.Reporting.dll
+D:\git\IntSample\Dev.Pattern\bin\Debug\Telerik.ReportViewer.WinForms.dll
+D:\git\IntSample\Dev.Pattern\bin\Debug\Telerik.Reporting.pdb
+D:\git\IntSample\Dev.Pattern\bin\Debug\Telerik.Reporting.xml
+D:\git\IntSample\Dev.Pattern\bin\Debug\Telerik.ReportViewer.WinForms.pdb
+D:\git\IntSample\Dev.Pattern\bin\Debug\Telerik.ReportViewer.WinForms.xml
+D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.PrintPattern.resources
+D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.Reports.rptPrintPattern.resources

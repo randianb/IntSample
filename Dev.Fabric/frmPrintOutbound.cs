@@ -66,7 +66,7 @@ namespace Dev.Fabric
                         report.DataSource = null;
 
                     reportViewer1.ViewMode = Telerik.ReportViewer.WinForms.ViewMode.PrintPreview;
-                    reportViewer1.ZoomMode = Telerik.ReportViewer.WinForms.ZoomMode.FullPage;
+                    reportViewer1.ZoomMode = Telerik.ReportViewer.WinForms.ZoomMode.PageWidth;
                     reportViewer1.RefreshReport();
                 }
             }

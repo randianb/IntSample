@@ -106,6 +106,8 @@
             this.btnProductEmbroidery = new Telerik.WinControls.UI.RadButtonElement();
             this.btnProductSewing = new Telerik.WinControls.UI.RadButtonElement();
             this.btnProductInspection = new Telerik.WinControls.UI.RadButtonElement();
+            this.radRibbonBarGroup16 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.ProductionReport = new Telerik.WinControls.UI.RadButtonElement();
             this.ribbonTab6 = new Telerik.WinControls.UI.RibbonTab();
             this.radRibbonBarGroup11 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.btnOutboundFabric = new Telerik.WinControls.UI.RadButtonElement();
@@ -302,15 +304,15 @@
             // 
             // ddlNewOrderBuyer
             // 
-            this.ddlNewOrderBuyer.Location = new System.Drawing.Point(48, 483);
+            this.ddlNewOrderBuyer.Location = new System.Drawing.Point(48, 361);
             this.ddlNewOrderBuyer.Name = "ddlNewOrderBuyer";
             this.ddlNewOrderBuyer.Size = new System.Drawing.Size(243, 20);
-            this.ddlNewOrderBuyer.TabIndex = 18;
+            this.ddlNewOrderBuyer.TabIndex = 20;
             // 
             // radLabel9
             // 
             this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.radLabel9.Location = new System.Drawing.Point(48, 447);
+            this.radLabel9.Location = new System.Drawing.Point(48, 325);
             this.radLabel9.Name = "radLabel9";
             this.radLabel9.Size = new System.Drawing.Size(129, 29);
             this.radLabel9.TabIndex = 17;
@@ -319,45 +321,45 @@
             // enableSearchRow
             // 
             this.enableSearchRow.AutoSize = true;
-            this.enableSearchRow.Location = new System.Drawing.Point(48, 382);
+            this.enableSearchRow.Location = new System.Drawing.Point(558, 116);
             this.enableSearchRow.Name = "enableSearchRow";
             this.enableSearchRow.Size = new System.Drawing.Size(124, 17);
-            this.enableSearchRow.TabIndex = 15;
+            this.enableSearchRow.TabIndex = 19;
             this.enableSearchRow.Text = "Enable Search Row";
             this.enableSearchRow.UseVisualStyleBackColor = true;
             // 
             // enablePagingGV
             // 
             this.enablePagingGV.AutoSize = true;
-            this.enablePagingGV.Location = new System.Drawing.Point(48, 350);
+            this.enablePagingGV.Location = new System.Drawing.Point(558, 84);
             this.enablePagingGV.Name = "enablePagingGV";
             this.enablePagingGV.Size = new System.Drawing.Size(148, 17);
-            this.enablePagingGV.TabIndex = 16;
+            this.enablePagingGV.TabIndex = 18;
             this.enablePagingGV.Text = "Enable Paging Gridview";
             this.enablePagingGV.UseVisualStyleBackColor = true;
             // 
             // retypePass
             // 
             this.retypePass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.retypePass.Location = new System.Drawing.Point(155, 205);
+            this.retypePass.Location = new System.Drawing.Point(194, 205);
             this.retypePass.Name = "retypePass";
             this.retypePass.PasswordChar = '*';
             this.retypePass.Size = new System.Drawing.Size(136, 20);
-            this.retypePass.TabIndex = 11;
+            this.retypePass.TabIndex = 16;
             // 
             // newPass
             // 
             this.newPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.newPass.Location = new System.Drawing.Point(155, 168);
+            this.newPass.Location = new System.Drawing.Point(194, 168);
             this.newPass.Name = "newPass";
             this.newPass.PasswordChar = '*';
             this.newPass.Size = new System.Drawing.Size(136, 20);
-            this.newPass.TabIndex = 12;
+            this.newPass.TabIndex = 15;
             // 
             // txtUsername
             // 
             this.txtUsername.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtUsername.Location = new System.Drawing.Point(155, 89);
+            this.txtUsername.Location = new System.Drawing.Point(194, 89);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.ReadOnly = true;
             this.txtUsername.Size = new System.Drawing.Size(136, 20);
@@ -365,7 +367,7 @@
             // 
             // originalPass
             // 
-            this.originalPass.Location = new System.Drawing.Point(155, 131);
+            this.originalPass.Location = new System.Drawing.Point(194, 131);
             this.originalPass.Name = "originalPass";
             this.originalPass.PasswordChar = '*';
             this.originalPass.Size = new System.Drawing.Size(136, 20);
@@ -381,10 +383,10 @@
             // 
             // btnChangePass
             // 
-            this.btnChangePass.Location = new System.Drawing.Point(155, 242);
+            this.btnChangePass.Location = new System.Drawing.Point(194, 242);
             this.btnChangePass.Name = "btnChangePass";
             this.btnChangePass.Size = new System.Drawing.Size(110, 24);
-            this.btnChangePass.TabIndex = 10;
+            this.btnChangePass.TabIndex = 17;
             this.btnChangePass.Text = "Change";
             this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
             // 
@@ -399,7 +401,7 @@
             // radLabel8
             // 
             this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.radLabel8.Location = new System.Drawing.Point(48, 305);
+            this.radLabel8.Location = new System.Drawing.Point(558, 39);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(82, 29);
             this.radLabel8.TabIndex = 6;
@@ -778,7 +780,7 @@
             this.btnFabricInbound.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricInbound.Name = "btnFabricInbound";
             this.btnFabricInbound.Tag = "27";
-            this.btnFabricInbound.Text = "Inbound";
+            this.btnFabricInbound.Text = "In";
             this.btnFabricInbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricInbound.TextWrap = true;
             this.btnFabricInbound.Click += new System.EventHandler(this.btnFabricInbound_Click);
@@ -789,7 +791,7 @@
             this.btnFabricOutbound.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricOutbound.Name = "btnFabricOutbound";
             this.btnFabricOutbound.Tag = "28";
-            this.btnFabricOutbound.Text = "Outbound";
+            this.btnFabricOutbound.Text = "Out";
             this.btnFabricOutbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricOutbound.TextWrap = true;
             this.btnFabricOutbound.Click += new System.EventHandler(this.btnFabricOutbound_Click);
@@ -844,7 +846,7 @@
             this.btnFabricReportInbound.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricReportInbound.Name = "btnFabricReportInbound";
             this.btnFabricReportInbound.Tag = "32";
-            this.btnFabricReportInbound.Text = "Inbound";
+            this.btnFabricReportInbound.Text = "In";
             this.btnFabricReportInbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricReportInbound.TextWrap = true;
             this.btnFabricReportInbound.Click += new System.EventHandler(this.btnFabricReportInbound_Click);
@@ -855,7 +857,7 @@
             this.btnFabricReportOutbound.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnFabricReportOutbound.Name = "btnFabricReportOutbound";
             this.btnFabricReportOutbound.Tag = "33";
-            this.btnFabricReportOutbound.Text = "Outbound";
+            this.btnFabricReportOutbound.Text = "Out";
             this.btnFabricReportOutbound.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFabricReportOutbound.TextWrap = true;
             this.btnFabricReportOutbound.Click += new System.EventHandler(this.btnFabricReportOutbound_Click);
@@ -935,12 +937,14 @@
             this.btnPatternReportControl.Tag = "38";
             this.btnPatternReportControl.Text = "Control of Pattern";
             this.btnPatternReportControl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPatternReportControl.Click += new System.EventHandler(this.btnPatternReportControl_Click);
             // 
             // ribbonTab5
             // 
             this.ribbonTab5.IsSelected = false;
             this.ribbonTab5.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radRibbonBarGroup10});
+            this.radRibbonBarGroup10,
+            this.radRibbonBarGroup16});
             this.ribbonTab5.Name = "ribbonTab5";
             this.ribbonTab5.Text = "Production";
             // 
@@ -1010,13 +1014,30 @@
             this.btnProductInspection.TextWrap = true;
             this.btnProductInspection.Click += new System.EventHandler(this.btnProductInspection_Click);
             // 
+            // radRibbonBarGroup16
+            // 
+            this.radRibbonBarGroup16.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.ProductionReport});
+            this.radRibbonBarGroup16.Name = "radRibbonBarGroup16";
+            this.radRibbonBarGroup16.Text = "Reports";
+            // 
+            // ProductionReport
+            // 
+            this.ProductionReport.Image = global::SampleApp.Properties.Resources.report;
+            this.ProductionReport.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ProductionReport.Name = "ProductionReport";
+            this.ProductionReport.Tag = "82";
+            this.ProductionReport.Text = "Production";
+            this.ProductionReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ProductionReport.Click += new System.EventHandler(this.ProductionReport_Click);
+            // 
             // ribbonTab6
             // 
             this.ribbonTab6.IsSelected = false;
             this.ribbonTab6.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup11});
             this.ribbonTab6.Name = "ribbonTab6";
-            this.ribbonTab6.Text = "Outbound";
+            this.ribbonTab6.Text = "Out";
             // 
             // radRibbonBarGroup11
             // 
@@ -1056,6 +1077,7 @@
             this.btnOutboundFinished.Text = "Finished";
             this.btnOutboundFinished.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOutboundFinished.TextWrap = true;
+            this.btnOutboundFinished.Click += new System.EventHandler(this.btnOutboundFinished_Click);
             // 
             // ribbonTab7
             // 
@@ -1297,5 +1319,7 @@
         private Telerik.WinControls.UI.RadDropDownList ddlNewOrderBuyer;
         private Telerik.WinControls.UI.RadLabel radLabel9;
         private Telerik.WinControls.UI.RadButtonElement btnLocation;
+        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup16;
+        private Telerik.WinControls.UI.RadButtonElement ProductionReport;
     }
 }

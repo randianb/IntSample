@@ -60,7 +60,8 @@ namespace Dev.Production
             InitializeComponent();
             __main__ = main;            // MDI 연결 
             _gv1 = this.gvMain;  // 그리드뷰 일반화를 위해 변수 별도 저장
-            _workOrderIdx = WorkOrderIdx; 
+            _workOrderIdx = WorkOrderIdx;
+            
         }
 
         /// <summary>
@@ -424,14 +425,13 @@ namespace Dev.Production
 
             // Username
             lstUser.Add(new CustomerName(0, "", 0));
-            _dt = CommonController.Getlist(CommonValues.KeyName.User).Tables[0];
+            _dt = CommonController.Getlist(CommonValues.KeyName.TDUser).Tables[0];
 
             foreach (DataRow row in _dt.Rows)
             {
                 lstUser.Add(new CustomerName(Convert.ToInt32(row["UserIdx"]), row["UserName"].ToString(), Convert.ToInt32(row["DeptIdx"])));
             }
-
-
+            
             // 오더상태 (CommonValues정의)
             lstStatus.Add(new CodeContents(0, CommonValues.DicWorkOrderStatus[0], ""));
             lstStatus.Add(new CodeContents(1, CommonValues.DicWorkOrderStatus[1], ""));
@@ -537,8 +537,8 @@ namespace Dev.Production
                 txtResult.Text = "";
                 txtAction.Text = "";
                 lblTDName.Text = "";
-                ddlStatus2.SelectedValue = 0; 
-
+                ddlStatus2.SelectedValue = 0;
+                
                 _ds1 = Controller.Inspecting.Getlist(Idx);
 
                 if (_ds1 != null)
@@ -547,6 +547,10 @@ namespace Dev.Production
                     txtAction.Text = _ds1.Tables[0].Rows[0]["Action"].ToString();
                     lblTDName.Text = "T/D Name: " + _ds1.Tables[0].Rows[0]["TDName"].ToString();
                     ddlStatus2.SelectedValue = Convert.ToInt32(_ds1.Tables[0].Rows[0]["Status"].ToString());
+
+                    SetDefaultFontPropertiesToEditor(txtResult);
+                    SetDefaultFontPropertiesToEditor(txtAction);
+
                 }
             }
             catch (Exception ex)
@@ -629,6 +633,28 @@ namespace Dev.Production
                 element.Font = f;
             }
             
+        }
+
+        public void SetDefaultFontPropertiesToEditor(RadRichTextEditor editor)
+        {
+            editor.Document.Selection.SelectAll();
+            editor.RichTextBoxElement.ChangeFontFamily(new Telerik.WinControls.RichTextEditor.UI.FontFamily("Segoe UI"));
+            editor.RichTextBoxElement.ChangeFontSize(Unit.PointToDip(9));
+            editor.RichTextBoxElement.ChangeFontStyle(Telerik.WinControls.RichTextEditor.UI.FontStyles.Normal);
+            editor.RichTextBoxElement.ChangeFontWeight(Telerik.WinControls.RichTextEditor.UI.FontWeights.Normal);
+
+            editor.RichTextBoxElement.ChangeParagraphLineSpacingType(LineSpacingType.Auto);
+            editor.RichTextBoxElement.ChangeParagraphLineSpacing(0.5);
+            editor.RichTextBoxElement.ChangeParagraphSpacingAfter(12);
+            
+            editor.DocumentInheritsDefaultStyleSettings = true;
+
+            Telerik.WinForms.Documents.DocumentPosition startPosition = editor.Document.CaretPosition;
+            Telerik.WinForms.Documents.DocumentPosition endPosition = new Telerik.WinForms.Documents.DocumentPosition(startPosition);
+            startPosition.MoveToCurrentWordEnd();
+            endPosition.MoveToCurrentWordEnd();
+            editor.Document.Selection.AddSelectionStart(startPosition);
+            editor.Document.Selection.AddSelectionEnd(endPosition);
         }
 
         /// <summary>

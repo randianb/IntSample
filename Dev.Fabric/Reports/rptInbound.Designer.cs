@@ -240,7 +240,7 @@ namespace Dev.Fabric.Reports
             this.textBox27.Style.Font.Bold = true;
             this.textBox27.Style.Font.Name = "Segoe UI";
             this.textBox27.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(14D);
-            this.textBox27.Value = "Inbound";
+            this.textBox27.Value = "Fabric IN";
             // 
             // pageHeaderSection1
             // 
@@ -387,7 +387,7 @@ namespace Dev.Fabric.Reports
             this.textBox3.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox3.Style.Visible = true;
             this.textBox3.StyleName = "Office.TableBody";
-            this.textBox3.Value = "Inbound#";
+            this.textBox3.Value = "In #";
             // 
             // textBox6
             // 

@@ -1,6 +1,7 @@
 ﻿using Dev.Codes;
 using Dev.Fabric;
 using Dev.Options;
+using Dev.Out;
 using Dev.Pattern;
 using Dev.Production;
 using Dev.Sales;
@@ -291,7 +292,7 @@ namespace SampleApp
 
             // Production
             lstMenu.Add(39, btnProductCutting); lstMenu.Add(40, btnProductPrinting); lstMenu.Add(41, btnProductEmbroidery); lstMenu.Add(42, btnProductSewing);
-            lstMenu.Add(43, btnProductInspection);
+            lstMenu.Add(43, btnProductInspection); lstMenu.Add(82, ProductionReport);
 
             // Outbound
             lstMenu.Add(44, btnOutboundFabric); lstMenu.Add(45, btnOutboundCutted); lstMenu.Add(46, btnOutboundFinished); 
@@ -579,9 +580,9 @@ namespace SampleApp
 
         private void btnFabricCodelist_Click(object sender, EventArgs e)
         {
-            if (Close_All_Children("rptFabricCode"))
+            if (Close_All_Children("frmFabricCode"))
             {
-                rptFabricCode frm = new rptFabricCode();
+                frmFabricCode frm = new frmFabricCode();
                 frm.Text = "Fabric Code";
                 frm.MdiParent = this;
                 frm.Show();
@@ -685,6 +686,39 @@ namespace SampleApp
             {
                 InspectionMain frm = new InspectionMain(this, "");
                 frm.Text = "Inspection Main";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btnPatternReportControl_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("PrintPattern"))
+            {
+                PrintPattern frm = new PrintPattern();
+                frm.Text = "PrintPattern";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btnOutboundFinished_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("FinishedMain"))
+            {
+                FinishedMain frm = new FinishedMain(this, "");
+                frm.Text = "FinishedMain";
+                frm.MdiParent = this; 
+                frm.Show();
+            }
+        }
+
+        private void ProductionReport_Click(object sender, EventArgs e)
+        {
+            if (Close_All_Children("PrintPattern"))
+            {
+                PrintPattern frm = new PrintPattern();
+                frm.Text = "PrintPattern";
                 frm.MdiParent = this;
                 frm.Show();
             }

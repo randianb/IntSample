@@ -70,7 +70,7 @@ namespace Dev.Data
         /// <summary>
         /// Update
         /// </summary>
-        public static bool Update(int Idx, int FabricIdx,
+        public static bool Update(int Idx, int FabricIdx, int FabricType, 
             double Yds, string Remark
             )
         {
@@ -89,7 +89,10 @@ namespace Dev.Data
                 
                 _cmd.Parameters.Add("@FabricIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@FabricIdx"].Value = FabricIdx;
-                
+
+                _cmd.Parameters.Add("@FabricType", SqlDbType.Int, 4);
+                _cmd.Parameters["@FabricType"].Value = FabricType;
+
                 _cmd.Parameters.Add("@Yds", SqlDbType.Float, 8);
                 _cmd.Parameters["@Yds"].Value = Yds;
 

@@ -35,16 +35,19 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls.UI, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmbroideryData.cs" />
     <Compile Include="InspectingData.cs" />
+    <Compile Include="OutFinishedData.cs" />
     <Compile Include="SewingData.cs" />
     <Compile Include="PrintingData.cs" />
     <Compile Include="DataSetSizeGroup.Designer.cs">

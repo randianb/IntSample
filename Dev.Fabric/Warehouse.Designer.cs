@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.gvMain = new Telerik.WinControls.UI.RadGridView();
@@ -42,15 +42,10 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.ddlBuyer = new Telerik.WinControls.UI.RadDropDownList();
-            this.ddlFabric = new Telerik.WinControls.UI.RadDropDownList();
-            this.ddlFabricType = new Telerik.WinControls.UI.RadDropDownList();
-            this.txtLotno = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.btnSearch = new Telerik.WinControls.UI.RadButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.ddlRack1 = new Telerik.WinControls.UI.RadDropDownList();
             this.ddlRack2 = new Telerik.WinControls.UI.RadDropDownList();
@@ -60,17 +55,22 @@
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.ddlColor = new Telerik.WinControls.UI.RadDropDownList();
-            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.dtInboundDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.txtInboundno = new Telerik.WinControls.UI.RadTextBox();
-            this.documentContainer1 = new Telerik.WinControls.UI.Docking.DocumentContainer();
-            this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.ddlFabricType = new Telerik.WinControls.UI.RadDropDownList();
+            this.ddlFabric = new Telerik.WinControls.UI.RadDropDownList();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtLotno = new Telerik.WinControls.UI.RadTextBox();
+            this.dtInboundDate = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
+            this.btnSearch = new Telerik.WinControls.UI.RadButton();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSearch2 = new Telerik.WinControls.UI.RadButton();
+            this.documentContainer1 = new Telerik.WinControls.UI.Docking.DocumentContainer();
+            this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
             this.up_Customers_List_BuyerTableAdapter1 = new Dev.Sales.dsOrderPlanTableAdapters.up_Customers_List_BuyerTableAdapter();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain)).BeginInit();
@@ -87,15 +87,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlBuyer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlFabricType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLotno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRack1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRack2)).BeginInit();
@@ -105,19 +100,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlColor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtInboundDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInboundno)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabricType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).BeginInit();
+            this.tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLotno)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtInboundDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            this.tableLayoutPanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
+            this.tableLayoutPanel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearch2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).BeginInit();
             this.documentContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
             this.documentTabStrip1.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSearch2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,7 +167,7 @@
             this.gvMain.MasterTemplate.MultiSelect = true;
             this.gvMain.MasterTemplate.PageSize = 50;
             this.gvMain.MasterTemplate.SelectionMode = Telerik.WinControls.UI.GridViewSelectionMode.CellSelect;
-            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvMain.Name = "gvMain";
             this.gvMain.ReadOnly = true;
             this.gvMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -199,6 +199,7 @@
             this.radDock1.CausesValidation = false;
             this.radDock1.Controls.Add(this.toolTabStrip4);
             this.radDock1.Controls.Add(this.documentContainer1);
+            this.radDock1.Cursor = System.Windows.Forms.Cursors.HSplit;
             this.radDock1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radDock1.IsCleanUpTarget = true;
             this.radDock1.Location = new System.Drawing.Point(0, 0);
@@ -339,16 +340,6 @@
             this.radLabel5.TabIndex = 3;
             this.radLabel5.Text = "Fabric";
             // 
-            // radLabel4
-            // 
-            this.radLabel4.AutoSize = false;
-            this.radLabel4.ForeColor = System.Drawing.Color.Black;
-            this.radLabel4.Location = new System.Drawing.Point(231, 3);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(151, 15);
-            this.radLabel4.TabIndex = 3;
-            this.radLabel4.Text = "Lot#";
-            // 
             // ddlBuyer
             // 
             this.ddlBuyer.Location = new System.Drawing.Point(132, 24);
@@ -361,32 +352,6 @@
             this.ddlBuyer.TabIndex = 10;
             this.ddlBuyer.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlBuyer_SelectedIndexChanged);
             // 
-            // ddlFabric
-            // 
-            this.ddlFabric.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.ddlFabric.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ddlFabric.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlFabric.Location = new System.Drawing.Point(3, 3);
-            this.ddlFabric.Name = "ddlFabric";
-            this.ddlFabric.Size = new System.Drawing.Size(221, 20);
-            this.ddlFabric.TabIndex = 5;
-            // 
-            // ddlFabricType
-            // 
-            this.ddlFabricType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ddlFabricType.Location = new System.Drawing.Point(230, 3);
-            this.ddlFabricType.Name = "ddlFabricType";
-            this.ddlFabricType.Size = new System.Drawing.Size(117, 20);
-            this.ddlFabricType.TabIndex = 12;
-            // 
-            // txtLotno
-            // 
-            this.txtLotno.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLotno.Location = new System.Drawing.Point(231, 3);
-            this.txtLotno.Name = "txtLotno";
-            this.txtLotno.Size = new System.Drawing.Size(222, 20);
-            this.txtLotno.TabIndex = 11;
-            // 
             // radLabel7
             // 
             this.radLabel7.AutoSize = false;
@@ -395,7 +360,7 @@
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(123, 14);
             this.radLabel7.TabIndex = 13;
-            this.radLabel7.Text = "Inbound#";
+            this.radLabel7.Text = "IN #";
             // 
             // radLabel11
             // 
@@ -416,15 +381,6 @@
             this.radLabel8.Size = new System.Drawing.Size(344, 14);
             this.radLabel8.TabIndex = 13;
             this.radLabel8.Text = "Rack#";
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(1179, 24);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(102, 20);
-            this.btnSearch.TabIndex = 7;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -525,21 +481,70 @@
             this.ddlColor.Size = new System.Drawing.Size(154, 24);
             this.ddlColor.TabIndex = 6;
             // 
-            // radLabel12
+            // txtInboundno
             // 
-            this.radLabel12.Location = new System.Drawing.Point(3, 3);
-            this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(75, 18);
-            this.radLabel12.TabIndex = 22;
-            this.radLabel12.Text = "Inbound Date";
-            this.radLabel12.DoubleClick += new System.EventHandler(this.radLabel12_DoubleClick);
+            this.txtInboundno.Location = new System.Drawing.Point(3, 70);
+            this.txtInboundno.Name = "txtInboundno";
+            this.txtInboundno.Size = new System.Drawing.Size(123, 20);
+            this.txtInboundno.TabIndex = 15;
             // 
-            // radLabel9
+            // tableLayoutPanel4
             // 
-            this.radLabel9.Location = new System.Drawing.Point(1179, 70);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(2, 2);
-            this.radLabel9.TabIndex = 13;
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel4.Controls.Add(this.ddlFabricType, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.ddlFabric, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(370, 21);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(350, 26);
+            this.tableLayoutPanel4.TabIndex = 24;
+            // 
+            // ddlFabricType
+            // 
+            this.ddlFabricType.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ddlFabricType.Location = new System.Drawing.Point(230, 3);
+            this.ddlFabricType.Name = "ddlFabricType";
+            this.ddlFabricType.Size = new System.Drawing.Size(117, 20);
+            this.ddlFabricType.TabIndex = 12;
+            // 
+            // ddlFabric
+            // 
+            this.ddlFabric.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ddlFabric.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ddlFabric.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlFabric.Location = new System.Drawing.Point(3, 3);
+            this.ddlFabric.Name = "ddlFabric";
+            this.ddlFabric.Size = new System.Drawing.Size(221, 20);
+            this.ddlFabric.TabIndex = 5;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.txtLotno, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.dtInboundDate, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(720, 21);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(456, 26);
+            this.tableLayoutPanel6.TabIndex = 25;
+            // 
+            // txtLotno
+            // 
+            this.txtLotno.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLotno.Location = new System.Drawing.Point(231, 3);
+            this.txtLotno.Name = "txtLotno";
+            this.txtLotno.Size = new System.Drawing.Size(222, 20);
+            this.txtLotno.TabIndex = 11;
             // 
             // dtInboundDate
             // 
@@ -553,12 +558,84 @@
             this.dtInboundDate.TabStop = false;
             this.dtInboundDate.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
-            // txtInboundno
+            // radLabel9
             // 
-            this.txtInboundno.Location = new System.Drawing.Point(3, 70);
-            this.txtInboundno.Name = "txtInboundno";
-            this.txtInboundno.Size = new System.Drawing.Size(123, 20);
-            this.txtInboundno.TabIndex = 15;
+            this.radLabel9.Location = new System.Drawing.Point(1179, 70);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(2, 2);
+            this.radLabel9.TabIndex = 13;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.radLabel4, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.radLabel12, 0, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(720, 0);
+            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(456, 21);
+            this.tableLayoutPanel7.TabIndex = 26;
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.AutoSize = false;
+            this.radLabel4.ForeColor = System.Drawing.Color.Black;
+            this.radLabel4.Location = new System.Drawing.Point(231, 3);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(151, 15);
+            this.radLabel4.TabIndex = 3;
+            this.radLabel4.Text = "Lot#";
+            // 
+            // radLabel12
+            // 
+            this.radLabel12.Location = new System.Drawing.Point(3, 3);
+            this.radLabel12.Name = "radLabel12";
+            this.radLabel12.Size = new System.Drawing.Size(75, 15);
+            this.radLabel12.TabIndex = 22;
+            this.radLabel12.Text = "IN Date";
+            this.radLabel12.DoubleClick += new System.EventHandler(this.radLabel12_DoubleClick);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(1179, 24);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(102, 20);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 3;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.27193F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.95614F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel8.Controls.Add(this.btnSearch2, 0, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(720, 67);
+            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 1;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(456, 30);
+            this.tableLayoutPanel8.TabIndex = 27;
+            // 
+            // btnSearch2
+            // 
+            this.btnSearch2.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnSearch2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSearch2.ForeColor = System.Drawing.Color.White;
+            this.btnSearch2.Location = new System.Drawing.Point(3, 3);
+            this.btnSearch2.Name = "btnSearch2";
+            this.btnSearch2.Size = new System.Drawing.Size(205, 24);
+            this.btnSearch2.TabIndex = 0;
+            this.btnSearch2.Text = "Recent Inbound (~2Weeks)";
+            this.btnSearch2.Click += new System.EventHandler(this.btnSearch2_Click);
             // 
             // documentContainer1
             // 
@@ -590,82 +667,6 @@
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
             this.documentTabStrip1.TabStripVisible = false;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel4.Controls.Add(this.ddlFabricType, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.ddlFabric, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(370, 21);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(350, 26);
-            this.tableLayoutPanel4.TabIndex = 24;
-            // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.txtLotno, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.dtInboundDate, 0, 0);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(720, 21);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 1;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(456, 26);
-            this.tableLayoutPanel6.TabIndex = 25;
-            // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.ColumnCount = 2;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Controls.Add(this.radLabel4, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.radLabel12, 0, 0);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(720, 0);
-            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 1;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(456, 21);
-            this.tableLayoutPanel7.TabIndex = 26;
-            // 
-            // tableLayoutPanel8
-            // 
-            this.tableLayoutPanel8.ColumnCount = 3;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.27193F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.95614F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel8.Controls.Add(this.btnSearch2, 0, 0);
-            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(720, 67);
-            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 1;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(456, 30);
-            this.tableLayoutPanel8.TabIndex = 27;
-            // 
-            // btnSearch2
-            // 
-            this.btnSearch2.BackColor = System.Drawing.Color.ForestGreen;
-            this.btnSearch2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSearch2.ForeColor = System.Drawing.Color.White;
-            this.btnSearch2.Location = new System.Drawing.Point(3, 3);
-            this.btnSearch2.Name = "btnSearch2";
-            this.btnSearch2.Size = new System.Drawing.Size(205, 24);
-            this.btnSearch2.TabIndex = 0;
-            this.btnSearch2.Text = "Recent Inbound (~2Weeks)";
-            this.btnSearch2.Click += new System.EventHandler(this.btnSearch2_Click);
             // 
             // up_Customers_List_BuyerTableAdapter1
             // 
@@ -703,15 +704,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlBuyer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlFabricType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLotno)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRack1)).EndInit();
@@ -722,22 +718,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlColor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtInboundDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInboundno)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabricType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).EndInit();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLotno)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtInboundDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
+            this.tableLayoutPanel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearch2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer1)).EndInit();
             this.documentContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();
             this.documentTabStrip1.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel7.PerformLayout();
-            this.tableLayoutPanel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnSearch2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

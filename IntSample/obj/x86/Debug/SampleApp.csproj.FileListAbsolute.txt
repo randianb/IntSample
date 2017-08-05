@@ -134,3 +134,6 @@ D:\git\IntSample\IntSample\bin\Debug\Telerik.WinControls.RichTextEditor.dll
 D:\git\IntSample\IntSample\bin\Debug\Telerik.WinControls.RichTextEditor.xml
 D:\git\IntSample\IntSample\bin\Debug\Dev.Production.dll
 D:\git\IntSample\IntSample\bin\Debug\Dev.Production.pdb
+D:\git\IntSample\IntSample\bin\Debug\Int.Program.dll
+D:\git\IntSample\IntSample\bin\Debug\Dev.Finish.dll
+D:\git\IntSample\IntSample\bin\Debug\Dev.Finish.pdb

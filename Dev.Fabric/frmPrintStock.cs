@@ -26,7 +26,7 @@ namespace Dev.Fabric
         private List<CodeContents> lstStatus = new List<CodeContents>();        // 
         private List<CodeContents> lstOutStatus = new List<CodeContents>();        // 
         private List<CustomerName> lstBuyer = new List<CustomerName>();        // 
-        private List<CodeContents> lstColor = new List<CodeContents>();        //  
+        //private List<CodeContents> lstColor = new List<CodeContents>();        //  
         private List<Controller.Fabric> lstFabric = new List<Controller.Fabric>();        // 
         private List<CodeContents> lstFabricType = new List<CodeContents>();        // 
         private List<CodeContents> lstRack1 = new List<CodeContents>();       // 
@@ -85,15 +85,15 @@ namespace Dev.Fabric
                                             Convert.ToInt32(row["Classification"])));
             }
 
-            // Color 
-            _dt = Codes.Controller.Color.GetUselist().Tables[0];
-            lstColor.Add(new CodeContents(0, "", ""));
-            foreach (DataRow row in _dt.Rows)
-            {
-                lstColor.Add(new CodeContents(Convert.ToInt32(row["ColorIdx"]),
-                                            row["ColorName"].ToString(),
-                                            ""));
-            }
+            //// Color 
+            //_dt = Codes.Controller.Color.GetUselist().Tables[0];
+            //lstColor.Add(new CodeContents(0, "", ""));
+            //foreach (DataRow row in _dt.Rows)
+            //{
+            //    lstColor.Add(new CodeContents(Convert.ToInt32(row["ColorIdx"]),
+            //                                row["ColorName"].ToString(),
+            //                                ""));
+            //}
 
             // Fabric IN
             _dt = CommonController.Getlist(CommonValues.KeyName.Wash).Tables[0];
@@ -203,12 +203,12 @@ namespace Dev.Fabric
             ddlBuyer.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
             // 
-            ddlColor.DataSource = lstColor;
-            ddlColor.DisplayMember = "Contents";
-            ddlColor.ValueMember = "Contents";
-            ddlColor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            ddlColor.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlColor.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+            //ddlColor.DataSource = lstColor;
+            //ddlColor.DisplayMember = "Contents";
+            //ddlColor.ValueMember = "Contents";
+            //ddlColor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //ddlColor.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            //ddlColor.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
             // 
             ddlFabric.DataSource = dataSetSizeGroup.DataTableFabric;
@@ -314,7 +314,7 @@ namespace Dev.Fabric
                         report.DataSource = null;
 
                     reportViewer1.ViewMode = Telerik.ReportViewer.WinForms.ViewMode.PrintPreview;
-                    reportViewer1.ZoomMode = Telerik.ReportViewer.WinForms.ZoomMode.FullPage;
+                    reportViewer1.ZoomMode = Telerik.ReportViewer.WinForms.ZoomMode.PageWidth;
                     reportViewer1.RefreshReport();
                 }
             }

@@ -33,6 +33,7 @@ namespace Dev.Codes
         private Dictionary<int, List<CodeContents>> sizeName =
             new Dictionary<int, List<CodeContents>>(); 
         private string _layoutfile = "/GVLayoutSizeGroup.xml";
+        private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 48, 0);   // 패키지번호, 프로그램번호, 윈도우번호
 
         #endregion
 
@@ -90,12 +91,12 @@ namespace Dev.Codes
 
             // 오더 신규 입력
             RadMenuItem mnuNew = new RadMenuItem("New Size Group");
-            mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
+            //mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
             mnuNew.Click += new EventHandler(mnuNew_Click);
 
             // 오더 삭제
             RadMenuItem mnuDel = new RadMenuItem("Remove Size Group");
-            mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
+            //mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
             mnuDel.Click += new EventHandler(mnuDel_Click);
 
             // 열 숨기기
@@ -315,21 +316,31 @@ namespace Dev.Codes
                 string str = "";
                 //_gv1.EndEdit();
 
-                // 삭제하기전 삭제될 데이터 확인
-                foreach (GridViewRowInfo row in _gv1.SelectedRows)
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2, 센터: 3, 부서: 4
+                int _mode_ = 2;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
                 {
-                    if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["SizeGroupIdx"].Value).ToString();
-                    else str += "," + Convert.ToInt32(row.Cells["SizeGroupIdx"].Value).ToString();
+                    // 삭제하기전 삭제될 데이터 확인
+                    foreach (GridViewRowInfo row in _gv1.SelectedRows)
+                    {
+                        if (string.IsNullOrEmpty(str)) str = Convert.ToInt32(row.Cells["SizeGroupIdx"].Value).ToString();
+                        else str += "," + Convert.ToInt32(row.Cells["SizeGroupIdx"].Value).ToString();
+                    }
+
+                    // 해당 자료 삭제여부 확인후, 
+                    if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
+                        MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+                    {
+                        // 삭제후 새로고침
+                        _bRtn = Controller.SizeGroup.Delete(str);
+                        RefleshWithCondition();
+                    }
                 }
 
-                // 해당 자료 삭제여부 확인후, 
-                if (RadMessageBox.Show("Do you want to delete this item?\n(ID: " + str + ")", "Confirm",
-                    MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
-                {
-                    // 삭제후 새로고침
-                    _bRtn = Controller.SizeGroup.Delete(str);
-                    RefleshWithCondition();
-                }
+                
             }
             catch (Exception ex)
             {
@@ -346,7 +357,7 @@ namespace Dev.Codes
         {
             try
             {
-                DataRow row = Controller.SizeGroup.Insert(0,"", 0, 0, 0, 0, 0, 0, 0, 0, 1);
+                DataRow row = Controller.SizeGroup.Insert(0,"", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
 
                 RefleshWithCondition();
                 SetCurrentRow(_gv1, Convert.ToInt32(row["LastIdx"]));   // 신규입력된 행번호로 이동

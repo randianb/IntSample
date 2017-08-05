@@ -12,6 +12,7 @@ namespace Dev.Controller
         private int _idx;
         private int _orderIdx;
         private int _fabricIdx;
+        private int _fabricType;
 
         private double _yds;
         private string _remark; 
@@ -43,6 +44,12 @@ namespace Dev.Controller
         }
 
         //
+        public int FabricType
+        {
+            get { return _fabricType; }
+            set { _fabricType = value; }
+        }
+        //
         public double Yds
         {
             get { return _yds; }
@@ -67,7 +74,8 @@ namespace Dev.Controller
                 _idx = Convert.ToInt32(_row["Idx"]);
                 if (_row["OrderIdx"] != DBNull.Value) _orderIdx = Convert.ToInt32(_row["OrderIdx"]);
                 if (_row["FabricIdx"] != DBNull.Value) _fabricIdx = Convert.ToInt32(_row["FabricIdx"]);
-                
+                if (_row["FabricType"] != DBNull.Value) _fabricType = Convert.ToInt32(_row["FabricType"]);
+
                 if (_row["Yds"] != DBNull.Value) _yds = Convert.ToDouble(_row["Yds"]);
                 if (_row["Remark"] != DBNull.Value) _remark = Convert.ToString(_row["Remark"]);
                 
@@ -83,6 +91,7 @@ namespace Dev.Controller
             _idx = 0;
             _orderIdx = 0;
             _fabricIdx = 0;
+            _fabricType = 0;
 
             _yds = 0f;
             _remark = "";
@@ -113,7 +122,7 @@ namespace Dev.Controller
         public bool Update()
         {
             bool blRtn;
-            blRtn = Data.OrderFabricData.Update(_idx, _fabricIdx,
+            blRtn = Data.OrderFabricData.Update(_idx, _fabricIdx, _fabricType, 
                 _yds, _remark
                 );
             return blRtn;

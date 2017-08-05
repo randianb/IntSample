@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using Telerik.WinControls;
 
 namespace Dev.Data
 {
@@ -26,108 +27,59 @@ namespace Dev.Data
         ///// <summary>
         ///// Insert
         ///// </summary>
-        //public static DataRow Insert(int OrderIdx, string WorkOrderIdx, int OrdSizeIdx, DateTime TechpackDate, DateTime RequestedDate,
-        //    int Requested, string Comments, string Attached1, string Attached2, string Attached3, string Attached4, string Attached5,
-        //    string AttachedUrl1, string AttachedUrl2, string AttachedUrl3, string AttachedUrl4, string AttachedUrl5, int Handler
-        //    )
-        //{
-        //    try
-        //    {
-        //        _cmd = new SqlCommand();
-        //        _conn = new SqlConnection(_strConn);
-        //        _conn.Open();
-        //        _ds = new DataSet();
-        //        _adapter = new SqlDataAdapter();
+        public static DataRow Insert(int OrderIdx, int OrdSizeIdx)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
 
-        //        _cmd.CommandText = "up_Pattern_Insert";
-        //        _cmd.CommandType = CommandType.StoredProcedure;
-        //        _cmd.Connection = _conn;
-                
-        //        _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
-        //        _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
+                _cmd.CommandText = "up_OrderType_Insert";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
 
-        //        _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
-        //        _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
 
-        //        _cmd.Parameters.Add("@OrdSizeIdx", SqlDbType.Int, 4);
-        //        _cmd.Parameters["@OrdSizeIdx"].Value = OrdSizeIdx;
-                
-        //        _cmd.Parameters.Add("@TechpackDate", SqlDbType.DateTime, 8);
-        //        _cmd.Parameters["@TechpackDate"].Value = TechpackDate;
-
-        //        _cmd.Parameters.Add("@RequestedDate", SqlDbType.DateTime, 8);
-        //        _cmd.Parameters["@RequestedDate"].Value = RequestedDate;
-
-        //        _cmd.Parameters.Add("@Requested", SqlDbType.Int, 4);
-        //        _cmd.Parameters["@Requested"].Value = Requested;
-                
-        //        _cmd.Parameters.Add("@Comments", SqlDbType.Text);
-        //        _cmd.Parameters["@Comments"].Value = Comments;
-
-        //        _cmd.Parameters.Add("@Attached1", SqlDbType.NVarChar, 50);
-        //        _cmd.Parameters["@Attached1"].Value = Attached1;
-
-        //        _cmd.Parameters.Add("@Attached2", SqlDbType.NVarChar, 50);
-        //        _cmd.Parameters["@Attached2"].Value = Attached2;
-
-        //        _cmd.Parameters.Add("@Attached3", SqlDbType.NVarChar, 50);
-        //        _cmd.Parameters["@Attached3"].Value = Attached3;
-
-        //        _cmd.Parameters.Add("@Attached4", SqlDbType.NVarChar, 50);
-        //        _cmd.Parameters["@Attached4"].Value = Attached4;
-
-        //        _cmd.Parameters.Add("@Attached5", SqlDbType.NVarChar, 50);
-        //        _cmd.Parameters["@Attached5"].Value = Attached5;
-
-        //        _cmd.Parameters.Add("@AttachedUrl1", SqlDbType.NVarChar, 255);
-        //        _cmd.Parameters["@AttachedUrl1"].Value = AttachedUrl1;
-
-        //        _cmd.Parameters.Add("@AttachedUrl2", SqlDbType.NVarChar, 255);
-        //        _cmd.Parameters["@AttachedUrl2"].Value = AttachedUrl2;
-
-        //        _cmd.Parameters.Add("@AttachedUrl3", SqlDbType.NVarChar, 255);
-        //        _cmd.Parameters["@AttachedUrl3"].Value = AttachedUrl3;
-
-        //        _cmd.Parameters.Add("@AttachedUrl4", SqlDbType.NVarChar, 255);
-        //        _cmd.Parameters["@AttachedUrl4"].Value = AttachedUrl4;
-
-        //        _cmd.Parameters.Add("@AttachedUrl5", SqlDbType.NVarChar, 255);
-        //        _cmd.Parameters["@AttachedUrl5"].Value = AttachedUrl5;
-
-        //        _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
-        //        _cmd.Parameters["@Handler"].Value = Handler;
+                _cmd.Parameters.Add("@OrdSizeIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrdSizeIdx"].Value = OrdSizeIdx;
 
 
-        //        _adapter.SelectCommand = _cmd;
-        //        _adapter.Fill(_ds);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message.ToString());
-        //    }
-        //    finally
-        //    {
-        //        _conn.Close();
-        //    }
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
 
-        //    // dataset 확인 및 결과 datarow 반환
-        //    if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
-        //    {
-        //        _dr = _ds.Tables[0].Rows[0];
-        //        return _dr;
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
-        
+            // dataset 확인 및 결과 datarow 반환
+            if (_ds!=null && _ds.Tables[0].Rows.Count > 0)
+            {
+                _dr = _ds.Tables[0].Rows[0];
+                return _dr;
+            }
+            else
+            {
+                return null;
+            }
+                        
+        }
+
         /// <summary>
         /// Update
         /// </summary>
         public static bool Update(int Idx, int type101, int type102, int type103,
             int type201, int type202, int type203, int type204, int type205, int type206, int type207, int type208, int type209, int type210,
-            int type211, int type212, int type213, int type214, int type215, int type216, int type217, int type218, int type219, int type220
+            int type211, int type212, int type213, int type214, int type215, int type216, int type217, int type218, int type219, int type220, 
+            int type221, int type222, int type223, int type224, int type225 
             )
         {
             try
@@ -217,7 +169,22 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@type220", SqlDbType.TinyInt, 1);
                 _cmd.Parameters["@type220"].Value = type220;
-                
+
+                _cmd.Parameters.Add("@type221", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@type221"].Value = type221;
+
+                _cmd.Parameters.Add("@type222", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@type222"].Value = type222;
+
+                _cmd.Parameters.Add("@type223", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@type223"].Value = type223;
+
+                _cmd.Parameters.Add("@type224", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@type224"].Value = type224;
+
+                _cmd.Parameters.Add("@type225", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@type225"].Value = type225;
+
                 #endregion
 
                 _rtn = _cmd.ExecuteNonQuery();
@@ -279,7 +246,48 @@ namespace Dev.Data
                 return null;
             }
         }
-        
+
+        public static DataSet Getlist(int OrderIdx)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_OrderType_List2";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
+                
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static DataSet Getlist(int OrderIdx, int OrdSizeIdx)
         {
             try

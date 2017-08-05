@@ -256,6 +256,7 @@
     <None Include="Resources\outbound2.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\report.png" />
     <None Include="Resources\shop-78-48.png" />
     <None Include="Resources\qrcode-48.png" />
     <None Include="Resources\history2.png" />
@@ -345,6 +346,10 @@
     <ProjectReference Include="..\Dev.Fabric\Dev.Fabric.csproj">
       <Project>{7b9273d5-cc8e-4db5-9494-b4cc37f9f25c}</Project>
       <Name>Dev.Fabric</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dev.Finish\Dev.Out.csproj">
+      <Project>{19532770-AF5B-4B4A-A90A-C9DE0DA4BB72}</Project>
+      <Name>Dev.Out</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dev.Options\Dev.Options.csproj">
       <Project>{cde30aec-043e-4b66-8803-6bb44120624f}</Project>

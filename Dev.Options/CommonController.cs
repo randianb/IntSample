@@ -75,7 +75,14 @@ namespace Dev.Options
                 // 유저명
                 case CommonValues.KeyName.User:
                     ds = Int.Users.Users.Getlist(UserInfo.DeptIdx); break;
-                    
+
+                case CommonValues.KeyName.AllUser:
+                    ds = Int.Users.Users.Getlist(0); break;
+
+                case CommonValues.KeyName.TDUser:
+                    ds = Int.Users.Users.Getlist(12); break;
+
+
                 default:
                     break;
             }

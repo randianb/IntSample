@@ -325,7 +325,70 @@ namespace Dev.Data
                 return null;
             }
         }
-        
+
+        public static DataSet Print(Dictionary<CommonValues.KeyName, string> SearchString, Dictionary<CommonValues.KeyName, int> SearchKey, 
+            DateTime dtFromDate, DateTime dtToDate)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_Pattern_List3";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@CustIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@CustIdx"].Value = SearchKey[CommonValues.KeyName.CustIdx];
+
+                _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
+                _cmd.Parameters["@Status"].Value = SearchKey[CommonValues.KeyName.Status];
+
+                _cmd.Parameters.Add("@SizeIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx"].Value = SearchKey[CommonValues.KeyName.Size];
+
+                _cmd.Parameters.Add("@Fileno", SqlDbType.NVarChar, 40);
+                _cmd.Parameters["@Fileno"].Value = SearchString[CommonValues.KeyName.Fileno]; 
+
+                _cmd.Parameters.Add("@Styleno", SqlDbType.NVarChar, 40);
+                _cmd.Parameters["@Styleno"].Value = SearchString[CommonValues.KeyName.Styleno];
+
+                _cmd.Parameters.Add("@DateKind", SqlDbType.Int, 4);
+                _cmd.Parameters["@DateKind"].Value = SearchKey[CommonValues.KeyName.Codes];
+
+                _cmd.Parameters.Add("@FromDate", SqlDbType.DateTime, 4);
+                _cmd.Parameters["@FromDate"].Value = dtFromDate;
+
+                _cmd.Parameters.Add("@ToDate", SqlDbType.DateTime, 4);
+                _cmd.Parameters["@ToDate"].Value = dtToDate;
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static bool Delete(string condition)
         {
             try

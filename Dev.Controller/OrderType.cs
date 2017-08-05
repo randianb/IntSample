@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using Telerik.WinControls;
 
 namespace Dev.Controller
 {
@@ -38,6 +39,11 @@ namespace Dev.Controller
         private int _type218;
         private int _type219;
         private int _type220;
+        private int _type221;
+        private int _type222;
+        private int _type223;
+        private int _type224;
+        private int _type225;
 
         private DataRow _row;
 
@@ -202,7 +208,40 @@ namespace Dev.Controller
             get { return _type220; }
             set { _type220 = value; }
         }
-        
+        //
+        public int Type221
+        {
+            get { return _type221; }
+            set { _type221 = value; }
+        }
+
+        //
+        public int Type222
+        {
+            get { return _type222; }
+            set { _type222 = value; }
+        }
+
+        //
+        public int Type223
+        {
+            get { return _type223; }
+            set { _type223 = value; }
+        }
+
+        //
+        public int Type224
+        {
+            get { return _type224; }
+            set { _type224 = value; }
+        }
+
+        //
+        public int Type225
+        {
+            get { return _type225; }
+            set { _type225 = value; }
+        }
 
         #endregion
 
@@ -243,6 +282,12 @@ namespace Dev.Controller
                 if (_row["Type218"] != DBNull.Value) _type218 = Convert.ToInt32(_row["Type218"]);
                 if (_row["Type219"] != DBNull.Value) _type219 = Convert.ToInt32(_row["Type219"]);
                 if (_row["Type220"] != DBNull.Value) _type220 = Convert.ToInt32(_row["Type220"]);
+                if (_row["Type221"] != DBNull.Value) _type221 = Convert.ToInt32(_row["Type221"]);
+
+                if (_row["Type222"] != DBNull.Value) _type222 = Convert.ToInt32(_row["Type222"]);
+                if (_row["Type223"] != DBNull.Value) _type223 = Convert.ToInt32(_row["Type223"]);
+                if (_row["Type224"] != DBNull.Value) _type224 = Convert.ToInt32(_row["Type224"]);
+                if (_row["Type225"] != DBNull.Value) _type225 = Convert.ToInt32(_row["Type225"]);
 
             }
             else
@@ -282,31 +327,53 @@ namespace Dev.Controller
             _type218 = 0;
             _type219 = 0;
             _type220 = 0;
-
+            _type221 = 0;
+            _type222 = 0;
+            _type223 = 0;
+            _type224 = 0;
+            _type225 = 0;
         }
 
         #endregion
 
         #region Methods
 
-        //public static DataRow Insert(int OrderIdx, string WorkOrderIdx, int OrdSizeIdx, DateTime TechpackDate, DateTime RequestedDate,
-        //    int Requested, string Comments, string Attached1, string Attached2, string Attached3, string Attached4, string Attached5,
-        //    string AttachedUrl1, string AttachedUrl2, string AttachedUrl3, string AttachedUrl4, string AttachedUrl5, int Handler)
-        //{
-        //    DataRow row = Data.PatternData.Insert(OrderIdx, WorkOrderIdx, OrdSizeIdx, TechpackDate, RequestedDate,
-        //    Requested, Comments, Attached1, Attached2, Attached3, Attached4, Attached5,
-        //    AttachedUrl1, AttachedUrl2, AttachedUrl3, AttachedUrl4, AttachedUrl5, Handler);
+        public static DataRow Insert(int OrderIdx, int OrdSizeIdx)
+        {
+            DataRow row = Data.OrderTypeData.Insert(OrderIdx, OrdSizeIdx);
 
-        //    return row;
-        //}
+            if (row == null)
+            {
+                RadMessageBox.Show("Failed to insert. \nPlease ensure if there's inserted same size.");
+                return null; 
+            }
+            else
+            {
+                return row;
+            }
+            
+        }
 
-        public static DataSet Getlist(int OrderIdx, int OrdSizeIdx)
+        public static DataSet Getlist(int OrderIdx)
         {
             DataSet ds = new DataSet();
-            
-            ds = Data.OrderTypeData.Getlist(OrderIdx, OrdSizeIdx); 
-                        
+
+            ds = Data.OrderTypeData.Getlist(OrderIdx);
+
             return ds;
+        }
+
+        public static DataRow Getlist(int OrderIdx, int OrdSizeIdx)
+        {
+            DataRow ds = null;
+
+            if (OrdSizeIdx>0)
+                ds = Data.OrderTypeData.Getlist(OrderIdx, OrdSizeIdx).Tables[0].Rows[0];
+
+            if (ds != null)
+                return ds;
+            else
+                return null; 
         }
        
         public bool Update()
@@ -314,7 +381,8 @@ namespace Dev.Controller
             bool blRtn;
             blRtn = Data.OrderTypeData.Update(_idx, _type101, _type102, _type103, 
                 _type201, _type202, _type203, _type204, _type205, _type206, _type207, _type208, _type209, _type210, 
-                _type211, _type212, _type213, _type214, _type215, _type216, _type217, _type218, _type219, _type220
+                _type211, _type212, _type213, _type214, _type215, _type216, _type217, _type218, _type219, _type220, 
+                _type221, _type222, _type223, _type224, _type225 
                 );
             return blRtn;
         }

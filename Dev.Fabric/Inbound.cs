@@ -122,7 +122,7 @@ namespace Dev.Fabric
             contextMenu = new RadContextMenu();
 
             // 오더 신규 입력
-            mnuNew = new RadMenuItem("New Inbound");
+            mnuNew = new RadMenuItem("New Fabric IN");
             mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
             mnuNew.Click += new EventHandler(mnuNew_Click);
 
@@ -379,7 +379,7 @@ namespace Dev.Fabric
             
             GridViewComboBoxColumn IODeptIdx = new GridViewComboBoxColumn();
             IODeptIdx.Name = "IODeptIdx";
-            IODeptIdx.DataSource = lstDept;
+            IODeptIdx.DataSource = lstDept2;
             IODeptIdx.DisplayMember = "CustName";
             IODeptIdx.ValueMember = "CustIdx";
             IODeptIdx.FieldName = "IODeptIdx";
@@ -489,7 +489,7 @@ namespace Dev.Fabric
             GridViewTextBoxColumn WorkOrderIdx = new GridViewTextBoxColumn();
             WorkOrderIdx.Name = "WorkOrderIdx";
             WorkOrderIdx.FieldName = "WorkOrderIdx";
-            WorkOrderIdx.HeaderText = "Inbound#";
+            WorkOrderIdx.HeaderText = "In #";
             WorkOrderIdx.ReadOnly = true;
             WorkOrderIdx.TextAlignment = ContentAlignment.MiddleLeft;
             WorkOrderIdx.Width = 100;
@@ -673,7 +673,7 @@ namespace Dev.Fabric
             WorkOrderIdx.FieldName = "WorkOrderIdx";
             WorkOrderIdx.Width = 100;
             WorkOrderIdx.TextAlignment = ContentAlignment.MiddleLeft;
-            WorkOrderIdx.HeaderText = "Outbound#";
+            WorkOrderIdx.HeaderText = "Out #";
             gv.Columns.Add(WorkOrderIdx);
             
             GridViewTextBoxColumn Comments = new GridViewTextBoxColumn();
@@ -1064,9 +1064,8 @@ namespace Dev.Fabric
 
             foreach (DataRow row in _dt.Rows)
             {
-                lstDept.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
-                                            row["CustName"].ToString(),
-                                            Convert.ToInt32(row["Classification"])));
+                lstDept.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]), row["CustName"].ToString(), Convert.ToInt32(row["Classification"])));
+                lstDept2.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]), row["CustName"].ToString(), Convert.ToInt32(row["Classification"])));
             }
 
             // Fabric 
@@ -1621,7 +1620,7 @@ namespace Dev.Fabric
                     if (toggleWay.Value)
                     {
                         btnSaveData.Enabled = false;
-                        btnSaveData.Text = "Inbound Fabric"; 
+                        btnSaveData.Text = "Fabric IN"; 
                         radPanel1.Enabled = false;          // 출고모드, 센터, 부서선택 
                         tableLayoutPanel7.Enabled = false;  // 작업지시시서 조회란
                         toggReadMode.Enabled = false;
@@ -1632,7 +1631,7 @@ namespace Dev.Fabric
                     else
                     {
                         btnSaveData.Enabled = false;
-                        btnSaveData.Text = "Outbound Fabric";
+                        btnSaveData.Text = "Fabric OUT";
                         radPanel1.Enabled = true;          // 출고모드, 센터, 부서선택 
                         tableLayoutPanel7.Enabled = true;  // 작업지시시서 조회란
                         toggReadMode.Enabled = true;

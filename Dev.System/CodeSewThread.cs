@@ -89,12 +89,12 @@ namespace Dev.Codes
 
             // 오더 신규 입력
             RadMenuItem mnuNew = new RadMenuItem("New Sewing Thread");
-            mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
+            //mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
             mnuNew.Click += new EventHandler(mnuNew_Click);
 
             // 오더 삭제
             RadMenuItem mnuDel = new RadMenuItem("Remove Sewing Thread");
-            mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
+            //mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
             mnuDel.Click += new EventHandler(mnuDel_Click);
 
             // 열 숨기기

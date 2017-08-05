@@ -64,7 +64,6 @@ D:\git\IntSample\Dev.Fabric\bin\Debug\Microsoft.WindowsAzure.Storage.xml
 D:\git\IntSample\Dev.Fabric\bin\Debug\Telerik.WinControls.Scheduler.xml
 D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.Outbound.resources
 D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.Reports.rptFabricCodeForm.resources
-D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.rptFabricCode.resources
 D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.frmPrintOutbound.resources
 D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.Reports.rptInbound.resources
 D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.frmPrintInbound.resources
@@ -76,3 +75,4 @@ D:\git\IntSample\Dev.Fabric\bin\Debug\Dev.Production.dll
 D:\git\IntSample\Dev.Fabric\bin\Debug\Dev.Production.pdb
 D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.frmPrintStock.resources
 D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.Reports.rptStock.resources
+D:\git\IntSample\Dev.Fabric\obj\Debug\Dev.Fabric.frmFabricCode.resources

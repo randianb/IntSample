@@ -24,7 +24,7 @@ namespace Dev.Codes.Data
         /// Insert
         /// </summary>
         public static DataRow Insert(int Client, string SizeGroupName, 
-            int SizeIdx1, int SizeIdx2, int SizeIdx3, int SizeIdx4, int SizeIdx5, int SizeIdx6, int SizeIdx7, int SizeIdx8, 
+            int SizeIdx1, int SizeIdx2, int SizeIdx3, int SizeIdx4, int SizeIdx5, int SizeIdx6, int SizeIdx7, int SizeIdx8, int SizeIdx9, int SizeIdx10, 
             int IsUse)
         {
             try
@@ -68,7 +68,13 @@ namespace Dev.Codes.Data
 
                 _cmd.Parameters.Add("@SizeIdx8", SqlDbType.Int, 4);
                 _cmd.Parameters["@SizeIdx8"].Value = SizeIdx8;
-                
+
+                _cmd.Parameters.Add("@SizeIdx9", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx9"].Value = SizeIdx9;
+
+                _cmd.Parameters.Add("@SizeIdx10", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx10"].Value = SizeIdx10;
+
                 _cmd.Parameters.Add("@IsUse", SqlDbType.TinyInt, 1);
                 _cmd.Parameters["@IsUse"].Value = IsUse;
                 
@@ -100,7 +106,7 @@ namespace Dev.Codes.Data
         /// Update
         /// </summary>
         public static bool Update(int SizeGroupIdx, int Client, string SizeGroupName,
-            int SizeIdx1, int SizeIdx2, int SizeIdx3, int SizeIdx4, int SizeIdx5, int SizeIdx6, int SizeIdx7, int SizeIdx8,
+            int SizeIdx1, int SizeIdx2, int SizeIdx3, int SizeIdx4, int SizeIdx5, int SizeIdx6, int SizeIdx7, int SizeIdx8, int SizeIdx9, int SizeIdx10,
             int IsUse)
         {
             try
@@ -145,6 +151,12 @@ namespace Dev.Codes.Data
 
                 _cmd.Parameters.Add("@SizeIdx8", SqlDbType.Int, 4);
                 _cmd.Parameters["@SizeIdx8"].Value = SizeIdx8;
+
+                _cmd.Parameters.Add("@SizeIdx9", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx9"].Value = SizeIdx9;
+
+                _cmd.Parameters.Add("@SizeIdx10", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx10"].Value = SizeIdx10;
 
                 _cmd.Parameters.Add("@IsUse", SqlDbType.TinyInt, 1);
                 _cmd.Parameters["@IsUse"].Value = IsUse;

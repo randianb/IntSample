@@ -195,7 +195,7 @@ namespace Dev.Sales
             if (_ds1 != null)
             {
                 GanttViewDataItem item = null;
-                Console.WriteLine(_ds1.Tables[0].Rows.Count.ToString()); 
+                //Console.WriteLine(_ds1.Tables[0].Rows.Count.ToString()); 
 
                 foreach (DataRow row in _ds1.Tables[0].Rows)
                 {
@@ -356,9 +356,11 @@ namespace Dev.Sales
                     else
                     {
                         gvWork.GanttViewElement.GraphicalViewElement.TimelineRange = TimeRange.Month;
+                        gvWork.GanttViewElement.GraphicalViewElement.OnePixelTime = TimeSpan.FromDays(0.02); 
                     }
                     // Scroll TimelineIndicator to Present time
                     gvWork.GanttViewElement.GraphicalViewElement.ScrollTo(DateTime.Now);
+
                 }
             }
             catch (Exception ex)
@@ -439,16 +441,17 @@ namespace Dev.Sales
 
         private void gvWork_TextViewItemFormatting(object sender, GanttViewTextViewItemFormattingEventArgs e)
         {
-            
             if (e.Item.Tag.ToString().Split('/')[0].Trim() == "110")
             {
                 e.ItemElement.DrawFill = true;
+                e.ItemElement.ForeColor = Color.Black;
                 e.ItemElement.BackColor = Color.Cornsilk;
                 e.ItemElement.GradientStyle = GradientStyles.Solid;
             }
             else if (e.Item.Tag.ToString().Split('/')[0].Trim() == "111")
             {
                 e.ItemElement.DrawFill = true;
+                e.ItemElement.ForeColor = Color.Black;
                 e.ItemElement.BackColor = Color.Honeydew;
                 e.ItemElement.GradientStyle = GradientStyles.Solid;
             }
@@ -482,13 +485,13 @@ namespace Dev.Sales
             }
             else
             {
+                e.ItemElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
                 e.ItemElement.ResetValue(LightVisualElement.ForeColorProperty, ValueResetFlags.Local);
                 e.ItemElement.ResetValue(LightVisualElement.DrawBorderProperty, ValueResetFlags.Local);
                 e.ItemElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
                 e.ItemElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
             }
             
-            if (e.ItemElement.Name!="") { Console.WriteLine(e.ItemElement.Name);  }
         }
 
         private void gvWork_SelectedItemChanged(object sender, GanttViewSelectedItemChangedEventArgs e)
@@ -519,18 +522,20 @@ namespace Dev.Sales
                 string[] strTitle = gvWork.SelectedItem.Title.Split('/');
 
                 // 패턴 
-                if (gvWork.SelectedItem.Tag.ToString().Trim() == "110")
+                if (gvWork.SelectedItem.Tag.ToString().Trim().Split('/')[0].Trim() == "110")
                 {
-                    int valueIndex = strTitle.Length == 3 ? 2 : 3; 
+                    int valueIndex = strTitle.Length == 3 ? 2 : 3;
+                    //Console.WriteLine(strTitle[valueIndex].ToString().Trim()); 
                     bool result = Dev.Controller.WorkOrder.Update(strTitle[valueIndex].ToString().Trim(),
                             gvWork.SelectedItem.Start, gvWork.SelectedItem.End, 0.1, Dev.Options.UserInfo.Idx);
                 }
                 // Cut / Print / Embroidery
-                else if (gvWork.SelectedItem.Tag.ToString().Trim() == "111" || gvWork.SelectedItem.Tag.ToString().Trim() == "112" ||
-                        gvWork.SelectedItem.Tag.ToString().Trim() == "113" || gvWork.SelectedItem.Tag.ToString().Trim() == "114" || 
-                        gvWork.SelectedItem.Tag.ToString().Trim() == "115")
+                else if (gvWork.SelectedItem.Tag.ToString().Trim().Split('/')[0].Trim() == "111" || gvWork.SelectedItem.Tag.ToString().Trim().Split('/')[0].Trim() == "112" ||
+                        gvWork.SelectedItem.Tag.ToString().Trim().Split('/')[0].Trim() == "113" || gvWork.SelectedItem.Tag.ToString().Trim().Split('/')[0].Trim() == "114" ||
+                        gvWork.SelectedItem.Tag.ToString().Trim().Split('/')[0].Trim() == "115")
                 {
                     int valueIndex = strTitle.Length == 5 ? 4 : 5;
+                    //Console.WriteLine(strTitle[valueIndex].ToString().Trim());
                     bool result = Dev.Controller.WorkOrder.Update(strTitle[valueIndex].ToString().Trim(),
                             gvWork.SelectedItem.Start, gvWork.SelectedItem.End, 0.1, Dev.Options.UserInfo.Idx);
                 }
@@ -551,13 +556,15 @@ namespace Dev.Sales
         {
             if (e.Item.Tag.ToString().Split('/')[0].Trim() == "110")
             {
-                e.ItemElement.TaskElement.DrawFill = true; 
+                e.ItemElement.TaskElement.DrawFill = true;
+                e.ItemElement.TaskElement.ForeColor = Color.Black;
                 e.ItemElement.TaskElement.BackColor = Color.Cornsilk;
                 e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid; 
             }
             else if (e.Item.Tag.ToString().Split('/')[0].Trim() == "111")
             {
                 e.ItemElement.TaskElement.DrawFill = true;
+                e.ItemElement.TaskElement.ForeColor = Color.Black;
                 e.ItemElement.TaskElement.BackColor = Color.Honeydew;
                 e.ItemElement.TaskElement.GradientStyle = GradientStyles.Solid;
             }

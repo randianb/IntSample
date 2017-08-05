@@ -174,11 +174,11 @@
     <Compile Include="frmPrintInbound.Designer.cs">
       <DependentUpon>frmPrintInbound.cs</DependentUpon>
     </Compile>
-    <Compile Include="rptFabricCode.cs">
+    <Compile Include="frmFabricCode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="rptFabricCode.Designer.cs">
-      <DependentUpon>rptFabricCode.cs</DependentUpon>
+    <Compile Include="frmFabricCode.Designer.cs">
+      <DependentUpon>frmFabricCode.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -232,8 +232,8 @@
     <EmbeddedResource Include="frmPrintInbound.resx">
       <DependentUpon>frmPrintInbound.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="rptFabricCode.resx">
-      <DependentUpon>rptFabricCode.cs</DependentUpon>
+    <EmbeddedResource Include="frmFabricCode.resx">
+      <DependentUpon>frmFabricCode.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

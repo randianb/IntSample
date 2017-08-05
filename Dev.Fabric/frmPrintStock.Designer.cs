@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.reportViewer1 = new Telerik.ReportViewer.WinForms.ReportViewer();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
@@ -53,12 +53,12 @@
             this.txtLocationX = new Telerik.WinControls.UI.RadMaskedEditBox();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.ddlColor = new Telerik.WinControls.UI.RadDropDownList();
-            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.dtInboundDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.txtInboundno = new Telerik.WinControls.UI.RadTextBox();
             this.ddlFabric = new Telerik.WinControls.UI.RadMultiColumnComboBox();
+            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlColor = new Telerik.WinControls.UI.RadTextBox();
             this.dataSetSizeGroup = new Dev.Sales.Data.DataSetSizeGroup();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
@@ -84,14 +84,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLocationX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlColor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtInboundDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInboundno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSizeGroup)).BeginInit();
             this.SuspendLayout();
             // 
@@ -156,12 +156,12 @@
             this.tableLayoutPanel5.Controls.Add(this.txtLocationX, 2, 1);
             this.tableLayoutPanel5.Controls.Add(this.radLabel10, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.radLabel3, 1, 2);
-            this.tableLayoutPanel5.Controls.Add(this.ddlColor, 1, 3);
             this.tableLayoutPanel5.Controls.Add(this.radLabel9, 4, 0);
             this.tableLayoutPanel5.Controls.Add(this.dtInboundDate, 4, 3);
             this.tableLayoutPanel5.Controls.Add(this.txtInboundno, 0, 3);
             this.tableLayoutPanel5.Controls.Add(this.ddlFabric, 3, 1);
             this.tableLayoutPanel5.Controls.Add(this.radLabel12, 4, 2);
+            this.tableLayoutPanel5.Controls.Add(this.ddlColor, 1, 3);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 4;
@@ -256,7 +256,7 @@
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(123, 14);
             this.radLabel7.TabIndex = 13;
-            this.radLabel7.Text = "Inbound#";
+            this.radLabel7.Text = "IN #";
             // 
             // radLabel11
             // 
@@ -376,24 +376,6 @@
             this.radLabel3.TabIndex = 3;
             this.radLabel3.Text = "Color";
             // 
-            // ddlColor
-            // 
-            this.ddlColor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.ddlColor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ddlColor.Location = new System.Drawing.Point(132, 70);
-            this.ddlColor.Name = "ddlColor";
-            this.ddlColor.Size = new System.Drawing.Size(154, 24);
-            this.ddlColor.TabIndex = 6;
-            // 
-            // radLabel12
-            // 
-            this.radLabel12.Location = new System.Drawing.Point(723, 50);
-            this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(75, 14);
-            this.radLabel12.TabIndex = 22;
-            this.radLabel12.Text = "Inbound Date";
-            this.radLabel12.DoubleClick += new System.EventHandler(this.radLabel12_DoubleClick);
-            // 
             // radLabel9
             // 
             this.radLabel9.Location = new System.Drawing.Point(723, 3);
@@ -437,7 +419,7 @@
             this.ddlFabric.EditorControl.MasterTemplate.AllowColumnChooser = false;
             this.ddlFabric.EditorControl.MasterTemplate.EnableGrouping = false;
             this.ddlFabric.EditorControl.MasterTemplate.ShowFilteringRow = false;
-            this.ddlFabric.EditorControl.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.ddlFabric.EditorControl.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.ddlFabric.EditorControl.Name = "NestedRadGridView";
             this.ddlFabric.EditorControl.ReadOnly = true;
             this.ddlFabric.EditorControl.ShowGroupPanel = false;
@@ -448,6 +430,22 @@
             this.ddlFabric.Size = new System.Drawing.Size(344, 20);
             this.ddlFabric.TabIndex = 24;
             this.ddlFabric.TabStop = false;
+            // 
+            // radLabel12
+            // 
+            this.radLabel12.Location = new System.Drawing.Point(723, 50);
+            this.radLabel12.Name = "radLabel12";
+            this.radLabel12.Size = new System.Drawing.Size(44, 18);
+            this.radLabel12.TabIndex = 22;
+            this.radLabel12.Text = "IN Date";
+            this.radLabel12.DoubleClick += new System.EventHandler(this.radLabel12_DoubleClick);
+            // 
+            // ddlColor
+            // 
+            this.ddlColor.Location = new System.Drawing.Point(132, 70);
+            this.ddlColor.Name = "ddlColor";
+            this.ddlColor.Size = new System.Drawing.Size(154, 20);
+            this.ddlColor.TabIndex = 25;
             // 
             // dataSetSizeGroup
             // 
@@ -489,14 +487,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLocationX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlColor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtInboundDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInboundno)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSizeGroup)).EndInit();
             this.ResumeLayout(false);
 
@@ -528,13 +526,13 @@
         private Telerik.WinControls.UI.RadMaskedEditBox txtLocationX;
         private Telerik.WinControls.UI.RadLabel radLabel10;
         private Telerik.WinControls.UI.RadLabel radLabel3;
-        private Telerik.WinControls.UI.RadDropDownList ddlColor;
         private Telerik.WinControls.UI.RadLabel radLabel12;
         private Telerik.WinControls.UI.RadLabel radLabel9;
         private Telerik.WinControls.UI.RadDateTimePicker dtInboundDate;
         private Telerik.WinControls.UI.RadTextBox txtInboundno;
         private Telerik.WinControls.UI.RadMultiColumnComboBox ddlFabric;
         private Sales.Data.DataSetSizeGroup dataSetSizeGroup;
+        private Telerik.WinControls.UI.RadTextBox ddlColor;
     }
 }
 

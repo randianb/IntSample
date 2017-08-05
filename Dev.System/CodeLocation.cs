@@ -83,12 +83,11 @@ namespace Dev.Codes
         private void Config_ContextMenu()
         {
             contextMenu = new RadContextMenu();
-
             Clear_Shortcuts(); 
 
             // 오더 신규 입력
             mnuNew = new RadMenuItem("New Location");
-            mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
+            // mnuNew.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.N));
             mnuNew.Click += new EventHandler(mnuNew_Click);
 
             // 오더 삭제

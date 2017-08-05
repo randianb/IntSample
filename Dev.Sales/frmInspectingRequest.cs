@@ -249,7 +249,7 @@ namespace Dev.Sales
 
                 // Username
                 lstUser.Add(new CustomerName(0, "", 0));
-                _dt = CommonController.Getlist(CommonValues.KeyName.User).Tables[0];
+                _dt = CommonController.Getlist(CommonValues.KeyName.TDUser).Tables[0];
 
                 foreach (DataRow row in _dt.Rows)
                 {

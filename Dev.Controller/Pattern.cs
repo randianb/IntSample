@@ -267,7 +267,17 @@ namespace Dev.Controller
                         
             return ds;
         }
-       
+
+        public static DataSet Print(Dictionary<CommonValues.KeyName, string> SearchString, Dictionary<CommonValues.KeyName, int> SearchKey,
+            DateTime dtFromDate, DateTime dtToDate)
+        {
+            DataSet ds = new DataSet();
+
+            ds = Data.PatternData.Print(SearchString, SearchKey, dtFromDate, dtToDate);
+
+            return ds;
+        }
+
         public bool Update()
         {
             bool blRtn;

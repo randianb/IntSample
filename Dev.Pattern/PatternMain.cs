@@ -184,6 +184,15 @@ namespace Dev.Pattern
             cboSize.Width = 70;
             gv.Columns.Insert(6, cboSize);
 
+            GridViewTextBoxColumn OrderType = new GridViewTextBoxColumn();
+            OrderType.Name = "OrderType";
+            OrderType.FieldName = "OrderType";
+            OrderType.HeaderText = "OrderType";
+            OrderType.Width = 130;
+            OrderType.ReadOnly = true;
+            OrderType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            gv.Columns.Insert(7, OrderType);
+
             GridViewDateTimeColumn TechpackDate = new GridViewDateTimeColumn();
             TechpackDate.Name = "TechpackDate";
             TechpackDate.FieldName = "TechpackDate";
@@ -192,7 +201,7 @@ namespace Dev.Pattern
             TechpackDate.FormatString = "{0:d}";
             TechpackDate.HeaderText = "Techpack Date";
             TechpackDate.ReadOnly = true;
-            gv.Columns.Insert(7, TechpackDate);
+            gv.Columns.Insert(8, TechpackDate);
 
             GridViewDateTimeColumn RequestedDate = new GridViewDateTimeColumn();
             RequestedDate.Name = "RequestedDate";
@@ -202,7 +211,7 @@ namespace Dev.Pattern
             RequestedDate.FormatString = "{0:d}";
             RequestedDate.HeaderText = "RequestedDate";
             RequestedDate.ReadOnly = true;
-            gv.Columns.Insert(8, RequestedDate);
+            gv.Columns.Insert(9, RequestedDate);
             
             GridViewComboBoxColumn Requested = new GridViewComboBoxColumn();
             Requested.Name = "Requested";
@@ -213,7 +222,7 @@ namespace Dev.Pattern
             Requested.HeaderText = "Requested";
             Requested.ReadOnly = true;
             Requested.Width = 100;
-            gv.Columns.Insert(9, Requested);
+            gv.Columns.Insert(10, Requested);
 
             GridViewDateTimeColumn ConfirmedDate = new GridViewDateTimeColumn();
             ConfirmedDate.Name = "ConfirmedDate";
@@ -222,7 +231,7 @@ namespace Dev.Pattern
             ConfirmedDate.TextAlignment = ContentAlignment.MiddleCenter;
             ConfirmedDate.FormatString = "{0:d}";
             ConfirmedDate.HeaderText = "ConfirmedDate";
-            gv.Columns.Insert(10, ConfirmedDate);
+            gv.Columns.Insert(11, ConfirmedDate);
 
             GridViewComboBoxColumn Confirmed = new GridViewComboBoxColumn();
             Confirmed.Name = "Confirmed";
@@ -232,7 +241,7 @@ namespace Dev.Pattern
             Confirmed.FieldName = "Confirmed";
             Confirmed.HeaderText = "Confirmed";
             Confirmed.Width = 100;
-            gv.Columns.Insert(11, Confirmed);
+            gv.Columns.Insert(12, Confirmed);
             
             GridViewDateTimeColumn CompletedDate = new GridViewDateTimeColumn();
             CompletedDate.Name = "CompletedDate";
@@ -241,7 +250,7 @@ namespace Dev.Pattern
             CompletedDate.TextAlignment = ContentAlignment.MiddleCenter;
             CompletedDate.FormatString = "{0:d}";
             CompletedDate.HeaderText = "CompletedDate";
-            gv.Columns.Insert(12, CompletedDate);
+            gv.Columns.Insert(13, CompletedDate);
 
             GridViewDateTimeColumn SentDate = new GridViewDateTimeColumn();
             SentDate.Name = "SentDate";
@@ -250,7 +259,7 @@ namespace Dev.Pattern
             SentDate.TextAlignment = ContentAlignment.MiddleCenter;
             SentDate.FormatString = "{0:d}";
             SentDate.HeaderText = "SentDate";
-            gv.Columns.Insert(13, SentDate);
+            gv.Columns.Insert(14, SentDate);
 
             GridViewComboBoxColumn Received = new GridViewComboBoxColumn();
             Received.Name = "Received";
@@ -260,7 +269,7 @@ namespace Dev.Pattern
             Received.FieldName = "Received";
             Received.HeaderText = "Received";
             Received.Width = 100;
-            gv.Columns.Insert(14, Received);
+            gv.Columns.Insert(15, Received);
 
             GridViewTextBoxColumn Remarks = new GridViewTextBoxColumn();
             Remarks.Name = "Remarks";
@@ -268,37 +277,37 @@ namespace Dev.Pattern
             Remarks.HeaderText = "Remarks";
             Remarks.Width = 200;
             Remarks.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            gv.Columns.Insert(15, Remarks);
+            gv.Columns.Insert(16, Remarks);
 
             GridViewTextBoxColumn Attached1 = new GridViewTextBoxColumn();
             Attached1.Name = "Attached1";
             Attached1.FieldName = "Attached1";
             Attached1.IsVisible = false;
-            gv.Columns.Insert(16, Attached1);
+            gv.Columns.Insert(17, Attached1);
 
             GridViewTextBoxColumn Attached2 = new GridViewTextBoxColumn();
             Attached2.Name = "Attached2";
             Attached2.FieldName = "Attached2";
             Attached2.IsVisible = false;
-            gv.Columns.Insert(17, Attached2);
+            gv.Columns.Insert(18, Attached2);
 
             GridViewTextBoxColumn Attached3 = new GridViewTextBoxColumn();
             Attached3.Name = "Attached3";
             Attached3.FieldName = "Attached3";
             Attached3.IsVisible = false;
-            gv.Columns.Insert(18, Attached3);
+            gv.Columns.Insert(19, Attached3);
 
             GridViewTextBoxColumn Attached4 = new GridViewTextBoxColumn();
             Attached4.Name = "Attached4";
             Attached4.FieldName = "Attached4";
             Attached4.IsVisible = false;
-            gv.Columns.Insert(19, Attached4);
+            gv.Columns.Insert(20, Attached4);
 
             GridViewTextBoxColumn Attached5 = new GridViewTextBoxColumn();
             Attached5.Name = "Attached5";
             Attached5.FieldName = "Attached5";
             Attached5.IsVisible = false;
-            gv.Columns.Insert(20, Attached5);
+            gv.Columns.Insert(21, Attached5);
             
             GridViewComboBoxColumn status = new GridViewComboBoxColumn();
             status.Name = "Status";
@@ -310,13 +319,13 @@ namespace Dev.Pattern
             status.Width = 70;
             status.IsVisible = false; 
             status.ReadOnly = true;
-            gv.Columns.Insert(21, status);
+            gv.Columns.Insert(22, status);
 
             GridViewTextBoxColumn Comments = new GridViewTextBoxColumn();
             Comments.Name = "Comments";
             Comments.FieldName = "Comments";
             Comments.IsVisible = false;
-            gv.Columns.Insert(22, Comments);
+            gv.Columns.Insert(23, Comments);
 
             #endregion
         }
@@ -549,57 +558,6 @@ namespace Dev.Pattern
             }
         }
         
-        /// <summary>
-        /// 데이터 로딩 (샘플타입) 
-        /// </summary>
-        /// <param name="gv"></param>
-        /// <param name="OrderIdx"></param>
-        private void DataBinding_GV2(int OrderIdx, int OrdSizeIdx)
-        {
-            try
-            {
-                // 조회하기전에 초기화한후, 
-                OrderType_Clear();
-                
-                _ds1 = Controller.OrderType.Getlist(OrderIdx, OrdSizeIdx);
-                if (_ds1 != null)
-                {
-                    DataRow row = _ds1.Tables[0].Rows[0];
-                    btnSaveData.Tag = row["Idx"].ToString(); 
-                    chkType101.Checked = Convert.ToBoolean(row["Type101"]); 
-                    chkType102.Checked = Convert.ToBoolean(row["Type102"]); 
-                    chkType103.Checked = Convert.ToBoolean(row["Type103"]); 
-
-                    chkType201.Checked = Convert.ToBoolean(row["Type201"]); 
-                    chkType202.Checked = Convert.ToBoolean(row["Type202"]); 
-                    chkType203.Checked = Convert.ToBoolean(row["Type203"]); 
-                    chkType204.Checked = Convert.ToBoolean(row["Type204"]); 
-                    chkType205.Checked = Convert.ToBoolean(row["Type205"]); 
-                    chkType206.Checked = Convert.ToBoolean(row["Type206"]); 
-                    chkType207.Checked = Convert.ToBoolean(row["Type207"]); 
-                    chkType208.Checked = Convert.ToBoolean(row["Type208"]); 
-                    chkType209.Checked = Convert.ToBoolean(row["Type209"]); 
-                    chkType210.Checked = Convert.ToBoolean(row["Type210"]); 
-
-                    chkType211.Checked = Convert.ToBoolean(row["Type211"]); 
-                    chkType212.Checked = Convert.ToBoolean(row["Type212"]); 
-                    chkType213.Checked = Convert.ToBoolean(row["Type213"]); 
-                    chkType214.Checked = Convert.ToBoolean(row["Type214"]); 
-                    chkType215.Checked = Convert.ToBoolean(row["Type215"]); 
-                    chkType216.Checked = Convert.ToBoolean(row["Type216"]); 
-                    chkType217.Checked = Convert.ToBoolean(row["Type217"]); 
-                    chkType218.Checked = Convert.ToBoolean(row["Type218"]); 
-                    chkType219.Checked = Convert.ToBoolean(row["Type219"]); 
-                    chkType220.Checked = Convert.ToBoolean(row["Type220"]);
-                    
-                    __main__.lblRows.Text = "1 Rows of Sample Type";
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("DataBinding " + ": " + ex.Message.ToString());
-            }
-        }
         
         #endregion
 
@@ -704,43 +662,42 @@ namespace Dev.Pattern
             try
             {
                 // 객체생성 및 값 할당
-                _obj2 = new Controller.OrderType(Convert.ToInt32(btnSaveData.Tag));
-                _obj2.Idx = Convert.ToInt32(btnSaveData.Tag);
+                //_obj2 = new Controller.OrderType(Convert.ToInt32(btnSaveData.Tag));
+                //_obj2.Idx = Convert.ToInt32(btnSaveData.Tag);
                 
-                _obj2.Type101 = Convert.ToInt32(chkType101.Checked);
-                _obj2.Type102 = Convert.ToInt32(chkType102.Checked);
-                _obj2.Type103 = Convert.ToInt32(chkType103.Checked);
+                //_obj2.Type101 = Convert.ToInt32(chkType101.Checked);
+                //_obj2.Type102 = Convert.ToInt32(chkType102.Checked);
+                //_obj2.Type103 = Convert.ToInt32(chkType103.Checked);
 
-                _obj2.Type201 = Convert.ToInt32(chkType201.Checked);
-                _obj2.Type202 = Convert.ToInt32(chkType202.Checked);
-                _obj2.Type203 = Convert.ToInt32(chkType203.Checked);
-                _obj2.Type204 = Convert.ToInt32(chkType204.Checked);
-                _obj2.Type205 = Convert.ToInt32(chkType205.Checked);
-                _obj2.Type206 = Convert.ToInt32(chkType206.Checked);
-                _obj2.Type207 = Convert.ToInt32(chkType207.Checked);
-                _obj2.Type208 = Convert.ToInt32(chkType208.Checked);
-                _obj2.Type209 = Convert.ToInt32(chkType209.Checked);
-                _obj2.Type210 = Convert.ToInt32(chkType210.Checked);
+                //_obj2.Type201 = Convert.ToInt32(chkType201.Checked);
+                //_obj2.Type202 = Convert.ToInt32(chkType202.Checked);
+                //_obj2.Type203 = Convert.ToInt32(chkType203.Checked);
+                //_obj2.Type204 = Convert.ToInt32(chkType204.Checked);
+                //_obj2.Type205 = Convert.ToInt32(chkType205.Checked);
+                //_obj2.Type206 = Convert.ToInt32(chkType206.Checked);
+                //_obj2.Type207 = Convert.ToInt32(chkType207.Checked);
+                //_obj2.Type208 = Convert.ToInt32(chkType208.Checked);
+                //_obj2.Type209 = Convert.ToInt32(chkType209.Checked);
+                //_obj2.Type210 = Convert.ToInt32(chkType210.Checked);
                 
-                _obj2.Type211 = Convert.ToInt32(chkType211.Checked);
-                _obj2.Type212 = Convert.ToInt32(chkType212.Checked);
-                _obj2.Type213 = Convert.ToInt32(chkType213.Checked);
-                _obj2.Type214 = Convert.ToInt32(chkType214.Checked);
-                _obj2.Type215 = Convert.ToInt32(chkType215.Checked);
-                _obj2.Type216 = Convert.ToInt32(chkType216.Checked);
-                _obj2.Type217 = Convert.ToInt32(chkType217.Checked);
-                _obj2.Type218 = Convert.ToInt32(chkType218.Checked);
-                _obj2.Type219 = Convert.ToInt32(chkType219.Checked);
-                _obj2.Type220 = Convert.ToInt32(chkType220.Checked);
+                //_obj2.Type211 = Convert.ToInt32(chkType211.Checked);
+                //_obj2.Type212 = Convert.ToInt32(chkType212.Checked);
+                //_obj2.Type213 = Convert.ToInt32(chkType213.Checked);
+                //_obj2.Type214 = Convert.ToInt32(chkType214.Checked);
+                //_obj2.Type215 = Convert.ToInt32(chkType215.Checked);
+                //_obj2.Type216 = Convert.ToInt32(chkType216.Checked);
+                //_obj2.Type217 = Convert.ToInt32(chkType217.Checked);
+                //_obj2.Type218 = Convert.ToInt32(chkType218.Checked);
+                //_obj2.Type219 = Convert.ToInt32(chkType219.Checked);
+                //_obj2.Type220 = Convert.ToInt32(chkType220.Checked);
 
-                // 업데이트
-                _bRtn = _obj2.Update();
+                //// 업데이트
+                //_bRtn = _obj2.Update();
 
                 if (_bRtn)
                 {
                     __main__.lblRows.Text = "Updated Sample Type";
-                    DataBinding_GV2(Int.Members.GetCurrentRow(_gv1, "OrderIdx"), Int.Members.GetCurrentRow(_gv1, "OrdSizeIdx"));
-
+                    
                     GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
 
                     if (row.Cells["Attached1"].Value != DBNull.Value) linkLabel1.Text = row.Cells["Attached1"].Value.ToString();
@@ -853,9 +810,7 @@ namespace Dev.Pattern
                     Int.Members.GetCurrentRow(_gv1).ViewTemplate.ReadOnly = false;
                 }
 
-                // 행변경시 우측 샘플타입도 변경해준다 
-                DataBinding_GV2(Int.Members.GetCurrentRow(_gv1, "OrderIdx"), Int.Members.GetCurrentRow(_gv1, "OrdSizeIdx"));
-
+                
                 GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
 
                 if (row.Cells["Attached1"].Value != DBNull.Value) linkLabel1.Text = row.Cells["Attached1"].Value.ToString();
@@ -877,51 +832,7 @@ namespace Dev.Pattern
 
         }
 
-        /// <summary>
-        /// 샘플타입 조회하기 전에 모든 체크박스 초기화 
-        /// </summary>
-        private void OrderType_Clear()
-        {
-            chkType101.Checked = false;
-            chkType102.Checked = false;
-            chkType103.Checked = false;
-
-            chkType201.Checked = false;
-            chkType202.Checked = false;
-            chkType203.Checked = false;
-            chkType204.Checked = false;
-            chkType205.Checked = false;
-            chkType206.Checked = false;
-            chkType207.Checked = false;
-            chkType208.Checked = false;
-            chkType209.Checked = false;
-            chkType210.Checked = false;
-
-            chkType211.Checked = false;
-            chkType212.Checked = false;
-            chkType213.Checked = false;
-            chkType214.Checked = false;
-            chkType215.Checked = false;
-            chkType216.Checked = false;
-            chkType217.Checked = false;
-            chkType218.Checked = false;
-            chkType219.Checked = false;
-            chkType220.Checked = false;
-
-            linkLabel1.Text = "";
-            linkLabel2.Text = "";
-            linkLabel3.Text = "";
-            linkLabel4.Text = "";
-            linkLabel5.Text = "";
-
-            linkLabel1.Tag = "";
-            linkLabel2.Tag = "";
-            linkLabel3.Tag = "";
-            linkLabel4.Tag = "";
-            linkLabel5.Tag = "";
-
-            txtComments.Text = ""; 
-        }
+        
 
         /// <summary>
         /// 업데이트 버튼
@@ -930,33 +841,10 @@ namespace Dev.Pattern
         /// <param name="e"></param>
         private void btnSaveData_Click(object sender, EventArgs e)
         {
+            // 조회된 Idx가 있으면 업데이트 
             if (Convert.ToInt32(btnSaveData.Tag) > 0) OrderType_Update();
         }
-
-        /// <summary>
-        /// 샘플타입 체크(해제)시 스타일 변경 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        private void Type_ToggleStateChanged(object sender, StateChangedEventArgs args)
-        {
-            Font fr = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
-            Font fb = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Bold);
-
-            if (args.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On)
-            {
-                ((RadCheckBox)sender).ButtonElement.TextElement.Font = fb;
-                ((RadCheckBox)sender).ButtonElement.TextElement.ForeColor = Color.Blue;
-                ((RadCheckBox)sender).ButtonElement.CheckMarkPrimitive.CheckElement.ForeColor = Color.Blue;
-            }
-            else
-            {
-                ((RadCheckBox)sender).ButtonElement.TextElement.Font = fr;
-                ((RadCheckBox)sender).ButtonElement.TextElement.ForeColor = Color.Black;
-                ((RadCheckBox)sender).ButtonElement.CheckMarkPrimitive.CheckElement.ForeColor = Color.Black;
-            }
-
-        }
+        
         #endregion
 
         #region 7. 기능 멤버 (그리드뷰 레이아웃 저장)

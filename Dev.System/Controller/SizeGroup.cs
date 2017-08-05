@@ -18,6 +18,8 @@ namespace Dev.Codes.Controller
         private int _sizeIdx6;
         private int _sizeIdx7;
         private int _sizeIdx8;
+        private int _sizeIdx9;
+        private int _sizeIdx10;
         private int _isUse;
         
         private DataRow _row;
@@ -92,7 +94,16 @@ namespace Dev.Codes.Controller
             get { return _sizeIdx8; }
             set { _sizeIdx8 = value; }
         }
-
+        public int SizeIdx9
+        {
+            get { return _sizeIdx9; }
+            set { _sizeIdx9 = value; }
+        }
+        public int SizeIdx10
+        {
+            get { return _sizeIdx10; }
+            set { _sizeIdx10 = value; }
+        }
         //사용여부
         public int IsUse
         {
@@ -106,7 +117,7 @@ namespace Dev.Codes.Controller
 
         public SizeGroup(int sizeGroupIdx, int client, string sizeGroupName, 
             int sizeIdx1, int sizeIdx2, int sizeIdx3, int sizeIdx4,
-            int sizeIdx5, int sizeIdx6, int sizeIdx7, int sizeIdx8, 
+            int sizeIdx5, int sizeIdx6, int sizeIdx7, int sizeIdx8, int sizeIdx9, int sizeIdx10,
             int isUse)
         {
             SizeGroupIdx = sizeGroupIdx;
@@ -120,6 +131,8 @@ namespace Dev.Codes.Controller
             SizeIdx6 = sizeIdx6;
             SizeIdx7 = sizeIdx7;
             SizeIdx8 = sizeIdx8;
+            SizeIdx9 = sizeIdx9;
+            SizeIdx10 = sizeIdx10;
             IsUse = isUse; 
         }
 
@@ -140,6 +153,9 @@ namespace Dev.Codes.Controller
                 if (_row["SizeIdx6"] != DBNull.Value) _sizeIdx6 = Convert.ToInt32(_row["SizeIdx6"]);
                 if (_row["SizeIdx7"] != DBNull.Value) _sizeIdx7 = Convert.ToInt32(_row["SizeIdx7"]);
                 if (_row["SizeIdx8"] != DBNull.Value) _sizeIdx8 = Convert.ToInt32(_row["SizeIdx8"]);
+                if (_row["SizeIdx9"] != DBNull.Value) _sizeIdx9 = Convert.ToInt32(_row["SizeIdx9"]);
+                if (_row["SizeIdx10"] != DBNull.Value) _sizeIdx10 = Convert.ToInt32(_row["SizeIdx10"]);
+
 
                 if (_row["IsUse"] != DBNull.Value) _isUse = Convert.ToInt32(_row["IsUse"]);
             }
@@ -162,6 +178,8 @@ namespace Dev.Codes.Controller
             _sizeIdx6 = 0;
             _sizeIdx7 = 0;
             _sizeIdx8 = 0;
+            _sizeIdx9 = 0;
+            _sizeIdx10 = 0;
             _isUse = 0;
         }
         #endregion
@@ -170,11 +188,11 @@ namespace Dev.Codes.Controller
 
         // Insert
         public static DataRow Insert(int Client, string SizeGroupName,
-            int SizeIdx1, int SizeIdx2, int SizeIdx3, int SizeIdx4, int SizeIdx5, int SizeIdx6, int SizeIdx7, int SizeIdx8,
+            int SizeIdx1, int SizeIdx2, int SizeIdx3, int SizeIdx4, int SizeIdx5, int SizeIdx6, int SizeIdx7, int SizeIdx8, int SizeIdx9, int SizeIdx10,
             int IsUse)
         {
             DataRow row = Data.SizeGroupData.Insert(Client, SizeGroupName,
-            SizeIdx1, SizeIdx2, SizeIdx3, SizeIdx4, SizeIdx5, SizeIdx6, SizeIdx7, SizeIdx8,
+            SizeIdx1, SizeIdx2, SizeIdx3, SizeIdx4, SizeIdx5, SizeIdx6, SizeIdx7, SizeIdx8, SizeIdx9, SizeIdx10, 
             IsUse);
             return row;
         }
@@ -222,7 +240,7 @@ namespace Dev.Codes.Controller
         {
             bool blRtn;
             blRtn = Data.SizeGroupData.Update(_sizeGroupIdx, _client, _sizeGroupName,
-            _sizeIdx1, _sizeIdx2, _sizeIdx3, _sizeIdx4, _sizeIdx5, _sizeIdx6, _sizeIdx7, _sizeIdx8,
+            _sizeIdx1, _sizeIdx2, _sizeIdx3, _sizeIdx4, _sizeIdx5, _sizeIdx6, _sizeIdx7, _sizeIdx8, _sizeIdx9, _sizeIdx10,
             _isUse);
             return blRtn;
         }

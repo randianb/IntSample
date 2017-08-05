@@ -240,7 +240,7 @@ namespace Dev.Fabric.Reports
             this.textBox27.Style.Font.Bold = true;
             this.textBox27.Style.Font.Name = "Segoe UI";
             this.textBox27.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(14D);
-            this.textBox27.Value = "Outbound";
+            this.textBox27.Value = "Fabric OUT";
             // 
             // pageHeaderSection1
             // 

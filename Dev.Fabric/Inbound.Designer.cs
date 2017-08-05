@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition16 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition17 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition18 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn4 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Category");
             Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn5 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Code");
             Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn6 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "State");
@@ -217,7 +217,7 @@
             this.gvMain.MasterTemplate.AutoGenerateColumns = false;
             this.gvMain.MasterTemplate.MultiSelect = true;
             this.gvMain.MasterTemplate.PageSize = 50;
-            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition16;
             this.gvMain.Name = "gvMain";
             this.gvMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvMain.ShowGroupPanel = false;
@@ -278,7 +278,7 @@
             this.toolWindow3.Name = "toolWindow3";
             this.toolWindow3.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
             this.toolWindow3.Size = new System.Drawing.Size(889, 174);
-            this.toolWindow3.Text = "Outbound";
+            this.toolWindow3.Text = "OUT";
             // 
             // gvOutbound
             // 
@@ -288,7 +288,7 @@
             // 
             // 
             this.gvOutbound.MasterTemplate.AllowAddNewRow = false;
-            this.gvOutbound.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.gvOutbound.MasterTemplate.ViewDefinition = tableViewDefinition17;
             this.gvOutbound.Name = "gvOutbound";
             this.gvOutbound.ReadOnly = true;
             this.gvOutbound.ShowGroupPanel = false;
@@ -459,7 +459,7 @@
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(123, 14);
             this.radLabel7.TabIndex = 13;
-            this.radLabel7.Text = "Inbound#";
+            this.radLabel7.Text = "IN #";
             // 
             // radLabel11
             // 
@@ -593,9 +593,9 @@
             // 
             this.radLabel12.Location = new System.Drawing.Point(723, 50);
             this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(75, 14);
+            this.radLabel12.Size = new System.Drawing.Size(44, 18);
             this.radLabel12.TabIndex = 22;
-            this.radLabel12.Text = "Inbound Date";
+            this.radLabel12.Text = "IN Date";
             this.radLabel12.DoubleClick += new System.EventHandler(this.radLabel12_DoubleClick);
             // 
             // radLabel9
@@ -641,7 +641,7 @@
             this.ddlFabric.EditorControl.MasterTemplate.AllowColumnChooser = false;
             this.ddlFabric.EditorControl.MasterTemplate.EnableGrouping = false;
             this.ddlFabric.EditorControl.MasterTemplate.ShowFilteringRow = false;
-            this.ddlFabric.EditorControl.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.ddlFabric.EditorControl.MasterTemplate.ViewDefinition = tableViewDefinition18;
             this.ddlFabric.EditorControl.Name = "NestedRadGridView";
             this.ddlFabric.EditorControl.ReadOnly = true;
             this.ddlFabric.EditorControl.ShowGroupPanel = false;
@@ -776,7 +776,7 @@
             this.toolWindow4.Name = "toolWindow4";
             this.toolWindow4.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
             this.toolWindow4.Size = new System.Drawing.Size(374, 557);
-            this.toolWindow4.Text = "Inbound / Outbound";
+            this.toolWindow4.Text = "IN / OUT";
             // 
             // tableLayoutPanel4
             // 
@@ -880,8 +880,8 @@
             this.toggleWay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.toggleWay.Location = new System.Drawing.Point(3, 3);
             this.toggleWay.Name = "toggleWay";
-            this.toggleWay.OffText = "OUTBOUND";
-            this.toggleWay.OnText = "INBOUND";
+            this.toggleWay.OffText = "OUT";
+            this.toggleWay.OnText = "IN";
             this.toggleWay.Size = new System.Drawing.Size(178, 28);
             this.toggleWay.TabIndex = 7;
             this.toggleWay.Text = "radToggleSwitch1";
@@ -896,7 +896,7 @@
             ((Telerik.WinControls.UI.ToggleSwitchPartElement)(this.toggleWay.GetChildAt(0).GetChildAt(1))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(67)))), ((int)(((byte)(255)))));
             ((Telerik.WinControls.UI.ToggleSwitchPartElement)(this.toggleWay.GetChildAt(0).GetChildAt(1))).GradientStyle = Telerik.WinControls.GradientStyles.Glass;
             ((Telerik.WinControls.UI.ToggleSwitchPartElement)(this.toggleWay.GetChildAt(0).GetChildAt(1))).BorderBottomColor = System.Drawing.Color.White;
-            ((Telerik.WinControls.UI.ToggleSwitchPartElement)(this.toggleWay.GetChildAt(0).GetChildAt(1))).Text = "OUTBOUND";
+            ((Telerik.WinControls.UI.ToggleSwitchPartElement)(this.toggleWay.GetChildAt(0).GetChildAt(1))).Text = "OUT";
             ((Telerik.WinControls.UI.ToggleSwitchPartElement)(this.toggleWay.GetChildAt(0).GetChildAt(1))).ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             ((Telerik.WinControls.UI.ToggleSwitchPartElement)(this.toggleWay.GetChildAt(0).GetChildAt(1))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(248)))));
             // 
@@ -993,11 +993,12 @@
             // 
             // radLabel13
             // 
-            this.radLabel13.Location = new System.Drawing.Point(91, 8);
+            this.radLabel13.Location = new System.Drawing.Point(118, 8);
             this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(90, 18);
+            this.radLabel13.Size = new System.Drawing.Size(57, 18);
             this.radLabel13.TabIndex = 0;
-            this.radLabel13.Text = "Outbound Mode";
+            this.radLabel13.Text = "Out Mode";
+            this.radLabel13.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
             // up_Customers_List_BuyerTableAdapter1
             // 
