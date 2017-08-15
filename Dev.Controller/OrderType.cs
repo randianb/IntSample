@@ -44,6 +44,7 @@ namespace Dev.Controller
         private int _type223;
         private int _type224;
         private int _type225;
+        private int _type226;
 
         private DataRow _row;
 
@@ -242,7 +243,12 @@ namespace Dev.Controller
             get { return _type225; }
             set { _type225 = value; }
         }
-
+        //
+        public int Type226
+        {
+            get { return _type226; }
+            set { _type226 = value; }
+        }
         #endregion
 
         #region Constructor 
@@ -288,6 +294,7 @@ namespace Dev.Controller
                 if (_row["Type223"] != DBNull.Value) _type223 = Convert.ToInt32(_row["Type223"]);
                 if (_row["Type224"] != DBNull.Value) _type224 = Convert.ToInt32(_row["Type224"]);
                 if (_row["Type225"] != DBNull.Value) _type225 = Convert.ToInt32(_row["Type225"]);
+                if (_row["Type226"] != DBNull.Value) _type226 = Convert.ToInt32(_row["Type226"]);
 
             }
             else
@@ -332,6 +339,7 @@ namespace Dev.Controller
             _type223 = 0;
             _type224 = 0;
             _type225 = 0;
+            _type226 = 0;
         }
 
         #endregion
@@ -382,7 +390,7 @@ namespace Dev.Controller
             blRtn = Data.OrderTypeData.Update(_idx, _type101, _type102, _type103, 
                 _type201, _type202, _type203, _type204, _type205, _type206, _type207, _type208, _type209, _type210, 
                 _type211, _type212, _type213, _type214, _type215, _type216, _type217, _type218, _type219, _type220, 
-                _type221, _type222, _type223, _type224, _type225 
+                _type221, _type222, _type223, _type224, _type225, _type226
                 );
             return blRtn;
         }

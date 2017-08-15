@@ -11,12 +11,5 @@ D:\git\IntSample\Dev.Options\obj\Debug\Dev.Options.dll
 D:\git\IntSample\Dev.Options\obj\Debug\Dev.Options.pdb
 D:\git\IntSample\Dev.Options\bin\Debug\Int.Users.dll
 D:\git\IntSample\Dev.Options\bin\Debug\Int.Costcenter.dll
-D:\git\IntSample\Dev.Options\bin\Debug\Telerik.WinControls.dll
-D:\git\IntSample\Dev.Options\bin\Debug\Telerik.WinControls.GridView.dll
-D:\git\IntSample\Dev.Options\bin\Debug\Telerik.WinControls.UI.dll
-D:\git\IntSample\Dev.Options\bin\Debug\TelerikCommon.dll
-D:\git\IntSample\Dev.Options\bin\Debug\Telerik.WinControls.xml
-D:\git\IntSample\Dev.Options\bin\Debug\Telerik.WinControls.GridView.xml
-D:\git\IntSample\Dev.Options\bin\Debug\Telerik.WinControls.UI.xml
 D:\git\IntSample\Dev.Options\obj\Debug\Dev.Options.InheritForm.resources
 D:\git\IntSample\Dev.Options\obj\Debug\Dev.Options.csprojResolveAssemblyReference.cache

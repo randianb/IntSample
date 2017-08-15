@@ -22,7 +22,7 @@ namespace Dev.Fabric.Reports
             // detail
             // 
             this.detail.CanShrink = false;
-            this.detail.Height = Telerik.Reporting.Drawing.Unit.Mm(152.39999389648438D);
+            this.detail.Height = Telerik.Reporting.Drawing.Unit.Inch(2D);
             this.detail.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.textBox2,
             this.textBox3,
@@ -33,7 +33,7 @@ namespace Dev.Fabric.Reports
             // 
             // textBox2
             // 
-            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.1000001430511475D), Telerik.Reporting.Drawing.Unit.Cm(1.1106250286102295D));
+            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.1000001430511475D), Telerik.Reporting.Drawing.Unit.Cm(2.1000001430511475D));
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.6000003814697266D), Telerik.Reporting.Drawing.Unit.Cm(0.38833341002464294D));
             this.textBox2.Style.Font.Bold = true;
@@ -43,7 +43,7 @@ namespace Dev.Fabric.Reports
             // 
             // textBox3
             // 
-            this.textBox3.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.1000001430511475D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            this.textBox3.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.1000001430511475D), Telerik.Reporting.Drawing.Unit.Cm(1.38937509059906D));
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.6000003814697266D), Telerik.Reporting.Drawing.Unit.Cm(0.38833341002464294D));
             this.textBox3.Style.Font.Bold = true;
@@ -59,7 +59,7 @@ namespace Dev.Fabric.Reports
             qrCodeEncoder1.FNC1 = Telerik.Reporting.Barcodes.QRCode.FNC1Mode.SecondPosition;
             qrCodeEncoder1.Version = 8;
             this.barcode1.Encoder = qrCodeEncoder1;
-            this.barcode1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.099999949336051941D), Telerik.Reporting.Drawing.Unit.Cm(0.099999949336051941D));
+            this.barcode1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.099999949336051941D), Telerik.Reporting.Drawing.Unit.Cm(1.0893751382827759D));
             this.barcode1.Module = Telerik.Reporting.Drawing.Unit.Point(4D);
             this.barcode1.Name = "barcode1";
             this.barcode1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.88364577293396D), Telerik.Reporting.Drawing.Unit.Cm(2.6852083206176758D));
@@ -68,7 +68,7 @@ namespace Dev.Fabric.Reports
             // 
             // textBox1
             // 
-            this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.1000001430511475D), Telerik.Reporting.Drawing.Unit.Cm(1.8212499618530273D));
+            this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.1000001430511475D), Telerik.Reporting.Drawing.Unit.Cm(2.8106250762939453D));
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.6000003814697266D), Telerik.Reporting.Drawing.Unit.Cm(0.38833341002464294D));
             this.textBox1.Style.Font.Bold = true;
@@ -94,7 +94,7 @@ namespace Dev.Fabric.Reports
             this.PageSettings.Landscape = false;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.Custom;
-            this.PageSettings.PaperSize = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(101.59999847412109D), Telerik.Reporting.Drawing.Unit.Mm(152.39999389648438D));
+            this.PageSettings.PaperSize = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(4D), Telerik.Reporting.Drawing.Unit.Inch(2D));
             styleRule1.Selectors.AddRange(new Telerik.Reporting.Drawing.ISelector[] {
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.TextItemBase)),
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.HtmlTextBox))});

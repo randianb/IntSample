@@ -18,12 +18,3 @@ D:\git\IntSample\Dev.Yarn\bin\Debug\Dev.Options.pdb
 D:\git\IntSample\Dev.Yarn\obj\Debug\Dev.Yarn.dll.licenses
 D:\git\IntSample\Dev.Yarn\obj\Debug\Dev.Yarn.dll
 D:\git\IntSample\Dev.Yarn\obj\Debug\Dev.Yarn.pdb
-D:\git\IntSample\Dev.Yarn\bin\Debug\Telerik.WinControls.dll
-D:\git\IntSample\Dev.Yarn\bin\Debug\Telerik.WinControls.GridView.dll
-D:\git\IntSample\Dev.Yarn\bin\Debug\Telerik.WinControls.RadDock.dll
-D:\git\IntSample\Dev.Yarn\bin\Debug\Telerik.WinControls.UI.dll
-D:\git\IntSample\Dev.Yarn\bin\Debug\TelerikCommon.dll
-D:\git\IntSample\Dev.Yarn\bin\Debug\Telerik.WinControls.xml
-D:\git\IntSample\Dev.Yarn\bin\Debug\Telerik.WinControls.GridView.xml
-D:\git\IntSample\Dev.Yarn\bin\Debug\Telerik.WinControls.RadDock.xml
-D:\git\IntSample\Dev.Yarn\bin\Debug\Telerik.WinControls.UI.xml

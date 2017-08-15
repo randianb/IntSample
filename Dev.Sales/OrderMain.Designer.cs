@@ -119,6 +119,7 @@
             this.chkType223 = new Telerik.WinControls.UI.RadCheckBox();
             this.chkType224 = new Telerik.WinControls.UI.RadCheckBox();
             this.chkType225 = new Telerik.WinControls.UI.RadCheckBox();
+            this.chkType226 = new Telerik.WinControls.UI.RadCheckBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.ddlInsertSize = new Telerik.WinControls.UI.RadDropDownList();
             this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
@@ -226,6 +227,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkType223)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkType224)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkType225)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkType226)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlInsertSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
@@ -1003,6 +1005,7 @@
             this.tableLayoutPanel6.Controls.Add(this.chkType223, 1, 8);
             this.tableLayoutPanel6.Controls.Add(this.chkType224, 2, 8);
             this.tableLayoutPanel6.Controls.Add(this.chkType225, 0, 9);
+            this.tableLayoutPanel6.Controls.Add(this.chkType226, 1, 9);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 80);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
@@ -1328,6 +1331,16 @@
             this.chkType225.Text = "ADD";
             this.chkType225.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
             // 
+            // chkType226
+            // 
+            this.chkType226.AutoSize = false;
+            this.chkType226.Location = new System.Drawing.Point(153, 219);
+            this.chkType226.Name = "chkType226";
+            this.chkType226.Size = new System.Drawing.Size(144, 18);
+            this.chkType226.TabIndex = 1;
+            this.chkType226.Text = "P.P. Graphic";
+            this.chkType226.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.Type_ToggleStateChanged);
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 4;
@@ -1648,6 +1661,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkType223)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkType224)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkType225)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkType226)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlInsertSize)).EndInit();
@@ -1773,5 +1787,6 @@
         private Telerik.WinControls.UI.RadCheckBox chkType223;
         private Telerik.WinControls.UI.RadCheckBox chkType224;
         private Telerik.WinControls.UI.RadCheckBox chkType225;
+        private Telerik.WinControls.UI.RadCheckBox chkType226;
     }
 }

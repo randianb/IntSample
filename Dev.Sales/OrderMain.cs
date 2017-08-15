@@ -34,9 +34,9 @@ namespace Dev.Sales
         private DataTable _dt = null;                                           // 기본 데이터테이블
         private Controller.Orders _obj1 = null;                                 // 현재 생성된 객체 
         private Controller.OrderColor _obj2 = null;                             // 현재 생성된 객체 
-        private Controller.Operation _obj3 = null;                             // 현재 생성된 객체 
-        private Dev.Controller.OrderFabric _obj4 = null;                             // 현재 생성된 객체 
-        private Dev.Controller.OrderType _obj5 = null;                             // 현재 생성된 객체 
+        private Controller.Operation _obj3 = null;                              // 현재 생성된 객체 
+        private Dev.Controller.OrderFabric _obj4 = null;                        // 현재 생성된 객체 
+        private Dev.Controller.OrderType _obj5 = null;                          // 현재 생성된 객체 
         private GridViewRowInfo CurrentStatusRow = null; 
 
         private RadContextMenu contextMenu;                                     // 컨텍스트 메뉴
@@ -3086,6 +3086,7 @@ namespace Dev.Sales
                 _obj5.Type223 = Convert.ToInt32(chkType223.Checked);
                 _obj5.Type224 = Convert.ToInt32(chkType224.Checked);
                 _obj5.Type225 = Convert.ToInt32(chkType225.Checked);
+                _obj5.Type226 = Convert.ToInt32(chkType226.Checked);
 
                 // 업데이트
                 _bRtn = _obj5.Update();

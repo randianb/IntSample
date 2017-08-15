@@ -9,11 +9,6 @@ D:\git\IntSample\Dev.Finish\bin\Debug\Int.Department.dll
 D:\git\IntSample\Dev.Finish\bin\Debug\Int.dll
 D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.Reporting.dll
 D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.ReportViewer.WinForms.dll
-D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.WinControls.dll
-D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.WinControls.GridView.dll
-D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.WinControls.RadDock.dll
-D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.WinControls.UI.dll
-D:\git\IntSample\Dev.Finish\bin\Debug\TelerikCommon.dll
 D:\git\IntSample\Dev.Finish\bin\Debug\Dev.Data.dll
 D:\git\IntSample\Dev.Finish\bin\Debug\Int.Users.dll
 D:\git\IntSample\Dev.Finish\bin\Debug\Int.Costcenter.dll
@@ -24,10 +19,6 @@ D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.Reporting.pdb
 D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.Reporting.xml
 D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.ReportViewer.WinForms.pdb
 D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.ReportViewer.WinForms.xml
-D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.WinControls.xml
-D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.WinControls.GridView.xml
-D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.WinControls.RadDock.xml
-D:\git\IntSample\Dev.Finish\bin\Debug\Telerik.WinControls.UI.xml
 D:\git\IntSample\Dev.Finish\bin\Debug\Dev.Data.pdb
 D:\git\IntSample\Dev.Finish\obj\Debug\Dev.Out.csprojResolveAssemblyReference.cache
 D:\git\IntSample\Dev.Finish\obj\Debug\Dev.Out.FinishedMain.resources
