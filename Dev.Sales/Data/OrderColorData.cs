@@ -99,7 +99,7 @@ namespace Dev.Sales.Data
         /// <summary>
         /// Update
         /// </summary>
-        public static bool Update(int Idx, string ColorIdx,
+        public static bool Update(int Idx, string ColorIdx, int Classification, 
             int Pcs1, int Pcs2, int Pcs3, int Pcs4, int Pcs5, int Pcs6, int Pcs7, int Pcs8
             )
         {
@@ -118,7 +118,10 @@ namespace Dev.Sales.Data
                 
                 _cmd.Parameters.Add("@ColorIdx", SqlDbType.NVarChar, 30);
                 _cmd.Parameters["@ColorIdx"].Value = ColorIdx;
-                
+
+                _cmd.Parameters.Add("@Classification", SqlDbType.Int, 4);
+                _cmd.Parameters["@Classification"].Value = Classification;
+
                 _cmd.Parameters.Add("@Pcs1", SqlDbType.Int, 4);
                 _cmd.Parameters["@Pcs1"].Value = Pcs1;
 

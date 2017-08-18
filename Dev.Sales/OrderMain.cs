@@ -53,7 +53,7 @@ namespace Dev.Sales
         private List<CodeContents> lstIsPrinting = new List<CodeContents>();    // 나염여부
         private List<CustomerName> lstUser = new List<CustomerName>();          // 유저명
         private List<CustomerName> lstSewthread = new List<CustomerName>();     // sewthread
-        private List<CodeContents> lstColor = new List<CodeContents>();         // 컬러명
+        private List<CodeContents> lstClass = new List<CodeContents>();         // 컬러명
         private List<CodeContents> lstOperation = new List<CodeContents>();         // 공정명
         private List<Codes.Controller.Sizes> lstSize = new List<Codes.Controller.Sizes>();
         private List<Codes.Controller.Sizes> lstSizeDDL = new List<Codes.Controller.Sizes>();
@@ -544,20 +544,18 @@ namespace Dev.Sales
             cHandler.Width = 80;
             gv.Columns.Insert(18, cHandler);
 
-            gv.Columns["OrderQty"].Width = 80;
+            gv.Columns["OrderQty"].Width = 60;
             gv.Columns["OrderQty"].FormatString = "{0:N0}";
             gv.Columns["OrderQty"].HeaderText = "Q'ty(pcs)";
 
             gv.Columns["OrderPrice"].Width = 50;
             gv.Columns["OrderPrice"].FormatString = "{0:N2}";
             gv.Columns["OrderPrice"].HeaderText = "U/Price\n($)";
-            gv.Columns["OrderPrice"].IsVisible = false; 
-
-            gv.Columns["OrderAmount"].Width = 100;
+            
+            gv.Columns["OrderAmount"].Width = 80;
             gv.Columns["OrderAmount"].FormatString = "{0:N2}";
             gv.Columns["OrderAmount"].HeaderText = "Amount($)";
-            gv.Columns["OrderAmount"].IsVisible = false;
-
+            
             GridViewTextBoxColumn remark = new GridViewTextBoxColumn();
             remark.Name = "Remark";
             remark.FieldName = "Remark";
@@ -676,19 +674,26 @@ namespace Dev.Sales
             cOrderIdx.IsVisible = false;
             gv.Columns.Add(cOrderIdx);
 
-            GridViewComboBoxColumn cColorIdx = new GridViewComboBoxColumn();
+            GridViewTextBoxColumn cColorIdx = new GridViewTextBoxColumn();
             cColorIdx.Name = "ColorIdx";
             cColorIdx.FieldName = "ColorIdx";
-            cColorIdx.DataSource = lstColor;
-            cColorIdx.DisplayMember = "Contents";
-            cColorIdx.ValueMember = "Contents";
             cColorIdx.Width = 120;
-            cColorIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cColorIdx.DropDownStyle = RadDropDownStyle.DropDown;
             cColorIdx.TextAlignment = ContentAlignment.MiddleLeft;
             cColorIdx.HeaderText = "Color";
             gv.Columns.Add(cColorIdx);
-            
+
+            GridViewComboBoxColumn cClassification = new GridViewComboBoxColumn();
+            cClassification.Name = "Classification";
+            cClassification.FieldName = "Classification";
+            cClassification.DataSource = lstClass;
+            cClassification.DisplayMember = "Contents";
+            cClassification.ValueMember = "CodeIdx";
+            cClassification.Width = 90;
+            cClassification.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cClassification.DropDownStyle = RadDropDownStyle.DropDownList;
+            cClassification.TextAlignment = ContentAlignment.MiddleLeft;
+            cClassification.HeaderText = "Classification";
+            gv.Columns.Add(cClassification);
 
             #region Sizes 
 
@@ -2336,14 +2341,13 @@ namespace Dev.Sales
                                             Convert.ToInt32(row["DeptIdx"])));
             }
 
-            // 컬러명 
-            _dt = Codes.Controller.Color.GetUselist().Tables[0];
+            // 코드
+            _dt = Code.Getlist("Color Sub Option").Tables[0];
 
+            lstClass.Add(new CodeContents(0, "", ""));
             foreach (DataRow row in _dt.Rows)
             {
-                lstColor.Add(new CodeContents(Convert.ToInt32(row["ColorIdx"]),
-                                            row["ColorName"].ToString(),
-                                            ""));
+                lstClass.Add(new CodeContents(Convert.ToInt32(row["Idx"]), row["Contents"].ToString(), row["Classification"].ToString()));
             }
 
             // 오더상태
@@ -2724,6 +2728,7 @@ namespace Dev.Sales
                     _obj2.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
                     _obj2.OrderIdx = Convert.ToInt32(row.Cells["OrderIdx"].Value.ToString());
                     if (row.Cells["ColorIdx"].Value != DBNull.Value) _obj2.ColorIdx = row.Cells["ColorIdx"].Value.ToString();
+                    if (row.Cells["Classification"].Value != DBNull.Value) _obj2.Classification = Convert.ToInt32(row.Cells["Classification"].Value.ToString());
                     if (row.Cells["SizeIdx1"].Value != DBNull.Value) _obj2.SizeIdx1 = Convert.ToInt32(row.Cells["SizeIdx1"].Value.ToString());
                     if (row.Cells["SizeIdx2"].Value != DBNull.Value) _obj2.SizeIdx2 = Convert.ToInt32(row.Cells["SizeIdx2"].Value.ToString());
                     if (row.Cells["SizeIdx3"].Value != DBNull.Value) _obj2.SizeIdx3 = Convert.ToInt32(row.Cells["SizeIdx3"].Value.ToString());
@@ -3093,6 +3098,7 @@ namespace Dev.Sales
 
                 if (_bRtn)
                 {
+                    RadMessageBox.Show("It has been saved!", "Successful", MessageBoxButtons.OK, RadMessageIcon.Info); 
                     __main__.lblRows.Text = "Updated Sample Type";
                 }
             }

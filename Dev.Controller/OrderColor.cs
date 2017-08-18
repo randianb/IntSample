@@ -12,6 +12,7 @@ namespace Dev.Controller
         private int _idx;
         private int _orderIdx;
         private int _colorIdx;
+        private int _classification; 
 
         private int _sizeIdx1;
         private int _sizeIdx2;
@@ -50,13 +51,19 @@ namespace Dev.Controller
             get { return _orderIdx; }
             set { _orderIdx = value; }
         }
+        
         //
         public int ColorIdx
         {
             get { return _colorIdx; }
             set { _colorIdx = value; }
         }
-
+        //
+        public int Classification
+        {
+            get { return _classification; }
+            set { _classification = value; }
+        }
         //
         public int SizeIdx1
         {
@@ -155,6 +162,7 @@ namespace Dev.Controller
                 _idx = Convert.ToInt32(_row["Idx"]);
                 if (_row["OrderIdx"] != DBNull.Value) _orderIdx = Convert.ToInt32(_row["OrderIdx"]);
                 if (_row["ColorIdx"] != DBNull.Value) _colorIdx = Convert.ToInt32(_row["ColorIdx"]);
+                if (_row["Classification"] != DBNull.Value) _classification = Convert.ToInt32(_row["Classification"]);
                 
                 if (_row["SizeIdx1"] != DBNull.Value) _sizeIdx1 = Convert.ToInt32(_row["SizeIdx1"]);
                 if (_row["SizeIdx2"] != DBNull.Value) _sizeIdx2 = Convert.ToInt32(_row["SizeIdx2"]);
@@ -185,7 +193,8 @@ namespace Dev.Controller
             _idx = 0;
             _orderIdx = 0;
             _colorIdx = 0;
-            
+            _classification = 0; 
+
             _sizeIdx1 = 0;
             _sizeIdx2 = 0;
             _sizeIdx3 = 0;
@@ -231,7 +240,7 @@ namespace Dev.Controller
         public bool Update()
         {
             bool blRtn;
-            blRtn = Data.OrderColorData.Update(_idx, _colorIdx, 
+            blRtn = Data.OrderColorData.Update(_idx, _colorIdx, _classification, 
                 _pcs1, _pcs2, _pcs3, _pcs4, _pcs5, _pcs6, _pcs7, _pcs8
                 );
             return blRtn;
