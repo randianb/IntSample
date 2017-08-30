@@ -236,6 +236,14 @@ namespace Dev.Codes.Controller
             return dr;
         }
 
+        // 바이어 번호로 사이즈 그룹 검색 
+        public static DataSet GetlistWithCustIdx(int CustIdx)
+        {
+            DataSet ds = new DataSet();
+            ds = Data.SizeGroupData.GetlistWithCustIdx(CustIdx);
+            return ds;
+        }
+
         public bool Update()
         {
             bool blRtn;

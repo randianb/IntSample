@@ -49,7 +49,12 @@ namespace Dev.Pattern
         private List<CodeContents> lstOperation = new List<CodeContents>();     // 공정명
         private List<CodeContents> sizeName = new List<CodeContents>();
         private string _layoutfile = "/GVLayoutPattern.xml";
-        private string _workOrderIdx; 
+        private string _workOrderIdx;
+
+        private List<string> lstFiles = new List<string>();
+        private List<string> lstFileUrls = new List<string>();
+
+        private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 37, 0);   // 패키지번호, 프로그램번호, 윈도우번호
 
         //RadMenuItem mnuNew, mnuDel, mnuHide, mnuShow, menuItem2, menuItem3, menuItem4, mnuWorksheet, mnuCutting, mnuOutsourcing, mnuSewing, mnuInspecting = null;
 
@@ -93,6 +98,19 @@ namespace Dev.Pattern
                 _searchKey.Add(CommonValues.KeyName.Size, 0);
 
                 DataBinding_GV1(2, _searchKey, _workOrderIdx, txtStyle.Text.Trim());
+            }
+
+            /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+            /// 읽기: 0, 쓰기: 1, 삭제: 2, 센터: 3, 부서: 4
+            int _mode_ = 1;
+            if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0) { }
+            else
+            {
+                radBrowseEditor1.Visible = true;
+                radBrowseEditor2.Visible = true;
+                radBrowseEditor3.Visible = true;
+                radBrowseEditor4.Visible = true;
+                btnSaveData.Visible = true; 
             }
         }
         
@@ -206,9 +224,9 @@ namespace Dev.Pattern
             GridViewDateTimeColumn RequestedDate = new GridViewDateTimeColumn();
             RequestedDate.Name = "RequestedDate";
             RequestedDate.FieldName = "RequestedDate";
-            RequestedDate.Width = 100;
+            RequestedDate.Width = 130;
             RequestedDate.TextAlignment = ContentAlignment.MiddleCenter;
-            RequestedDate.FormatString = "{0:d}";
+            RequestedDate.FormatString = "{0:g}";
             RequestedDate.HeaderText = "RequestedDate";
             RequestedDate.ReadOnly = true;
             gv.Columns.Insert(9, RequestedDate);
@@ -279,6 +297,8 @@ namespace Dev.Pattern
             Remarks.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Insert(16, Remarks);
 
+            #region Attachment columns 
+
             GridViewTextBoxColumn Attached1 = new GridViewTextBoxColumn();
             Attached1.Name = "Attached1";
             Attached1.FieldName = "Attached1";
@@ -308,7 +328,57 @@ namespace Dev.Pattern
             Attached5.FieldName = "Attached5";
             Attached5.IsVisible = false;
             gv.Columns.Insert(21, Attached5);
-            
+
+            GridViewTextBoxColumn Attached21 = new GridViewTextBoxColumn();
+            Attached21.Name = "Attached21";
+            Attached21.FieldName = "Attached21";
+            Attached21.IsVisible = false;
+            gv.Columns.Insert(22, Attached21);
+
+            GridViewTextBoxColumn Attached22 = new GridViewTextBoxColumn();
+            Attached22.Name = "Attached22";
+            Attached22.FieldName = "Attached22";
+            Attached22.IsVisible = false;
+            gv.Columns.Insert(23, Attached22);
+
+            GridViewTextBoxColumn Attached23 = new GridViewTextBoxColumn();
+            Attached23.Name = "Attached23";
+            Attached23.FieldName = "Attached23";
+            Attached23.IsVisible = false;
+            gv.Columns.Insert(24, Attached23);
+
+            GridViewTextBoxColumn Attached24 = new GridViewTextBoxColumn();
+            Attached24.Name = "Attached24";
+            Attached24.FieldName = "Attached24";
+            Attached24.IsVisible = false;
+            gv.Columns.Insert(25, Attached24);
+
+            GridViewTextBoxColumn AttachedUrl21 = new GridViewTextBoxColumn();
+            AttachedUrl21.Name = "AttachedUrl21";
+            AttachedUrl21.FieldName = "AttachedUrl21";
+            AttachedUrl21.IsVisible = false;
+            gv.Columns.Insert(26, AttachedUrl21);
+
+            GridViewTextBoxColumn AttachedUrl22 = new GridViewTextBoxColumn();
+            AttachedUrl22.Name = "AttachedUrl22";
+            AttachedUrl22.FieldName = "AttachedUrl22";
+            AttachedUrl22.IsVisible = false;
+            gv.Columns.Insert(27, AttachedUrl22);
+
+            GridViewTextBoxColumn AttachedUrl23 = new GridViewTextBoxColumn();
+            AttachedUrl23.Name = "AttachedUrl23";
+            AttachedUrl23.FieldName = "AttachedUrl23";
+            AttachedUrl23.IsVisible = false;
+            gv.Columns.Insert(28, AttachedUrl23);
+
+            GridViewTextBoxColumn AttachedUrl24 = new GridViewTextBoxColumn();
+            AttachedUrl21.Name = "AttachedUrl24";
+            AttachedUrl21.FieldName = "AttachedUrl24";
+            AttachedUrl21.IsVisible = false;
+            gv.Columns.Insert(29, AttachedUrl24);
+
+            #endregion
+
             GridViewComboBoxColumn status = new GridViewComboBoxColumn();
             status.Name = "Status";
             status.DataSource = lstStatus;
@@ -319,13 +389,13 @@ namespace Dev.Pattern
             status.Width = 70;
             status.IsVisible = false; 
             status.ReadOnly = true;
-            gv.Columns.Insert(22, status);
+            gv.Columns.Insert(30, status);
 
             GridViewTextBoxColumn Comments = new GridViewTextBoxColumn();
             Comments.Name = "Comments";
             Comments.FieldName = "Comments";
             Comments.IsVisible = false;
-            gv.Columns.Insert(23, Comments);
+            gv.Columns.Insert(31, Comments);
 
             #endregion
         }
@@ -466,11 +536,18 @@ namespace Dev.Pattern
                                         row["SizeName"].ToString(),
                                         ""));
             }
-
-
+            
             // Username
             lstUser.Add(new CustomerName(0, "", 0));
-            _dt = CommonController.Getlist(CommonValues.KeyName.User).Tables[0];
+
+            if (UserInfo.CenterIdx != 1 || UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6)
+            {
+                _dt = CommonController.Getlist(CommonValues.KeyName.AllUser).Tables[0];
+            }
+            else
+            {
+                _dt = CommonController.Getlist(CommonValues.KeyName.User).Tables[0];
+            }
 
             foreach (DataRow row in _dt.Rows)
             {
@@ -573,146 +650,91 @@ namespace Dev.Pattern
             _bRtn = false;
             try
             {
-                _gv1.EndEdit();
-                GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
-
-                // 객체생성 및 값 할당
-                _obj1           = new Controller.Pattern(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value));
-                _obj1.Idx       = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
-
-                if (row.Cells["OrdSizeIdx"].Value != DBNull.Value) _obj1.OrdSizeIdx = Convert.ToInt32(row.Cells["OrdSizeIdx"].Value.ToString());
-                
-                if (row.Cells["TechpackDate"].Value != DBNull.Value && row.Cells["TechpackDate"] != null)
-                {
-                    _obj1.TechpackDate = Convert.ToDateTime(row.Cells["TechpackDate"].Value);
-                }
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2, 센터: 3, 부서: 4
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
                 else
                 {
-                    _obj1.TechpackDate = new DateTime(2000, 1, 1);
+
+                    _gv1.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
+
+                    // 객체생성 및 값 할당
+                    _obj1 = new Controller.Pattern(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value));
+                    _obj1.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+
+                    if (row.Cells["OrdSizeIdx"].Value != DBNull.Value) _obj1.OrdSizeIdx = Convert.ToInt32(row.Cells["OrdSizeIdx"].Value.ToString());
+
+                    if (row.Cells["TechpackDate"].Value != DBNull.Value && row.Cells["TechpackDate"] != null)
+                    {
+                        _obj1.TechpackDate = Convert.ToDateTime(row.Cells["TechpackDate"].Value);
+                    }
+                    else
+                    {
+                        _obj1.TechpackDate = new DateTime(2000, 1, 1);
+                    }
+
+                    if (row.Cells["RequestedDate"].Value != DBNull.Value) _obj1.RequestedDate = Convert.ToDateTime(row.Cells["RequestedDate"].Value);
+                    if (row.Cells["Requested"].Value != DBNull.Value) _obj1.Requested = Convert.ToInt32(row.Cells["Requested"].Value.ToString());
+
+                    if (row.Cells["ConfirmedDate"].Value != DBNull.Value && row.Cells["ConfirmedDate"] != null)
+                    {
+                        _obj1.ConfirmedDate = Convert.ToDateTime(row.Cells["ConfirmedDate"].Value);
+                    }
+                    else
+                    {
+                        _obj1.ConfirmedDate = new DateTime(2000, 1, 1);
+                    }
+
+                    if (row.Cells["Confirmed"].Value != DBNull.Value) _obj1.Confirmed = Convert.ToInt32(row.Cells["Confirmed"].Value.ToString());
+
+                    if (row.Cells["CompletedDate"].Value != DBNull.Value && row.Cells["CompletedDate"] != null)
+                    {
+                        _obj1.CompletedDate = Convert.ToDateTime(row.Cells["CompletedDate"].Value);
+                    }
+                    else
+                    {
+                        _obj1.CompletedDate = new DateTime(2000, 1, 1);
+                    }
+
+                    if (row.Cells["SentDate"].Value != DBNull.Value && row.Cells["SentDate"] != null)
+                    {
+                        _obj1.SentDate = Convert.ToDateTime(row.Cells["SentDate"].Value);
+                    }
+                    else
+                    {
+                        _obj1.SentDate = new DateTime(2000, 1, 1);
+                    }
+
+                    if (row.Cells["Received"].Value != DBNull.Value) _obj1.Received = Convert.ToInt32(row.Cells["Received"].Value.ToString());
+                    if (row.Cells["Remarks"].Value != DBNull.Value) _obj1.Remarks = row.Cells["Remarks"].Value.ToString();
+
+                    //if (row.Cells["Attached1"].Value != DBNull.Value) _obj1.Attached1 = row.Cells["Attached1"].Value.ToString();
+                    //if (row.Cells["Attached2"].Value != DBNull.Value) _obj1.Attached2 = row.Cells["Attached2"].Value.ToString();
+                    //if (row.Cells["Attached3"].Value != DBNull.Value) _obj1.Attached3 = row.Cells["Attached3"].Value.ToString();
+                    //if (row.Cells["Attached4"].Value != DBNull.Value) _obj1.Attached4 = row.Cells["Attached4"].Value.ToString();
+                    //if (row.Cells["Attached5"].Value != DBNull.Value) _obj1.Attached5 = row.Cells["Attached5"].Value.ToString();
+
+                    //if (row.Cells["AttachedUrl1"].Value != DBNull.Value) _obj1.AttachedUrl1 = row.Cells["AttachedUrl1"].Value.ToString();
+                    //if (row.Cells["AttachedUrl2"].Value != DBNull.Value) _obj1.AttachedUrl2 = row.Cells["AttachedUrl2"].Value.ToString();
+                    //if (row.Cells["AttachedUrl3"].Value != DBNull.Value) _obj1.AttachedUrl3 = row.Cells["AttachedUrl3"].Value.ToString();
+                    //if (row.Cells["AttachedUrl4"].Value != DBNull.Value) _obj1.AttachedUrl4 = row.Cells["AttachedUrl4"].Value.ToString();
+                    //if (row.Cells["AttachedUrl5"].Value != DBNull.Value) _obj1.AttachedUrl5 = row.Cells["AttachedUrl5"].Value.ToString();
+
+                    // 업데이트 (오더캔슬, 선적완료 상태가 아닐경우)
+                    _bRtn = _obj1.Update();
+                    __main__.lblRows.Text = "Updated Pattern Info";
+
                 }
 
-                if (row.Cells["RequestedDate"].Value != DBNull.Value) _obj1.RequestedDate = Convert.ToDateTime(row.Cells["RequestedDate"].Value);
-                if (row.Cells["Requested"].Value != DBNull.Value) _obj1.Requested = Convert.ToInt32(row.Cells["Requested"].Value.ToString());
-
-                if (row.Cells["ConfirmedDate"].Value != DBNull.Value && row.Cells["ConfirmedDate"] != null)
-                {
-                    _obj1.ConfirmedDate = Convert.ToDateTime(row.Cells["ConfirmedDate"].Value);
-                }
-                else
-                {
-                    _obj1.ConfirmedDate = new DateTime(2000, 1, 1);
-                }
-
-                if (row.Cells["Confirmed"].Value != DBNull.Value) _obj1.Confirmed = Convert.ToInt32(row.Cells["Confirmed"].Value.ToString());
-                         
-                if (row.Cells["CompletedDate"].Value != DBNull.Value && row.Cells["CompletedDate"] != null)
-                {
-                    _obj1.CompletedDate = Convert.ToDateTime(row.Cells["CompletedDate"].Value);
-                }
-                else
-                {
-                    _obj1.CompletedDate = new DateTime(2000, 1, 1); 
-                }
-
-                if (row.Cells["SentDate"].Value != DBNull.Value && row.Cells["SentDate"] != null)
-                {
-                    _obj1.SentDate = Convert.ToDateTime(row.Cells["SentDate"].Value);
-                }
-                else
-                {
-                    _obj1.SentDate = new DateTime(2000, 1, 1);
-                }
-                
-                if (row.Cells["Received"].Value != DBNull.Value) _obj1.Received = Convert.ToInt32(row.Cells["Received"].Value.ToString());
-                if (row.Cells["Remarks"].Value != DBNull.Value) _obj1.Remarks = row.Cells["Remarks"].Value.ToString();
-
-                //if (row.Cells["Attached1"].Value != DBNull.Value) _obj1.Attached1 = row.Cells["Attached1"].Value.ToString();
-                //if (row.Cells["Attached2"].Value != DBNull.Value) _obj1.Attached2 = row.Cells["Attached2"].Value.ToString();
-                //if (row.Cells["Attached3"].Value != DBNull.Value) _obj1.Attached3 = row.Cells["Attached3"].Value.ToString();
-                //if (row.Cells["Attached4"].Value != DBNull.Value) _obj1.Attached4 = row.Cells["Attached4"].Value.ToString();
-                //if (row.Cells["Attached5"].Value != DBNull.Value) _obj1.Attached5 = row.Cells["Attached5"].Value.ToString();
-
-                //if (row.Cells["AttachedUrl1"].Value != DBNull.Value) _obj1.AttachedUrl1 = row.Cells["AttachedUrl1"].Value.ToString();
-                //if (row.Cells["AttachedUrl2"].Value != DBNull.Value) _obj1.AttachedUrl2 = row.Cells["AttachedUrl2"].Value.ToString();
-                //if (row.Cells["AttachedUrl3"].Value != DBNull.Value) _obj1.AttachedUrl3 = row.Cells["AttachedUrl3"].Value.ToString();
-                //if (row.Cells["AttachedUrl4"].Value != DBNull.Value) _obj1.AttachedUrl4 = row.Cells["AttachedUrl4"].Value.ToString();
-                //if (row.Cells["AttachedUrl5"].Value != DBNull.Value) _obj1.AttachedUrl5 = row.Cells["AttachedUrl5"].Value.ToString();
-
-                // 업데이트 (오더캔슬, 선적완료 상태가 아닐경우)
-                _bRtn = _obj1.Update();
-                __main__.lblRows.Text = "Updated Pattern Info"; 
-                                
             }
             catch (Exception ex)
             {
                 Console.WriteLine("GV1_Update: " + ex.Message.ToString());
             }
             
-        }
-
-        /// <summary>
-        /// 데이터 업데이트 (컬러사이즈)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OrderType_Update()
-        {
-            _bRtn = false;
-
-            try
-            {
-                // 객체생성 및 값 할당
-                //_obj2 = new Controller.OrderType(Convert.ToInt32(btnSaveData.Tag));
-                //_obj2.Idx = Convert.ToInt32(btnSaveData.Tag);
-                
-                //_obj2.Type101 = Convert.ToInt32(chkType101.Checked);
-                //_obj2.Type102 = Convert.ToInt32(chkType102.Checked);
-                //_obj2.Type103 = Convert.ToInt32(chkType103.Checked);
-
-                //_obj2.Type201 = Convert.ToInt32(chkType201.Checked);
-                //_obj2.Type202 = Convert.ToInt32(chkType202.Checked);
-                //_obj2.Type203 = Convert.ToInt32(chkType203.Checked);
-                //_obj2.Type204 = Convert.ToInt32(chkType204.Checked);
-                //_obj2.Type205 = Convert.ToInt32(chkType205.Checked);
-                //_obj2.Type206 = Convert.ToInt32(chkType206.Checked);
-                //_obj2.Type207 = Convert.ToInt32(chkType207.Checked);
-                //_obj2.Type208 = Convert.ToInt32(chkType208.Checked);
-                //_obj2.Type209 = Convert.ToInt32(chkType209.Checked);
-                //_obj2.Type210 = Convert.ToInt32(chkType210.Checked);
-                
-                //_obj2.Type211 = Convert.ToInt32(chkType211.Checked);
-                //_obj2.Type212 = Convert.ToInt32(chkType212.Checked);
-                //_obj2.Type213 = Convert.ToInt32(chkType213.Checked);
-                //_obj2.Type214 = Convert.ToInt32(chkType214.Checked);
-                //_obj2.Type215 = Convert.ToInt32(chkType215.Checked);
-                //_obj2.Type216 = Convert.ToInt32(chkType216.Checked);
-                //_obj2.Type217 = Convert.ToInt32(chkType217.Checked);
-                //_obj2.Type218 = Convert.ToInt32(chkType218.Checked);
-                //_obj2.Type219 = Convert.ToInt32(chkType219.Checked);
-                //_obj2.Type220 = Convert.ToInt32(chkType220.Checked);
-
-                //// 업데이트
-                //_bRtn = _obj2.Update();
-
-                if (_bRtn)
-                {
-                    __main__.lblRows.Text = "Updated Sample Type";
-                    
-                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
-
-                    if (row.Cells["Attached1"].Value != DBNull.Value) linkLabel1.Text = row.Cells["Attached1"].Value.ToString();
-                    if (row.Cells["Attached2"].Value != DBNull.Value) linkLabel2.Text = row.Cells["Attached2"].Value.ToString();
-                    if (row.Cells["Attached3"].Value != DBNull.Value) linkLabel3.Text = row.Cells["Attached3"].Value.ToString();
-                    if (row.Cells["Attached4"].Value != DBNull.Value) linkLabel4.Text = row.Cells["Attached4"].Value.ToString();
-                    if (row.Cells["Attached5"].Value != DBNull.Value) linkLabel5.Text = row.Cells["Attached5"].Value.ToString();
-                    if (row.Cells["Comments"].Value != DBNull.Value) txtComments.Text = row.Cells["Comments"].Value.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("gvColorSize_Update: " + ex.Message.ToString());
-            }
-
         }
          
         /// <summary>
@@ -809,21 +831,35 @@ namespace Dev.Pattern
                 {
                     Int.Members.GetCurrentRow(_gv1).ViewTemplate.ReadOnly = false;
                 }
-
                 
                 GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
-
+                
                 if (row.Cells["Attached1"].Value != DBNull.Value) linkLabel1.Text = row.Cells["Attached1"].Value.ToString();
                 if (row.Cells["Attached2"].Value != DBNull.Value) linkLabel2.Text = row.Cells["Attached2"].Value.ToString();
                 if (row.Cells["Attached3"].Value != DBNull.Value) linkLabel3.Text = row.Cells["Attached3"].Value.ToString();
                 if (row.Cells["Attached4"].Value != DBNull.Value) linkLabel4.Text = row.Cells["Attached4"].Value.ToString();
-                if (row.Cells["Attached5"].Value != DBNull.Value) linkLabel5.Text = row.Cells["Attached5"].Value.ToString();
+
+                if (row.Cells["Attached21"].Value != DBNull.Value) linkLabel21.Text = row.Cells["Attached21"].Value.ToString();
+                if (row.Cells["Attached22"].Value != DBNull.Value) linkLabel22.Text = row.Cells["Attached22"].Value.ToString();
+                if (row.Cells["Attached23"].Value != DBNull.Value) linkLabel23.Text = row.Cells["Attached23"].Value.ToString();
+                if (row.Cells["Attached24"].Value != DBNull.Value) linkLabel24.Text = row.Cells["Attached24"].Value.ToString();
+
+                for (int i=0; i<=5; i++)
+                {
+                    lstFiles.Add(""); lstFileUrls.Add(""); 
+                }
+                lstFiles[1] = row.Cells["Attached21"].Value.ToString();
+                lstFiles[2] = row.Cells["Attached22"].Value.ToString();
+                lstFiles[3] = row.Cells["Attached23"].Value.ToString();
+                lstFiles[4] = row.Cells["Attached24"].Value.ToString();
+
+                lstFileUrls[1] = row.Cells["AttachedUrl21"].Value.ToString();
+                lstFileUrls[2] = row.Cells["AttachedUrl22"].Value.ToString();
+                lstFileUrls[3] = row.Cells["AttachedUrl23"].Value.ToString();
+                lstFileUrls[4] = row.Cells["AttachedUrl24"].Value.ToString();
+
                 if (row.Cells["Comments"].Value != DBNull.Value) txtComments.Text = row.Cells["Comments"].Value.ToString();
-                //linkLabel1.Tag = "";
-                //linkLabel2.Tag = "";
-                //linkLabel3.Tag = "";
-                //linkLabel4.Tag = "";
-                //linkLabel5.Tag = "";
+                
             }
             catch(Exception ex)
             {
@@ -831,9 +867,7 @@ namespace Dev.Pattern
             }
 
         }
-
         
-
         /// <summary>
         /// 업데이트 버튼
         /// </summary>
@@ -841,8 +875,48 @@ namespace Dev.Pattern
         /// <param name="e"></param>
         private void btnSaveData_Click(object sender, EventArgs e)
         {
-            // 조회된 Idx가 있으면 업데이트 
-            if (Convert.ToInt32(btnSaveData.Tag) > 0) OrderType_Update();
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2, 센터: 3, 부서: 4
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    _gv1.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
+
+                    //for (int i = 1; i <= 4; i++)
+                    //{
+                    //    if (string.IsNullOrEmpty(lstFiles[i])) lstFiles[i] = row.Cells["Attached2" + i].Value.ToString();
+                    //}
+
+                    // 객체생성 및 값 할당
+                    _obj1 = new Controller.Pattern(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value));
+                    _obj1.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
+
+                    _obj1.Attached21 = lstFiles[1];
+                    _obj1.Attached22 = lstFiles[2];
+                    _obj1.Attached23 = lstFiles[3];
+                    _obj1.Attached24 = lstFiles[4];
+
+                    _obj1.AttachedUrl21 = lstFileUrls[1];
+                    _obj1.AttachedUrl22 = lstFileUrls[2];
+                    _obj1.AttachedUrl23 = lstFileUrls[3];
+                    _obj1.AttachedUrl24 = lstFileUrls[4];
+
+                    // 업데이트 (오더캔슬, 선적완료 상태가 아닐경우)
+                    _bRtn = _obj1.Updatefiles();
+                    __main__.lblRows.Text = "Updated Pattern Info";
+                    RadMessageBox.Show("Saved completed.", "Saved");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("btnUpdate_Click: " + ex.Message.ToString());
+            }
         }
         
         #endregion
@@ -895,6 +969,7 @@ namespace Dev.Pattern
 
         private void LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            // Tackpack 첨부파일 링크 
             try
             {
                 CheckFolder(@"C:\INT\Data\intsamplepattern");
@@ -943,6 +1018,150 @@ namespace Dev.Pattern
             {
                 di.Create();
             }
+        }
+
+        private void gvOrderActual_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            // Overdue 
+            if (e.CellElement.ColumnInfo.Name == "RequestedDate" || e.CellElement.ColumnInfo.Name == "ConfirmedDate" || 
+                e.CellElement.ColumnInfo.Name == "CompletedDate")
+            {
+                e.CellElement.BackColor = Color.LightYellow;
+                e.CellElement.ForeColor = Color.Black;
+                e.CellElement.GradientStyle = GradientStyles.Solid;
+                e.CellElement.DrawFill = true;
+                e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+            }
+            else
+            {
+                e.CellElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                e.CellElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+                e.CellElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                e.CellElement.ResetValue(LightVisualElement.ForeColorProperty, ValueResetFlags.Local);
+
+
+            }
+            
+        }
+
+        private void LinkLabel_LinkClicked2(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // 요척 첨부파일 링크 
+            try
+            {
+                CheckFolder(@"C:\INT\Data\intsampleconsum");
+                Download_File("intsampleconsum", ((System.Windows.Forms.LinkLabel)sender).Text);
+                Process process = new Process();
+                process.StartInfo.FileName = @"C:\INT\Data\intsampleconsum\" + ((System.Windows.Forms.LinkLabel)sender).Text.Trim();
+                process.Start();
+            }
+            catch (Exception ex) { }
+        }
+
+        /// <summary>
+        /// azure storage 파일 업로드
+        /// </summary>
+        private void BtnOpenFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int tagNo = Convert.ToInt16(((RadBrowseEditor)sender).Tag); 
+                //bool result = Data.UpdateData.DeleteAll(_selectedNode);
+
+                // 스토리지 설정 
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+                    CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+                // 선택된 패키지의 폴더안의 blob 리스트 조회 (updateinterp, updateintsample, ...) 
+                CloudBlobContainer container = blobClient.GetContainerReference(CommonValues.packageName + "consum");
+
+                string[] fileNames = GetFiles();
+
+                if (fileNames != null)
+                {
+                    foreach (string filename in fileNames)
+                    {
+                        // 업데이트 파일 storage저장 
+                        using (var fileStream = System.IO.File.OpenRead(filename))
+                        {
+                            // blob명은 파일명과 같도록 생성
+                            CloudBlockBlob blockBlob = container.GetBlockBlobReference(filename.Substring(filename.LastIndexOf("\\") + 1));
+
+                            blockBlob.UploadFromStream(fileStream);
+
+                            lstFiles[tagNo] = filename.Substring(filename.LastIndexOf("\\") + 1);
+                            lstFileUrls[tagNo] =blockBlob.StorageUri.PrimaryUri.ToString();
+
+                        }
+
+                    }
+
+                }
+                RadMessageBox.Show("Uploaded completed.", "Saved"); 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// 다중 파일 선택
+        /// </summary>
+        /// <returns>string[] filenames</returns>
+        private string[] GetFiles()
+        {
+            string[] fileNames;
+            OpenFileDialog openDialog = new OpenFileDialog();
+
+            openDialog.Filter = "All files|*.*";
+            openDialog.Title = "Select files to upload";
+            openDialog.RestoreDirectory = true;
+            openDialog.Multiselect = false;
+            openDialog.CheckFileExists = true;
+
+            try
+            {
+                DialogResult result = openDialog.ShowDialog();
+
+                if (result == DialogResult.OK && openDialog.FileNames.Length <= 1)
+                {
+                    //listFiles.Items.Clear();
+
+                    //for (int i = 0; i < openDialog.FileNames.Length; i++)
+                    //{
+                    //    FileOpen_ListView(openDialog.FileNames[i], listFiles);
+                    //}
+
+                    return fileNames = openDialog.FileNames;
+
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    return null;
+                }
+                else
+                {
+                    if (MessageBox.Show("Too many files were Selected. Please select files less than 5.",
+                        "Too many files...", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                return null;
+            }
+
         }
     }
 }

@@ -14,6 +14,7 @@ using System.IO;
 using Dev.Pattern;
 using Dev.Production;
 using Dev.Sales;
+using Dev.Out;
 
 namespace Dev.WorkOrder
 {
@@ -869,6 +870,7 @@ namespace Dev.WorkOrder
                                 {
                                     SQL += "update Inspecting set InspCompletedDate=dbo.GetLocalDate(default) where isnull(WorkOrderIdx,'')='" + WorkOrderIdx + "'; ";
                                 }
+                                
                                 //if (result) RadMessageBox.Show("Update Succeed");
                             }
                         }
@@ -1115,7 +1117,15 @@ namespace Dev.WorkOrder
                             form.MdiParent = this.MdiParent;
                             form.Show();
                         }
-
+                        // shipment
+                        else if (e.Cell.Value.ToString().Trim().Substring(0, 3) == "ODS")
+                        {
+                            CommonController.Close_All_Children(this, "FinishedMain");
+                            FinishedMain form = new FinishedMain(__main__, e.Cell.Value.ToString().Substring(0, 12));
+                            form.Text = "Finished Main";
+                            form.MdiParent = this.MdiParent;
+                            form.Show();
+                        }
                     }
                     // Cutting 
                     else if (e.Cell.Value.ToString().Trim().Substring(1, 1) == "C")
@@ -1162,6 +1172,7 @@ namespace Dev.WorkOrder
                         form.MdiParent = this.MdiParent;
                         form.Show();
                     }
+                    
                 }
             }
             catch(Exception ex)

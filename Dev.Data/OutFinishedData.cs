@@ -26,8 +26,7 @@ namespace Dev.Data
         /// <summary>
         /// Insert
         /// </summary>
-        public static DataRow Insert(int OrderIdx, int CuttedIdx, string WorkOrderIdx, string OutOrderIdx, string OrdColorIdx, int OrdSizeIdx, 
-            int OrdQty, DateTime WorkDate, int WorkQty, int Worked, int WorkType, string Remarks, int Handler 
+        public static DataRow Insert(string WorkOrderIdx
             )
         {
             try
@@ -38,48 +37,12 @@ namespace Dev.Data
                 _ds = new DataSet();
                 _adapter = new SqlDataAdapter();
 
-                _cmd.CommandText = "up_Sewing_Insert";
+                _cmd.CommandText = "up_OutFinished_Insert";
                 _cmd.CommandType = CommandType.StoredProcedure;
                 _cmd.Connection = _conn;
                 
-                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
-                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
-
-                _cmd.Parameters.Add("@CuttedIdx", SqlDbType.Int, 4);
-                _cmd.Parameters["@CuttedIdx"].Value = CuttedIdx;
-
                 _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 13);
                 _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
-
-                _cmd.Parameters.Add("@OutOrderIdx", SqlDbType.NVarChar, 13);
-                _cmd.Parameters["@OutOrderIdx"].Value = OutOrderIdx;
-
-                _cmd.Parameters.Add("@OrdColorIdx", SqlDbType.NVarChar, 30);
-                _cmd.Parameters["@OrdColorIdx"].Value = OrdColorIdx;
-                
-                _cmd.Parameters.Add("@OrdSizeIdx", SqlDbType.Int, 4);
-                _cmd.Parameters["@OrdSizeIdx"].Value = OrdSizeIdx;
-                
-                _cmd.Parameters.Add("@OrdQty", SqlDbType.Int, 4);
-                _cmd.Parameters["@OrdQty"].Value = OrdQty;
-
-                _cmd.Parameters.Add("@WorkType", SqlDbType.Int, 4);
-                _cmd.Parameters["@WorkType"].Value = WorkType;
-                
-                _cmd.Parameters.Add("@WorkDate", SqlDbType.DateTime, 8);
-                _cmd.Parameters["@WorkDate"].Value = WorkDate;
-
-                _cmd.Parameters.Add("@WorkQty", SqlDbType.Int, 4);
-                _cmd.Parameters["@WorkQty"].Value = WorkQty;
-
-                _cmd.Parameters.Add("@Worked", SqlDbType.Int, 4);
-                _cmd.Parameters["@Worked"].Value = Worked;
-
-                _cmd.Parameters.Add("@Remarks", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Remarks"].Value = Remarks;
-                
-                _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
-                _cmd.Parameters["@Handler"].Value = Handler;
                 
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);
@@ -108,7 +71,8 @@ namespace Dev.Data
         /// <summary>
         /// Update
         /// </summary>
-        public static bool Update(int Idx, string OutOrderIdx, DateTime WorkDate, int WorkQty, int Worked, int WorkType, string Remarks 
+        public static bool Update(int Idx, int Out1, int Out2, string Delivered, int Received1, int Received2, DateTime OutDate, DateTime RcvdDate
+                , string Remarks
             )
         {
             try
@@ -117,28 +81,34 @@ namespace Dev.Data
                 _conn = new SqlConnection(_strConn);
                 _conn.Open();
 
-                _cmd.CommandText = "up_Sewing_Update";
+                _cmd.CommandText = "up_OutFinished_Update";
                 _cmd.CommandType = CommandType.StoredProcedure;
                 _cmd.Connection = _conn;
 
                 _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
                 _cmd.Parameters["@Idx"].Value = Idx;
 
-                _cmd.Parameters.Add("@OutOrderIdx", SqlDbType.NVarChar, 13);
-                _cmd.Parameters["@OutOrderIdx"].Value = OutOrderIdx;
+                _cmd.Parameters.Add("@Out1", SqlDbType.Int, 4);
+                _cmd.Parameters["@Out1"].Value = Out1;
+
+                _cmd.Parameters.Add("@Out2", SqlDbType.Int, 4);
+                _cmd.Parameters["@Out2"].Value = Out2;
+
+                _cmd.Parameters.Add("@Delivered", SqlDbType.NVarChar, 30);
+                _cmd.Parameters["@Delivered"].Value = Delivered;
+
+                _cmd.Parameters.Add("@Received1", SqlDbType.Int, 4);
+                _cmd.Parameters["@Received1"].Value = Received1;
+
+                _cmd.Parameters.Add("@Received2", SqlDbType.Int, 4);
+                _cmd.Parameters["@Received2"].Value = Received2;
+
+                _cmd.Parameters.Add("@OutDate", SqlDbType.DateTime, 8);
+                _cmd.Parameters["@OutDate"].Value = OutDate;
+
+                _cmd.Parameters.Add("@RcvdDate", SqlDbType.DateTime, 8);
+                _cmd.Parameters["@RcvdDate"].Value = RcvdDate;
                 
-                _cmd.Parameters.Add("@WorkDate", SqlDbType.DateTime, 8);
-                _cmd.Parameters["@WorkDate"].Value = WorkDate;
-                
-                _cmd.Parameters.Add("@WorkQty", SqlDbType.Int, 4);
-                _cmd.Parameters["@WorkQty"].Value = WorkQty;
-
-                _cmd.Parameters.Add("@Worked", SqlDbType.Int, 4);
-                _cmd.Parameters["@Worked"].Value = Worked;
-
-                _cmd.Parameters.Add("@WorkType", SqlDbType.Int, 4);
-                _cmd.Parameters["@WorkType"].Value = WorkType;
-
                 _cmd.Parameters.Add("@Remarks", SqlDbType.NVarChar, 50);
                 _cmd.Parameters["@Remarks"].Value = Remarks;
                 
@@ -170,7 +140,7 @@ namespace Dev.Data
                 _ds = new DataSet();
                 _adapter = new SqlDataAdapter();
 
-                _cmd.CommandText = "up_Sewing_Get";
+                _cmd.CommandText = "up_OutFinished_Get";
                 _cmd.CommandType = CommandType.StoredProcedure;
                 _cmd.Connection = _conn;
 
@@ -207,7 +177,9 @@ namespace Dev.Data
         /// </summary>
         
         public static DataSet Getlist(Dictionary<CommonValues.KeyName, int> SearchKey, 
-                                      Dictionary<CommonValues.KeyName, string> SearchString)
+                                      Dictionary<CommonValues.KeyName, string> SearchString, 
+                                      string OutDateFrom, string OutDateTo,
+                                      string RcvdDateFrom, string RcvdDateTo)
         {
             try
             {
@@ -217,7 +189,7 @@ namespace Dev.Data
                 _ds = new DataSet();
                 _adapter = new SqlDataAdapter();
 
-                _cmd.CommandText = "up_Sewing_List2";
+                _cmd.CommandText = "up_OutFinished_List";
                 _cmd.CommandType = CommandType.StoredProcedure;
                 _cmd.Connection = _conn;
 
@@ -239,18 +211,29 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@OrdSizeIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@OrdSizeIdx"].Value = SearchKey[CommonValues.KeyName.Size];
 
-                _cmd.Parameters.Add("@Worked", SqlDbType.Int, 4);
-                _cmd.Parameters["@Worked"].Value = SearchKey[CommonValues.KeyName.CustIdx];
+                _cmd.Parameters.Add("@Out", SqlDbType.Int, 4);
+                _cmd.Parameters["@Out"].Value = SearchKey[CommonValues.KeyName.CustIdx];
 
-                _cmd.Parameters.Add("@Remarks", SqlDbType.NVarChar, 30);
-                _cmd.Parameters["@Remarks"].Value = SearchString[CommonValues.KeyName.Remark];
+                _cmd.Parameters.Add("@Received", SqlDbType.Int, 4);
+                _cmd.Parameters["@Received"].Value = SearchKey[CommonValues.KeyName.User];
+                
+                _cmd.Parameters.Add("@Delivered", SqlDbType.NVarChar, 30);
+                _cmd.Parameters["@Delivered"].Value = SearchString[CommonValues.KeyName.Remark];
 
-                _cmd.Parameters.Add("@WorkDate", SqlDbType.NVarChar, 10);
-                _cmd.Parameters["@WorkDate"].Value = SearchString[CommonValues.KeyName.StartDate]=="2000-01-01" ? "" : SearchString[CommonValues.KeyName.StartDate];
+                _cmd.Parameters.Add("@OutDateFrom", SqlDbType.DateTime, 8);
+                _cmd.Parameters["@OutDateFrom"].Value = OutDateFrom;
+
+                _cmd.Parameters.Add("@OutDateTo", SqlDbType.DateTime, 8);
+                _cmd.Parameters["@OutDateTo"].Value = OutDateTo;
+
+                _cmd.Parameters.Add("@RcvdDateFrom", SqlDbType.DateTime, 8);
+                _cmd.Parameters["@RcvdDateFrom"].Value = RcvdDateFrom;
+
+                _cmd.Parameters.Add("@RcvdDateTo", SqlDbType.DateTime, 8);
+                _cmd.Parameters["@RcvdDateTo"].Value = RcvdDateTo;
 
                 _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
                 _cmd.Parameters["@Status"].Value = SearchKey[CommonValues.KeyName.WorkStatus];
-
 
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);
@@ -276,7 +259,14 @@ namespace Dev.Data
             }
         }
 
-        public static DataSet Getlist(int OrderIdx)
+        /// <summary>
+        /// Getlist: 전체 목록조회
+        /// </summary>
+
+        public static DataSet GetlistD(Dictionary<CommonValues.KeyName, int> SearchKey,
+                                      Dictionary<CommonValues.KeyName, string> SearchString,
+                                      string OutDateFrom, string OutDateTo,
+                                      string RcvdDateFrom, string RcvdDateTo)
         {
             try
             {
@@ -286,13 +276,52 @@ namespace Dev.Data
                 _ds = new DataSet();
                 _adapter = new SqlDataAdapter();
 
-                _cmd.CommandText = "up_Sewing_List3";
+                _cmd.CommandText = "up_OutFinished_List2";
                 _cmd.CommandType = CommandType.StoredProcedure;
                 _cmd.Connection = _conn;
-                
-                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
-                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
-                
+
+                _cmd.Parameters.Add("@Buyer", SqlDbType.Int, 4);
+                _cmd.Parameters["@Buyer"].Value = SearchKey[CommonValues.KeyName.BuyerIdx];
+
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@OrderIdx"].Value = SearchString[CommonValues.KeyName.OrderIdx];
+
+                _cmd.Parameters.Add("@Styleno", SqlDbType.NVarChar, 30);
+                _cmd.Parameters["@Styleno"].Value = SearchString[CommonValues.KeyName.Styleno];
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = SearchString[CommonValues.KeyName.WorkOrderIdx];
+
+                _cmd.Parameters.Add("@OrdColorIdx", SqlDbType.NVarChar, 30);
+                _cmd.Parameters["@OrdColorIdx"].Value = SearchString[CommonValues.KeyName.ColorIdx];
+
+                _cmd.Parameters.Add("@OrdSizeIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrdSizeIdx"].Value = SearchKey[CommonValues.KeyName.Size];
+
+                _cmd.Parameters.Add("@Out", SqlDbType.Int, 4);
+                _cmd.Parameters["@Out"].Value = SearchKey[CommonValues.KeyName.CustIdx];
+
+                _cmd.Parameters.Add("@Received", SqlDbType.Int, 4);
+                _cmd.Parameters["@Received"].Value = SearchKey[CommonValues.KeyName.User];
+
+                _cmd.Parameters.Add("@Delivered", SqlDbType.NVarChar, 30);
+                _cmd.Parameters["@Delivered"].Value = SearchString[CommonValues.KeyName.Remark];
+
+                _cmd.Parameters.Add("@OutDateFrom", SqlDbType.DateTime, 8);
+                _cmd.Parameters["@OutDateFrom"].Value = OutDateFrom;
+
+                _cmd.Parameters.Add("@OutDateTo", SqlDbType.DateTime, 8);
+                _cmd.Parameters["@OutDateTo"].Value = OutDateTo;
+
+                _cmd.Parameters.Add("@RcvdDateFrom", SqlDbType.DateTime, 8);
+                _cmd.Parameters["@RcvdDateFrom"].Value = RcvdDateFrom;
+
+                _cmd.Parameters.Add("@RcvdDateTo", SqlDbType.DateTime, 8);
+                _cmd.Parameters["@RcvdDateTo"].Value = RcvdDateTo;
+
+                _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
+                _cmd.Parameters["@Status"].Value = SearchKey[CommonValues.KeyName.WorkStatus];
+
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);
 
@@ -317,47 +346,6 @@ namespace Dev.Data
             }
         }
 
-        //public static DataSet Getlist(Dictionary<CommonValues.KeyName, int> SearchKey)
-        //{
-        //    try
-        //    {
-        //        _conn = new SqlConnection(_strConn);
-        //        _cmd = new SqlCommand();
-        //        _conn.Open();
-        //        _ds = new DataSet();
-        //        _adapter = new SqlDataAdapter();
-
-        //        _cmd.CommandText = "up_Printing_List3";
-        //        _cmd.CommandType = CommandType.StoredProcedure;
-        //        _cmd.Connection = _conn;
-
-        //        _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
-        //        _cmd.Parameters["@OrderIdx"].Value = SearchKey[CommonValues.KeyName.OrderIdx];
-
-        //        _adapter.SelectCommand = _cmd;
-        //        _adapter.Fill(_ds);
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message.ToString());
-        //    }
-        //    finally
-        //    {
-        //        _conn.Close();
-        //    }
-
-        //    // dataset 확인 및 결과 datarow 반환
-        //    if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
-        //    {
-        //        return _ds;
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
-
         public static bool Delete(string condition)
         {
             try
@@ -366,7 +354,7 @@ namespace Dev.Data
                 _conn = new SqlConnection(_strConn);
                 _conn.Open();
 
-                _cmd.CommandText = "up_Sewing_Delete2";
+                _cmd.CommandText = "up_OutFinished_Delete2";
                 _cmd.CommandType = CommandType.StoredProcedure;
                 _cmd.Connection = _conn;
 

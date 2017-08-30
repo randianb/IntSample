@@ -292,10 +292,13 @@ namespace SampleApp
 
             // Production
             lstMenu.Add(39, btnProductCutting); lstMenu.Add(40, btnProductPrinting); lstMenu.Add(41, btnProductEmbroidery); lstMenu.Add(42, btnProductSewing);
-            lstMenu.Add(43, btnProductInspection); lstMenu.Add(82, ProductionReport);
+            lstMenu.Add(43, btnProductInspection); lstMenu.Add(82, prodCutting); lstMenu.Add(89, prodPrinting); lstMenu.Add(90, prodEmbroidery);
+            lstMenu.Add(91, prodSewing); lstMenu.Add(92, prodInspection);
 
             // Outbound
-            lstMenu.Add(44, btnOutboundFabric); lstMenu.Add(45, btnOutboundCutted); lstMenu.Add(46, btnOutboundFinished); 
+            lstMenu.Add(44, btnOutboundFabric); lstMenu.Add(45, btnOutboundCutted); lstMenu.Add(46, btnOutboundFinished);
+            lstMenu.Add(12, btnOutPrintInvoice); lstMenu.Add(13, btnOutPrintProductHistory);
+            
 
             // System
             lstMenu.Add(47, btnSystemColor); lstMenu.Add(48, btnSizeGroup); lstMenu.Add(49, btnSize); lstMenu.Add(50, btnSewingThread);
@@ -715,10 +718,81 @@ namespace SampleApp
 
         private void ProductionReport_Click(object sender, EventArgs e)
         {
-            if (Close_All_Children("PrintPattern"))
+            if (Close_Wnd_Children("PrintCutting"))
             {
-                PrintPattern frm = new PrintPattern();
-                frm.Text = "PrintPattern";
+                PrintCutting frm = new PrintCutting();
+                frm.Text = "PrintCutting";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void prodPrinting_Click(object sender, EventArgs e)
+        {
+            if (Close_Wnd_Children("PrintPrinting"))
+            {
+                PrintPrinting frm = new PrintPrinting();
+                frm.Text = "PrintPrinting";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void prodEmbroidery_Click(object sender, EventArgs e)
+        {
+            if (Close_Wnd_Children("PrintEmbroidery"))
+            {
+                PrintEmbroidery frm = new PrintEmbroidery();
+                frm.Text = "PrintEmbroidery";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void prodSewing_Click(object sender, EventArgs e)
+        {
+            if (Close_Wnd_Children("PrintSewing"))
+            {
+                PrintSewing frm = new PrintSewing();
+                frm.Text = "PrintSewing";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void prodInspection_Click(object sender, EventArgs e)
+        {
+            if (Close_Wnd_Children("PrintInspection"))
+            {
+                PrintInspection frm = new PrintInspection();
+                frm.Text = "PrintInspection";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btnOrderWorkSheet_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOutPrintInvoice_Click(object sender, EventArgs e)
+        {
+            if (Close_Wnd_Children("PrintInvoice"))
+            {
+                PrintInvoice frm = new PrintInvoice();
+                frm.Text = "Print Invoice";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btnOutPrintProductHistory_Click(object sender, EventArgs e)
+        {
+            if (Close_Wnd_Children("PrintProductHistory"))
+            {
+                PrintProductHistory frm = new PrintProductHistory();
+                frm.Text = "PrintProductHistory";
                 frm.MdiParent = this;
                 frm.Show();
             }

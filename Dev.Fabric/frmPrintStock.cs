@@ -76,7 +76,16 @@ namespace Dev.Fabric
             lstOutStatus.Add(new CodeContents(11, CommonValues.DicFabricOutStatus[11], ""));
             
             // Buyer
-            _dt = CommonController.Getlist(CommonValues.KeyName.CustIdx).Tables[0];
+            if (UserInfo.ExceptionGroup == 233)     // 팀장급 이상일 경우, 
+            {
+                _dt = CommonController.Getlist(CommonValues.KeyName.CustAll).Tables[0];
+            }
+            else
+            {
+                _dt = CommonController.Getlist(CommonValues.KeyName.CustIdx).Tables[0];
+            }
+
+            
 
             foreach (DataRow row in _dt.Rows)
             {

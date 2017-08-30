@@ -1,0 +1,19 @@
+﻿<RadGridView ShowGroupPanel="False" BackColor="191, 219, 255" ForeColor="Black" Text="radGridView1" Font="Segoe UI, 8.25pt" Cursor="Default" RightToLeft="No" TabIndex="11" ImeMode="NoControl">
+  <MasterTemplate MultiSelect="True" PageSize="50" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" AutoGenerateColumns="False">
+    <Columns>
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="40" FieldName="Idx" Name="Idx" IsVisible="True" ReadOnly="True" HeaderText="ID" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="WorkOrderIdx" Name="WorkOrderIdx" IsVisible="True" ReadOnly="True" HeaderText="Work ID (Out)" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CustIdx" DisplayMember="CustName" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="200" FieldName="Out1" Name="Out1" IsVisible="True" HeaderText="Out" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="Out2" Name="Out2" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="150" FieldName="Delivered" Name="Delivered" IsVisible="True" HeaderText="Delivered" />
+      <Telerik.WinControls.UI.GridViewDateTimeColumn FormatString="{0:d}" Width="100" FieldName="OutDate" Name="OutDate" IsVisible="True" HeaderText="Out Date" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="220" FieldName="Remarks" Name="Remarks" IsVisible="True" HeaderText="Remarks" />
+      <Telerik.WinControls.UI.GridViewCommandColumn DefaultText="Receive" UseDefaultText="True" FieldName="Confirm" Name="Confirm" IsVisible="True" HeaderText="Recevie" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CustIdx" DisplayMember="CustName" AutoCompleteMode="SuggestAppend" DropDownStyle="DropDown" DataType="System.Int32" Width="200" FieldName="Received1" Name="Received1" IsVisible="True" HeaderText="Received" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="Received2" Name="Received2" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewDateTimeColumn FormatString="{0:d}" Width="100" FieldName="RcvdDate" Name="RcvdDate" IsVisible="True" HeaderText="Rcvd Date" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="Status" Name="Status" IsVisible="True" ReadOnly="True" HeaderText="Status" />
+    </Columns>
+    <ViewDefinition xsi:type="Telerik.WinControls.UI.TableViewDefinition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+  </MasterTemplate>
+</RadGridView>

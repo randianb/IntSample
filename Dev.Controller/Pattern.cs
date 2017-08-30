@@ -33,13 +33,23 @@ namespace Dev.Controller
         private string _attachedUrl2;
         private string _attachedUrl3;
         private string _attachedUrl4;
-        private string _attachedUrl5; 
+        private string _attachedUrl5;
+
+        private string _attached21;
+        private string _attached22;
+        private string _attached23;
+        private string _attached24;
+
+        private string _attachedUrl21;
+        private string _attachedUrl22;
+        private string _attachedUrl23;
+        private string _attachedUrl24;
 
         private DataRow _row;
 
         #endregion
 
-        #region Property 
+        #region Property Header 
 
         //ID
         public int Idx
@@ -115,6 +125,11 @@ namespace Dev.Controller
             get { return _remarks; }
             set { _remarks = value; }
         }
+
+        #endregion
+
+        #region Property Attachment 
+
         public string Attached1
         {
             get { return _attached1; }
@@ -166,6 +181,49 @@ namespace Dev.Controller
             set { _attachedUrl5 = value; }
         }
 
+        public string Attached21
+        {
+            get { return _attached21; }
+            set { _attached21 = value; }
+        }
+        public string Attached22
+        {
+            get { return _attached22; }
+            set { _attached22 = value; }
+        }
+        public string Attached23
+        {
+            get { return _attached23; }
+            set { _attached23 = value; }
+        }
+        public string Attached24
+        {
+            get { return _attached24; }
+            set { _attached24 = value; }
+        }
+        
+        public string AttachedUrl21
+        {
+            get { return _attachedUrl21; }
+            set { _attachedUrl21 = value; }
+        }
+        public string AttachedUrl22
+        {
+            get { return _attachedUrl22; }
+            set { _attachedUrl22 = value; }
+        }
+        public string AttachedUrl23
+        {
+            get { return _attachedUrl23; }
+            set { _attachedUrl23 = value; }
+        }
+        public string AttachedUrl24
+        {
+            get { return _attachedUrl24; }
+            set { _attachedUrl24 = value; }
+        }
+        
+
         #endregion
 
         #region Constructor 
@@ -204,6 +262,16 @@ namespace Dev.Controller
                 if (_row["AttachedUrl4"] != DBNull.Value) _attachedUrl4 = _row["AttachedUrl4"].ToString();
                 if (_row["AttachedUrl5"] != DBNull.Value) _attachedUrl5 = _row["AttachedUrl5"].ToString();
 
+                if (_row["Attached21"] != DBNull.Value) _attached1 = _row["Attached21"].ToString();
+                if (_row["Attached22"] != DBNull.Value) _attached2 = _row["Attached22"].ToString();
+                if (_row["Attached23"] != DBNull.Value) _attached3 = _row["Attached23"].ToString();
+                if (_row["Attached24"] != DBNull.Value) _attached4 = _row["Attached24"].ToString();
+                
+                if (_row["AttachedUrl21"] != DBNull.Value) _attachedUrl21 = _row["AttachedUrl21"].ToString();
+                if (_row["AttachedUrl22"] != DBNull.Value) _attachedUrl22 = _row["AttachedUrl22"].ToString();
+                if (_row["AttachedUrl23"] != DBNull.Value) _attachedUrl23 = _row["AttachedUrl23"].ToString();
+                if (_row["AttachedUrl24"] != DBNull.Value) _attachedUrl24 = _row["AttachedUrl24"].ToString();
+                
             }
             else
             {
@@ -242,7 +310,17 @@ namespace Dev.Controller
             _attachedUrl3 = "";
             _attachedUrl4 = "";
             _attachedUrl5 = "";
-    }
+
+            _attached21 = "";
+            _attached22 = "";
+            _attached23 = "";
+            _attached24 = "";
+            
+            _attachedUrl21 = "";
+            _attachedUrl22 = "";
+            _attachedUrl23 = "";
+            _attachedUrl24 = "";
+        }
 
         #endregion
 
@@ -287,6 +365,14 @@ namespace Dev.Controller
             return blRtn;
         }
 
+        public bool Updatefiles()
+        {
+            bool blRtn;
+            blRtn = Data.PatternData.Update(_idx, _attached21, _attached22, _attached23, _attached24,
+                _attachedUrl21, _attachedUrl22, _attachedUrl23, _attachedUrl24
+                );
+            return blRtn;
+        }
 
         public static bool Delete(string condition)
         {

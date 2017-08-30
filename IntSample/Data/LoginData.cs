@@ -41,7 +41,11 @@ namespace SampleApp.Data
                                (select reportno from dept where deptidx=users.deptidx)reportno, 
                                 (select isnull(IsUse,0) from dept where deptidx=users.deptidx) useDept, 
                                 (select isnull(IsUse,0) from Costcenter where CostcenterIdx=users.CostcenterIdx) useCenter, 
-                                isnull(GroupIdx,'')GroupIdx, isnull(IsLeader,0)IsLeader  
+                                isnull(GroupIdx,'')GroupIdx, isnull(IsLeader,0)IsLeader, 
+                                isnull(Position,0)Position,   isnull(ExceptionGroup,0)ExceptionGroup, isnull(Nationality,0)Nationality, 
+                                (select contents from Codes where Idx=users.Position and Classification='App Position') PositionNm, 
+                                (select contents from Codes where Idx=users.Nationality and Classification='Nationality') NationalityNm
+
                                 from users 
                                 where userid = @userid and passwd=@passwd and isnull(IsUse,0)=1";
                 _cmd.CommandTimeout = 5;

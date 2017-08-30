@@ -243,6 +243,10 @@
       <Project>{20693ead-e522-4bdb-b7e9-312b9c4755e0}</Project>
       <Name>Dev.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dev.Finish\Dev.Out.csproj">
+      <Project>{19532770-AF5B-4B4A-A90A-C9DE0DA4BB72}</Project>
+      <Name>Dev.Out</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dev.Options\Dev.Options.csproj">
       <Project>{cde30aec-043e-4b66-8803-6bb44120624f}</Project>
       <Name>Dev.Options</Name>

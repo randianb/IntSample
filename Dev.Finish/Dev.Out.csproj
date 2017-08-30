@@ -61,6 +61,25 @@
     <Reference Include="TelerikCommon, Version=2017.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\WorkOrderTicketStruct.cs" />
+    <Compile Include="frmOutRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOutRequest.Designer.cs">
+      <DependentUpon>frmOutRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintProductHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintProductHistory.Designer.cs">
+      <DependentUpon>PrintProductHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintInvoice.Designer.cs">
+      <DependentUpon>PrintInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FinishedMain.cs">
       <SubType>Form</SubType>
@@ -68,13 +87,48 @@
     <Compile Include="FinishedMain.Designer.cs">
       <DependentUpon>FinishedMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptPrintProductHistory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptPrintProductHistory.Designer.cs">
+      <DependentUpon>rptPrintProductHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptPrintInvoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptPrintInvoice.Designer.cs">
+      <DependentUpon>rptPrintInvoice.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="FinishedMain.resx">
       <DependentUpon>FinishedMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOutRequest.resx">
+      <DependentUpon>frmOutRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintProductHistory.resx">
+      <DependentUpon>PrintProductHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintInvoice.resx">
+      <DependentUpon>PrintInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptPrintProductHistory.resx">
+      <DependentUpon>rptPrintProductHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptPrintInvoice.resx">
+      <DependentUpon>rptPrintInvoice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +144,12 @@
       <Project>{3cdcbb62-e373-4537-97a7-659078f56338}</Project>
       <Name>Dev.Codes</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\07_plus-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\07_minus-20.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,9 +13,9 @@ namespace Dev.Options
         public const int packageNo = 100;                        // 패키지번호 = intsample
         public const string packageName = "intsample";
         public static string verNo = "";                         // 프로그램 버전번호 
-        public static int DDL_DefaultItemsCountInDropDown = 20; // DDL 갯수
-        public static int DDL_DropDownHeight = 250;             // DDL 높이
-        public static int DDL_DropDownWidth = 2;                // DDL 폭
+        public static int DDL_DefaultItemsCountInDropDown = 30; // DDL 갯수
+        public static int DDL_DropDownHeight = 300;             // DDL 높이
+        public static int DDL_DropDownWidth = 300;                // DDL 폭
         public static int PropertyValueColumnWidth = 230;       // 프로퍼티 값열 폭 
         public static bool enablePaging = true;                 // 그리드뷰 페이징 
         public static bool enableSearchRow = false;             // 그리드뷰 전체 컬럼 대상으로 검색여부

@@ -93,7 +93,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.89313F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.10687F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 173F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 398F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 399F));
             this.tableLayoutPanel3.Controls.Add(this.btnCancel, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnRequest, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -106,7 +106,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(281, 3);
+            this.btnCancel.Location = new System.Drawing.Point(280, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(167, 33);
             this.btnCancel.TabIndex = 16;
@@ -117,7 +117,7 @@
             // 
             this.btnRequest.Location = new System.Drawing.Point(125, 3);
             this.btnRequest.Name = "btnRequest";
-            this.btnRequest.Size = new System.Drawing.Size(150, 33);
+            this.btnRequest.Size = new System.Drawing.Size(149, 33);
             this.btnRequest.TabIndex = 15;
             this.btnRequest.Text = "Request Pattern";
             this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
@@ -246,7 +246,6 @@
             this.ddlSize.Name = "ddlSize";
             this.ddlSize.Size = new System.Drawing.Size(203, 20);
             this.ddlSize.TabIndex = 2;
-            this.ddlSize.Text = "radDropDownList1";
             // 
             // beFiles
             // 
@@ -255,6 +254,7 @@
             this.beFiles.Size = new System.Drawing.Size(340, 20);
             this.beFiles.TabIndex = 3;
             this.beFiles.Text = "radBrowseEditor1";
+            this.beFiles.ValueChanged += new System.EventHandler(this.beFiles_ValueChanged);
             this.beFiles.Click += new System.EventHandler(this.BtnOpenFile_Click);
             // 
             // listFiles

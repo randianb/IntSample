@@ -256,12 +256,15 @@
     <None Include="Resources\outbound2.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\qrcode-481.png" />
+    <None Include="Resources\report1.png" />
     <None Include="Resources\report.png" />
     <None Include="Resources\shop-78-48.png" />
     <None Include="Resources\qrcode-48.png" />
     <None Include="Resources\history2.png" />
     <None Include="Resources\1494377211_travel_journey-15.png" />
     <None Include="Resources\698918-icon-86-document-list-48.png" />
+    <None Include="Resources\calander_pending_ic_name_of_icon_24px-48.png" />
     <Content Include="Resources\int-sample.ico" />
     <None Include="Resources\interp1.png" />
     <None Include="Resources\process-chart-flow-plan-481.png" />

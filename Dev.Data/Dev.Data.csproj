@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="EmbroideryData.cs" />
     <Compile Include="InspectingData.cs" />
+    <Compile Include="OutFinishedDData.cs" />
     <Compile Include="OutFinishedData.cs" />
     <Compile Include="SewingData.cs" />
     <Compile Include="PrintingData.cs" />

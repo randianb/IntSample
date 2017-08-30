@@ -31,6 +31,7 @@ namespace Dev.Sales
         private List<Codes.Controller.SizeGroup> lstSizeGroup = new List<Codes.Controller.SizeGroup>();      // 사이즈그룹
         private List<CustomerName> lstSewthread = new List<CustomerName>();         // sewthread
         private List<CodeContents> lstColor = new List<CodeContents>();         // 컬러
+        private DataTable _dt = null;                                   // 기본 데이터테이블
 
         private Dictionary<int, List<Codes.Controller.Sizes>> lstSizes =
             new Dictionary<int, List<Codes.Controller.Sizes>>();
@@ -297,7 +298,35 @@ namespace Dev.Sales
             txtFileno.Text = NewCode; 
         }
 
-        
-        
+        private void ddlCust_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // 사이즈 그룹 데이터로딩 후, 데이터테이블에 추가하고 바인딩해준다 bindingSourceSizeGroup 
+                // MultipleColumnComboBox의 DataMember 설정하기 위해 필요 
+                _dt = Dev.Codes.Controller.SizeGroup.GetlistWithCustIdx(Convert.ToInt32(ddlCust.SelectedValue)).Tables[0]; //Getlist(0).Tables[0];
+                dataSetSizeGroup.DataTableSizeGroup.Clear();
+
+                foreach (DataRow row in _dt.Rows)
+                {
+                    dataSetSizeGroup.DataTableSizeGroup.Rows.Add(Convert.ToInt32(row["SizeGroupIdx"]),
+                                                row["Client"].ToString(),
+                                                row["SizeGroupName"].ToString(),
+                                                row["SizeIdx1"].ToString(),
+                                                row["SizeIdx2"].ToString(),
+                                                row["SizeIdx3"].ToString(),
+                                                row["SizeIdx4"].ToString(),
+                                                row["SizeIdx5"].ToString(),
+                                                row["SizeIdx6"].ToString(),
+                                                row["SizeIdx7"].ToString(),
+                                                row["SizeIdx8"].ToString());
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //__main__.lblDescription.Text = "Please insert the Size Group.";
+            }
+        }
     }
 }

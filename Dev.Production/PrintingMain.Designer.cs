@@ -272,7 +272,7 @@
             // 
             this.radLabel7.Location = new System.Drawing.Point(680, 3);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(80, 18);
+            this.radLabel7.Size = new System.Drawing.Size(80, 14);
             this.radLabel7.TabIndex = 3;
             this.radLabel7.Text = "Received From";
             // 
@@ -300,7 +300,7 @@
             // 
             this.radLabel8.Location = new System.Drawing.Point(860, 3);
             this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(51, 18);
+            this.radLabel8.Size = new System.Drawing.Size(51, 14);
             this.radLabel8.TabIndex = 3;
             this.radLabel8.Text = "Received";
             this.radLabel8.DoubleClick += new System.EventHandler(this.radLabel8_DoubleClick);
@@ -458,7 +458,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "CuttingMain";
+            this.Text = "PrintingMain";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmOrderActual_FormClosed);
             this.Load += new System.EventHandler(this.frmOrderActual_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

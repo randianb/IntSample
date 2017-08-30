@@ -11,6 +11,7 @@ using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using Dev.Pattern;
 using Dev.Production;
+using Dev.Out;
 
 namespace Dev.Sales
 {
@@ -61,7 +62,7 @@ namespace Dev.Sales
         private string _layoutfile = "/GVLayoutOrders.xml";
                 
         RadMenuItem mnuNew, mnuDel, mnuHide, mnuShow, menuItem2, menuItem3, menuItem4, mnuWorksheet, 
-            mnuCutting, mnuOutsourcing, mnuEmbroidery, mnuSewing, mnuInspecting, mnuPattern = null;
+            mnuCutting, mnuOutsourcing, mnuEmbroidery, mnuSewing, mnuInspecting, mnuPattern, mnuOut = null;
 
         private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 18, 0);   // 패키지번호, 프로그램번호, 윈도우번호
         
@@ -259,7 +260,7 @@ namespace Dev.Sales
             //mnuCutting.Image = Properties.Resources._20_20;
             //mnuCutting.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
             mnuInspecting.Click += new EventHandler(mnuInspecting_Click);
-
+            
             // 분리선
             RadMenuSeparatorItem separator = new RadMenuSeparatorItem();
             separator.Tag = "seperator";
@@ -305,7 +306,7 @@ namespace Dev.Sales
                 contextMenu.Items.Add(mnuEmbroidery);
                 contextMenu.Items.Add(mnuSewing);
                 contextMenu.Items.Add(mnuInspecting);
-
+            
             //}
 
         }
@@ -1266,6 +1267,8 @@ namespace Dev.Sales
                 RadMessageBox.Show(ex.Message);
             }
         }
+        
+
         private void mnuEmbroidery_Click(object sender, EventArgs e)
         {
             try
@@ -2282,14 +2285,14 @@ namespace Dev.Sales
                                             row["SizeIdx8"].ToString());
             }
 
-            _dt = CommonController.Getlist(CommonValues.KeyName.CustIdx).Tables[0];
+            //_dt = CommonController.Getlist(CommonValues.KeyName.CustIdx).Tables[0];
 
-            foreach (DataRow row in _dt.Rows)
-            {
-                custName.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
-                                            row["CustName"].ToString(),
-                                            Convert.ToInt32(row["Classification"])));
-            }
+            //foreach (DataRow row in _dt.Rows)
+            //{
+            //    custName.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
+            //                                row["CustName"].ToString(),
+            //                                Convert.ToInt32(row["Classification"])));
+            //}
 
             // Sewthread
             //lstSewthread.Add(new CustomerName(0, "", 0));
@@ -2330,9 +2333,18 @@ namespace Dev.Sales
                     return code.Classification == "Fabric Type";
                 });
 
+
             // Username
             lstUser.Add(new CustomerName(0, "", 0));
-            _dt = CommonController.Getlist(CommonValues.KeyName.User).Tables[0];
+
+            if (UserInfo.CenterIdx != 1 || UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6)
+            {
+                _dt = CommonController.Getlist(CommonValues.KeyName.AllUser).Tables[0];
+            }
+            else
+            {
+                _dt = CommonController.Getlist(CommonValues.KeyName.User).Tables[0];
+            }
 
             foreach (DataRow row in _dt.Rows)
             {
@@ -2682,6 +2694,7 @@ namespace Dev.Sales
                     if (row.Cells["SplConfirmedDate"].Value != DBNull.Value) _obj1.SplConfirmedDate = Convert.ToDateTime(row.Cells["SplConfirmedDate"].Value);
 
                     if (row.Cells["Status"].Value != DBNull.Value) _obj1.Status = Convert.ToInt32(row.Cells["Status"].Value.ToString());
+                    if (row.Cells["Handler"].Value != DBNull.Value) _obj1.Handler = Convert.ToInt32(row.Cells["Handler"].Value.ToString());
 
                     // 업데이트 (오더캔슬, 선적완료 상태가 아닐경우)
                     if (_obj1.Status != 2 && _obj1.Status != 3) _bRtn = _obj1.Update();
@@ -2881,7 +2894,7 @@ namespace Dev.Sales
                 CheckAuth.ShowMessage(_mode_);
             else
             {
-                if (UserInfo.CenterIdx==4 && UserInfo.DeptIdx==11) // 개발실 캐드실 별도 분리 
+                if (UserInfo.CenterIdx==4 && UserInfo.DeptIdx==11) // 개발실 and 캐드실 별도 분리 
                 {
                     // Worksheet일 경우, 
                     if (e.Cell.Value.ToString().Trim().Length > 12)
@@ -2894,7 +2907,7 @@ namespace Dev.Sales
                             form.MdiParent = this.MdiParent;
                             form.Show();
                         }
-
+                        
                     }
                 }
                 else
@@ -2910,7 +2923,15 @@ namespace Dev.Sales
                             form.MdiParent = this.MdiParent;
                             form.Show();
                         }
-
+                        // shipment
+                        else if (e.Cell.Value.ToString().Trim().Substring(0, 3) == "ODS")
+                        {
+                            CommonController.Close_All_Children(this, "FinishedMain");
+                            FinishedMain form = new FinishedMain(__main__, e.Cell.Value.ToString().Substring(0, 12));
+                            form.Text = "Finished Main";
+                            form.MdiParent = this.MdiParent;
+                            form.Show();
+                        }
                     }
                     // Cutting 
                     else if (e.Cell.Value.ToString().Trim().Substring(1, 1) == "C")
@@ -2957,6 +2978,7 @@ namespace Dev.Sales
                         form.MdiParent = this.MdiParent;
                         form.Show();
                     }
+                    
                 }
             }
 
@@ -3126,7 +3148,7 @@ namespace Dev.Sales
                     if (rowGV.Cells["Idx"].Value != DBNull.Value) orderIdx = Convert.ToInt32(rowGV.Cells["Idx"].Value.ToString());
 
                     DataRow row = null; 
-                    if (ddlSampleTypeSize.SelectedValue!=null)
+                    if (ddlSampleTypeSize.SelectedValue != null)
                     {
                         row = Dev.Controller.OrderType.Getlist(orderIdx, Convert.ToInt32(ddlSampleTypeSize.SelectedValue));
                     }
@@ -3429,6 +3451,7 @@ namespace Dev.Sales
                     = CommonValues.DDL_DefaultItemsCountInDropDown;
                 ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DropDownHeight
                     = CommonValues.DDL_DropDownHeight;
+                ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DropDownWidth = CommonValues.DDL_DropDownWidth;
             }
 
             RadDropDownListEditor editor2 = this.gvColorSize.ActiveEditor as RadDropDownListEditor;
@@ -3438,6 +3461,7 @@ namespace Dev.Sales
                     = CommonValues.DDL_DefaultItemsCountInDropDown;
                 ((RadDropDownListEditorElement)((RadDropDownListEditor)this.gvColorSize.ActiveEditor).EditorElement).DropDownHeight
                     = CommonValues.DDL_DropDownHeight;
+                
             }
 
             // 날짜컬럼의 달력크기 설정

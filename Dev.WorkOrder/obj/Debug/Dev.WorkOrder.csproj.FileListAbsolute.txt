@@ -44,3 +44,5 @@ D:\git\IntSample\Dev.WorkOrder\obj\Debug\Dev.WorkOrder.Reports.rptWorkOrderPrint
 D:\git\IntSample\Dev.WorkOrder\obj\Debug\Dev.WorkOrder.Reports.rptWorkOrderEmbroideryTicket.resources
 D:\git\IntSample\Dev.WorkOrder\obj\Debug\Dev.WorkOrder.Reports.rptWorkOrderSewTicket.resources
 D:\git\IntSample\Dev.WorkOrder\obj\Debug\Dev.WorkOrder.Reports.rptWorkOrderInspectionTicket.resources
+D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Finish.dll
+D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Finish.pdb

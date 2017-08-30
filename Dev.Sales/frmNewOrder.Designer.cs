@@ -259,6 +259,7 @@
             this.ddlCust.Size = new System.Drawing.Size(250, 24);
             this.ddlCust.TabIndex = 3;
             this.ddlCust.Text = "radDropDownList2";
+            this.ddlCust.SelectedValueChanged += new System.EventHandler(this.ddlCust_SelectedValueChanged);
             // 
             // radLabel3
             // 

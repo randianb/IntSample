@@ -349,6 +349,10 @@
       <Project>{74fe1db0-b001-4006-aa25-2a4c5b881629}</Project>
       <Name>Dev.Controller</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dev.Finish\Dev.Out.csproj">
+      <Project>{19532770-AF5B-4B4A-A90A-C9DE0DA4BB72}</Project>
+      <Name>Dev.Out</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dev.Options\Dev.Options.csproj">
       <Project>{cde30aec-043e-4b66-8803-6bb44120624f}</Project>
       <Name>Dev.Options</Name>

@@ -395,7 +395,7 @@ namespace Dev.Sales.Controller
                                                          _season, _description, _deliveryDate, _isPrinting,
                                                          _embelishId1, _embelishId2, _sizeGroupIdx, _sewThreadIdx, 
                                                          _orderQty, _orderPrice, _orderAmount, _remark, 
-                                                         _teamRequestedDate, _splConfirmedDate, UserInfo.Idx);
+                                                         _teamRequestedDate, _splConfirmedDate, _handler);
             return blRtn;
         }
 

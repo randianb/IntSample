@@ -25,3 +25,10 @@ D:\git\IntSample\Dev.Finish\obj\Debug\Dev.Out.FinishedMain.resources
 D:\git\IntSample\Dev.Finish\obj\Debug\Dev.Out.csproj.GenerateResource.Cache
 D:\git\IntSample\Dev.Finish\obj\Debug\Dev.Finish.dll
 D:\git\IntSample\Dev.Finish\obj\Debug\Dev.Finish.pdb
+D:\git\IntSample\Dev.Finish\obj\Debug\Dev.Finish.dll.licenses
+D:\git\IntSample\Dev.Finish\obj\Debug\Dev.Finish.Properties.Resources.resources
+D:\git\IntSample\Dev.Finish\obj\Debug\Dev.Out.frmOutRequest.resources
+D:\git\IntSample\Dev.Finish\obj\Debug\Dev.Out.PrintInvoice.resources
+D:\git\IntSample\Dev.Finish\obj\Debug\Dev.Out.Reports.rptPrintInvoice.resources
+D:\git\IntSample\Dev.Finish\obj\Debug\Dev.Out.PrintProductHistory.resources
+D:\git\IntSample\Dev.Finish\obj\Debug\Dev.Out.Reports.rptPrintProductHistory.resources

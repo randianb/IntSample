@@ -158,7 +158,7 @@ namespace Dev.Sales
                     }
                     
                     DataRow dr = Dev.Controller.Pattern.Insert(_orderIdx, NewCode, Convert.ToInt32(ddlSize.SelectedValue),
-                    dtTechPack.Value, DateTime.Today, UserInfo.Idx, txtComment.Text,
+                    dtTechPack.Value, DateTime.Now, UserInfo.Idx, txtComment.Text,
                     lstFiles2[0].ToString(), lstFiles2[1].ToString(), lstFiles2[2].ToString(), lstFiles2[3].ToString(), lstFiles2[4].ToString(),
                     lstFileUrls2[0].ToString(), lstFileUrls2[1].ToString(), lstFileUrls2[2].ToString(), lstFileUrls2[3].ToString(), lstFileUrls2[4].ToString(), UserInfo.Idx);
 
@@ -186,6 +186,11 @@ namespace Dev.Sales
         public int OrderIdx
         {
             get { return _orderIdx; }
+        }
+
+        private void beFiles_ValueChanged(object sender, EventArgs e)
+        {
+
         }
 
         #endregion

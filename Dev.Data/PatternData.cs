@@ -123,7 +123,7 @@ namespace Dev.Data
         }
         
         /// <summary>
-        /// Update
+        /// Update 헤더정보 
         /// </summary>
         public static bool Update(int Idx, DateTime TechpackDate, DateTime RequestedDate,
             int Requested, DateTime ConfirmedDate, int Confirmed,
@@ -171,6 +171,65 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@Remarks", SqlDbType.NVarChar, 300);
                 _cmd.Parameters["@Remarks"].Value = Remarks;
                 
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
+        /// <summary>
+        /// Update 첨부파일
+        /// </summary>
+        public static bool Update(int Idx, string Attached21, string Attached22, string Attached23, string Attached24,
+            string AttachedUrl21, string AttachedUrl22, string AttachedUrl23, string AttachedUrl24
+            )
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = "up_Pattern_Update2";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = Idx;
+
+                _cmd.Parameters.Add("@Attached21", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Attached21"].Value = Attached21;
+
+                _cmd.Parameters.Add("@Attached22", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Attached22"].Value = Attached22;
+
+                _cmd.Parameters.Add("@Attached23", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Attached23"].Value = Attached23;
+
+                _cmd.Parameters.Add("@Attached24", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Attached24"].Value = Attached24;
+
+                _cmd.Parameters.Add("@AttachedUrl21", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl21"].Value = AttachedUrl21;
+
+                _cmd.Parameters.Add("@AttachedUrl22", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl22"].Value = AttachedUrl22;
+
+                _cmd.Parameters.Add("@AttachedUrl23", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl23"].Value = AttachedUrl23;
+
+                _cmd.Parameters.Add("@AttachedUrl24", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl24"].Value = AttachedUrl24;
+
                 _rtn = _cmd.ExecuteNonQuery();
             }
             catch (Exception ex)

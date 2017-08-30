@@ -303,6 +303,7 @@
             this.radLabel8.Size = new System.Drawing.Size(40, 14);
             this.radLabel8.TabIndex = 3;
             this.radLabel8.Text = "Cutted";
+            this.radLabel8.Click += new System.EventHandler(this.radLabel8_Click);
             this.radLabel8.DoubleClick += new System.EventHandler(this.radLabel8_DoubleClick);
             // 
             // gvMain

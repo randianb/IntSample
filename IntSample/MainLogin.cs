@@ -123,7 +123,10 @@ namespace SampleApp
                 txtUsername.Text = (string)R.GetValue("intid");
                 //txtPassword.Text = (string)R.GetValue("intkey");
                 R.Close();
-                btnLogin.PerformClick(); 
+
+                txtPassword.Focus();
+                txtPassword.Select(); 
+                // btnLogin.PerformClick(); 
             }
         }
         private void UpdateRun(string path)
@@ -192,7 +195,13 @@ namespace SampleApp
                 UserInfo.CenterIdx = Convert.ToInt32(dr["costcenteridx"]);
                 UserInfo.GroupIdx = Convert.ToInt32(dr["GroupIdx"]);
                 UserInfo.IsLeader = Convert.ToInt32(dr["IsLeader"]);
-                
+
+                UserInfo.Position = Convert.ToInt32(dr["Position"]);
+                UserInfo.PositionNm = dr["PositionNm"].ToString();
+                UserInfo.Nationality = Convert.ToInt32(dr["Nationality"]);
+                UserInfo.NationalityNm = dr["NationalityNm"].ToString();
+                UserInfo.ExceptionGroup = Convert.ToInt32(dr["ExceptionGroup"]);
+
                 // 코스트센터 또는 부서가 사용불가일때 접속차단 
                 if (Convert.ToInt32(dr["useCenter"]) != 1)
                 {

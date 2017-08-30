@@ -770,5 +770,10 @@ namespace Dev.Production
         {
 
         }
+
+        private void radLabel8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

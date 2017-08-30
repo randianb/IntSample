@@ -348,6 +348,94 @@ namespace Dev.Codes.Data
         }
 
         /// <summary>
+        /// Getlist: 바이어코드를 통해 목록조회
+        /// </summary>
+        public static DataSet GetlistWithCustIdx(string CustIdx)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_SizeGroup_List6";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@CustIdx", SqlDbType.NVarChar, 200);
+                _cmd.Parameters["@CustIdx"].Value = CustIdx;
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Getlist: 바이어번호를 통해 목록조회
+        /// </summary>
+        public static DataSet GetlistWithCustIdx(int CustIdx)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_SizeGroup_List4";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@CustIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@CustIdx"].Value = CustIdx;
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Getlist: 전체 목록조회
         /// </summary>
         public static DataSet GetlistName()

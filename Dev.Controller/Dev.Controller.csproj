@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Embroidery.cs" />
     <Compile Include="Inspecting.cs" />
+    <Compile Include="OutFinishedD.cs" />
+    <Compile Include="OutFinished.cs" />
     <Compile Include="Sewing.cs" />
     <Compile Include="Printing.cs" />
     <Compile Include="FabricMapInfo.cs" />
