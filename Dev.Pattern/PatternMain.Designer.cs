@@ -652,7 +652,7 @@
             this.linkLabel24.TabStop = true;
             this.linkLabel24.Text = "linkLabel4";
             this.linkLabel24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.linkLabel24.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
+            this.linkLabel24.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked2);
             // 
             // linkLabel23
             // 
@@ -665,7 +665,7 @@
             this.linkLabel23.TabStop = true;
             this.linkLabel23.Text = "linkLabel3";
             this.linkLabel23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.linkLabel23.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
+            this.linkLabel23.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked2);
             // 
             // linkLabel22
             // 
@@ -678,7 +678,7 @@
             this.linkLabel22.TabStop = true;
             this.linkLabel22.Text = "linkLabel2";
             this.linkLabel22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.linkLabel22.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
+            this.linkLabel22.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked2);
             // 
             // linkLabel21
             // 
@@ -755,7 +755,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "frmOrderActual";
+            this.Text = "Pattern Main";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmOrderActual_FormClosed);
             this.Load += new System.EventHandler(this.frmOrderActual_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
