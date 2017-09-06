@@ -131,6 +131,12 @@
     <Compile Include="Reports\rptPrintPattern.Designer.cs">
       <DependentUpon>rptPrintPattern.cs</DependentUpon>
     </Compile>
+    <Compile Include="WorksheetMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorksheetMain.Designer.cs">
+      <DependentUpon>WorksheetMain.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PrintPattern.resx">
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptPrintPattern.resx">
       <DependentUpon>rptPrintPattern.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorksheetMain.resx">
+      <DependentUpon>WorksheetMain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

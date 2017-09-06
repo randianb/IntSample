@@ -12,6 +12,7 @@ namespace Dev.Controller
         private int _Idx;
         private int _orderIdx;
         private string _worksheetIdx;
+        private string _comments;
         private int _handler;
         
         private string _attached1;
@@ -58,6 +59,8 @@ namespace Dev.Controller
 
         // 
         public string WorksheetIdx { get { return _worksheetIdx; } set { _worksheetIdx = value; } }
+
+        public string Comments { get { return _comments; } set { _comments = value; } }
         // 
         public int Handler
         {
@@ -119,6 +122,8 @@ namespace Dev.Controller
                 _Idx = Convert.ToInt32(_row["Idx"]);
                 if (_row["OrderIdx"] != DBNull.Value) _orderIdx = Convert.ToInt32(_row["OrderIdx"]);
                 if (_row["WorksheetIdx"] != DBNull.Value) _worksheetIdx = Convert.ToString(_row["WorksheetIdx"]);
+                if (_row["Comments"] != DBNull.Value) _comments = Convert.ToString(_row["Comments"]);
+                
                 if (_row["Handler"] != DBNull.Value) _handler = Convert.ToInt32(_row["Handler"]);
 
                 if (_row["Attached1"] != DBNull.Value) _attached1 = _row["Attached1"].ToString();
@@ -156,6 +161,7 @@ namespace Dev.Controller
             _Idx = 0;           
             _orderIdx = 0;
             _worksheetIdx = "";
+            _comments = "";
             _handler = 0;
 
             _attached1 = "";
@@ -187,17 +193,30 @@ namespace Dev.Controller
         #region Methods
 
         // Insert
-        public static DataRow Insert(int OrderIdx, string WorksheetIdx, int Handler)
+        public static DataRow Insert(int OrderIdx, string WorksheetIdx, string Comments,
+            string Attached1, string Attached2, string Attached3, string Attached4, string Attached5, string Attached6, string Attached7, string Attached8, string Attached9,
+            string AttachedUrl1, string AttachedUrl2, string AttachedUrl3, string AttachedUrl4, string AttachedUrl5, string AttachedUrl6, string AttachedUrl7,
+            string AttachedUrl8, string AttachedUrl9, int Handler)
         {
-            DataRow row = Data.WorksheetData.Insert(OrderIdx, WorksheetIdx, Handler);
+            DataRow row = Data.WorksheetData.Insert(OrderIdx, WorksheetIdx, Comments,
+            Attached1,  Attached2,  Attached3,  Attached4,  Attached5,  Attached6,  Attached7,  Attached8,  Attached9,
+             AttachedUrl1,  AttachedUrl2,  AttachedUrl3,  AttachedUrl4,  AttachedUrl5,  AttachedUrl6,  AttachedUrl7,
+             AttachedUrl8,  AttachedUrl9, Handler);
             return row;
         }
         
 
-        public static DataSet Getlist(int OrderIdx, string WorksheetIdx, int Handler, int ConfirmUser, string ConfirmDate)
+        public static DataSet Getlist(int OrderIdx, string WorksheetIdx, int Handler, int ConfirmUser, int WorkStatus)
         {
             DataSet ds = new DataSet();
-            ds = Data.WorksheetData.Getlist(OrderIdx, WorksheetIdx, Handler, ConfirmUser, ConfirmDate);
+            ds = Data.WorksheetData.Getlist(OrderIdx, WorksheetIdx, Handler, ConfirmUser, WorkStatus);
+            return ds;
+        }
+
+        public static DataSet Getlist(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx)
+        {
+            DataSet ds = new DataSet();
+            ds = Data.WorksheetData.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx);
             return ds;
         }
         
@@ -205,10 +224,7 @@ namespace Dev.Controller
         public bool Update()
         {
             bool blRtn;
-            blRtn = Data.WorksheetData.Update(_Idx, _handler,
-                        _attached1, _attached2, _attached3, _attached4, _attached5, _attached6, _attached7, _attached8, _attached9,
-                        _attachedUrl1, _attachedUrl2, _attachedUrl3, _attachedUrl4, _attachedUrl5, _attachedUrl6, _attachedUrl7, _attachedUrl8, _attachedUrl9,
-                        _regDate, _confirmUser, _confirmDate); 
+            blRtn = Data.WorksheetData.Update(_Idx, _confirmUser); 
             return blRtn;
         }
         

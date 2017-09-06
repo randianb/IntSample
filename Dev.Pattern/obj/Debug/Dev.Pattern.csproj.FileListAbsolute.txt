@@ -82,3 +82,4 @@ D:\git\IntSample\Dev.Pattern\bin\Debug\Telerik.ReportViewer.WinForms.pdb
 D:\git\IntSample\Dev.Pattern\bin\Debug\Telerik.ReportViewer.WinForms.xml
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.PrintPattern.resources
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.Reports.rptPrintPattern.resources
+D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.WorksheetMain.resources

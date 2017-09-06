@@ -548,17 +548,26 @@ namespace Dev.Fabric
             BuyerIdx.Width = 100;
             gv.Columns.Insert(3, BuyerIdx);
 
-            GridViewComboBoxColumn ColorIdx = new GridViewComboBoxColumn();
+            GridViewTextBoxColumn ColorIdx = new GridViewTextBoxColumn();
             ColorIdx.Name = "ColorIdx";
-            ColorIdx.DataSource = lstColor2;
-            ColorIdx.DisplayMember = "Contents";
-            ColorIdx.ValueMember = "Contents";
             ColorIdx.FieldName = "ColorIdx";
             ColorIdx.HeaderText = "Color";
-            ColorIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            ColorIdx.DropDownStyle = RadDropDownStyle.DropDown;
             ColorIdx.Width = 170;
+            ColorIdx.TextAlignment = ContentAlignment.MiddleLeft;
+            ColorIdx.ReadOnly = true; 
             gv.Columns.Add(ColorIdx);
+
+            //GridViewComboBoxColumn ColorIdx = new GridViewComboBoxColumn();
+            //ColorIdx.Name = "ColorIdx";
+            //ColorIdx.DataSource = lstColor2;
+            //ColorIdx.DisplayMember = "Contents";
+            //ColorIdx.ValueMember = "Contents";
+            //ColorIdx.FieldName = "ColorIdx";
+            //ColorIdx.HeaderText = "Color";
+            //ColorIdx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //ColorIdx.DropDownStyle = RadDropDownStyle.DropDown;
+            //ColorIdx.Width = 170;
+            //gv.Columns.Add(ColorIdx);
 
             GridViewTextBoxColumn FabricIdx = new GridViewTextBoxColumn();
             FabricIdx.Name = "FabricIdx";

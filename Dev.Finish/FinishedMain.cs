@@ -1005,7 +1005,9 @@ namespace Dev.Out
                 int _mode_ = 1;
                 if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0 &&
                     Convert.ToInt16(__AUTHCODE__.Substring(4, 1).Trim()) <= 0)
+                {
                     CheckAuth.ShowMessage(_mode_);
+                } 
                 else
                 {
                     // 워크시트 열기 

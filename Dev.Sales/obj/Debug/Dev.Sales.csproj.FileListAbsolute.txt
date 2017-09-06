@@ -99,3 +99,4 @@ D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.Reporting.pdb
 D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.Reporting.xml
 D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Finish.dll
 D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Finish.pdb
+D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.NewWorkSheets.resources

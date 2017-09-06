@@ -294,7 +294,7 @@ namespace Dev.Sales
 
         private void btnCreateFileno_Click(object sender, EventArgs e)
         {
-            string NewCode = Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 2, "");
+            string NewCode = Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.ReportNo, 2, "");
             txtFileno.Text = NewCode; 
         }
 

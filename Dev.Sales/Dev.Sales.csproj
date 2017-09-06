@@ -163,6 +163,12 @@
     <Compile Include="frmInspectingRequest.Designer.cs">
       <DependentUpon>frmInspectingRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewWorkSheets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewWorkSheets.Designer.cs">
+      <DependentUpon>NewWorkSheets.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSewingRequest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInspectingRequest.resx">
       <DependentUpon>frmInspectingRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewWorkSheets.resx">
+      <DependentUpon>NewWorkSheets.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSewingRequest.resx">
       <DependentUpon>frmSewingRequest.cs</DependentUpon>

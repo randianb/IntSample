@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -60,6 +60,8 @@
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.btnSearch = new Telerik.WinControls.UI.RadButton();
+            this.ddlWorkStatus = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             this.gvMain = new Telerik.WinControls.UI.RadGridView();
             this.toolTabStrip3 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
@@ -77,8 +79,6 @@
             this.btnOutFinishedDAdd = new Telerik.WinControls.UI.RadMenuItem();
             this.btnDeleteDetail = new Telerik.WinControls.UI.RadMenuItem();
             this.gvDetail = new Telerik.WinControls.UI.RadGridView();
-            this.ddlWorkStatus = new Telerik.WinControls.UI.RadDropDownList();
-            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCust)).BeginInit();
@@ -108,6 +108,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlWorkStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).BeginInit();
@@ -129,8 +131,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radMenu2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDetail.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlWorkStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -455,6 +455,23 @@
             this.btnSearch.Text = "Search";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // ddlWorkStatus
+            // 
+            this.ddlWorkStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ddlWorkStatus.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlWorkStatus.Location = new System.Drawing.Point(891, 81);
+            this.ddlWorkStatus.Name = "ddlWorkStatus";
+            this.ddlWorkStatus.Size = new System.Drawing.Size(129, 20);
+            this.ddlWorkStatus.TabIndex = 12;
+            // 
+            // radLabel14
+            // 
+            this.radLabel14.Location = new System.Drawing.Point(891, 59);
+            this.radLabel14.Name = "radLabel14";
+            this.radLabel14.Size = new System.Drawing.Size(67, 16);
+            this.radLabel14.TabIndex = 3;
+            this.radLabel14.Text = "Work Status";
+            // 
             // gvMain
             // 
             this.gvMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
@@ -472,11 +489,11 @@
             this.gvMain.MasterTemplate.EnablePaging = true;
             this.gvMain.MasterTemplate.MultiSelect = true;
             this.gvMain.MasterTemplate.PageSize = 50;
-            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvMain.Name = "gvMain";
             this.gvMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvMain.ShowGroupPanel = false;
-            this.gvMain.Size = new System.Drawing.Size(1280, 426);
+            this.gvMain.Size = new System.Drawing.Size(1280, 466);
             this.gvMain.TabIndex = 11;
             this.gvMain.Text = "radGridView1";
             this.gvMain.ViewCellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvOrderActual_ViewCellFormatting);
@@ -532,7 +549,7 @@
             this.toolWindow2.Location = new System.Drawing.Point(6, 6);
             this.toolWindow2.Name = "toolWindow2";
             this.toolWindow2.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow2.Size = new System.Drawing.Size(1280, 426);
+            this.toolWindow2.Size = new System.Drawing.Size(1280, 466);
             this.toolWindow2.Text = "Orders";
             // 
             // toolTabStrip4
@@ -596,9 +613,9 @@
             // 
             // 
             this.documentContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.documentContainer1.SizeInfo.AbsoluteSize = new System.Drawing.Size(888, 438);
+            this.documentContainer1.SizeInfo.AbsoluteSize = new System.Drawing.Size(888, 478);
             this.documentContainer1.SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Fill;
-            this.documentContainer1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-179, -150);
+            this.documentContainer1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-179, -110);
             this.documentContainer1.TabIndex = 5;
             // 
             // documentTabStrip1
@@ -613,7 +630,7 @@
             // 
             this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.documentTabStrip1.SelectedIndex = 0;
-            this.documentTabStrip1.Size = new System.Drawing.Size(1292, 438);
+            this.documentTabStrip1.Size = new System.Drawing.Size(1292, 478);
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
             this.documentTabStrip1.TabStripVisible = false;
@@ -622,16 +639,16 @@
             // 
             this.toolTabStrip1.CanUpdateChildIndex = true;
             this.toolTabStrip1.Controls.Add(this.toolWindow3);
-            this.toolTabStrip1.Location = new System.Drawing.Point(5, 607);
+            this.toolTabStrip1.Location = new System.Drawing.Point(5, 647);
             this.toolTabStrip1.Name = "toolTabStrip1";
             // 
             // 
             // 
             this.toolTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.toolTabStrip1.SelectedIndex = 0;
-            this.toolTabStrip1.Size = new System.Drawing.Size(1292, 259);
-            this.toolTabStrip1.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 259);
-            this.toolTabStrip1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 59);
+            this.toolTabStrip1.Size = new System.Drawing.Size(1292, 219);
+            this.toolTabStrip1.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 219);
+            this.toolTabStrip1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 19);
             this.toolTabStrip1.TabIndex = 6;
             this.toolTabStrip1.TabStop = false;
             // 
@@ -643,7 +660,7 @@
             this.toolWindow3.Location = new System.Drawing.Point(1, 24);
             this.toolWindow3.Name = "toolWindow3";
             this.toolWindow3.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow3.Size = new System.Drawing.Size(1290, 233);
+            this.toolWindow3.Size = new System.Drawing.Size(1290, 193);
             this.toolWindow3.Text = "Out Detail";
             // 
             // tableLayoutPanel2
@@ -658,7 +675,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1290, 233);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1290, 193);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // radMenu2
@@ -699,29 +716,12 @@
             // 
             // 
             this.gvDetail.MasterTemplate.AllowAddNewRow = false;
-            this.gvDetail.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.gvDetail.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvDetail.Name = "gvDetail";
             this.gvDetail.ShowGroupPanel = false;
-            this.gvDetail.Size = new System.Drawing.Size(1284, 197);
+            this.gvDetail.Size = new System.Drawing.Size(1284, 157);
             this.gvDetail.TabIndex = 16;
             this.gvDetail.Text = "radGridView1";
-            // 
-            // ddlWorkStatus
-            // 
-            this.ddlWorkStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.ddlWorkStatus.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlWorkStatus.Location = new System.Drawing.Point(891, 81);
-            this.ddlWorkStatus.Name = "ddlWorkStatus";
-            this.ddlWorkStatus.Size = new System.Drawing.Size(129, 20);
-            this.ddlWorkStatus.TabIndex = 12;
-            // 
-            // radLabel14
-            // 
-            this.radLabel14.Location = new System.Drawing.Point(891, 59);
-            this.radLabel14.Name = "radLabel14";
-            this.radLabel14.Size = new System.Drawing.Size(67, 18);
-            this.radLabel14.TabIndex = 3;
-            this.radLabel14.Text = "Work Status";
             // 
             // FinishedMain
             // 
@@ -768,6 +768,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlWorkStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).EndInit();
@@ -791,8 +793,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radMenu2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDetail.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlWorkStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

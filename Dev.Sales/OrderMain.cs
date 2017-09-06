@@ -60,12 +60,13 @@ namespace Dev.Sales
         private List<Codes.Controller.Sizes> lstSizeDDL = new List<Codes.Controller.Sizes>();
         private List<CodeContents> lstFabricType2 = new List<CodeContents>();        // 
         private string _layoutfile = "/GVLayoutOrders.xml";
-                
+                       
         RadMenuItem mnuNew, mnuDel, mnuHide, mnuShow, menuItem2, menuItem3, menuItem4, mnuWorksheet, 
             mnuCutting, mnuOutsourcing, mnuEmbroidery, mnuSewing, mnuInspecting, mnuPattern, mnuOut = null;
 
         private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 18, 0);   // 패키지번호, 프로그램번호, 윈도우번호
-        
+        private int _selectedSizeIdx = 0;    // 사이즈별 오더타입을 선택시 저장할때 사이즈를 구분하기 위해 사용하는 번호 
+
         #endregion
 
         #region 2. 초기로드 및 컨트롤 생성
@@ -101,6 +102,7 @@ namespace Dev.Sales
             GV3_CreateColumn(gvOperation);  // 공정 제목
             GV4_CreateColumn(gvProduction); // 현황 
             GV5_CreateColumn(gvFabric); // 원단수량
+            GV6_CreateColumn(gvWorksheet); // 작업지시서
 
             if (!string.IsNullOrEmpty(__FileNo__))
             {
@@ -144,28 +146,17 @@ namespace Dev.Sales
             ddlPrinting.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
             // 사이즈
-            ddlSampleTypeSize.DataSource = lstSizeDDL;
-            ddlSampleTypeSize.DisplayMember = "SizeName";
-            ddlSampleTypeSize.ValueMember = "SizeIdx";
-            ddlSampleTypeSize.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlSampleTypeSize.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
-            
-        }
+            //ddlSampleTypeSize.DataSource = lstSizeDDL;
+            //ddlSampleTypeSize.DisplayMember = "SizeName";
+            //ddlSampleTypeSize.ValueMember = "SizeIdx";
+            //ddlSampleTypeSize.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            //ddlSampleTypeSize.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
-        /// <summary>
-        /// 오더 행 선택시 샘플타입 > 사이즈별로 조회하기 위해 사이즈 DDL을 사이즈셋으로부터 가져온다 
-        /// </summary>
-        private void Config_DropDownList_Size()
-        {
-            // 사이즈
-            ddlInsertSize.DataSource = lstSize;
-            ddlInsertSize.DisplayMember = "SizeName";
-            ddlInsertSize.ValueMember = "SizeIdx";
-            ddlInsertSize.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlInsertSize.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
-            
+            // 정해진 바이어가 있는 경우, 해당 바이어로 dropdown 미리 선택
+            if (CommonValues.NewOrderBuyerIdx > 0)
+                ddlCust.SelectedValue = Convert.ToInt32(CommonValues.NewOrderBuyerIdx);
         }
-
+        
         /// <summary>
         /// 컨텍스트 메뉴 생성 (메인)
         /// </summary>
@@ -954,6 +945,49 @@ namespace Dev.Sales
         }
 
         /// <summary>
+        /// 그리드뷰 컬럼 생성 (작업지시서)
+        /// </summary>
+        /// <param name="gv">그리드뷰</param>
+        private void GV6_CreateColumn(RadGridView gv)
+        {
+            #region Columns 생성
+
+            gv.MasterTemplate.Columns.Clear();
+            gv.DataSource = null;
+            
+            GridViewHyperlinkColumn cWorkIdx = new GridViewHyperlinkColumn();
+            cWorkIdx.Name = "WorksheetIdx";
+            cWorkIdx.FieldName = "WorksheetIdx";
+            cWorkIdx.Width = 100;
+            cWorkIdx.TextAlignment = ContentAlignment.MiddleCenter;
+            cWorkIdx.HeaderText = "Work ID";
+            cWorkIdx.ReadOnly = true;
+            gv.Columns.Add(cWorkIdx);
+
+            GridViewDateTimeColumn dtRegDate = new GridViewDateTimeColumn();
+            dtRegDate.Name = "RegDate";
+            dtRegDate.Width = 100;
+            dtRegDate.TextAlignment = ContentAlignment.MiddleCenter;
+            dtRegDate.FormatString = "{0:d}";
+            dtRegDate.FieldName = "RegDate";
+            dtRegDate.HeaderText = "Sent";
+            dtRegDate.ReadOnly = true;
+            gv.Columns.Add(dtRegDate);
+
+            GridViewDateTimeColumn dtConfirmed = new GridViewDateTimeColumn();
+            dtConfirmed.Name = "ConfirmDate";
+            dtConfirmed.Width = 100;
+            dtConfirmed.TextAlignment = ContentAlignment.MiddleCenter;
+            dtConfirmed.FormatString = "{0:d}";
+            dtConfirmed.FieldName = "ConfirmDate";
+            dtConfirmed.HeaderText = "Confirmed";
+            dtConfirmed.ReadOnly = true;
+            gv.Columns.Add(dtConfirmed);
+
+            #endregion
+        }
+
+        /// <summary>
         /// 그리드뷰 컬럼 생성 (원단수량)
         /// </summary>
         /// <param name="gv">그리드뷰</param>
@@ -1268,7 +1302,6 @@ namespace Dev.Sales
             }
         }
         
-
         private void mnuEmbroidery_Click(object sender, EventArgs e)
         {
             try
@@ -1521,7 +1554,7 @@ namespace Dev.Sales
                         )
                     {
                         // 워크시트 열기 
-                        frmWorkSheets frm = new frmWorkSheets(Int.Members.GetCurrentRow(_gv1, "Idx"),
+                        NewWorkSheets frm = new NewWorkSheets(Int.Members.GetCurrentRow(_gv1, "Idx"),
                                                         Int.Members.GetCurrentRow(_gv1, "Fileno", ""),
                                                         Int.Members.GetCurrentRow(_gv1, "Styleno", ""),
                                                         Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
@@ -1531,8 +1564,8 @@ namespace Dev.Sales
 
                         if (frm.ShowDialog(this) == DialogResult.OK)
                         {
-                            // Production Status 갱신 
-                            DataBinding_GV4(gvProduction, Int.Members.GetCurrentRow(_gv1, "Idx"));
+                            // Worksheet Status 갱신 
+                            DataBinding_GV6(Int.Members.GetCurrentRow(_gv1, "Idx"));
                         }
                     }
                     else
@@ -2564,7 +2597,7 @@ namespace Dev.Sales
         }
 
         /// <summary>
-        /// 데이터 로딩 (오더별 샘플타입 사이즈리스트) 
+        /// 데이터 로딩 (오더별 작업지시 리스트) 
         /// </summary>
         /// <param name="gv"></param>
         /// <param name="OrderIdx"></param>
@@ -2572,29 +2605,24 @@ namespace Dev.Sales
         {
             try
             {
-                lstSizeDDL.Clear();
-                ddlSampleTypeSize.DataSource = null;
+                //_searchKey.Add(CommonValues.KeyName.OrderIdx, OrderIdx);
+                //_searchKey.Add(CommonValues.KeyName.WorkOrderIdx, "");
+                //_searchKey.Add(CommonValues.KeyName.Status, 0);
+                //_searchKey.Add(CommonValues.KeyName.Status, 0);
 
-                DataSet _ds1 = Dev.Controller.OrderType.Getlist(OrderIdx);
+                //DataBinding_GV4(2, _searchKey, "", null);
+
+                gvWorksheet.DataSource = null;
+
+                _ds1 = Dev.Controller.Worksheet.Getlist(OrderIdx, "", 0, 0, 0);
                 if (_ds1 != null)
                 {
-                    //ddlSampleTypeSize.Items.Clear();
-
-                    
-                    lstSizeDDL.Add(new Codes.Controller.Sizes(0, ""));
-                    foreach (DataRow row in _ds1.Tables[0].Rows)
-                    {
-                        lstSizeDDL.Add(new Codes.Controller.Sizes(Convert.ToInt32(row["OrdSizeIdx"]), row["OrdSizeName"].ToString()));
-                    }
-                    
-                    ddlSampleTypeSize.DataSource = lstSizeDDL;
-                    ddlSampleTypeSize.DisplayMember = "SizeName";
-                    ddlSampleTypeSize.ValueMember = "SizeIdx";
+                    gvWorksheet.DataSource = _ds1.Tables[0].DefaultView;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("DataBinding6 : " + ex.Message.ToString());
+                Console.WriteLine("DataBinding " + gvWorksheet.Name + ": " + ex.Message.ToString());
             }
         }
 
@@ -2923,6 +2951,14 @@ namespace Dev.Sales
                             form.MdiParent = this.MdiParent;
                             form.Show();
                         }
+                        else if (e.Cell.Value.ToString().Trim().Substring(11, 1) == "S")
+                        {
+                            CommonController.Close_All_Children(this, "WorksheetMain");
+                            WorksheetMain form = new WorksheetMain(__main__, e.Cell.Value.ToString());
+                            form.Text = "Worksheet Main"; // DateTime.Now.ToLongTimeString();
+                            form.MdiParent = this.MdiParent;
+                            form.Show();
+                        }
                         // shipment
                         else if (e.Cell.Value.ToString().Trim().Substring(0, 3) == "ODS")
                         {
@@ -3033,55 +3069,34 @@ namespace Dev.Sales
             
         }
 
-        private void AddSampleType_Click(object sender, EventArgs e)
+        private void btnSaveSampleType_Click(object sender, EventArgs e)
         {
-            try
-            {
-                int orderIdx = 0;
-                
-                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
-                /// 읽기: 0, 쓰기: 1, 삭제: 2
-                int _mode_ = 1;
-                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
-                    CheckAuth.ShowMessage(_mode_);
-                else
-                {
-                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
-
-                    if (row.Cells["Idx"].Value != DBNull.Value) orderIdx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
-
-                    DataRow rows = null;
-                    if (Convert.ToInt32(ddlInsertSize.SelectedValue) > 0)
-                    {
-                        rows = Dev.Controller.OrderType.Insert(orderIdx, Convert.ToInt32(ddlInsertSize.SelectedValue));
-                    }   
-                    else
-                    {
-                        OrderType_Clear(true); 
-                        RadMessageBox.Show("Please select the size");
-                        return;
-                    }
-                        
-                    DataBinding_GV6(Convert.ToInt32(row.Cells["Idx"].Value.ToString()));
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                RadMessageBox.Show("Failed to insert. \nPlease ensure if there's inserted same size.");
-            }
+            
         }
 
-        private void btnSaveSampleType_Click(object sender, EventArgs e)
+        private void ddlSampleTypeSize_SelectedValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        /// <summary>
+        /// 사이즈별 오더타입 상태 저장 
+        /// </summary>
+        private void OrderType_Save()
         {
             _bRtn = false;
 
             try
             {
+                //int orderIdx = 0;
+
                 // 객체생성 및 값 할당
-                _obj5 = new Dev.Controller.OrderType(Convert.ToInt32(btnSaveSampleType.Tag));
-                _obj5.Idx = Convert.ToInt32(btnSaveSampleType.Tag);
-                
+                //GridViewRowInfo rowGV = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
+                //if (rowGV.Cells["Idx"].Value != DBNull.Value) orderIdx = Convert.ToInt32(rowGV.Cells["Idx"].Value.ToString());
+
+                _obj5 = new Dev.Controller.OrderType(_selectedSizeIdx);
+                _obj5.Idx = Convert.ToInt32(_selectedSizeIdx);
+
                 _obj5.Type101 = Convert.ToInt32(chkType101.Checked);
                 _obj5.Type102 = Convert.ToInt32(chkType102.Checked);
                 _obj5.Type103 = Convert.ToInt32(chkType103.Checked);
@@ -3120,7 +3135,7 @@ namespace Dev.Sales
 
                 if (_bRtn)
                 {
-                    RadMessageBox.Show("It has been saved!", "Successful", MessageBoxButtons.OK, RadMessageIcon.Info); 
+                    RadMessageBox.Show("It has been saved!", "Successful", MessageBoxButtons.OK, RadMessageIcon.Info);
                     __main__.lblRows.Text = "Updated Sample Type";
                 }
             }
@@ -3130,7 +3145,11 @@ namespace Dev.Sales
             }
         }
 
-        private void ddlSampleTypeSize_SelectedValueChanged(object sender, EventArgs e)
+        /// <summary>
+        /// 사이즈 버튼 클릭시 해당 사이즈의 오더타입 값 불러와 셋팅
+        /// </summary>
+        /// <param name="tag"></param>
+        private void OrderType_Setting(int tag)
         {
             try
             {
@@ -3147,18 +3166,19 @@ namespace Dev.Sales
 
                     if (rowGV.Cells["Idx"].Value != DBNull.Value) orderIdx = Convert.ToInt32(rowGV.Cells["Idx"].Value.ToString());
 
-                    DataRow row = null; 
-                    if (ddlSampleTypeSize.SelectedValue != null)
+                    DataRow row = null;
+                    if (tag > 0)
                     {
-                        row = Dev.Controller.OrderType.Getlist(orderIdx, Convert.ToInt32(ddlSampleTypeSize.SelectedValue));
+                        row = Dev.Controller.OrderType.Getlist(orderIdx, Convert.ToInt32(tag));
                     }
-                    
+
+                    OrderType_Clear();
+
                     if (row != null)
                     {
-                        OrderType_Clear(false);
+                        OrderType_CheckOnOff(true); 
 
-                        ddlInsertSize.Text = row["OrdSizeName"].ToString();
-                        btnSaveSampleType.Tag = row["Idx"].ToString();
+                        _selectedSizeIdx = Convert.ToInt32(row["Idx"]); 
                         chkType101.Checked = Convert.ToBoolean(row["Type101"]);
                         chkType102.Checked = Convert.ToBoolean(row["Type102"]);
                         chkType103.Checked = Convert.ToBoolean(row["Type103"]);
@@ -3190,6 +3210,11 @@ namespace Dev.Sales
                         chkType223.Checked = Convert.ToBoolean(row["Type223"]);
                         chkType224.Checked = Convert.ToBoolean(row["Type224"]);
                         chkType225.Checked = Convert.ToBoolean(row["Type225"]);
+                        chkType226.Checked = Convert.ToBoolean(row["Type226"]);
+                    }
+                    else
+                    {
+                        OrderType_CheckOnOff(false);
                     }
                     //DataBinding_GV6(Convert.ToInt32(row.Cells["Idx"].Value.ToString()));
                 }
@@ -3202,15 +3227,88 @@ namespace Dev.Sales
         }
 
         /// <summary>
+        /// 사이즈 유무에 따라 체크박스 전체 토글
+        /// </summary>
+        /// <param name="turn"></param>
+        private void OrderType_CheckOnOff(bool turn)
+        {
+            if (turn)
+            {
+                chkType101.Enabled = true; 
+                chkType102.Enabled = true;
+                chkType103.Enabled = true;
+
+                chkType201.Enabled = true;
+                chkType202.Enabled = true;
+                chkType203.Enabled = true;
+                chkType204.Enabled = true;
+                chkType205.Enabled = true;
+                chkType206.Enabled = true;
+                chkType207.Enabled = true;
+                chkType208.Enabled = true;
+                chkType209.Enabled = true;
+                chkType210.Enabled = true;
+
+                chkType211.Enabled = true;
+                chkType212.Enabled = true;
+                chkType213.Enabled = true;
+                chkType214.Enabled = true;
+                chkType215.Enabled = true;
+                chkType216.Enabled = true;
+                chkType217.Enabled = true;
+                chkType218.Enabled = true;
+                chkType219.Enabled = true;
+                chkType220.Enabled = true;
+                chkType221.Enabled = true;
+
+                chkType222.Enabled = true;
+                chkType223.Enabled = true;
+                chkType224.Enabled = true;
+                chkType225.Enabled = true;
+                chkType226.Enabled = true;
+            }
+            else
+            {
+                chkType101.Enabled = false;
+                chkType102.Enabled = false;
+                chkType103.Enabled = false;
+
+                chkType201.Enabled = false;
+                chkType202.Enabled = false;
+                chkType203.Enabled = false;
+                chkType204.Enabled = false;
+                chkType205.Enabled = false;
+                chkType206.Enabled = false;
+                chkType207.Enabled = false;
+                chkType208.Enabled = false;
+                chkType209.Enabled = false;
+                chkType210.Enabled = false;
+
+                chkType211.Enabled = false;
+                chkType212.Enabled = false;
+                chkType213.Enabled = false;
+                chkType214.Enabled = false;
+                chkType215.Enabled = false;
+                chkType216.Enabled = false;
+                chkType217.Enabled = false;
+                chkType218.Enabled = false;
+                chkType219.Enabled = false;
+                chkType220.Enabled = false;
+                chkType221.Enabled = false;
+
+                chkType222.Enabled = false;
+                chkType223.Enabled = false;
+                chkType224.Enabled = false;
+                chkType225.Enabled = false;
+                chkType226.Enabled = false;
+            }
+        }
+
+        /// <summary>
         /// 샘플타입 조회하기 전에 모든 체크박스 초기화 
         /// </summary>
-        private void OrderType_Clear(bool ClearSampleTypeDDL)
+        private void OrderType_Clear()
         {
-            // 오더선택후 > 샘플타입을 조회할 경우에는 DDL을 그냥 둔다 
-            if (ClearSampleTypeDDL) ddlSampleTypeSize.SelectedValue = null;
-
-            ddlInsertSize.SelectedValue = null;
-            btnSaveSampleType.Tag = ""; 
             
             chkType101.Checked = false;
             chkType102.Checked = false;
@@ -3246,6 +3344,57 @@ namespace Dev.Sales
 
         }
 
+
+        private void radButton1_Click(object sender, EventArgs e)
+        {
+            OrderType_Setting(Convert.ToInt32(radButton1.Tag)); 
+        }
+
+        private void radButton2_Click(object sender, EventArgs e)
+        {
+            OrderType_Setting(Convert.ToInt32(radButton2.Tag));
+        }
+
+        private void radButton3_Click(object sender, EventArgs e)
+        {
+            OrderType_Setting(Convert.ToInt32(radButton3.Tag));
+        }
+
+        private void radButton4_Click(object sender, EventArgs e)
+        {
+            OrderType_Setting(Convert.ToInt32(radButton4.Tag));
+        }
+
+        private void radButton5_Click(object sender, EventArgs e)
+        {
+            OrderType_Setting(Convert.ToInt32(radButton5.Tag));
+        }
+
+        private void radButton6_Click(object sender, EventArgs e)
+        {
+            OrderType_Setting(Convert.ToInt32(radButton6.Tag));
+        }
+
+        private void radButton7_Click(object sender, EventArgs e)
+        {
+            OrderType_Setting(Convert.ToInt32(radButton7.Tag));
+        }
+
+        private void radButton8_Click(object sender, EventArgs e)
+        {
+            OrderType_Setting(Convert.ToInt32(radButton8.Tag));
+        }
+
+        private void CheckType_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnSaveData_Click(object sender, EventArgs e)
+        {
+            // 변경값 저장 
+            OrderType_Save();
+        }
+
         /// <summary>
         /// 샘플타입 체크(해제)시 스타일 변경 
         /// </summary>
@@ -3256,6 +3405,7 @@ namespace Dev.Sales
             Font fr = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
             Font fb = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Bold);
 
+            // 체크시 색상변경 
             if (args.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On)
             {
                 ((RadCheckBox)sender).ButtonElement.TextElement.Font = fb;
@@ -3271,6 +3421,8 @@ namespace Dev.Sales
                 ((RadCheckBox)sender).ButtonElement.CheckMarkPrimitive.CheckElement.ForeColor = Color.Black;
             }
 
+             
+            //
         }
 
         private void gvProduction_SelectionChanged(object sender, EventArgs e)
@@ -3333,6 +3485,25 @@ namespace Dev.Sales
                     lstSize.Add(new Codes.Controller.Sizes(Convert.ToInt32(dr["SizeIdx6"]), dr["Size6"].ToString()));
                     lstSize.Add(new Codes.Controller.Sizes(Convert.ToInt32(dr["SizeIdx7"]), dr["Size7"].ToString()));
                     lstSize.Add(new Codes.Controller.Sizes(Convert.ToInt32(dr["SizeIdx8"]), dr["Size8"].ToString()));
+
+                    radButton1.Tag = Convert.ToInt32(dr["SizeIdx1"]).ToString();
+                    radButton2.Tag = Convert.ToInt32(dr["SizeIdx2"]).ToString();
+                    radButton3.Tag = Convert.ToInt32(dr["SizeIdx3"]).ToString();
+                    radButton4.Tag = Convert.ToInt32(dr["SizeIdx4"]).ToString();
+                    radButton5.Tag = Convert.ToInt32(dr["SizeIdx5"]).ToString();
+                    radButton6.Tag = Convert.ToInt32(dr["SizeIdx6"]).ToString();
+                    radButton7.Tag = Convert.ToInt32(dr["SizeIdx7"]).ToString();
+                    radButton8.Tag = Convert.ToInt32(dr["SizeIdx8"]).ToString();
+
+                    radButton1.Text = dr["Size1"].ToString();
+                    radButton2.Text = dr["Size2"].ToString();
+                    radButton3.Text = dr["Size3"].ToString();
+                    radButton4.Text = dr["Size4"].ToString();
+                    radButton5.Text = dr["Size5"].ToString();
+                    radButton6.Text = dr["Size6"].ToString();
+                    radButton7.Text = dr["Size7"].ToString();
+                    radButton8.Text = dr["Size8"].ToString();
+
                 }   
             }
             catch (Exception ex)
@@ -3514,16 +3685,25 @@ namespace Dev.Sales
             // 생산 진행현황 갱신 
             DataBinding_GV4(gvProduction, Int.Members.GetCurrentRow(_gv1, "Idx"));
 
+            // 작업지시서 리스트 갱신
+            DataBinding_GV6(Int.Members.GetCurrentRow(_gv1, "Idx"));
+
             // 원단현황
             DataBinding_GV5(gvFabric, Int.Members.GetCurrentRow(_gv1, "Idx"));
 
-            OrderType_Clear(true);
+            OrderType_Clear();
+            OrderType_CheckOnOff(false);
 
-            // 샘플타입 > 사이즈 DDL
-            ddlInsertSize.DataSource = null; 
-            Config_DropDownList_Size();
-            
-            DataBinding_GV6(Int.Members.GetCurrentRow(_gv1, "Idx"));
+            if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") > 0)
+            {
+                radButton1.Enabled = true; radButton2.Enabled = true; radButton3.Enabled = true; radButton4.Enabled = true;
+                radButton5.Enabled = true; radButton6.Enabled = true; radButton7.Enabled = true; radButton8.Enabled = true;
+            }
+            else
+            {
+                radButton1.Enabled = false; radButton2.Enabled = false; radButton3.Enabled = false; radButton4.Enabled = false;
+                radButton5.Enabled = false; radButton6.Enabled = false; radButton7.Enabled = false; radButton8.Enabled = false;
+            }
             
         }
 

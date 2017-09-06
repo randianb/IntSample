@@ -34,7 +34,7 @@ namespace Dev.Out
         private List<Codes.Controller.Sizes> lstSize = new List<Codes.Controller.Sizes>();
         private List<CustomerName> custName = new List<CustomerName>();         // 거래처
 
-        private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 40, 0);   // 패키지번호, 프로그램번호, 윈도우번호
+        private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 18, 0);   // 패키지번호, 프로그램번호, 윈도우번호
 
         #endregion
 

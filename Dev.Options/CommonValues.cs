@@ -53,6 +53,13 @@ namespace Dev.Options
             {3, "Shipped"}
         };
 
+        public static Dictionary<int, string> DicWorksheetStatus = new Dictionary<int, string>()
+        {
+            {0, ""},
+            {1, "Office Sent"},
+            {2, "Dev. Confirmed"},
+        };
+
         public static Dictionary<int, string> DicWorkOrderStatus = new Dictionary<int, string>()
         {
             {0, ""},

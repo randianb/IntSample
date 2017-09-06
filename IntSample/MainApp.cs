@@ -773,7 +773,14 @@ namespace SampleApp
 
         private void btnOrderWorkSheet_Click(object sender, EventArgs e)
         {
-
+            if (Close_All_Children("WorksheetMain"))
+            {
+                WorksheetMain frm = new WorksheetMain(this, "");
+                frm.Text = "Worksheet Main";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            
         }
 
         private void btnOutPrintInvoice_Click(object sender, EventArgs e)

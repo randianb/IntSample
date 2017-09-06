@@ -26,7 +26,10 @@ namespace Dev.Data
         /// <summary>
         /// Insert
         /// </summary>
-        public static DataRow Insert(int OrderIdx, string WorksheetIdx, int Handler)
+        public static DataRow Insert(int OrderIdx, string WorksheetIdx, string Comments, 
+            string Attached1, string Attached2, string Attached3, string Attached4, string Attached5, string Attached6, string Attached7, string Attached8, string Attached9,
+            string AttachedUrl1, string AttachedUrl2, string AttachedUrl3, string AttachedUrl4, string AttachedUrl5, string AttachedUrl6, string AttachedUrl7, 
+            string AttachedUrl8, string AttachedUrl9, int Handler)
         {
             try
             {
@@ -45,6 +48,63 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@WorksheetIdx", SqlDbType.NVarChar, 14);
                 _cmd.Parameters["@WorksheetIdx"].Value = WorksheetIdx;
+
+                _cmd.Parameters.Add("@Comments", SqlDbType.Text);
+                _cmd.Parameters["@Comments"].Value = Comments;
+
+                _cmd.Parameters.Add("@Attached1", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Attached1"].Value = Attached1;
+
+                _cmd.Parameters.Add("@Attached2", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Attached2"].Value = Attached2;
+
+                _cmd.Parameters.Add("@Attached3", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Attached3"].Value = Attached3;
+
+                _cmd.Parameters.Add("@Attached4", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Attached4"].Value = Attached4;
+
+                _cmd.Parameters.Add("@Attached5", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Attached5"].Value = Attached5;
+
+                _cmd.Parameters.Add("@Attached6", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Attached6"].Value = Attached6;
+
+                _cmd.Parameters.Add("@Attached7", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Attached7"].Value = Attached7;
+
+                _cmd.Parameters.Add("@Attached8", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Attached8"].Value = Attached8;
+
+                _cmd.Parameters.Add("@Attached9", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Attached9"].Value = Attached9;
+
+                _cmd.Parameters.Add("@AttachedUrl1", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl1"].Value = AttachedUrl1;
+
+                _cmd.Parameters.Add("@AttachedUrl2", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl2"].Value = AttachedUrl2;
+
+                _cmd.Parameters.Add("@AttachedUrl3", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl3"].Value = AttachedUrl3;
+
+                _cmd.Parameters.Add("@AttachedUrl4", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl4"].Value = AttachedUrl4;
+
+                _cmd.Parameters.Add("@AttachedUrl5", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl5"].Value = AttachedUrl5;
+
+                _cmd.Parameters.Add("@AttachedUrl6", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl6"].Value = AttachedUrl6;
+
+                _cmd.Parameters.Add("@AttachedUrl7", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl7"].Value = AttachedUrl7;
+
+                _cmd.Parameters.Add("@AttachedUrl8", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl8"].Value = AttachedUrl8;
+
+                _cmd.Parameters.Add("@AttachedUrl9", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl9"].Value = AttachedUrl9;
 
                 _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
                 _cmd.Parameters["@Handler"].Value = Handler;
@@ -76,11 +136,7 @@ namespace Dev.Data
         /// <summary>
         /// Update
         /// </summary>
-        public static bool Update(int Idx, int Handler, 
-            string Attached1, string Attached2, string Attached3, string Attached4, string Attached5, string Attached6, string Attached7, string Attached8, string Attached9, 
-            string AttachedUrl1, string AttachedUrl2, string AttachedUrl3, string AttachedUrl4, string AttachedUrl5,
-            string AttachedUrl6, string AttachedUrl7, string AttachedUrl8, string AttachedUrl9,
-            DateTime RegDate, int ConfirmUser, DateTime ConfirmDate
+        public static bool Update(int Idx, int ConfirmUser
             )
         {
             try
@@ -95,73 +151,10 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
                 _cmd.Parameters["@Idx"].Value = Idx;
-
-                _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
-                _cmd.Parameters["@Handler"].Value = Handler;
                 
-                _cmd.Parameters.Add("@Attached1", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached1"].Value = Attached1;
-
-                _cmd.Parameters.Add("@Attached2", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached2"].Value = Attached2;
-
-                _cmd.Parameters.Add("@Attached3", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached3"].Value = Attached3;
-
-                _cmd.Parameters.Add("@Attached4", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached4"].Value = Attached4;
-
-                _cmd.Parameters.Add("@Attached5", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached5"].Value = Attached5;
-
-                _cmd.Parameters.Add("@Attached6", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached6"].Value = Attached6;
-
-                _cmd.Parameters.Add("@Attached7", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached7"].Value = Attached7;
-
-                _cmd.Parameters.Add("@Attached8", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached8"].Value = Attached8;
-
-                _cmd.Parameters.Add("@Attached9", SqlDbType.NVarChar, 50);
-                _cmd.Parameters["@Attached9"].Value = Attached9;
-                
-                _cmd.Parameters.Add("@AttachedUrl1", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl1"].Value = AttachedUrl1;
-
-                _cmd.Parameters.Add("@AttachedUrl2", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl2"].Value = AttachedUrl2;
-
-                _cmd.Parameters.Add("@AttachedUrl3", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl3"].Value = AttachedUrl3;
-
-                _cmd.Parameters.Add("@AttachedUrl4", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl4"].Value = AttachedUrl4;
-
-                _cmd.Parameters.Add("@AttachedUrl5", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl5"].Value = AttachedUrl5;
-
-                _cmd.Parameters.Add("@AttachedUrl6", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl6"].Value = AttachedUrl6;
-
-                _cmd.Parameters.Add("@AttachedUrl7", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl7"].Value = AttachedUrl7;
-
-                _cmd.Parameters.Add("@AttachedUrl8", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl8"].Value = AttachedUrl8;
-
-                _cmd.Parameters.Add("@AttachedUrl9", SqlDbType.NVarChar, 255);
-                _cmd.Parameters["@AttachedUrl9"].Value = AttachedUrl9;
-
-                _cmd.Parameters.Add("@RegDate", SqlDbType.DateTime, 8);
-                _cmd.Parameters["@RegDate"].Value = RegDate;
-
                 _cmd.Parameters.Add("@ConfirmUser", SqlDbType.Int, 4);
                 _cmd.Parameters["@ConfirmUser"].Value = ConfirmUser;
-
-                _cmd.Parameters.Add("@ConfirmDate", SqlDbType.DateTime, 8);
-                _cmd.Parameters["@ConfirmDate"].Value = ConfirmDate;
-
+                
                 _rtn = _cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -224,9 +217,9 @@ namespace Dev.Data
         }
         
         /// <summary>
-        /// Getlist: 목록조회
+        /// Getlist: 목록조회 (오더메인용) 
         /// </summary>
-        public static DataSet Getlist(int OrderIdx, string WorksheetIdx, int Handler, int ConfirmUser, string ConfirmDate)
+        public static DataSet Getlist(int OrderIdx, string WorksheetIdx, int Handler, int ConfirmUser, int WorkStatus)
         {
             try
             {
@@ -252,9 +245,76 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@ConfirmUser", SqlDbType.Int, 4);
                 _cmd.Parameters["@ConfirmUser"].Value = ConfirmUser;
+
+                _cmd.Parameters.Add("@WorkStatus", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@WorkStatus"].Value = WorkStatus;
+
+                //_cmd.Parameters.Add("@ConfirmDate", SqlDbType.NVarChar, 10);
+                //_cmd.Parameters["@ConfirmDate"].Value = (ConfirmDate == "2000-01-01" ? "" : ConfirmDate);
                 
-                _cmd.Parameters.Add("@ConfirmDate", SqlDbType.NVarChar, 10);
-                _cmd.Parameters["@ConfirmDate"].Value = (ConfirmDate == "2000-01-01" ? "" : ConfirmDate);
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+        /// <summary>
+        /// Getlist: 목록조회 (작업지시 메인용) 
+        /// </summary>
+        public static DataSet Getlist(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx)
+        {
+            try
+            {
+
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_Worksheet_List3";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@DeptIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@DeptIdx"].Value = DeptIdx;
+
+                _cmd.Parameters.Add("@CustIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@CustIdx"].Value = CustIdx;
+
+                _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
+                _cmd.Parameters["@Handler"].Value = Handler;
+
+                _cmd.Parameters.Add("@WorkStatus", SqlDbType.Int, 4);
+                _cmd.Parameters["@WorkStatus"].Value = WorkStatus;
+
+                _cmd.Parameters.Add("@Fileno", SqlDbType.NVarChar, 11);
+                _cmd.Parameters["@Fileno"].Value = Fileno;
+
+                _cmd.Parameters.Add("@Styleno", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Styleno"].Value = Styleno;
+
+                _cmd.Parameters.Add("@WorksheetIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorksheetIdx"].Value = WorksheetIdx;
 
 
                 _adapter.SelectCommand = _cmd;
@@ -280,7 +340,7 @@ namespace Dev.Data
                 return null;
             }
         }
-                
+
         public static bool Delete(string DeleteIdx)
         {
             try
