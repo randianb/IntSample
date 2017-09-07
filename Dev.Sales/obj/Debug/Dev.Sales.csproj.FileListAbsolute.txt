@@ -17,8 +17,6 @@ D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.dll
 D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.pdb
 D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.OrderMain.resources
 D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.frmNewOrder.resources
-D:\git\IntSample\Dev.Sales\bin\Debug\Dev.System.dll
-D:\git\IntSample\Dev.Sales\bin\Debug\Dev.System.pdb
 D:\git\IntSample\Dev.Sales\bin\Debug\Int.Users.dll
 D:\git\IntSample\Dev.Sales\bin\Debug\Int.Costcenter.dll
 D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.frmPatternRequest.resources
@@ -100,3 +98,7 @@ D:\git\IntSample\Dev.Sales\bin\Debug\Telerik.Reporting.xml
 D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Finish.dll
 D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Finish.pdb
 D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.NewWorkSheets.resources
+D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.PrintOrderReview.resources
+D:\git\IntSample\Dev.Sales\obj\Debug\Dev.Sales.Reports.rpPrintOrderReview.resources
+D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Codes.dll
+D:\git\IntSample\Dev.Sales\bin\Debug\Dev.Codes.pdb

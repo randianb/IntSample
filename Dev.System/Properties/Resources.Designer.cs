@@ -73,6 +73,16 @@ namespace Dev.Codes.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _07_plus_20 {
+            get {
+                object obj = ResourceManager.GetObject("07_plus-20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _07_plus_201 {
             get {
                 object obj = ResourceManager.GetObject("07_plus-201", resourceCulture);

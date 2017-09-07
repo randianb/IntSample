@@ -479,6 +479,56 @@ namespace Dev.Sales.Data
             }
         }
 
+        public static DataSet Getlist(int Idx, int CustIdx, string Fileno, string Styleno)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_Orders_List3";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = Idx;
+
+                _cmd.Parameters.Add("@CustIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@CustIdx"].Value = CustIdx;
+
+                _cmd.Parameters.Add("@Fileno", SqlDbType.NVarChar, 40);
+                _cmd.Parameters["@Fileno"].Value = Fileno;
+
+                _cmd.Parameters.Add("@Styleno", SqlDbType.NVarChar, 40);
+                _cmd.Parameters["@Styleno"].Value = Styleno;
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         //public static DataSet OrderDetail(int DeptIdx, DateTime fromDate, DateTime toDate)
         //{
         //    try
@@ -498,7 +548,7 @@ namespace Dev.Sales.Data
 
         //        _cmd.Parameters.Add("@fromDate", SqlDbType.DateTime, 8);
         //        _cmd.Parameters["@fromDate"].Value = fromDate;
-                
+
         //        _cmd.Parameters.Add("@toDate", SqlDbType.DateTime, 8);
         //        _cmd.Parameters["@toDate"].Value = toDate;
 
@@ -525,7 +575,7 @@ namespace Dev.Sales.Data
         //        return null;
         //    }
         //}
-        
+
         //public static DataSet OrderDetailNoShip(int DeptIdx, DateTime fromDate, DateTime toDate)
         //{
         //    try
@@ -589,7 +639,7 @@ namespace Dev.Sales.Data
 
         //        _cmd.Parameters.Add("@indate", SqlDbType.DateTime, 8);
         //        _cmd.Parameters["@indate"].Value = indate;
-                
+
         //        _adapter.SelectCommand = _cmd;
         //        _adapter.Fill(_ds);
 

@@ -7,8 +7,8 @@
     <ProjectGuid>{3CDCBB62-E373-4537-97A7-659078F56338}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dev.System</RootNamespace>
-    <AssemblyName>Dev.System</AssemblyName>
+    <RootNamespace>Dev.Codes</RootNamespace>
+    <AssemblyName>Dev.Codes</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -195,6 +195,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reports\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\07_plus-202.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

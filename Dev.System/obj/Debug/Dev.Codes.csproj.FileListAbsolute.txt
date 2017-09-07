@@ -1,5 +1,3 @@
-D:\git\IntSample\Dev.System\bin\Debug\Dev.System.dll
-D:\git\IntSample\Dev.System\bin\Debug\Dev.System.pdb
 D:\git\IntSample\Dev.System\bin\Debug\Dev.Options.dll
 D:\git\IntSample\Dev.System\bin\Debug\Int.Code.dll
 D:\git\IntSample\Dev.System\bin\Debug\Int.Customer.dll
@@ -8,14 +6,16 @@ D:\git\IntSample\Dev.System\bin\Debug\Int.dll
 D:\git\IntSample\Dev.System\bin\Debug\Dev.Options.pdb
 D:\git\IntSample\Dev.System\obj\Debug\Dev.Codes.csprojResolveAssemblyReference.cache
 D:\git\IntSample\Dev.System\obj\Debug\Dev.Codes.CodeColor.resources
-D:\git\IntSample\Dev.System\obj\Debug\Dev.System.Properties.Resources.resources
 D:\git\IntSample\Dev.System\obj\Debug\Dev.Codes.csproj.GenerateResource.Cache
-D:\git\IntSample\Dev.System\obj\Debug\Dev.System.dll.licenses
-D:\git\IntSample\Dev.System\obj\Debug\Dev.System.dll
-D:\git\IntSample\Dev.System\obj\Debug\Dev.System.pdb
 D:\git\IntSample\Dev.System\obj\Debug\Dev.Codes.CodeSize.resources
 D:\git\IntSample\Dev.System\obj\Debug\Dev.Codes.CodeSewThread.resources
 D:\git\IntSample\Dev.System\obj\Debug\Dev.Codes.CodeSizeGroup.resources
 D:\git\IntSample\Dev.System\bin\Debug\Int.Users.dll
 D:\git\IntSample\Dev.System\bin\Debug\Int.Costcenter.dll
 D:\git\IntSample\Dev.System\obj\Debug\Dev.Codes.CodeLocation.resources
+D:\git\IntSample\Dev.System\bin\Debug\Dev.Codes.dll
+D:\git\IntSample\Dev.System\bin\Debug\Dev.Codes.pdb
+D:\git\IntSample\Dev.System\obj\Debug\Dev.Codes.Properties.Resources.resources
+D:\git\IntSample\Dev.System\obj\Debug\Dev.Codes.dll.licenses
+D:\git\IntSample\Dev.System\obj\Debug\Dev.Codes.dll
+D:\git\IntSample\Dev.System\obj\Debug\Dev.Codes.pdb

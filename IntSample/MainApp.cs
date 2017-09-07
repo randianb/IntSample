@@ -804,5 +804,17 @@ namespace SampleApp
                 frm.Show();
             }
         }
+
+        private void btnOrderReportOrderStatus_Click(object sender, EventArgs e)
+        {
+            if (Close_Wnd_Children("PrintOrderReview"))
+            {
+                PrintOrderReview frm = new PrintOrderReview(0);
+                frm.Text = "PrintOrderReview";
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            
+        }
     }
 }

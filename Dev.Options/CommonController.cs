@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using System.Globalization;
 using System.Threading;
+using System.Drawing;
+using Telerik.WinControls;
 
 namespace Dev.Options
 {
@@ -170,6 +172,31 @@ namespace Dev.Options
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("ko-KR");
             return Convert.ToDateTime(dt.ToString("d"));
+        }
+
+        /// <summary>
+        /// 알림메시지 띄우기
+        /// </summary>
+        /// <param name="caption"></param>
+        /// <param name="content"></param>
+        public static void Notify_WorkStatus(string caption, string content)
+        {
+            RadDesktopAlert ra = new RadDesktopAlert();
+            //ra.ContentImage = Properties.Resources.envelope;
+
+            ra.Popup.AlertElement.CaptionElement.TextAndButtonsElement.TextElement.ForeColor = Color.Red;
+            ra.Popup.AlertElement.CaptionElement.CaptionGrip.BackColor = Color.Red;
+            ra.Popup.AlertElement.CaptionElement.CaptionGrip.GradientStyle = GradientStyles.Solid;
+            ra.Popup.AlertElement.ContentElement.Font = new Font("Arial", 9f, FontStyle.Regular);
+            ra.Popup.AlertElement.ContentElement.TextImageRelation = TextImageRelation.TextBeforeImage;
+            ra.Popup.AlertElement.BackColor = Color.Yellow;
+            ra.Popup.AlertElement.GradientStyle = GradientStyles.Solid;
+            ra.Popup.AlertElement.BorderColor = Color.Red;
+
+            ra.CaptionText = caption;
+            ra.ContentText = content;
+            ra.AutoCloseDelay = 20;
+            ra.Show();
         }
         #endregion
 

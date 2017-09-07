@@ -545,6 +545,21 @@ namespace Dev.Codes
             //}
         }
 
+        private void radMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataRow row = Controller.Sizes.Insert("", 1);
+
+                RefleshWithCondition();
+                SetCurrentRow(_gv1, Convert.ToInt32(row["LastIdx"]));   // 신규입력된 행번호로 이동
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
+        }
+
         /// <summary>
         /// 행 선택시 - 오더캔슬, 마감일때 편집 불가능하도록
         /// </summary>

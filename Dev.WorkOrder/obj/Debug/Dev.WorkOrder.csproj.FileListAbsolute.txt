@@ -3,7 +3,6 @@ D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.WorkOrder.pdb
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Controller.dll
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Data.dll
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Options.dll
-D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.System.dll
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Int.Code.dll
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Int.Costcenter.dll
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Int.Customer.dll
@@ -14,7 +13,6 @@ D:\git\IntSample\Dev.WorkOrder\bin\Debug\Newtonsoft.Json.dll
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Controller.pdb
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Data.pdb
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Options.pdb
-D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.System.pdb
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Newtonsoft.Json.xml
 D:\git\IntSample\Dev.WorkOrder\obj\Debug\Dev.WorkOrder.csprojResolveAssemblyReference.cache
 D:\git\IntSample\Dev.WorkOrder\obj\Debug\Dev.WorkOrder.WorkOrderMain.resources
@@ -46,3 +44,5 @@ D:\git\IntSample\Dev.WorkOrder\obj\Debug\Dev.WorkOrder.Reports.rptWorkOrderSewTi
 D:\git\IntSample\Dev.WorkOrder\obj\Debug\Dev.WorkOrder.Reports.rptWorkOrderInspectionTicket.resources
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Finish.dll
 D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Finish.pdb
+D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Codes.dll
+D:\git\IntSample\Dev.WorkOrder\bin\Debug\Dev.Codes.pdb

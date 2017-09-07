@@ -3,7 +3,6 @@ D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Pattern.pdb
 D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Controller.dll
 D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Data.dll
 D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Options.dll
-D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.System.dll
 D:\git\IntSample\Dev.Pattern\bin\Debug\Int.Code.dll
 D:\git\IntSample\Dev.Pattern\bin\Debug\Int.Costcenter.dll
 D:\git\IntSample\Dev.Pattern\bin\Debug\Int.Customer.dll
@@ -13,7 +12,6 @@ D:\git\IntSample\Dev.Pattern\bin\Debug\Int.Users.dll
 D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Controller.pdb
 D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Data.pdb
 D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Options.pdb
-D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.System.pdb
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.csprojResolveAssemblyReference.cache
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.PatternMain.resources
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.Properties.Resources.resources
@@ -83,3 +81,5 @@ D:\git\IntSample\Dev.Pattern\bin\Debug\Telerik.ReportViewer.WinForms.xml
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.PrintPattern.resources
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.Reports.rptPrintPattern.resources
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.WorksheetMain.resources
+D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Codes.dll
+D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Codes.pdb

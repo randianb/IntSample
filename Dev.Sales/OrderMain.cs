@@ -431,9 +431,13 @@ namespace Dev.Sales
             gv.Columns["Styleno"].TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns["Styleno"].HeaderText = "Style#";
 
-            gv.Columns["Fileno"].Width = 90;
-            gv.Columns["Fileno"].HeaderText = "INT File #";
-            gv.Columns["Fileno"].ReadOnly = true;
+            GridViewHyperlinkColumn Fileno = new GridViewHyperlinkColumn();
+            Fileno.Name = "Fileno";
+            Fileno.FieldName = "Fileno";
+            Fileno.Width = 90;
+            Fileno.HeaderText = "INT File #";
+            Fileno.ReadOnly = true;
+            gv.Columns.Insert(7, Fileno);
 
             GridViewTextBoxColumn reorder = new GridViewTextBoxColumn();
             reorder.Name = "reorder";
@@ -3393,6 +3397,25 @@ namespace Dev.Sales
         {
             // 변경값 저장 
             OrderType_Save();
+        }
+
+        private void MasterTemplate_HyperlinkOpened(object sender, HyperlinkOpenedEventArgs e)
+        {
+            /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+            /// 읽기: 0, 쓰기: 1, 삭제: 2
+            int _mode_ = 0;
+            if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                CheckAuth.ShowMessage(_mode_);
+            else
+            {
+                _gv1.EndEdit();
+                GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
+
+                PrintOrderReview frm = new PrintOrderReview(Convert.ToInt32(row.Cells["Idx"].Value.ToString()));
+                frm.Text = "PrintOrderReview";
+                //frm.MdiParent = this;
+                frm.Show();
+            }
         }
 
         /// <summary>

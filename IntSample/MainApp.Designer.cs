@@ -636,9 +636,10 @@
             this.btnOrderReportOrderStatus.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrderReportOrderStatus.Name = "btnOrderReportOrderStatus";
             this.btnOrderReportOrderStatus.Tag = "23";
-            this.btnOrderReportOrderStatus.Text = "Order Status";
+            this.btnOrderReportOrderStatus.Text = "Order Review";
             this.btnOrderReportOrderStatus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOrderReportOrderStatus.TextWrap = true;
+            this.btnOrderReportOrderStatus.Click += new System.EventHandler(this.btnOrderReportOrderStatus_Click);
             // 
             // btnOrderReportProductHistory
             // 

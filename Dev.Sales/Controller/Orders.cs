@@ -358,6 +358,15 @@ namespace Dev.Sales.Controller
             
             return ds;
         }
+
+        public static DataSet Getlist(int Idx, int CustIdx, string Fileno, string Styleno)
+        {
+            DataSet ds = new DataSet();
+
+            ds = Data.OrdersData.Getlist(Idx, CustIdx, Fileno, Styleno);
+
+            return ds;
+        }
         ///// <summary>
         ///// Report
         ///// </summary>
@@ -381,9 +390,9 @@ namespace Dev.Sales.Controller
         //public static DataSet OrderSummary(DateTime indate)
         //{
         //    DataSet ds = new DataSet();
-            
+
         //    ds = Dev.Sales.Data.OrderActualData.OrderSummary(indate);
-            
+
         //    return ds;
         //}
 

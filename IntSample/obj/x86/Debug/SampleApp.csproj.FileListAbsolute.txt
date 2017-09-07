@@ -38,8 +38,6 @@ D:\git\IntSample\IntSample\obj\x86\Debug\SampleApp.exe
 D:\git\IntSample\IntSample\obj\x86\Debug\SampleApp.pdb
 D:\git\IntSample\IntSample\bin\Debug\Dev.Sales.dll
 D:\git\IntSample\IntSample\bin\Debug\Dev.Sales.pdb
-D:\git\IntSample\IntSample\bin\Debug\Dev.System.dll
-D:\git\IntSample\IntSample\bin\Debug\Dev.System.pdb
 D:\git\IntSample\IntSample\bin\Debug\Int.Users.dll
 D:\git\IntSample\IntSample\bin\Debug\Int.Costcenter.dll
 D:\git\IntSample\IntSample\bin\Debug\Dev.Pattern.dll
@@ -117,3 +115,5 @@ D:\git\IntSample\IntSample\bin\Debug\Dev.Production.pdb
 D:\git\IntSample\IntSample\bin\Debug\Int.Program.dll
 D:\git\IntSample\IntSample\bin\Debug\Dev.Finish.dll
 D:\git\IntSample\IntSample\bin\Debug\Dev.Finish.pdb
+D:\git\IntSample\IntSample\bin\Debug\Dev.Codes.dll
+D:\git\IntSample\IntSample\bin\Debug\Dev.Codes.pdb

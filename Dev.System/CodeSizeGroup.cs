@@ -695,7 +695,31 @@ namespace Dev.Codes
 
 
         #endregion
-                
+
+        private void radMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ddlCust.SelectedValue == null)
+                {
+                    RadMessageBox.Show("Please select the customer");
+                    return;
+                }
+
+                if (ddlCust.SelectedValue != null)
+                {
+                    DataRow row = Controller.SizeGroup.Insert(Convert.ToInt32(ddlCust.SelectedValue), "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
+
+                    RefleshWithCondition();
+                    //SetCurrentRow(_gv1, Convert.ToInt32(row["LastIdx"]));   // 신규입력된 행번호로 이동
+                }
+
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
+        }
     }
 
 }
