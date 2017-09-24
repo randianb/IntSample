@@ -147,14 +147,11 @@ namespace Dev.Codes
             cSewThreadCustIdx.TextAlignment = ContentAlignment.MiddleLeft;
             gv.Columns.Add(cSewThreadCustIdx);
 
-            GridViewComboBoxColumn cColor = new GridViewComboBoxColumn();
+            GridViewTextBoxColumn cColor = new GridViewTextBoxColumn();
             cColor.Name = "ColorIdx";
-            cColor.DataSource = colorName;
-            cColor.ValueMember = "CodeIdx";
-            cColor.DisplayMember = "Contents";
             cColor.FieldName = "ColorIdx";
             cColor.HeaderText = "Color";
-            cColor.Width = 100;
+            cColor.Width = 150;
             cColor.TextAlignment = ContentAlignment.MiddleLeft;
             gv.Columns.Add(cColor);
 
@@ -172,9 +169,27 @@ namespace Dev.Codes
             cIsUse.FieldName = "IsUse";
             cIsUse.HeaderText = "Use";
             cIsUse.WrapText = true;
-            cIsUse.Width = 40;
+            cIsUse.Width = 70;
             gv.Columns.Add(cIsUse);
-            
+
+            GridViewCheckBoxColumn cIsAvailable = new GridViewCheckBoxColumn();
+            cIsAvailable.DataType = typeof(int);
+            cIsAvailable.Name = "IsAvailable";
+            cIsAvailable.FieldName = "IsAvailable";
+            cIsAvailable.HeaderText = "Available";
+            cIsAvailable.WrapText = true;
+            cIsAvailable.Width = 70;
+            gv.Columns.Add(cIsAvailable);
+
+            GridViewCheckBoxColumn cIsProduction = new GridViewCheckBoxColumn();
+            cIsProduction.DataType = typeof(int);
+            cIsProduction.Name = "IsProduction";
+            cIsProduction.FieldName = "IsProduction";
+            cIsProduction.HeaderText = "Production";
+            cIsProduction.WrapText = true;
+            cIsProduction.Width = 70;
+            gv.Columns.Add(cIsProduction);
+
             #endregion
         }
 
@@ -342,7 +357,7 @@ namespace Dev.Codes
         {
             try
             {
-                DataRow row = Controller.SewThread.Insert(0,"", 0, 1);
+                DataRow row = Controller.SewThread.Insert(0,"", "", 1);
 
                 RefleshWithCondition();
                 SetCurrentRow(_gv1, Convert.ToInt32(row["LastIdx"]));   // 신규입력된 행번호로 이동
@@ -407,15 +422,15 @@ namespace Dev.Codes
                                                 Convert.ToInt32(row["Classification"])));
                 }
 
-                // 컬러명 
-                _dt = Controller.Color.GetUselist().Tables[0];
+                //// 컬러명 
+                //_dt = Controller.Color.GetUselist().Tables[0];
 
-                foreach (DataRow row in _dt.Rows)
-                {
-                    colorName.Add(new CodeContents(Convert.ToInt32(row["ColorIdx"]),
-                                                row["ColorName"].ToString(),
-                                                ""));
-                }
+                //foreach (DataRow row in _dt.Rows)
+                //{
+                //    colorName.Add(new CodeContents(Convert.ToInt32(row["ColorIdx"]),
+                //                                row["ColorName"].ToString(),
+                //                                ""));
+                //}
             }
             catch(Exception ex)
             {
@@ -505,10 +520,12 @@ namespace Dev.Codes
                 _obj1.SewThreadIdx       = Convert.ToInt32(row.Cells["SewThreadIdx"].Value);
                 if (row.Cells["SewThreadCustIdx"].Value != DBNull.Value) _obj1.SewThreadCustIdx = Convert.ToInt32(row.Cells["SewThreadCustIdx"].Value);
                 _obj1.SewThreadName    = row.Cells["SewThreadName"].Value.ToString();
-                if (row.Cells["ColorIdx"].Value != DBNull.Value)  _obj1.ColorIdx   = Convert.ToInt32(row.Cells["ColorIdx"].Value);
+                if (row.Cells["ColorIdx"].Value != DBNull.Value)  _obj1.ColorIdx   = row.Cells["ColorIdx"].Value.ToString();
                 _obj1.IsUse    = Convert.ToInt32(row.Cells["IsUse"].Value);
-                
-                _bRtn=_obj1.Update();
+                _obj1.IsAvailable = Convert.ToInt32(row.Cells["IsAvailable"].Value);
+                _obj1.IsProduction = Convert.ToInt32(row.Cells["IsProduction"].Value);
+
+                _bRtn =_obj1.Update();
             }
             catch (Exception ex)
             {
@@ -663,7 +680,7 @@ namespace Dev.Codes
         {
             try
             {
-                DataRow row = Controller.SewThread.Insert(0, "", 0, 1);
+                DataRow row = Controller.SewThread.Insert(0, "", "", 1);
 
                 RefleshWithCondition();
                 SetCurrentRow(_gv1, Convert.ToInt32(row["LastIdx"]));   // 신규입력된 행번호로 이동

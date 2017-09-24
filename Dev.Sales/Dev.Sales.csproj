@@ -310,6 +310,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Data\DataSetSizeGroup.xsc">
       <DependentUpon>DataSetSizeGroup.xsd</DependentUpon>
     </None>

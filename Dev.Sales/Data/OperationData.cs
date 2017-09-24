@@ -111,7 +111,7 @@ namespace Dev.Sales.Data
         /// <summary>
         /// Update
         /// </summary>
-        public static bool Update(int Idx, int OperationIdx, int Priority)
+        public static bool Update(int Idx, int OperationIdx, int Priority, int Work1, int Work2)
         {
             try
             {
@@ -131,7 +131,13 @@ namespace Dev.Sales.Data
                 
                 _cmd.Parameters.Add("@Priority", SqlDbType.Int, 4);
                 _cmd.Parameters["@Priority"].Value = Priority;
-                
+
+                _cmd.Parameters.Add("@Work1", SqlDbType.Int, 4);
+                _cmd.Parameters["@Work1"].Value = Work1;
+
+                _cmd.Parameters.Add("@Work2", SqlDbType.Int, 4);
+                _cmd.Parameters["@Work2"].Value = Work2;
+
                 _rtn = _cmd.ExecuteNonQuery();
             }
             catch (Exception ex)

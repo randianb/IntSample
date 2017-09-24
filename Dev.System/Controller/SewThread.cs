@@ -10,9 +10,11 @@ namespace Dev.Codes.Controller
         private int _sewThreadIdx;
         private int _sewThreadCustIdx;
         private string _sewThreadName;
-        private int _colorIdx;
+        private string _colorIdx;
         private int _isUse;
-        
+        private int _isAvailable;
+        private int _isProduction;
+
         private DataRow _row;
 
         #endregion
@@ -38,7 +40,7 @@ namespace Dev.Codes.Controller
             set { _sewThreadName = value; }
         }
         //컬러번호
-        public int ColorIdx
+        public string ColorIdx
         {
             get { return _colorIdx; }
             set { _colorIdx = value; }
@@ -50,7 +52,19 @@ namespace Dev.Codes.Controller
             get { return _isUse; }
             set { _isUse = value; }
         }
-        
+
+        public int IsAvailable
+        {
+            get { return _isAvailable; }
+            set { _isAvailable = value; }
+        }
+
+        public int IsProduction
+        {
+            get { return _isProduction; }
+            set { _isProduction = value; }
+        }
+
         #endregion
 
         #region Constructor 
@@ -64,8 +78,10 @@ namespace Dev.Codes.Controller
                 _sewThreadIdx = Convert.ToInt32(_row["SewThreadIdx"]);
                 if (_row["SewThreadCustIdx"] != DBNull.Value) _sewThreadCustIdx = Convert.ToInt32(_row["SewThreadCustIdx"]);
                 if (_row["SewThreadName"] != DBNull.Value) _sewThreadName = Convert.ToString(_row["SewThreadName"]);
-                if (_row["ColorIdx"] != DBNull.Value) _colorIdx = Convert.ToInt32(_row["ColorIdx"]);
+                if (_row["ColorIdx"] != DBNull.Value) _colorIdx = _row["ColorIdx"].ToString();
                 if (_row["IsUse"] != DBNull.Value) _isUse = Convert.ToInt32(_row["IsUse"]);
+                if (_row["IsAvailable"] != DBNull.Value) _isAvailable = Convert.ToInt32(_row["IsAvailable"]);
+                if (_row["IsProduction"] != DBNull.Value) _isProduction = Convert.ToInt32(_row["IsProduction"]);
             }
             else
             {
@@ -78,15 +94,17 @@ namespace Dev.Codes.Controller
             _sewThreadIdx = 0;
             _sewThreadCustIdx = 0;
             _sewThreadName = "";
-            _colorIdx = 0;
+            _colorIdx = "";
             _isUse = 0;
+            _isAvailable = 0;
+            _isProduction = 0;
         }
         #endregion
 
         #region Methods
 
         // Insert
-        public static DataRow Insert(int SewThreadCustIdx, string SewThreadName, int ColorIdx, int IsUse)
+        public static DataRow Insert(int SewThreadCustIdx, string SewThreadName, string ColorIdx, int IsUse)
         {
             DataRow row = Data.SewThreadData.Insert(SewThreadCustIdx, SewThreadName, ColorIdx, IsUse);
             return row;
@@ -116,7 +134,7 @@ namespace Dev.Codes.Controller
         public bool Update()
         {
             bool blRtn;
-            blRtn = Data.SewThreadData.Update(_sewThreadIdx, _sewThreadCustIdx, _sewThreadName, _colorIdx, _isUse);
+            blRtn = Data.SewThreadData.Update(_sewThreadIdx, _sewThreadCustIdx, _sewThreadName, _colorIdx, _isUse, _isAvailable, _isProduction);
             return blRtn;
         }
         

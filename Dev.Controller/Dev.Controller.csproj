@@ -30,8 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Int, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Int.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,6 +57,8 @@
     <Compile Include="Printing.cs" />
     <Compile Include="FabricMapInfo.cs" />
     <Compile Include="Cutting.cs" />
+    <Compile Include="OrderTrim.cs" />
+    <Compile Include="TelegramMessageSender.cs" />
     <Compile Include="Worksheet.cs" />
     <Compile Include="MyCombBoxCellElement.cs" />
     <Compile Include="MyDDLEditor.cs" />

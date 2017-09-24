@@ -1,5 +1,5 @@
 ﻿<RadGridView ShowGroupPanel="False" BackColor="191, 219, 255" ForeColor="Black" Text="radGridView1" Font="Segoe UI, 8.25pt" Cursor="Default" RightToLeft="No" TabIndex="11" ImeMode="NoControl">
-  <MasterTemplate MultiSelect="True" EnablePaging="True" PageSize="50" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" AutoGenerateColumns="False">
+  <MasterTemplate MultiSelect="True" PageSize="50" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" AutoGenerateColumns="False">
     <Columns>
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="40" FieldName="Idx" Name="Idx" IsVisible="True" ReadOnly="True" HeaderText="ID" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="OrderIdx" Name="OrderIdx" IsVisible="False" />
@@ -11,9 +11,9 @@
       <Telerik.WinControls.UI.GridViewComboBoxColumn Width="70" FieldName="OrdSizeIdx" Name="OrdSizeIdx" IsVisible="True" ReadOnly="True" HeaderText="Size" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" Width="70" FieldName="WorkQty" Name="WorkQty" IsVisible="True" ReadOnly="True" HeaderText="Q'ty" TextAlignment="MiddleRight" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="150" FieldName="TDName" Name="TDName" IsVisible="True" ReadOnly="True" HeaderText="T/D" />
-      <Telerik.WinControls.UI.GridViewDateTimeColumn FormatString="{0:d}" Width="100" FieldName="InspRequestedDate" Name="InspRequestedDate" IsVisible="True" ReadOnly="True" HeaderText="Requested" TextAlignment="MiddleCenter" />
-      <Telerik.WinControls.UI.GridViewDateTimeColumn CustomFormat="{d}" FormatString="{0:d}" Width="100" FieldName="InspDate" Name="InspDate" IsVisible="True" HeaderText="Started(Confirm)" TextAlignment="MiddleCenter" />
-      <Telerik.WinControls.UI.GridViewDateTimeColumn CustomFormat="{d}" FormatString="{0:d}" Width="100" FieldName="InspCompletedDate" Name="InspCompletedDate" IsVisible="True" HeaderText="Completed" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="ko-KR" FormatString="{0:d}" Width="100" FieldName="InspRequestedDate" Name="InspRequestedDate" IsVisible="True" ReadOnly="True" HeaderText="Requested" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewDateTimeColumn CustomFormat="{d}" FormatInfo="ko-KR" FormatString="{0:d}" Width="100" FieldName="InspDate" Name="InspDate" IsVisible="True" HeaderText="Started(Confirm)" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewDateTimeColumn CustomFormat="{d}" FormatInfo="ko-KR" FormatString="{0:d}" Width="100" FieldName="InspCompletedDate" Name="InspCompletedDate" IsVisible="True" HeaderText="Completed" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="100" FieldName="Status" Name="Status" IsVisible="True" ReadOnly="True" HeaderText="Work Status">
         <ConditionalFormattingObjectList>
           <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="4" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="255, 230, 230" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />

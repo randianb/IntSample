@@ -12,6 +12,9 @@ using Telerik.WinControls.UI;
 using System.Diagnostics;
 using System.IO;
 using System.Globalization;
+using System.Net;
+using System.Web.Script.Serialization;
+using System.Text;
 
 namespace Dev.Production
 {
@@ -45,6 +48,13 @@ namespace Dev.Production
 
         //RadMenuItem mnuNew, mnuDel, mnuHide, mnuShow, menuItem2, menuItem3, menuItem4, mnuWorksheet, mnuCutting, mnuOutsourcing, mnuSewing, mnuInspecting = null;
         private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 39, 0);   // 패키지번호, 프로그램번호, 윈도우번호
+
+        // TODO: Replace the following with your gateway instance ID, Premium client ID and secret:
+
+        private static string INSTANCE_ID = "0";
+        private static string CLIENT_ID = "bryan.cho@intsa.net";
+        private static string CLIENT_SECRET = "3db62fc897ef4322a607699ff20f249c";
+        private static string API_URL = "http://api.whatsmate.net/v1/telegram/single/message/" + INSTANCE_ID;
 
         #endregion
 
@@ -225,6 +235,7 @@ namespace Dev.Production
             OrdDate.FieldName = "OrdDate";
             OrdDate.Width = 100;
             OrdDate.TextAlignment = ContentAlignment.MiddleCenter;
+            OrdDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             OrdDate.FormatString = "{0:d}";
             OrdDate.HeaderText = "Requested";
             OrdDate.ReadOnly = true;
@@ -247,6 +258,7 @@ namespace Dev.Production
             CuttedDate.FieldName = "CuttedDate";
             CuttedDate.Width = 100;
             CuttedDate.TextAlignment = ContentAlignment.MiddleCenter;
+            CuttedDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             CuttedDate.CustomFormat = "{d}"; 
             CuttedDate.FormatString = "{0:d}";
             CuttedDate.HeaderText = "Cutted";
@@ -295,6 +307,16 @@ namespace Dev.Production
             status.ReadOnly = true; 
             status.Width = 100;
             gv.Columns.Add(status);
+
+            GridViewCommandColumn complete = new GridViewCommandColumn();
+            complete.Name = "complete";
+            complete.FieldName = "complete";
+            complete.HeaderText = "";
+            complete.Width = 70;
+            complete.UseDefaultText = true;
+            complete.DefaultText = "Complete"; 
+            complete.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gv.Columns.Add(complete);
 
             GridViewTextBoxColumn Remarks = new GridViewTextBoxColumn();
             Remarks.Name = "Remarks";
@@ -774,6 +796,125 @@ namespace Dev.Production
         private void radLabel8_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void gvMain_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            try
+            {
+                //CuttingMain msgSender = new CuttingMain(__main__, _workOrderIdx);
+                //msgSender.sendMessage("50232320019", "Have a nice day. Loving you!");  // Specify the recipient's number (NOT the gateway number) here.
+                //Console.WriteLine("Press Enter to exit.");
+
+                if (e.Column.Name == "complete")
+                {
+                    /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                    /// 읽기: 0, 쓰기: 1, 삭제: 2, 센터: 3, 부서: 4
+                    int _mode_ = 1;
+                    if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                        CheckAuth.ShowMessage(_mode_);
+                    else
+                    {
+                        _gv1.EndEdit();
+                        GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
+
+                        if (Convert.ToInt32(_gv1.Rows[row.Index].Cells["status"].Value) == 0 ||
+                            Convert.ToInt32(_gv1.Rows[row.Index].Cells["status"].Value) == 1 ||
+                            Convert.ToInt32(_gv1.Rows[row.Index].Cells["status"].Value) == 2)
+                        {
+                            _bRtn = Data.CuttingData.CompleteWork(
+                            _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim());
+
+                            if (_bRtn)
+                            {
+                                __main__.lblRows.Text = "Completed Work";
+                                RadMessageBox.Show("Completed Work.", "Complete");
+                            }
+                        }
+                        else
+                        {
+                            RadMessageBox.Show("You can't change the status of this item.", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("btnUpdate_Click: " + ex.Message.ToString());
+            }
+        }
+
+        private void radMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0 &&
+                    Convert.ToInt16(__AUTHCODE__.Substring(4, 1).Trim()) <= 0)
+                {
+                    CheckAuth.ShowMessage(_mode_);
+                }
+                else
+                {
+                    // 워크시트 열기 
+                    DirectWorkOrder frm = new DirectWorkOrder(Int.Members.GetCurrentRow(_gv1, "Idx"), 111);     // cutting order 
+                    frm.Text = "Work Order";
+
+                    if (frm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        RefleshWithCondition(); 
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
+        }
+
+        public bool sendMessage(string number, string message)
+        {
+            bool success = true;
+            
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    client.Headers["X-WM-CLIENT-ID"] = CLIENT_ID;
+                    client.Headers["X-WM-CLIENT-SECRET"] = CLIENT_SECRET;
+                    
+                    Payload payloadObj = new Payload() { number = number, message = message };
+                    string postData = (new JavaScriptSerializer()).Serialize(payloadObj);
+                    
+                    client.Encoding = Encoding.UTF8;
+                    string response = client.UploadString(API_URL, postData);
+                    Console.WriteLine(response);
+                }
+            }
+            catch (WebException webEx)
+            {
+                Console.WriteLine(((HttpWebResponse)webEx.Response).StatusCode);
+                Stream stream = ((HttpWebResponse)webEx.Response).GetResponseStream();
+                StreamReader reader = new StreamReader(stream);
+                String body = reader.ReadToEnd();
+                Console.WriteLine(body);
+                success = false;
+            }
+            
+            return success;
+        }
+        
+        public class Payload
+        {
+            public string number { get; set; }
+            public string message { get; set; }
         }
     }
 }

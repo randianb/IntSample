@@ -66,6 +66,8 @@ namespace SampleApp
         {
             // 설정 버튼 클릭시 파일 없으면 새로 만들고 있으면 내용 불러옴 
             txtUsername.Text = UserInfo.Username;
+            txtEmail.Text = UserInfo.Email;
+            txtPhone.Text = UserInfo.Phone; 
 
             string url = Environment.CurrentDirectory + "/conf";
             string path = url + "/conf.json";
@@ -276,8 +278,8 @@ namespace SampleApp
             // Order
             lstMenu.Add(18, btnOrderOrder); lstMenu.Add(19, btnOrderWorkSheet); lstMenu.Add(20, btnOrderWorkOrder); lstMenu.Add(21, btnOrderWorkSchedule);
             lstMenu.Add(22, btnOrderReportTicketPrint); lstMenu.Add(25, btnOrderReportWorkSchedule); lstMenu.Add(23, btnOrderReportOrderStatus);
-            lstMenu.Add(24, btnOrderReportProductHistory);
-
+            lstMenu.Add(24, btnOrderReportProductHistory); lstMenu.Add(106, btnOrderTrim);
+            
             // Yarn
             lstMenu.Add(54, btnYarnCodeMain); lstMenu.Add(53, btnYarnPurchase); lstMenu.Add(55, btnYarnManager); lstMenu.Add(56, btnYarnInbound);
             lstMenu.Add(57, btnYarnOutbound); lstMenu.Add(58, btnYarnStock);
@@ -391,13 +393,17 @@ namespace SampleApp
 
         private void btnOrderOrder_Click(object sender, EventArgs e)
         {
-            if (Close_All_Children("OrderMain"))
+            try
             {
-                OrderMain frm = new OrderMain(this, "");
-                frm.Text = "Orders";
-                frm.MdiParent = this;
-                frm.Show();
+                if (Close_All_Children("OrderMain"))
+                {
+                    OrderMain ordfrm = new OrderMain(this, "");
+                    ordfrm.Text = "OrderMain";
+                    ordfrm.MdiParent = this;
+                    ordfrm.Show();
+                }
             }
+            catch(Exception ex) {  }
         }
 
         private void btnSystemColor_Click(object sender, EventArgs e)
@@ -773,21 +779,26 @@ namespace SampleApp
 
         private void btnOrderWorkSheet_Click(object sender, EventArgs e)
         {
-            if (Close_All_Children("WorksheetMain"))
+            try
             {
-                WorksheetMain frm = new WorksheetMain(this, "");
-                frm.Text = "Worksheet Main";
-                frm.MdiParent = this;
-                frm.Show();
+                if (Close_All_Children("WorksheetMain"))
+                {
+                    WorksheetMain frm = new WorksheetMain(this, "");
+                    frm.Text = "Worksheet Main";
+                    frm.MdiParent = this;
+                    frm.Show();
+                }
+
             }
-            
+            catch(Exception ex) {  }
+
         }
 
         private void btnOutPrintInvoice_Click(object sender, EventArgs e)
         {
             if (Close_Wnd_Children("PrintInvoice"))
             {
-                PrintInvoice frm = new PrintInvoice();
+                PrintInvoice frm = new PrintInvoice("");
                 frm.Text = "Print Invoice";
                 frm.MdiParent = this;
                 frm.Show();
@@ -815,6 +826,48 @@ namespace SampleApp
                 frm.Show();
             }
             
+        }
+
+        private void btnOrderTrim_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Close_All_Children("TrimMain"))
+                {
+                    TrimMain frm = new TrimMain(this, 0);
+                    frm.Text = "Trim Main";
+                    frm.MdiParent = this;
+                    frm.Show();
+                }
+
+            }
+            catch (Exception ex) { }
+        }
+
+        private void btnAccountSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string Email = txtEmail.Text.Trim(); 
+                string Phone = txtPhone.Text.Trim();
+
+                bool bResult = Data.LoginData.ModifyUserInfo(UserInfo.Idx, Email, Phone);
+
+                if (bResult)
+                {
+                    RadMessageBox.Show("Updated User Information", "Info", MessageBoxButtons.OK, RadMessageIcon.Info);
+                    UserInfo.Email = Email;
+                    UserInfo.Phone = Phone;
+                }
+                else
+                {
+                    RadMessageBox.Show("Failed to update", "Error", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }

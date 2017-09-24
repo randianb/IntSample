@@ -60,6 +60,7 @@ namespace SampleApp
                     {
                         CommonValues.verNo =ver.Version.ToString();
 
+                        // update 버전정보 가져오기 
                         DataRow dr = Data.LoginData.FindUpdateInfo(
                                 CommonValues.packageNo,
                                 ver.FileName, 
@@ -200,6 +201,9 @@ namespace SampleApp
                 UserInfo.PositionNm = dr["PositionNm"].ToString();
                 UserInfo.Nationality = Convert.ToInt32(dr["Nationality"]);
                 UserInfo.NationalityNm = dr["NationalityNm"].ToString();
+                UserInfo.Email = dr["Email"].ToString().Trim();
+                UserInfo.Phone = dr["Phone"].ToString().Trim();
+
                 UserInfo.ExceptionGroup = Convert.ToInt32(dr["ExceptionGroup"]);
 
                 // 코스트센터 또는 부서가 사용불가일때 접속차단 

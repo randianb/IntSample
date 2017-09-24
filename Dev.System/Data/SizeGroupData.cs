@@ -107,6 +107,7 @@ namespace Dev.Codes.Data
         /// </summary>
         public static bool Update(int SizeGroupIdx, int Client, string SizeGroupName,
             int SizeIdx1, int SizeIdx2, int SizeIdx3, int SizeIdx4, int SizeIdx5, int SizeIdx6, int SizeIdx7, int SizeIdx8, int SizeIdx9, int SizeIdx10,
+            //int SizeIdx11, int SizeIdx12, int SizeIdx13, int SizeIdx14, int SizeIdx15, int SizeIdx16, int SizeIdx17, int SizeIdx18, int SizeIdx19, int SizeIdx20,
             int IsUse)
         {
             try
@@ -157,6 +158,36 @@ namespace Dev.Codes.Data
 
                 _cmd.Parameters.Add("@SizeIdx10", SqlDbType.Int, 4);
                 _cmd.Parameters["@SizeIdx10"].Value = SizeIdx10;
+
+                _cmd.Parameters.Add("@SizeIdx11", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx11"].Value = 0;
+
+                _cmd.Parameters.Add("@SizeIdx12", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx12"].Value = 0;
+
+                _cmd.Parameters.Add("@SizeIdx13", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx13"].Value = 0;
+
+                _cmd.Parameters.Add("@SizeIdx14", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx14"].Value = 0;
+
+                _cmd.Parameters.Add("@SizeIdx15", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx15"].Value = 0;
+
+                _cmd.Parameters.Add("@SizeIdx16", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx16"].Value = 0;
+
+                _cmd.Parameters.Add("@SizeIdx17", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx17"].Value = 0;
+
+                _cmd.Parameters.Add("@SizeIdx18", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx18"].Value = 0;
+
+                _cmd.Parameters.Add("@SizeIdx19", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx19"].Value = 0;
+
+                _cmd.Parameters.Add("@SizeIdx20", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx20"].Value = 0;
 
                 _cmd.Parameters.Add("@IsUse", SqlDbType.TinyInt, 1);
                 _cmd.Parameters["@IsUse"].Value = IsUse;

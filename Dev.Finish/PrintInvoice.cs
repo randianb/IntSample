@@ -29,14 +29,66 @@ namespace Dev.Out
         private DataSet dsData = null;
         private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 12, 0);   // 패키지번호, 프로그램번호, 윈도우번호
 
-        public PrintInvoice()
+        private string _workOrderIdx = ""; 
+        
+        public PrintInvoice(string workIdx)
         {
             InitializeComponent();
+
+            if (!string.IsNullOrEmpty(workIdx))
+            {
+                _workOrderIdx = workIdx;
+                //txtWorkorder.Text = _workOrderIdx;
+
+                try
+                {
+                    /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                    /// 읽기: 0, 쓰기: 1, 삭제: 2
+                    int _mode_ = 0;
+                    if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                        CheckAuth.ShowMessage(_mode_);
+                    else
+                    {
+                        _searchKey = new Dictionary<CommonValues.KeyName, int>();
+                        _searchString = new Dictionary<CommonValues.KeyName, string>();
+
+                        _searchKey.Add(CommonValues.KeyName.BuyerIdx, 0);
+                        _searchKey.Add(CommonValues.KeyName.Size, 0);
+                        _searchKey.Add(CommonValues.KeyName.CustIdx, 0);
+                        _searchKey.Add(CommonValues.KeyName.User, 0);
+                        _searchKey.Add(CommonValues.KeyName.WorkStatus, 0);
+
+                        _searchString.Add(CommonValues.KeyName.OrderIdx, "");
+                        _searchString.Add(CommonValues.KeyName.Styleno, "");
+                        _searchString.Add(CommonValues.KeyName.WorkOrderIdx, _workOrderIdx);
+                        _searchString.Add(CommonValues.KeyName.ColorIdx, "");
+                        _searchString.Add(CommonValues.KeyName.Remark, "");
+
+                        DataBinding_Order();
+
+
+                        rptPrintInvoice report = new rptPrintInvoice();
+                        reportViewer1.Report = report;
+                        if (dsData != null)
+                            report.DataSource = dsData.Tables[0].DefaultView;
+                        else
+                            report.DataSource = null;
+
+                        reportViewer1.ViewMode = Telerik.ReportViewer.WinForms.ViewMode.PrintPreview;
+                        reportViewer1.ZoomMode = Telerik.ReportViewer.WinForms.ZoomMode.PageWidth;
+                        reportViewer1.RefreshReport();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
         }
 
         private void rptFabricCode_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+            this.WindowState = FormWindowState.Normal;
 
             // 바이어
             _dt = CommonController.Getlist(CommonValues.KeyName.CustAll).Tables[0];

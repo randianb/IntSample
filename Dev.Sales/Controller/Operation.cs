@@ -11,7 +11,9 @@ namespace Dev.Sales.Controller
         private int _orderIdx;
         private int _operationIdx;
         private int _priority;
-        
+        private int _work1;
+        private int _work2;
+
         private DataRow _row;
 
         #endregion
@@ -44,7 +46,18 @@ namespace Dev.Sales.Controller
             get { return _priority; }
             set { _priority = value; }
         }
-        
+        //
+        public int Work1
+        {
+            get { return _work1; }
+            set { _work1 = value; }
+        }
+        //
+        public int Work2
+        {
+            get { return _work2; }
+            set { _work2 = value; }
+        }
         #endregion
 
         #region Constructor 
@@ -59,6 +72,8 @@ namespace Dev.Sales.Controller
                 if (_row["OrderIdx"] != DBNull.Value) _orderIdx = Convert.ToInt32(_row["OrderIdx"]);
                 if (_row["OperationIdx"] != DBNull.Value) _operationIdx = Convert.ToInt32(_row["OperationIdx"]);
                 if (_row["Priority"] != DBNull.Value) _priority = Convert.ToInt32(_row["Priority"]);
+                if (_row["Work1"] != DBNull.Value) _work1 = Convert.ToInt32(_row["Work1"]);
+                if (_row["Work2"] != DBNull.Value) _work2 = Convert.ToInt32(_row["Work2"]);
             }
             else
             {
@@ -72,6 +87,8 @@ namespace Dev.Sales.Controller
             _orderIdx = 0;
             _operationIdx = 0;
             _priority = 0;
+            _work1 = 0;
+            _work2 = 0;
             
         }
 
@@ -103,7 +120,7 @@ namespace Dev.Sales.Controller
         public bool Update()
         {
             bool blRtn;
-            blRtn = Data.OperationData.Update(_idx, _operationIdx, _priority); 
+            blRtn = Data.OperationData.Update(_idx, _operationIdx, _priority, _work1, _work2); 
             return blRtn;
         }
 

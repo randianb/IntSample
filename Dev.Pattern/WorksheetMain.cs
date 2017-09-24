@@ -95,16 +95,16 @@ namespace Dev.Pattern
                 DataBinding_GV1(0, 0, 0, 0, "", "", _workOrderIdx);
             }
 
-            /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
-            /// 읽기: 0, 쓰기: 1, 삭제: 2, 센터: 3, 부서: 4
-            int _mode_ = 1;
-            if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0) { }
+            //TD확인 
+            if (UserInfo.DeptIdx == 12)
+            {
+                toggTD.Value = true;
+            }
             else
             {
-                btnSaveData.Visible = true; 
+                toggTD.Value = false;
             }
         }
-        
         /// <summary>
         /// 상단 검색을 위한 Dropdownlist 생성
         /// </summary>
@@ -177,7 +177,7 @@ namespace Dev.Pattern
             DeptIdx.Name = "DeptIdx";
             DeptIdx.FieldName = "DeptIdx";
             DeptIdx.ReadOnly = true;
-            DeptIdx.Width = 100;
+            DeptIdx.Width = 70;
             DeptIdx.TextAlignment = ContentAlignment.MiddleLeft;
             DeptIdx.HeaderText = "Department";
             gv.Columns.Add(DeptIdx);
@@ -195,7 +195,7 @@ namespace Dev.Pattern
             Fileno.Name = "Fileno";
             Fileno.FieldName = "Fileno";
             Fileno.ReadOnly = true;
-            Fileno.Width = 100;
+            Fileno.Width = 90;
             Fileno.TextAlignment = ContentAlignment.MiddleLeft;
             Fileno.HeaderText = "File#";
             gv.Columns.Add(Fileno);
@@ -204,37 +204,39 @@ namespace Dev.Pattern
             Styleno.Name = "Styleno";
             Styleno.FieldName = "Styleno";
             Styleno.ReadOnly = true;
-            Styleno.Width = 180;
+            Styleno.Width = 160;
             Styleno.TextAlignment = ContentAlignment.MiddleLeft;
             Styleno.HeaderText = "Style#";
             gv.Columns.Add(Styleno);
-            
+
+            GridViewDateTimeColumn RegDate = new GridViewDateTimeColumn();
+            RegDate.Name = "RegDate";
+            RegDate.FieldName = "RegDate";
+            RegDate.Width = 100;
+            RegDate.TextAlignment = ContentAlignment.MiddleCenter;
+            RegDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            RegDate.FormatString = "{0:d}";
+            RegDate.HeaderText = "Sent Date";
+            RegDate.ReadOnly = true;
+            gv.Columns.Add(RegDate);
+
             GridViewTextBoxColumn Handler = new GridViewTextBoxColumn();
             Handler.Name = "Handler";
             Handler.FieldName = "Handler";
             Handler.ReadOnly = true;
             Handler.Width = 130;
             Handler.TextAlignment = ContentAlignment.MiddleLeft;
-            Handler.HeaderText = "Handler";
+            Handler.HeaderText = "Order\nHandler";
             gv.Columns.Add(Handler);
-                        
-            GridViewDateTimeColumn RegDate = new GridViewDateTimeColumn();
-            RegDate.Name = "RegDate";
-            RegDate.FieldName = "RegDate";
-            RegDate.Width = 100;
-            RegDate.TextAlignment = ContentAlignment.MiddleCenter;
-            RegDate.FormatString = "{0:d}";
-            RegDate.HeaderText = "Worksheet Date";
-            RegDate.ReadOnly = true;
-            gv.Columns.Add(RegDate);
-
+                                   
             GridViewDateTimeColumn ConfirmDate = new GridViewDateTimeColumn();
             ConfirmDate.Name = "ConfirmDate";
             ConfirmDate.FieldName = "ConfirmDate";
             ConfirmDate.Width = 130;
             ConfirmDate.TextAlignment = ContentAlignment.MiddleCenter;
+            ConfirmDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             ConfirmDate.FormatString = "{0:g}";
-            ConfirmDate.HeaderText = "ConfirmDate";
+            ConfirmDate.HeaderText = "Confirm Date\n(CAD)";
             ConfirmDate.ReadOnly = true;
             gv.Columns.Add(ConfirmDate);
 
@@ -244,9 +246,49 @@ namespace Dev.Pattern
             ConfirmUser.ReadOnly = true;
             ConfirmUser.Width = 130;
             ConfirmUser.TextAlignment = ContentAlignment.MiddleLeft;
-            ConfirmUser.HeaderText = "Confirmed";
+            ConfirmUser.HeaderText = "Confirmed\n(CAD)";
             gv.Columns.Add(ConfirmUser);
-            
+
+            GridViewDateTimeColumn ConfirmDateTD = new GridViewDateTimeColumn();
+            ConfirmDateTD.Name = "ConfirmDateTD";
+            ConfirmDateTD.FieldName = "ConfirmDateTD";
+            ConfirmDateTD.Width = 130;
+            ConfirmDateTD.TextAlignment = ContentAlignment.MiddleCenter;
+            ConfirmDateTD.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            ConfirmDateTD.FormatString = "{0:g}";
+            ConfirmDateTD.HeaderText = "Confirm Date\n(T/D)";
+            ConfirmDateTD.ReadOnly = true;
+            gv.Columns.Add(ConfirmDateTD);
+
+            GridViewTextBoxColumn ConfirmUserTD = new GridViewTextBoxColumn();
+            ConfirmUserTD.Name = "ConfirmUserTD";
+            ConfirmUserTD.FieldName = "ConfirmUserTD";
+            ConfirmUserTD.ReadOnly = true;
+            ConfirmUserTD.Width = 130;
+            ConfirmUserTD.TextAlignment = ContentAlignment.MiddleLeft;
+            ConfirmUserTD.HeaderText = "Confirmed\n(T/D)";
+            gv.Columns.Add(ConfirmUserTD);
+
+            GridViewDateTimeColumn ConfirmDateLast = new GridViewDateTimeColumn();
+            ConfirmDateLast.Name = "ConfirmDateLast";
+            ConfirmDateLast.FieldName = "ConfirmDateLast";
+            ConfirmDateLast.Width = 130;
+            ConfirmDateLast.TextAlignment = ContentAlignment.MiddleCenter;
+            ConfirmDateLast.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            ConfirmDateLast.FormatString = "{0:g}";
+            ConfirmDateLast.HeaderText = "Confirm Date\n(Office)";
+            ConfirmDateLast.ReadOnly = true;
+            gv.Columns.Add(ConfirmDateLast);
+
+            GridViewTextBoxColumn ConfirmUserLast = new GridViewTextBoxColumn();
+            ConfirmUserLast.Name = "ConfirmUserLast";
+            ConfirmUserLast.FieldName = "ConfirmUserLast";
+            ConfirmUserLast.ReadOnly = true;
+            ConfirmUserLast.Width = 130;
+            ConfirmUserLast.TextAlignment = ContentAlignment.MiddleLeft;
+            ConfirmUserLast.HeaderText = "Confirmed\n(Office)";
+            gv.Columns.Add(ConfirmUserLast);
+
             GridViewComboBoxColumn Status = new GridViewComboBoxColumn();
             Status.Name = "Status";
             Status.DataSource = lstStatus;
@@ -254,16 +296,42 @@ namespace Dev.Pattern
             Status.ValueMember = "CodeIdx";
             Status.FieldName = "Status";
             Status.HeaderText = "Status";
-            Status.Width = 70;
-            Status.IsVisible = false;
+            Status.Width = 100;
+            Status.IsVisible = true;
             Status.ReadOnly = true;
             gv.Columns.Add(Status);
+
+            GridViewDateTimeColumn RejectDate = new GridViewDateTimeColumn();
+            RejectDate.Name = "RejectDate";
+            RejectDate.FieldName = "RejectDate";
+            RejectDate.Width = 130;
+            RejectDate.TextAlignment = ContentAlignment.MiddleCenter;
+            RejectDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            RejectDate.FormatString = "{0:g}";
+            RejectDate.HeaderText = "Rejected/\nCancelled Date";
+            RejectDate.ReadOnly = true;
+            gv.Columns.Add(RejectDate);
+
+            GridViewTextBoxColumn Rejected = new GridViewTextBoxColumn();
+            Rejected.Name = "Rejected";
+            Rejected.FieldName = "Rejected";
+            Rejected.ReadOnly = true;
+            Rejected.Width = 130;
+            Rejected.TextAlignment = ContentAlignment.MiddleLeft;
+            Rejected.HeaderText = "Rejected";
+            gv.Columns.Add(Rejected);
 
             GridViewTextBoxColumn Comments = new GridViewTextBoxColumn();
             Comments.Name = "Comments";
             Comments.FieldName = "Comments";
             Comments.IsVisible = false;
             gv.Columns.Add(Comments);
+
+            GridViewTextBoxColumn CommentTD = new GridViewTextBoxColumn();
+            CommentTD.Name = "CommentTD";
+            CommentTD.FieldName = "CommentTD";
+            CommentTD.IsVisible = false;
+            gv.Columns.Add(CommentTD);
 
             #region Attachment columns 
 
@@ -560,10 +628,17 @@ namespace Dev.Pattern
             }
 
             // 오더상태 (CommonValues정의)
-            lstStatus.Add(new CodeContents(0, CommonValues.DicWorksheetStatus[0], ""));
-            lstStatus.Add(new CodeContents(1, CommonValues.DicWorksheetStatus[1], ""));
-            lstStatus.Add(new CodeContents(2, CommonValues.DicWorksheetStatus[2], ""));
-            //lstStatus.Add(new CodeContents(3, CommonValues.DicOrderStatus[3], ""));
+            lstStatus.Add(new CodeContents(0, CommonValues.DicWorkOrderStatus[0], ""));
+            lstStatus.Add(new CodeContents(1, CommonValues.DicWorkOrderStatus[1], ""));
+            lstStatus.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
+            lstStatus.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
+            lstStatus.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
+            lstStatus.Add(new CodeContents(5, CommonValues.DicWorkOrderStatus[5], ""));
+            lstStatus.Add(new CodeContents(6, CommonValues.DicWorkOrderStatus[6], ""));
+            lstStatus.Add(new CodeContents(7, CommonValues.DicWorkOrderStatus[7], ""));
+            lstStatus.Add(new CodeContents(8, CommonValues.DicWorkOrderStatus[8], ""));
+            lstStatus.Add(new CodeContents(10, CommonValues.DicWorkOrderStatus[10], ""));
+            lstStatus.Add(new CodeContents(11, CommonValues.DicWorkOrderStatus[11], ""));
         }
 
         /// <summary>
@@ -625,8 +700,20 @@ namespace Dev.Pattern
             try
             {
                 _gv1.DataSource = null;
+
+
+                if (toggTD.Value)
+                {
+                    // TD일땐 해당 바이어만 
+                    _ds1 = Controller.Worksheet.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx, UserInfo.Idx);
+                }
+                else
+                {
+                    // TD아니면 모든 바이어 
+                    _ds1 = Controller.Worksheet.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx);
+                }
+
                 
-                _ds1 = Controller.Worksheet.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx);
                 if (_ds1 != null)
                 {
                     _gv1.DataSource = _ds1.Tables[0].DefaultView;
@@ -850,33 +937,83 @@ namespace Dev.Pattern
                 if (row.Cells["Attached8"].Value != DBNull.Value) linkLabel8.Text = row.Cells["Attached8"].Value.ToString();
                 if (row.Cells["Attached9"].Value != DBNull.Value) linkLabel9.Text = row.Cells["Attached9"].Value.ToString();
 
-                if (row.Cells["ConfirmUser"].Value != DBNull.Value && !string.IsNullOrEmpty(row.Cells["ConfirmUser"].Value.ToString())) 
+                // 컨트롤 초기화 
+                txtComments.Enabled = true;
+                txtCommentTD.Enabled = true;
+                btnCancel.Visible = true;
+                btnSaveData.Visible = true;
+                btnReject.Visible = true;
+                btnSaveData.Enabled = true;
+                btnReject.Enabled = true;
+
+                if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader != 1) // 사무실
                 {
-                    btnSaveData.Enabled = false;
-                    btnSaveData.Text = "Confirmed"; 
+                    txtComments.Enabled = false;
+                    txtCommentTD.Enabled = true;
+                    btnCancel.Visible = false;
+                    btnSaveData.Text = "Confirmed";
+
+                    if (!string.IsNullOrEmpty(row.Cells["ConfirmUser"].Value.ToString()) ||
+                        !string.IsNullOrEmpty(row.Cells["Rejected"].Value.ToString()))
+                    {
+                        btnSaveData.Enabled = false;
+                    }
                 }
-                else
+                else if (UserInfo.DeptIdx == 12)  // TD
                 {
-                    btnSaveData.Enabled = true;
-                    btnSaveData.Text = "Confirm Worksheet";
+                    txtComments.Enabled = false;
+                    txtCommentTD.Enabled = true;
+                    btnCancel.Visible = false;
+                    btnSaveData.Text = "Confirmed";
+
+                    if (!string.IsNullOrEmpty(row.Cells["ConfirmUserTD"].Value.ToString()) ||
+                        !string.IsNullOrEmpty(row.Cells["Rejected"].Value.ToString()))
+                    {
+                        btnSaveData.Enabled = false;
+                    }
                 }
+                else if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader == 1) // 개발실 총괄
+                {
+                    txtComments.Enabled = false;
+                    txtCommentTD.Enabled = true;
+                    btnCancel.Visible = false;
+                    btnSaveData.Text = "Confirmed";
+
+                    if (!string.IsNullOrEmpty(row.Cells["ConfirmUserLast"].Value.ToString()) ||
+                        !string.IsNullOrEmpty(row.Cells["Rejected"].Value.ToString()))
+                    {
+                        btnSaveData.Enabled = false;
+                    }
+                } 
+                else // 영업부 
+                {
+                    txtCommentTD.Enabled = false;
+                    btnSaveData.Visible = false;
+                    btnReject.Visible = false;
+                    txtComments.Enabled = true;
                     
-                //for (int i=0; i<=5; i++)
-                //{
-                //    lstFiles.Add(""); lstFileUrls.Add(""); 
-                //}
-                //lstFiles[1] = row.Cells["Attached1"].Value.ToString();
-                //lstFiles[2] = row.Cells["Attached2"].Value.ToString();
-                //lstFiles[3] = row.Cells["Attached3"].Value.ToString();
-                //lstFiles[4] = row.Cells["Attached4"].Value.ToString();
+                    if ((!string.IsNullOrEmpty(row.Cells["ConfirmUserTD"].Value.ToString())) ||
+                        (!string.IsNullOrEmpty(row.Cells["ConfirmUserLast"].Value.ToString())) ||
+                        (!string.IsNullOrEmpty(row.Cells["Rejected"].Value.ToString()))) {
 
-                //lstFileUrls[1] = row.Cells["AttachedUrl1"].Value.ToString();
-                //lstFileUrls[2] = row.Cells["AttachedUrl2"].Value.ToString();
-                //lstFileUrls[3] = row.Cells["AttachedUrl3"].Value.ToString();
-                //lstFileUrls[4] = row.Cells["AttachedUrl4"].Value.ToString();
+                        btnCancel.Visible = false;
+                    }
+                }
 
+                txtComments.Text = "";
+                txtCommentTD.Text = "";
                 if (row.Cells["Comments"].Value != DBNull.Value) txtComments.Text = row.Cells["Comments"].Value.ToString();
-                
+                if (row.Cells["CommentTD"].Value != DBNull.Value) txtCommentTD.Text = row.Cells["CommentTD"].Value.ToString();
+
+                // 캔슬또는 완료 건이면 승인, 취소 locking
+                if (Convert.ToInt32(row.Cells["Status"].Value)==3 || Convert.ToInt32(row.Cells["Status"].Value) == 4)
+                {
+                    txtComments.Enabled = false;
+                    txtCommentTD.Enabled = false;
+                    btnCancel.Visible = false;
+                    btnSaveData.Visible = false;
+                    btnReject.Visible = false;
+                }
             }
             catch(Exception ex)
             {
@@ -904,19 +1041,39 @@ namespace Dev.Pattern
                     _gv1.EndEdit();
                     GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
 
-                    // 객체생성 및 값 할당
-                    _obj1 = new Controller.Worksheet(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value));
-                    _obj1.Idx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
-                    _obj1.ConfirmUser = UserInfo.Idx; 
+                    if (UserInfo.DeptIdx == 12)     // TD
+                    {
+                        _bRtn = Data.WorksheetData.ConfirmTD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
+                        UserInfo.Idx, txtCommentTD.Text.Trim());
 
-                    // 업데이트 (오더캔슬, 선적완료 상태가 아닐경우)
-                    _bRtn = _obj1.Update();
-                    __main__.lblRows.Text = "Confirmed Worksheet";
-                    RadMessageBox.Show("Confirmed Worksheet.\nYou need to click the search button to retrieve the list again.", "Confirmed");
+                        if (_bRtn)
+                        {
+                            __main__.lblRows.Text = "Confirmed Worksheet by TD";
+                            RadMessageBox.Show("Confirmed Worksheet by TD.", "Confirmed TD");
+                        }
+                    } 
+                    else if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader==1)     // 개발 총괄
+                    {
+                        _bRtn = Data.WorksheetData.ConfirmAdmin(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
+                        UserInfo.Idx, txtCommentTD.Text.Trim());
 
-                    //DataBinding_GV1(Convert.ToInt32(ddlDept.SelectedValue), Convert.ToInt32(ddlCust.SelectedValue),
-                    //                Convert.ToInt32(ddlHandler.SelectedValue), Convert.ToInt32(ddlStatus.SelectedValue),
-                    //                txtFileno.Text.Trim(), txtStyle.Text.Trim(), txtWorksheet.Text.Trim());
+                        if (_bRtn)
+                        {
+                            __main__.lblRows.Text = "Confirmed Worksheet by Admin";
+                            RadMessageBox.Show("Confirmed Worksheet by Admin.", "Confirmed");
+                        }
+                    }
+                    else if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader != 1)     // 사무실
+                    {
+                        _bRtn = Data.WorksheetData.ConfirmOffice(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
+                        UserInfo.Idx, txtCommentTD.Text.Trim());
+
+                        if (_bRtn)
+                        {
+                            __main__.lblRows.Text = "Confirmed Worksheet by Office";
+                            RadMessageBox.Show("Confirmed Worksheet by Office.", "Confirmed");
+                        }
+                    }
 
                 }
 
@@ -1216,11 +1373,42 @@ namespace Dev.Pattern
 
         private void gvWorksheet_CellFormatting(object sender, CellFormattingEventArgs e)
         {
-            // Overdue 
-            if (e.CellElement.ColumnInfo.Name == "RequestedDate" || e.CellElement.ColumnInfo.Name == "ConfirmedDate" ||
-                e.CellElement.ColumnInfo.Name == "CompletedDate")
+            //  
+            if (e.CellElement.ColumnInfo.Name == "ConfirmUser" || e.CellElement.ColumnInfo.Name == "ConfirmDate" )
             {
                 e.CellElement.BackColor = Color.LightYellow;
+                e.CellElement.ForeColor = Color.Black;
+                e.CellElement.GradientStyle = GradientStyles.Solid;
+                e.CellElement.DrawFill = true;
+                e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+            }
+            else if (e.CellElement.ColumnInfo.Name == "ConfirmUserTD" || e.CellElement.ColumnInfo.Name == "ConfirmDateTD")
+            {
+                e.CellElement.BackColor = Color.PaleGreen;
+                e.CellElement.ForeColor = Color.Black;
+                e.CellElement.GradientStyle = GradientStyles.Solid;
+                e.CellElement.DrawFill = true;
+                e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+            }
+            else if (e.CellElement.ColumnInfo.Name == "RejectDate" || e.CellElement.ColumnInfo.Name == "Rejected")
+            {
+                e.CellElement.BackColor = Color.White;
+                e.CellElement.ForeColor = Color.Red;
+                e.CellElement.GradientStyle = GradientStyles.Solid;
+                e.CellElement.DrawFill = true;
+                e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+            }
+            else if (e.CellElement.ColumnInfo.Name == "RegDate" || e.CellElement.ColumnInfo.Name == "Handler")
+            {
+                e.CellElement.BackColor = Color.SeaShell;
+                e.CellElement.ForeColor = Color.Black;
+                e.CellElement.GradientStyle = GradientStyles.Solid;
+                e.CellElement.DrawFill = true;
+                e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+            }
+            else if (e.CellElement.ColumnInfo.Name == "ConfirmUserLast" || e.CellElement.ColumnInfo.Name == "ConfirmDateLast")
+            {
+                e.CellElement.BackColor = Color.AliceBlue;
                 e.CellElement.ForeColor = Color.Black;
                 e.CellElement.GradientStyle = GradientStyles.Solid;
                 e.CellElement.DrawFill = true;
@@ -1337,6 +1525,101 @@ namespace Dev.Pattern
             if (element != null)
             {
                 element.Font = f;
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2, 센터: 3, 부서: 4
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+
+                    if (string.IsNullOrEmpty(txtComments.Text.Trim()))
+                    {
+                        RadMessageBox.Show("Please input cancel reason.", "Cancel Worksheet");
+                    }
+
+                    _gv1.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
+
+                    _bRtn = Data.WorksheetData.CancelWorksheetTeam(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
+                        UserInfo.Idx, txtComments.Text.Trim());
+
+                    if (_bRtn)
+                    {
+                        __main__.lblRows.Text = "Cancelled Worksheet";
+                        RadMessageBox.Show("Cancelled Worksheet.", "Cancelled");
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("btnUpdate_Click: " + ex.Message.ToString());
+            }
+            
+        }
+
+        private void btnReject_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2, 센터: 3, 부서: 4
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    _gv1.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
+
+                    if (UserInfo.DeptIdx == 12)     // TD
+                    {
+                        _bRtn = Data.WorksheetData.RejectTD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
+                        UserInfo.Idx, txtCommentTD.Text.Trim());
+
+                        if (_bRtn)
+                        {
+                            __main__.lblRows.Text = "Rejected Worksheet by TD";
+                            RadMessageBox.Show("Rejected Worksheet by TD.", "Rejected");
+                        }
+                    }
+                    else if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader==1)     // 개발 총괄
+                    {
+                        _bRtn = Data.WorksheetData.RejectAdmin(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
+                        UserInfo.Idx, txtCommentTD.Text.Trim());
+
+                        if (_bRtn)
+                        {
+                            __main__.lblRows.Text = "Rejected Worksheet by Admin";
+                            RadMessageBox.Show("Rejected Worksheet by Admin.", "Rejected");
+                        }
+                    }
+                    else if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader != 1)     // 사무실
+                    {
+                        _bRtn = Data.WorksheetData.RejectOffice(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
+                        UserInfo.Idx, txtCommentTD.Text.Trim());
+
+                        if (_bRtn)
+                        {
+                            __main__.lblRows.Text = "Rejected Worksheet by Office";
+                            RadMessageBox.Show("Rejected Worksheet by Office.", "Rejected");
+                        }
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("btnUpdate_Click: " + ex.Message.ToString());
             }
         }
     }

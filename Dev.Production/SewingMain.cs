@@ -12,6 +12,11 @@ using Telerik.WinControls.UI;
 using System.Diagnostics;
 using System.IO;
 using System.Globalization;
+using Int;
+using System.Net;
+using System.Text;
+using System.Web.Script.Serialization;
+using Dev.Controller;
 
 namespace Dev.Production
 {
@@ -23,8 +28,8 @@ namespace Dev.Production
         #region 1. 변수 설정
 
         public InheritMDI __main__;                                             // 부모 MDI (하단 상태바 리턴용) 
-        public Dictionary<CommonValues.KeyName, string> _searchString;  // 쿼리값 value, 쿼리항목 key로 전달 
-        public Dictionary<CommonValues.KeyName, int> _searchKey;        // 쿼리값 value, 쿼리항목 key로 전달 
+        public Dictionary<Options.CommonValues.KeyName, string> _searchString;  // 쿼리값 value, 쿼리항목 key로 전달 
+        public Dictionary<Options.CommonValues.KeyName, int> _searchKey;        // 쿼리값 value, 쿼리항목 key로 전달 
         public DataRow InsertedOrderRow = null;
         
         private bool _bRtn;                                                     // 쿼리결과 리턴
@@ -44,8 +49,9 @@ namespace Dev.Production
         private string _workOrderIdx;
 
         //RadMenuItem mnuNew, mnuDel, mnuHide, mnuShow, menuItem2, menuItem3, menuItem4, mnuWorksheet, mnuCutting, mnuOutsourcing, mnuSewing, mnuInspecting = null;
-        private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 42, 0);   // 패키지번호, 프로그램번호, 윈도우번호
-
+        private string __AUTHCODE__ = CheckAuth.ValidCheck(Options.CommonValues.packageNo, 42, 0);   // 패키지번호, 프로그램번호, 윈도우번호
+        
+        
         #endregion
 
         #region 2. 초기로드 및 컨트롤 생성
@@ -80,21 +86,21 @@ namespace Dev.Production
             // 다른 폼으로부터 전달된 Work ID가 있을 경우, 해당 ID로 조회 
             if (!string.IsNullOrEmpty(_workOrderIdx))
             {
-                _searchKey = new Dictionary<CommonValues.KeyName, int>();
-                _searchString = new Dictionary<CommonValues.KeyName, string>();
+                _searchKey = new Dictionary<Options.CommonValues.KeyName, int>();
+                _searchString = new Dictionary<Options.CommonValues.KeyName, string>();
 
-                _searchKey.Add(CommonValues.KeyName.BuyerIdx, 0);
-                _searchKey.Add(CommonValues.KeyName.Status, 0);
-                _searchKey.Add(CommonValues.KeyName.Size, 0);
-                _searchKey.Add(CommonValues.KeyName.CustIdx, 0);
-                _searchKey.Add(CommonValues.KeyName.WorkStatus, 0);
+                _searchKey.Add(Options.CommonValues.KeyName.BuyerIdx, 0);
+                _searchKey.Add(Options.CommonValues.KeyName.Status, 0);
+                _searchKey.Add(Options.CommonValues.KeyName.Size, 0);
+                _searchKey.Add(Options.CommonValues.KeyName.CustIdx, 0);
+                _searchKey.Add(Options.CommonValues.KeyName.WorkStatus, 0);
 
-                _searchString.Add(CommonValues.KeyName.OrderIdx, "");
-                _searchString.Add(CommonValues.KeyName.Styleno, "");
-                _searchString.Add(CommonValues.KeyName.WorkOrderIdx, _workOrderIdx);
-                _searchString.Add(CommonValues.KeyName.ColorIdx, "");
-                _searchString.Add(CommonValues.KeyName.Remark, "");
-                _searchString.Add(CommonValues.KeyName.StartDate, "2000-01-01");
+                _searchString.Add(Options.CommonValues.KeyName.OrderIdx, "");
+                _searchString.Add(Options.CommonValues.KeyName.Styleno, "");
+                _searchString.Add(Options.CommonValues.KeyName.WorkOrderIdx, _workOrderIdx);
+                _searchString.Add(Options.CommonValues.KeyName.ColorIdx, "");
+                _searchString.Add(Options.CommonValues.KeyName.Remark, "");
+                _searchString.Add(Options.CommonValues.KeyName.StartDate, "2000-01-01");
 
                 DataBinding_GV1(_searchKey, _searchString);
             }
@@ -232,6 +238,7 @@ namespace Dev.Production
             OrdDate.FieldName = "OrdDate";
             OrdDate.Width = 100;
             OrdDate.TextAlignment = ContentAlignment.MiddleCenter;
+            OrdDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             OrdDate.FormatString = "{0:d}";
             OrdDate.HeaderText = "Requested";
             OrdDate.ReadOnly = true;
@@ -254,6 +261,7 @@ namespace Dev.Production
             WorkDate.FieldName = "WorkDate";
             WorkDate.Width = 100;
             WorkDate.TextAlignment = ContentAlignment.MiddleCenter;
+            WorkDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             WorkDate.CustomFormat = "{d}";
             WorkDate.FormatString = "{0:d}";
             WorkDate.HeaderText = "Work Date";
@@ -288,6 +296,16 @@ namespace Dev.Production
             status.ReadOnly = true; 
             status.Width = 100;
             gv.Columns.Add(status);
+
+            GridViewCommandColumn complete = new GridViewCommandColumn();
+            complete.Name = "complete";
+            complete.FieldName = "complete";
+            complete.HeaderText = "";
+            complete.Width = 70;
+            complete.UseDefaultText = true;
+            complete.DefaultText = "Complete";
+            complete.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gv.Columns.Add(complete);
 
             GridViewTextBoxColumn Remarks = new GridViewTextBoxColumn();
             Remarks.Name = "Remarks";
@@ -392,7 +410,7 @@ namespace Dev.Production
             {
                 row = 0;
                 // 페이징 되어 있는 경우, 제일 첫페이지로 이동한후, 
-                if (CommonValues.enablePaging == true)
+                if (Options.CommonValues.enablePaging == true)
                 {
                     gv.MasterTemplate.MoveToFirstPage();
                 }
@@ -419,7 +437,7 @@ namespace Dev.Production
         {
             
             // 바이어
-            _dt = CommonController.Getlist(CommonValues.KeyName.CustAll).Tables[0];
+            _dt = CommonController.Getlist(Options.CommonValues.KeyName.CustAll).Tables[0];
 
             foreach (DataRow row in _dt.Rows)
             {
@@ -442,9 +460,8 @@ namespace Dev.Production
                                         ""));
             }
 
-
             // Sewing Vendor 
-            _dt = CommonController.Getlist(CommonValues.KeyName.Vendor).Tables[0];
+            _dt = CommonController.Getlist(Options.CommonValues.KeyName.Vendor).Tables[0];
 
             lstFabric.Add(new CustomerName(0, "", 0));
             lstFabric2.Add(new CustomerName(0, "", 0));
@@ -459,17 +476,17 @@ namespace Dev.Production
             }
             
             // 오더상태 (CommonValues정의)
-            lstStatus.Add(new CodeContents(0, CommonValues.DicWorkOrderStatus[0], ""));
-            lstStatus.Add(new CodeContents(1, CommonValues.DicWorkOrderStatus[1], ""));
-            lstStatus.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
-            lstStatus.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
-            lstStatus.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
+            lstStatus.Add(new CodeContents(0, Options.CommonValues.DicWorkOrderStatus[0], ""));
+            lstStatus.Add(new CodeContents(1, Options.CommonValues.DicWorkOrderStatus[1], ""));
+            lstStatus.Add(new CodeContents(2, Options.CommonValues.DicWorkOrderStatus[2], ""));
+            lstStatus.Add(new CodeContents(3, Options.CommonValues.DicWorkOrderStatus[3], ""));
+            lstStatus.Add(new CodeContents(4, Options.CommonValues.DicWorkOrderStatus[4], ""));
 
-            lstStatus2.Add(new CodeContents(0, CommonValues.DicWorkOrderStatus[0], ""));
-            lstStatus2.Add(new CodeContents(1, CommonValues.DicWorkOrderStatus[1], ""));
-            lstStatus2.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
-            lstStatus2.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
-            lstStatus2.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
+            lstStatus2.Add(new CodeContents(0, Options.CommonValues.DicWorkOrderStatus[0], ""));
+            lstStatus2.Add(new CodeContents(1, Options.CommonValues.DicWorkOrderStatus[1], ""));
+            lstStatus2.Add(new CodeContents(2, Options.CommonValues.DicWorkOrderStatus[2], ""));
+            lstStatus2.Add(new CodeContents(3, Options.CommonValues.DicWorkOrderStatus[3], ""));
+            lstStatus2.Add(new CodeContents(4, Options.CommonValues.DicWorkOrderStatus[4], ""));
         }
 
         /// <summary>
@@ -494,8 +511,8 @@ namespace Dev.Production
                     || !string.IsNullOrEmpty(txtFileno.Text) || !string.IsNullOrEmpty(txtStyle.Text) 
                     || !string.IsNullOrEmpty(txtColor.Text) || !string.IsNullOrEmpty(dtCutted.Text))
                 {
-                    _searchKey = new Dictionary<CommonValues.KeyName, int>();
-                    _searchString = new Dictionary<CommonValues.KeyName, string>();
+                    _searchKey = new Dictionary<Options.CommonValues.KeyName, int>();
+                    _searchString = new Dictionary<Options.CommonValues.KeyName, string>();
 
                     //// 영업부인경우, 해당 부서만 조회할수 있도록 제한 
                     //if (UserInfo.ReportNo < 9)
@@ -503,18 +520,18 @@ namespace Dev.Production
                     //else
                     //    _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlSize.SelectedValue));
 
-                    _searchKey.Add(CommonValues.KeyName.BuyerIdx, Convert.ToInt32(ddlCust.SelectedValue));
-                    _searchKey.Add(CommonValues.KeyName.WorkStatus, Convert.ToInt32(ddlStatus.SelectedValue));
-                    _searchKey.Add(CommonValues.KeyName.Size, Convert.ToInt32(ddlSize.SelectedValue));
-                    _searchKey.Add(CommonValues.KeyName.CustIdx, Convert.ToInt32(ddlFabric.SelectedValue));
+                    _searchKey.Add(Options.CommonValues.KeyName.BuyerIdx, Convert.ToInt32(ddlCust.SelectedValue));
+                    _searchKey.Add(Options.CommonValues.KeyName.WorkStatus, Convert.ToInt32(ddlStatus.SelectedValue));
+                    _searchKey.Add(Options.CommonValues.KeyName.Size, Convert.ToInt32(ddlSize.SelectedValue));
+                    _searchKey.Add(Options.CommonValues.KeyName.CustIdx, Convert.ToInt32(ddlFabric.SelectedValue));
 
-                    _searchString.Add(CommonValues.KeyName.OrderIdx, txtFileno.Text.ToString().Trim());
-                    _searchString.Add(CommonValues.KeyName.Styleno, txtStyle.Text.ToString().Trim());
-                    _searchString.Add(CommonValues.KeyName.WorkOrderIdx, "");
-                    _searchString.Add(CommonValues.KeyName.ColorIdx, txtColor.Text.ToString().Trim());
-                    _searchString.Add(CommonValues.KeyName.Remark, "");
+                    _searchString.Add(Options.CommonValues.KeyName.OrderIdx, txtFileno.Text.ToString().Trim());
+                    _searchString.Add(Options.CommonValues.KeyName.Styleno, txtStyle.Text.ToString().Trim());
+                    _searchString.Add(Options.CommonValues.KeyName.WorkOrderIdx, "");
+                    _searchString.Add(Options.CommonValues.KeyName.ColorIdx, txtColor.Text.ToString().Trim());
+                    _searchString.Add(Options.CommonValues.KeyName.Remark, "");
                     CultureInfo ci = new CultureInfo("ko-KR");
-                    _searchString.Add(CommonValues.KeyName.StartDate, dtCutted.Value.ToString("d", ci).Substring(0,10));
+                    _searchString.Add(Options.CommonValues.KeyName.StartDate, dtCutted.Value.ToString("d", ci).Substring(0,10));
 
                     DataBinding_GV1(_searchKey, _searchString);
                 }
@@ -533,8 +550,8 @@ namespace Dev.Production
         /// <param name="SearchKey">RefleshWithCondition()에서 검색조건(key, value) 확인</param>
         /// <param name="fileno">검색조건: 파일번호</param>
         /// <param name="styleno">검색조건: 스타일번호</param>
-        private void DataBinding_GV1(Dictionary<CommonValues.KeyName, int> SearchKey,
-                                    Dictionary<CommonValues.KeyName, string> SearchString)
+        private void DataBinding_GV1(Dictionary<Options.CommonValues.KeyName, int> SearchKey,
+                                    Dictionary<Options.CommonValues.KeyName, string> SearchString)
         {
             try
             {
@@ -545,8 +562,8 @@ namespace Dev.Production
                 {
                     _gv1.DataSource = _ds1.Tables[0].DefaultView;
                     __main__.lblRows.Text = _gv1.RowCount.ToString() + " Rows"; 
-                    _gv1.EnablePaging = CommonValues.enablePaging;
-                    _gv1.AllowSearchRow = CommonValues.enableSearchRow; 
+                    _gv1.EnablePaging = Options.CommonValues.enablePaging;
+                    _gv1.AllowSearchRow = Options.CommonValues.enableSearchRow; 
                 }
             }
             catch (Exception ex)
@@ -643,9 +660,9 @@ namespace Dev.Production
                 if (editor != null)
                 {
                     ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DefaultItemsCountInDropDown
-                        = CommonValues.DDL_DefaultItemsCountInDropDown;
+                        = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
                     ((RadDropDownListEditorElement)((RadDropDownListEditor)this._gv1.ActiveEditor).EditorElement).DropDownHeight
-                        = CommonValues.DDL_DropDownHeight;
+                        = Options.CommonValues.DDL_DropDownHeight;
                 }
 
                 // 날짜컬럼의 달력크기 설정
@@ -776,5 +793,100 @@ namespace Dev.Production
         {
 
         }
+
+        private void gvMain_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.Column.Name == "complete")
+                {
+                    /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                    /// 읽기: 0, 쓰기: 1, 삭제: 2, 센터: 3, 부서: 4
+                    int _mode_ = 1;
+                    if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                        CheckAuth.ShowMessage(_mode_);
+                    else
+                    {
+                        _gv1.EndEdit();
+                        GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
+
+                        if (Convert.ToInt32(_gv1.Rows[row.Index].Cells["status"].Value) == 0 ||
+                            Convert.ToInt32(_gv1.Rows[row.Index].Cells["status"].Value) == 1 ||
+                            Convert.ToInt32(_gv1.Rows[row.Index].Cells["status"].Value) == 2)
+                        {
+                            //_bRtn = Data.SewingData.CompleteWork(
+                            //_gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim());
+
+                            if (_bRtn)
+                            {
+                                __main__.lblRows.Text = "Completed Work";
+                                RadMessageBox.Show("Completed Work.", "Complete");
+
+                                
+                            }
+
+                            // 결과 메시지 송신
+                            Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
+                            msgSender.sendMessage("50232320019", "[봉제완료] " +
+                                                "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
+                                                "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
+                                                "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
+                                                "Color: " + _gv1.Rows[row.Index].Cells["OrdColorIdx"].Value.ToString() + ", " +
+                                                "Size: " + _gv1.Rows[row.Index].Cells["OrdSizeIdx"].Value.ToString() + ", " +
+                                                "Q'ty: " + _gv1.Rows[row.Index].Cells["WorkQty"].Value.ToString()
+                                                );
+                        }
+                        else
+                        {
+                            RadMessageBox.Show("You can't change the status of this item.", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        }
+
+                        
+                        
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("btnUpdate_Click: " + ex.Message.ToString());
+            }
+        }
+
+        private void radMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0 &&
+                    Convert.ToInt16(__AUTHCODE__.Substring(4, 1).Trim()) <= 0)
+                {
+                    CheckAuth.ShowMessage(_mode_);
+                }
+                else
+                {
+                    // 워크시트 열기 
+                    DirectWorkOrder frm = new DirectWorkOrder(Int.Members.GetCurrentRow(_gv1, "Idx"), 114);     // sewing order 
+                    frm.Text = "Work Order";
+
+                    if (frm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        RefleshWithCondition();
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
+        }
+   
     }
+
+    
 }

@@ -37,7 +37,7 @@ namespace SampleApp.Data
                 _ds = new DataSet();
                 _adapter = new SqlDataAdapter();
 
-                _cmd.CommandText = @"select useridx, deptidx, costcenteridx, 
+                _cmd.CommandText = @"select useridx, deptidx, costcenteridx, Email, Phone, 
                                (select reportno from dept where deptidx=users.deptidx)reportno, 
                                 (select isnull(IsUse,0) from dept where deptidx=users.deptidx) useDept, 
                                 (select isnull(IsUse,0) from Costcenter where CostcenterIdx=users.CostcenterIdx) useCenter, 
@@ -186,6 +186,56 @@ namespace SampleApp.Data
             else
             {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// 사용자 정보 변경 (메일, 전화번호) 
+        /// </summary>
+        /// <param name="useridx">사용자 고유번호</param>
+        /// <param name="strPasswd">변경 비밀번호</param>
+        /// <returns></returns>
+        public static bool ModifyUserInfo(int useridx, string Email, string Phone)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+
+                _cmd.CommandText = "update users set Email=@Email, Phone=@Phone where useridx = @useridx";
+                _cmd.CommandTimeout = 15;
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@useridx", SqlDbType.Int, 8);
+                _cmd.Parameters["@useridx"].Value = useridx;
+
+                _cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 40);
+                _cmd.Parameters["@Email"].Value = Email;
+
+                _cmd.Parameters.Add("@Phone", SqlDbType.NVarChar, 20);
+                _cmd.Parameters["@Phone"].Value = Phone;
+
+                _rtn = _cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            if (_rtn > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

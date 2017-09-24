@@ -43,13 +43,16 @@
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.txtFileno = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.txtStyle = new Telerik.WinControls.UI.RadTextBox();
+            this.toggTD = new Telerik.WinControls.UI.RadToggleSwitch();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtWorksheet = new Telerik.WinControls.UI.RadTextBox();
             this.btnSearch = new Telerik.WinControls.UI.RadButton();
             this.toolTabStrip3 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
             this.twColorSize = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.radScrollablePanel1 = new Telerik.WinControls.UI.RadScrollablePanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -63,7 +66,12 @@
             this.linkLabel8 = new System.Windows.Forms.LinkLabel();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
             this.txtComments = new Telerik.WinControls.UI.RadTextBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSaveData = new Telerik.WinControls.UI.RadButton();
+            this.btnReject = new Telerik.WinControls.UI.RadButton();
+            this.txtCommentTD = new Telerik.WinControls.UI.RadTextBox();
             this.toolTabStrip4 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.toolWindow1 = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
@@ -85,7 +93,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFileno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStyle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toggTD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWorksheet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
@@ -93,12 +103,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
             this.twColorSize.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).BeginInit();
+            this.radScrollablePanel1.PanelContainer.SuspendLayout();
+            this.radScrollablePanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtComments)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
+            this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnReject)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCommentTD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip4)).BeginInit();
             this.toolTabStrip4.SuspendLayout();
             this.toolWindow1.SuspendLayout();
@@ -154,8 +172,8 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 172F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 171F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 227F));
             this.tableLayoutPanel5.Controls.Add(this.ddlCust, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.radLabel2, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.radLabel7, 0, 0);
@@ -167,7 +185,9 @@
             this.tableLayoutPanel5.Controls.Add(this.radLabel5, 4, 0);
             this.tableLayoutPanel5.Controls.Add(this.txtFileno, 4, 1);
             this.tableLayoutPanel5.Controls.Add(this.radLabel6, 5, 0);
+            this.tableLayoutPanel5.Controls.Add(this.radLabel8, 8, 0);
             this.tableLayoutPanel5.Controls.Add(this.txtStyle, 5, 1);
+            this.tableLayoutPanel5.Controls.Add(this.toggTD, 8, 1);
             this.tableLayoutPanel5.Controls.Add(this.radLabel4, 6, 0);
             this.tableLayoutPanel5.Controls.Add(this.txtWorksheet, 6, 1);
             this.tableLayoutPanel5.Controls.Add(this.btnSearch, 7, 1);
@@ -185,7 +205,7 @@
             this.ddlCust.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlCust.Location = new System.Drawing.Point(136, 23);
             this.ddlCust.Name = "ddlCust";
-            this.ddlCust.Size = new System.Drawing.Size(155, 20);
+            this.ddlCust.Size = new System.Drawing.Size(127, 20);
             this.ddlCust.TabIndex = 4;
             // 
             // radLabel2
@@ -225,7 +245,7 @@
             this.ddlHandler.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlHandler.Location = new System.Drawing.Point(297, 23);
             this.ddlHandler.Name = "ddlHandler";
-            this.ddlHandler.Size = new System.Drawing.Size(128, 20);
+            this.ddlHandler.Size = new System.Drawing.Size(114, 20);
             this.ddlHandler.TabIndex = 5;
             // 
             // radLabel3
@@ -268,12 +288,28 @@
             this.radLabel6.TabIndex = 3;
             this.radLabel6.Text = "Style#";
             // 
+            // radLabel8
+            // 
+            this.radLabel8.Location = new System.Drawing.Point(1056, 3);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(24, 14);
+            this.radLabel8.TabIndex = 3;
+            this.radLabel8.Text = "T/D";
+            // 
             // txtStyle
             // 
             this.txtStyle.Location = new System.Drawing.Point(675, 23);
             this.txtStyle.Name = "txtStyle";
-            this.txtStyle.Size = new System.Drawing.Size(133, 20);
+            this.txtStyle.Size = new System.Drawing.Size(120, 20);
             this.txtStyle.TabIndex = 9;
+            // 
+            // toggTD
+            // 
+            this.toggTD.Location = new System.Drawing.Point(1056, 23);
+            this.toggTD.Name = "toggTD";
+            this.toggTD.Size = new System.Drawing.Size(50, 20);
+            this.toggTD.TabIndex = 10;
+            this.toggTD.Text = "radToggleSwitch1";
             // 
             // radLabel4
             // 
@@ -315,7 +351,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.toolWindow2;
+            this.radDock1.ActiveWindow = this.twColorSize;
             this.radDock1.CausesValidation = false;
             this.radDock1.Controls.Add(this.toolTabStrip4);
             this.radDock1.Controls.Add(this.radSplitContainer1);
@@ -337,7 +373,7 @@
             // twColorSize
             // 
             this.twColorSize.Caption = null;
-            this.twColorSize.Controls.Add(this.tableLayoutPanel2);
+            this.twColorSize.Controls.Add(this.radScrollablePanel1);
             this.twColorSize.Font = new System.Drawing.Font("Gulim", 9F);
             this.twColorSize.Location = new System.Drawing.Point(1, 22);
             this.twColorSize.Name = "twColorSize";
@@ -346,23 +382,38 @@
             this.twColorSize.Text = " ";
             this.twColorSize.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.AutoHide;
             // 
+            // radScrollablePanel1
+            // 
+            this.radScrollablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radScrollablePanel1.Location = new System.Drawing.Point(0, 0);
+            this.radScrollablePanel1.Name = "radScrollablePanel1";
+            // 
+            // radScrollablePanel1.PanelContainer
+            // 
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.tableLayoutPanel2);
+            this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(375, 766);
+            this.radScrollablePanel1.Size = new System.Drawing.Size(377, 768);
+            this.radScrollablePanel1.TabIndex = 1;
+            this.radScrollablePanel1.Text = "radScrollablePanel1";
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.radGroupBox3, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtComments, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnSaveData, 0, 3);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.txtCommentTD, 0, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(377, 768);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(367, 745);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // radGroupBox3
@@ -375,7 +426,7 @@
             this.radGroupBox3.HeaderText = "Attached Files";
             this.radGroupBox3.Location = new System.Drawing.Point(3, 3);
             this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(371, 294);
+            this.radGroupBox3.Size = new System.Drawing.Size(361, 294);
             this.radGroupBox3.TabIndex = 2;
             this.radGroupBox3.Text = "Attached Files";
             // 
@@ -406,7 +457,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(367, 274);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(357, 274);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // linkLabel4
@@ -415,7 +466,7 @@
             this.linkLabel4.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel4.Location = new System.Drawing.Point(3, 90);
             this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(361, 30);
+            this.linkLabel4.Size = new System.Drawing.Size(351, 30);
             this.linkLabel4.TabIndex = 9;
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = "linkLabel4";
@@ -428,7 +479,7 @@
             this.linkLabel3.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel3.Location = new System.Drawing.Point(3, 60);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(361, 30);
+            this.linkLabel3.Size = new System.Drawing.Size(351, 30);
             this.linkLabel3.TabIndex = 8;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "linkLabel3";
@@ -441,7 +492,7 @@
             this.linkLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel2.Location = new System.Drawing.Point(3, 30);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(361, 30);
+            this.linkLabel2.Size = new System.Drawing.Size(351, 30);
             this.linkLabel2.TabIndex = 7;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "linkLabel2";
@@ -455,7 +506,7 @@
             this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel1.Location = new System.Drawing.Point(3, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(361, 30);
+            this.linkLabel1.Size = new System.Drawing.Size(351, 30);
             this.linkLabel1.TabIndex = 11;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "linkLabel1";
@@ -467,7 +518,7 @@
             this.linkLabel5.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel5.Location = new System.Drawing.Point(3, 120);
             this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(361, 30);
+            this.linkLabel5.Size = new System.Drawing.Size(351, 30);
             this.linkLabel5.TabIndex = 12;
             this.linkLabel5.TabStop = true;
             this.linkLabel5.Text = "linkLabel5";
@@ -479,7 +530,7 @@
             this.linkLabel6.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel6.Location = new System.Drawing.Point(3, 150);
             this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(361, 30);
+            this.linkLabel6.Size = new System.Drawing.Size(351, 30);
             this.linkLabel6.TabIndex = 12;
             this.linkLabel6.TabStop = true;
             this.linkLabel6.Text = "linkLabel6";
@@ -491,7 +542,7 @@
             this.linkLabel7.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel7.Location = new System.Drawing.Point(3, 180);
             this.linkLabel7.Name = "linkLabel7";
-            this.linkLabel7.Size = new System.Drawing.Size(361, 30);
+            this.linkLabel7.Size = new System.Drawing.Size(351, 30);
             this.linkLabel7.TabIndex = 12;
             this.linkLabel7.TabStop = true;
             this.linkLabel7.Text = "linkLabel7";
@@ -503,7 +554,7 @@
             this.linkLabel8.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel8.Location = new System.Drawing.Point(3, 210);
             this.linkLabel8.Name = "linkLabel8";
-            this.linkLabel8.Size = new System.Drawing.Size(361, 30);
+            this.linkLabel8.Size = new System.Drawing.Size(351, 30);
             this.linkLabel8.TabIndex = 12;
             this.linkLabel8.TabStop = true;
             this.linkLabel8.Text = "linkLabel8";
@@ -515,7 +566,7 @@
             this.linkLabel9.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel9.Location = new System.Drawing.Point(3, 240);
             this.linkLabel9.Name = "linkLabel9";
-            this.linkLabel9.Size = new System.Drawing.Size(361, 30);
+            this.linkLabel9.Size = new System.Drawing.Size(351, 30);
             this.linkLabel9.TabIndex = 12;
             this.linkLabel9.TabStop = true;
             this.linkLabel9.Text = "linkLabel9";
@@ -529,19 +580,81 @@
             this.txtComments.Location = new System.Drawing.Point(3, 303);
             this.txtComments.Multiline = true;
             this.txtComments.Name = "txtComments";
-            this.txtComments.ReadOnly = true;
-            this.txtComments.Size = new System.Drawing.Size(371, 194);
+            this.txtComments.Size = new System.Drawing.Size(361, 120);
             this.txtComments.TabIndex = 12;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.btnCancel, 1, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 429);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(361, 46);
+            this.tableLayoutPanel4.TabIndex = 13;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCancel.ForeColor = System.Drawing.Color.Red;
+            this.btnCancel.Location = new System.Drawing.Point(183, 3);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(175, 40);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Visible = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.btnSaveData, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.btnReject, 1, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 603);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(361, 44);
+            this.tableLayoutPanel6.TabIndex = 13;
             // 
             // btnSaveData
             // 
-            this.btnSaveData.Location = new System.Drawing.Point(3, 563);
+            this.btnSaveData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSaveData.Location = new System.Drawing.Point(3, 3);
             this.btnSaveData.Name = "btnSaveData";
-            this.btnSaveData.Size = new System.Drawing.Size(371, 34);
+            this.btnSaveData.Size = new System.Drawing.Size(174, 38);
             this.btnSaveData.TabIndex = 5;
-            this.btnSaveData.Text = "Confirm Worksheet";
+            this.btnSaveData.Text = "Confirm";
             this.btnSaveData.Visible = false;
             this.btnSaveData.Click += new System.EventHandler(this.btnSaveData_Click);
+            // 
+            // btnReject
+            // 
+            this.btnReject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReject.ForeColor = System.Drawing.Color.Red;
+            this.btnReject.Location = new System.Drawing.Point(183, 3);
+            this.btnReject.Name = "btnReject";
+            this.btnReject.Size = new System.Drawing.Size(175, 38);
+            this.btnReject.TabIndex = 5;
+            this.btnReject.Text = "Reject";
+            this.btnReject.Visible = false;
+            this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
+            // 
+            // txtCommentTD
+            // 
+            this.txtCommentTD.AutoSize = false;
+            this.txtCommentTD.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCommentTD.Location = new System.Drawing.Point(3, 481);
+            this.txtCommentTD.Multiline = true;
+            this.txtCommentTD.Name = "txtCommentTD";
+            this.txtCommentTD.Size = new System.Drawing.Size(361, 116);
+            this.txtCommentTD.TabIndex = 14;
             // 
             // toolTabStrip4
             // 
@@ -694,7 +807,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Worksheet Main";
+            this.Text = "WorksheetMain";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmOrderActual_FormClosed);
             this.Load += new System.EventHandler(this.frmOrderActual_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -711,7 +824,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFileno)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStyle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toggTD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWorksheet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
@@ -719,13 +834,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
             this.twColorSize.ResumeLayout(false);
+            this.radScrollablePanel1.PanelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).EndInit();
+            this.radScrollablePanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtComments)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
+            this.tableLayoutPanel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnReject)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCommentTD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip4)).EndInit();
             this.toolTabStrip4.ResumeLayout(false);
             this.toolWindow1.ResumeLayout(false);
@@ -800,5 +923,13 @@
         private System.Windows.Forms.LinkLabel linkLabel7;
         private System.Windows.Forms.LinkLabel linkLabel8;
         private System.Windows.Forms.LinkLabel linkLabel9;
+        private Telerik.WinControls.UI.RadScrollablePanel radScrollablePanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private Telerik.WinControls.UI.RadButton btnCancel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private Telerik.WinControls.UI.RadButton btnReject;
+        private Telerik.WinControls.UI.RadTextBox txtCommentTD;
+        private Telerik.WinControls.UI.RadLabel radLabel8;
+        private Telerik.WinControls.UI.RadToggleSwitch toggTD;
     }
 }

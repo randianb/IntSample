@@ -207,6 +207,7 @@ namespace Dev.Out
             OutDate.FieldName = "OutDate";
             OutDate.Width = 100;
             OutDate.TextAlignment = ContentAlignment.MiddleCenter;
+            OutDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             OutDate.FormatString = "{0:d}";
             OutDate.HeaderText = "Out Date";
             gv.Columns.Add(OutDate);
@@ -249,6 +250,7 @@ namespace Dev.Out
             RcvdDate.Name = "RcvdDate";
             RcvdDate.FieldName = "RcvdDate";
             RcvdDate.Width = 100;
+            RcvdDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             RcvdDate.TextAlignment = ContentAlignment.MiddleCenter;
             RcvdDate.FormatString = "{0:d}";
             RcvdDate.HeaderText = "Rcvd Date";
@@ -261,6 +263,16 @@ namespace Dev.Out
             Status.Width = 100;
             Status.ReadOnly = true; 
             gv.Columns.Add(Status);
+
+            GridViewCommandColumn viewInv = new GridViewCommandColumn();
+            viewInv.Name = "viewInv";
+            viewInv.FieldName = "viewInv";
+            viewInv.Width = 60;
+            viewInv.DefaultText = "Print";
+            viewInv.UseDefaultText = true;
+            viewInv.TextAlignment = ContentAlignment.MiddleCenter;
+            viewInv.HeaderText = "Invoice";
+            gv.Columns.Add(viewInv); 
 
             #endregion
         }
@@ -1080,6 +1092,11 @@ namespace Dev.Out
                     e.Row.Cells["RcvdDate"].Value = DateTime.Now;
 
                 }
+            }
+            else if (e.Column.Name == "viewInv")
+            {
+                PrintInvoice pInv = new PrintInvoice(e.Row.Cells["WorkOrderIdx"].Value.ToString().Trim());
+                pInv.Show(); 
             }
         }
     }

@@ -32,6 +32,9 @@
             this.radRibbonBar1 = new Telerik.WinControls.UI.RadRibbonBar();
             this.bsViewMain = new Telerik.WinControls.UI.RadRibbonBarBackstageView();
             this.backstageViewPage3 = new Telerik.WinControls.UI.BackstageViewPage();
+            this.btnAccountSave = new Telerik.WinControls.UI.RadButton();
+            this.txtPhone = new Telerik.WinControls.UI.RadTextBox();
+            this.txtEmail = new Telerik.WinControls.UI.RadTextBox();
             this.ddlNewOrderBuyer = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.enableSearchRow = new System.Windows.Forms.CheckBox();
@@ -43,9 +46,12 @@
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.btnChangePass = new Telerik.WinControls.UI.RadButton();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.backstageViewPage4 = new Telerik.WinControls.UI.BackstageViewPage();
             this.backstageViewPage2 = new Telerik.WinControls.UI.BackstageViewPage();
@@ -64,6 +70,7 @@
             this.btnOrderWorkSheet = new Telerik.WinControls.UI.RadButtonElement();
             this.btnOrderWorkOrder = new Telerik.WinControls.UI.RadButtonElement();
             this.btnOrderWorkSchedule = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnOrderTrim = new Telerik.WinControls.UI.RadButtonElement();
             this.radRibbonBarGroup5 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.btnOrderReportTicketPrint = new Telerik.WinControls.UI.RadButtonElement();
             this.btnOrderReportWorkSchedule = new Telerik.WinControls.UI.RadButtonElement();
@@ -129,11 +136,15 @@
             this.btnLocation = new Telerik.WinControls.UI.RadButtonElement();
             this.radRibbonBarGroup13 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.btnSystemApproval = new Telerik.WinControls.UI.RadButtonElement();
+            this.radRibbonBarBackstageView1 = new Telerik.WinControls.UI.RadRibbonBarBackstageView();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRibbonBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsViewMain)).BeginInit();
             this.bsViewMain.SuspendLayout();
             this.backstageViewPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAccountSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlNewOrderBuyer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retypePass)).BeginInit();
@@ -143,15 +154,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnChangePass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             this.backstageViewPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveAs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             this.backstageViewPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRibbonBarBackstageView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -289,6 +304,9 @@
             // backstageViewPage3
             // 
             this.backstageViewPage3.BackColor = System.Drawing.Color.Transparent;
+            this.backstageViewPage3.Controls.Add(this.btnAccountSave);
+            this.backstageViewPage3.Controls.Add(this.txtPhone);
+            this.backstageViewPage3.Controls.Add(this.txtEmail);
             this.backstageViewPage3.Controls.Add(this.ddlNewOrderBuyer);
             this.backstageViewPage3.Controls.Add(this.radLabel9);
             this.backstageViewPage3.Controls.Add(this.enableSearchRow);
@@ -300,14 +318,40 @@
             this.backstageViewPage3.Controls.Add(this.radLabel4);
             this.backstageViewPage3.Controls.Add(this.btnChangePass);
             this.backstageViewPage3.Controls.Add(this.radLabel3);
+            this.backstageViewPage3.Controls.Add(this.radLabel10);
             this.backstageViewPage3.Controls.Add(this.radLabel8);
             this.backstageViewPage3.Controls.Add(this.radLabel2);
+            this.backstageViewPage3.Controls.Add(this.radLabel11);
             this.backstageViewPage3.Controls.Add(this.radLabel6);
+            this.backstageViewPage3.Controls.Add(this.radLabel12);
             this.backstageViewPage3.Controls.Add(this.radLabel1);
             this.backstageViewPage3.Location = new System.Drawing.Point(132, 1);
             this.backstageViewPage3.Name = "backstageViewPage3";
             this.backstageViewPage3.Size = new System.Drawing.Size(1130, 565);
             this.backstageViewPage3.TabIndex = 5;
+            // 
+            // btnAccountSave
+            // 
+            this.btnAccountSave.Location = new System.Drawing.Point(552, 166);
+            this.btnAccountSave.Name = "btnAccountSave";
+            this.btnAccountSave.Size = new System.Drawing.Size(110, 24);
+            this.btnAccountSave.TabIndex = 23;
+            this.btnAccountSave.Text = "Update Info";
+            this.btnAccountSave.Click += new System.EventHandler(this.btnAccountSave_Click);
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Location = new System.Drawing.Point(552, 128);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(233, 20);
+            this.txtPhone.TabIndex = 22;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(552, 89);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(233, 20);
+            this.txtEmail.TabIndex = 21;
             // 
             // ddlNewOrderBuyer
             // 
@@ -328,7 +372,7 @@
             // enableSearchRow
             // 
             this.enableSearchRow.AutoSize = true;
-            this.enableSearchRow.Location = new System.Drawing.Point(558, 116);
+            this.enableSearchRow.Location = new System.Drawing.Point(476, 402);
             this.enableSearchRow.Name = "enableSearchRow";
             this.enableSearchRow.Size = new System.Drawing.Size(124, 17);
             this.enableSearchRow.TabIndex = 19;
@@ -338,7 +382,7 @@
             // enablePagingGV
             // 
             this.enablePagingGV.AutoSize = true;
-            this.enablePagingGV.Location = new System.Drawing.Point(558, 84);
+            this.enablePagingGV.Location = new System.Drawing.Point(476, 370);
             this.enablePagingGV.Name = "enablePagingGV";
             this.enablePagingGV.Size = new System.Drawing.Size(148, 17);
             this.enablePagingGV.TabIndex = 18;
@@ -348,7 +392,7 @@
             // retypePass
             // 
             this.retypePass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.retypePass.Location = new System.Drawing.Point(194, 205);
+            this.retypePass.Location = new System.Drawing.Point(194, 202);
             this.retypePass.Name = "retypePass";
             this.retypePass.PasswordChar = '*';
             this.retypePass.Size = new System.Drawing.Size(136, 20);
@@ -357,7 +401,7 @@
             // newPass
             // 
             this.newPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.newPass.Location = new System.Drawing.Point(194, 168);
+            this.newPass.Location = new System.Drawing.Point(194, 165);
             this.newPass.Name = "newPass";
             this.newPass.PasswordChar = '*';
             this.newPass.Size = new System.Drawing.Size(136, 20);
@@ -374,7 +418,7 @@
             // 
             // originalPass
             // 
-            this.originalPass.Location = new System.Drawing.Point(194, 131);
+            this.originalPass.Location = new System.Drawing.Point(194, 128);
             this.originalPass.Name = "originalPass";
             this.originalPass.PasswordChar = '*';
             this.originalPass.Size = new System.Drawing.Size(136, 20);
@@ -382,7 +426,7 @@
             // 
             // radLabel4
             // 
-            this.radLabel4.Location = new System.Drawing.Point(48, 205);
+            this.radLabel4.Location = new System.Drawing.Point(48, 202);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(98, 18);
             this.radLabel4.TabIndex = 4;
@@ -390,25 +434,34 @@
             // 
             // btnChangePass
             // 
-            this.btnChangePass.Location = new System.Drawing.Point(194, 242);
+            this.btnChangePass.Location = new System.Drawing.Point(194, 239);
             this.btnChangePass.Name = "btnChangePass";
-            this.btnChangePass.Size = new System.Drawing.Size(110, 24);
+            this.btnChangePass.Size = new System.Drawing.Size(136, 24);
             this.btnChangePass.TabIndex = 17;
-            this.btnChangePass.Text = "Change";
+            this.btnChangePass.Text = "Change Password";
             this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(48, 167);
+            this.radLabel3.Location = new System.Drawing.Point(48, 164);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(79, 18);
             this.radLabel3.TabIndex = 5;
             this.radLabel3.Text = "New Password";
             // 
+            // radLabel10
+            // 
+            this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.radLabel10.Location = new System.Drawing.Point(476, 39);
+            this.radLabel10.Name = "radLabel10";
+            this.radLabel10.Size = new System.Drawing.Size(117, 29);
+            this.radLabel10.TabIndex = 6;
+            this.radLabel10.Text = "Account Info";
+            // 
             // radLabel8
             // 
             this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.radLabel8.Location = new System.Drawing.Point(558, 39);
+            this.radLabel8.Location = new System.Drawing.Point(476, 325);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(82, 29);
             this.radLabel8.TabIndex = 6;
@@ -423,6 +476,14 @@
             this.radLabel2.TabIndex = 7;
             this.radLabel2.Text = "Change the Password";
             // 
+            // radLabel11
+            // 
+            this.radLabel11.Location = new System.Drawing.Point(476, 91);
+            this.radLabel11.Name = "radLabel11";
+            this.radLabel11.Size = new System.Drawing.Size(37, 18);
+            this.radLabel11.TabIndex = 8;
+            this.radLabel11.Text = "E-mail";
+            // 
             // radLabel6
             // 
             this.radLabel6.Location = new System.Drawing.Point(48, 91);
@@ -431,9 +492,17 @@
             this.radLabel6.TabIndex = 8;
             this.radLabel6.Text = "Username";
             // 
+            // radLabel12
+            // 
+            this.radLabel12.Location = new System.Drawing.Point(476, 129);
+            this.radLabel12.Name = "radLabel12";
+            this.radLabel12.Size = new System.Drawing.Size(38, 18);
+            this.radLabel12.TabIndex = 9;
+            this.radLabel12.Text = "Phone";
+            // 
             // radLabel1
             // 
-            this.radLabel1.Location = new System.Drawing.Point(48, 132);
+            this.radLabel1.Location = new System.Drawing.Point(48, 129);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(96, 18);
             this.radLabel1.TabIndex = 9;
@@ -562,7 +631,8 @@
             this.radRibbonBarGroup6.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btnOrderWorkSheet,
             this.btnOrderWorkOrder,
-            this.btnOrderWorkSchedule});
+            this.btnOrderWorkSchedule,
+            this.btnOrderTrim});
             this.radRibbonBarGroup6.Name = "radRibbonBarGroup6";
             this.radRibbonBarGroup6.Text = "Development";
             // 
@@ -599,6 +669,16 @@
             this.btnOrderWorkSchedule.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOrderWorkSchedule.TextWrap = true;
             this.btnOrderWorkSchedule.Click += new System.EventHandler(this.btnOrderWorkSchedule_Click);
+            // 
+            // btnOrderTrim
+            // 
+            this.btnOrderTrim.Image = global::SampleApp.Properties.Resources.new_seo2_34_48;
+            this.btnOrderTrim.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnOrderTrim.Name = "btnOrderTrim";
+            this.btnOrderTrim.Tag = "106";
+            this.btnOrderTrim.Text = "Trims";
+            this.btnOrderTrim.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnOrderTrim.Click += new System.EventHandler(this.btnOrderTrim_Click);
             // 
             // radRibbonBarGroup5
             // 
@@ -1253,6 +1333,16 @@
             this.btnSystemApproval.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSystemApproval.TextWrap = true;
             // 
+            // radRibbonBarBackstageView1
+            // 
+            this.radRibbonBarBackstageView1.EnableKeyMap = true;
+            this.radRibbonBarBackstageView1.Location = new System.Drawing.Point(0, 58);
+            this.radRibbonBarBackstageView1.Name = "radRibbonBarBackstageView1";
+            this.radRibbonBarBackstageView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radRibbonBarBackstageView1.SelectedItem = null;
+            this.radRibbonBarBackstageView1.Size = new System.Drawing.Size(1262, 714);
+            this.radRibbonBarBackstageView1.TabIndex = 5;
+            // 
             // MainApp
             // 
             this.AllowAero = false;
@@ -1262,6 +1352,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1262, 772);
             this.Controls.Add(this.radRibbonBar1);
+            this.Controls.Add(this.radRibbonBarBackstageView1);
             this.Controls.Add(this.bsViewMain);
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -1274,6 +1365,7 @@
             this.Activated += new System.EventHandler(this.MainApp_Activated);
             this.Load += new System.EventHandler(this.MainApp_Load);
             this.Controls.SetChildIndex(this.bsViewMain, 0);
+            this.Controls.SetChildIndex(this.radRibbonBarBackstageView1, 0);
             this.Controls.SetChildIndex(this.radRibbonBar1, 0);
             this.Controls.SetChildIndex(this.radStatusStrip1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
@@ -1282,6 +1374,9 @@
             this.bsViewMain.ResumeLayout(false);
             this.backstageViewPage3.ResumeLayout(false);
             this.backstageViewPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAccountSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlNewOrderBuyer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.retypePass)).EndInit();
@@ -1291,9 +1386,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnChangePass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             this.backstageViewPage2.ResumeLayout(false);
             this.backstageViewPage2.PerformLayout();
@@ -1302,6 +1400,7 @@
             this.backstageViewPage1.ResumeLayout(false);
             this.backstageViewPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRibbonBarBackstageView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1410,5 +1509,13 @@
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup17;
         private Telerik.WinControls.UI.RadButtonElement btnOutPrintInvoice;
         private Telerik.WinControls.UI.RadButtonElement btnOutPrintProductHistory;
+        private Telerik.WinControls.UI.RadButtonElement btnOrderTrim;
+        private Telerik.WinControls.UI.RadButton btnAccountSave;
+        private Telerik.WinControls.UI.RadTextBox txtPhone;
+        private Telerik.WinControls.UI.RadTextBox txtEmail;
+        private Telerik.WinControls.UI.RadLabel radLabel10;
+        private Telerik.WinControls.UI.RadLabel radLabel11;
+        private Telerik.WinControls.UI.RadLabel radLabel12;
+        private Telerik.WinControls.UI.RadRibbonBarBackstageView radRibbonBarBackstageView1;
     }
 }

@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -67,6 +68,12 @@
     </Compile>
     <Compile Include="EmbroideryMain.Designer.cs">
       <DependentUpon>EmbroideryMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DirectWorkOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DirectWorkOrder.Designer.cs">
+      <DependentUpon>DirectWorkOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="InspectionMain.cs">
       <SubType>Form</SubType>
@@ -103,6 +110,11 @@
     </Compile>
     <Compile Include="PrintCutting.Designer.cs">
       <DependentUpon>PrintCutting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Reports\rptPrintInspection.cs">
       <SubType>Component</SubType>
@@ -158,6 +170,9 @@
     <EmbeddedResource Include="EmbroideryMain.resx">
       <DependentUpon>EmbroideryMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DirectWorkOrder.resx">
+      <DependentUpon>DirectWorkOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InspectionMain.resx">
       <DependentUpon>InspectionMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +190,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PrintCutting.resx">
       <DependentUpon>PrintCutting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptPrintInspection.resx">
       <DependentUpon>rptPrintInspection.cs</DependentUpon>
@@ -222,6 +241,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dev\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\07_plus-20.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

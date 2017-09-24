@@ -83,3 +83,15 @@ D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.Reports.rptPrintPattern.resou
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.WorksheetMain.resources
 D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Codes.dll
 D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Codes.pdb
+D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Pattern.dll.config
+D:\git\IntSample\Dev.Pattern\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\git\IntSample\Dev.Pattern\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+D:\git\IntSample\Dev.Pattern\bin\Debug\Microsoft.Extensions.Logging.dll
+D:\git\IntSample\Dev.Pattern\bin\Debug\RestClient.dll
+D:\git\IntSample\Dev.Pattern\bin\Debug\RestSharp.dll
+D:\git\IntSample\Dev.Pattern\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\git\IntSample\Dev.Pattern\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\git\IntSample\Dev.Pattern\bin\Debug\Microsoft.Extensions.Logging.xml
+D:\git\IntSample\Dev.Pattern\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+D:\git\IntSample\Dev.Pattern\bin\Debug\RestSharp.xml
+D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.TrimMain.resources

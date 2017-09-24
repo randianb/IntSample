@@ -346,6 +346,15 @@ namespace Dev.Controller
             return ds;
         }
 
+        public static DataSet Getlist(int KeyCount, Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string style, int UserIdx)
+        {
+            DataSet ds = new DataSet();
+
+            ds = Data.PatternData.Getlist(SearchKey, fileno, style, UserIdx);
+
+            return ds;
+        }
+
         public static DataSet Print(Dictionary<CommonValues.KeyName, string> SearchString, Dictionary<CommonValues.KeyName, int> SearchKey,
             DateTime dtFromDate, DateTime dtToDate)
         {

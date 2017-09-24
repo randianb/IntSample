@@ -29,6 +29,8 @@ namespace Dev.Options
         private static int _exceptionGroup;     // 예외그룹 (운용시 직급/리더구분도 아닌 섞여있거나 하위직급자에 대한 상위권한을 부여해야하는 경우)
         private static int _nationality;        // 국적코드
         private static string _nationalityNm;      // 국적명
+        private static string _email;      // 이메일
+        private static string _phone;      // 전화번호
 
         private static DataTable _dtAuthority;  // 사용자권한 테이블
         
@@ -105,6 +107,16 @@ namespace Dev.Options
         {
             get { return _nationalityNm; }
             set { _nationalityNm = value; }
+        }
+        public static string Email
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
+        public static string Phone
+        {
+            get { return _phone; }
+            set { _phone = value; }
         }
     }
 

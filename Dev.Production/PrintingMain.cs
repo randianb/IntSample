@@ -232,6 +232,7 @@ namespace Dev.Production
             OrdDate.FieldName = "OrdDate";
             OrdDate.Width = 100;
             OrdDate.TextAlignment = ContentAlignment.MiddleCenter;
+            OrdDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             OrdDate.FormatString = "{0:d}";
             OrdDate.HeaderText = "Requested";
             OrdDate.ReadOnly = true;
@@ -254,6 +255,7 @@ namespace Dev.Production
             RcvdDate.FieldName = "RcvdDate";
             RcvdDate.Width = 100;
             RcvdDate.TextAlignment = ContentAlignment.MiddleCenter;
+            RcvdDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             RcvdDate.CustomFormat = "{d}";
             RcvdDate.FormatString = "{0:d}";
             RcvdDate.HeaderText = "Received";
@@ -288,6 +290,16 @@ namespace Dev.Production
             status.ReadOnly = true; 
             status.Width = 100;
             gv.Columns.Add(status);
+
+            GridViewCommandColumn complete = new GridViewCommandColumn();
+            complete.Name = "complete";
+            complete.FieldName = "complete";
+            complete.HeaderText = "";
+            complete.Width = 70;
+            complete.UseDefaultText = true;
+            complete.DefaultText = "Complete";
+            complete.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gv.Columns.Add(complete);
 
             GridViewTextBoxColumn Remarks = new GridViewTextBoxColumn();
             Remarks.Name = "Remarks";
@@ -771,6 +783,82 @@ namespace Dev.Production
         private void gvMain_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void gvMain_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.Column.Name == "complete")
+                {
+                    /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                    /// 읽기: 0, 쓰기: 1, 삭제: 2, 센터: 3, 부서: 4
+                    int _mode_ = 1;
+                    if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                        CheckAuth.ShowMessage(_mode_);
+                    else
+                    {
+                        _gv1.EndEdit();
+                        GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
+
+                        if (Convert.ToInt32(_gv1.Rows[row.Index].Cells["status"].Value) == 0 ||
+                            Convert.ToInt32(_gv1.Rows[row.Index].Cells["status"].Value) == 1 ||
+                            Convert.ToInt32(_gv1.Rows[row.Index].Cells["status"].Value) == 2)
+                        {
+                            _bRtn = Data.PrintingData.CompleteWork(
+                            _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim());
+
+                            if (_bRtn)
+                            {
+                                __main__.lblRows.Text = "Completed Work";
+                                RadMessageBox.Show("Completed Work.", "Complete");
+                            }
+                        }
+                        else
+                        {
+                            RadMessageBox.Show("You can't change the status of this item.", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("btnUpdate_Click: " + ex.Message.ToString());
+            }
+        }
+
+        private void radMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0 &&
+                    Convert.ToInt16(__AUTHCODE__.Substring(4, 1).Trim()) <= 0)
+                {
+                    CheckAuth.ShowMessage(_mode_);
+                }
+                else
+                {
+                    // 워크시트 열기 
+                    DirectWorkOrder frm = new DirectWorkOrder(Int.Members.GetCurrentRow(_gv1, "Idx"), 112);     // print order 
+                    frm.Text = "Work Order";
+
+                    if (frm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        RefleshWithCondition();
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+            }
         }
     }
 }

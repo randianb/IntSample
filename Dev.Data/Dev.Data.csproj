@@ -57,6 +57,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="CuttingData.cs" />
+    <Compile Include="OrderTrimData.cs" />
     <Compile Include="WorksheetData.cs" />
     <Compile Include="OrderFabricData.cs" />
     <Compile Include="OutboundData.cs" />

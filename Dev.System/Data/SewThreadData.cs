@@ -23,7 +23,7 @@ namespace Dev.Codes.Data
         /// <summary>
         /// Insert
         /// </summary>
-        public static DataRow Insert(int SewThreadCustIdx, string SewThreadName, int ColorIdx, int IsUse)
+        public static DataRow Insert(int SewThreadCustIdx, string SewThreadName, string ColorIdx, int IsUse)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace Dev.Codes.Data
                 _cmd.Parameters.Add("@SewThreadName", SqlDbType.NVarChar, 50);
                 _cmd.Parameters["@SewThreadName"].Value = SewThreadName;
 
-                _cmd.Parameters.Add("@ColorIdx", SqlDbType.Int, 4);
+                _cmd.Parameters.Add("@ColorIdx", SqlDbType.NVarChar, 30);
                 _cmd.Parameters["@ColorIdx"].Value = ColorIdx;
                 
                 _cmd.Parameters.Add("@IsUse", SqlDbType.TinyInt, 1);
@@ -76,7 +76,7 @@ namespace Dev.Codes.Data
         /// <summary>
         /// Update
         /// </summary>
-        public static bool Update(int SewThreadIdx, int SewThreadCustIdx, string SewThreadName, int ColorIdx, int IsUse)
+        public static bool Update(int SewThreadIdx, int SewThreadCustIdx, string SewThreadName, string ColorIdx, int IsUse, int IsAvailable, int IsProduction)
         {
             try
             {
@@ -97,11 +97,17 @@ namespace Dev.Codes.Data
                 _cmd.Parameters.Add("@SewThreadName", SqlDbType.NVarChar, 30);
                 _cmd.Parameters["@SewThreadName"].Value = SewThreadName;
 
-                _cmd.Parameters.Add("@ColorIdx", SqlDbType.Int, 4);
+                _cmd.Parameters.Add("@ColorIdx", SqlDbType.NVarChar, 30);
                 _cmd.Parameters["@ColorIdx"].Value = ColorIdx;
                 
                 _cmd.Parameters.Add("@IsUse", SqlDbType.TinyInt, 1);
                 _cmd.Parameters["@IsUse"].Value = IsUse;
+
+                _cmd.Parameters.Add("@IsAvailable", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@IsAvailable"].Value = IsAvailable;
+
+                _cmd.Parameters.Add("@IsProduction", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@IsProduction"].Value = IsProduction;
 
                 _rtn = _cmd.ExecuteNonQuery();
             }

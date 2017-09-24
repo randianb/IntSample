@@ -171,6 +171,7 @@ namespace Dev.Out
             Idx.Width = 30;
             Idx.TextAlignment = ContentAlignment.MiddleLeft;
             Idx.HeaderText = "ID";
+            Idx.IsVisible = false; 
             gv.Columns.Add(Idx); 
 
             GridViewComboBoxColumn cboDept = new GridViewComboBoxColumn();
@@ -180,6 +181,7 @@ namespace Dev.Out
             cboDept.DisplayMember = "DeptName";
             cboDept.FieldName = "DeptIdx";
             cboDept.HeaderText = "Department";
+            cboDept.IsVisible = false;
             cboDept.Width = 50;
             gv.Columns.Add(cboDept);
 
@@ -221,7 +223,7 @@ namespace Dev.Out
             GridViewTextBoxColumn Description = new GridViewTextBoxColumn();
             Description.Name = "Description";
             Description.FieldName = "Description";
-            Description.Width = 170;
+            Description.Width = 150;
             Description.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             Description.HeaderText = "Description";
             gv.Columns.Add(Description);
@@ -240,6 +242,13 @@ namespace Dev.Out
             OrderQty.HeaderText = "Q'ty(pcs)";
             OrderQty.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gv.Columns.Add(OrderQty);
+
+            GridViewTextBoxColumn OrderType = new GridViewTextBoxColumn();
+            OrderType.Name = "OrderType";
+            OrderType.FieldName = "OrderType";
+            OrderType.Width = 100;
+            OrderType.HeaderText = "Type";
+            gv.Columns.Add(OrderType);
 
             //GridViewComboBoxColumn status = new GridViewComboBoxColumn();
             //status.Name = "Status";
@@ -674,6 +683,22 @@ namespace Dev.Out
         private void btnSearch_Click_1(object sender, EventArgs e)
         {
             RefleshWithCondition();
+        }
+
+        private void txtFileno_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick(); 
+            }
+        }
+
+        private void txtStyle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
         }
 
         private void gvOrder_SelectionChanged(object sender, EventArgs e)

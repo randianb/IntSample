@@ -24,10 +24,10 @@ namespace Dev.Options
         // 식별코드: 주로 조회를 위해 컨트롤러 호출시 key로 사용한다
         public enum KeyName {
             None, DeptIdx, CustIdx, CustAll, Brand, Pono, Styleno, Fileno, StatusShipment, FabricBody, VsslAir, Destination, SewThread, 
-            EmbelishId1, EmbelishId2, ShipTerm, IsPrinting, Codes, Status, SizeGroup, User, Vendor, Size, 
+            EmbelishId1, EmbelishId2, ShipTerm, IsPrinting, Codes, Status, SizeGroup, User, Vendor, Size, CustAllExceptBuyer, 
             OrderIdx, OperationIdx, WorkOrderIdx, TicketDate, WorkStatus, StartDate, Composition, BurnCount, YarnType, Contents, IsUse,
             Remark, BuyerIdx, ColorIdx, FabricType, Lotno, FabricIdx, RackNo, Floorno, RackPos, PosX, PosY, Wash, InIdx, Handler, 
-            RequestDate, CompleteDate, AllUser, TDUser
+            RequestDate, CompleteDate, AllUser, TDUser, TrimCode
         };      
 
         // 클래스명에 매칭된 ID로 해당 분류의 거래처를 검색하기 위한 용도 (code테이블값 변경시 반드시 일치시켜줘야함) 
@@ -66,7 +66,15 @@ namespace Dev.Options
             {1, "New Work"},                        // 신규작업
             {2, "Printed Ticket"},                  // 작업지시를 위한 티켓발행
             {3, "Completed"},                       // 작업완료
-            {4, "Canceled"}                         // 작업취소 
+            {4, "Canceled"},                        // 작업취소 
+            {5, "Confirmed(CAD)"},                  // 작업확인 (CAD)
+            {6, "Rejected(CAD)"},                   // 작업반려 (CAD)
+            {7, "Confirmed(TD)"},                   // 작업확인 (TD)
+            {8, "Rejected(TD)"},                    // 작업반려 (TD)
+            {10, "Confirmed(Office)"},              // 작업확인 (개발총괄)
+            {11, "Rejected(Office)"},               // 작업반려 (개발총괄)
+            {12, "Confirmed(Admin)"},               // 작업확인 (사무실)
+            {13, "Rejected(Admin)"}                 // 작업반려 (사무실)
         };
 
         public static Dictionary<int, string> DicFabricInStatus = new Dictionary<int, string>()

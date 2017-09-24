@@ -733,6 +733,16 @@ namespace SampleApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap new_seo2_34_48 {
+            get {
+                object obj = ResourceManager.GetObject("new_seo2-34-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap outbound {
             get {
                 object obj = ResourceManager.GetObject("outbound", resourceCulture);
@@ -816,6 +826,16 @@ namespace SampleApp.Properties {
         internal static System.Drawing.Bitmap pattern2 {
             get {
                 object obj = ResourceManager.GetObject("pattern2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Plan_2_48 {
+            get {
+                object obj = ResourceManager.GetObject("Plan_2-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

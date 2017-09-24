@@ -109,6 +109,8 @@ namespace Dev.Sales
                 txtFileno.Text = __FileNo__;
                 RefleshWithCondition(); 
             }
+
+            btnSaveData.Enabled = false;
         }
         
         /// <summary>
@@ -139,11 +141,11 @@ namespace Dev.Sales
 
             // 나염
             //embName.Add(new CustomerName(0, "All", 0));
-            ddlPrinting.DataSource = embName;
-            ddlPrinting.DisplayMember = "CustName";
-            ddlPrinting.ValueMember = "CustIdx";
-            ddlPrinting.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlPrinting.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+            //ddlPrinting.DataSource = embName;
+            //ddlPrinting.DisplayMember = "CustName";
+            //ddlPrinting.ValueMember = "CustIdx";
+            //ddlPrinting.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            //ddlPrinting.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
             // 사이즈
             //ddlSampleTypeSize.DataSource = lstSizeDDL;
@@ -473,38 +475,41 @@ namespace Dev.Sales
             GridViewComboBoxColumn cboIsPrinting = new GridViewComboBoxColumn();
             cboIsPrinting.Name = "IsPrinting";
 
-            lstIsPrinting.Clear();
-            lstIsPrinting = codeName.FindAll(
-                delegate (CodeContents code)
-                {
-                    return code.Classification == "IsPrinting";
-                });
+            //lstIsPrinting.Clear();
+            //lstIsPrinting = codeName.FindAll(
+            //    delegate (CodeContents code)
+            //    {
+            //        return code.Classification == "IsPrinting";
+            //    });
 
-            cboIsPrinting.DataSource = lstIsPrinting;
-            cboIsPrinting.ValueMember = "CodeIdx";
-            cboIsPrinting.DisplayMember = "Contents";
+            //cboIsPrinting.DataSource = lstIsPrinting;
+            //cboIsPrinting.ValueMember = "CodeIdx";
+            //cboIsPrinting.DisplayMember = "Contents";
             cboIsPrinting.FieldName = "IsPrinting";
             cboIsPrinting.HeaderText = "Screen Printing\n(Yes No)";
+            cboIsPrinting.IsVisible = false; 
             cboIsPrinting.Width = 100;
             gv.Columns.Insert(13, cboIsPrinting);
 
             GridViewComboBoxColumn cboEmblelishId1 = new GridViewComboBoxColumn();
             cboEmblelishId1.Name = "EmbelishId1";
-            cboEmblelishId1.DataSource = embName;
-            cboEmblelishId1.ValueMember = "CustIdx";
-            cboEmblelishId1.DisplayMember = "CustName";
+            //cboEmblelishId1.DataSource = embName;
+            //cboEmblelishId1.ValueMember = "CustIdx";
+            //cboEmblelishId1.DisplayMember = "CustName";
             cboEmblelishId1.FieldName = "EmbelishId1";
             cboEmblelishId1.HeaderText = "Embelishment1";
+            cboEmblelishId1.IsVisible = false;
             cboEmblelishId1.Width = 100;
             gv.Columns.Insert(14, cboEmblelishId1);
 
             GridViewComboBoxColumn cboEmblelishId2 = new GridViewComboBoxColumn();
             cboEmblelishId2.Name = "EmbelishId2";
-            cboEmblelishId2.DataSource = embName;
-            cboEmblelishId2.ValueMember = "CustIdx";
-            cboEmblelishId2.DisplayMember = "CustName";
+            //cboEmblelishId2.DataSource = embName;
+            //cboEmblelishId2.ValueMember = "CustIdx";
+            //cboEmblelishId2.DisplayMember = "CustName";
             cboEmblelishId2.FieldName = "EmbelishId2";
             cboEmblelishId2.HeaderText = "Embelishment2";
+            cboEmblelishId2.IsVisible = false;
             cboEmblelishId2.Width = 100;
             gv.Columns.Insert(15, cboEmblelishId2);
 
@@ -600,6 +605,7 @@ namespace Dev.Sales
             cboVendor.FieldName = "Vendor";
             cboVendor.HeaderText = "Vendor";
             cboVendor.Width = 100;
+            cboVendor.IsVisible = false; 
             gv.Columns.Insert(26, cboVendor);
 
             // Country (코드의 Origin으로 연결) 
@@ -618,6 +624,7 @@ namespace Dev.Sales
             cboOrigin.DisplayMember = "Contents";
             cboOrigin.FieldName = "Country";
             cboOrigin.HeaderText = "Country";
+            cboOrigin.IsVisible = false;
             cboOrigin.Width = 100;
             gv.Columns.Insert(27, cboOrigin);
 
@@ -886,6 +893,26 @@ namespace Dev.Sales
             cDownButton.ImageAlignment = ContentAlignment.MiddleCenter;
             cDownButton.Width = 40;
             gv.Columns.Add(cDownButton);
+
+            GridViewComboBoxColumn Work1 = new GridViewComboBoxColumn();
+            Work1.Name = "Work1";
+            Work1.DataSource = embName;
+            Work1.ValueMember = "CustIdx";
+            Work1.DisplayMember = "CustName";
+            Work1.FieldName = "Work1";
+            Work1.HeaderText = "Work1";
+            Work1.Width = 150;
+            gv.Columns.Add(Work1);
+
+            GridViewComboBoxColumn Work2 = new GridViewComboBoxColumn();
+            Work2.Name = "Work2";
+            Work2.DataSource = embName;
+            Work2.ValueMember = "CustIdx";
+            Work2.DisplayMember = "CustName";
+            Work2.FieldName = "Work2";
+            Work2.HeaderText = "Work2";
+            Work2.Width = 150;
+            gv.Columns.Add(Work2);
 
             gv.CommandCellClick += new CommandCellClickEventHandler(GV_CommandCellClick); 
 
@@ -1173,7 +1200,7 @@ namespace Dev.Sales
                 /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
                 /// 읽기: 0, 쓰기: 1, 삭제: 2
                 int _mode_ = 1;
-                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0 && Convert.ToInt16(__AUTHCODE__.Substring(4, 1).Trim()) <= 0)
                     CheckAuth.ShowMessage(_mode_);
                 else
                 {
@@ -2273,7 +2300,7 @@ namespace Dev.Sales
 
             // 나염업체
             embName.Add(new CustomerName(0, "", 0));
-            _dt = CommonController.Getlist(CommonValues.KeyName.EmbelishId1).Tables[0];
+            _dt = CommonController.Getlist(CommonValues.KeyName.CustAllExceptBuyer).Tables[0];
 
             foreach (DataRow row in _dt.Rows)
             {
@@ -2282,16 +2309,16 @@ namespace Dev.Sales
                                             Convert.ToInt32(row["Classification"])));
             }
 
-            // Vendor (구분 Sew업체로 연결) 
-            embName.Add(new CustomerName(0, "", 0));
-            _dt = CommonController.Getlist(CommonValues.KeyName.Vendor).Tables[0];
+            //// Vendor (구분 Sew업체로 연결) 
+            //embName.Add(new CustomerName(0, "", 0));
+            //_dt = CommonController.Getlist(CommonValues.KeyName.Vendor).Tables[0];
 
-            foreach (DataRow row in _dt.Rows)
-            {
-                lstVendor.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
-                                            row["CustNameEN"].ToString(),
-                                            Convert.ToInt32(row["Classification"])));
-            }
+            //foreach (DataRow row in _dt.Rows)
+            //{
+            //    lstVendor.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
+            //                                row["CustNameEN"].ToString(),
+            //                                Convert.ToInt32(row["Classification"])));
+            //}
 
             // 코드
             _dt = CommonController.Getlist(CommonValues.KeyName.Codes).Tables[0];
@@ -2410,6 +2437,15 @@ namespace Dev.Sales
             lstProduction.Add(new CodeContents(1, CommonValues.DicWorkOrderStatus[1], ""));
             lstProduction.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
             lstProduction.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
+            lstProduction.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
+            lstProduction.Add(new CodeContents(5, CommonValues.DicWorkOrderStatus[5], ""));
+            lstProduction.Add(new CodeContents(6, CommonValues.DicWorkOrderStatus[6], ""));
+            lstProduction.Add(new CodeContents(7, CommonValues.DicWorkOrderStatus[7], ""));
+            lstProduction.Add(new CodeContents(8, CommonValues.DicWorkOrderStatus[8], ""));
+            lstProduction.Add(new CodeContents(10, CommonValues.DicWorkOrderStatus[10], ""));
+            lstProduction.Add(new CodeContents(11, CommonValues.DicWorkOrderStatus[11], ""));
+            lstProduction.Add(new CodeContents(12, CommonValues.DicWorkOrderStatus[12], ""));
+            lstProduction.Add(new CodeContents(13, CommonValues.DicWorkOrderStatus[13], ""));
         }
         
         /// <summary>
@@ -2431,7 +2467,7 @@ namespace Dev.Sales
             try
             {
                 if (ddlCust.SelectedValue != null || ddlDept.SelectedValue != null
-                    || ddlStatus.SelectedValue != null || ddlPrinting.SelectedValue != null
+                    || ddlStatus.SelectedValue != null 
                     || !string.IsNullOrEmpty(txtFileno.Text) || !string.IsNullOrEmpty(txtStyle.Text))
                 {
                     _searchKey = new Dictionary<CommonValues.KeyName, int>();
@@ -2444,7 +2480,7 @@ namespace Dev.Sales
 
                     _searchKey.Add(CommonValues.KeyName.CustIdx, Convert.ToInt32(ddlCust.SelectedValue));
                     _searchKey.Add(CommonValues.KeyName.Status, Convert.ToInt32(ddlStatus.SelectedValue));
-                    _searchKey.Add(CommonValues.KeyName.EmbelishId1, Convert.ToInt32(ddlPrinting.SelectedValue));
+                    _searchKey.Add(CommonValues.KeyName.EmbelishId1, 0);
 
                     DataBinding_GV1(2, _searchKey, txtFileno.Text.Trim(), txtStyle.Text.Trim());
                 }
@@ -2904,6 +2940,8 @@ namespace Dev.Sales
                     _obj3.OrderIdx = Convert.ToInt32(row.Cells["OrderIdx"].Value.ToString());
                     if (row.Cells["OperationIdx"].Value != DBNull.Value) _obj3.OperationIdx = Convert.ToInt32(row.Cells["OperationIdx"].Value.ToString());
                     if (row.Cells["Priority"].Value != DBNull.Value) _obj3.Priority = Convert.ToInt32(row.Cells["Priority"].Value.ToString());
+                    if (row.Cells["Work1"].Value != DBNull.Value) _obj3.Work1 = Convert.ToInt32(row.Cells["Work1"].Value.ToString());
+                    if (row.Cells["Work2"].Value != DBNull.Value) _obj3.Work2 = Convert.ToInt32(row.Cells["Work2"].Value.ToString());
 
                     // 업데이트
                     _bRtn = _obj3.Update();
@@ -3133,6 +3171,10 @@ namespace Dev.Sales
                 _obj5.Type224 = Convert.ToInt32(chkType224.Checked);
                 _obj5.Type225 = Convert.ToInt32(chkType225.Checked);
                 _obj5.Type226 = Convert.ToInt32(chkType226.Checked);
+                _obj5.Type227 = Convert.ToInt32(chkType227.Checked);
+                _obj5.Type228 = Convert.ToInt32(chkType228.Checked);
+                _obj5.Type229 = Convert.ToInt32(chkType229.Checked);
+                _obj5.Type230 = Convert.ToInt32(chkType230.Checked);
 
                 // 업데이트
                 _bRtn = _obj5.Update();
@@ -3215,6 +3257,10 @@ namespace Dev.Sales
                         chkType224.Checked = Convert.ToBoolean(row["Type224"]);
                         chkType225.Checked = Convert.ToBoolean(row["Type225"]);
                         chkType226.Checked = Convert.ToBoolean(row["Type226"]);
+                        chkType227.Checked = Convert.ToBoolean(row["Type227"]);
+                        chkType228.Checked = Convert.ToBoolean(row["Type228"]);
+                        chkType229.Checked = Convert.ToBoolean(row["Type229"]);
+                        chkType230.Checked = Convert.ToBoolean(row["Type230"]);
                     }
                     else
                     {
@@ -3270,6 +3316,10 @@ namespace Dev.Sales
                 chkType224.Enabled = true;
                 chkType225.Enabled = true;
                 chkType226.Enabled = true;
+                chkType227.Enabled = true;
+                chkType228.Enabled = true;
+                chkType229.Enabled = true;
+                chkType230.Enabled = true;
             }
             else
             {
@@ -3305,6 +3355,10 @@ namespace Dev.Sales
                 chkType224.Enabled = false;
                 chkType225.Enabled = false;
                 chkType226.Enabled = false;
+                chkType227.Enabled = false;
+                chkType228.Enabled = false;
+                chkType229.Enabled = false;
+                chkType230.Enabled = false;
             }
         }
 
@@ -3345,7 +3399,11 @@ namespace Dev.Sales
             chkType223.Checked = false;
             chkType224.Checked = false;
             chkType225.Checked = false;
-
+            chkType226.Checked = false;
+            chkType227.Checked = false;
+            chkType228.Checked = false;
+            chkType229.Checked = false;
+            chkType230.Checked = false;
         }
 
 
@@ -3395,8 +3453,16 @@ namespace Dev.Sales
 
         private void btnSaveData_Click(object sender, EventArgs e)
         {
-            // 변경값 저장 
-            OrderType_Save();
+            /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+            /// 읽기: 0, 쓰기: 1, 삭제: 2
+            int _mode_ = 1;
+            if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                CheckAuth.ShowMessage(_mode_);
+            else
+            {
+                // 변경값 저장 
+                OrderType_Save();
+            }
         }
 
         private void MasterTemplate_HyperlinkOpened(object sender, HyperlinkOpenedEventArgs e)
@@ -3658,6 +3724,16 @@ namespace Dev.Sales
                 
             }
 
+            RadDropDownListEditor editor3 = this.gvOperation.ActiveEditor as RadDropDownListEditor;
+            if (editor3 != null)
+            {
+                ((RadDropDownListEditorElement)((RadDropDownListEditor)this.gvOperation.ActiveEditor).EditorElement).DefaultItemsCountInDropDown
+                    = CommonValues.DDL_DefaultItemsCountInDropDown;
+                ((RadDropDownListEditorElement)((RadDropDownListEditor)this.gvOperation.ActiveEditor).EditorElement).DropDownHeight
+                    = CommonValues.DDL_DropDownHeight;
+
+            }
+
             // 날짜컬럼의 달력크기 설정
             RadDateTimeEditor dtEditor = e.ActiveEditor as RadDateTimeEditor;
             if (dtEditor != null)
@@ -3716,14 +3792,16 @@ namespace Dev.Sales
 
             OrderType_Clear();
             OrderType_CheckOnOff(false);
-
+            
             if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") > 0)
             {
+                btnSaveData.Enabled = true;
                 radButton1.Enabled = true; radButton2.Enabled = true; radButton3.Enabled = true; radButton4.Enabled = true;
                 radButton5.Enabled = true; radButton6.Enabled = true; radButton7.Enabled = true; radButton8.Enabled = true;
             }
             else
             {
+                btnSaveData.Enabled = false;
                 radButton1.Enabled = false; radButton2.Enabled = false; radButton3.Enabled = false; radButton4.Enabled = false;
                 radButton5.Enabled = false; radButton6.Enabled = false; radButton7.Enabled = false; radButton8.Enabled = false;
             }

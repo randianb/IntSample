@@ -45,21 +45,28 @@ namespace Dev.Options
                 case CommonValues.KeyName.Destination:
                     ds = Data.CommonData.GetlistCode("Destination"); break;
                     
-                case CommonValues.KeyName.Codes:
+                case CommonValues.KeyName.Codes:                // 전체 코드 
                     ds = Data.CommonData.GetlistCode(""); break;
 
-                case CommonValues.KeyName.DeptIdx:
+                case CommonValues.KeyName.TrimCode:                // 전체 부자재 코드 
+                    ds = Data.CommonData.GetlistCode("Trim2"); break;
+
+                case CommonValues.KeyName.DeptIdx:              // 부서
                     ds = Dept.GetNamelist(); break;
 
-                case CommonValues.KeyName.CustIdx:
+                case CommonValues.KeyName.CustIdx:              // 바이어
                     if (UserInfo.ReportNo < 9)
                         ds = Int.Customer.Customer.GetNamelist(UserInfo.DeptIdx);
                     else
                         ds = Int.Customer.Customer.GetNamelist();
                     break;
 
-                case CommonValues.KeyName.CustAll:
+                case CommonValues.KeyName.CustAll:              // 모든 거래처 
                     ds = Int.Customer.Customer.GetNamelist();
+                    break;
+
+                case CommonValues.KeyName.CustAllExceptBuyer:   // 바이어, 은행등을 제외한 모든 거래처
+                    ds = Int.Customer.Customer.Getlist(0);
                     break;
 
                 case CommonValues.KeyName.SewThread:
@@ -75,16 +82,15 @@ namespace Dev.Options
                     ds = Int.Customer.Customer.Getlist(CommonValues.DictionaryCodeClass["Embllishment"]); break;
 
                 // 유저명
-                case CommonValues.KeyName.User:
+                case CommonValues.KeyName.User:                         // 해당 부서의 모든 유저
                     ds = Int.Users.Users.Getlist(UserInfo.DeptIdx); break;
 
-                case CommonValues.KeyName.AllUser:
+                case CommonValues.KeyName.AllUser:                      // 모든 유저
                     ds = Int.Users.Users.Getlist(0); break;
 
-                case CommonValues.KeyName.TDUser:
+                case CommonValues.KeyName.TDUser:                       // 개발실 TD 유저
                     ds = Int.Users.Users.Getlist(12); break;
-
-
+                    
                 default:
                     break;
             }

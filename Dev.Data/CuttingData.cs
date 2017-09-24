@@ -146,6 +146,36 @@ namespace Dev.Data
             else return false;
         }
 
+        public static bool CompleteWork(string WorkOrderIdx)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"update workorder set status=3 where workorderidx=@WorkOrderIdx";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+                
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
         /// <summary>
         /// Get: 해당 ID조회 
         /// </summary>

@@ -244,6 +244,7 @@ namespace Dev.Production
             InspRequestedDate.FieldName = "InspRequestedDate";
             InspRequestedDate.Width = 100;
             InspRequestedDate.TextAlignment = ContentAlignment.MiddleCenter;
+            InspRequestedDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             InspRequestedDate.FormatString = "{0:d}";
             InspRequestedDate.HeaderText = "Requested";
             InspRequestedDate.ReadOnly = true;
@@ -254,6 +255,7 @@ namespace Dev.Production
             InspDate.FieldName = "InspDate";
             InspDate.Width = 100;
             InspDate.TextAlignment = ContentAlignment.MiddleCenter;
+            InspDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             InspDate.CustomFormat = "{d}";
             InspDate.FormatString = "{0:d}";
             InspDate.HeaderText = "Started(Confirm)";
@@ -264,6 +266,7 @@ namespace Dev.Production
             InspCompletedDate.FieldName = "InspCompletedDate";
             InspCompletedDate.Width = 100;
             InspCompletedDate.TextAlignment = ContentAlignment.MiddleCenter;
+            InspCompletedDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             InspCompletedDate.CustomFormat = "{d}";
             InspCompletedDate.FormatString = "{0:d}";
             InspCompletedDate.HeaderText = "Completed";

@@ -216,10 +216,16 @@ namespace Dev.Controller
         public static DataSet Getlist(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx)
         {
             DataSet ds = new DataSet();
-            ds = Data.WorksheetData.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx);
+            ds = Data.WorksheetData.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx, 0);
             return ds;
         }
-        
+
+        public static DataSet Getlist(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx, int UserIdx)
+        {
+            DataSet ds = new DataSet();
+            ds = Data.WorksheetData.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx, UserIdx);
+            return ds;
+        }
 
         public bool Update()
         {

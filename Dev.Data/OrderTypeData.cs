@@ -79,7 +79,7 @@ namespace Dev.Data
         public static bool Update(int Idx, int type101, int type102, int type103,
             int type201, int type202, int type203, int type204, int type205, int type206, int type207, int type208, int type209, int type210,
             int type211, int type212, int type213, int type214, int type215, int type216, int type217, int type218, int type219, int type220, 
-            int type221, int type222, int type223, int type224, int type225, int type226 
+            int type221, int type222, int type223, int type224, int type225, int type226, int type227, int type228, int type229, int type230 
             )
         {
             try
@@ -170,6 +170,10 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@type220", SqlDbType.TinyInt, 1);
                 _cmd.Parameters["@type220"].Value = type220;
 
+                #endregion
+
+                #region Type 221 ~
+
                 _cmd.Parameters.Add("@type221", SqlDbType.TinyInt, 1);
                 _cmd.Parameters["@type221"].Value = type221;
 
@@ -188,6 +192,17 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@type226", SqlDbType.TinyInt, 1);
                 _cmd.Parameters["@type226"].Value = type226;
 
+                _cmd.Parameters.Add("@type227", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@type227"].Value = type227;
+
+                _cmd.Parameters.Add("@type228", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@type228"].Value = type228;
+
+                _cmd.Parameters.Add("@type229", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@type229"].Value = type229;
+
+                _cmd.Parameters.Add("@type230", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@type230"].Value = type230;
 
                 #endregion
 

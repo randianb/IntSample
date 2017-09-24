@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition13 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition14 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition15 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.btnMove = new Telerik.WinControls.UI.RadButton();
@@ -349,6 +349,7 @@
             this.txtFileno.Name = "txtFileno";
             this.txtFileno.Size = new System.Drawing.Size(144, 20);
             this.txtFileno.TabIndex = 8;
+            this.txtFileno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFileno_KeyDown);
             // 
             // radLabel8
             // 
@@ -364,6 +365,7 @@
             this.txtStyle.Name = "txtStyle";
             this.txtStyle.Size = new System.Drawing.Size(94, 20);
             this.txtStyle.TabIndex = 9;
+            this.txtStyle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtStyle_KeyDown);
             // 
             // btnSearch
             // 
@@ -406,7 +408,7 @@
             this.gvColor.MasterTemplate.MultiSelect = true;
             this.gvColor.MasterTemplate.SelectionMode = Telerik.WinControls.UI.GridViewSelectionMode.CellSelect;
             this.gvColor.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvColor.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvColor.MasterTemplate.ViewDefinition = tableViewDefinition13;
             this.gvColor.Name = "gvColor";
             this.gvColor.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvColor.ShowGroupPanel = false;
@@ -430,7 +432,7 @@
             this.gvOrder.MasterTemplate.AllowEditRow = false;
             this.gvOrder.MasterTemplate.MultiSelect = true;
             this.gvOrder.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvOrder.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvOrder.MasterTemplate.ViewDefinition = tableViewDefinition14;
             this.gvOrder.Name = "gvOrder";
             this.gvOrder.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvOrder.ShowGroupPanel = false;
@@ -478,7 +480,7 @@
             // 
             this.gvOutSource.MasterTemplate.AllowAddNewRow = false;
             this.gvOutSource.MasterTemplate.EnableGrouping = false;
-            this.gvOutSource.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvOutSource.MasterTemplate.ViewDefinition = tableViewDefinition15;
             this.gvOutSource.Name = "gvOutSource";
             this.gvOutSource.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvOutSource.ShowGroupPanel = false;

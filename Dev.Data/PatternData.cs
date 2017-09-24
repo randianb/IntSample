@@ -246,6 +246,307 @@ namespace Dev.Data
         }
 
         /// <summary>
+        /// 영업부 패턴 요청 취소 
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <param name="Rejected"></param>
+        /// <param name="OrderIdx"></param>
+        /// <param name="WorkOrderIdx"></param>
+        /// <returns></returns>
+        public static bool RejectTeam(int idx, int Rejected, int OrderIdx, string WorkOrderIdx, string Comment)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"update pattern set RejectedDate=dbo.GetLocalDate(default), Rejected = @Rejected, Comments = @CommentCad where idx = @Idx 
+                                     
+                                     update workorder set status=4 where OrderIdx = @OrderIdx and WorkOrderIdx = @WorkOrderIdx
+                                    ";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = idx;
+
+                _cmd.Parameters.Add("@Rejected", SqlDbType.Int, 4);
+                _cmd.Parameters["@Rejected"].Value = Rejected;
+
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
+
+                _cmd.Parameters.Add("@CommentCad", SqlDbType.NText);
+                _cmd.Parameters["@CommentCad"].Value = Comment;
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
+        /// <summary>
+        /// pattern confirm by CAD person 
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <param name="confirmed"></param>
+        /// <param name="OrderIdx"></param>
+        /// <param name="WorkOrderIdx"></param>
+        /// <returns></returns>
+        public static bool ConfirmCAD(int idx, int confirmed, int OrderIdx, string WorkOrderIdx)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"update pattern set ConfirmedDate=dbo.GetLocalDate(default), Confirmed = @confirmed where idx = @Idx 
+                                     
+                                     update workorder set status=5 where OrderIdx = @OrderIdx and WorkOrderIdx = @WorkOrderIdx
+                                    ";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = idx;
+
+                _cmd.Parameters.Add("@Confirmed", SqlDbType.Int, 4);
+                _cmd.Parameters["@Confirmed"].Value = confirmed;
+
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
+        /// <summary>
+        /// pattern Complete by CAD person 
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <param name="confirmed"></param>
+        /// <param name="OrderIdx"></param>
+        /// <param name="WorkOrderIdx"></param>
+        /// <returns></returns>
+        public static bool CompleteCAD(int idx, int OrderIdx, string WorkOrderIdx)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"update pattern set CompletedDate=dbo.GetLocalDate(default) where idx = @Idx 
+                                     
+                                     update workorder set status=3 where OrderIdx = @OrderIdx and WorkOrderIdx = @WorkOrderIdx
+                                    ";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = idx;
+                
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
+
+        /// <summary>
+        /// pattern reject by CAD person 
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <param name="Rejected"></param>
+        /// <param name="OrderIdx"></param>
+        /// <param name="WorkOrderIdx"></param>
+        /// <returns></returns>
+        public static bool RejectCAD(int idx, int Rejected, int OrderIdx, string WorkOrderIdx, string CommentCad)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"update pattern set RejectedDate=dbo.GetLocalDate(default), Rejected = @Rejected, CommentCad = @CommentCad where idx = @Idx 
+                                     
+                                     update workorder set status=6 where OrderIdx = @OrderIdx and WorkOrderIdx = @WorkOrderIdx
+                                    ";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = idx;
+
+                _cmd.Parameters.Add("@Rejected", SqlDbType.Int, 4);
+                _cmd.Parameters["@Rejected"].Value = Rejected;
+
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
+
+                _cmd.Parameters.Add("@CommentCad", SqlDbType.NText);
+                _cmd.Parameters["@CommentCad"].Value = CommentCad;
+                
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
+        /// <summary>
+        /// pattern confirm by TD person 
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <param name="confirmed"></param>
+        /// <param name="OrderIdx"></param>
+        /// <param name="WorkOrderIdx"></param>
+        /// <returns></returns>
+        public static bool ConfirmTD(int idx, int confirmed, int OrderIdx, string WorkOrderIdx)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"update pattern set SentDate=dbo.GetLocalDate(default), Received = @confirmed where idx = @Idx 
+                                     
+                                     update workorder set status=7 where OrderIdx = @OrderIdx and WorkOrderIdx = @WorkOrderIdx
+                                    ";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = idx;
+
+                _cmd.Parameters.Add("@Confirmed", SqlDbType.Int, 4);
+                _cmd.Parameters["@Confirmed"].Value = confirmed;
+
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
+        /// <summary>
+        /// pattern reject by TD person 
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <param name="Rejected"></param>
+        /// <param name="OrderIdx"></param>
+        /// <param name="WorkOrderIdx"></param>
+        /// <returns></returns>
+        public static bool RejectTD(int idx, int Rejected, int OrderIdx, string WorkOrderIdx, string CommentCad)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"update pattern set RejectedDate=dbo.GetLocalDate(default), Rejected = @Rejected, CommentCad = @CommentCad where idx = @Idx 
+                                     
+                                     update workorder set status=8 where OrderIdx = @OrderIdx and WorkOrderIdx = @WorkOrderIdx
+                                    ";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = idx;
+
+                _cmd.Parameters.Add("@Rejected", SqlDbType.Int, 4);
+                _cmd.Parameters["@Rejected"].Value = Rejected;
+
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
+
+                _cmd.Parameters.Add("@CommentCad", SqlDbType.NText);
+                _cmd.Parameters["@CommentCad"].Value = CommentCad;
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            if (_rtn > 0) return true;
+            else return false;
+        }
+        
+        /// <summary>
         /// Get: 해당 ID조회 
         /// </summary>
         public static DataRow Get(int Idx)
@@ -360,6 +661,62 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@Styleno", SqlDbType.NVarChar, 40);
                 _cmd.Parameters["@Styleno"].Value = style;
 
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static DataSet Getlist(Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string style, int UserIdx)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_Pattern_List4";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@CustIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@CustIdx"].Value = SearchKey[CommonValues.KeyName.CustIdx];
+
+                _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
+                _cmd.Parameters["@Status"].Value = SearchKey[CommonValues.KeyName.Status];
+
+                _cmd.Parameters.Add("@SizeIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@SizeIdx"].Value = SearchKey[CommonValues.KeyName.Size];
+
+                _cmd.Parameters.Add("@Fileno", SqlDbType.NVarChar, 40);
+                _cmd.Parameters["@Fileno"].Value = fileno;
+
+                _cmd.Parameters.Add("@Styleno", SqlDbType.NVarChar, 40);
+                _cmd.Parameters["@Styleno"].Value = style;
+
+                _cmd.Parameters.Add("@UserIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@UserIdx"].Value = UserIdx;
 
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);
