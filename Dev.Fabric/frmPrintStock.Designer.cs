@@ -59,6 +59,8 @@
             this.ddlFabric = new Telerik.WinControls.UI.RadMultiColumnComboBox();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.ddlColor = new Telerik.WinControls.UI.RadTextBox();
+            this.dtInboundDateTo = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.dataSetSizeGroup = new Dev.Sales.Data.DataSetSizeGroup();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
@@ -92,6 +94,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlFabric.EditorControl.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtInboundDateTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSizeGroup)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,6 +166,8 @@
             this.tableLayoutPanel5.Controls.Add(this.ddlFabric, 3, 1);
             this.tableLayoutPanel5.Controls.Add(this.radLabel12, 4, 2);
             this.tableLayoutPanel5.Controls.Add(this.ddlColor, 1, 3);
+            this.tableLayoutPanel5.Controls.Add(this.dtInboundDateTo, 5, 3);
+            this.tableLayoutPanel5.Controls.Add(this.radLabel6, 5, 2);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 4;
@@ -386,6 +392,7 @@
             // dtInboundDate
             // 
             this.dtInboundDate.CustomFormat = "{d}";
+            this.dtInboundDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtInboundDate.Location = new System.Drawing.Point(723, 70);
             this.dtInboundDate.Name = "dtInboundDate";
             this.dtInboundDate.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
@@ -435,9 +442,9 @@
             // 
             this.radLabel12.Location = new System.Drawing.Point(723, 50);
             this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(44, 18);
+            this.radLabel12.Size = new System.Drawing.Size(80, 18);
             this.radLabel12.TabIndex = 22;
-            this.radLabel12.Text = "IN Date";
+            this.radLabel12.Text = "IN Date (From)";
             this.radLabel12.DoubleClick += new System.EventHandler(this.radLabel12_DoubleClick);
             // 
             // ddlColor
@@ -446,6 +453,27 @@
             this.ddlColor.Name = "ddlColor";
             this.ddlColor.Size = new System.Drawing.Size(154, 20);
             this.ddlColor.TabIndex = 25;
+            // 
+            // dtInboundDateTo
+            // 
+            this.dtInboundDateTo.CustomFormat = "{d}";
+            this.dtInboundDateTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtInboundDateTo.Location = new System.Drawing.Point(890, 70);
+            this.dtInboundDateTo.Name = "dtInboundDateTo";
+            this.dtInboundDateTo.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtInboundDateTo.Size = new System.Drawing.Size(151, 20);
+            this.dtInboundDateTo.TabIndex = 23;
+            this.dtInboundDateTo.TabStop = false;
+            this.dtInboundDateTo.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.Location = new System.Drawing.Point(890, 50);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(67, 18);
+            this.radLabel6.TabIndex = 22;
+            this.radLabel6.Text = "IN Date (To)";
+            this.radLabel6.DoubleClick += new System.EventHandler(this.radLabel12_DoubleClick);
             // 
             // dataSetSizeGroup
             // 
@@ -495,6 +523,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlFabric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtInboundDateTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSizeGroup)).EndInit();
             this.ResumeLayout(false);
 
@@ -533,6 +563,8 @@
         private Telerik.WinControls.UI.RadMultiColumnComboBox ddlFabric;
         private Sales.Data.DataSetSizeGroup dataSetSizeGroup;
         private Telerik.WinControls.UI.RadTextBox ddlColor;
+        private Telerik.WinControls.UI.RadDateTimePicker dtInboundDateTo;
+        private Telerik.WinControls.UI.RadLabel radLabel6;
     }
 }
 

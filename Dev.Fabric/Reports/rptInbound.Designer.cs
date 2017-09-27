@@ -29,6 +29,7 @@ namespace Dev.Fabric.Reports
             this.textBox5 = new Telerik.Reporting.TextBox();
             this.textBox9 = new Telerik.Reporting.TextBox();
             this.textBox10 = new Telerik.Reporting.TextBox();
+            this.textBox12 = new Telerik.Reporting.TextBox();
             this.textBox27 = new Telerik.Reporting.TextBox();
             this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
             this.textBox53 = new Telerik.Reporting.TextBox();
@@ -43,11 +44,10 @@ namespace Dev.Fabric.Reports
             this.textBox6 = new Telerik.Reporting.TextBox();
             this.textBox7 = new Telerik.Reporting.TextBox();
             this.textBox8 = new Telerik.Reporting.TextBox();
+            this.textBox11 = new Telerik.Reporting.TextBox();
             this.textBox28 = new Telerik.Reporting.TextBox();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
-            this.textBox11 = new Telerik.Reporting.TextBox();
-            this.textBox12 = new Telerik.Reporting.TextBox();
             this.textBox13 = new Telerik.Reporting.TextBox();
             this.textBox19 = new Telerik.Reporting.TextBox();
             this.textBox23 = new Telerik.Reporting.TextBox();
@@ -242,6 +242,20 @@ namespace Dev.Fabric.Reports
             this.textBox10.StyleName = "Office.TableBody";
             this.textBox10.Value = "= Fields.Kgs";
             // 
+            // textBox12
+            // 
+            this.textBox12.Format = "{0:N2}";
+            this.textBox12.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(19.600198745727539D), Telerik.Reporting.Drawing.Unit.Cm(0.00020064989803358913D));
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.5996034145355225D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
+            this.textBox12.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.textBox12.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.textBox12.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(7D);
+            this.textBox12.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
+            this.textBox12.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox12.StyleName = "Office.TableBody";
+            this.textBox12.Value = "= Fields.Roll";
+            // 
             // textBox27
             // 
             this.textBox27.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D), Telerik.Reporting.Drawing.Unit.Cm(0.00010002215276472271D));
@@ -299,7 +313,7 @@ namespace Dev.Fabric.Reports
             this.textBox46.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox46.Style.Visible = true;
             this.textBox46.StyleName = "Office.TableBody";
-            this.textBox46.Value = "IN";
+            this.textBox46.Value = "IN From";
             // 
             // textBox47
             // 
@@ -443,6 +457,20 @@ namespace Dev.Fabric.Reports
             this.textBox8.StyleName = "Office.TableBody";
             this.textBox8.Value = "Kgs";
             // 
+            // textBox11
+            // 
+            this.textBox11.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(19.600198745727539D), Telerik.Reporting.Drawing.Unit.Cm(0.96125853061676025D));
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.5996034145355225D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
+            this.textBox11.Style.BackgroundColor = System.Drawing.Color.Azure;
+            this.textBox11.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.textBox11.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.textBox11.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(7D);
+            this.textBox11.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox11.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox11.StyleName = "Office.TableBody";
+            this.textBox11.Value = "Roll";
+            // 
             // textBox28
             // 
             this.textBox28.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(17.964210510253906D), Telerik.Reporting.Drawing.Unit.Cm(0.00020024616969749332D));
@@ -480,34 +508,6 @@ namespace Dev.Fabric.Reports
             new Telerik.Reporting.SqlDataSourceParameter("@indate", System.Data.DbType.String, null)});
             this.sqlDataSource1.SelectCommand = "dbo.up_FabricIn_List4";
             this.sqlDataSource1.SelectCommandType = Telerik.Reporting.SqlDataSourceCommandType.StoredProcedure;
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(19.600198745727539D), Telerik.Reporting.Drawing.Unit.Cm(0.96125853061676025D));
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.5996034145355225D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
-            this.textBox11.Style.BackgroundColor = System.Drawing.Color.Azure;
-            this.textBox11.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.textBox11.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.textBox11.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(7D);
-            this.textBox11.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox11.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox11.StyleName = "Office.TableBody";
-            this.textBox11.Value = "Roll";
-            // 
-            // textBox12
-            // 
-            this.textBox12.Format = "{0:N2}";
-            this.textBox12.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(19.600198745727539D), Telerik.Reporting.Drawing.Unit.Cm(0.00020064989803358913D));
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.5996034145355225D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
-            this.textBox12.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.textBox12.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.textBox12.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(7D);
-            this.textBox12.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
-            this.textBox12.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox12.StyleName = "Office.TableBody";
-            this.textBox12.Value = "= Fields.Roll";
             // 
             // textBox13
             // 

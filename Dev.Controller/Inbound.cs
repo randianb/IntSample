@@ -22,6 +22,7 @@ namespace Dev.Controller
         private int _width;
         private double _kgs;
         private double _yds;
+
         private int _regCenterIdx;
         private int _regDeptIdx;
         private int _regUserIdx;
@@ -257,8 +258,8 @@ namespace Dev.Controller
                 if (_row["Roll"] != DBNull.Value) _roll = Convert.ToInt32(_row["Roll"]);
                 if (_row["Width"] != DBNull.Value) _width = Convert.ToInt32(_row["Width"]);
                 
-                if (_row["Kgs"] != DBNull.Value) _kgs = Convert.ToInt32(_row["Kgs"]);
-                if (_row["Yds"] != DBNull.Value) _yds = Convert.ToInt32(_row["Yds"]);
+                if (_row["Kgs"] != DBNull.Value) _kgs = Convert.ToDouble(_row["Kgs"]);
+                if (_row["Yds"] != DBNull.Value) _yds = Convert.ToDouble(_row["Yds"]);
                 if (_row["RegCenterIdx"] != DBNull.Value) _regCenterIdx = Convert.ToInt32(_row["RegCenterIdx"]);
                 if (_row["RegDeptIdx"] != DBNull.Value) _regDeptIdx = Convert.ToInt32(_row["RegDeptIdx"]);
                 if (_row["RegUserIdx"] != DBNull.Value) _regUserIdx = Convert.ToInt32(_row["RegUserIdx"]);

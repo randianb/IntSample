@@ -12,11 +12,10 @@ namespace Dev.Options
     /// </summary>
     public class UserInfo
     {
-        /// <summary>
-        /// 변수설정
-        /// </summary>
+        #region 변수설정
         private static int _idx;                // 사용자 고유번호
         private static string _username;        // 사용자 이름
+        private static string _userfullname;    // 사용자 전체이름
         private static string _password;        // 비밀번호
         private static int _deptIdx;            // 부서번호
         private static int _reportNo;           // 리포트 번호 (영업부 구분용) 
@@ -33,10 +32,10 @@ namespace Dev.Options
         private static string _phone;      // 전화번호
 
         private static DataTable _dtAuthority;  // 사용자권한 테이블
-        
-        /// <summary>
-        /// 프로퍼티 
-        /// </summary>
+
+        #endregion 
+
+        #region 프로퍼티 
         public static int Idx
         {
             get { return _idx; }
@@ -46,6 +45,11 @@ namespace Dev.Options
         {
             get { return _username; }
             set { _username = value; }
+        }
+        public static string Userfullname
+        {
+            get { return _userfullname; }
+            set { _userfullname = value; }
         }
         public static string Password
         {
@@ -118,6 +122,10 @@ namespace Dev.Options
             get { return _phone; }
             set { _phone = value; }
         }
+
+        #endregion 
+
+        
     }
 
 }

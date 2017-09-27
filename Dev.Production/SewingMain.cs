@@ -328,7 +328,13 @@ namespace Dev.Production
             WorkType.FieldName = "WorkType";
             WorkType.IsVisible = false;
             gv.Columns.Add(WorkType);
-            
+
+            GridViewTextBoxColumn OrderHandler = new GridViewTextBoxColumn();
+            OrderHandler.Name = "Handler";
+            OrderHandler.FieldName = "Handler";
+            OrderHandler.IsVisible = false;
+            gv.Columns.Add(OrderHandler);
+
             #endregion
         }
 
@@ -474,19 +480,37 @@ namespace Dev.Production
                                             row["CustName"].ToString(),
                                             Convert.ToInt32(row["Classification"])));
             }
-            
-            // 오더상태 (CommonValues정의)
-            lstStatus.Add(new CodeContents(0, Options.CommonValues.DicWorkOrderStatus[0], ""));
-            lstStatus.Add(new CodeContents(1, Options.CommonValues.DicWorkOrderStatus[1], ""));
-            lstStatus.Add(new CodeContents(2, Options.CommonValues.DicWorkOrderStatus[2], ""));
-            lstStatus.Add(new CodeContents(3, Options.CommonValues.DicWorkOrderStatus[3], ""));
-            lstStatus.Add(new CodeContents(4, Options.CommonValues.DicWorkOrderStatus[4], ""));
 
-            lstStatus2.Add(new CodeContents(0, Options.CommonValues.DicWorkOrderStatus[0], ""));
-            lstStatus2.Add(new CodeContents(1, Options.CommonValues.DicWorkOrderStatus[1], ""));
-            lstStatus2.Add(new CodeContents(2, Options.CommonValues.DicWorkOrderStatus[2], ""));
-            lstStatus2.Add(new CodeContents(3, Options.CommonValues.DicWorkOrderStatus[3], ""));
-            lstStatus2.Add(new CodeContents(4, Options.CommonValues.DicWorkOrderStatus[4], ""));
+            // 오더상태 (CommonValues정의)
+            lstStatus.Add(new CodeContents(0, Dev.Options.CommonValues.DicWorkOrderStatus[0], ""));
+            lstStatus.Add(new CodeContents(1, Dev.Options.CommonValues.DicWorkOrderStatus[1], ""));
+            lstStatus.Add(new CodeContents(2, Dev.Options.CommonValues.DicWorkOrderStatus[2], ""));
+            lstStatus.Add(new CodeContents(3, Dev.Options.CommonValues.DicWorkOrderStatus[3], ""));
+            lstStatus.Add(new CodeContents(4, Dev.Options.CommonValues.DicWorkOrderStatus[4], ""));
+            lstStatus.Add(new CodeContents(5, Dev.Options.CommonValues.DicWorkOrderStatus[5], ""));
+            lstStatus.Add(new CodeContents(6, Dev.Options.CommonValues.DicWorkOrderStatus[6], ""));
+            lstStatus.Add(new CodeContents(7, Dev.Options.CommonValues.DicWorkOrderStatus[7], ""));
+            lstStatus.Add(new CodeContents(8, Dev.Options.CommonValues.DicWorkOrderStatus[8], ""));
+            lstStatus.Add(new CodeContents(10, Dev.Options.CommonValues.DicWorkOrderStatus[10], ""));
+            lstStatus.Add(new CodeContents(11, Dev.Options.CommonValues.DicWorkOrderStatus[11], ""));
+            lstStatus.Add(new CodeContents(12, Dev.Options.CommonValues.DicWorkOrderStatus[12], ""));
+            lstStatus.Add(new CodeContents(13, Dev.Options.CommonValues.DicWorkOrderStatus[13], ""));
+            lstStatus.Add(new CodeContents(14, Dev.Options.CommonValues.DicWorkOrderStatus[14], ""));
+
+            lstStatus2.Add(new CodeContents(0, Dev.Options.CommonValues.DicWorkOrderStatus[0], ""));
+            lstStatus2.Add(new CodeContents(1, Dev.Options.CommonValues.DicWorkOrderStatus[1], ""));
+            lstStatus2.Add(new CodeContents(2, Dev.Options.CommonValues.DicWorkOrderStatus[2], ""));
+            lstStatus2.Add(new CodeContents(3, Dev.Options.CommonValues.DicWorkOrderStatus[3], ""));
+            lstStatus2.Add(new CodeContents(4, Dev.Options.CommonValues.DicWorkOrderStatus[4], ""));
+            lstStatus2.Add(new CodeContents(5, Dev.Options.CommonValues.DicWorkOrderStatus[5], ""));
+            lstStatus2.Add(new CodeContents(6, Dev.Options.CommonValues.DicWorkOrderStatus[6], ""));
+            lstStatus2.Add(new CodeContents(7, Dev.Options.CommonValues.DicWorkOrderStatus[7], ""));
+            lstStatus2.Add(new CodeContents(8, Dev.Options.CommonValues.DicWorkOrderStatus[8], ""));
+            lstStatus2.Add(new CodeContents(10, Dev.Options.CommonValues.DicWorkOrderStatus[10], ""));
+            lstStatus2.Add(new CodeContents(11, Dev.Options.CommonValues.DicWorkOrderStatus[11], ""));
+            lstStatus2.Add(new CodeContents(12, Dev.Options.CommonValues.DicWorkOrderStatus[12], ""));
+            lstStatus2.Add(new CodeContents(13, Dev.Options.CommonValues.DicWorkOrderStatus[13], ""));
+            lstStatus2.Add(new CodeContents(14, Dev.Options.CommonValues.DicWorkOrderStatus[14], ""));
         }
 
         /// <summary>
@@ -814,8 +838,8 @@ namespace Dev.Production
                             Convert.ToInt32(_gv1.Rows[row.Index].Cells["status"].Value) == 1 ||
                             Convert.ToInt32(_gv1.Rows[row.Index].Cells["status"].Value) == 2)
                         {
-                            //_bRtn = Data.SewingData.CompleteWork(
-                            //_gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim());
+                            _bRtn = Data.SewingData.CompleteWork(
+                            _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim());
 
                             if (_bRtn)
                             {
@@ -825,16 +849,23 @@ namespace Dev.Production
                                 
                             }
 
-                            // 결과 메시지 송신
-                            Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
-                            msgSender.sendMessage("50232320019", "[봉제완료] " +
-                                                "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
-                                                "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
-                                                "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
-                                                "Color: " + _gv1.Rows[row.Index].Cells["OrdColorIdx"].Value.ToString() + ", " +
-                                                "Size: " + _gv1.Rows[row.Index].Cells["OrdSizeIdx"].Value.ToString() + ", " +
-                                                "Q'ty: " + _gv1.Rows[row.Index].Cells["WorkQty"].Value.ToString()
-                                                );
+                            // 오더핸들러 전화번호가 등록되어 있는 경우 
+                            DataRow dr = Dev.Options.Data.CommonData.GetPhoneNumberbyOrderID(Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value.ToString())); 
+
+                            if (dr!=null && !string.IsNullOrEmpty(dr["Phone"].ToString().Trim()))
+                            {
+                                // 결과 메시지 송신
+                                Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
+                                msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[봉제완료] " +
+                                            "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
+                                            "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
+                                            "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
+                                            "Color: " + _gv1.Rows[row.Index].Cells["OrdColorIdx"].Value.ToString() + ", " +
+                                            "Size: " + _gv1.Rows[row.Index].Cells["OrdSizeIdx"].Value.ToString() + ", " +
+                                            "Q'ty: " + _gv1.Rows[row.Index].Cells["WorkQty"].Value.ToString()
+                                            );
+                            }
+                            
                         }
                         else
                         {

@@ -89,12 +89,6 @@ namespace Dev.Pattern
             GV1_LayoutSetting(_gv1);    // 중앙 그리드뷰 설정 
             LoadGVLayout();             // 그리드뷰 레이아웃 복구 
 
-            // 다른 폼으로부터 전달된 Work ID가 있을 경우, 해당 ID로 조회 
-            if (!string.IsNullOrEmpty(_workOrderIdx))
-            {
-                DataBinding_GV1(0, 0, 0, 0, "", "", _workOrderIdx);
-            }
-
             //TD확인 
             if (UserInfo.DeptIdx == 12)
             {
@@ -104,6 +98,14 @@ namespace Dev.Pattern
             {
                 toggTD.Value = false;
             }
+
+            // 다른 폼으로부터 전달된 Work ID가 있을 경우, 해당 ID로 조회 
+            if (!string.IsNullOrEmpty(_workOrderIdx))
+            {
+                DataBinding_GV1(0, 0, 0, 0, "", "", _workOrderIdx);
+            }
+
+            
         }
         /// <summary>
         /// 상단 검색을 위한 Dropdownlist 생성
@@ -137,6 +139,10 @@ namespace Dev.Pattern
             ddlStatus.ValueMember = "CodeIdx";
             ddlStatus.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
             ddlStatus.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+
+            // 정해진 바이어가 있는 경우, 해당 바이어로 dropdown 미리 선택
+            if (CommonValues.NewOrderBuyerIdx > 0)
+                ddlCust.SelectedValue = Convert.ToInt32(CommonValues.NewOrderBuyerIdx);
         }
         
 
@@ -161,7 +167,6 @@ namespace Dev.Pattern
             OrderIdx.Name = "OrderIdx";
             OrderIdx.FieldName = "OrderIdx";
             OrderIdx.IsVisible = false;
-            OrderIdx.ReadOnly = true;
             gv.Columns.Add(OrderIdx);
 
             GridViewTextBoxColumn WorksheetIdx = new GridViewTextBoxColumn();
@@ -236,7 +241,7 @@ namespace Dev.Pattern
             ConfirmDate.TextAlignment = ContentAlignment.MiddleCenter;
             ConfirmDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             ConfirmDate.FormatString = "{0:g}";
-            ConfirmDate.HeaderText = "Confirm Date\n(CAD)";
+            ConfirmDate.HeaderText = "Confirm Date\n(Office)";
             ConfirmDate.ReadOnly = true;
             gv.Columns.Add(ConfirmDate);
 
@@ -246,7 +251,7 @@ namespace Dev.Pattern
             ConfirmUser.ReadOnly = true;
             ConfirmUser.Width = 130;
             ConfirmUser.TextAlignment = ContentAlignment.MiddleLeft;
-            ConfirmUser.HeaderText = "Confirmed\n(CAD)";
+            ConfirmUser.HeaderText = "Confirmed\n(Office)";
             gv.Columns.Add(ConfirmUser);
 
             GridViewDateTimeColumn ConfirmDateTD = new GridViewDateTimeColumn();
@@ -276,7 +281,7 @@ namespace Dev.Pattern
             ConfirmDateLast.TextAlignment = ContentAlignment.MiddleCenter;
             ConfirmDateLast.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             ConfirmDateLast.FormatString = "{0:g}";
-            ConfirmDateLast.HeaderText = "Confirm Date\n(Office)";
+            ConfirmDateLast.HeaderText = "Confirm Date\n(Admin)";
             ConfirmDateLast.ReadOnly = true;
             gv.Columns.Add(ConfirmDateLast);
 
@@ -286,7 +291,7 @@ namespace Dev.Pattern
             ConfirmUserLast.ReadOnly = true;
             ConfirmUserLast.Width = 130;
             ConfirmUserLast.TextAlignment = ContentAlignment.MiddleLeft;
-            ConfirmUserLast.HeaderText = "Confirmed\n(Office)";
+            ConfirmUserLast.HeaderText = "Confirmed\n(Admin)";
             gv.Columns.Add(ConfirmUserLast);
 
             GridViewComboBoxColumn Status = new GridViewComboBoxColumn();
@@ -639,6 +644,9 @@ namespace Dev.Pattern
             lstStatus.Add(new CodeContents(8, CommonValues.DicWorkOrderStatus[8], ""));
             lstStatus.Add(new CodeContents(10, CommonValues.DicWorkOrderStatus[10], ""));
             lstStatus.Add(new CodeContents(11, CommonValues.DicWorkOrderStatus[11], ""));
+            lstStatus.Add(new CodeContents(12, CommonValues.DicWorkOrderStatus[12], ""));
+            lstStatus.Add(new CodeContents(13, CommonValues.DicWorkOrderStatus[13], ""));
+            lstStatus.Add(new CodeContents(14, CommonValues.DicWorkOrderStatus[14], ""));
         }
 
         /// <summary>
@@ -662,21 +670,21 @@ namespace Dev.Pattern
                 //    || ddlStatus.SelectedValue != null || ddlSize.SelectedValue != null
                 //    || !string.IsNullOrEmpty(txtFileno.Text) || !string.IsNullOrEmpty(txtStyle.Text))
                 //{
-                    //_searchKey = new Dictionary<CommonValues.KeyName, int>();
+                _searchKey = new Dictionary<CommonValues.KeyName, int>();
 
-                    // 영업부인경우, 해당 부서만 조회할수 있도록 제한 
-                    //if (UserInfo.ReportNo < 9)
-                    //    _searchKey.Add(CommonValues.KeyName.DeptIdx, UserInfo.DeptIdx);
-                    //else
-                    //    _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlSize.SelectedValue));
+                // 영업부인경우, 해당 부서만 조회할수 있도록 제한 
+                if (UserInfo.ReportNo < 9)
+                    _searchKey.Add(CommonValues.KeyName.DeptIdx, UserInfo.DeptIdx);
+                else
+                    _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlDept.SelectedValue));
 
-                    //_searchKey.Add(CommonValues.KeyName.CustIdx, Convert.ToInt32(ddlCust.SelectedValue));
-                    //_searchKey.Add(CommonValues.KeyName.Status, Convert.ToInt32(ddlStatus.SelectedValue));
-                    //_searchKey.Add(CommonValues.KeyName.Size, Convert.ToInt32(ddlSize.SelectedValue));
+                //_searchKey.Add(CommonValues.KeyName.CustIdx, Convert.ToInt32(ddlCust.SelectedValue));
+                //_searchKey.Add(CommonValues.KeyName.Status, Convert.ToInt32(ddlStatus.SelectedValue));
+                //_searchKey.Add(CommonValues.KeyName.Size, Convert.ToInt32(ddlSize.SelectedValue));
 
-                    //int OrderIdx, string WorksheetIdx, int Handler, int ConfirmUser, int WorkStatus
+                //int OrderIdx, string WorksheetIdx, int Handler, int ConfirmUser, int WorkStatus
 
-                    DataBinding_GV1(Convert.ToInt32(ddlDept.SelectedValue), Convert.ToInt32(ddlCust.SelectedValue), 
+                DataBinding_GV1(_searchKey[CommonValues.KeyName.DeptIdx], Convert.ToInt32(ddlCust.SelectedValue), 
                                     Convert.ToInt32(ddlHandler.SelectedValue), Convert.ToInt32(ddlStatus.SelectedValue), 
                                     txtFileno.Text.Trim(), txtStyle.Text.Trim(), txtWorksheet.Text.Trim());
                 //}
@@ -1543,6 +1551,7 @@ namespace Dev.Pattern
                     if (string.IsNullOrEmpty(txtComments.Text.Trim()))
                     {
                         RadMessageBox.Show("Please input cancel reason.", "Cancel Worksheet");
+                        return; 
                     }
 
                     _gv1.EndEdit();
@@ -1580,6 +1589,12 @@ namespace Dev.Pattern
                     _gv1.EndEdit();
                     GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
 
+                    if (string.IsNullOrEmpty(txtCommentTD.Text.Trim()))
+                    {
+                        RadMessageBox.Show("Please input cancel reason.", "Cancel Worksheet");
+                        return;
+                    }
+
                     if (UserInfo.DeptIdx == 12)     // TD
                     {
                         _bRtn = Data.WorksheetData.RejectTD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
@@ -1589,6 +1604,24 @@ namespace Dev.Pattern
                         {
                             __main__.lblRows.Text = "Rejected Worksheet by TD";
                             RadMessageBox.Show("Rejected Worksheet by TD.", "Rejected");
+                            
+                        }
+
+                        // 오더핸들러 전화번호가 등록되어 있는 경우
+                        DataRow dr = Dev.Options.Data.CommonData.GetPhoneNumberbyOrderID(Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value.ToString()));
+                        if (dr != null && !string.IsNullOrEmpty(dr["Phone"].ToString().Trim()))
+                        {
+                            // 결과 메시지 송신
+                            Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
+                            msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[작지반려] " +
+                                        "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
+                                        "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
+                                        "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
+                                        "Worksheet#: " + _gv1.Rows[row.Index].Cells["WorksheetIdx"].Value.ToString() + ", " +
+                                        "Rejected Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
+                                        "Rejected by " + UserInfo.Userfullname.ToString() + "\n" +
+                                         "Comment: " + txtCommentTD.Text.ToString()
+                                        );
                         }
                     }
                     else if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader==1)     // 개발 총괄
@@ -1601,6 +1634,23 @@ namespace Dev.Pattern
                             __main__.lblRows.Text = "Rejected Worksheet by Admin";
                             RadMessageBox.Show("Rejected Worksheet by Admin.", "Rejected");
                         }
+
+                        // 오더핸들러 전화번호가 등록되어 있는 경우
+                        DataRow dr = Dev.Options.Data.CommonData.GetPhoneNumberbyOrderID(Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value.ToString()));
+                        if (dr != null && !string.IsNullOrEmpty(dr["Phone"].ToString().Trim()))
+                        {
+                            // 결과 메시지 송신
+                            Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
+                            msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[작지반려] " +
+                                        "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
+                                        "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
+                                        "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
+                                        "Worksheet#: " + _gv1.Rows[row.Index].Cells["WorksheetIdx"].Value.ToString() + ", " +
+                                        "Rejected Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
+                                        "Rejected by " + UserInfo.Userfullname.ToString() + "\n" +
+                                         "Comment: " + txtCommentTD.Text.ToString()
+                                        );
+                        }
                     }
                     else if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader != 1)     // 사무실
                     {
@@ -1611,6 +1661,23 @@ namespace Dev.Pattern
                         {
                             __main__.lblRows.Text = "Rejected Worksheet by Office";
                             RadMessageBox.Show("Rejected Worksheet by Office.", "Rejected");
+                        }
+
+                        // 오더핸들러 전화번호가 등록되어 있는 경우
+                        DataRow dr = Dev.Options.Data.CommonData.GetPhoneNumberbyOrderID(Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value.ToString()));
+                        if (dr != null && !string.IsNullOrEmpty(dr["Phone"].ToString().Trim()))
+                        {
+                            // 결과 메시지 송신
+                            Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
+                            msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[작지반려] " +
+                                        "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
+                                        "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
+                                        "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
+                                        "Worksheet#: " + _gv1.Rows[row.Index].Cells["WorksheetIdx"].Value.ToString() + ", " +
+                                        "Rejected Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
+                                        "Rejected by " + UserInfo.Userfullname.ToString() + "\n" +
+                                         "Comment: " + txtCommentTD.Text.ToString()
+                                        );
                         }
                     }
 

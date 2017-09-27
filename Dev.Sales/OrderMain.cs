@@ -101,6 +101,7 @@ namespace Dev.Sales
             
             GV3_CreateColumn(gvOperation);  // 공정 제목
             GV4_CreateColumn(gvProduction); // 현황 
+            GV4_LayoutSetting(gvProduction);    // 현황 상태에서 따른 행스타일 변경 
             GV5_CreateColumn(gvFabric); // 원단수량
             GV6_CreateColumn(gvWorksheet); // 작업지시서
 
@@ -196,21 +197,21 @@ namespace Dev.Sales
             menuItem2 = new RadMenuItem("Copy Order");
             menuItem2.Click += new EventHandler(mnuCopyOrder_Click);
             menuItem2.Image = Properties.Resources.copy;
-            menuItem2.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.C));
+            //menuItem2.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.C));
 
             // 오더캔슬
             menuItem3 = new RadMenuItem("Cancel Order");
             menuItem3.Image = Properties.Resources.cancel;
             menuItem3.ForeColor = Color.Red;
             menuItem3.Click += new EventHandler(mnuCancelOrder_Click);
-            menuItem3.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.D));
+            //menuItem3.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.D));
 
             // 오더종료
             menuItem4 = new RadMenuItem("Close Order");
             menuItem4.Image = Properties.Resources.locked;
             menuItem4.ForeColor = Color.Blue;
             menuItem4.Click += new EventHandler(mnuCloseOrder_Click);
-            menuItem4.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.C));
+            //menuItem4.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.C));
 
             // 패턴
             mnuPattern = new RadMenuItem("Request Pattern");
@@ -219,7 +220,7 @@ namespace Dev.Sales
             mnuPattern.Click += new EventHandler(mnuPattern_Click);
 
             // 작업지시서
-            mnuWorksheet = new RadMenuItem("Edit Worksheets");
+            mnuWorksheet = new RadMenuItem("Request Worksheets");
             // mnuShipment.Image = Properties.Resources._20_20;
             mnuWorksheet.Shortcuts.Add(new RadShortcut(Keys.Alt, Keys.S));
             mnuWorksheet.Click += new EventHandler(mnuWorksheet_Click);
@@ -937,7 +938,7 @@ namespace Dev.Sales
             cOperIdx.DataSource = lstOperation;
             cOperIdx.DisplayMember = "Contents";
             cOperIdx.ValueMember = "CodeIdx";
-            cOperIdx.Width = 70;
+            cOperIdx.Width = 60;
             cOperIdx.TextAlignment = ContentAlignment.MiddleLeft;
             cOperIdx.HeaderText = "Operation";
             cOperIdx.ReadOnly = true;
@@ -946,7 +947,7 @@ namespace Dev.Sales
             GridViewHyperlinkColumn  cWorkIdx = new GridViewHyperlinkColumn();
             cWorkIdx.Name = "WorkOrderIdx";
             cWorkIdx.FieldName = "WorkOrderIdx";
-            cWorkIdx.Width = 100;
+            cWorkIdx.Width = 90;
             cWorkIdx.TextAlignment = ContentAlignment.MiddleCenter;
             cWorkIdx.HeaderText = "Work ID";
             cWorkIdx.ReadOnly = true;
@@ -964,8 +965,8 @@ namespace Dev.Sales
             gv.Columns.Add(status);
 
             GridViewTextBoxColumn cTitle = new GridViewTextBoxColumn();
-            cTitle.Name = "Title";
-            cTitle.FieldName = "Title";
+            cTitle.Name = "Title2";
+            cTitle.FieldName = "Title2";
             cTitle.Width = 300;
             cTitle.TextAlignment = ContentAlignment.MiddleLeft;
             cTitle.HeaderText = "Title";
@@ -1188,11 +1189,72 @@ namespace Dev.Sales
             #endregion
 
         }
+        /// <summary>
+        /// 생산현황 그리드뷰 설정
+        /// </summary>
+        /// <param name="gv">그리드뷰</param>
+        private void GV4_LayoutSetting(RadGridView gv)
+        {
+            #region Config Gridview 
+
+            gv.Dock = DockStyle.Fill;
+            gv.AllowAddNewRow = false;
+            gv.AllowCellContextMenu = true;
+            gv.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.None;
+            gv.AllowColumnHeaderContextMenu = false;
+            gv.EnableGrouping = false;
+            gv.MasterView.TableHeaderRow.MinHeight = 50;
+
+            gv.GridViewElement.PagingPanelElement.NumericButtonsCount = 15;
+            gv.GridViewElement.PagingPanelElement.ShowFastBackButton = false;
+            gv.GridViewElement.PagingPanelElement.ShowFastForwardButton = false;
+
+            gv.MultiSelect = true;
+
+            #endregion
+
+            #region Config Cell Conditions: 오더상태에 따라 행스타일 변경
+
+            //// 캔슬오더 색상변경
+            Font f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
+            ConditionalFormattingObject obj = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "4", "", true);
+            obj.RowForeColor = Color.Black;
+            obj.RowBackColor = Color.FromArgb(255, 255, 230, 230);
+            obj.RowFont = f;
+            gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj);
+
+            //// 마감오더 색상변경
+            f = new Font(new FontFamily("Segoe UI"), 8.25f);
+            ConditionalFormattingObject obj2 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "3", "", true);
+            obj2.RowForeColor = Color.Black;
+            obj2.RowBackColor = Color.FromArgb(255, 220, 255, 240);
+            obj2.RowFont = f;
+            gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj2);
+
+            f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
+            ConditionalFormattingObject obj4 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "2", "", true);
+            obj4.RowForeColor = Color.Black;
+            obj4.RowBackColor = Color.PapayaWhip;
+            obj4.RowFont = f;
+            gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj4);
+
+            //// 입력실수 색상변경
+            f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
+            ConditionalFormattingObject obj5 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "14", "", true);
+            obj5.RowForeColor = Color.Black;
+            obj5.RowBackColor = Color.FromArgb(255, 255, 210, 210);
+            obj5.RowFont = f;
+            gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj5);
+
+            #endregion
+
+        }
+
 
         #endregion
 
         #region 4. 컨텍스트 메뉴 기능
-        
+
         private void mnuInspecting_Click(object sender, EventArgs e)
         {
             try
@@ -2196,16 +2258,15 @@ namespace Dev.Sales
                         RadMessageBox.Show("Please input the file number", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
                         return;
                     }
-                    if (Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx", 0f) <= 0.0)
+                    if (Int.Members.GetCurrentRow(_gv1, "OrderQty", 0f) <= 0.0)
                     {
-                        RadMessageBox.Show("Please input the Order Amount", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        RadMessageBox.Show("Please input the Order Q'ty", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
                         return;
                     }
 
                     // 파일번호, 오더수량, 금액이 정상 입력되어 있으면 
                     if (!string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")) &&
-                        Int.Members.GetCurrentRow(_gv1, "OrderQty") > 0 &&
-                        Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f) > 0f)
+                        Int.Members.GetCurrentRow(_gv1, "OrderQty") > 0 )
                     {
                         if (RadMessageBox.Show("Do you want to copy?", "Confirm", MessageBoxButtons.YesNo, RadMessageIcon.Question)
                             == DialogResult.Yes)
@@ -2238,11 +2299,11 @@ namespace Dev.Sales
                             RadMessageBox.Show("Please input the order Q'ty");
                             return;
                         }
-                        if (Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f) <= 0f)
-                        {
-                            RadMessageBox.Show("Please input the order amount");
-                            return;
-                        }
+                        //if (Int.Members.GetCurrentRow(_gv1, "OrderAmount", 0f) <= 0f)
+                        //{
+                        //    RadMessageBox.Show("Please input the order amount");
+                        //    return;
+                        //}
                     }
                 }
 
@@ -2446,6 +2507,7 @@ namespace Dev.Sales
             lstProduction.Add(new CodeContents(11, CommonValues.DicWorkOrderStatus[11], ""));
             lstProduction.Add(new CodeContents(12, CommonValues.DicWorkOrderStatus[12], ""));
             lstProduction.Add(new CodeContents(13, CommonValues.DicWorkOrderStatus[13], ""));
+            lstProduction.Add(new CodeContents(14, CommonValues.DicWorkOrderStatus[14], ""));
         }
         
         /// <summary>
@@ -2676,14 +2738,14 @@ namespace Dev.Sales
             if (mnuDel != null) mnuDel.Shortcuts.Clear();
             if (mnuHide != null) mnuHide.Shortcuts.Clear();
             if (mnuShow != null) mnuShow.Shortcuts.Clear();
-            if (menuItem2 != null) menuItem2.Shortcuts.Clear();
-            if (menuItem3 != null) menuItem3.Shortcuts.Clear();
+            //if (menuItem2 != null) menuItem2.Shortcuts.Clear();
+            //if (menuItem3 != null) menuItem3.Shortcuts.Clear();
             if (menuItem4 != null) menuItem4.Shortcuts.Clear();
             if (mnuWorksheet != null) mnuWorksheet.Shortcuts.Clear();
-            if (mnuCutting != null) mnuCutting.Shortcuts.Clear();
-            if (mnuOutsourcing != null) mnuOutsourcing.Shortcuts.Clear();
-            if (mnuSewing != null) mnuSewing.Shortcuts.Clear();
-            if (mnuInspecting != null) mnuInspecting.Shortcuts.Clear();
+            //if (mnuCutting != null) mnuCutting.Shortcuts.Clear();
+            //if (mnuOutsourcing != null) mnuOutsourcing.Shortcuts.Clear();
+            //if (mnuSewing != null) mnuSewing.Shortcuts.Clear();
+            //if (mnuInspecting != null) mnuInspecting.Shortcuts.Clear();
         }
 
         /// <summary>
@@ -2964,7 +3026,7 @@ namespace Dev.Sales
                 CheckAuth.ShowMessage(_mode_);
             else
             {
-                if (UserInfo.CenterIdx==4 && UserInfo.DeptIdx==11) // 개발실 and 캐드실 별도 분리 
+                if (UserInfo.CenterIdx == 4 && UserInfo.DeptIdx == 11) // 개발실 and 캐드실 별도 분리 
                 {
                     // Worksheet일 경우, 
                     if (e.Cell.Value.ToString().Trim().Length > 12)
@@ -2977,7 +3039,7 @@ namespace Dev.Sales
                             form.MdiParent = this.MdiParent;
                             form.Show();
                         }
-                        
+
                     }
                 }
                 else
@@ -3056,13 +3118,10 @@ namespace Dev.Sales
                         form.MdiParent = this.MdiParent;
                         form.Show();
                     }
-                    
+
                 }
-            }
-
-            
+            }   
         }
-
         
         /// <summary>
         /// 컨텍스트 메뉴 업데이트 (메인) 
@@ -3084,7 +3143,7 @@ namespace Dev.Sales
             {
                 contextMenu.Items[6].Enabled = true;
                 contextMenu.Items[6].Shortcuts.Clear();
-                contextMenu.Items[6].Shortcuts.Add(new RadShortcut(Keys.Control, Keys.C));
+                // contextMenu.Items[6].Shortcuts.Add(new RadShortcut(Keys.Control, Keys.C));
             }
         }
 

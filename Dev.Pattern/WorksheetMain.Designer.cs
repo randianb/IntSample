@@ -405,7 +405,8 @@
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.txtCommentTD, 0, 3);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
@@ -413,7 +414,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(367, 745);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(375, 745);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // radGroupBox3
@@ -426,7 +427,7 @@
             this.radGroupBox3.HeaderText = "Attached Files";
             this.radGroupBox3.Location = new System.Drawing.Point(3, 3);
             this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(361, 294);
+            this.radGroupBox3.Size = new System.Drawing.Size(369, 294);
             this.radGroupBox3.TabIndex = 2;
             this.radGroupBox3.Text = "Attached Files";
             // 
@@ -457,7 +458,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(357, 274);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(365, 274);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // linkLabel4
@@ -466,7 +467,7 @@
             this.linkLabel4.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel4.Location = new System.Drawing.Point(3, 90);
             this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(351, 30);
+            this.linkLabel4.Size = new System.Drawing.Size(359, 30);
             this.linkLabel4.TabIndex = 9;
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = "linkLabel4";
@@ -479,7 +480,7 @@
             this.linkLabel3.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel3.Location = new System.Drawing.Point(3, 60);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(351, 30);
+            this.linkLabel3.Size = new System.Drawing.Size(359, 30);
             this.linkLabel3.TabIndex = 8;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "linkLabel3";
@@ -492,7 +493,7 @@
             this.linkLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel2.Location = new System.Drawing.Point(3, 30);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(351, 30);
+            this.linkLabel2.Size = new System.Drawing.Size(359, 30);
             this.linkLabel2.TabIndex = 7;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "linkLabel2";
@@ -506,7 +507,7 @@
             this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel1.Location = new System.Drawing.Point(3, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(351, 30);
+            this.linkLabel1.Size = new System.Drawing.Size(359, 30);
             this.linkLabel1.TabIndex = 11;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "linkLabel1";
@@ -580,7 +581,7 @@
             this.txtComments.Location = new System.Drawing.Point(3, 303);
             this.txtComments.Multiline = true;
             this.txtComments.Name = "txtComments";
-            this.txtComments.Size = new System.Drawing.Size(361, 120);
+            this.txtComments.Size = new System.Drawing.Size(369, 120);
             this.txtComments.TabIndex = 12;
             // 
             // tableLayoutPanel4
@@ -594,16 +595,16 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(361, 46);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(369, 46);
             this.tableLayoutPanel4.TabIndex = 13;
             // 
             // btnCancel
             // 
             this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCancel.ForeColor = System.Drawing.Color.Red;
-            this.btnCancel.Location = new System.Drawing.Point(183, 3);
+            this.btnCancel.Location = new System.Drawing.Point(187, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(175, 40);
+            this.btnCancel.Size = new System.Drawing.Size(179, 40);
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Visible = false;
@@ -653,7 +654,7 @@
             this.txtCommentTD.Location = new System.Drawing.Point(3, 481);
             this.txtCommentTD.Multiline = true;
             this.txtCommentTD.Name = "txtCommentTD";
-            this.txtCommentTD.Size = new System.Drawing.Size(361, 116);
+            this.txtCommentTD.Size = new System.Drawing.Size(369, 116);
             this.txtCommentTD.TabIndex = 14;
             // 
             // toolTabStrip4

@@ -149,7 +149,16 @@ namespace Dev.Controller
 
             return row;
         }
-         
+
+        public static DataRow Insert(int OrderIdx, string WorkOrderIdx, int TDName,
+            DateTime InspRequestedDate, string Result, string Action, int Reorder, int Handler)
+        {
+            DataRow row = Data.InspectingData.Insert(OrderIdx, WorkOrderIdx, TDName, InspRequestedDate,
+                                                Result, Action, Reorder, Handler);
+
+            return row;
+        }
+
         public static DataSet Getlist(Dictionary<CommonValues.KeyName, int> SearchKey,
                                     Dictionary<CommonValues.KeyName, string> SearchString)
         {

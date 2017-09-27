@@ -65,7 +65,97 @@ namespace Dev.Options.Data
                 return null;
             }
         }
-        
+
+        /// <summary>
+        /// 유저 전화번호 확인 (유저번호로 검색)
+        /// </summary>
+        public static DataRow GetPhoneNumber(int UserIdx)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_Users_Get";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@UserIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@UserIdx"].Value = UserIdx;
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if (_dr != null && _ds.Tables[0].Rows.Count > 0)
+            {
+                _dr = _ds.Tables[0].Rows[0]; 
+                return _dr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 유저 전화번호 확인 (오더번호로 검색) 
+        /// </summary>
+        public static DataRow GetPhoneNumberbyOrderID(int OrderIdx)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_Users_Get2";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                _dr = _ds.Tables[0].Rows[0];
+                return _dr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         #endregion  
     }
 }

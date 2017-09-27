@@ -446,7 +446,7 @@ namespace Dev.Data
                 _conn.Open();
 
                 _cmd.CommandText = @"update Worksheet set ConfirmDate=dbo.GetLocalDate(default), ConfirmUser=@confirmed, CommentTD=@CommentTD, 
-                                     status=12 where idx=@Idx
+                                     status=10 where idx=@Idx
                                     ";
                 _cmd.CommandType = CommandType.Text;
                 _cmd.Connection = _conn;
@@ -491,7 +491,7 @@ namespace Dev.Data
                 _conn.Open();
 
                 _cmd.CommandText = @"update Worksheet set RejectDate=dbo.GetLocalDate(default), Rejected=@Rejected, CommentTD=@CommentTD,
-                                     status=13 where idx=@Idx";
+                                     status=11 where idx=@Idx";
                 _cmd.CommandType = CommandType.Text;
                 _cmd.Connection = _conn;
 
@@ -622,7 +622,7 @@ namespace Dev.Data
                 _conn.Open();
 
                 _cmd.CommandText = @"update Worksheet set ConfirmDateLast=dbo.GetLocalDate(default), ConfirmUserLast=@confirmed, CommentTD=@CommentTD, 
-                                     status=10 where idx=@Idx
+                                     status=12 where idx=@Idx
                                     ";
                 _cmd.CommandType = CommandType.Text;
                 _cmd.Connection = _conn;
@@ -667,7 +667,7 @@ namespace Dev.Data
                 _conn.Open();
 
                 _cmd.CommandText = @"update Worksheet set RejectDate=dbo.GetLocalDate(default), Rejected=@Rejected, CommentTD=@CommentTD,
-                                     status=11 where idx=@Idx";
+                                     status=13 where idx=@Idx";
                 _cmd.CommandType = CommandType.Text;
                 _cmd.Connection = _conn;
 

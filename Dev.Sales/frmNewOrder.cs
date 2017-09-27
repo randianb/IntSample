@@ -51,10 +51,10 @@ namespace Dev.Sales
         {
             try
             {
-                if (Convert.ToInt32(ddlDept.SelectedValue)<=0 || Convert.ToInt32(ddlCust.SelectedValue) <= 0 ||
-                    string.IsNullOrWhiteSpace(txtStyleno.Text))
+                if (Convert.ToInt32(ddlDept.SelectedValue)<=0 || Convert.ToInt32(ddlCust.SelectedValue) <= 0 || Convert.ToInt32(ddlSizeGroup.SelectedValue) <= 0 ||
+                    string.IsNullOrWhiteSpace(txtStyleno.Text) || string.IsNullOrWhiteSpace(txtFileno.Text))
                 {
-                    RadMessageBox.Show("Please input the Department / Date / Buyer / Brand / Style#", "Validation Warning", MessageBoxButtons.OK,
+                    RadMessageBox.Show("Please input the Department / Date / Buyer / SizeGroup / File# / Style#", "Validation Warning", MessageBoxButtons.OK,
                         RadMessageIcon.Error);
                     return;     
                 }
@@ -64,14 +64,14 @@ namespace Dev.Sales
                     dtIssueDate.Value, 
                     Convert.ToInt32(ddlCust.SelectedValue),  
                     txtPono.Text, txtStyleno.Text, 
-                    txtSeason.Text, txtDesc.Text, dtDelivery.Value,
-                    Convert.ToInt32(ddlPrinting.SelectedValue), 
-                    Convert.ToInt32(ddlEmb1.SelectedValue), 
-                    Convert.ToInt32(ddlEmb2.SelectedValue),
+                    "", txtDesc.Text, dtDelivery.Value, // txtSeason.Text
+                    0, 
+                    0, 
+                    0,
                     Convert.ToInt32(ddlSizeGroup.SelectedValue),
                     Convert.ToInt32(ddlSewThread.SelectedValue),
-                    Convert.ToInt32(txtQty.Value), Convert.ToDouble(txtUprice.Value),
-                    Convert.ToDouble(txtAmount.Value), txtRemark.Text, 
+                    Convert.ToInt32(txtQty.Value), 0f, // Convert.ToDouble(txtUprice.Value),
+                    0f, txtRemark.Text, // Convert.ToDouble(txtAmount.Value),
                     DateTime.Now, DateTime.Now, 
                     Convert.ToInt32(ddlHandler.SelectedValue));
                     
@@ -133,20 +133,20 @@ namespace Dev.Sales
                                             Convert.ToInt32(row["Classification"])));
             }
 
-            // 나염업체
-            embName1.Add(new CustomerName(0, "", 0));
-            embName2.Add(new CustomerName(0, "", 0));
-            _dt = CommonController.Getlist(CommonValues.KeyName.EmbelishId1).Tables[0];
+            //// 나염업체
+            //embName1.Add(new CustomerName(0, "", 0));
+            //embName2.Add(new CustomerName(0, "", 0));
+            //_dt = CommonController.Getlist(CommonValues.KeyName.EmbelishId1).Tables[0];
 
-            foreach (DataRow row in _dt.Rows)
-            {
-                embName1.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
-                                            row["CustName"].ToString(),
-                                            Convert.ToInt32(row["Classification"])));
-                embName2.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
-                                            row["CustName"].ToString(),
-                                            Convert.ToInt32(row["Classification"])));
-            }
+            //foreach (DataRow row in _dt.Rows)
+            //{
+            //    embName1.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
+            //                                row["CustName"].ToString(),
+            //                                Convert.ToInt32(row["Classification"])));
+            //    embName2.Add(new CustomerName(Convert.ToInt32(row["CustIdx"]),
+            //                                row["CustName"].ToString(),
+            //                                Convert.ToInt32(row["Classification"])));
+            //}
 
 
             // 사이즈 그룹 데이터로딩 후, 데이터테이블에 추가하고 바인딩해준다 bindingSourceSizeGroup 
@@ -178,13 +178,13 @@ namespace Dev.Sales
                                             row["Classification"].ToString()));
             }
 
-            // lstIsPrinting 
-            lstIsPrinting.Clear();
-            lstIsPrinting = codeName.FindAll(
-                delegate (CodeContents code)
-                {
-                    return code.CodeIdx == 0 || code.Classification == "IsPrinting";
-                });
+            //// lstIsPrinting 
+            //lstIsPrinting.Clear();
+            //lstIsPrinting = codeName.FindAll(
+            //    delegate (CodeContents code)
+            //    {
+            //        return code.CodeIdx == 0 || code.Classification == "IsPrinting";
+            //    });
             
             // Sewthread
             //lstSewthread.Add(new CustomerName(0, "", 0));
@@ -236,30 +236,30 @@ namespace Dev.Sales
             ddlCust.DropDownHeight = CommonValues.DDL_DropDownHeight;
 
             
-            // 나염
-            ddlEmb1.DataSource = embName1;
-            ddlEmb1.DisplayMember = "CustName";
-            ddlEmb1.ValueMember = "CustIdx";
-            ddlEmb1.DefaultItemsCountInDropDown = CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlEmb1.DropDownHeight = CommonValues.DDL_DropDownHeight;
+            //// 나염
+            //ddlEmb1.DataSource = embName1;
+            //ddlEmb1.DisplayMember = "CustName";
+            //ddlEmb1.ValueMember = "CustIdx";
+            //ddlEmb1.DefaultItemsCountInDropDown = CommonValues.DDL_DefaultItemsCountInDropDown;
+            //ddlEmb1.DropDownHeight = CommonValues.DDL_DropDownHeight;
 
-            // 나염
-            ddlEmb2.DataSource = embName2;
-            ddlEmb2.DisplayMember = "CustName";
-            ddlEmb2.ValueMember = "CustIdx";
-            ddlEmb2.DefaultItemsCountInDropDown = CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlEmb2.DropDownHeight = CommonValues.DDL_DropDownHeight;
+            //// 나염
+            //ddlEmb2.DataSource = embName2;
+            //ddlEmb2.DisplayMember = "CustName";
+            //ddlEmb2.ValueMember = "CustIdx";
+            //ddlEmb2.DefaultItemsCountInDropDown = CommonValues.DDL_DefaultItemsCountInDropDown;
+            //ddlEmb2.DropDownHeight = CommonValues.DDL_DropDownHeight;
                                     
             this.ddlSizeGroup.AutoSizeDropDownToBestFit = true;
             this.ddlSizeGroup.AutoSizeDropDownHeight = true;
             this.ddlSizeGroup.SelectedIndex = 0; 
 
-            // lstIsPrinting
-            ddlPrinting.DataSource = lstIsPrinting;
-            ddlPrinting.DisplayMember = "Contents";
-            ddlPrinting.ValueMember = "CodeIdx";
-            ddlPrinting.DefaultItemsCountInDropDown = CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlPrinting.DropDownHeight = CommonValues.DDL_DropDownHeight;
+            //// lstIsPrinting
+            //ddlPrinting.DataSource = lstIsPrinting;
+            //ddlPrinting.DisplayMember = "Contents";
+            //ddlPrinting.ValueMember = "CodeIdx";
+            //ddlPrinting.DefaultItemsCountInDropDown = CommonValues.DDL_DefaultItemsCountInDropDown;
+            //ddlPrinting.DropDownHeight = CommonValues.DDL_DropDownHeight;
             
             // ddlSewThread
             ddlSewThread.AutoSizeDropDownToBestFit = true;
@@ -279,17 +279,27 @@ namespace Dev.Sales
         private void frmNewOrder_Load(object sender, EventArgs e)
         {
             DataLoading_DDL(); 
-            Config_DropDownList(); 
+            Config_DropDownList();
+
+            // 영업부 입력시 기본 값 셋팅 
+            if (UserInfo.ReportNo < 9)
+            {
+                ddlDept.SelectedValue = UserInfo.DeptIdx;
+                ddlHandler.SelectedValue = UserInfo.Idx;
+
+                if (CommonValues.NewOrderBuyerIdx > 0) ddlCust.SelectedValue = CommonValues.NewOrderBuyerIdx; 
+            }
+                
         }
         
         private void txtQty_ValueChanged(object sender, EventArgs e)
         {
-            txtAmount.Value = (txtQty.Value * txtUprice.Value);
+            // txtAmount.Value = (txtQty.Value * txtUprice.Value);
         }
 
         private void txtUprice_ValueChanged(object sender, EventArgs e)
         {
-            txtAmount.Value = (txtQty.Value * txtUprice.Value);
+            // txtAmount.Value = (txtQty.Value * txtUprice.Value);
         }
 
         private void btnCreateFileno_Click(object sender, EventArgs e)

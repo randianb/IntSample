@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn1 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn2 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn5 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn3 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn4 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn6 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn7 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn8 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition9 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition10 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition11 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition12 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition13 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition14 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -57,10 +57,10 @@
             this.ddlStatus = new Telerik.WinControls.UI.RadDropDownList();
             this.lblTime = new Telerik.WinControls.UI.RadLabel();
             this.btnSearch = new Telerik.WinControls.UI.RadButton();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.txtFileno = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.txtStyle = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.gvOrderActual = new Telerik.WinControls.UI.RadGridView();
             this.toolTabStrip3 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
@@ -147,10 +147,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFileno)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStyle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderActual)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderActual.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).BeginInit();
@@ -375,22 +375,6 @@
             this.btnSearch.Text = "Search";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // radLabel5
-            // 
-            this.radLabel5.Location = new System.Drawing.Point(403, 3);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(56, 18);
-            this.radLabel5.TabIndex = 3;
-            this.radLabel5.Text = "File#/PO#";
-            // 
-            // radLabel6
-            // 
-            this.radLabel6.Location = new System.Drawing.Point(550, 3);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(37, 18);
-            this.radLabel6.TabIndex = 3;
-            this.radLabel6.Text = "Style#";
-            // 
             // txtFileno
             // 
             this.txtFileno.Location = new System.Drawing.Point(403, 23);
@@ -398,12 +382,28 @@
             this.txtFileno.Size = new System.Drawing.Size(141, 20);
             this.txtFileno.TabIndex = 8;
             // 
+            // radLabel5
+            // 
+            this.radLabel5.Location = new System.Drawing.Point(403, 3);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(56, 14);
+            this.radLabel5.TabIndex = 3;
+            this.radLabel5.Text = "File#/PO#";
+            // 
             // txtStyle
             // 
             this.txtStyle.Location = new System.Drawing.Point(550, 23);
             this.txtStyle.Name = "txtStyle";
             this.txtStyle.Size = new System.Drawing.Size(136, 20);
             this.txtStyle.TabIndex = 9;
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.Location = new System.Drawing.Point(550, 3);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(37, 14);
+            this.radLabel6.TabIndex = 3;
+            this.radLabel6.Text = "Style#";
             // 
             // gvOrderActual
             // 
@@ -419,89 +419,89 @@
             // 
             this.gvOrderActual.MasterTemplate.AllowAddNewRow = false;
             this.gvOrderActual.MasterTemplate.AutoGenerateColumns = false;
-            gridViewDecimalColumn1.DataType = typeof(int);
-            gridViewDecimalColumn1.EnableExpressionEditor = false;
-            gridViewDecimalColumn1.FieldName = "Idx";
-            gridViewDecimalColumn1.HeaderText = "Idx";
-            gridViewDecimalColumn1.IsAutoGenerated = true;
-            gridViewDecimalColumn1.Name = "Idx";
-            gridViewDecimalColumn1.ReadOnly = true;
-            gridViewDecimalColumn1.Width = 77;
-            gridViewDateTimeColumn1.EnableExpressionEditor = false;
-            gridViewDateTimeColumn1.FieldName = "Indate";
-            gridViewDateTimeColumn1.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            gridViewDateTimeColumn1.HeaderText = "Indate";
-            gridViewDateTimeColumn1.Name = "Indate";
-            gridViewDateTimeColumn1.Width = 118;
-            gridViewTextBoxColumn1.EnableExpressionEditor = false;
-            gridViewTextBoxColumn1.FieldName = "Pono";
-            gridViewTextBoxColumn1.HeaderText = "Pono";
-            gridViewTextBoxColumn1.Name = "Pono";
-            gridViewTextBoxColumn1.Width = 154;
-            gridViewTextBoxColumn2.EnableExpressionEditor = false;
-            gridViewTextBoxColumn2.FieldName = "Styleno";
-            gridViewTextBoxColumn2.HeaderText = "Styleno";
-            gridViewTextBoxColumn2.Name = "Styleno";
-            gridViewTextBoxColumn2.Width = 180;
-            gridViewTextBoxColumn3.EnableExpressionEditor = false;
-            gridViewTextBoxColumn3.FieldName = "Season";
-            gridViewTextBoxColumn3.HeaderText = "Season";
-            gridViewTextBoxColumn3.Name = "Season";
-            gridViewTextBoxColumn3.Width = 98;
-            gridViewTextBoxColumn4.EnableExpressionEditor = false;
-            gridViewTextBoxColumn4.FieldName = "Description";
-            gridViewTextBoxColumn4.HeaderText = "Description";
-            gridViewTextBoxColumn4.Name = "Description";
-            gridViewTextBoxColumn4.Width = 136;
-            gridViewDateTimeColumn2.EnableExpressionEditor = false;
-            gridViewDateTimeColumn2.FieldName = "DeliveryDate";
-            gridViewDateTimeColumn2.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            gridViewDateTimeColumn2.HeaderText = "DeliveryDate";
-            gridViewDateTimeColumn2.IsAutoGenerated = true;
-            gridViewDateTimeColumn2.Name = "DeliveryDate";
-            gridViewDateTimeColumn2.Width = 105;
-            gridViewTextBoxColumn5.EnableExpressionEditor = false;
-            gridViewTextBoxColumn5.Expression = "GETMONTH(DeliveryDate)";
-            gridViewTextBoxColumn5.HeaderText = "DelMon";
-            gridViewTextBoxColumn5.IsVisible = false;
-            gridViewTextBoxColumn5.Name = "DelMon";
-            gridViewTextBoxColumn5.ReadOnly = true;
-            gridViewTextBoxColumn5.Width = 128;
-            gridViewDecimalColumn2.DataType = typeof(int);
-            gridViewDecimalColumn2.EnableExpressionEditor = false;
-            gridViewDecimalColumn2.FieldName = "OrderQty";
-            gridViewDecimalColumn2.HeaderText = "OrderQty";
-            gridViewDecimalColumn2.Name = "OrderQty";
-            gridViewDecimalColumn2.Width = 100;
-            gridViewDecimalColumn3.DataType = typeof(double);
-            gridViewDecimalColumn3.EnableExpressionEditor = false;
-            gridViewDecimalColumn3.FieldName = "OrderPrice";
-            gridViewDecimalColumn3.HeaderText = "OrderPrice";
-            gridViewDecimalColumn3.Name = "OrderPrice";
-            gridViewDecimalColumn3.Width = 82;
-            gridViewDecimalColumn4.DataType = typeof(double);
-            gridViewDecimalColumn4.EnableExpressionEditor = false;
-            gridViewDecimalColumn4.FieldName = "OrderAmount";
-            gridViewDecimalColumn4.HeaderText = "OrderAmount";
-            gridViewDecimalColumn4.Name = "OrderAmount";
-            gridViewDecimalColumn4.Width = 80;
+            gridViewDecimalColumn5.DataType = typeof(int);
+            gridViewDecimalColumn5.EnableExpressionEditor = false;
+            gridViewDecimalColumn5.FieldName = "Idx";
+            gridViewDecimalColumn5.HeaderText = "Idx";
+            gridViewDecimalColumn5.IsAutoGenerated = true;
+            gridViewDecimalColumn5.Name = "Idx";
+            gridViewDecimalColumn5.ReadOnly = true;
+            gridViewDecimalColumn5.Width = 77;
+            gridViewDateTimeColumn3.EnableExpressionEditor = false;
+            gridViewDateTimeColumn3.FieldName = "Indate";
+            gridViewDateTimeColumn3.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            gridViewDateTimeColumn3.HeaderText = "Indate";
+            gridViewDateTimeColumn3.Name = "Indate";
+            gridViewDateTimeColumn3.Width = 118;
+            gridViewTextBoxColumn6.EnableExpressionEditor = false;
+            gridViewTextBoxColumn6.FieldName = "Pono";
+            gridViewTextBoxColumn6.HeaderText = "Pono";
+            gridViewTextBoxColumn6.Name = "Pono";
+            gridViewTextBoxColumn6.Width = 154;
+            gridViewTextBoxColumn7.EnableExpressionEditor = false;
+            gridViewTextBoxColumn7.FieldName = "Styleno";
+            gridViewTextBoxColumn7.HeaderText = "Styleno";
+            gridViewTextBoxColumn7.Name = "Styleno";
+            gridViewTextBoxColumn7.Width = 180;
+            gridViewTextBoxColumn8.EnableExpressionEditor = false;
+            gridViewTextBoxColumn8.FieldName = "Season";
+            gridViewTextBoxColumn8.HeaderText = "Season";
+            gridViewTextBoxColumn8.Name = "Season";
+            gridViewTextBoxColumn8.Width = 98;
+            gridViewTextBoxColumn9.EnableExpressionEditor = false;
+            gridViewTextBoxColumn9.FieldName = "Description";
+            gridViewTextBoxColumn9.HeaderText = "Description";
+            gridViewTextBoxColumn9.Name = "Description";
+            gridViewTextBoxColumn9.Width = 136;
+            gridViewDateTimeColumn4.EnableExpressionEditor = false;
+            gridViewDateTimeColumn4.FieldName = "DeliveryDate";
+            gridViewDateTimeColumn4.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            gridViewDateTimeColumn4.HeaderText = "DeliveryDate";
+            gridViewDateTimeColumn4.IsAutoGenerated = true;
+            gridViewDateTimeColumn4.Name = "DeliveryDate";
+            gridViewDateTimeColumn4.Width = 105;
+            gridViewTextBoxColumn10.EnableExpressionEditor = false;
+            gridViewTextBoxColumn10.Expression = "GETMONTH(DeliveryDate)";
+            gridViewTextBoxColumn10.HeaderText = "DelMon";
+            gridViewTextBoxColumn10.IsVisible = false;
+            gridViewTextBoxColumn10.Name = "DelMon";
+            gridViewTextBoxColumn10.ReadOnly = true;
+            gridViewTextBoxColumn10.Width = 128;
+            gridViewDecimalColumn6.DataType = typeof(int);
+            gridViewDecimalColumn6.EnableExpressionEditor = false;
+            gridViewDecimalColumn6.FieldName = "OrderQty";
+            gridViewDecimalColumn6.HeaderText = "OrderQty";
+            gridViewDecimalColumn6.Name = "OrderQty";
+            gridViewDecimalColumn6.Width = 100;
+            gridViewDecimalColumn7.DataType = typeof(double);
+            gridViewDecimalColumn7.EnableExpressionEditor = false;
+            gridViewDecimalColumn7.FieldName = "OrderPrice";
+            gridViewDecimalColumn7.HeaderText = "OrderPrice";
+            gridViewDecimalColumn7.Name = "OrderPrice";
+            gridViewDecimalColumn7.Width = 82;
+            gridViewDecimalColumn8.DataType = typeof(double);
+            gridViewDecimalColumn8.EnableExpressionEditor = false;
+            gridViewDecimalColumn8.FieldName = "OrderAmount";
+            gridViewDecimalColumn8.HeaderText = "OrderAmount";
+            gridViewDecimalColumn8.Name = "OrderAmount";
+            gridViewDecimalColumn8.Width = 80;
             this.gvOrderActual.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn1,
-            gridViewDateTimeColumn1,
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewDateTimeColumn2,
-            gridViewTextBoxColumn5,
-            gridViewDecimalColumn2,
-            gridViewDecimalColumn3,
-            gridViewDecimalColumn4});
+            gridViewDecimalColumn5,
+            gridViewDateTimeColumn3,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewDateTimeColumn4,
+            gridViewTextBoxColumn10,
+            gridViewDecimalColumn6,
+            gridViewDecimalColumn7,
+            gridViewDecimalColumn8});
             this.gvOrderActual.MasterTemplate.EnablePaging = true;
             this.gvOrderActual.MasterTemplate.MultiSelect = true;
             this.gvOrderActual.MasterTemplate.PageSize = 50;
             this.gvOrderActual.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvOrderActual.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvOrderActual.MasterTemplate.ViewDefinition = tableViewDefinition8;
             this.gvOrderActual.Name = "gvOrderActual";
             this.gvOrderActual.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvOrderActual.ShowGroupPanel = false;
@@ -532,7 +532,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.twColorSize;
+            this.radDock1.ActiveWindow = this.twStatus;
             this.radDock1.CausesValidation = false;
             this.radDock1.Controls.Add(this.radSplitContainer1);
             this.radDock1.Controls.Add(this.toolTabStrip8);
@@ -571,7 +571,7 @@
             // 
             this.gvColorSize.MasterTemplate.AllowAddNewRow = false;
             this.gvColorSize.MasterTemplate.MultiSelect = true;
-            this.gvColorSize.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvColorSize.MasterTemplate.ViewDefinition = tableViewDefinition9;
             this.gvColorSize.Name = "gvColorSize";
             this.gvColorSize.ShowGroupPanel = false;
             this.gvColorSize.Size = new System.Drawing.Size(1038, 209);
@@ -721,7 +721,7 @@
             // 
             this.gvFabric.MasterTemplate.AllowAddNewRow = false;
             this.gvFabric.MasterTemplate.MultiSelect = true;
-            this.gvFabric.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvFabric.MasterTemplate.ViewDefinition = tableViewDefinition10;
             this.gvFabric.Name = "gvFabric";
             this.gvFabric.ShowGroupPanel = false;
             this.gvFabric.Size = new System.Drawing.Size(868, 209);
@@ -752,7 +752,7 @@
             // 
             this.gvOperation.MasterTemplate.AllowAddNewRow = false;
             this.gvOperation.MasterTemplate.MultiSelect = true;
-            this.gvOperation.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.gvOperation.MasterTemplate.ViewDefinition = tableViewDefinition11;
             this.gvOperation.Name = "gvOperation";
             this.gvOperation.ShowGroupPanel = false;
             this.gvOperation.Size = new System.Drawing.Size(868, 207);
@@ -777,7 +777,7 @@
             // 
             // 
             this.toolTabStrip8.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.toolTabStrip8.SelectedIndex = 0;
+            this.toolTabStrip8.SelectedIndex = 2;
             this.toolTabStrip8.Size = new System.Drawing.Size(397, 815);
             this.toolTabStrip8.SizeInfo.AbsoluteSize = new System.Drawing.Size(397, 257);
             this.toolTabStrip8.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.001849568F);
@@ -801,16 +801,16 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel7, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnSaveData, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnSaveData, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 260F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(395, 765);
             this.tableLayoutPanel2.TabIndex = 1;
@@ -855,7 +855,7 @@
             this.tableLayoutPanel6.Controls.Add(this.chkType229, 1, 10);
             this.tableLayoutPanel6.Controls.Add(this.chkType230, 2, 10);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 77);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 40);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 11;
@@ -1387,7 +1387,7 @@
             // btnSaveData
             // 
             this.btnSaveData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSaveData.Location = new System.Drawing.Point(3, 43);
+            this.btnSaveData.Location = new System.Drawing.Point(3, 303);
             this.btnSaveData.Name = "btnSaveData";
             this.btnSaveData.Size = new System.Drawing.Size(389, 31);
             this.btnSaveData.TabIndex = 3;
@@ -1413,7 +1413,7 @@
             // 
             // 
             this.gvWorksheet.MasterTemplate.AllowAddNewRow = false;
-            this.gvWorksheet.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.gvWorksheet.MasterTemplate.ViewDefinition = tableViewDefinition12;
             this.gvWorksheet.Name = "gvWorksheet";
             this.gvWorksheet.ReadOnly = true;
             this.gvWorksheet.ShowGroupPanel = false;
@@ -1448,7 +1448,7 @@
             this.gvProduction.MasterTemplate.AllowAddNewRow = false;
             this.gvProduction.MasterTemplate.MultiSelect = true;
             this.gvProduction.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvProduction.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.gvProduction.MasterTemplate.ViewDefinition = tableViewDefinition13;
             this.gvProduction.Name = "gvProduction";
             this.gvProduction.ReadOnly = true;
             this.gvProduction.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -1479,7 +1479,7 @@
             // 
             this.gvHistory.MasterTemplate.AllowAddNewRow = false;
             this.gvHistory.MasterTemplate.MultiSelect = true;
-            this.gvHistory.MasterTemplate.ViewDefinition = tableViewDefinition7;
+            this.gvHistory.MasterTemplate.ViewDefinition = tableViewDefinition14;
             this.gvHistory.Name = "gvHistory";
             this.gvHistory.ShowGroupPanel = false;
             this.gvHistory.Size = new System.Drawing.Size(395, 765);
@@ -1612,10 +1612,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFileno)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStyle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderActual.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderActual)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).EndInit();

@@ -650,7 +650,7 @@ namespace Dev.Data
 
         // 리포트 (재고현황)
         public static DataSet GetlistStock(Dictionary<CommonValues.KeyName, string> SearchString,
-                                        Dictionary<CommonValues.KeyName, int> SearchKey, string indate)
+                                        Dictionary<CommonValues.KeyName, int> SearchKey, string indate, string indateTo)
         {
             try
             {
@@ -703,7 +703,10 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@indate", SqlDbType.NVarChar, 10);
                 _cmd.Parameters["@indate"].Value = (indate == "2000-01-01" ? "" : indate);
-                
+
+                _cmd.Parameters.Add("@indateTo", SqlDbType.NVarChar, 10);
+                _cmd.Parameters["@indateTo"].Value = (indateTo == "2000-01-01" ? "" : indateTo);
+
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);
 

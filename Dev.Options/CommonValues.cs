@@ -53,6 +53,13 @@ namespace Dev.Options
             {3, "Shipped"}
         };
 
+        public static Dictionary<int, string> DicTrimStatus = new Dictionary<int, string>()
+        {
+            {0, ""},
+            {1, "Pending"},
+            {2, "Ready"}
+        };
+
         public static Dictionary<int, string> DicWorksheetStatus = new Dictionary<int, string>()
         {
             {0, ""},
@@ -74,7 +81,8 @@ namespace Dev.Options
             {10, "Confirmed(Office)"},              // 작업확인 (개발총괄)
             {11, "Rejected(Office)"},               // 작업반려 (개발총괄)
             {12, "Confirmed(Admin)"},               // 작업확인 (사무실)
-            {13, "Rejected(Admin)"}                 // 작업반려 (사무실)
+            {13, "Rejected(Admin)"},                // 작업반려 (사무실)
+            {14, "Wrong Input"}                     // 입력실수
         };
 
         public static Dictionary<int, string> DicFabricInStatus = new Dictionary<int, string>()

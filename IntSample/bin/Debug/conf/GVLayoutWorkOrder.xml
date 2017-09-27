@@ -14,6 +14,7 @@
           <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="4" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="255, 230, 230" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />
           <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="3" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="220, 255, 240" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />
           <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="2" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="PapayaWhip" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />
+          <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="14" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="255, 210, 210" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />
         </ConditionalFormattingObjectList>
       </Telerik.WinControls.UI.GridViewComboBoxColumn>
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatString="{0:d}" Width="100" FieldName="TicketDate" Name="TicketDate" IsVisible="True" HeaderText="Ticket Date" TextAlignment="MiddleCenter" />

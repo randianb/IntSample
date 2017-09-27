@@ -135,6 +135,23 @@ namespace Dev.Production
             gv.MasterTemplate.Columns.Clear();
             gv.DataSource = null;
 
+            GridViewTextBoxColumn Idx = new GridViewTextBoxColumn();
+            Idx.Name = "Idx";
+            Idx.FieldName = "Idx";
+            Idx.Width = 40;
+            Idx.TextAlignment = ContentAlignment.MiddleLeft;
+            Idx.HeaderText = "OrderID";
+            Idx.IsVisible = true;
+            gv.Columns.Add(Idx);
+
+            GridViewTextBoxColumn Fileno = new GridViewTextBoxColumn();
+            Fileno.Name = "Fileno";
+            Fileno.FieldName = "Fileno";
+            Fileno.Width = 90;
+            Fileno.HeaderText = "INT File #";
+            Fileno.ReadOnly = true;
+            gv.Columns.Add(Fileno);
+
             GridViewTextBoxColumn cColorIdx = new GridViewTextBoxColumn();
             cColorIdx.Name = "cColorIdx";
             cColorIdx.FieldName = "cColorIdx";
@@ -532,6 +549,23 @@ namespace Dev.Production
         {
             #region Columns 생성
 
+            GridViewTextBoxColumn Idx = new GridViewTextBoxColumn();
+            Idx.Name = "Idx";
+            Idx.FieldName = "Idx";
+            Idx.Width = 40;
+            Idx.TextAlignment = ContentAlignment.MiddleLeft;
+            Idx.HeaderText = "OrderID";
+            Idx.IsVisible = true;
+            gv.Columns.Add(Idx);
+
+            GridViewTextBoxColumn Fileno = new GridViewTextBoxColumn();
+            Fileno.Name = "Fileno";
+            Fileno.FieldName = "Fileno";
+            Fileno.Width = 90;
+            Fileno.HeaderText = "INT File #";
+            Fileno.ReadOnly = true;
+            gv.Columns.Add(Fileno);
+
             GridViewTextBoxColumn CuttedIdx = new GridViewTextBoxColumn();
             CuttedIdx.Name = "CuttedIdx";
             CuttedIdx.FieldName = "CuttedIdx";
@@ -549,6 +583,12 @@ namespace Dev.Production
             OrdColorIdx.ReadOnly = true;
             OrdColorIdx.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Add(OrdColorIdx);
+            
+            GridViewTextBoxColumn SizeIdx = new GridViewTextBoxColumn();
+            SizeIdx.Name = "SizeIdx";
+            SizeIdx.FieldName = "SizeIdx";
+            SizeIdx.IsVisible = false;
+            gv.Columns.Add(SizeIdx);
 
             GridViewComboBoxColumn cboSize = new GridViewComboBoxColumn();
             cboSize.Name = "OrdSizeIdx";
@@ -557,12 +597,6 @@ namespace Dev.Production
             cboSize.ReadOnly = true;
             cboSize.Width = 70;
             gv.Columns.Add(cboSize);
-
-            GridViewTextBoxColumn SizeIdx = new GridViewTextBoxColumn();
-            SizeIdx.Name = "SizeIdx";
-            SizeIdx.FieldName = "SizeIdx";
-            SizeIdx.IsVisible = false;
-            gv.Columns.Add(SizeIdx);
 
             GridViewTextBoxColumn OrdQty = new GridViewTextBoxColumn();
             OrdQty.Name = "OrdQty";
@@ -594,12 +628,29 @@ namespace Dev.Production
             #endregion
         }
         /// <summary>
-        /// 그리드뷰 컬럼 생성 (외주요청내역)
+        /// 그리드뷰 컬럼 생성 (봉제요청내역)
         /// </summary>
         /// <param name="gv">그리드뷰</param>
         private void SewOrder_CreateColumn(RadGridView gv)
         {
             #region Columns 생성
+
+            GridViewTextBoxColumn Idx = new GridViewTextBoxColumn();
+            Idx.Name = "Idx";
+            Idx.FieldName = "Idx";
+            Idx.Width = 40;
+            Idx.TextAlignment = ContentAlignment.MiddleLeft;
+            Idx.HeaderText = "OrderID";
+            Idx.IsVisible = true;
+            gv.Columns.Add(Idx);
+
+            GridViewTextBoxColumn Fileno = new GridViewTextBoxColumn();
+            Fileno.Name = "Fileno";
+            Fileno.FieldName = "Fileno";
+            Fileno.Width = 90;
+            Fileno.HeaderText = "INT File #";
+            Fileno.ReadOnly = true;
+            gv.Columns.Add(Fileno);
 
             GridViewTextBoxColumn CuttedIdx = new GridViewTextBoxColumn();
             CuttedIdx.Name = "CuttedIdx";
@@ -618,6 +669,12 @@ namespace Dev.Production
             OrdColorIdx.ReadOnly = true;
             OrdColorIdx.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Add(OrdColorIdx);
+            
+            GridViewTextBoxColumn SizeIdx = new GridViewTextBoxColumn();
+            SizeIdx.Name = "SizeIdx";
+            SizeIdx.FieldName = "SizeIdx";
+            SizeIdx.IsVisible = false;
+            gv.Columns.Add(SizeIdx);
 
             GridViewComboBoxColumn cboSize = new GridViewComboBoxColumn();
             cboSize.Name = "OrdSizeIdx";
@@ -626,12 +683,6 @@ namespace Dev.Production
             cboSize.ReadOnly = true;
             cboSize.Width = 70;
             gv.Columns.Add(cboSize);
-
-            GridViewTextBoxColumn SizeIdx = new GridViewTextBoxColumn();
-            SizeIdx.Name = "SizeIdx";
-            SizeIdx.FieldName = "SizeIdx";
-            SizeIdx.IsVisible = false;
-            gv.Columns.Add(SizeIdx);
 
             GridViewTextBoxColumn OrdQty = new GridViewTextBoxColumn();
             OrdQty.Name = "OrdQty";
@@ -914,13 +965,15 @@ namespace Dev.Production
                             // 사이즈수량 컬럼이면서 값이 존재하는 경우만
                             if (cellColor.ColumnInfo.Index > 2 && Convert.ToInt32(cellColor.Value) > 0)
                             {
-                                gvWork.Rows.Add(rowColor.Cells["ColorIdx"].Value, lstSize[cellColor.ColumnInfo.Index - 10].SizeIdx,
+                                gvWork.Rows.Add(Int.Members.GetCurrentRow(gvOrder, "Idx"),
+                                                Int.Members.GetCurrentRow(gvOrder, "Fileno", ""),
+                                                rowColor.Cells["ColorIdx"].Value, lstSize[cellColor.ColumnInfo.Index - 10].SizeIdx,
                                                 lstSize[cellColor.ColumnInfo.Index - 10].SizeName,
                                                 Convert.ToInt32(cellColor.Value), Convert.ToInt32(rowFabric.Cells["FabricIdx"].Value), rowFabric.Cells["FabricNm"].Value);
                             }
                         }
                     }
-                }
+                } 
                 else if (ddlOperation.SelectedItem.Value.ToString().Trim() == "112" ||      // Printing
                             ddlOperation.SelectedItem.Value.ToString().Trim() == "113")     // Embroidery
                 {
@@ -931,7 +984,9 @@ namespace Dev.Production
                         // 사이즈수량 컬럼이면서 값이 존재하는 경우만
                         if (cellColor.ColumnInfo.Index > 2 && Convert.ToInt32(cellColor.Value) > 0)
                         {
-                            gvWork.Rows.Add(0, rowColor.Cells["ColorIdx"].Value, lstSize[cellColor.ColumnInfo.Index - 10].SizeIdx,
+                            gvWork.Rows.Add(Int.Members.GetCurrentRow(gvOrder, "Idx"),
+                                        Int.Members.GetCurrentRow(gvOrder, "Fileno", ""),
+                                        0, rowColor.Cells["ColorIdx"].Value, lstSize[cellColor.ColumnInfo.Index - 10].SizeIdx,
                                         lstSize[cellColor.ColumnInfo.Index - 10].SizeName, Convert.ToInt32(cellColor.Value));
                         }
                     }
@@ -945,7 +1000,9 @@ namespace Dev.Production
                         // 사이즈수량 컬럼이면서 값이 존재하는 경우만
                         if (cellColor.ColumnInfo.Index > 2 && Convert.ToInt32(cellColor.Value) > 0)
                         {
-                            gvWork.Rows.Add(0, rowColor.Cells["ColorIdx"].Value, lstSize[cellColor.ColumnInfo.Index - 10].SizeIdx,
+                            gvWork.Rows.Add(Int.Members.GetCurrentRow(gvOrder, "Idx"),
+                                        Int.Members.GetCurrentRow(gvOrder, "Fileno", ""),
+                                        0, rowColor.Cells["ColorIdx"].Value, lstSize[cellColor.ColumnInfo.Index - 10].SizeIdx,
                                         lstSize[cellColor.ColumnInfo.Index - 10].SizeName, Convert.ToInt32(cellColor.Value), 86);
                         }
                     }
@@ -1055,6 +1112,7 @@ namespace Dev.Production
                 btnMove.Enabled = true;
                 btnRequest.Enabled = true;
                 gvWork.Enabled = true;
+                gvWork.Rows.Clear(); 
                 gvWork.Columns.Clear();
                 gvWork.DataSource = null; 
 
@@ -1088,29 +1146,91 @@ namespace Dev.Production
         {
             try
             {
-                //DataRow dr = null;
-                //string NewCode = "";
+                DataRow dr = null;
+                string NewCode = "";
 
-                //if (gvWork.Rows.Count <= 0)
-                //{
-                //    RadMessageBox.Show("Please select the cutted Q'ty", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
-                //    return;
-                //}
+                if (gvWork.Rows.Count <= 0)
+                {
+                    RadMessageBox.Show("Please select the data", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                    return;
+                }
 
-                //// 데이터 DB저장 
-                //foreach (GridViewRowInfo row in gvWork.Rows)
-                //{
-                //    // NewCode = Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 15, _worderIdx);  
+                // 데이터 DB저장 
+                foreach (GridViewRowInfo row in gvWork.Rows)
+                {
+                    if (ddlOperation.SelectedItem.Value.ToString().Trim() == "111")     // Cutting
+                    {
+                        NewCode = Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 6, "");
 
-                //    if (!string.IsNullOrEmpty(NewCode))
-                //    {
-                //        dr = Dev.Controller.OutFinishedD.Insert(Convert.ToInt32(row.Cells["pIdx"].Value),
-                //            Convert.ToInt32(row.Cells["OrderIdx"].Value), NewCode, 0, 
-                //            row.Cells["OrdColorIdx"].Value.ToString().Trim(),
-                //            Convert.ToInt32(row.Cells["OrdSizeIdx"].Value), Convert.ToInt32(row.Cells["OutQty"].Value),  
-                //            UserInfo.Idx);
-                //    }
-                //}
+                        if (!string.IsNullOrEmpty(NewCode))
+                        {
+                            dr = Dev.Controller.Cutting.Insert(Convert.ToInt32(row.Cells["Idx"].Value), NewCode, 
+                                row.Cells["cColorIdx"].Value.ToString().Trim(),
+                                Convert.ToInt32(row.Cells["CutSizeIdx"].Value), 0f,
+                                Convert.ToInt32(row.Cells["OrdQty"].Value),
+                                Convert.ToInt32(row.Cells["FabricIdx"].Value), "", UserInfo.Idx);
+                        }
+                    }
+                    else if (ddlOperation.SelectedItem.Value.ToString().Trim() == "112")     // Printing
+                    {
+                        NewCode = Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 7, "");
+
+                        if (!string.IsNullOrEmpty(NewCode))
+                        {
+                            dr = Dev.Controller.Printing.Insert(Convert.ToInt32(row.Cells["Idx"].Value), 
+                                Convert.ToInt32(row.Cells["CuttedIdx"].Value), NewCode, "",
+                                row.Cells["OrdColorIdx"].Value.ToString().Trim(),
+                                Convert.ToInt32(row.Cells["SizeIdx"].Value), Convert.ToInt32(row.Cells["OrdQty"].Value),
+                                DateTime.Now, 0,
+                                Convert.ToInt32(row.Cells["RcvdFrom"].Value),
+                                row.Cells["Remarks"].Value == null ? "" : row.Cells["Remarks"].Value.ToString().Trim(),
+                                UserInfo.Idx);
+                        }
+                    }
+                    else if (ddlOperation.SelectedItem.Value.ToString().Trim() == "113")      // Embroidery
+                    {
+                        NewCode = Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 8, "");
+
+                        if (!string.IsNullOrEmpty(NewCode))
+                        {
+                            dr = Dev.Controller.Printing.Insert(Convert.ToInt32(row.Cells["Idx"].Value), 
+                                Convert.ToInt32(row.Cells["CuttedIdx"].Value), NewCode, "",
+                                row.Cells["OrdColorIdx"].Value.ToString().Trim(),
+                                Convert.ToInt32(row.Cells["SizeIdx"].Value), Convert.ToInt32(row.Cells["OrdQty"].Value),
+                                DateTime.Now, 0,
+                                Convert.ToInt32(row.Cells["RcvdFrom"].Value),
+                                row.Cells["Remarks"].Value == null ? "" : row.Cells["Remarks"].Value.ToString().Trim(),
+                                UserInfo.Idx);
+                        }
+                    }
+                    else if (ddlOperation.SelectedItem.Value.ToString().Trim() == "114")      // Sewing
+                    {
+                        NewCode = Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 9, "");
+
+                        if (!string.IsNullOrEmpty(NewCode))
+                        {
+                            dr = Dev.Controller.Sewing.Insert(Convert.ToInt32(row.Cells["Idx"].Value), 
+                                Convert.ToInt32(row.Cells["CuttedIdx"].Value), NewCode, "",
+                                row.Cells["OrdColorIdx"].Value.ToString().Trim(),
+                                Convert.ToInt32(row.Cells["SizeIdx"].Value), Convert.ToInt32(row.Cells["OrdQty"].Value),
+                                DateTime.Now, 0,
+                                Convert.ToInt32(row.Cells["Worked"].Value), 0,
+                                row.Cells["Remarks"].Value == null ? "" : row.Cells["Remarks"].Value.ToString().Trim(),
+                                UserInfo.Idx);
+                        }
+
+                        // 봉제요청 생성시 검사요청도 함께 생성 
+                        NewCode = Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 10, "");
+
+                        if (!string.IsNullOrEmpty(NewCode))
+                        {
+                            dr = Dev.Controller.Inspecting.Insert(Convert.ToInt32(row.Cells["Idx"].Value), 
+                                NewCode, 0, 
+                                DateTime.Now, "", "", 0,
+                                UserInfo.Idx);
+                        }
+                    }
+                }
 
                 // 입력완료 후 그리드뷰 갱신
                 DialogResult = System.Windows.Forms.DialogResult.OK;

@@ -138,6 +138,10 @@ namespace Dev.Pattern
             ddlStatus.ValueMember = "CodeIdx";
             ddlStatus.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
             ddlStatus.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+
+            // 정해진 바이어가 있는 경우, 해당 바이어로 dropdown 미리 선택
+            if (CommonValues.NewOrderBuyerIdx > 0)
+                ddlCust.SelectedValue = Convert.ToInt32(CommonValues.NewOrderBuyerIdx);
         }
         
 
@@ -220,6 +224,7 @@ namespace Dev.Pattern
             Status01.FieldName = "S01";
             Status01.HeaderText = trimName[0].Contents.ToString(); // "Trim1";
             Status01.ImageLayout = ImageLayout.Zoom;
+            Status01.WrapText = true; 
             Status01.Width = 60;
             gv.Columns.Add(Status01);
 
@@ -229,6 +234,7 @@ namespace Dev.Pattern
             Status02.HeaderText = trimName[1].Contents.ToString();
             Status02.ImageLayout = ImageLayout.Zoom;
             Status02.Width = 60;
+            Status02.WrapText = true;
             gv.Columns.Add(Status02);
 
             GridViewImageColumn Status03 = new GridViewImageColumn();
@@ -237,6 +243,7 @@ namespace Dev.Pattern
             Status03.HeaderText = trimName[2].Contents.ToString();
             Status03.ImageLayout = ImageLayout.Zoom;
             Status03.Width = 60;
+            Status03.WrapText = true;
             gv.Columns.Add(Status03);
 
             GridViewImageColumn Status04 = new GridViewImageColumn();
@@ -245,6 +252,7 @@ namespace Dev.Pattern
             Status04.HeaderText = trimName[3].Contents.ToString();
             Status04.ImageLayout = ImageLayout.Zoom;
             Status04.Width = 60;
+            Status04.WrapText = true;
             gv.Columns.Add(Status04);
 
             GridViewImageColumn Status05 = new GridViewImageColumn();
@@ -253,6 +261,7 @@ namespace Dev.Pattern
             Status05.HeaderText = trimName[4].Contents.ToString();
             Status05.ImageLayout = ImageLayout.Zoom;
             Status05.Width = 60;
+            Status05.WrapText = true;
             gv.Columns.Add(Status05);
 
             GridViewImageColumn Status06 = new GridViewImageColumn();
@@ -261,6 +270,7 @@ namespace Dev.Pattern
             Status06.HeaderText = trimName[5].Contents.ToString();
             Status06.ImageLayout = ImageLayout.Zoom;
             Status06.Width = 60;
+            Status06.WrapText = true;
             gv.Columns.Add(Status06);
 
             GridViewImageColumn Status07 = new GridViewImageColumn();
@@ -269,6 +279,7 @@ namespace Dev.Pattern
             Status07.HeaderText = trimName[6].Contents.ToString();
             Status07.ImageLayout = ImageLayout.Zoom;
             Status07.Width = 60;
+            Status07.WrapText = true;
             gv.Columns.Add(Status07);
 
             GridViewImageColumn Status08 = new GridViewImageColumn();
@@ -277,6 +288,7 @@ namespace Dev.Pattern
             Status08.HeaderText = trimName[7].Contents.ToString();
             Status08.ImageLayout = ImageLayout.Zoom;
             Status08.Width = 60;
+            Status08.WrapText = true;
             gv.Columns.Add(Status08);
 
             GridViewImageColumn Status09 = new GridViewImageColumn();
@@ -285,6 +297,7 @@ namespace Dev.Pattern
             Status09.HeaderText = trimName[8].Contents.ToString();
             Status09.ImageLayout = ImageLayout.Zoom;
             Status09.Width = 60;
+            Status09.WrapText = true;
             gv.Columns.Add(Status09);
 
             GridViewImageColumn Status10 = new GridViewImageColumn();
@@ -293,6 +306,7 @@ namespace Dev.Pattern
             Status10.HeaderText = trimName[9].Contents.ToString();
             Status10.ImageLayout = ImageLayout.Zoom;
             Status10.Width = 60;
+            Status10.WrapText = true;
             gv.Columns.Add(Status10);
 
             GridViewImageColumn Status11 = new GridViewImageColumn();
@@ -301,6 +315,7 @@ namespace Dev.Pattern
             Status11.HeaderText = trimName[10].Contents.ToString();
             Status11.ImageLayout = ImageLayout.Zoom;
             Status11.Width = 60;
+            Status11.WrapText = true;
             gv.Columns.Add(Status11);
 
             GridViewImageColumn Status12 = new GridViewImageColumn();
@@ -309,6 +324,7 @@ namespace Dev.Pattern
             Status12.HeaderText = trimName[11].Contents.ToString();
             Status12.ImageLayout = ImageLayout.Zoom;
             Status12.Width = 60;
+            Status12.WrapText = true;
             gv.Columns.Add(Status12);
 
             GridViewImageColumn Status13 = new GridViewImageColumn();
@@ -317,6 +333,7 @@ namespace Dev.Pattern
             Status13.HeaderText = trimName[12].Contents.ToString();
             Status13.ImageLayout = ImageLayout.Zoom;
             Status13.Width = 60;
+            Status13.WrapText = true;
             gv.Columns.Add(Status13);
 
             GridViewImageColumn Status14 = new GridViewImageColumn();
@@ -325,6 +342,7 @@ namespace Dev.Pattern
             Status14.HeaderText = trimName[13].Contents.ToString();
             Status14.ImageLayout = ImageLayout.Zoom;
             Status14.Width = 60;
+            Status14.WrapText = true;
             gv.Columns.Add(Status14);
 
             GridViewImageColumn Status15 = new GridViewImageColumn();
@@ -333,6 +351,7 @@ namespace Dev.Pattern
             Status15.HeaderText = trimName[14].Contents.ToString();
             Status15.ImageLayout = ImageLayout.Zoom;
             Status15.Width = 60;
+            Status15.WrapText = true;
             gv.Columns.Add(Status15);
 
             GridViewImageColumn Status16 = new GridViewImageColumn();
@@ -341,6 +360,7 @@ namespace Dev.Pattern
             Status16.HeaderText = trimName[15].Contents.ToString();
             Status16.ImageLayout = ImageLayout.Zoom;
             Status16.Width = 60;
+            Status16.WrapText = true;
             gv.Columns.Add(Status16);
 
             GridViewImageColumn Status17 = new GridViewImageColumn();
@@ -349,6 +369,7 @@ namespace Dev.Pattern
             Status17.HeaderText = trimName[16].Contents.ToString();
             Status17.ImageLayout = ImageLayout.Zoom;
             Status17.Width = 60;
+            Status17.WrapText = true;
             gv.Columns.Add(Status17);
 
             GridViewImageColumn Status18 = new GridViewImageColumn();
@@ -357,6 +378,7 @@ namespace Dev.Pattern
             Status18.HeaderText = trimName[17].Contents.ToString();
             Status18.ImageLayout = ImageLayout.Zoom;
             Status18.Width = 60;
+            Status18.WrapText = true;
             gv.Columns.Add(Status18);
 
             GridViewImageColumn Status19 = new GridViewImageColumn();
@@ -365,6 +387,7 @@ namespace Dev.Pattern
             Status19.HeaderText = trimName[18].Contents.ToString();
             Status19.ImageLayout = ImageLayout.Zoom;
             Status19.Width = 60;
+            Status19.WrapText = true;
             gv.Columns.Add(Status19);
 
             GridViewImageColumn Status20 = new GridViewImageColumn();
@@ -373,6 +396,7 @@ namespace Dev.Pattern
             Status20.HeaderText = trimName[19].Contents.ToString();
             Status20.ImageLayout = ImageLayout.Zoom;
             Status20.Width = 60;
+            Status20.WrapText = true;
             gv.Columns.Add(Status20);
 
             #endregion
@@ -590,19 +614,10 @@ namespace Dev.Pattern
                 trimName.Add(new CodeContents(Convert.ToInt32(row["Idx"]), row["Contents"].ToString(), row["Classification"].ToString()));
             }
             
-
             // 오더상태 (CommonValues정의)
-            lstStatus.Add(new CodeContents(0, CommonValues.DicWorkOrderStatus[0], ""));
-            lstStatus.Add(new CodeContents(1, CommonValues.DicWorkOrderStatus[1], ""));
-            lstStatus.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
-            lstStatus.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
-            lstStatus.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
-            lstStatus.Add(new CodeContents(5, CommonValues.DicWorkOrderStatus[5], ""));
-            lstStatus.Add(new CodeContents(6, CommonValues.DicWorkOrderStatus[6], ""));
-            lstStatus.Add(new CodeContents(7, CommonValues.DicWorkOrderStatus[7], ""));
-            lstStatus.Add(new CodeContents(8, CommonValues.DicWorkOrderStatus[8], ""));
-            lstStatus.Add(new CodeContents(10, CommonValues.DicWorkOrderStatus[10], ""));
-            lstStatus.Add(new CodeContents(11, CommonValues.DicWorkOrderStatus[11], ""));
+            lstStatus.Add(new CodeContents(0, CommonValues.DicTrimStatus[0], ""));
+            lstStatus.Add(new CodeContents(1, CommonValues.DicTrimStatus[1], ""));
+            lstStatus.Add(new CodeContents(2, CommonValues.DicTrimStatus[2], ""));
         }
 
         /// <summary>
@@ -626,21 +641,21 @@ namespace Dev.Pattern
                 //    || ddlStatus.SelectedValue != null || ddlSize.SelectedValue != null
                 //    || !string.IsNullOrEmpty(txtFileno.Text) || !string.IsNullOrEmpty(txtStyle.Text))
                 //{
-                    //_searchKey = new Dictionary<CommonValues.KeyName, int>();
+                _searchKey = new Dictionary<CommonValues.KeyName, int>();
 
-                    // 영업부인경우, 해당 부서만 조회할수 있도록 제한 
-                    //if (UserInfo.ReportNo < 9)
-                    //    _searchKey.Add(CommonValues.KeyName.DeptIdx, UserInfo.DeptIdx);
-                    //else
-                    //    _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlSize.SelectedValue));
+                // 영업부인경우, 해당 부서만 조회할수 있도록 제한 
+                if (UserInfo.ReportNo < 9)
+                    _searchKey.Add(CommonValues.KeyName.DeptIdx, UserInfo.DeptIdx);
+                else
+                    _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlDept.SelectedValue));
 
-                    //_searchKey.Add(CommonValues.KeyName.CustIdx, Convert.ToInt32(ddlCust.SelectedValue));
-                    //_searchKey.Add(CommonValues.KeyName.Status, Convert.ToInt32(ddlStatus.SelectedValue));
-                    //_searchKey.Add(CommonValues.KeyName.Size, Convert.ToInt32(ddlSize.SelectedValue));
+                //_searchKey.Add(CommonValues.KeyName.CustIdx, Convert.ToInt32(ddlCust.SelectedValue));
+                //_searchKey.Add(CommonValues.KeyName.Status, Convert.ToInt32(ddlStatus.SelectedValue));
+                //_searchKey.Add(CommonValues.KeyName.Size, Convert.ToInt32(ddlSize.SelectedValue));
 
-                    //int OrderIdx, string WorksheetIdx, int Handler, int ConfirmUser, int WorkStatus
+                //int OrderIdx, string WorksheetIdx, int Handler, int ConfirmUser, int WorkStatus
 
-                    DataBinding_GV1(Convert.ToInt32(ddlDept.SelectedValue), Convert.ToInt32(ddlCust.SelectedValue), 
+                DataBinding_GV1(_searchKey[CommonValues.KeyName.DeptIdx], Convert.ToInt32(ddlCust.SelectedValue), 
                                     Convert.ToInt32(ddlHandler.SelectedValue), 0, 
                                     txtFileno.Text.Trim(), txtStyle.Text.Trim(), Convert.ToInt32(ddlStatus.SelectedValue), 0);
                 //}

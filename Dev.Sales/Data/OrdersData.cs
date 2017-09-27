@@ -140,7 +140,7 @@ namespace Dev.Sales.Data
             }
 
             // dataset 확인 및 결과 datarow 반환
-            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            if (_ds != null)
             {
                 _dr = _ds.Tables[0].Rows[0];
                 return _dr;

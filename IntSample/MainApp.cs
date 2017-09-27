@@ -305,15 +305,102 @@ namespace SampleApp
             // System
             lstMenu.Add(47, btnSystemColor); lstMenu.Add(48, btnSizeGroup); lstMenu.Add(49, btnSize); lstMenu.Add(50, btnSewingThread);
             lstMenu.Add(51, btnSystemApproval); lstMenu.Add(59, btnLocation);
+            
+            bool bOrder = false;
+            bool bYarn = false;
+            bool bFabric = false;
+            bool bPattern = false;
+            bool bProduction = false;
+            bool bOut = false;
+            bool bSystem = false;
 
+            // 각 메뉴별 사용자 권한을 리스트에 저장 
             foreach (int menuNo in lstMenu.Keys)
             {
                 if (string.IsNullOrEmpty(CheckAuth.ValidCheck(CommonValues.packageNo, menuNo, 0)) ||
                     CheckAuth.ValidCheck(CommonValues.packageNo, menuNo, 0) == "00000")
                 {
+                    lstMenu[menuNo].Visibility = ElementVisibility.Collapsed;
                     lstMenu[menuNo].Enabled = false;
                 }
+                
+                // 권한 테이블을 탐색하면서 
+                foreach (DataRow row in UserInfo.DtAuthority.Rows)
+                {
+                    if (Convert.ToInt32(row["ProgramIdx"]) == menuNo)
+                    {
+                        if (row["ClassName"].ToString().Trim() == "Sales")
+                        {
+                            bOrder = true;
+                        }
+                        else if (row["ClassName"].ToString().Trim() == "Yarn")
+                        {
+                            bYarn = true;
+                        }
+                        else if (row["ClassName"].ToString().Trim() == "Fabric")
+                        {
+                            bFabric = true;
+                        }
+                        else if (row["ClassName"].ToString().Trim() == "Pattern")
+                        {
+                            bPattern = true;
+                        }
+                        else if (row["ClassName"].ToString().Trim() == "Production")
+                        {
+                            bProduction = true;
+                        }
+                        else if (row["ClassName"].ToString().Trim() == "Outbound")
+                        {
+                            bOut = true;
+                        }
+                        else if (row["ClassName"].ToString().Trim() == "Codes")
+                        {
+                            bSystem = true;
+                        }
+                    }
+                }
             }
+            // 각 탭별로 권한이 전혀 없는 탭은 숨기기 
+            if (!bOrder)
+            {
+                ribbonTab2.Visibility = ElementVisibility.Collapsed;
+                //ribGroupAccounting.Visibility = ElementVisibility.Collapsed;
+            }
+            if (!bYarn)
+            {
+                ribbonTab1.Visibility = ElementVisibility.Collapsed;
+            }
+            if (!bFabric)
+            {
+                ribbonTab4.Visibility = ElementVisibility.Collapsed;
+            }
+            if (!bPattern)
+            {
+                ribbonTab3.Visibility = ElementVisibility.Collapsed;
+            }
+            if (!bProduction)
+            {
+                ribbonTab5.Visibility = ElementVisibility.Collapsed;
+            }
+            if (!bOut)
+            {
+                ribbonTab6.Visibility = ElementVisibility.Collapsed;
+            }
+            if (!bSystem)
+            {
+                ribbonTab7.Visibility = ElementVisibility.Collapsed;
+            }
+
+            // 기타 
+            if (!lstMenu[51].Enabled) radRibbonBarGroup13.Visibility = ElementVisibility.Collapsed;     // System > Other
+            if (!lstMenu[26].Enabled) radRibbonBarGroup15.Visibility = ElementVisibility.Collapsed;     // Fabric > Code
+
+            if (!lstMenu[27].Enabled && !lstMenu[28].Enabled && !lstMenu[29].Enabled)
+                radRibbonBarGroup8.Visibility = ElementVisibility.Collapsed;     // Fabric > Fabric
+            
+            ribbonTab2.Focus();
+            ribbonTab2.Select();
+            //radRibbonBarGroup4.AutoSize = true;
 
         }
 
@@ -328,12 +415,12 @@ namespace SampleApp
                 if (f.Name == frm.ToString())
                 {
 
-                    f.Activate();
-                    iRtn = false;
+                    f.Activate(); 
+                    //iRtn = false;
                 }
-                // f.Close();
+                f.Close();
             }
-
+            iRtn = true;
             return iRtn;
         }
         private bool Close_Wnd_Children(string frm)
@@ -397,7 +484,8 @@ namespace SampleApp
             {
                 if (Close_All_Children("OrderMain"))
                 {
-                    OrderMain ordfrm = new OrderMain(this, "");
+                    OrderMain ordfrm = null; 
+                    ordfrm = new OrderMain(this, "");
                     ordfrm.Text = "OrderMain";
                     ordfrm.MdiParent = this;
                     ordfrm.Show();
@@ -454,7 +542,8 @@ namespace SampleApp
         {
             if (Close_All_Children("PatternMain"))
             {
-                PatternMain frm = new PatternMain(this, "");
+                PatternMain frm = null;
+                frm = new PatternMain(this, "");
                 frm.Text = "Pattern Main";
                 frm.MdiParent = this;
                 frm.Show();
@@ -783,12 +872,12 @@ namespace SampleApp
             {
                 if (Close_All_Children("WorksheetMain"))
                 {
-                    WorksheetMain frm = new WorksheetMain(this, "");
+                    WorksheetMain frm = null;
+                    frm = new WorksheetMain(this, "");
                     frm.Text = "Worksheet Main";
                     frm.MdiParent = this;
                     frm.Show();
                 }
-
             }
             catch(Exception ex) {  }
 

@@ -37,7 +37,7 @@ namespace SampleApp.Data
                 _ds = new DataSet();
                 _adapter = new SqlDataAdapter();
 
-                _cmd.CommandText = @"select useridx, deptidx, costcenteridx, Email, Phone, 
+                _cmd.CommandText = @"select useridx, deptidx, costcenteridx, Email, Phone, UserName, 
                                (select reportno from dept where deptidx=users.deptidx)reportno, 
                                 (select isnull(IsUse,0) from dept where deptidx=users.deptidx) useDept, 
                                 (select isnull(IsUse,0) from Costcenter where CostcenterIdx=users.CostcenterIdx) useCenter, 

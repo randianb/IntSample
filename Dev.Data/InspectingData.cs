@@ -92,7 +92,71 @@ namespace Dev.Data
                 return null;
             }
         }
-        
+
+        public static DataRow Insert(int OrderIdx, string WorkOrderIdx, int TDName,
+            DateTime InspRequestedDate, string Result, string Action, int Reorder, int Handler
+            )
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_Inspecting_Insert2";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
+                
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 13);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _cmd.Parameters.Add("@TDName", SqlDbType.Int, 4);
+                _cmd.Parameters["@TDName"].Value = TDName;
+
+                _cmd.Parameters.Add("@InspRequestedDate", SqlDbType.DateTime, 8);
+                _cmd.Parameters["@InspRequestedDate"].Value = InspRequestedDate;
+
+                _cmd.Parameters.Add("@Result", SqlDbType.NVarChar, 300);
+                _cmd.Parameters["@Result"].Value = Result;
+
+                _cmd.Parameters.Add("@Action", SqlDbType.NText, 2000);
+                _cmd.Parameters["@Action"].Value = Action;
+
+                _cmd.Parameters.Add("@Reorder", SqlDbType.Int, 4);
+                _cmd.Parameters["@Reorder"].Value = Reorder;
+
+                _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
+                _cmd.Parameters["@Handler"].Value = Handler;
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                _dr = _ds.Tables[0].Rows[0];
+                return _dr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         /// Update
         /// </summary>

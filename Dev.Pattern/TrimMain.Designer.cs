@@ -44,8 +44,6 @@
             this.txtFileno = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.txtStyle = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.txtWorksheet = new Telerik.WinControls.UI.RadTextBox();
             this.btnSearch = new Telerik.WinControls.UI.RadButton();
             this.toolTabStrip3 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
@@ -69,8 +67,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtFileno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStyle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWorksheet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
@@ -140,9 +136,7 @@
             this.tableLayoutPanel5.Controls.Add(this.txtFileno, 4, 1);
             this.tableLayoutPanel5.Controls.Add(this.radLabel6, 5, 0);
             this.tableLayoutPanel5.Controls.Add(this.txtStyle, 5, 1);
-            this.tableLayoutPanel5.Controls.Add(this.radLabel4, 6, 0);
-            this.tableLayoutPanel5.Controls.Add(this.txtWorksheet, 6, 1);
-            this.tableLayoutPanel5.Controls.Add(this.btnSearch, 7, 1);
+            this.tableLayoutPanel5.Controls.Add(this.btnSearch, 6, 1);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(5, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
@@ -247,24 +241,9 @@
             this.txtStyle.Size = new System.Drawing.Size(120, 20);
             this.txtStyle.TabIndex = 9;
             // 
-            // radLabel4
-            // 
-            this.radLabel4.Location = new System.Drawing.Point(814, 3);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(67, 14);
-            this.radLabel4.TabIndex = 3;
-            this.radLabel4.Text = "Worksheet#";
-            // 
-            // txtWorksheet
-            // 
-            this.txtWorksheet.Location = new System.Drawing.Point(814, 23);
-            this.txtWorksheet.Name = "txtWorksheet";
-            this.txtWorksheet.Size = new System.Drawing.Size(120, 20);
-            this.txtWorksheet.TabIndex = 10;
-            // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(940, 23);
+            this.btnSearch.Location = new System.Drawing.Point(814, 23);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(85, 24);
             this.btnSearch.TabIndex = 7;
@@ -442,8 +421,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtFileno)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStyle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWorksheet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
@@ -498,8 +475,6 @@
         private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip4;
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadDropDownList ddlDept;
-        private Telerik.WinControls.UI.RadLabel radLabel4;
-        private Telerik.WinControls.UI.RadTextBox txtWorksheet;
         private Telerik.WinControls.UI.RadGridView gvWorksheet;
     }
 }

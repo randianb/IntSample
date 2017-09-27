@@ -91,10 +91,23 @@ namespace Dev.Pattern
             GV1_LayoutSetting(_gv1);    // 중앙 그리드뷰 설정 
             LoadGVLayout();             // 그리드뷰 레이아웃 복구 
 
+            //TD확인 
+            if (UserInfo.DeptIdx == 12)
+            {
+                toggTD.Value = true;
+                
+            }
+            else
+            {
+                toggTD.Value = false;
+                
+            }
+
             // 다른 폼으로부터 전달된 Work ID가 있을 경우, 해당 ID로 조회 
             if (!string.IsNullOrEmpty(_workOrderIdx))
             {
                 _searchKey = new Dictionary<CommonValues.KeyName, int>();
+                _searchKey.Add(CommonValues.KeyName.DeptIdx, 0); 
                 _searchKey.Add(CommonValues.KeyName.CustIdx, 0);
                 _searchKey.Add(CommonValues.KeyName.Status, 0);
                 _searchKey.Add(CommonValues.KeyName.Size, 0);
@@ -146,15 +159,15 @@ namespace Dev.Pattern
             }
 
             //TD확인 
-            if (UserInfo.DeptIdx==12)
+            if (UserInfo.DeptIdx == 12)
             {
-                toggTD.Value = true;
+                
                 btnConfirm.Visible = true;
-                btnReject.Visible = true;  
+                btnReject.Visible = true;
             }
             else
             {
-                toggTD.Value = false;
+                
                 btnConfirm.Visible = false;
                 btnReject.Visible = false;
             }
@@ -166,6 +179,13 @@ namespace Dev.Pattern
         /// </summary>
         private void Config_DropDownList()
         {
+            // 부서 
+            ddlDept.DataSource = deptName;
+            ddlDept.DisplayMember = "DeptName";
+            ddlDept.ValueMember = "DeptIdx";
+            ddlDept.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlDept.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+
             // 사이즈 
             ddlSize.DataSource = sizeName;
             ddlSize.DisplayMember = "Contents";
@@ -186,9 +206,12 @@ namespace Dev.Pattern
             ddlStatus.ValueMember = "CodeIdx";
             ddlStatus.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
             ddlStatus.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+
+            // 정해진 바이어가 있는 경우, 해당 바이어로 dropdown 미리 선택
+            if (CommonValues.NewOrderBuyerIdx > 0)
+                ddlCust.SelectedValue = Convert.ToInt32(CommonValues.NewOrderBuyerIdx);
         }
         
-
         /// <summary>
         /// 그리드뷰 컬럼 생성 (메인)
         /// </summary>
@@ -403,7 +426,7 @@ namespace Dev.Pattern
             CommentCad.Name = "CommentCad";
             CommentCad.FieldName = "CommentCad";
             CommentCad.HeaderText = "CommentCad";
-            CommentCad.IsVisible = false;
+            //CommentCad.IsVisible = false;
             gv.Columns.Insert(21, CommentCad);
 
             GridViewTextBoxColumn WorkOrderIdx = new GridViewTextBoxColumn();
@@ -490,9 +513,9 @@ namespace Dev.Pattern
             gv.Columns.Insert(34, AttachedUrl23);
 
             GridViewTextBoxColumn AttachedUrl24 = new GridViewTextBoxColumn();
-            AttachedUrl21.Name = "AttachedUrl24";
-            AttachedUrl21.FieldName = "AttachedUrl24";
-            AttachedUrl21.IsVisible = false;
+            AttachedUrl24.Name = "AttachedUrl24";
+            AttachedUrl24.FieldName = "AttachedUrl24";
+            AttachedUrl24.IsVisible = false;
             gv.Columns.Insert(35, AttachedUrl24);
 
             #endregion
@@ -602,7 +625,30 @@ namespace Dev.Pattern
         /// </summary>
         private void DataLoading_DDL()
         {
-            
+            // 부서    
+            _dt = CommonController.Getlist(CommonValues.KeyName.DeptIdx).Tables[0];
+
+            foreach (DataRow row in _dt.Rows)
+            {
+                // 관리부와 임원은 모든 부서에 접근가능
+                if (UserInfo.CenterIdx != 1 || UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6)
+                {
+                    deptName.Add(new DepartmentName(Convert.ToInt32(row["DeptIdx"]),
+                                                row["DeptName"].ToString(),
+                                                Convert.ToInt32(row["CostcenterIdx"])));
+                }
+                // 영업부는 해당 부서 데이터만 접근가능
+                else
+                {
+                    if (Convert.ToInt32(row["DeptIdx"]) <= 0 || Convert.ToInt32(row["DeptIdx"]) == UserInfo.DeptIdx)
+                    {
+                        deptName.Add(new DepartmentName(Convert.ToInt32(row["DeptIdx"]),
+                                                row["DeptName"].ToString(),
+                                                Convert.ToInt32(row["CostcenterIdx"])));
+                    }
+                }
+            }
+
             // 바이어
             _dt = CommonController.Getlist(CommonValues.KeyName.CustAll).Tables[0];
 
@@ -713,7 +759,7 @@ namespace Dev.Pattern
                     if (UserInfo.ReportNo < 9)
                         _searchKey.Add(CommonValues.KeyName.DeptIdx, UserInfo.DeptIdx);
                     else
-                        _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlSize.SelectedValue));
+                        _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlDept.SelectedValue));
 
                     _searchKey.Add(CommonValues.KeyName.CustIdx, Convert.ToInt32(ddlCust.SelectedValue));
                     _searchKey.Add(CommonValues.KeyName.Status, Convert.ToInt32(ddlStatus.SelectedValue));
@@ -981,17 +1027,169 @@ namespace Dev.Pattern
                 {
                     lstFiles.Add(""); lstFileUrls.Add(""); 
                 }
-                lstFiles[1] = row.Cells["Attached21"].Value.ToString();
-                lstFiles[2] = row.Cells["Attached22"].Value.ToString();
-                lstFiles[3] = row.Cells["Attached23"].Value.ToString();
-                lstFiles[4] = row.Cells["Attached24"].Value.ToString();
+                if (row.Cells["Attached21"].Value != DBNull.Value) lstFiles[1] = row.Cells["Attached21"].Value.ToString();
+                if (row.Cells["Attached22"].Value != DBNull.Value) lstFiles[2] = row.Cells["Attached22"].Value.ToString();
+                if (row.Cells["Attached23"].Value != DBNull.Value) lstFiles[3] = row.Cells["Attached23"].Value.ToString();
+                if (row.Cells["Attached24"].Value != DBNull.Value) lstFiles[4] = row.Cells["Attached24"].Value.ToString();
 
-                lstFileUrls[1] = row.Cells["AttachedUrl21"].Value.ToString();
-                lstFileUrls[2] = row.Cells["AttachedUrl22"].Value.ToString();
-                lstFileUrls[3] = row.Cells["AttachedUrl23"].Value.ToString();
-                lstFileUrls[4] = row.Cells["AttachedUrl24"].Value.ToString();
+                if (row.Cells["AttachedUrl21"].Value != DBNull.Value) lstFileUrls[1] = row.Cells["AttachedUrl21"].Value.ToString();
+                if (row.Cells["AttachedUrl22"].Value != DBNull.Value) lstFileUrls[2] = row.Cells["AttachedUrl22"].Value.ToString();
+                if (row.Cells["AttachedUrl23"].Value != DBNull.Value) lstFileUrls[3] = row.Cells["AttachedUrl23"].Value.ToString();
+                if (row.Cells["AttachedUrl24"].Value != DBNull.Value) lstFileUrls[4] = row.Cells["AttachedUrl24"].Value.ToString();
 
+                // 컨트롤 초기화 
+                txtComments.Enabled = true;
+                txtCadComment.Enabled = true;
+                btnConfirmCad.Visible = true;
+                btnRejectCad.Visible = true;
+
+                btnSaveData.Visible = true;
+                btnComplete.Visible = true;
+
+                btnConfirm.Visible = true;
+                btnReject.Visible = true;
+
+                btnConfirmCad.Enabled = true;
+                btnRejectCad.Enabled = true;
+
+                btnSaveData.Enabled = true;
+                btnComplete.Enabled = true;
+
+                btnConfirm.Enabled = true;
+                btnReject.Enabled = true;
+
+                if (UserInfo.DeptIdx == 11) // CAD
+                {
+                    txtComments.Enabled = false;
+                    txtCadComment.Enabled = true;
+
+                    btnConfirmCad.Visible = true;
+                    btnRejectCad.Visible = true;
+                    btnRejectCad.Text = "Reject";
+
+                    btnSaveData.Visible = true;
+                    btnComplete.Visible = true;
+
+                    btnConfirm.Visible = false;
+                    btnReject.Visible = false;
+
+                    switch (Convert.ToInt32(row.Cells["wstatus"].Value))
+                    {
+                        case 8: // Rejected(TD)
+                            btnConfirmCad.Enabled = false;
+                            btnRejectCad.Enabled = false;
+                            btnSaveData.Enabled = false;
+                            btnComplete.Enabled = false;
+                            break;
+                        case 7: // Confirmed(TD)
+                            btnConfirmCad.Enabled = false;
+                            btnRejectCad.Enabled = false;
+                            btnSaveData.Enabled = false;
+                            btnComplete.Enabled = false;
+                            break;
+                        case 6: // Rejected(CAD)
+                            btnConfirmCad.Enabled = false;
+                            btnRejectCad.Enabled = true;
+                            btnSaveData.Enabled = false;
+                            btnComplete.Enabled = false;
+                            break;
+                        case 5: // Confirmed(CAD)
+                            btnConfirmCad.Enabled = true;
+                            btnRejectCad.Enabled = true;
+                            btnSaveData.Enabled = true;
+                            btnComplete.Enabled = true;
+                            break;
+                        case 3: // Complete by CAD
+                            btnConfirmCad.Enabled = false;
+                            btnRejectCad.Enabled = false;
+                            btnSaveData.Enabled = false;
+                            btnComplete.Enabled = false;
+                            break;
+                        default:
+                            btnConfirmCad.Enabled = true;
+                            btnRejectCad.Enabled = true;
+                            btnSaveData.Enabled = true;
+                            btnComplete.Enabled = true;
+                            break;
+                    }
+                }
+                else if (UserInfo.DeptIdx == 12)  // TD
+                {
+                    txtComments.Enabled = false;
+                    txtCadComment.Enabled = true;
+
+                    btnConfirmCad.Visible = false;
+                    btnRejectCad.Visible = false;
+                    btnRejectCad.Text = "Reject";
+
+                    btnSaveData.Visible = false;
+                    btnComplete.Visible = false;
+
+                    btnConfirm.Visible = true;
+                    btnReject.Visible = true;
+
+                    switch (Convert.ToInt32(row.Cells["wstatus"].Value))
+                    {
+                        case 8: // Rejected(TD)
+                            btnConfirm.Visible = false;
+                            btnReject.Visible = true;
+                            break;
+                        case 7: // Confirmed(TD)
+                            btnConfirm.Visible = true;
+                            btnReject.Visible = true;
+                            break;
+                        case 3: // Confirmed(TD)
+                            btnConfirm.Visible = true;
+                            btnReject.Visible = true;
+                            break;
+                        default:
+                            btnConfirm.Visible = false;
+                            btnReject.Visible = false;
+                            break;
+                    }
+                }
+                else // 영업부 
+                {
+                    txtComments.Enabled = true;
+                    txtCadComment.Enabled = false;
+
+                    btnConfirmCad.Visible = false;
+                    btnRejectCad.Visible = true;
+                    btnRejectCad.Text = "Cancel";
+
+                    btnSaveData.Visible = false;
+                    btnComplete.Visible = false;
+
+                    btnConfirm.Visible = false;
+                    btnReject.Visible = false;
+
+                    if (Convert.ToInt32(row.Cells["wstatus"].Value)>=3)
+                    {
+                        btnRejectCad.Visible = false;
+                    }
+                }
+
+                // 캔슬또는 완료 건이면 취소 locking
+                if (Convert.ToInt32(row.Cells["wstatus"].Value) == 4)
+                {
+                    txtComments.Enabled = false;
+                    txtCadComment.Enabled = false;
+
+                    btnConfirmCad.Visible = false;
+                    btnRejectCad.Visible = false;
+
+                    btnSaveData.Visible = false;
+                    btnComplete.Visible = false;
+
+                    btnConfirm.Visible = false;
+                    btnReject.Visible = false;
+                }
+
+                txtComments.Text = "";
+                txtCadComment.Text = "";
                 if (row.Cells["Comments"].Value != DBNull.Value) txtComments.Text = row.Cells["Comments"].Value.ToString();
+                if (row.Cells["CommentCad"].Value != DBNull.Value) txtCadComment.Text = row.Cells["CommentCad"].Value.ToString();
+
                 
             }
             catch(Exception ex)
@@ -1364,6 +1562,7 @@ namespace Dev.Pattern
                         if (string.IsNullOrEmpty(txtCadComment.Text.Trim()))
                         {
                             RadMessageBox.Show("Please input Reject reason.", "Rejected");
+                            return; 
                         }
                         
                         _gv1.EndEdit();
@@ -1373,6 +1572,24 @@ namespace Dev.Pattern
                             UserInfo.Idx,
                             Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value),
                             _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim(), txtCadComment.Text.Trim());
+
+                        // 오더핸들러 전화번호가 등록되어 있는 경우
+                        DataRow dr = Dev.Options.Data.CommonData.GetPhoneNumberbyOrderID(Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value.ToString()));
+                        if (dr != null && !string.IsNullOrEmpty(dr["Phone"].ToString().Trim())) 
+                        {
+                            // 결과 메시지 송신
+                            Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
+                            msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[요척반려] " +
+                                        "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
+                                        "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
+                                        "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
+                                        "OrderType: " + _gv1.Rows[row.Index].Cells["OrderType"].Value.ToString() + ", " +
+                                        "Size: " + _gv1.Rows[row.Index].Cells["OrdSizeIdx"].Value.ToString() + ", " +
+                                        "Rejected Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
+                                        "Rejected by " + UserInfo.Userfullname.ToString() + "\n" +
+                                         "Comment: " + txtCadComment.Text.ToString()
+                                        );
+                        }
                     }
                     else // 영업부 패턴/요청 취소 
                     {
@@ -1483,6 +1700,7 @@ namespace Dev.Pattern
                     if (string.IsNullOrEmpty(txtCadComment.Text.Trim()))
                     {
                         RadMessageBox.Show("Please input Reject reason.", "Rejected");
+                        return; 
                     }
 
 
@@ -1499,6 +1717,24 @@ namespace Dev.Pattern
                         __main__.lblRows.Text = "Rejected Pattern";
                         RadMessageBox.Show("Rejected Pattern.", "Rejected");
                     }
+
+                    // 오더핸들러 전화번호가 등록되어 있는 경우
+                    DataRow dr = Dev.Options.Data.CommonData.GetPhoneNumberbyOrderID(Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value.ToString()));
+                    if (dr != null && !string.IsNullOrEmpty(dr["Phone"].ToString().Trim()))
+                    {
+                        // 결과 메시지 송신
+                        Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
+                        msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[요척반려] " +
+                                    "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
+                                    "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
+                                    "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
+                                    "OrderType: " + _gv1.Rows[row.Index].Cells["OrderType"].Value.ToString() + ", " +
+                                    "Size: " + _gv1.Rows[row.Index].Cells["OrdSizeIdx"].Value.ToString() + ", " +
+                                    "Rejected Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
+                                    "Rejected by " + UserInfo.Userfullname.ToString() + "\n" +
+                                     "Comment: " + txtCadComment.Text.ToString()
+                                    );
+                    }
                 }
 
             }
@@ -1506,6 +1742,11 @@ namespace Dev.Pattern
             {
                 Console.WriteLine("btnUpdate_Click: " + ex.Message.ToString());
             }
+        }
+
+        private void toolWindow1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

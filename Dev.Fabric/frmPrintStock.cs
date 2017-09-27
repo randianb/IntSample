@@ -340,14 +340,13 @@ namespace Dev.Fabric
             {
                 dsData = null;
                 CultureInfo ci = new CultureInfo("ko-KR");
-                dsData = Data.InboundData.GetlistStock(_searchString, _searchKey, "2000-01-01");
+                dsData = Data.InboundData.GetlistStock(_searchString, _searchKey, dtInboundDate.Text, dtInboundDateTo.Text);
             }
             catch (Exception ex)
             {
                 RadMessageBox.Show("Fail to load Data " + Environment.NewLine + ex.Message,
                     "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
             }
-
         }
 
         private void radLabel12_DoubleClick(object sender, EventArgs e)

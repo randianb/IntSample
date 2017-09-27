@@ -470,6 +470,11 @@ namespace Dev.Codes
                 else
                     _searchKey.Add(CommonValues.KeyName.DeptIdx, 0);
 
+                if (UserInfo.ReportNo < 9 && Convert.ToInt32(ddlCust.SelectedValue) <= 0)
+                {
+                    RadMessageBox.Show("Please select the Buyer.", "Info");
+                    return; 
+                }
                 DataBinding_GV1(Convert.ToInt32(ddlCust.SelectedValue), _searchKey[CommonValues.KeyName.DeptIdx]);
             }
             catch (Exception ex)
@@ -530,10 +535,18 @@ namespace Dev.Codes
                 GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
 
                 // 객체생성 및 값 할당
-                _obj1           = new Controller.SizeGroup(Convert.ToInt32(row.Cells["SizeGroupIdx"].Value));
+                _obj1               = new Controller.SizeGroup(Convert.ToInt32(row.Cells["SizeGroupIdx"].Value));
                 _obj1.SizeGroupIdx       = Convert.ToInt32(row.Cells["SizeGroupIdx"].Value);
                 if (row.Cells["Client"].Value != DBNull.Value) _obj1.Client = Convert.ToInt32(row.Cells["Client"].Value);
-                _obj1.SizeGroupName = row.Cells["SizeGroupName"].Value.ToString();
+                if (string.IsNullOrEmpty(row.Cells["SizeGroupName"].Value.ToString().Trim()))
+                {
+                    RadMessageBox.Show("You must input the name of the SizeGroup.", "Warning", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                    return; 
+                }
+                else
+                {
+                    _obj1.SizeGroupName = row.Cells["SizeGroupName"].Value.ToString().Trim();
+                }
                 if (row.Cells["SizeIdx1"].Value != DBNull.Value)  _obj1.SizeIdx1 = Convert.ToInt32(row.Cells["SizeIdx1"].Value);
                 if (row.Cells["SizeIdx2"].Value != DBNull.Value) _obj1.SizeIdx2 = Convert.ToInt32(row.Cells["SizeIdx2"].Value);
                 if (row.Cells["SizeIdx3"].Value != DBNull.Value) _obj1.SizeIdx3 = Convert.ToInt32(row.Cells["SizeIdx3"].Value);

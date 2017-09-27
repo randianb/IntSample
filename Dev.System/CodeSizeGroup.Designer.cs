@@ -41,12 +41,12 @@
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
             this.toolWindow2 = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.toolWindow1 = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.documentContainer1 = new Telerik.WinControls.UI.Docking.DocumentContainer();
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
-            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCust)).BeginInit();
@@ -60,6 +60,7 @@
             this.radDock1.SuspendLayout();
             this.toolWindow2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
             this.toolTabStrip1.SuspendLayout();
             this.toolWindow1.SuspendLayout();
@@ -67,7 +68,6 @@
             this.documentContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
             this.documentTabStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -251,6 +251,25 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1259, 833);
             this.tableLayoutPanel2.TabIndex = 12;
             // 
+            // radMenu1
+            // 
+            this.radMenu1.BackColor = System.Drawing.Color.Transparent;
+            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItem1});
+            this.radMenu1.Location = new System.Drawing.Point(3, 3);
+            this.radMenu1.Name = "radMenu1";
+            this.radMenu1.Size = new System.Drawing.Size(1253, 24);
+            this.radMenu1.TabIndex = 0;
+            this.radMenu1.Text = "radMenu1";
+            // 
+            // radMenuItem1
+            // 
+            this.radMenuItem1.Image = global::Dev.Codes.Properties.Resources._07_plus_20;
+            this.radMenuItem1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radMenuItem1.Name = "radMenuItem1";
+            this.radMenuItem1.Text = "";
+            this.radMenuItem1.Click += new System.EventHandler(this.radMenuItem1_Click);
+            // 
             // toolTabStrip1
             // 
             this.toolTabStrip1.CanUpdateChildIndex = true;
@@ -315,25 +334,6 @@
             this.documentTabStrip1.TabStop = false;
             this.documentTabStrip1.TabStripVisible = false;
             // 
-            // radMenu1
-            // 
-            this.radMenu1.BackColor = System.Drawing.Color.Transparent;
-            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItem1});
-            this.radMenu1.Location = new System.Drawing.Point(3, 3);
-            this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(1253, 24);
-            this.radMenu1.TabIndex = 0;
-            this.radMenu1.Text = "radMenu1";
-            // 
-            // radMenuItem1
-            // 
-            this.radMenuItem1.Image = global::Dev.Codes.Properties.Resources._07_plus_20;
-            this.radMenuItem1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radMenuItem1.Name = "radMenuItem1";
-            this.radMenuItem1.Text = "";
-            this.radMenuItem1.Click += new System.EventHandler(this.radMenuItem1_Click);
-            // 
             // CodeSizeGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -364,6 +364,7 @@
             this.toolWindow2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
             this.toolTabStrip1.ResumeLayout(false);
             this.toolWindow1.ResumeLayout(false);
@@ -371,7 +372,6 @@
             this.documentContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();
             this.documentTabStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

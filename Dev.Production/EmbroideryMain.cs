@@ -464,21 +464,37 @@ namespace Dev.Production
                                             row["CustName"].ToString(),
                                             Convert.ToInt32(row["Classification"])));
             }
-
             
-
             // 오더상태 (CommonValues정의)
             lstStatus.Add(new CodeContents(0, CommonValues.DicWorkOrderStatus[0], ""));
             lstStatus.Add(new CodeContents(1, CommonValues.DicWorkOrderStatus[1], ""));
             lstStatus.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
             lstStatus.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
             lstStatus.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
+            lstStatus.Add(new CodeContents(5, CommonValues.DicWorkOrderStatus[5], ""));
+            lstStatus.Add(new CodeContents(6, CommonValues.DicWorkOrderStatus[6], ""));
+            lstStatus.Add(new CodeContents(7, CommonValues.DicWorkOrderStatus[7], ""));
+            lstStatus.Add(new CodeContents(8, CommonValues.DicWorkOrderStatus[8], ""));
+            lstStatus.Add(new CodeContents(10, CommonValues.DicWorkOrderStatus[10], ""));
+            lstStatus.Add(new CodeContents(11, CommonValues.DicWorkOrderStatus[11], ""));
+            lstStatus.Add(new CodeContents(12, CommonValues.DicWorkOrderStatus[12], ""));
+            lstStatus.Add(new CodeContents(13, CommonValues.DicWorkOrderStatus[13], ""));
+            lstStatus.Add(new CodeContents(14, CommonValues.DicWorkOrderStatus[14], ""));
 
             lstStatus2.Add(new CodeContents(0, CommonValues.DicWorkOrderStatus[0], ""));
             lstStatus2.Add(new CodeContents(1, CommonValues.DicWorkOrderStatus[1], ""));
             lstStatus2.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
             lstStatus2.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
             lstStatus2.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
+            lstStatus2.Add(new CodeContents(5, CommonValues.DicWorkOrderStatus[5], ""));
+            lstStatus2.Add(new CodeContents(6, CommonValues.DicWorkOrderStatus[6], ""));
+            lstStatus2.Add(new CodeContents(7, CommonValues.DicWorkOrderStatus[7], ""));
+            lstStatus2.Add(new CodeContents(8, CommonValues.DicWorkOrderStatus[8], ""));
+            lstStatus2.Add(new CodeContents(10, CommonValues.DicWorkOrderStatus[10], ""));
+            lstStatus2.Add(new CodeContents(11, CommonValues.DicWorkOrderStatus[11], ""));
+            lstStatus2.Add(new CodeContents(12, CommonValues.DicWorkOrderStatus[12], ""));
+            lstStatus2.Add(new CodeContents(13, CommonValues.DicWorkOrderStatus[13], ""));
+            lstStatus2.Add(new CodeContents(14, CommonValues.DicWorkOrderStatus[14], ""));
         }
 
         /// <summary>

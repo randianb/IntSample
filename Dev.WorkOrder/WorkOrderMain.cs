@@ -306,7 +306,7 @@ namespace Dev.WorkOrder
             obj.RowBackColor = Color.FromArgb(255, 255, 230, 230);
             obj.RowFont = f;
             gv.Columns["WorkStatus"].ConditionalFormattingObjectList.Add(obj);
-
+                        
             //// 마감오더 색상변경
             f = new Font(new FontFamily("Segoe UI"), 8.25f);
             ConditionalFormattingObject obj2 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "3", "", true);
@@ -322,18 +322,20 @@ namespace Dev.WorkOrder
             obj4.RowFont = f;
             gv.Columns["WorkStatus"].ConditionalFormattingObjectList.Add(obj4);
 
-            //f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
-            //ConditionalFormattingObject obj5 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "1", "", true);
-            //obj5.RowForeColor = Color.Black;
-            //obj5.RowFont = f;
-            //gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj5);
+            //// 입력실수 색상변경
+            f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Regular);
+            ConditionalFormattingObject obj5 = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "14", "", true);
+            obj5.RowForeColor = Color.Black;
+            obj5.RowBackColor = Color.FromArgb(255, 255, 210, 210);
+            obj5.RowFont = f;
+            gv.Columns["WorkStatus"].ConditionalFormattingObjectList.Add(obj5);
 
             #endregion
 
         }
 
         #endregion
-        
+
         /// <summary>
         /// 메인에서 신규자료가 입력된후, 입력된 행을 선택 포커싱한다 
         /// </summary>
@@ -414,6 +416,15 @@ namespace Dev.WorkOrder
             lstWorkStatus.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
             lstWorkStatus.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
             lstWorkStatus.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
+            lstWorkStatus.Add(new CodeContents(5, CommonValues.DicWorkOrderStatus[5], ""));
+            lstWorkStatus.Add(new CodeContents(6, CommonValues.DicWorkOrderStatus[6], ""));
+            lstWorkStatus.Add(new CodeContents(7, CommonValues.DicWorkOrderStatus[7], ""));
+            lstWorkStatus.Add(new CodeContents(8, CommonValues.DicWorkOrderStatus[8], ""));
+            lstWorkStatus.Add(new CodeContents(10, CommonValues.DicWorkOrderStatus[10], ""));
+            lstWorkStatus.Add(new CodeContents(11, CommonValues.DicWorkOrderStatus[11], ""));
+            lstWorkStatus.Add(new CodeContents(12, CommonValues.DicWorkOrderStatus[12], ""));
+            lstWorkStatus.Add(new CodeContents(13, CommonValues.DicWorkOrderStatus[13], ""));
+            lstWorkStatus.Add(new CodeContents(14, CommonValues.DicWorkOrderStatus[14], ""));
 
             // 작업진행상태 (CommonValues정의)
             lstWorkStatus2.Add(new CodeContents(0, CommonValues.DicWorkOrderStatus[0], ""));
@@ -421,6 +432,15 @@ namespace Dev.WorkOrder
             lstWorkStatus2.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
             lstWorkStatus2.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
             lstWorkStatus2.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
+            lstWorkStatus2.Add(new CodeContents(5, CommonValues.DicWorkOrderStatus[5], ""));
+            lstWorkStatus2.Add(new CodeContents(6, CommonValues.DicWorkOrderStatus[6], ""));
+            lstWorkStatus2.Add(new CodeContents(7, CommonValues.DicWorkOrderStatus[7], ""));
+            lstWorkStatus2.Add(new CodeContents(8, CommonValues.DicWorkOrderStatus[8], ""));
+            lstWorkStatus2.Add(new CodeContents(10, CommonValues.DicWorkOrderStatus[10], ""));
+            lstWorkStatus2.Add(new CodeContents(11, CommonValues.DicWorkOrderStatus[11], ""));
+            lstWorkStatus2.Add(new CodeContents(12, CommonValues.DicWorkOrderStatus[12], ""));
+            lstWorkStatus2.Add(new CodeContents(13, CommonValues.DicWorkOrderStatus[13], ""));
+            lstWorkStatus2.Add(new CodeContents(14, CommonValues.DicWorkOrderStatus[14], ""));
         }
 
         /// <summary>

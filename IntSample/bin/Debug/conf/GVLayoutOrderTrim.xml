@@ -1,0 +1,61 @@
+﻿<RadGridView ShowGroupPanel="False" BackColor="233, 240, 249" ForeColor="Black" Text="radGridView1" Font="Segoe UI, 8.25pt" Cursor="Default" RightToLeft="No" TabIndex="0" ImeMode="NoControl">
+  <MasterTemplate MultiSelect="True" SelectionMode="CellSelect" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False" ShowRowHeaderColumn="False">
+    <Columns>
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="Idx" Name="Idx" IsVisible="True" ReadOnly="True" HeaderText="ID" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="55" FieldName="DeptIdx" Name="DeptIdx" IsVisible="True" ReadOnly="True" HeaderText="Dept.t" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="130" FieldName="Buyer" Name="Buyer" IsVisible="True" ReadOnly="True" HeaderText="Buyer" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="90" FieldName="Fileno" Name="Fileno" IsVisible="True" ReadOnly="True" HeaderText="File#" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="140" FieldName="Styleno" Name="Styleno" IsVisible="True" ReadOnly="True" HeaderText="Style#" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="110" FieldName="Handler" Name="Handler" IsVisible="True" ReadOnly="True" HeaderText="Order&#xA;Handler" />
+      <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" FieldName="Status" Name="Status" IsVisible="False" ReadOnly="True">
+        <ConditionalFormattingObjectList>
+          <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="2" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="255, 230, 230" RowFont="Segoe UI, 8.25pt, style=Strikeout" Name="MyCondition" ApplyToRow="True" />
+          <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="3" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="220, 255, 240" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />
+          <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="0" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />
+          <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="1" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="" RowFont="Segoe UI, 8.25pt" Name="MyCondition" ApplyToRow="True" />
+        </ConditionalFormattingObjectList>
+      </Telerik.WinControls.UI.GridViewComboBoxColumn>
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S01" Name="S01" IsVisible="True" HeaderText="Hilo" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S02" Name="S02" IsVisible="True" HeaderText="Main Label" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S03" Name="S03" IsVisible="True" HeaderText="Size Label" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S04" Name="S04" IsVisible="True" HeaderText="Care Label" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S05" Name="S05" IsVisible="True" HeaderText="Id" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S06" Name="S06" IsVisible="True" HeaderText="Elastico" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S07" Name="S07" IsVisible="True" HeaderText="Boton" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S08" Name="S08" IsVisible="True" HeaderText="Transfer" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S09" Name="S09" IsVisible="True" HeaderText="Hanger Loop" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S10" Name="S10" IsVisible="True" HeaderText="Twill Tape" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S11" Name="S11" IsVisible="True" HeaderText="Snap" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S12" Name="S12" IsVisible="True" HeaderText="Slaider" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S13" Name="S13" IsVisible="True" HeaderText="Draw Cord" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S14" Name="S14" IsVisible="True" HeaderText="-" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S15" Name="S15" IsVisible="True" HeaderText="-" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S16" Name="S16" IsVisible="True" HeaderText="-" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S17" Name="S17" IsVisible="True" HeaderText="-" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S18" Name="S18" IsVisible="True" HeaderText="-" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S19" Name="S19" IsVisible="True" HeaderText="-" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewImageColumn ImageLayout="Zoom" Width="60" FieldName="S20" Name="S20" IsVisible="True" HeaderText="-" WrapText="True" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status01" Name="Status01" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status02" Name="Status02" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status03" Name="Status03" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status04" Name="Status04" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status05" Name="Status05" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status06" Name="Status06" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status07" Name="Status07" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status08" Name="Status08" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status09" Name="Status09" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status10" Name="Status10" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status11" Name="Status11" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status12" Name="Status12" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status13" Name="Status13" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status14" Name="Status14" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status15" Name="Status15" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status16" Name="Status16" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status17" Name="Status17" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status18" Name="Status18" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status19" Name="Status19" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int16" FieldName="Status20" Name="Status20" IsVisible="False" />
+    </Columns>
+    <ViewDefinition xsi:type="Telerik.WinControls.UI.TableViewDefinition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+  </MasterTemplate>
+</RadGridView>

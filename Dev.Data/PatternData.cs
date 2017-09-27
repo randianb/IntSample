@@ -646,6 +646,9 @@ namespace Dev.Data
                 _cmd.CommandType = CommandType.StoredProcedure;
                 _cmd.Connection = _conn;
 
+                _cmd.Parameters.Add("@DeptIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@DeptIdx"].Value = SearchKey[CommonValues.KeyName.DeptIdx];
+                
                 _cmd.Parameters.Add("@CustIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@CustIdx"].Value = SearchKey[CommonValues.KeyName.CustIdx];
 

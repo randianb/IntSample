@@ -481,12 +481,30 @@ namespace Dev.Production
             lstStatus.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
             lstStatus.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
             lstStatus.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
+            lstStatus.Add(new CodeContents(5, CommonValues.DicWorkOrderStatus[5], ""));
+            lstStatus.Add(new CodeContents(6, CommonValues.DicWorkOrderStatus[6], ""));
+            lstStatus.Add(new CodeContents(7, CommonValues.DicWorkOrderStatus[7], ""));
+            lstStatus.Add(new CodeContents(8, CommonValues.DicWorkOrderStatus[8], ""));
+            lstStatus.Add(new CodeContents(10, CommonValues.DicWorkOrderStatus[10], ""));
+            lstStatus.Add(new CodeContents(11, CommonValues.DicWorkOrderStatus[11], ""));
+            lstStatus.Add(new CodeContents(12, CommonValues.DicWorkOrderStatus[12], ""));
+            lstStatus.Add(new CodeContents(13, CommonValues.DicWorkOrderStatus[13], ""));
+            lstStatus.Add(new CodeContents(14, CommonValues.DicWorkOrderStatus[14], ""));
 
             lstStatus2.Add(new CodeContents(0, CommonValues.DicWorkOrderStatus[0], ""));
             lstStatus2.Add(new CodeContents(1, CommonValues.DicWorkOrderStatus[1], ""));
             lstStatus2.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
             lstStatus2.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
             lstStatus2.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
+            lstStatus2.Add(new CodeContents(5, CommonValues.DicWorkOrderStatus[5], ""));
+            lstStatus2.Add(new CodeContents(6, CommonValues.DicWorkOrderStatus[6], ""));
+            lstStatus2.Add(new CodeContents(7, CommonValues.DicWorkOrderStatus[7], ""));
+            lstStatus2.Add(new CodeContents(8, CommonValues.DicWorkOrderStatus[8], ""));
+            lstStatus2.Add(new CodeContents(10, CommonValues.DicWorkOrderStatus[10], ""));
+            lstStatus2.Add(new CodeContents(11, CommonValues.DicWorkOrderStatus[11], ""));
+            lstStatus2.Add(new CodeContents(12, CommonValues.DicWorkOrderStatus[12], ""));
+            lstStatus2.Add(new CodeContents(13, CommonValues.DicWorkOrderStatus[13], ""));
+            lstStatus2.Add(new CodeContents(14, CommonValues.DicWorkOrderStatus[14], ""));
         }
 
         /// <summary>
@@ -829,7 +847,27 @@ namespace Dev.Production
                             {
                                 __main__.lblRows.Text = "Completed Work";
                                 RadMessageBox.Show("Completed Work.", "Complete");
+
+                                // 오더핸들러 전화번호가 등록되어 있는 경우 
+                                DataRow dr = Dev.Options.Data.CommonData.GetPhoneNumberbyOrderID(Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value.ToString()));
+
+                                if (dr != null && !string.IsNullOrEmpty(dr["Phone"].ToString().Trim()))
+                                {
+                                    // 결과 메시지 송신
+                                    Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
+                                    msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[재단완료] " +
+                                                "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
+                                                "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
+                                                "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
+                                                "Color: " + _gv1.Rows[row.Index].Cells["OrdColorIdx"].Value.ToString() + ", " +
+                                                "Size: " + _gv1.Rows[row.Index].Cells["OrdSizeIdx"].Value.ToString() + ", " +
+                                                "Cutted Date: " + Convert.ToDateTime(_gv1.Rows[row.Index].Cells["CuttedDate"].Value).ToString("yyyy-MM-dd") + ", " +
+                                                "Cut Q'ty: " + _gv1.Rows[row.Index].Cells["CuttedQty"].Value.ToString()
+                                                );
+                                }
                             }
+
+                            
                         }
                         else
                         {

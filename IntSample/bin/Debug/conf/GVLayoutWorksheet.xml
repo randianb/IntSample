@@ -2,7 +2,7 @@
   <MasterTemplate MultiSelect="True" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False">
     <Columns>
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="Idx" Name="Idx" IsVisible="True" ReadOnly="True" HeaderText="ID" TextAlignment="MiddleCenter" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="OrderIdx" Name="OrderIdx" IsVisible="False" ReadOnly="True" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="OrderIdx" Name="OrderIdx" IsVisible="False" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="100" FieldName="WorksheetIdx" Name="WorksheetIdx" IsVisible="True" ReadOnly="True" HeaderText="Worksheet#" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="70" FieldName="DeptIdx" Name="DeptIdx" IsVisible="True" ReadOnly="True" HeaderText="Department" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="130" FieldName="Buyer" Name="Buyer" IsVisible="True" ReadOnly="True" HeaderText="Buyer" />
@@ -10,12 +10,12 @@
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="160" FieldName="Styleno" Name="Styleno" IsVisible="True" ReadOnly="True" HeaderText="Style#" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="ko-KR" FormatString="{0:d}" Width="100" FieldName="RegDate" Name="RegDate" IsVisible="True" ReadOnly="True" HeaderText="Sent Date" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="130" FieldName="Handler" Name="Handler" IsVisible="True" ReadOnly="True" HeaderText="Order&#xA;Handler" />
-      <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="ko-KR" FormatString="{0:g}" Width="130" FieldName="ConfirmDate" Name="ConfirmDate" IsVisible="True" ReadOnly="True" HeaderText="Confirm Date&#xA;(CAD)" TextAlignment="MiddleCenter" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="130" FieldName="ConfirmUser" Name="ConfirmUser" IsVisible="True" ReadOnly="True" HeaderText="Confirmed&#xA;(CAD)" />
+      <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="ko-KR" FormatString="{0:g}" Width="130" FieldName="ConfirmDate" Name="ConfirmDate" IsVisible="True" ReadOnly="True" HeaderText="Confirm Date&#xA;(Office)" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="130" FieldName="ConfirmUser" Name="ConfirmUser" IsVisible="True" ReadOnly="True" HeaderText="Confirmed&#xA;(Office)" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="ko-KR" FormatString="{0:g}" Width="130" FieldName="ConfirmDateTD" Name="ConfirmDateTD" IsVisible="True" ReadOnly="True" HeaderText="Confirm Date&#xA;(T/D)" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="130" FieldName="ConfirmUserTD" Name="ConfirmUserTD" IsVisible="True" ReadOnly="True" HeaderText="Confirmed&#xA;(T/D)" />
-      <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="ko-KR" FormatString="{0:g}" Width="130" FieldName="ConfirmDateLast" Name="ConfirmDateLast" IsVisible="True" ReadOnly="True" HeaderText="Confirm Date&#xA;(Office)" TextAlignment="MiddleCenter" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="130" FieldName="ConfirmUserLast" Name="ConfirmUserLast" IsVisible="True" ReadOnly="True" HeaderText="Confirmed&#xA;(Office)" />
+      <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="ko-KR" FormatString="{0:g}" Width="130" FieldName="ConfirmDateLast" Name="ConfirmDateLast" IsVisible="True" ReadOnly="True" HeaderText="Confirm Date&#xA;(Admin)" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="130" FieldName="ConfirmUserLast" Name="ConfirmUserLast" IsVisible="True" ReadOnly="True" HeaderText="Confirmed&#xA;(Admin)" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="100" FieldName="Status" Name="Status" IsVisible="True" ReadOnly="True" HeaderText="Status">
         <ConditionalFormattingObjectList>
           <Telerik.WinControls.UI.ConditionalFormattingObject TValue1="2" CellForeColor="" CellBackColor="" RowForeColor="Black" RowBackColor="255, 230, 230" RowFont="Segoe UI, 8.25pt, style=Strikeout" Name="MyCondition" ApplyToRow="True" />

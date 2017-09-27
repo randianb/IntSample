@@ -190,6 +190,7 @@ namespace SampleApp
 
                 UserInfo.Idx = Convert.ToInt32(dr["useridx"]);
                 UserInfo.Username = strUserid;
+                UserInfo.Userfullname = dr["UserName"].ToString().Trim();
                 UserInfo.Password = strPasswd; 
                 UserInfo.DeptIdx = Convert.ToInt32(dr["deptidx"]);
                 UserInfo.ReportNo = Convert.ToInt32(dr["reportno"]);

@@ -71,7 +71,7 @@ namespace Dev.Out
             DataLoading_DDL();
             Config_DropDownList(); 
             GV1_CreateColumn(gvOrder);
-            RefleshWithCondition();
+            //RefleshWithCondition();
             GV3_CreateColumn(gvOutSource); 
             
         }
@@ -742,6 +742,23 @@ namespace Dev.Out
                             row.Cells["OrdColorIdx"].Value.ToString().Trim(),
                             Convert.ToInt32(row.Cells["OrdSizeIdx"].Value), Convert.ToInt32(row.Cells["OutQty"].Value),  
                             UserInfo.Idx);
+
+                        // 오더핸들러 전화번호가 등록되어 있는 경우
+                        dr = null; 
+                        dr = Dev.Options.Data.CommonData.GetPhoneNumberbyOrderID(Convert.ToInt32(row.Cells["OrderIdx"].Value));
+                        if (dr != null && !string.IsNullOrEmpty(dr["Phone"].ToString().Trim()))
+                        {
+                            // 결과 메시지 송신
+                            Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
+                            msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[제품출고] " +
+                                        "Buyer: " + dr["Buyer"].ToString().Trim() + ", " +
+                                        "File: " + dr["Fileno"].ToString().Trim() + ", " +
+                                        "Style: " + dr["Styleno"].ToString().Trim() + ", " +
+                                        "Color: " + row.Cells["OrdColorIdx"].Value.ToString().Trim() + ", " +
+                                        "Size: " + row.Cells["OrdSizeNm"].Value.ToString().Trim() + ", " +
+                                        "Out Q'ty: " + row.Cells["OutQty"].Value.ToString().Trim() + "pcs"
+                                        );
+                        }
                     }
                 }
 

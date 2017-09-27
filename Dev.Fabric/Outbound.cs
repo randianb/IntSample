@@ -273,7 +273,7 @@ namespace Dev.Fabric
             IDate.FormatString = "{0:d}";
             IDate.FieldName = "IDate";
             IDate.HeaderText = "Date";
-            IDate.ReadOnly = true;
+            // IDate.ReadOnly = true;
             gv.Columns.Add(IDate);
 
 
@@ -904,8 +904,8 @@ namespace Dev.Fabric
                     if (row.Cells["Roll"].Value != DBNull.Value) _obj1.Roll = Convert.ToInt32(row.Cells["Roll"].Value);
                     if (row.Cells["Width"].Value != DBNull.Value) _obj1.Width = Convert.ToInt32(row.Cells["Width"].Value);
 
-                    if (row.Cells["Kgs"].Value != DBNull.Value) _obj1.Kgs = Convert.ToInt32(row.Cells["Kgs"].Value);
-                    if (row.Cells["Yds"].Value != DBNull.Value) _obj1.Yds = Convert.ToInt32(row.Cells["Yds"].Value);
+                    if (row.Cells["Kgs"].Value != DBNull.Value) _obj1.Kgs = Convert.ToDouble(row.Cells["Kgs"].Value);
+                    if (row.Cells["Yds"].Value != DBNull.Value) _obj1.Yds = Convert.ToDouble(row.Cells["Yds"].Value);
                     //if (row.Cells["RegCenterIdx"].Value != DBNull.Value) _regCenterIdx = Convert.ToInt32(row.Cells["RegCenterIdx"]);
                     //if (row.Cells["RegDeptIdx"].Value != DBNull.Value) _regDeptIdx = Convert.ToInt32(row.Cells["RegDeptIdx"]);
                     //if (row.Cells["RegUserIdx"].Value != DBNull.Value) _regUserIdx = Convert.ToInt32(row.Cells["RegUserIdx"]);
