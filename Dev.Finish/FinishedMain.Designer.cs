@@ -210,7 +210,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1249, 95);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1249, 49);
             this.tableLayoutPanel5.TabIndex = 14;
             // 
             // ddlCust
@@ -220,14 +220,14 @@
             this.ddlCust.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlCust.Location = new System.Drawing.Point(3, 23);
             this.ddlCust.Name = "ddlCust";
-            this.ddlCust.Size = new System.Drawing.Size(151, 20);
+            this.ddlCust.Size = new System.Drawing.Size(151, 22);
             this.ddlCust.TabIndex = 4;
             // 
             // radLabel2
             // 
             this.radLabel2.Location = new System.Drawing.Point(3, 3);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(34, 18);
+            this.radLabel2.Size = new System.Drawing.Size(34, 14);
             this.radLabel2.TabIndex = 3;
             this.radLabel2.Text = "Buyer";
             // 
@@ -236,14 +236,14 @@
             this.txtStyle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtStyle.Location = new System.Drawing.Point(741, 23);
             this.txtStyle.Name = "txtStyle";
-            this.txtStyle.Size = new System.Drawing.Size(144, 20);
+            this.txtStyle.Size = new System.Drawing.Size(144, 22);
             this.txtStyle.TabIndex = 9;
             // 
             // radLabel6
             // 
             this.radLabel6.Location = new System.Drawing.Point(741, 3);
             this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(37, 18);
+            this.radLabel6.Size = new System.Drawing.Size(37, 14);
             this.radLabel6.TabIndex = 3;
             this.radLabel6.Text = "Style#";
             // 
@@ -258,7 +258,7 @@
             // 
             this.radLabel5.Location = new System.Drawing.Point(589, 3);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(30, 18);
+            this.radLabel5.Size = new System.Drawing.Size(30, 14);
             this.radLabel5.TabIndex = 3;
             this.radLabel5.Text = "File#";
             // 
@@ -269,14 +269,14 @@
             this.ddlSize.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlSize.Location = new System.Drawing.Point(315, 23);
             this.ddlSize.Name = "ddlSize";
-            this.ddlSize.Size = new System.Drawing.Size(122, 20);
+            this.ddlSize.Size = new System.Drawing.Size(122, 22);
             this.ddlSize.TabIndex = 5;
             // 
             // radLabel1
             // 
             this.radLabel1.Location = new System.Drawing.Point(315, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(26, 18);
+            this.radLabel1.Size = new System.Drawing.Size(26, 14);
             this.radLabel1.TabIndex = 1;
             this.radLabel1.Text = "Size";
             // 
@@ -284,7 +284,7 @@
             // 
             this.radLabel4.Location = new System.Drawing.Point(160, 3);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(33, 18);
+            this.radLabel4.Size = new System.Drawing.Size(33, 14);
             this.radLabel4.TabIndex = 1;
             this.radLabel4.Text = "Color";
             // 
@@ -293,14 +293,14 @@
             this.txtColor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtColor.Location = new System.Drawing.Point(160, 23);
             this.txtColor.Name = "txtColor";
-            this.txtColor.Size = new System.Drawing.Size(149, 20);
+            this.txtColor.Size = new System.Drawing.Size(149, 22);
             this.txtColor.TabIndex = 8;
             // 
             // radLabel9
             // 
             this.radLabel9.Location = new System.Drawing.Point(3, 51);
             this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(25, 18);
+            this.radLabel9.Size = new System.Drawing.Size(25, 14);
             this.radLabel9.TabIndex = 3;
             this.radLabel9.Text = "Out";
             // 
@@ -308,7 +308,7 @@
             // 
             this.radLabel3.Location = new System.Drawing.Point(160, 51);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(51, 18);
+            this.radLabel3.Size = new System.Drawing.Size(51, 14);
             this.radLabel3.TabIndex = 3;
             this.radLabel3.Text = "Received";
             // 
@@ -334,7 +334,7 @@
             // 
             this.radLabel10.Location = new System.Drawing.Point(443, 3);
             this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Size = new System.Drawing.Size(53, 18);
+            this.radLabel10.Size = new System.Drawing.Size(53, 14);
             this.radLabel10.TabIndex = 3;
             this.radLabel10.Text = "Delivered";
             // 
@@ -349,7 +349,7 @@
             // 
             this.radLabel11.Location = new System.Drawing.Point(891, 3);
             this.radLabel11.Name = "radLabel11";
-            this.radLabel11.Size = new System.Drawing.Size(69, 18);
+            this.radLabel11.Size = new System.Drawing.Size(69, 14);
             this.radLabel11.TabIndex = 3;
             this.radLabel11.Text = "WorkOrder#";
             // 
@@ -364,7 +364,7 @@
             // 
             this.radLabel8.Location = new System.Drawing.Point(315, 51);
             this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(87, 18);
+            this.radLabel8.Size = new System.Drawing.Size(87, 14);
             this.radLabel8.TabIndex = 3;
             this.radLabel8.Text = "Out Date (From)";
             this.radLabel8.DoubleClick += new System.EventHandler(this.radLabel8_DoubleClick);
@@ -385,7 +385,7 @@
             // 
             this.radLabel12.Location = new System.Drawing.Point(443, 51);
             this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(74, 18);
+            this.radLabel12.Size = new System.Drawing.Size(74, 14);
             this.radLabel12.TabIndex = 3;
             this.radLabel12.Text = "Out Date (To)";
             this.radLabel12.DoubleClick += new System.EventHandler(this.radLabel12_DoubleClick);
@@ -432,7 +432,7 @@
             // 
             this.radLabel7.Location = new System.Drawing.Point(589, 51);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(93, 18);
+            this.radLabel7.Size = new System.Drawing.Size(93, 14);
             this.radLabel7.TabIndex = 3;
             this.radLabel7.Text = "Rcvd Date (From)";
             this.radLabel7.DoubleClick += new System.EventHandler(this.radLabel7_DoubleClick);
@@ -441,7 +441,7 @@
             // 
             this.radLabel13.Location = new System.Drawing.Point(741, 51);
             this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(79, 18);
+            this.radLabel13.Size = new System.Drawing.Size(79, 14);
             this.radLabel13.TabIndex = 3;
             this.radLabel13.Text = "Rcvd Date (To)";
             this.radLabel13.DoubleClick += new System.EventHandler(this.radLabel13_DoubleClick);
@@ -468,7 +468,7 @@
             // 
             this.radLabel14.Location = new System.Drawing.Point(891, 51);
             this.radLabel14.Name = "radLabel14";
-            this.radLabel14.Size = new System.Drawing.Size(67, 18);
+            this.radLabel14.Size = new System.Drawing.Size(67, 14);
             this.radLabel14.TabIndex = 3;
             this.radLabel14.Text = "Work Status";
             // 
@@ -493,7 +493,7 @@
             this.gvMain.Name = "gvMain";
             this.gvMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvMain.ShowGroupPanel = false;
-            this.gvMain.Size = new System.Drawing.Size(1280, 493);
+            this.gvMain.Size = new System.Drawing.Size(1280, 529);
             this.gvMain.TabIndex = 11;
             this.gvMain.Text = "radGridView1";
             this.gvMain.ViewCellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvOrderActual_ViewCellFormatting);
@@ -549,7 +549,7 @@
             this.toolWindow2.Location = new System.Drawing.Point(6, 6);
             this.toolWindow2.Name = "toolWindow2";
             this.toolWindow2.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow2.Size = new System.Drawing.Size(1280, 493);
+            this.toolWindow2.Size = new System.Drawing.Size(1280, 529);
             this.toolWindow2.Text = "Orders";
             // 
             // toolTabStrip4
@@ -564,9 +564,9 @@
             // 
             this.toolTabStrip4.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.toolTabStrip4.SelectedIndex = 0;
-            this.toolTabStrip4.Size = new System.Drawing.Size(1292, 129);
-            this.toolTabStrip4.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 129);
-            this.toolTabStrip4.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -52);
+            this.toolTabStrip4.Size = new System.Drawing.Size(1292, 93);
+            this.toolTabStrip4.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 93);
+            this.toolTabStrip4.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -88);
             this.toolTabStrip4.TabIndex = 4;
             this.toolTabStrip4.TabStop = false;
             this.toolTabStrip4.TabStripVisible = false;
@@ -581,7 +581,7 @@
             this.toolWindow1.Location = new System.Drawing.Point(1, 2);
             this.toolWindow1.Name = "toolWindow1";
             this.toolWindow1.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow1.Size = new System.Drawing.Size(1290, 125);
+            this.toolWindow1.Size = new System.Drawing.Size(1290, 89);
             this.toolWindow1.Text = "Search Data";
             this.toolWindow1.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.None;
             // 
@@ -591,7 +591,7 @@
             this.radMenu1.Dock = System.Windows.Forms.DockStyle.None;
             this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btnOutFinishedAdd});
-            this.radMenu1.Location = new System.Drawing.Point(5, 100);
+            this.radMenu1.Location = new System.Drawing.Point(6, 58);
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.Size = new System.Drawing.Size(182, 24);
             this.radMenu1.TabIndex = 15;
@@ -613,9 +613,9 @@
             // 
             // 
             this.documentContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.documentContainer1.SizeInfo.AbsoluteSize = new System.Drawing.Size(888, 505);
+            this.documentContainer1.SizeInfo.AbsoluteSize = new System.Drawing.Size(888, 541);
             this.documentContainer1.SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Fill;
-            this.documentContainer1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-179, -83);
+            this.documentContainer1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-179, -47);
             this.documentContainer1.TabIndex = 5;
             // 
             // documentTabStrip1
@@ -630,7 +630,7 @@
             // 
             this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.documentTabStrip1.SelectedIndex = 0;
-            this.documentTabStrip1.Size = new System.Drawing.Size(1292, 505);
+            this.documentTabStrip1.Size = new System.Drawing.Size(1292, 541);
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
             this.documentTabStrip1.TabStripVisible = false;

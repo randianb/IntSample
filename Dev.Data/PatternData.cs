@@ -502,7 +502,7 @@ namespace Dev.Data
         /// <param name="OrderIdx"></param>
         /// <param name="WorkOrderIdx"></param>
         /// <returns></returns>
-        public static bool RejectTD(int idx, int Rejected, int OrderIdx, string WorkOrderIdx, string CommentCad)
+        public static bool RejectTD(int idx, int Rejected, int Status, int OrderIdx, string WorkOrderIdx, string CommentCad)
         {
             try
             {
@@ -512,7 +512,7 @@ namespace Dev.Data
 
                 _cmd.CommandText = @"update pattern set RejectedDate=dbo.GetLocalDate(default), Rejected = @Rejected, CommentCad = @CommentCad where idx = @Idx 
                                      
-                                     update workorder set status=8 where OrderIdx = @OrderIdx and WorkOrderIdx = @WorkOrderIdx
+                                     update workorder set status=@Status where OrderIdx = @OrderIdx and WorkOrderIdx = @WorkOrderIdx
                                     ";
                 _cmd.CommandType = CommandType.Text;
                 _cmd.Connection = _conn;
@@ -522,6 +522,9 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@Rejected", SqlDbType.Int, 4);
                 _cmd.Parameters["@Rejected"].Value = Rejected;
+
+                _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
+                _cmd.Parameters["@Status"].Value = Status;
 
                 _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@OrderIdx"].Value = OrderIdx;

@@ -1,8 +1,8 @@
 [
   {
     "ProgramIdx": 0,
-    "Version": 1.81,
-    "AppliedDate": "2017-09-26T18:11:57.343",
+    "Version": 1.83,
+    "AppliedDate": "2017-09-29T18:11:57.343",
     "UploadUrl": "https://intfile.blob.core.windows.net/updateintsample/update.zip",
     "FileName": "update.zip",
     "IsUse": 1

@@ -193,10 +193,10 @@ namespace Dev.Controller
             return blRtn;
         }
 
-        public static bool Update2(int Idx, string WorkOrderIdx, string Result, string Action, int Reorder, int Status)
+        public static bool Update2(int Idx, string WorkOrderIdx, string Result, string Action, int Reorder)
         {
             bool blRtn;
-            blRtn = Data.InspectingData.Update(Idx, WorkOrderIdx, Result, Action, Reorder, Status);
+            blRtn = Data.InspectingData.Update(Idx, WorkOrderIdx, Result, Action, Reorder);
             return blRtn;
         }
 

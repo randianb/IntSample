@@ -574,7 +574,7 @@ namespace Dev.Out
             {
                 gv.DataSource = null;
 
-                _ds1 = Controller.OrderColor.Getlist(OrderIdx);
+                _ds1 = Controller.OrderColor.GetlistOutBalance(OrderIdx);
                 if (_ds1 != null)
                 {
                     gv.DataSource = _ds1.Tables[0].DefaultView;

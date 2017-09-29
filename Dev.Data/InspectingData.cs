@@ -197,7 +197,7 @@ namespace Dev.Data
             else return false;
         }
 
-        public static bool Update(int Idx, string WorkOrderIdx, string Result, string Action, int Reorder, int Status
+        public static bool Update(int Idx, string WorkOrderIdx, string Result, string Action, int Reorder 
             )
         {
             try
@@ -224,10 +224,7 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@Reorder", SqlDbType.Int, 4);
                 _cmd.Parameters["@Reorder"].Value = Reorder;
-
-                _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
-                _cmd.Parameters["@Status"].Value = Status;
-
+                
                 _rtn = _cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -475,8 +472,102 @@ namespace Dev.Data
             else
                 return false;
         }
-        
-        
+
+        /// <summary>
+        /// TD 검사 승인
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <param name="confirmed"></param>
+        /// <param name="OrderIdx"></param>
+        /// <param name="WorkOrderIdx"></param>
+        /// <returns></returns>
+        public static bool ConfirmTD(int idx, int confirmed, string WorkOrderIdx)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"update Inspecting set InspCompletedDate=dbo.GetLocalDate(default), Confirmed=@confirmed where idx=@Idx; 
+
+                                     update WorkOrder  set status=3 where WorkOrderIdx=@WorkOrderIdx 
+                                    ";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = idx;
+
+                _cmd.Parameters.Add("@Confirmed", SqlDbType.Int, 4);
+                _cmd.Parameters["@Confirmed"].Value = confirmed;
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
+        /// <summary>
+        /// TD 검사 반려 
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <param name="Rejected"></param>
+        /// <param name="OrderIdx"></param>
+        /// <param name="WorkOrderIdx"></param>
+        /// <returns></returns>
+        public static bool RejectTD(int idx, int Rejected, int Status, string WorkOrderIdx)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"update Inspecting set RejectDate=dbo.GetLocalDate(default), Rejected=@Rejected where idx=@Idx
+                                       
+                                     update WorkOrder  set status=@Status where WorkOrderIdx=@WorkOrderIdx                                     
+                                    ";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = idx;
+
+                _cmd.Parameters.Add("@Rejected", SqlDbType.Int, 4);
+                _cmd.Parameters["@Rejected"].Value = Rejected;
+
+                _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
+                _cmd.Parameters["@Status"].Value = Status;
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
         #endregion
     }
 }

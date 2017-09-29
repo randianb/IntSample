@@ -128,11 +128,11 @@ namespace Dev.Production
             ddlStatus.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
             ddlStatus.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
-            ddlStatus2.DataSource = lstStatus;
-            ddlStatus2.DisplayMember = "Contents";
-            ddlStatus2.ValueMember = "CodeIdx";
-            ddlStatus2.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
-            ddlStatus2.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+            //ddlStatus2.DataSource = lstStatus;
+            //ddlStatus2.DisplayMember = "Contents";
+            //ddlStatus2.ValueMember = "CodeIdx";
+            //ddlStatus2.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            //ddlStatus2.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
             // TD
             ddlFabric.DataSource = lstUser;
@@ -181,7 +181,7 @@ namespace Dev.Production
             Styleno.Name = "Styleno";
             Styleno.FieldName = "Styleno";
             Styleno.HeaderText = "Style#";
-            Styleno.Width = 100;
+            Styleno.Width = 80;
             Styleno.ReadOnly = true;
             gv.Columns.Add(Styleno);
 
@@ -192,16 +192,7 @@ namespace Dev.Production
             Fileno.Width = 80;
             Fileno.ReadOnly = true;
             gv.Columns.Add(Fileno);
-
-            GridViewTextBoxColumn WorkOrderIdx = new GridViewTextBoxColumn();
-            WorkOrderIdx.Name = "WorkOrderIdx";
-            WorkOrderIdx.FieldName = "WorkOrderIdx";
-            WorkOrderIdx.HeaderText = "Work ID\n(Inspect)";
-            WorkOrderIdx.Width = 100;
-            WorkOrderIdx.ReadOnly = true;
-            WorkOrderIdx.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            gv.Columns.Add(WorkOrderIdx);
-
+            
             GridViewTextBoxColumn OrdColorIdx = new GridViewTextBoxColumn();
             OrdColorIdx.Name = "OrdColorIdx";
             OrdColorIdx.FieldName = "OrdColorIdx";
@@ -224,7 +215,7 @@ namespace Dev.Production
             WorkQty.Name = "WorkQty";
             WorkQty.FieldName = "WorkQty";
             WorkQty.HeaderText = "Q'ty";
-            WorkQty.Width = 70;
+            WorkQty.Width = 50;
             WorkQty.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             WorkQty.ReadOnly = true;
             gv.Columns.Add(WorkQty);
@@ -232,8 +223,8 @@ namespace Dev.Production
             GridViewTextBoxColumn TDName = new GridViewTextBoxColumn();
             TDName.Name = "TDName";
             TDName.FieldName = "TDName";
-            TDName.HeaderText = "T/D";
-            TDName.Width = 150;
+            TDName.HeaderText = "Allocated T/D";
+            TDName.Width = 130;
             TDName.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             TDName.ReadOnly = true;
             gv.Columns.Add(TDName);
@@ -241,7 +232,7 @@ namespace Dev.Production
             GridViewDateTimeColumn InspRequestedDate = new GridViewDateTimeColumn();
             InspRequestedDate.Name = "InspRequestedDate";
             InspRequestedDate.FieldName = "InspRequestedDate";
-            InspRequestedDate.Width = 100;
+            InspRequestedDate.Width = 90;
             InspRequestedDate.TextAlignment = ContentAlignment.MiddleCenter;
             InspRequestedDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             InspRequestedDate.FormatString = "{0:d}";
@@ -258,6 +249,7 @@ namespace Dev.Production
             InspDate.CustomFormat = "{d}";
             InspDate.FormatString = "{0:d}";
             InspDate.HeaderText = "Started(Confirm)";
+            InspDate.IsVisible = false; 
             gv.Columns.Add(InspDate);
 
             GridViewDateTimeColumn InspCompletedDate = new GridViewDateTimeColumn();
@@ -268,8 +260,18 @@ namespace Dev.Production
             InspCompletedDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             InspCompletedDate.CustomFormat = "{d}";
             InspCompletedDate.FormatString = "{0:d}";
-            InspCompletedDate.HeaderText = "Completed";
+            InspCompletedDate.HeaderText = "Confirmed Date";
+            InspCompletedDate.ReadOnly = true;
             gv.Columns.Add(InspCompletedDate);
+
+            GridViewTextBoxColumn Confirmed = new GridViewTextBoxColumn();
+            Confirmed.Name = "Confirmed";
+            Confirmed.FieldName = "Confirmed";
+            Confirmed.ReadOnly = true;
+            Confirmed.Width = 130;
+            Confirmed.TextAlignment = ContentAlignment.MiddleLeft;
+            Confirmed.HeaderText = "Confirmed";
+            gv.Columns.Add(Confirmed);
             
             GridViewComboBoxColumn status = new GridViewComboBoxColumn();
             status.Name = "Status";
@@ -279,10 +281,29 @@ namespace Dev.Production
             status.FieldName = "Status";
             status.HeaderText = "Work Status";
             status.ReadOnly = true; 
-            status.Width = 100;
+            status.Width = 110;
             gv.Columns.Add(status);
 
-           
+            GridViewDateTimeColumn RejectDate = new GridViewDateTimeColumn();
+            RejectDate.Name = "RejectDate";
+            RejectDate.FieldName = "RejectDate";
+            RejectDate.Width = 110;
+            RejectDate.TextAlignment = ContentAlignment.MiddleCenter;
+            RejectDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            RejectDate.FormatString = "{0:g}";
+            RejectDate.HeaderText = "Rejected Date";
+            RejectDate.ReadOnly = true;
+            gv.Columns.Add(RejectDate);
+
+            GridViewTextBoxColumn Rejected = new GridViewTextBoxColumn();
+            Rejected.Name = "Rejected";
+            Rejected.FieldName = "Rejected";
+            Rejected.ReadOnly = true;
+            Rejected.Width = 130;
+            Rejected.TextAlignment = ContentAlignment.MiddleLeft;
+            Rejected.HeaderText = "Rejected";
+            gv.Columns.Add(Rejected);
+
             GridViewTextBoxColumn SewIdx = new GridViewTextBoxColumn();
             SewIdx.Name = "SewIdx";
             SewIdx.FieldName = "SewIdx";
@@ -292,6 +313,14 @@ namespace Dev.Production
             SewIdx.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Add(SewIdx);
 
+            GridViewTextBoxColumn WorkOrderIdx = new GridViewTextBoxColumn();
+            WorkOrderIdx.Name = "WorkOrderIdx";
+            WorkOrderIdx.FieldName = "WorkOrderIdx";
+            WorkOrderIdx.HeaderText = "Work ID\n(Inspect)";
+            WorkOrderIdx.Width = 90;
+            WorkOrderIdx.ReadOnly = true;
+            WorkOrderIdx.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            gv.Columns.Add(WorkOrderIdx);
 
             #endregion
         }
@@ -440,30 +469,17 @@ namespace Dev.Production
             lstStatus.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
             lstStatus.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
             lstStatus.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
-            lstStatus.Add(new CodeContents(5, CommonValues.DicWorkOrderStatus[5], ""));
-            lstStatus.Add(new CodeContents(6, CommonValues.DicWorkOrderStatus[6], ""));
-            lstStatus.Add(new CodeContents(7, CommonValues.DicWorkOrderStatus[7], ""));
-            lstStatus.Add(new CodeContents(8, CommonValues.DicWorkOrderStatus[8], ""));
-            lstStatus.Add(new CodeContents(10, CommonValues.DicWorkOrderStatus[10], ""));
-            lstStatus.Add(new CodeContents(11, CommonValues.DicWorkOrderStatus[11], ""));
-            lstStatus.Add(new CodeContents(12, CommonValues.DicWorkOrderStatus[12], ""));
-            lstStatus.Add(new CodeContents(13, CommonValues.DicWorkOrderStatus[13], ""));
-            lstStatus.Add(new CodeContents(14, CommonValues.DicWorkOrderStatus[14], ""));
-
+            lstStatus.Add(new CodeContents(15, CommonValues.DicWorkOrderStatus[15], ""));
+            lstStatus.Add(new CodeContents(16, CommonValues.DicWorkOrderStatus[16], ""));
+            
             lstStatus2.Add(new CodeContents(0, CommonValues.DicWorkOrderStatus[0], ""));
             lstStatus2.Add(new CodeContents(1, CommonValues.DicWorkOrderStatus[1], ""));
             lstStatus2.Add(new CodeContents(2, CommonValues.DicWorkOrderStatus[2], ""));
             lstStatus2.Add(new CodeContents(3, CommonValues.DicWorkOrderStatus[3], ""));
             lstStatus2.Add(new CodeContents(4, CommonValues.DicWorkOrderStatus[4], ""));
-            lstStatus2.Add(new CodeContents(5, CommonValues.DicWorkOrderStatus[5], ""));
-            lstStatus2.Add(new CodeContents(6, CommonValues.DicWorkOrderStatus[6], ""));
-            lstStatus2.Add(new CodeContents(7, CommonValues.DicWorkOrderStatus[7], ""));
-            lstStatus2.Add(new CodeContents(8, CommonValues.DicWorkOrderStatus[8], ""));
-            lstStatus2.Add(new CodeContents(10, CommonValues.DicWorkOrderStatus[10], ""));
-            lstStatus2.Add(new CodeContents(11, CommonValues.DicWorkOrderStatus[11], ""));
-            lstStatus2.Add(new CodeContents(12, CommonValues.DicWorkOrderStatus[12], ""));
-            lstStatus2.Add(new CodeContents(13, CommonValues.DicWorkOrderStatus[13], ""));
-            lstStatus2.Add(new CodeContents(14, CommonValues.DicWorkOrderStatus[14], ""));
+            lstStatus2.Add(new CodeContents(15, CommonValues.DicWorkOrderStatus[15], ""));
+            lstStatus2.Add(new CodeContents(16, CommonValues.DicWorkOrderStatus[16], ""));
+            
         }
 
         /// <summary>
@@ -556,8 +572,8 @@ namespace Dev.Production
             {
                 txtResult.Text = "";
                 txtAction.Text = "";
-                lblTDName.Text = "";
-                ddlStatus2.SelectedValue = 0;
+                
+                //ddlStatus2.SelectedValue = 0;
                 
                 _ds1 = Controller.Inspecting.Getlist(Idx);
 
@@ -565,8 +581,8 @@ namespace Dev.Production
                 {
                     txtResult.Text = _ds1.Tables[0].Rows[0]["Result"].ToString();
                     txtAction.Text = _ds1.Tables[0].Rows[0]["Action"].ToString();
-                    lblTDName.Text = "T/D Name: " + _ds1.Tables[0].Rows[0]["TDName"].ToString();
-                    ddlStatus2.SelectedValue = Convert.ToInt32(_ds1.Tables[0].Rows[0]["Status"].ToString());
+                
+                    //ddlStatus2.SelectedValue = Convert.ToInt32(_ds1.Tables[0].Rows[0]["Status"].ToString());
 
                     SetDefaultFontPropertiesToEditor(txtResult);
                     SetDefaultFontPropertiesToEditor(txtAction);
@@ -761,9 +777,26 @@ namespace Dev.Production
 
                 // 행변경시 우측 샘플타입도 변경해준다 
                 DataBinding_GV2(Int.Members.GetCurrentRow(_gv1, "Idx"));
-                
-                //GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
 
+                if (Options.UserInfo.DeptIdx == 12)
+                {
+                    radScrollablePanel1.Enabled = true; 
+                }
+                else
+                {
+                    radScrollablePanel1.Enabled = false; 
+                }
+
+                if (Int.Members.GetCurrentRow(_gv1, "Status") >4)
+                {
+                    btnConfirm.Enabled = false; 
+                }
+                else
+                {
+                    btnConfirm.Enabled = true; 
+                }
+
+                //GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
                 //if (row.Cells["Attached1"].Value != DBNull.Value) linkLabel1.Text = row.Cells["Attached1"].Value.ToString();
                 //if (row.Cells["Attached2"].Value != DBNull.Value) linkLabel2.Text = row.Cells["Attached2"].Value.ToString();
                 //if (row.Cells["Attached3"].Value != DBNull.Value) linkLabel3.Text = row.Cells["Attached3"].Value.ToString();
@@ -846,14 +879,14 @@ namespace Dev.Production
             try
             {
                 //_gv1.EndEdit();
-                if (_gv1.SelectedRows.Count <=0)
+                if (_gv1.SelectedRows.Count <= 0)
                 {
                     RadMessageBox.Show("You must select a row. Please search the data."); return;
                 }
-                
+
                 GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
 
-                if (Convert.ToInt32(row.Cells["Status"].Value)==3 || Convert.ToInt32(row.Cells["Status"].Value) == 4)
+                if (Convert.ToInt32(row.Cells["Status"].Value) == 3 || Convert.ToInt32(row.Cells["Status"].Value) == 4)
                 {
                     RadMessageBox.Show("You can't modify canceled or completed data.", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
                     return;
@@ -863,7 +896,7 @@ namespace Dev.Production
                 _bRtn = Controller.Inspecting.Update2(Convert.ToInt32(row.Cells["Idx"].Value),
                                     row.Cells["WorkOrderIdx"].Value.ToString(),
                                     txtResult.Text.Trim(),
-                                    txtAction.Text.Trim(), 0, Convert.ToInt32(ddlStatus2.SelectedValue));
+                                    txtAction.Text.Trim(), 0);
 
                 __main__.lblRows.Text = "Updated Inspection Info";
 
@@ -871,6 +904,189 @@ namespace Dev.Production
             catch (Exception ex)
             {
                 Console.WriteLine("GV2_Update: " + ex.Message.ToString());
+            }
+        }
+
+        private void btnReject_Click(object sender, EventArgs e)
+        {
+            _bRtn = false;
+            int status = 0;
+
+            try
+            {
+                if (_gv1.SelectedRows.Count <= 0)
+                {
+                    RadMessageBox.Show("You must select a row. Please search the data."); return;
+                }
+
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2, 센터: 3, 부서: 4
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    _gv1.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
+
+                    if (Convert.ToInt32(row.Cells["Status"].Value) == 3 || Convert.ToInt32(row.Cells["Status"].Value) == 4)
+                    {
+                        RadMessageBox.Show("You can't modify canceled or completed data.", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    if (opReorder.Checked == false && opModifiable.Checked == false)
+                    {
+                        RadMessageBox.Show("Please select the reject option", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        if (opReorder.Checked) status = 16;
+                        else if (opModifiable.Checked) status = 15; 
+                        
+                    }
+
+                    // 업데이트 (오더캔슬, 선적완료 상태가 아닐경우)
+                    _bRtn = Controller.Inspecting.Update2(Convert.ToInt32(row.Cells["Idx"].Value),
+                                        row.Cells["WorkOrderIdx"].Value.ToString(),
+                                        txtResult.Text.Trim(),
+                                        txtAction.Text.Trim(), 0);
+
+                    if (Options.UserInfo.DeptIdx == 12)     // TD
+                    {
+                        _bRtn = Data.InspectingData.RejectTD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
+                                        Options.UserInfo.Idx, status, 
+                                        _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim());
+
+                        if (_bRtn)
+                        {
+                            __main__.lblRows.Text = "Rejected by TD";
+                            RadMessageBox.Show("Rejected by TD.", "Rejected TD");
+                        }
+
+                        // 오더핸들러 전화번호가 등록되어 있는 경우
+                        DataRow dr = Dev.Options.Data.CommonData.GetPhoneNumberbyOrderID(Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value.ToString()));
+                        if (dr != null && !string.IsNullOrEmpty(dr["Phone"].ToString().Trim()))
+                        {
+                            // 결과 메시지 송신
+                            Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
+                            msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[검사반려] " +
+                                        "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
+                                        "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
+                                        "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
+                                        "Color: " + _gv1.Rows[row.Index].Cells["OrdColorIdx"].Value.ToString() + ", " +
+                                        "Q'ty: " + _gv1.Rows[row.Index].Cells["WorkQty"].Value.ToString() + "\n" +
+                                        "Rejected Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
+                                        "Rejected by " + Options.UserInfo.Userfullname.ToString() + "\n" +
+                                        "Result: " + txtResult.Text.Trim()
+                                        );
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("GV2_Reject: " + ex.Message.ToString());
+            }
+        }
+
+        private void gvMain_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            //  
+            if (e.CellElement.ColumnInfo.Name == "Confirmed" || e.CellElement.ColumnInfo.Name == "InspCompletedDate")
+            {
+                e.CellElement.BackColor = Color.PaleGreen;
+                e.CellElement.ForeColor = Color.Black;
+                e.CellElement.GradientStyle = GradientStyles.Solid;
+                e.CellElement.DrawFill = true;
+                e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+            }
+            else if (e.CellElement.ColumnInfo.Name == "RejectDate" || e.CellElement.ColumnInfo.Name == "Rejected")
+            {
+                e.CellElement.BackColor = Color.White;
+                e.CellElement.ForeColor = Color.Red;
+                e.CellElement.GradientStyle = GradientStyles.Solid;
+                e.CellElement.DrawFill = true;
+                e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+            }
+            else
+            {
+                e.CellElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                e.CellElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+                e.CellElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                e.CellElement.ResetValue(LightVisualElement.ForeColorProperty, ValueResetFlags.Local);
+
+
+            }
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            _bRtn = false;
+
+            try
+            {
+                if (_gv1.SelectedRows.Count <= 0)
+                {
+                    RadMessageBox.Show("You must select a row. Please search the data."); return;
+                }
+
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2, 센터: 3, 부서: 4
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    _gv1.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
+
+                    if (Convert.ToInt32(row.Cells["Status"].Value) == 3 || Convert.ToInt32(row.Cells["Status"].Value) == 4)
+                    {
+                        RadMessageBox.Show("You can't modify canceled or completed data.", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    // 업데이트 (오더캔슬, 선적완료 상태가 아닐경우)
+                    _bRtn = Controller.Inspecting.Update2(Convert.ToInt32(row.Cells["Idx"].Value),
+                                        row.Cells["WorkOrderIdx"].Value.ToString(),
+                                        txtResult.Text.Trim(),
+                                        txtAction.Text.Trim(), 0);
+
+                    if (Options.UserInfo.DeptIdx == 12)     // TD
+                    {
+                        _bRtn = Data.InspectingData.ConfirmTD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
+                                        Options.UserInfo.Idx, _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim());
+
+                        if (_bRtn)
+                        {
+                            __main__.lblRows.Text = "Confirmed by TD";
+                            RadMessageBox.Show("Confirmed by TD.", "Confirmed TD");
+                        }
+                        // 오더핸들러 전화번호가 등록되어 있는 경우
+                        DataRow dr = Dev.Options.Data.CommonData.GetPhoneNumberbyOrderID(Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value.ToString()));
+                        if (dr != null && !string.IsNullOrEmpty(dr["Phone"].ToString().Trim()))
+                        {
+                            // 결과 메시지 송신
+                            Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
+                            msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[검사완료] " +
+                                        "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
+                                        "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
+                                        "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
+                                        "Color: " + _gv1.Rows[row.Index].Cells["OrdColorIdx"].Value.ToString() + ", " +
+                                        "Q'ty: " + _gv1.Rows[row.Index].Cells["WorkQty"].Value.ToString() + "\n" +
+                                        "Confirmed by " + Options.UserInfo.Userfullname.ToString() 
+                                        );
+                        }
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("GV2_Confirm: " + ex.Message.ToString());
             }
         }
     }

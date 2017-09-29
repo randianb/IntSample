@@ -11,6 +11,7 @@ namespace Dev.Controller
 
         private int _Idx;
         private int _orderIdx;
+        private int _colorIdx;
         private int _status01;
         private int _status02;
         private int _status03;
@@ -91,7 +92,11 @@ namespace Dev.Controller
             get { return _orderIdx; }
             set { _orderIdx = value; }
         }
-        
+        public int ColorIdx
+        {
+            get { return _colorIdx; }
+            set { _colorIdx = value; }
+        }
         // 
         public int Status01 { get { return _status01; } set { _status01 = value; } }
         public int Status02 { get { return _status02; } set { _status02 = value; } }
@@ -169,7 +174,8 @@ namespace Dev.Controller
             {
                 _Idx = Convert.ToInt32(_row["Idx"]);
                 if (_row["OrderIdx"] != DBNull.Value) _orderIdx = Convert.ToInt32(_row["OrderIdx"]);
-                
+                if (_row["ColorIdx"] != DBNull.Value) _colorIdx = Convert.ToInt32(_row["ColorIdx"]);
+
                 if (_row["Status01"] != DBNull.Value) _status01 = Convert.ToInt32(_row["Status01"]);
                 if (_row["Status02"] != DBNull.Value) _status02 = Convert.ToInt32(_row["Status02"]);
                 if (_row["Status03"] != DBNull.Value) _status03 = Convert.ToInt32(_row["Status03"]);
@@ -244,6 +250,7 @@ namespace Dev.Controller
         {
             _Idx = 0;           
             _orderIdx = 0;
+            _colorIdx = 0;
 
             _status01 = 0;
             _status02 = 0;
@@ -313,9 +320,9 @@ namespace Dev.Controller
         #region Methods
 
         // Insert
-        public static DataRow Insert(int OrderIdx)
+        public static DataRow Insert(int OrderIdx, int ColorIdx)
         {
-            DataRow row = Data.OrderTrimData.Insert(OrderIdx);
+            DataRow row = Data.OrderTrimData.Insert(OrderIdx, ColorIdx);
             return row;
         }
         

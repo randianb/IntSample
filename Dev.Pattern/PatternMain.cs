@@ -164,12 +164,14 @@ namespace Dev.Pattern
                 
                 btnConfirm.Visible = true;
                 btnReject.Visible = true;
+                chkModifiable.Visible = true; 
             }
             else
             {
                 
                 btnConfirm.Visible = false;
                 btnReject.Visible = false;
+                chkModifiable.Visible = false;
             }
 
         }
@@ -728,7 +730,7 @@ namespace Dev.Pattern
             lstStatus.Add(new CodeContents(6, CommonValues.DicWorkOrderStatus[6], ""));
             lstStatus.Add(new CodeContents(7, CommonValues.DicWorkOrderStatus[7], ""));
             lstStatus.Add(new CodeContents(8, CommonValues.DicWorkOrderStatus[8], ""));
-
+            lstStatus.Add(new CodeContents(15, CommonValues.DicWorkOrderStatus[15], ""));
 
         }
 
@@ -1048,6 +1050,7 @@ namespace Dev.Pattern
 
                 btnConfirm.Visible = true;
                 btnReject.Visible = true;
+                chkModifiable.Visible = true;
 
                 btnConfirmCad.Enabled = true;
                 btnRejectCad.Enabled = true;
@@ -1057,6 +1060,9 @@ namespace Dev.Pattern
 
                 btnConfirm.Enabled = true;
                 btnReject.Enabled = true;
+                chkModifiable.Enabled = true;
+
+                #region 패턴사일 경우 
 
                 if (UserInfo.DeptIdx == 11) // CAD
                 {
@@ -1072,9 +1078,28 @@ namespace Dev.Pattern
 
                     btnConfirm.Visible = false;
                     btnReject.Visible = false;
+                    chkModifiable.Visible = false;
 
+                    radGroupBox1.Enabled = true;
+                    radBrowseEditor1.Enabled = true;
+                    radBrowseEditor2.Enabled = true;
+                    radBrowseEditor3.Enabled = true;
+                    radBrowseEditor4.Enabled = true;
+                    
                     switch (Convert.ToInt32(row.Cells["wstatus"].Value))
                     {
+                        case 15: // Rejected (Modifiable)
+                            btnConfirmCad.Enabled = false;
+                            btnRejectCad.Enabled = true;
+                            btnSaveData.Enabled = true;
+                            btnComplete.Enabled = true;
+                            radGroupBox1.Enabled = true;
+                            radBrowseEditor1.Enabled = true;
+                            radBrowseEditor2.Enabled = true;
+                            radBrowseEditor3.Enabled = true;
+                            radBrowseEditor4.Enabled = true;
+                            break;
+
                         case 8: // Rejected(TD)
                             btnConfirmCad.Enabled = false;
                             btnRejectCad.Enabled = false;
@@ -1094,7 +1119,7 @@ namespace Dev.Pattern
                             btnComplete.Enabled = false;
                             break;
                         case 5: // Confirmed(CAD)
-                            btnConfirmCad.Enabled = true;
+                            btnConfirmCad.Enabled = false;
                             btnRejectCad.Enabled = true;
                             btnSaveData.Enabled = true;
                             btnComplete.Enabled = true;
@@ -1104,7 +1129,49 @@ namespace Dev.Pattern
                             btnRejectCad.Enabled = false;
                             btnSaveData.Enabled = false;
                             btnComplete.Enabled = false;
+                            radGroupBox1.Enabled = false;
+                            radBrowseEditor1.Enabled = false;
+                            radBrowseEditor2.Enabled = false;
+                            radBrowseEditor3.Enabled = false;
+                            radBrowseEditor4.Enabled = false;
                             break;
+
+                        case 2: // Complete by CAD
+                            btnConfirmCad.Enabled = true;
+                            btnRejectCad.Enabled = true;
+                            btnSaveData.Enabled = false;
+                            btnComplete.Enabled = false;
+                            radGroupBox1.Enabled = false;
+                            radBrowseEditor1.Enabled = false;
+                            radBrowseEditor2.Enabled = false;
+                            radBrowseEditor3.Enabled = false;
+                            radBrowseEditor4.Enabled = false;
+                            break;
+
+                        case 1: // Complete by CAD
+                            btnConfirmCad.Enabled = true;
+                            btnRejectCad.Enabled = true;
+                            btnSaveData.Enabled = false;
+                            btnComplete.Enabled = false;
+                            radGroupBox1.Enabled = false;
+                            radBrowseEditor1.Enabled = false;
+                            radBrowseEditor2.Enabled = false;
+                            radBrowseEditor3.Enabled = false;
+                            radBrowseEditor4.Enabled = false;
+                            break;
+
+                        case 0: // Complete by CAD
+                            btnConfirmCad.Enabled = true;
+                            btnRejectCad.Enabled = true;
+                            btnSaveData.Enabled = false;
+                            btnComplete.Enabled = false;
+                            radGroupBox1.Enabled = false;
+                            radBrowseEditor1.Enabled = false;
+                            radBrowseEditor2.Enabled = false;
+                            radBrowseEditor3.Enabled = false;
+                            radBrowseEditor4.Enabled = false;
+                            break;
+
                         default:
                             btnConfirmCad.Enabled = true;
                             btnRejectCad.Enabled = true;
@@ -1113,6 +1180,10 @@ namespace Dev.Pattern
                             break;
                     }
                 }
+                #endregion
+
+                #region TD일 경우 
+
                 else if (UserInfo.DeptIdx == 12)  // TD
                 {
                     txtComments.Enabled = false;
@@ -1127,27 +1198,34 @@ namespace Dev.Pattern
 
                     btnConfirm.Visible = true;
                     btnReject.Visible = true;
+                    chkModifiable.Visible = true;
 
                     switch (Convert.ToInt32(row.Cells["wstatus"].Value))
                     {
                         case 8: // Rejected(TD)
                             btnConfirm.Visible = false;
                             btnReject.Visible = true;
+                            chkModifiable.Visible = true;
                             break;
                         case 7: // Confirmed(TD)
                             btnConfirm.Visible = true;
                             btnReject.Visible = true;
+                            chkModifiable.Visible = true;
                             break;
                         case 3: // Confirmed(TD)
                             btnConfirm.Visible = true;
                             btnReject.Visible = true;
+                            chkModifiable.Visible = true;
                             break;
                         default:
                             btnConfirm.Visible = false;
                             btnReject.Visible = false;
+                            chkModifiable.Visible = false;
                             break;
                     }
                 }
+                #endregion 
+
                 else // 영업부 
                 {
                     txtComments.Enabled = true;
@@ -1162,6 +1240,7 @@ namespace Dev.Pattern
 
                     btnConfirm.Visible = false;
                     btnReject.Visible = false;
+                    chkModifiable.Visible = false;
 
                     if (Convert.ToInt32(row.Cells["wstatus"].Value)>=3)
                     {
@@ -1183,6 +1262,7 @@ namespace Dev.Pattern
 
                     btnConfirm.Visible = false;
                     btnReject.Visible = false;
+                    chkModifiable.Visible = false;
                 }
 
                 txtComments.Text = "";
@@ -1444,9 +1524,9 @@ namespace Dev.Pattern
                         }
 
                     }
-
+                    RadMessageBox.Show("Uploaded completed.", "Saved");
                 }
-                RadMessageBox.Show("Uploaded completed.", "Saved"); 
+                
             }
             catch (Exception ex)
             {
@@ -1632,9 +1712,16 @@ namespace Dev.Pattern
                     CheckAuth.ShowMessage(_mode_);
                 else
                 {
+                    if (string.IsNullOrEmpty(lstFiles[1]) && string.IsNullOrEmpty(lstFiles[2]) && 
+                        string.IsNullOrEmpty(lstFiles[3]) && string.IsNullOrEmpty(lstFiles[4]))
+                    {
+                        RadMessageBox.Show("Please attach the file", "No file", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return; 
+                    }
+
                     _gv1.EndEdit();
                     GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
-
+                    
                     _bRtn = Data.PatternData.CompleteCAD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value), 
                         Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value),
                         _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim());
@@ -1688,6 +1775,9 @@ namespace Dev.Pattern
 
         private void btnReject_Click(object sender, EventArgs e)
         {
+            int status = 0;
+            string comment = ""; 
+
             try
             {
                 /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
@@ -1707,8 +1797,19 @@ namespace Dev.Pattern
                     _gv1.EndEdit();
                     GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
 
+                    if (chkModifiable.Checked)
+                    {
+                        status = 15;    // 패턴사 수정 가능상태로 전환 
+                        comment = "-- Modifiable by CAD --\n" + "Comment: " + txtCadComment.Text.ToString(); 
+                    }
+                    else
+                    {
+                        status = 8;     // TD Rejected
+                        comment = "Comment: " + txtCadComment.Text.ToString();
+                    }
+
                     _bRtn = Data.PatternData.RejectTD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        UserInfo.Idx,
+                        UserInfo.Idx, status, 
                         Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value),
                         _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim(), txtCadComment.Text.Trim());
 
@@ -1732,7 +1833,7 @@ namespace Dev.Pattern
                                     "Size: " + _gv1.Rows[row.Index].Cells["OrdSizeIdx"].Value.ToString() + ", " +
                                     "Rejected Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
                                     "Rejected by " + UserInfo.Userfullname.ToString() + "\n" +
-                                     "Comment: " + txtCadComment.Text.ToString()
+                                     comment
                                     );
                     }
                 }

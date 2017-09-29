@@ -236,7 +236,15 @@ namespace Dev.Controller
                         
             return ds;
         }
-       
+        public static DataSet GetlistOutBalance(int OrderIdx)
+        {
+            DataSet ds = new DataSet();
+
+            ds = Data.OrderColorData.GetlistOutBalance(OrderIdx);
+
+            return ds;
+        }
+        
         public bool Update()
         {
             bool blRtn;

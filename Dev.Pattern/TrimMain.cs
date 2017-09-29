@@ -168,14 +168,14 @@ namespace Dev.Pattern
             DeptIdx.ReadOnly = true;
             DeptIdx.Width = 55;
             DeptIdx.TextAlignment = ContentAlignment.MiddleLeft;
-            DeptIdx.HeaderText = "Dept.t";
+            DeptIdx.HeaderText = "Dept.";
             gv.Columns.Add(DeptIdx);
 
             GridViewTextBoxColumn Buyer = new GridViewTextBoxColumn();
             Buyer.Name = "Buyer";
             Buyer.FieldName = "Buyer";
             Buyer.ReadOnly = true;
-            Buyer.Width = 130;
+            Buyer.Width = 110;
             Buyer.TextAlignment = ContentAlignment.MiddleLeft;
             Buyer.HeaderText = "Buyer";
             gv.Columns.Add(Buyer);
@@ -184,7 +184,7 @@ namespace Dev.Pattern
             Fileno.Name = "Fileno";
             Fileno.FieldName = "Fileno";
             Fileno.ReadOnly = true;
-            Fileno.Width = 90;
+            Fileno.Width = 80;
             Fileno.TextAlignment = ContentAlignment.MiddleLeft;
             Fileno.HeaderText = "File#";
             gv.Columns.Add(Fileno);
@@ -193,16 +193,25 @@ namespace Dev.Pattern
             Styleno.Name = "Styleno";
             Styleno.FieldName = "Styleno";
             Styleno.ReadOnly = true;
-            Styleno.Width = 140;
+            Styleno.Width = 130;
             Styleno.TextAlignment = ContentAlignment.MiddleLeft;
             Styleno.HeaderText = "Style#";
             gv.Columns.Add(Styleno);
-            
+
+            GridViewTextBoxColumn ColorNm = new GridViewTextBoxColumn();
+            ColorNm.Name = "ColorNm";
+            ColorNm.FieldName = "ColorNm";
+            ColorNm.ReadOnly = true;
+            ColorNm.Width = 120;
+            ColorNm.TextAlignment = ContentAlignment.MiddleLeft;
+            ColorNm.HeaderText = "Color";
+            gv.Columns.Add(ColorNm);
+                        
             GridViewTextBoxColumn Handler = new GridViewTextBoxColumn();
             Handler.Name = "Handler";
             Handler.FieldName = "Handler";
             Handler.ReadOnly = true;
-            Handler.Width = 110;
+            Handler.Width = 90;
             Handler.TextAlignment = ContentAlignment.MiddleLeft;
             Handler.HeaderText = "Order\nHandler";
             gv.Columns.Add(Handler);
@@ -1470,7 +1479,7 @@ namespace Dev.Pattern
             {
                 _bRtn = false;
                 
-                if (e.ColumnIndex >= 7 && e.ColumnIndex <= 26)
+                if (e.ColumnIndex >= 8 && e.ColumnIndex <= 27)
                 {
                     //Console.WriteLine(e.Row.Cells["Idx"].Value.ToString());
                     //Console.WriteLine(e.Row.Cells["Status" + string.Format("{0:d2}", e.ColumnIndex-6)].Value.ToString());
@@ -1478,8 +1487,8 @@ namespace Dev.Pattern
                     try
                     {
                         _bRtn = Dev.Controller.OrderTrim.Update(Convert.ToInt32(e.Row.Cells["Idx"].Value.ToString()),
-                                                                e.ColumnIndex - 6,
-                                                                Convert.ToInt32(e.Row.Cells["Status" + string.Format("{0:d2}", e.ColumnIndex - 6)].Value.ToString()));
+                                                                e.ColumnIndex - 7,
+                                                                Convert.ToInt32(e.Row.Cells["Status" + string.Format("{0:d2}", e.ColumnIndex - 7)].Value.ToString()));
 
                         __main__.lblRows.Text = "Updated Trim Status Info";
 

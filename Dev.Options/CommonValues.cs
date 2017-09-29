@@ -82,7 +82,9 @@ namespace Dev.Options
             {11, "Rejected(Office)"},               // 작업반려 (개발총괄)
             {12, "Confirmed(Admin)"},               // 작업확인 (사무실)
             {13, "Rejected(Admin)"},                // 작업반려 (사무실)
-            {14, "Wrong Input"}                     // 입력실수
+            {14, "Wrong Input"},                    // 입력실수
+            {15, "Rejected(Modifiable)"},           // 검사반려 (수정가능)
+            {16, "Rejected(Re-Order)"}              // 검사반려 (재작업오더)
         };
 
         public static Dictionary<int, string> DicFabricInStatus = new Dictionary<int, string>()
