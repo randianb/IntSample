@@ -285,7 +285,7 @@ namespace Dev.Production
             Balance.HeaderText = "Balance";
             Balance.Width = 70;
             Balance.EnableExpressionEditor = true;
-            Balance.Expression = "OrdQty-CuttedQty"; 
+            Balance.Expression = "CuttedQty-OrdQty"; 
             Balance.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gv.Columns.Add(Balance);
             
@@ -388,6 +388,12 @@ namespace Dev.Production
             obj5.RowBackColor = Color.Lavender; 
             obj5.RowFont = f;
             gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj5);
+
+            f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Bold);
+            ExpressionFormattingObject obj6 = new ExpressionFormattingObject("MyCondition", "Balance < 0", false);
+            obj6.CellForeColor = Color.Red;
+            obj6.CellFont = f;
+            gv.Columns["Balance"].ConditionalFormattingObjectList.Add(obj6);
 
             #endregion
 
@@ -646,13 +652,14 @@ namespace Dev.Production
         private void gvOrderActual_ViewCellFormatting(object sender, CellFormattingEventArgs e)
         {
             Font f = new Font(new FontFamily("Segoe UI"), 8.25f);
-
+            
             // 중앙 그리드뷰 헤더 폰트 변경
             GridHeaderCellElement element = sender as GridHeaderCellElement;
             if (element != null)
             {
                 element.Font = f;
             }
+
             
         }
 

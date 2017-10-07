@@ -27,8 +27,15 @@ namespace Dev.Data
         /// Insert
         /// </summary>
         public static DataRow Insert(int OrderIdx, string WorkOrderIdx, int OrdSizeIdx, DateTime TechpackDate, DateTime RequestedDate,
-            int Requested, string Comments, string Attached1, string Attached2, string Attached3, string Attached4, string Attached5,
-            string AttachedUrl1, string AttachedUrl2, string AttachedUrl3, string AttachedUrl4, string AttachedUrl5, int Handler
+            int Requested, string Comments, 
+            string Attached1, string Attached2, string Attached3, string Attached4, string Attached5,
+            string Attached6, string Attached7, string Attached8, string Attached9,
+            string AttachedUrl1, string AttachedUrl2, string AttachedUrl3, string AttachedUrl4, string AttachedUrl5,
+            string AttachedUrl6, string AttachedUrl7, string AttachedUrl8, string AttachedUrl9,
+            int Handler,
+            int IsPattern, int IsConsum,
+            int OrdSizeIdx2, int OrdSizeIdx3, int OrdSizeIdx4, int OrdSizeIdx5, int OrdSizeIdx6, int OrdSizeIdx7, int OrdSizeIdx8, 
+            int Confirmed, int Received
             )
         {
             try
@@ -61,23 +68,35 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@Requested", SqlDbType.Int, 4);
                 _cmd.Parameters["@Requested"].Value = Requested;
                 
-                _cmd.Parameters.Add("@Comments", SqlDbType.Text);
+                _cmd.Parameters.Add("@Comments", SqlDbType.NText);
                 _cmd.Parameters["@Comments"].Value = Comments;
 
-                _cmd.Parameters.Add("@Attached1", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached1", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached1"].Value = Attached1;
 
-                _cmd.Parameters.Add("@Attached2", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached2", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached2"].Value = Attached2;
 
-                _cmd.Parameters.Add("@Attached3", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached3", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached3"].Value = Attached3;
 
-                _cmd.Parameters.Add("@Attached4", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached4", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached4"].Value = Attached4;
 
-                _cmd.Parameters.Add("@Attached5", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached5", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached5"].Value = Attached5;
+
+                _cmd.Parameters.Add("@Attached6", SqlDbType.NVarChar, 150);
+                _cmd.Parameters["@Attached6"].Value = Attached6;
+
+                _cmd.Parameters.Add("@Attached7", SqlDbType.NVarChar, 150);
+                _cmd.Parameters["@Attached7"].Value = Attached7;
+
+                _cmd.Parameters.Add("@Attached8", SqlDbType.NVarChar, 150);
+                _cmd.Parameters["@Attached8"].Value = Attached8;
+
+                _cmd.Parameters.Add("@Attached9", SqlDbType.NVarChar, 150);
+                _cmd.Parameters["@Attached9"].Value = Attached9;
 
                 _cmd.Parameters.Add("@AttachedUrl1", SqlDbType.NVarChar, 255);
                 _cmd.Parameters["@AttachedUrl1"].Value = AttachedUrl1;
@@ -94,9 +113,53 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@AttachedUrl5", SqlDbType.NVarChar, 255);
                 _cmd.Parameters["@AttachedUrl5"].Value = AttachedUrl5;
 
+                _cmd.Parameters.Add("@AttachedUrl6", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl6"].Value = AttachedUrl6;
+
+                _cmd.Parameters.Add("@AttachedUrl7", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl7"].Value = AttachedUrl7;
+
+                _cmd.Parameters.Add("@AttachedUrl8", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl8"].Value = AttachedUrl8;
+
+                _cmd.Parameters.Add("@AttachedUrl9", SqlDbType.NVarChar, 255);
+                _cmd.Parameters["@AttachedUrl9"].Value = AttachedUrl9;
+
                 _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
                 _cmd.Parameters["@Handler"].Value = Handler;
 
+                _cmd.Parameters.Add("@IsPattern", SqlDbType.Int, 4);
+                _cmd.Parameters["@IsPattern"].Value = IsPattern;
+
+                _cmd.Parameters.Add("@IsConsum", SqlDbType.Int, 4);
+                _cmd.Parameters["@IsConsum"].Value = IsConsum;
+
+                _cmd.Parameters.Add("@OrdSizeIdx2", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrdSizeIdx2"].Value = OrdSizeIdx2;
+
+                _cmd.Parameters.Add("@OrdSizeIdx3", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrdSizeIdx3"].Value = OrdSizeIdx3;
+
+                _cmd.Parameters.Add("@OrdSizeIdx4", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrdSizeIdx4"].Value = OrdSizeIdx4;
+
+                _cmd.Parameters.Add("@OrdSizeIdx5", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrdSizeIdx5"].Value = OrdSizeIdx5;
+
+                _cmd.Parameters.Add("@OrdSizeIdx6", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrdSizeIdx6"].Value = OrdSizeIdx6;
+
+                _cmd.Parameters.Add("@OrdSizeIdx7", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrdSizeIdx7"].Value = OrdSizeIdx7;
+
+                _cmd.Parameters.Add("@OrdSizeIdx8", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrdSizeIdx8"].Value = OrdSizeIdx8;
+
+                _cmd.Parameters.Add("@Confirmed", SqlDbType.Int, 4);
+                _cmd.Parameters["@Confirmed"].Value = Confirmed;
+
+                _cmd.Parameters.Add("@Received", SqlDbType.Int, 4);
+                _cmd.Parameters["@Received"].Value = Received;
 
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);
@@ -206,16 +269,16 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
                 _cmd.Parameters["@Idx"].Value = Idx;
 
-                _cmd.Parameters.Add("@Attached21", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached21", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached21"].Value = Attached21;
 
-                _cmd.Parameters.Add("@Attached22", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached22", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached22"].Value = Attached22;
 
-                _cmd.Parameters.Add("@Attached23", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached23", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached23"].Value = Attached23;
 
-                _cmd.Parameters.Add("@Attached24", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached24", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached24"].Value = Attached24;
 
                 _cmd.Parameters.Add("@AttachedUrl21", SqlDbType.NVarChar, 255);
@@ -548,7 +611,47 @@ namespace Dev.Data
             if (_rtn > 0) return true;
             else return false;
         }
-        
+
+        /// <summary>
+        /// pattern view by team 
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <param name="confirmed"></param>
+        /// <param name="OrderIdx"></param>
+        /// <param name="WorkOrderIdx"></param>
+        /// <returns></returns>
+        public static bool ViewTeam(int idx, int Viewed)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"update pattern set ViewedDate=dbo.GetLocalDate(default), Viewed = @Viewed where idx = @Idx";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = idx;
+
+                _cmd.Parameters.Add("@Viewed", SqlDbType.Int, 4);
+                _cmd.Parameters["@Viewed"].Value = Viewed;
+                
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
         /// <summary>
         /// Get: 해당 ID조회 
         /// </summary>

@@ -26,7 +26,7 @@ namespace Dev.Data
         /// <summary>
         /// Insert
         /// </summary>
-        public static DataRow Insert(int OrderIdx)
+        public static DataRow Insert(int OrderIdx, int FabricIdx)
         {
             try
             {
@@ -42,7 +42,10 @@ namespace Dev.Data
                 
                 _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
-                                
+
+                _cmd.Parameters.Add("@FabricIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@FabricIdx"].Value = FabricIdx;
+
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);
             }

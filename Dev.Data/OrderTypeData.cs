@@ -79,7 +79,8 @@ namespace Dev.Data
         public static bool Update(int Idx, int type101, int type102, int type103,
             int type201, int type202, int type203, int type204, int type205, int type206, int type207, int type208, int type209, int type210,
             int type211, int type212, int type213, int type214, int type215, int type216, int type217, int type218, int type219, int type220, 
-            int type221, int type222, int type223, int type224, int type225, int type226, int type227, int type228, int type229, int type230 
+            int type221, int type222, int type223, int type224, int type225, int type226, int type227, int type228, int type229, int type230,
+            int type231, int type232, int type233 
             )
         {
             try
@@ -203,6 +204,15 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@type230", SqlDbType.TinyInt, 1);
                 _cmd.Parameters["@type230"].Value = type230;
+
+                _cmd.Parameters.Add("@type231", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@type231"].Value = type231;
+
+                _cmd.Parameters.Add("@type232", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@type232"].Value = type232;
+
+                _cmd.Parameters.Add("@type233", SqlDbType.TinyInt, 1);
+                _cmd.Parameters["@type233"].Value = type233;
 
                 #endregion
 

@@ -51,34 +51,34 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@WorksheetIdx", SqlDbType.NVarChar, 14);
                 _cmd.Parameters["@WorksheetIdx"].Value = WorksheetIdx;
 
-                _cmd.Parameters.Add("@Comments", SqlDbType.Text);
+                _cmd.Parameters.Add("@Comments", SqlDbType.NText);
                 _cmd.Parameters["@Comments"].Value = Comments;
 
-                _cmd.Parameters.Add("@Attached1", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached1", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached1"].Value = Attached1;
 
-                _cmd.Parameters.Add("@Attached2", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached2", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached2"].Value = Attached2;
 
-                _cmd.Parameters.Add("@Attached3", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached3", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached3"].Value = Attached3;
 
-                _cmd.Parameters.Add("@Attached4", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached4", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached4"].Value = Attached4;
 
-                _cmd.Parameters.Add("@Attached5", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached5", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached5"].Value = Attached5;
 
-                _cmd.Parameters.Add("@Attached6", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached6", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached6"].Value = Attached6;
 
-                _cmd.Parameters.Add("@Attached7", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached7", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached7"].Value = Attached7;
 
-                _cmd.Parameters.Add("@Attached8", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached8", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached8"].Value = Attached8;
 
-                _cmd.Parameters.Add("@Attached9", SqlDbType.NVarChar, 50);
+                _cmd.Parameters.Add("@Attached9", SqlDbType.NVarChar, 150);
                 _cmd.Parameters["@Attached9"].Value = Attached9;
 
                 _cmd.Parameters.Add("@AttachedUrl1", SqlDbType.NVarChar, 255);

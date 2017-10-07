@@ -282,7 +282,7 @@ namespace Dev.Production
             Balance.HeaderText = "Balance";
             Balance.Width = 70;
             Balance.EnableExpressionEditor = true;
-            Balance.Expression = "OrdQty-WorkQty"; 
+            Balance.Expression = "WorkQty-OrdQty"; 
             Balance.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gv.Columns.Add(Balance);
             
@@ -398,6 +398,12 @@ namespace Dev.Production
             obj5.RowBackColor = Color.Lavender; 
             obj5.RowFont = f;
             gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj5);
+
+            f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Bold);
+            ExpressionFormattingObject obj6 = new ExpressionFormattingObject("MyCondition", "Balance < 0", false);
+            obj6.CellForeColor = Color.Red;
+            obj6.CellFont = f;
+            gv.Columns["Balance"].ConditionalFormattingObjectList.Add(obj6);
 
             #endregion
 
@@ -845,7 +851,6 @@ namespace Dev.Production
                             {
                                 __main__.lblRows.Text = "Completed Work";
                                 RadMessageBox.Show("Completed Work.", "Complete");
-
                                 
                             }
 

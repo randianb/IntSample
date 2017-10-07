@@ -14,6 +14,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System.IO;
+using Telerik.WinForms.Documents.Model;
 
 namespace Dev.Pattern
 {
@@ -92,7 +93,7 @@ namespace Dev.Pattern
             LoadGVLayout();             // 그리드뷰 레이아웃 복구 
 
             //TD확인 
-            if (UserInfo.DeptIdx == 12)
+            if (Options.UserInfo.DeptIdx == 12)
             {
                 toggTD.Value = true;
                 
@@ -102,6 +103,13 @@ namespace Dev.Pattern
                 toggTD.Value = false;
                 
             }
+
+            PatternOpCheck1.Checked = CommonValues.PatternOpCheck1;
+            PatternOpCheck2.Checked = CommonValues.PatternOpCheck2;
+            PatternOpCheck3.Checked = CommonValues.PatternOpCheck3;
+            PatternOpCheck4.Checked = CommonValues.PatternOpCheck4;
+            PatternOpCheck5.Checked = CommonValues.PatternOpCheck5;
+            PatternOpCheck6.Checked = CommonValues.PatternOpCheck6;
 
             // 다른 폼으로부터 전달된 Work ID가 있을 경우, 해당 ID로 조회 
             if (!string.IsNullOrEmpty(_workOrderIdx))
@@ -125,7 +133,7 @@ namespace Dev.Pattern
             }
 
             // 패턴사 확인
-            if (UserInfo.DeptIdx == 11)
+            if (Options.UserInfo.DeptIdx == 11)
             {
                 radBrowseEditor1.Visible = true;
                 radBrowseEditor2.Visible = true;
@@ -135,7 +143,7 @@ namespace Dev.Pattern
                 btnConfirmCad.Visible = true;
                 btnSaveData.Visible = true;
                 btnComplete.Visible = true;
-                txtComments.Enabled = false;
+                txtComments.Enabled = true;
                 txtCadComment.Enabled = true;
                 btnRejectCad.Text = "Reject";
             }
@@ -145,7 +153,7 @@ namespace Dev.Pattern
                 btnSaveData.Visible = false;
                 btnComplete.Visible = false;
 
-                if (UserInfo.DeptIdx == 12) // TD일 경우
+                if (Options.UserInfo.DeptIdx == 12) // TD일 경우
                 {
                     btnRejectCad.Visible = false;   // Reject버튼 숨김
                     txtCadComment.Enabled = true;
@@ -154,12 +162,12 @@ namespace Dev.Pattern
                 {
                     btnRejectCad.Text = "Cancel"; 
                     txtComments.Enabled = true;
-                    txtCadComment.Enabled = false;
+                    txtCadComment.Enabled = true;
                 }
             }
 
             //TD확인 
-            if (UserInfo.DeptIdx == 12)
+            if (Options.UserInfo.DeptIdx == 12)
             {
                 
                 btnConfirm.Visible = true;
@@ -249,27 +257,36 @@ namespace Dev.Pattern
             gv.Columns["Styleno"].HeaderText = "Style#";
             gv.Columns["Styleno"].ReadOnly = true;
 
-            gv.Columns["Fileno"].Width = 90;
+            gv.Columns["Fileno"].Width = 80;
             gv.Columns["Fileno"].HeaderText = "INT File #";
             gv.Columns["Fileno"].ReadOnly = true;
             
-            GridViewComboBoxColumn cboSize = new GridViewComboBoxColumn();
-            cboSize.Name = "OrdSizeIdx";
-            cboSize.DataSource = sizeName;
-            cboSize.ValueMember = "CodeIdx";
-            cboSize.DisplayMember = "Contents";
-            cboSize.FieldName = "OrdSizeIdx";
-            cboSize.HeaderText = "Size";
-            cboSize.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            cboSize.ReadOnly = true;
-            cboSize.Width = 70;
-            gv.Columns.Insert(5, cboSize);
+            //GridViewComboBoxColumn cboSize = new GridViewComboBoxColumn();
+            //cboSize.Name = "OrdSizeIdx";
+            //cboSize.DataSource = sizeName;
+            //cboSize.ValueMember = "CodeIdx";
+            //cboSize.DisplayMember = "Contents";
+            //cboSize.FieldName = "OrdSizeIdx";
+            //cboSize.HeaderText = "Size";
+            //cboSize.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            //cboSize.ReadOnly = true;
+            //cboSize.Width = 70;
+            //gv.Columns.Insert(5, cboSize);
+            
+            GridViewTextBoxColumn SizeNm = new GridViewTextBoxColumn();
+            SizeNm.Name = "SizeNm";
+            SizeNm.FieldName = "SizeNm";
+            SizeNm.HeaderText = "SizeNm";
+            SizeNm.Width = 70;
+            SizeNm.ReadOnly = true;
+            SizeNm.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            gv.Columns.Insert(5, SizeNm);
 
             GridViewTextBoxColumn OrderType = new GridViewTextBoxColumn();
             OrderType.Name = "OrderType";
             OrderType.FieldName = "OrderType";
-            OrderType.HeaderText = "OrderType";
-            OrderType.Width = 110;
+            OrderType.HeaderText = "Order\nType";
+            OrderType.Width = 90;
             OrderType.ReadOnly = true;
             OrderType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Insert(6, OrderType);
@@ -277,22 +294,22 @@ namespace Dev.Pattern
             GridViewDateTimeColumn TechpackDate = new GridViewDateTimeColumn();
             TechpackDate.Name = "TechpackDate";
             TechpackDate.FieldName = "TechpackDate";
-            TechpackDate.Width = 100;
+            TechpackDate.Width = 90;
             TechpackDate.TextAlignment = ContentAlignment.MiddleCenter;
             TechpackDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR"); 
             TechpackDate.FormatString = "{0:d}";
-            TechpackDate.HeaderText = "Techpack Date";
+            TechpackDate.HeaderText = "Techpack\nDate";
             TechpackDate.ReadOnly = true;
             gv.Columns.Insert(7, TechpackDate);
 
             GridViewDateTimeColumn RequestedDate = new GridViewDateTimeColumn();
             RequestedDate.Name = "RequestedDate";
             RequestedDate.FieldName = "RequestedDate";
-            RequestedDate.Width = 130;
-            RequestedDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            RequestedDate.Width = 120;
+            RequestedDate.FormatInfo = new System.Globalization.CultureInfo("en-US");
             RequestedDate.TextAlignment = ContentAlignment.MiddleCenter;
             RequestedDate.FormatString = "{0:g}";
-            RequestedDate.HeaderText = "RequestedDate";
+            RequestedDate.HeaderText = "Requested\nDate";
             RequestedDate.ReadOnly = true;
             gv.Columns.Insert(8, RequestedDate);
             
@@ -302,21 +319,41 @@ namespace Dev.Pattern
             Requested.ValueMember = "CustIdx";
             Requested.DisplayMember = "CustName";
             Requested.FieldName = "Requested";
-            Requested.HeaderText = "Requested";
+            Requested.HeaderText = "Requested\nBy";
             Requested.ReadOnly = true;
             Requested.Width = 100;
             gv.Columns.Insert(9, Requested);
 
+            GridViewCheckBoxColumn IsPattern = new GridViewCheckBoxColumn();
+            IsPattern.Name = "IsPattern";
+            IsPattern.FieldName = "IsPattern";
+            IsPattern.HeaderText = "Pattern";
+            IsPattern.Width = 50;
+            IsPattern.WrapText = true;
+            IsPattern.ReadOnly = true;
+            IsPattern.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gv.Columns.Insert(10, IsPattern);
+
+            GridViewCheckBoxColumn IsConsum = new GridViewCheckBoxColumn();
+            IsConsum.Name = "IsConsum";
+            IsConsum.FieldName = "IsConsum";
+            IsConsum.HeaderText = "Cons.";
+            IsConsum.Width = 50;
+            IsConsum.WrapText = true;
+            IsConsum.ReadOnly = true;
+            IsConsum.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gv.Columns.Insert(11, IsConsum);
+
             GridViewDateTimeColumn ConfirmedDate = new GridViewDateTimeColumn();
             ConfirmedDate.Name = "ConfirmedDate";
             ConfirmedDate.FieldName = "ConfirmedDate";
-            ConfirmedDate.Width = 100;
-            ConfirmedDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            ConfirmedDate.Width = 120;
+            ConfirmedDate.FormatInfo = new System.Globalization.CultureInfo("en-US");
             ConfirmedDate.TextAlignment = ContentAlignment.MiddleCenter;
-            ConfirmedDate.FormatString = "{0:d}";
-            ConfirmedDate.HeaderText = "ConfirmedDate\n(CAD)";
+            ConfirmedDate.FormatString = "{0:g}";
+            ConfirmedDate.HeaderText = "Confirmed Date\n(CAD)";
             ConfirmedDate.ReadOnly = true;
-            gv.Columns.Insert(10, ConfirmedDate);
+            gv.Columns.Insert(12, ConfirmedDate);
 
             GridViewComboBoxColumn Confirmed = new GridViewComboBoxColumn();
             Confirmed.Name = "Confirmed";
@@ -325,31 +362,32 @@ namespace Dev.Pattern
             Confirmed.DisplayMember = "CustName";
             Confirmed.FieldName = "Confirmed";
             Confirmed.HeaderText = "Confirmed\n(CAD)";
+            Confirmed.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             Confirmed.ReadOnly = true;
             Confirmed.Width = 100;
-            gv.Columns.Insert(11, Confirmed);
+            gv.Columns.Insert(13, Confirmed);
             
             GridViewDateTimeColumn CompletedDate = new GridViewDateTimeColumn();
             CompletedDate.Name = "CompletedDate";
             CompletedDate.FieldName = "CompletedDate";
-            CompletedDate.Width = 100;
-            CompletedDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            CompletedDate.Width = 120;
+            CompletedDate.FormatInfo = new System.Globalization.CultureInfo("en-US");
             CompletedDate.TextAlignment = ContentAlignment.MiddleCenter;
-            CompletedDate.FormatString = "{0:d}";
-            CompletedDate.HeaderText = "CompletedDate\n(CAD)";
+            CompletedDate.FormatString = "{0:g}";
+            CompletedDate.HeaderText = "Sent Date\n(CAD)";
             CompletedDate.ReadOnly = true;
-            gv.Columns.Insert(12, CompletedDate);
+            gv.Columns.Insert(14, CompletedDate);
 
             GridViewDateTimeColumn SentDate = new GridViewDateTimeColumn();
             SentDate.Name = "SentDate";
             SentDate.FieldName = "SentDate";
-            SentDate.Width = 100;
-            SentDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            SentDate.Width = 120;
+            SentDate.FormatInfo = new System.Globalization.CultureInfo("en-US");
             SentDate.TextAlignment = ContentAlignment.MiddleCenter;
-            SentDate.FormatString = "{0:d}";
+            SentDate.FormatString = "{0:g}";
             SentDate.HeaderText = "Confirm Date\n(T/D)";
             SentDate.ReadOnly = true;
-            gv.Columns.Insert(13, SentDate);
+            gv.Columns.Insert(15, SentDate);
 
             GridViewComboBoxColumn Received = new GridViewComboBoxColumn();
             Received.Name = "Received";
@@ -358,9 +396,10 @@ namespace Dev.Pattern
             Received.DisplayMember = "CustName";
             Received.FieldName = "Received";
             Received.HeaderText = "Confirmed\n(T/D)";
+            Received.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             Received.ReadOnly = true;
             Received.Width = 100;
-            gv.Columns.Insert(14, Received);
+            gv.Columns.Insert(16, Received);
             
             GridViewComboBoxColumn wstatus = new GridViewComboBoxColumn();
             wstatus.Name = "wstatus";
@@ -372,7 +411,7 @@ namespace Dev.Pattern
             wstatus.TextAlignment = ContentAlignment.MiddleCenter;
             wstatus.Width = 95;
             wstatus.ReadOnly = true;
-            gv.Columns.Insert(15, wstatus);
+            gv.Columns.Insert(17, wstatus);
 
             GridViewComboBoxColumn status = new GridViewComboBoxColumn();
             status.Name = "Status";
@@ -384,18 +423,18 @@ namespace Dev.Pattern
             status.Width = 70;
             status.ReadOnly = true;
             status.IsVisible = false; 
-            gv.Columns.Insert(16, status);
+            gv.Columns.Insert(18, status);
 
             GridViewDateTimeColumn RejectedDate = new GridViewDateTimeColumn();
             RejectedDate.Name = "RejectedDate";
             RejectedDate.FieldName = "RejectedDate";
-            RejectedDate.Width = 100;
-            RejectedDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            RejectedDate.Width = 120;
+            RejectedDate.FormatInfo = new System.Globalization.CultureInfo("en-US");
             RejectedDate.TextAlignment = ContentAlignment.MiddleCenter;
-            RejectedDate.FormatString = "{0:d}";
+            RejectedDate.FormatString = "{0:g}";
             RejectedDate.HeaderText = "Rejected/\nCancelled Date";
             RejectedDate.ReadOnly = true;
-            gv.Columns.Insert(17, RejectedDate);
+            gv.Columns.Insert(19, RejectedDate);
 
             GridViewComboBoxColumn Rejected = new GridViewComboBoxColumn();
             Rejected.Name = "Rejected";
@@ -404,9 +443,33 @@ namespace Dev.Pattern
             Rejected.DisplayMember = "CustName";
             Rejected.FieldName = "Rejected";
             Rejected.HeaderText = "Rejected/\nCancelled";
+            Rejected.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             Rejected.ReadOnly = true;
             Rejected.Width = 100;
-            gv.Columns.Insert(18, Rejected);
+            gv.Columns.Insert(20, Rejected);
+
+            GridViewDateTimeColumn ViewedDate = new GridViewDateTimeColumn();
+            ViewedDate.Name = "ViewedDate";
+            ViewedDate.FieldName = "ViewedDate";
+            ViewedDate.Width = 120;
+            ViewedDate.FormatInfo = new System.Globalization.CultureInfo("en-US");
+            ViewedDate.TextAlignment = ContentAlignment.MiddleCenter;
+            ViewedDate.FormatString = "{0:g}";
+            ViewedDate.HeaderText = "Viewed Date\n(Team)";
+            ViewedDate.ReadOnly = true;
+            gv.Columns.Insert(21, ViewedDate);
+
+            GridViewComboBoxColumn Viewed = new GridViewComboBoxColumn();
+            Viewed.Name = "Viewed";
+            Viewed.DataSource = lstUser;
+            Viewed.ValueMember = "CustIdx";
+            Viewed.DisplayMember = "CustName";
+            Viewed.FieldName = "Viewed";
+            Viewed.HeaderText = "Viewed\n(Team)";
+            Viewed.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            Viewed.ReadOnly = true;
+            Viewed.Width = 100;
+            gv.Columns.Insert(22, Viewed);
 
             GridViewTextBoxColumn Remarks = new GridViewTextBoxColumn();
             Remarks.Name = "Remarks";
@@ -415,21 +478,28 @@ namespace Dev.Pattern
             Remarks.Width = 200;
             Remarks.IsVisible = false; 
             Remarks.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            gv.Columns.Insert(19, Remarks);
+            gv.Columns.Insert(23, Remarks);
 
             GridViewTextBoxColumn Comments = new GridViewTextBoxColumn();
             Comments.Name = "Comments";
             Comments.FieldName = "Comments";
             Comments.HeaderText = "Comments";
             Comments.IsVisible = false;
-            gv.Columns.Insert(20, Comments);
+            gv.Columns.Insert(24, Comments);
 
             GridViewTextBoxColumn CommentCad = new GridViewTextBoxColumn();
             CommentCad.Name = "CommentCad";
             CommentCad.FieldName = "CommentCad";
             CommentCad.HeaderText = "CommentCad";
-            //CommentCad.IsVisible = false;
-            gv.Columns.Insert(21, CommentCad);
+            CommentCad.IsVisible = false;
+            gv.Columns.Insert(25, CommentCad);
+
+            GridViewTextBoxColumn CommentAdmin = new GridViewTextBoxColumn();
+            CommentAdmin.Name = "CommentAdmin";
+            CommentAdmin.FieldName = "CommentAdmin";
+            CommentAdmin.HeaderText = "CommentAdmin";
+            CommentAdmin.IsVisible = false;
+            gv.Columns.Insert(26, CommentAdmin);
 
             GridViewTextBoxColumn WorkOrderIdx = new GridViewTextBoxColumn();
             WorkOrderIdx.Name = "WorkOrderIdx";
@@ -438,89 +508,116 @@ namespace Dev.Pattern
             WorkOrderIdx.Width = 100;
             WorkOrderIdx.ReadOnly = true;
             WorkOrderIdx.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            gv.Columns.Insert(22, WorkOrderIdx);
-
+            gv.Columns.Insert(27, WorkOrderIdx);
+            
             #region Attachment columns 
 
             GridViewTextBoxColumn Attached1 = new GridViewTextBoxColumn();
             Attached1.Name = "Attached1";
             Attached1.FieldName = "Attached1";
             Attached1.IsVisible = false;
-            gv.Columns.Insert(23, Attached1);
+            gv.Columns.Insert(28, Attached1);
 
             GridViewTextBoxColumn Attached2 = new GridViewTextBoxColumn();
             Attached2.Name = "Attached2";
             Attached2.FieldName = "Attached2";
             Attached2.IsVisible = false;
-            gv.Columns.Insert(24, Attached2);
+            gv.Columns.Insert(29, Attached2);
 
             GridViewTextBoxColumn Attached3 = new GridViewTextBoxColumn();
             Attached3.Name = "Attached3";
             Attached3.FieldName = "Attached3";
             Attached3.IsVisible = false;
-            gv.Columns.Insert(25, Attached3);
+            gv.Columns.Insert(30, Attached3);
 
             GridViewTextBoxColumn Attached4 = new GridViewTextBoxColumn();
             Attached4.Name = "Attached4";
             Attached4.FieldName = "Attached4";
             Attached4.IsVisible = false;
-            gv.Columns.Insert(26, Attached4);
+            gv.Columns.Insert(31, Attached4);
 
             GridViewTextBoxColumn Attached5 = new GridViewTextBoxColumn();
             Attached5.Name = "Attached5";
             Attached5.FieldName = "Attached5";
             Attached5.IsVisible = false;
-            gv.Columns.Insert(27, Attached5);
+            gv.Columns.Insert(32, Attached5);
+
+            GridViewTextBoxColumn Attached6 = new GridViewTextBoxColumn();
+            Attached6.Name = "Attached6";
+            Attached6.FieldName = "Attached6";
+            Attached6.IsVisible = false;
+            gv.Columns.Insert(33, Attached6);
+
+            GridViewTextBoxColumn Attached7 = new GridViewTextBoxColumn();
+            Attached7.Name = "Attached7";
+            Attached7.FieldName = "Attached7";
+            Attached7.IsVisible = false;
+            gv.Columns.Insert(34, Attached7);
+
+            GridViewTextBoxColumn Attached8 = new GridViewTextBoxColumn();
+            Attached8.Name = "Attached8";
+            Attached8.FieldName = "Attached8";
+            Attached8.IsVisible = false;
+            gv.Columns.Insert(35, Attached8);
+
+            GridViewTextBoxColumn Attached9 = new GridViewTextBoxColumn();
+            Attached9.Name = "Attached9";
+            Attached9.FieldName = "Attached9";
+            Attached9.IsVisible = false;
+            gv.Columns.Insert(36, Attached9);
 
             GridViewTextBoxColumn Attached21 = new GridViewTextBoxColumn();
             Attached21.Name = "Attached21";
             Attached21.FieldName = "Attached21";
             Attached21.IsVisible = false;
-            gv.Columns.Insert(28, Attached21);
+            gv.Columns.Insert(37, Attached21);
 
             GridViewTextBoxColumn Attached22 = new GridViewTextBoxColumn();
             Attached22.Name = "Attached22";
             Attached22.FieldName = "Attached22";
             Attached22.IsVisible = false;
-            gv.Columns.Insert(29, Attached22);
+            gv.Columns.Insert(38, Attached22);
 
             GridViewTextBoxColumn Attached23 = new GridViewTextBoxColumn();
             Attached23.Name = "Attached23";
             Attached23.FieldName = "Attached23";
             Attached23.IsVisible = false;
-            gv.Columns.Insert(30, Attached23);
+            gv.Columns.Insert(39, Attached23);
 
             GridViewTextBoxColumn Attached24 = new GridViewTextBoxColumn();
             Attached24.Name = "Attached24";
             Attached24.FieldName = "Attached24";
             Attached24.IsVisible = false;
-            gv.Columns.Insert(31, Attached24);
+            gv.Columns.Insert(40, Attached24);
 
             GridViewTextBoxColumn AttachedUrl21 = new GridViewTextBoxColumn();
             AttachedUrl21.Name = "AttachedUrl21";
             AttachedUrl21.FieldName = "AttachedUrl21";
             AttachedUrl21.IsVisible = false;
-            gv.Columns.Insert(32, AttachedUrl21);
+            gv.Columns.Insert(41, AttachedUrl21);
 
             GridViewTextBoxColumn AttachedUrl22 = new GridViewTextBoxColumn();
             AttachedUrl22.Name = "AttachedUrl22";
             AttachedUrl22.FieldName = "AttachedUrl22";
             AttachedUrl22.IsVisible = false;
-            gv.Columns.Insert(33, AttachedUrl22);
+            gv.Columns.Insert(42, AttachedUrl22);
 
             GridViewTextBoxColumn AttachedUrl23 = new GridViewTextBoxColumn();
             AttachedUrl23.Name = "AttachedUrl23";
             AttachedUrl23.FieldName = "AttachedUrl23";
             AttachedUrl23.IsVisible = false;
-            gv.Columns.Insert(34, AttachedUrl23);
+            gv.Columns.Insert(43, AttachedUrl23);
 
             GridViewTextBoxColumn AttachedUrl24 = new GridViewTextBoxColumn();
             AttachedUrl24.Name = "AttachedUrl24";
             AttachedUrl24.FieldName = "AttachedUrl24";
             AttachedUrl24.IsVisible = false;
-            gv.Columns.Insert(35, AttachedUrl24);
+            gv.Columns.Insert(44, AttachedUrl24);
 
             #endregion
+
+            
+                       
 
             #endregion
         }
@@ -558,7 +655,7 @@ namespace Dev.Pattern
             #region Config Cell Conditions: 오더상태에 따라 행스타일 변경
 
             // 캔슬오더 색상변경
-            Font f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Strikeout);
+            Font f = new Font(new FontFamily("Segoe UI"), 8.25f);
             ConditionalFormattingObject obj = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "2", "", true);
             obj.RowForeColor = Color.Black;
             obj.RowBackColor = Color.FromArgb(255, 255, 230, 230);
@@ -633,7 +730,7 @@ namespace Dev.Pattern
             foreach (DataRow row in _dt.Rows)
             {
                 // 관리부와 임원은 모든 부서에 접근가능
-                if (UserInfo.CenterIdx != 1 || UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6)
+                if (Options.UserInfo.CenterIdx != 1 || Options.UserInfo.DeptIdx == 5 || Options.UserInfo.DeptIdx == 6)
                 {
                     deptName.Add(new DepartmentName(Convert.ToInt32(row["DeptIdx"]),
                                                 row["DeptName"].ToString(),
@@ -642,7 +739,7 @@ namespace Dev.Pattern
                 // 영업부는 해당 부서 데이터만 접근가능
                 else
                 {
-                    if (Convert.ToInt32(row["DeptIdx"]) <= 0 || Convert.ToInt32(row["DeptIdx"]) == UserInfo.DeptIdx)
+                    if (Convert.ToInt32(row["DeptIdx"]) <= 0 || Convert.ToInt32(row["DeptIdx"]) == Options.UserInfo.DeptIdx)
                     {
                         deptName.Add(new DepartmentName(Convert.ToInt32(row["DeptIdx"]),
                                                 row["DeptName"].ToString(),
@@ -690,7 +787,7 @@ namespace Dev.Pattern
             lstUserTD.Add(new CustomerName(0, "", 0));
             lstUserCAD.Add(new CustomerName(0, "", 0));
             
-            if (UserInfo.CenterIdx != 1 || UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6)
+            if (Options.UserInfo.CenterIdx != 1 || Options.UserInfo.DeptIdx == 5 || Options.UserInfo.DeptIdx == 6)
             {
                 _dt = CommonController.Getlist(CommonValues.KeyName.AllUser).Tables[0];
             }
@@ -758,8 +855,8 @@ namespace Dev.Pattern
                     _searchKey = new Dictionary<CommonValues.KeyName, int>();
 
                     // 영업부인경우, 해당 부서만 조회할수 있도록 제한 
-                    if (UserInfo.ReportNo < 9)
-                        _searchKey.Add(CommonValues.KeyName.DeptIdx, UserInfo.DeptIdx);
+                    if (Options.UserInfo.ReportNo < 9)
+                        _searchKey.Add(CommonValues.KeyName.DeptIdx, Options.UserInfo.DeptIdx);
                     else
                         _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlDept.SelectedValue));
 
@@ -793,7 +890,7 @@ namespace Dev.Pattern
                 if (toggTD.Value)
                 {
                     // TD일땐 해당 바이어만 
-                    _ds1 = Controller.Pattern.Getlist(KeyCount, SearchKey, fileno, styleno, UserInfo.Idx);
+                    _ds1 = Controller.Pattern.Getlist(KeyCount, SearchKey, fileno, styleno, Options.UserInfo.Idx);
                 }
                 else
                 {
@@ -808,6 +905,7 @@ namespace Dev.Pattern
                     __main__.lblRows.Text = _gv1.RowCount.ToString() + " Rows"; 
                     _gv1.EnablePaging = CommonValues.enablePaging;
                     _gv1.AllowSearchRow = CommonValues.enableSearchRow; 
+                    
                 }
             }
             catch (Exception ex)
@@ -1014,17 +1112,27 @@ namespace Dev.Pattern
                 }
                 
                 GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
-                
+
+                linkLabel1.Text = ""; linkLabel2.Text = ""; linkLabel3.Text = ""; linkLabel4.Text = "";
+                linkLabel5.Text = ""; linkLabel6.Text = ""; linkLabel7.Text = ""; linkLabel8.Text = "";
+                linkLabel9.Text = "";
+                linkLabel21.Text = ""; linkLabel22.Text = ""; linkLabel23.Text = ""; linkLabel24.Text = "";
+
                 if (row.Cells["Attached1"].Value != DBNull.Value) linkLabel1.Text = row.Cells["Attached1"].Value.ToString();
                 if (row.Cells["Attached2"].Value != DBNull.Value) linkLabel2.Text = row.Cells["Attached2"].Value.ToString();
                 if (row.Cells["Attached3"].Value != DBNull.Value) linkLabel3.Text = row.Cells["Attached3"].Value.ToString();
                 if (row.Cells["Attached4"].Value != DBNull.Value) linkLabel4.Text = row.Cells["Attached4"].Value.ToString();
+                if (row.Cells["Attached5"].Value != DBNull.Value) linkLabel5.Text = row.Cells["Attached5"].Value.ToString();
+                if (row.Cells["Attached6"].Value != DBNull.Value) linkLabel6.Text = row.Cells["Attached6"].Value.ToString();
+                if (row.Cells["Attached7"].Value != DBNull.Value) linkLabel7.Text = row.Cells["Attached7"].Value.ToString();
+                if (row.Cells["Attached8"].Value != DBNull.Value) linkLabel8.Text = row.Cells["Attached8"].Value.ToString();
+                if (row.Cells["Attached9"].Value != DBNull.Value) linkLabel9.Text = row.Cells["Attached9"].Value.ToString();
 
                 if (row.Cells["Attached21"].Value != DBNull.Value) linkLabel21.Text = row.Cells["Attached21"].Value.ToString();
                 if (row.Cells["Attached22"].Value != DBNull.Value) linkLabel22.Text = row.Cells["Attached22"].Value.ToString();
                 if (row.Cells["Attached23"].Value != DBNull.Value) linkLabel23.Text = row.Cells["Attached23"].Value.ToString();
                 if (row.Cells["Attached24"].Value != DBNull.Value) linkLabel24.Text = row.Cells["Attached24"].Value.ToString();
-
+                
                 for (int i=0; i<=5; i++)
                 {
                     lstFiles.Add(""); lstFileUrls.Add(""); 
@@ -1064,9 +1172,9 @@ namespace Dev.Pattern
 
                 #region 패턴사일 경우 
 
-                if (UserInfo.DeptIdx == 11) // CAD
+                if (Options.UserInfo.DeptIdx == 11) // CAD
                 {
-                    txtComments.Enabled = false;
+                    txtComments.Enabled = true;
                     txtCadComment.Enabled = true;
 
                     btnConfirmCad.Visible = true;
@@ -1080,7 +1188,7 @@ namespace Dev.Pattern
                     btnReject.Visible = false;
                     chkModifiable.Visible = false;
 
-                    radGroupBox1.Enabled = true;
+                    //radGroupBox1.Enabled = true;
                     radBrowseEditor1.Enabled = true;
                     radBrowseEditor2.Enabled = true;
                     radBrowseEditor3.Enabled = true;
@@ -1093,7 +1201,7 @@ namespace Dev.Pattern
                             btnRejectCad.Enabled = true;
                             btnSaveData.Enabled = true;
                             btnComplete.Enabled = true;
-                            radGroupBox1.Enabled = true;
+                            //radGroupBox1.Enabled = true;
                             radBrowseEditor1.Enabled = true;
                             radBrowseEditor2.Enabled = true;
                             radBrowseEditor3.Enabled = true;
@@ -1129,7 +1237,7 @@ namespace Dev.Pattern
                             btnRejectCad.Enabled = false;
                             btnSaveData.Enabled = false;
                             btnComplete.Enabled = false;
-                            radGroupBox1.Enabled = false;
+                            //radGroupBox1.Enabled = false;
                             radBrowseEditor1.Enabled = false;
                             radBrowseEditor2.Enabled = false;
                             radBrowseEditor3.Enabled = false;
@@ -1141,7 +1249,7 @@ namespace Dev.Pattern
                             btnRejectCad.Enabled = true;
                             btnSaveData.Enabled = false;
                             btnComplete.Enabled = false;
-                            radGroupBox1.Enabled = false;
+                            //radGroupBox1.Enabled = false;
                             radBrowseEditor1.Enabled = false;
                             radBrowseEditor2.Enabled = false;
                             radBrowseEditor3.Enabled = false;
@@ -1153,7 +1261,7 @@ namespace Dev.Pattern
                             btnRejectCad.Enabled = true;
                             btnSaveData.Enabled = false;
                             btnComplete.Enabled = false;
-                            radGroupBox1.Enabled = false;
+                            //radGroupBox1.Enabled = false;
                             radBrowseEditor1.Enabled = false;
                             radBrowseEditor2.Enabled = false;
                             radBrowseEditor3.Enabled = false;
@@ -1165,7 +1273,7 @@ namespace Dev.Pattern
                             btnRejectCad.Enabled = true;
                             btnSaveData.Enabled = false;
                             btnComplete.Enabled = false;
-                            radGroupBox1.Enabled = false;
+                            //radGroupBox1.Enabled = false;
                             radBrowseEditor1.Enabled = false;
                             radBrowseEditor2.Enabled = false;
                             radBrowseEditor3.Enabled = false;
@@ -1184,9 +1292,9 @@ namespace Dev.Pattern
 
                 #region TD일 경우 
 
-                else if (UserInfo.DeptIdx == 12)  // TD
+                else if (Options.UserInfo.DeptIdx == 12)  // TD
                 {
-                    txtComments.Enabled = false;
+                    txtComments.Enabled = true;
                     txtCadComment.Enabled = true;
 
                     btnConfirmCad.Visible = false;
@@ -1229,7 +1337,7 @@ namespace Dev.Pattern
                 else // 영업부 
                 {
                     txtComments.Enabled = true;
-                    txtCadComment.Enabled = false;
+                    txtCadComment.Enabled = true;
 
                     btnConfirmCad.Visible = false;
                     btnRejectCad.Visible = true;
@@ -1251,8 +1359,8 @@ namespace Dev.Pattern
                 // 캔슬또는 완료 건이면 취소 locking
                 if (Convert.ToInt32(row.Cells["wstatus"].Value) == 4)
                 {
-                    txtComments.Enabled = false;
-                    txtCadComment.Enabled = false;
+                    txtComments.Enabled = true;
+                    txtCadComment.Enabled = true;
 
                     btnConfirmCad.Visible = false;
                     btnRejectCad.Visible = false;
@@ -1269,10 +1377,11 @@ namespace Dev.Pattern
                 txtCadComment.Text = "";
                 if (row.Cells["Comments"].Value != DBNull.Value) txtComments.Text = row.Cells["Comments"].Value.ToString();
                 if (row.Cells["CommentCad"].Value != DBNull.Value) txtCadComment.Text = row.Cells["CommentCad"].Value.ToString();
-
-                
+                 
+                SetDefaultFontPropertiesToEditor(txtComments);
+                SetDefaultFontPropertiesToEditor(txtCadComment);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -1391,7 +1500,29 @@ namespace Dev.Pattern
             }
             catch(Exception ex) {  }
         }
-        
+
+        public void SetDefaultFontPropertiesToEditor(RadRichTextEditor editor)
+        {
+            editor.Document.Selection.SelectAll();
+            editor.RichTextBoxElement.ChangeFontFamily(new Telerik.WinControls.RichTextEditor.UI.FontFamily("Segoe UI"));
+            editor.RichTextBoxElement.ChangeFontSize(Unit.PointToDip(9));
+            editor.RichTextBoxElement.ChangeFontStyle(Telerik.WinControls.RichTextEditor.UI.FontStyles.Normal);
+            editor.RichTextBoxElement.ChangeFontWeight(Telerik.WinControls.RichTextEditor.UI.FontWeights.Normal);
+
+            editor.RichTextBoxElement.ChangeParagraphLineSpacingType(LineSpacingType.Auto);
+            editor.RichTextBoxElement.ChangeParagraphLineSpacing(1);
+            editor.RichTextBoxElement.ChangeParagraphSpacingAfter(12);
+
+            editor.DocumentInheritsDefaultStyleSettings = true;
+
+            Telerik.WinForms.Documents.DocumentPosition startPosition = editor.Document.CaretPosition;
+            Telerik.WinForms.Documents.DocumentPosition endPosition = new Telerik.WinForms.Documents.DocumentPosition(startPosition);
+            startPosition.MoveToCurrentWordEnd();
+            endPosition.MoveToCurrentWordEnd();
+            editor.Document.Selection.AddSelectionStart(startPosition);
+            editor.Document.Selection.AddSelectionEnd(endPosition);
+        }
+
         private void Download_File(string containerurl, string filename)
         {
             try
@@ -1465,10 +1596,16 @@ namespace Dev.Pattern
                 e.CellElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
                 e.CellElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
                 e.CellElement.ResetValue(LightVisualElement.ForeColorProperty, ValueResetFlags.Local);
-
-
             }
-            
+
+            if (e.CellElement.ColumnInfo.Name == "Confirmed" && e.Row.Cells["ConfirmedDate"].Value.ToString()=="")
+            {
+                e.CellElement.ForeColor = Color.SlateGray;
+            }
+            if (e.CellElement.ColumnInfo.Name == "Received" && e.Row.Cells["SentDate"].Value.ToString() == "")
+            {
+                e.CellElement.ForeColor = Color.SlateGray;
+            }
         }
 
         private void LinkLabel_LinkClicked2(object sender, LinkLabelLinkClickedEventArgs e)
@@ -1478,9 +1615,30 @@ namespace Dev.Pattern
             {
                 CheckFolder(@"C:\INT\Data\intsampleconsum");
                 Download_File("intsampleconsum", ((System.Windows.Forms.LinkLabel)sender).Text);
-                Process process = new Process();
-                process.StartInfo.FileName = @"C:\INT\Data\intsampleconsum\" + ((System.Windows.Forms.LinkLabel)sender).Text.Trim();
-                process.Start();
+                string filename = ((System.Windows.Forms.LinkLabel)sender).Text.Trim();
+
+                //if (filename.Substring(filename.Length-3, 3).ToLower()=="dxf")
+                //{
+                //    DxfDocument dxfLoad = DxfDocument.Load(@"C:\INT\Data\intsampleconsum\" + filename.Trim()); 
+                //}
+                //else
+                //{
+                    Process process = new Process();
+                    process.StartInfo.FileName = @"C:\INT\Data\intsampleconsum\" + filename.Trim();
+                    process.Start();
+
+                //}
+
+                // 영업부이면서 파일열람시 view 정보 업데이트 
+                if (Options.UserInfo.CenterIdx == 1)
+                {
+                    _gv1.EndEdit();
+                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
+
+                    _bRtn = Data.PatternData.ViewTeam(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value), Options.UserInfo.Idx);
+                }
+
+
             }
             catch (Exception ex) { }
         }
@@ -1606,7 +1764,7 @@ namespace Dev.Pattern
                     GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
 
                     _bRtn = Data.PatternData.ConfirmCAD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        UserInfo.Idx,
+                        Options.UserInfo.Idx,
                         Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value),
                         _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim());
 
@@ -1637,7 +1795,7 @@ namespace Dev.Pattern
                 {
 
                     // 패턴사 확인
-                    if (UserInfo.DeptIdx == 11)
+                    if (Options.UserInfo.DeptIdx == 11)
                     {
                         if (string.IsNullOrEmpty(txtCadComment.Text.Trim()))
                         {
@@ -1649,7 +1807,7 @@ namespace Dev.Pattern
                         GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
 
                         _bRtn = Data.PatternData.RejectCAD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                            UserInfo.Idx,
+                            Options.UserInfo.Idx,
                             Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value),
                             _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim(), txtCadComment.Text.Trim());
 
@@ -1659,14 +1817,14 @@ namespace Dev.Pattern
                         {
                             // 결과 메시지 송신
                             Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
-                            msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[요척반려] " +
+                            msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[패턴요척 반려] " +
                                         "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
                                         "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
                                         "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
                                         "OrderType: " + _gv1.Rows[row.Index].Cells["OrderType"].Value.ToString() + ", " +
                                         "Size: " + _gv1.Rows[row.Index].Cells["OrdSizeIdx"].Value.ToString() + ", " +
                                         "Rejected Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
-                                        "Rejected by " + UserInfo.Userfullname.ToString() + "\n" +
+                                        "Rejected by " + Options.UserInfo.Userfullname.ToString() + "\n" +
                                          "Comment: " + txtCadComment.Text.ToString()
                                         );
                         }
@@ -1676,13 +1834,14 @@ namespace Dev.Pattern
                         if (string.IsNullOrEmpty(txtComments.Text.Trim()))
                         {
                             RadMessageBox.Show("Please input Cancel reason.", "Cancel");
+                            return; 
                         }
 
                         _gv1.EndEdit();
                         GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
 
                         _bRtn = Data.PatternData.RejectTeam(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                            UserInfo.Idx, 
+                            Options.UserInfo.Idx, 
                             Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value),
                             _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim(), txtComments.Text.Trim());
                     }
@@ -1726,6 +1885,24 @@ namespace Dev.Pattern
                         Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value),
                         _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim());
 
+                    // 오더핸들러 전화번호가 등록되어 있는 경우
+                    DataRow dr = Dev.Options.Data.CommonData.GetPhoneNumberbyOrderID(Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value.ToString()));
+                    if (dr != null && !string.IsNullOrEmpty(dr["Phone"].ToString().Trim()))
+                    {
+                        // 결과 메시지 송신
+                        Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
+                        msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[패턴요척 완료] " +
+                                    "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
+                                    "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
+                                    "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
+                                    "OrderType: " + _gv1.Rows[row.Index].Cells["OrderType"].Value.ToString() + ", " +
+                                    "Size: " + _gv1.Rows[row.Index].Cells["OrdSizeIdx"].Value.ToString() + ", " +
+                                    "Completed Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
+                                    "Completed by " + Options.UserInfo.Userfullname.ToString() + "\n" +
+                                     "Comment: " + txtCadComment.Text.ToString()
+                                    );
+                    }
+
                     if (_bRtn)
                     {
                         __main__.lblRows.Text = "Completed Pattern";
@@ -1755,7 +1932,7 @@ namespace Dev.Pattern
                     GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
 
                     _bRtn = Data.PatternData.ConfirmTD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        UserInfo.Idx,
+                        Options.UserInfo.Idx,
                         Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value),
                         _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim());
 
@@ -1809,7 +1986,7 @@ namespace Dev.Pattern
                     }
 
                     _bRtn = Data.PatternData.RejectTD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        UserInfo.Idx, status, 
+                        Options.UserInfo.Idx, status, 
                         Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value),
                         _gv1.Rows[row.Index].Cells["WorkOrderIdx"].Value.ToString().Trim(), txtCadComment.Text.Trim());
 
@@ -1832,7 +2009,7 @@ namespace Dev.Pattern
                                     "OrderType: " + _gv1.Rows[row.Index].Cells["OrderType"].Value.ToString() + ", " +
                                     "Size: " + _gv1.Rows[row.Index].Cells["OrdSizeIdx"].Value.ToString() + ", " +
                                     "Rejected Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
-                                    "Rejected by " + UserInfo.Userfullname.ToString() + "\n" +
+                                    "Rejected by " + Options.UserInfo.Userfullname.ToString() + "\n" +
                                      comment
                                     );
                     }
@@ -1848,6 +2025,80 @@ namespace Dev.Pattern
         private void toolWindow1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void radButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //CheckFolder(@"C:\INT\Data\intsamplepattern");
+                //Download_File("intsamplepattern", ((System.Windows.Forms.LinkLabel)linkLabel1).Text);
+                //Process process = new Process();
+                //process.StartInfo.FileName = @"C:\INT\Data\intsamplepattern\" + ((System.Windows.Forms.LinkLabel)sender).Text.Trim();
+                //process.Start();
+                //Uri urifile = new Uri(@"C:\INT\Data\intsamplepattern\" + ((System.Windows.Forms.LinkLabel)linkLabel1).Text.Trim());
+                
+            }
+            catch (Exception ex) { }
+        }
+
+        private void gvOrderActual_RowFormatting(object sender, RowFormattingEventArgs e)
+        {
+            try
+            {
+                _gv1.EndEdit();
+                GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
+
+                if (Options.UserInfo.DeptIdx == 12)     // TD
+                {
+                    if (!string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["SentDate"].Value.ToString()) )
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LightSkyBlue;
+                    }
+                    else if (!string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["RejectedDate"].Value.ToString()))
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+                    }
+                }
+                else if (Options.UserInfo.DeptIdx == 11)     // 사무실
+                {
+                    if (!string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["ConfirmedDate"].Value.ToString()) ||
+                        !string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["CompletedDate"].Value.ToString()) ||
+                        !string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["SentDate"].Value.ToString()) )
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LightSkyBlue;
+                    }
+                    else if (!string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["RejectedDate"].Value.ToString()))
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("RowFormatting: " + ex.Message.ToString());
+            }
         }
     }
 

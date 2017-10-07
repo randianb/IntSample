@@ -103,9 +103,9 @@ namespace Dev.Controller
 
         #region Methods
         
-        public static DataRow Insert(int OrderIdx)
+        public static DataRow Insert(int OrderIdx, int FabricIdx)
         {
-            DataRow row = Data.OrderFabricData.Insert(OrderIdx);
+            DataRow row = Data.OrderFabricData.Insert(OrderIdx, FabricIdx);
 
             return row;
         }

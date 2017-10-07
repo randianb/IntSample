@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using Telerik.WinForms.Documents.Model;
 
 namespace Dev.Sales
 {
@@ -54,7 +55,6 @@ namespace Dev.Sales
 
             lblFileno.Text = fileNo;
             lblStyle.Text = styleno;
-            lblStatus.Text = orderStatus.ToString();
             radLabel5.Text = DateTime.Today.ToString(); 
 
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -79,10 +79,31 @@ namespace Dev.Sales
                 OpenFileDialog dialog = (OpenFileDialog)beFiles.Dialog;
                 dialog.Multiselect = true;
             }
-            
+            SetDefaultFontPropertiesToEditor(txtComment);
         }
 
-        
+        public void SetDefaultFontPropertiesToEditor(RadRichTextEditor editor)
+        {
+            editor.Document.Selection.SelectAll();
+            editor.RichTextBoxElement.ChangeFontFamily(new Telerik.WinControls.RichTextEditor.UI.FontFamily("Segoe UI"));
+            editor.RichTextBoxElement.ChangeFontSize(Unit.PointToDip(9));
+            editor.RichTextBoxElement.ChangeFontStyle(Telerik.WinControls.RichTextEditor.UI.FontStyles.Normal);
+            editor.RichTextBoxElement.ChangeFontWeight(Telerik.WinControls.RichTextEditor.UI.FontWeights.Normal);
+
+            editor.RichTextBoxElement.ChangeParagraphLineSpacingType(LineSpacingType.Auto);
+            editor.RichTextBoxElement.ChangeParagraphLineSpacing(1);
+            editor.RichTextBoxElement.ChangeParagraphSpacingAfter(12);
+
+            editor.DocumentInheritsDefaultStyleSettings = true;
+
+            Telerik.WinForms.Documents.DocumentPosition startPosition = editor.Document.CaretPosition;
+            Telerik.WinForms.Documents.DocumentPosition endPosition = new Telerik.WinForms.Documents.DocumentPosition(startPosition);
+            startPosition.MoveToCurrentWordEnd();
+            endPosition.MoveToCurrentWordEnd();
+            editor.Document.Selection.AddSelectionStart(startPosition);
+            editor.Document.Selection.AddSelectionEnd(endPosition);
+        }
+
         #endregion
 
         #region 바인딩 & 이벤트
@@ -136,7 +157,7 @@ namespace Dev.Sales
         {
             try
             {
-                string NewCode = Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.ReportNo, 3, _fileNo);
+                string NewCode = Code.GetPrimaryCode(Options.UserInfo.CenterIdx, Options.UserInfo.ReportNo, 3, _fileNo);
 
                 //if (Convert.ToInt32(ddlSize.SelectedValue) <= 0)
                 //{
@@ -162,8 +183,8 @@ namespace Dev.Sales
                     lstFiles2[0].ToString(), lstFiles2[1].ToString(), lstFiles2[2].ToString(), lstFiles2[3].ToString(), lstFiles2[4].ToString(),
                     lstFiles2[5].ToString(), lstFiles2[6].ToString(), lstFiles2[7].ToString(), lstFiles2[8].ToString(),
                     lstFileUrls2[0].ToString(), lstFileUrls2[1].ToString(), lstFileUrls2[2].ToString(), lstFileUrls2[3].ToString(), lstFileUrls2[4].ToString(),
-                    lstFileUrls2[5].ToString(), lstFileUrls2[6].ToString(), lstFileUrls2[7].ToString(), lstFileUrls2[8].ToString(), 
-                    UserInfo.Idx);
+                    lstFileUrls2[5].ToString(), lstFileUrls2[6].ToString(), lstFileUrls2[7].ToString(), lstFileUrls2[8].ToString(),
+                    Options.UserInfo.Idx);
 
 
                     // 데이터 DB저장 
@@ -171,6 +192,7 @@ namespace Dev.Sales
 
                     if (dr != null)
                     {
+                        RadMessageBox.Show("Created WorkSheet", "Saved");
                         // 입력완료 후 그리드뷰 갱신
                         DialogResult = System.Windows.Forms.DialogResult.OK;
                     }
@@ -185,6 +207,8 @@ namespace Dev.Sales
                 Console.WriteLine("btnUpdate_Click: " + ex.Message.ToString());
             }
         }
+
+        
 
         public int OrderIdx
         {
@@ -292,7 +316,7 @@ namespace Dev.Sales
             string[] fileNames;
             OpenFileDialog openDialog = new OpenFileDialog();
 
-            openDialog.Filter = "All files|*.*";
+            openDialog.Filter = "All files|*.*"; 
             openDialog.Title = "Select files to upload";
             openDialog.RestoreDirectory = false;
             openDialog.Multiselect = true;
@@ -304,7 +328,8 @@ namespace Dev.Sales
 
                 if (result == DialogResult.OK && openDialog.FileNames.Length <= 9)
                 {
-                    listFiles.Items.Clear();
+                    // 리스트 초기화 
+                    // listFiles.Items.Clear();
                     
                     for (int i = 0; i < openDialog.FileNames.Length; i++)
                     {

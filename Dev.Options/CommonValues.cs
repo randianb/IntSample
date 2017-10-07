@@ -19,6 +19,25 @@ namespace Dev.Options
         public static int PropertyValueColumnWidth = 230;       // 프로퍼티 값열 폭 
         public static bool enablePaging = true;                 // 그리드뷰 페이징 
         public static bool enableSearchRow = false;             // 그리드뷰 전체 컬럼 대상으로 검색여부
+        public static bool SetHandler = false;             // 기본 핸들러 설정 
+
+        public static bool OrderOpCheck1 = true;             // 보기옵션 설정 Cancel
+        public static bool OrderOpCheck2 = true;             // 보기옵션 설정 Closed
+        public static int  OrderOpCheck3 = 2;                // 보기옵션 설정 Sample 또는 Only Consumption 또는 All
+
+        public static bool WorksheetOpCheck1 = true;             // 보기옵션 설정 Cancel 
+        public static bool WorksheetOpCheck2 = true;             // 보기옵션 설정 Reject
+        public static bool WorksheetOpCheck3 = true;             // 보기옵션 설정 Confirm Office
+        public static bool WorksheetOpCheck4 = true;             // 보기옵션 설정 Confirm TD
+        public static bool WorksheetOpCheck5 = true;             // 보기옵션 설정 Confirm Admin
+
+        public static bool PatternOpCheck1 = true;             // 보기옵션 설정 Cancel
+        public static bool PatternOpCheck2 = true;             // 보기옵션 설정 Reject
+        public static bool PatternOpCheck3 = true;             // 보기옵션 설정 Confirm Cad
+        public static bool PatternOpCheck4 = true;             // 보기옵션 설정 Complete
+        public static bool PatternOpCheck5 = true;             // 보기옵션 설정 Confirm TD
+        public static bool PatternOpCheck6 = true;             // 보기옵션 설정 Viewed Team 
+
         public static int NewOrderBuyerIdx = 0;                 // 신규 오더입력시 바이어 프리셋 번호
 
         // 식별코드: 주로 조회를 위해 컨트롤러 호출시 key로 사용한다
@@ -27,7 +46,8 @@ namespace Dev.Options
             EmbelishId1, EmbelishId2, ShipTerm, IsPrinting, Codes, Status, SizeGroup, User, Vendor, Size, CustAllExceptBuyer, 
             OrderIdx, OperationIdx, WorkOrderIdx, TicketDate, WorkStatus, StartDate, Composition, BurnCount, YarnType, Contents, IsUse,
             Remark, BuyerIdx, ColorIdx, FabricType, Lotno, FabricIdx, RackNo, Floorno, RackPos, PosX, PosY, Wash, InIdx, Handler, 
-            RequestDate, CompleteDate, AllUser, TDUser, TrimCode
+            RequestDate, CompleteDate, AllUser, TDUser, CADUser, TrimCode, 
+            OptionCheck1, OptionCheck2, OptionCheck3, OptionCheck4, OptionCheck5, OptionCheck6
         };      
 
         // 클래스명에 매칭된 ID로 해당 분류의 거래처를 검색하기 위한 용도 (code테이블값 변경시 반드시 일치시켜줘야함) 

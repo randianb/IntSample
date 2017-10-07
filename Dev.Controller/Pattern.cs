@@ -28,12 +28,20 @@ namespace Dev.Controller
         private string _attached3;
         private string _attached4;
         private string _attached5;
+        private string _attached6;
+        private string _attached7;
+        private string _attached8;
+        private string _attached9;
 
         private string _attachedUrl1;
         private string _attachedUrl2;
         private string _attachedUrl3;
         private string _attachedUrl4;
         private string _attachedUrl5;
+        private string _attachedUrl6;
+        private string _attachedUrl7;
+        private string _attachedUrl8;
+        private string _attachedUrl9;
 
         private string _attached21;
         private string _attached22;
@@ -155,6 +163,27 @@ namespace Dev.Controller
             get { return _attached5; }
             set { _attached5 = value; }
         }
+        public string Attached6
+        {
+            get { return _attached6; }
+            set { _attached6 = value; }
+        }
+        public string Attached7
+        {
+            get { return _attached7; }
+            set { _attached7 = value; }
+        }
+        public string Attached8
+        {
+            get { return _attached8; }
+            set { _attached8 = value; }
+        }
+        public string Attached9
+        {
+            get { return _attached9; }
+            set { _attached9 = value; }
+        }
+
         public string AttachedUrl1
         {
             get { return _attachedUrl1; }
@@ -179,6 +208,26 @@ namespace Dev.Controller
         {
             get { return _attachedUrl5; }
             set { _attachedUrl5 = value; }
+        }
+        public string AttachedUrl6
+        {
+            get { return _attachedUrl6; }
+            set { _attachedUrl6 = value; }
+        }
+        public string AttachedUrl7
+        {
+            get { return _attachedUrl7; }
+            set { _attachedUrl7 = value; }
+        }
+        public string AttachedUrl8
+        {
+            get { return _attachedUrl8; }
+            set { _attachedUrl8 = value; }
+        }
+        public string AttachedUrl9
+        {
+            get { return _attachedUrl9; }
+            set { _attachedUrl9 = value; }
         }
 
         public string Attached21
@@ -255,12 +304,20 @@ namespace Dev.Controller
                 if (_row["Attached3"] != DBNull.Value) _attached3 = _row["Attached3"].ToString();
                 if (_row["Attached4"] != DBNull.Value) _attached4 = _row["Attached4"].ToString();
                 if (_row["Attached5"] != DBNull.Value) _attached5 = _row["Attached5"].ToString();
-                
+                if (_row["Attached6"] != DBNull.Value) _attached6 = _row["Attached6"].ToString();
+                if (_row["Attached7"] != DBNull.Value) _attached7 = _row["Attached7"].ToString();
+                if (_row["Attached8"] != DBNull.Value) _attached8 = _row["Attached8"].ToString();
+                if (_row["Attached9"] != DBNull.Value) _attached9 = _row["Attached9"].ToString();
+
                 if (_row["AttachedUrl1"] != DBNull.Value) _attachedUrl1 = _row["AttachedUrl1"].ToString();
                 if (_row["AttachedUrl2"] != DBNull.Value) _attachedUrl2 = _row["AttachedUrl2"].ToString();
                 if (_row["AttachedUrl3"] != DBNull.Value) _attachedUrl3 = _row["AttachedUrl3"].ToString();
                 if (_row["AttachedUrl4"] != DBNull.Value) _attachedUrl4 = _row["AttachedUrl4"].ToString();
                 if (_row["AttachedUrl5"] != DBNull.Value) _attachedUrl5 = _row["AttachedUrl5"].ToString();
+                if (_row["AttachedUrl6"] != DBNull.Value) _attachedUrl6 = _row["AttachedUrl6"].ToString();
+                if (_row["AttachedUrl7"] != DBNull.Value) _attachedUrl7 = _row["AttachedUrl7"].ToString();
+                if (_row["AttachedUrl8"] != DBNull.Value) _attachedUrl8 = _row["AttachedUrl8"].ToString();
+                if (_row["AttachedUrl9"] != DBNull.Value) _attachedUrl9 = _row["AttachedUrl9"].ToString();
 
                 if (_row["Attached21"] != DBNull.Value) _attached1 = _row["Attached21"].ToString();
                 if (_row["Attached22"] != DBNull.Value) _attached2 = _row["Attached22"].ToString();
@@ -304,12 +361,20 @@ namespace Dev.Controller
             _attached3 = "";
             _attached4 = "";
             _attached5 = "";
+            _attached6 = "";
+            _attached7 = "";
+            _attached8 = "";
+            _attached9 = "";
 
             _attachedUrl1 = "";
             _attachedUrl2 = "";
             _attachedUrl3 = "";
             _attachedUrl4 = "";
             _attachedUrl5 = "";
+            _attachedUrl6 = "";
+            _attachedUrl7 = "";
+            _attachedUrl8 = "";
+            _attachedUrl9 = "";
 
             _attached21 = "";
             _attached22 = "";
@@ -327,12 +392,22 @@ namespace Dev.Controller
         #region Methods
         
         public static DataRow Insert(int OrderIdx, string WorkOrderIdx, int OrdSizeIdx, DateTime TechpackDate, DateTime RequestedDate,
-            int Requested, string Comments, string Attached1, string Attached2, string Attached3, string Attached4, string Attached5,
-            string AttachedUrl1, string AttachedUrl2, string AttachedUrl3, string AttachedUrl4, string AttachedUrl5, int Handler)
+            int Requested, string Comments, 
+            string Attached1, string Attached2, string Attached3, string Attached4, string Attached5,
+            string Attached6, string Attached7, string Attached8, string Attached9,
+            string AttachedUrl1, string AttachedUrl2, string AttachedUrl3, string AttachedUrl4, string AttachedUrl5,
+            string AttachedUrl6, string AttachedUrl7, string AttachedUrl8, string AttachedUrl9,
+            int Handler,
+            int IsPattern, int IsConsum,
+            int OrdSizeIdx2, int OrdSizeIdx3, int OrdSizeIdx4, int OrdSizeIdx5, int OrdSizeIdx6, int OrdSizeIdx7, int OrdSizeIdx8,
+            int Confirmed, int Received)
         {
             DataRow row = Data.PatternData.Insert(OrderIdx, WorkOrderIdx, OrdSizeIdx, TechpackDate, RequestedDate,
-            Requested, Comments, Attached1, Attached2, Attached3, Attached4, Attached5,
-            AttachedUrl1, AttachedUrl2, AttachedUrl3, AttachedUrl4, AttachedUrl5, Handler);
+            Requested, Comments, Attached1, Attached2, Attached3, Attached4, Attached5, Attached6, Attached7, Attached8, Attached9,
+            AttachedUrl1, AttachedUrl2, AttachedUrl3, AttachedUrl4, AttachedUrl5, AttachedUrl6, AttachedUrl7, AttachedUrl8, AttachedUrl9, Handler,
+            IsPattern, IsConsum,
+            OrdSizeIdx2, OrdSizeIdx3, OrdSizeIdx4, OrdSizeIdx5, OrdSizeIdx6, OrdSizeIdx7, OrdSizeIdx8,
+            Confirmed, Received);
 
             return row;
         }

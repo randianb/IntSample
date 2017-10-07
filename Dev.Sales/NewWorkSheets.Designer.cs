@@ -38,16 +38,14 @@
             this.lblStyle = new Telerik.WinControls.UI.RadLabel();
             this.lblFileno = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.lblStatus = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.beFiles = new Telerik.WinControls.UI.RadBrowseEditor();
             this.listFiles = new Telerik.WinControls.UI.RadListView();
-            this.txtComment = new Telerik.WinControls.UI.RadTextBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.txtComment = new Telerik.WinControls.UI.RadRichTextEditor();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
@@ -58,15 +56,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblStyle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFileno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.beFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listFiles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtComment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtComment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,7 +87,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.89313F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.10687F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 173F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 402F));
             this.tableLayoutPanel3.Controls.Add(this.btnCancel, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnRequest, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -104,7 +100,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(279, 3);
+            this.btnCancel.Location = new System.Drawing.Point(277, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(167, 33);
             this.btnCancel.TabIndex = 16;
@@ -113,9 +109,9 @@
             // 
             // btnRequest
             // 
-            this.btnRequest.Location = new System.Drawing.Point(124, 3);
+            this.btnRequest.Location = new System.Drawing.Point(123, 3);
             this.btnRequest.Name = "btnRequest";
-            this.btnRequest.Size = new System.Drawing.Size(149, 33);
+            this.btnRequest.Size = new System.Drawing.Size(148, 33);
             this.btnRequest.TabIndex = 15;
             this.btnRequest.Text = "Send Worksheet";
             this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
@@ -126,38 +122,34 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 734F));
-            this.tableLayoutPanel1.Controls.Add(this.radLabel7, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblStyle, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblFileno, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.radLabel2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel4, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblStatus, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel3, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel6, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.beFiles, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.listFiles, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.txtComment, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel5, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel8, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel5, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel6, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.beFiles, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel8, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.listFiles, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txtComment, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel7, 0, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 171F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 195F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 206F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(850, 524);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // radLabel7
             // 
-            this.radLabel7.Location = new System.Drawing.Point(3, 354);
+            this.radLabel7.Location = new System.Drawing.Point(3, 329);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(60, 18);
             this.radLabel7.TabIndex = 5;
@@ -165,56 +157,56 @@
             // 
             // radLabel1
             // 
+            this.radLabel1.AutoSize = false;
+            this.radLabel1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.radLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel1.Location = new System.Drawing.Point(3, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(53, 18);
+            this.radLabel1.Size = new System.Drawing.Size(110, 24);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "INT File #";
+            this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblStyle
             // 
+            this.lblStyle.AutoSize = false;
+            this.lblStyle.BackColor = System.Drawing.Color.LemonChiffon;
+            this.lblStyle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStyle.Location = new System.Drawing.Point(119, 33);
             this.lblStyle.Name = "lblStyle";
-            this.lblStyle.Size = new System.Drawing.Size(55, 18);
+            this.lblStyle.Size = new System.Drawing.Size(728, 24);
             this.lblStyle.TabIndex = 1;
             this.lblStyle.Text = "radLabel2";
+            this.lblStyle.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblFileno
             // 
+            this.lblFileno.AutoSize = false;
+            this.lblFileno.BackColor = System.Drawing.Color.LemonChiffon;
+            this.lblFileno.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblFileno.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.lblFileno.Location = new System.Drawing.Point(119, 3);
             this.lblFileno.Name = "lblFileno";
-            this.lblFileno.Size = new System.Drawing.Size(59, 18);
+            this.lblFileno.Size = new System.Drawing.Size(728, 24);
             this.lblFileno.TabIndex = 1;
             this.lblFileno.Text = "radLabel2";
+            this.lblFileno.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // radLabel2
             // 
+            this.radLabel2.AutoSize = false;
+            this.radLabel2.BackColor = System.Drawing.Color.LemonChiffon;
+            this.radLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel2.Location = new System.Drawing.Point(3, 33);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(40, 18);
+            this.radLabel2.Size = new System.Drawing.Size(110, 24);
             this.radLabel2.TabIndex = 0;
             this.radLabel2.Text = "Style #";
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.Location = new System.Drawing.Point(3, 63);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(37, 18);
-            this.radLabel4.TabIndex = 0;
-            this.radLabel4.Text = "Status";
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Location = new System.Drawing.Point(119, 63);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(55, 18);
-            this.lblStatus.TabIndex = 1;
-            this.lblStatus.Text = "radLabel2";
+            this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(3, 93);
+            this.radLabel3.Location = new System.Drawing.Point(3, 63);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(86, 18);
             this.radLabel3.TabIndex = 0;
@@ -222,7 +214,7 @@
             // 
             // radLabel6
             // 
-            this.radLabel6.Location = new System.Drawing.Point(3, 153);
+            this.radLabel6.Location = new System.Drawing.Point(3, 93);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(61, 18);
             this.radLabel6.TabIndex = 0;
@@ -230,7 +222,7 @@
             // 
             // beFiles
             // 
-            this.beFiles.Location = new System.Drawing.Point(119, 153);
+            this.beFiles.Location = new System.Drawing.Point(119, 93);
             this.beFiles.Name = "beFiles";
             this.beFiles.Size = new System.Drawing.Size(340, 20);
             this.beFiles.TabIndex = 3;
@@ -241,30 +233,15 @@
             // listFiles
             // 
             this.listFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listFiles.Location = new System.Drawing.Point(119, 183);
+            this.listFiles.Location = new System.Drawing.Point(119, 123);
             this.listFiles.Name = "listFiles";
-            this.listFiles.Size = new System.Drawing.Size(728, 165);
+            this.listFiles.Size = new System.Drawing.Size(728, 200);
             this.listFiles.TabIndex = 4;
             this.listFiles.Text = "radListView1";
             // 
-            // txtComment
-            // 
-            this.txtComment.AutoSize = false;
-            this.txtComment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtComment.Location = new System.Drawing.Point(119, 354);
-            this.txtComment.Multiline = true;
-            this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(728, 189);
-            this.txtComment.TabIndex = 6;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Multiselect = true;
-            // 
             // radLabel5
             // 
-            this.radLabel5.Location = new System.Drawing.Point(119, 93);
+            this.radLabel5.Location = new System.Drawing.Point(119, 63);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(55, 18);
             this.radLabel5.TabIndex = 1;
@@ -272,11 +249,27 @@
             // 
             // radLabel8
             // 
-            this.radLabel8.Location = new System.Drawing.Point(3, 183);
+            this.radLabel8.Location = new System.Drawing.Point(3, 123);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(43, 18);
             this.radLabel8.TabIndex = 0;
             this.radLabel8.Text = "File List";
+            // 
+            // txtComment
+            // 
+            this.txtComment.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(189)))), ((int)(((byte)(232)))));
+            this.txtComment.CaretWidth = float.NaN;
+            this.txtComment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtComment.Location = new System.Drawing.Point(119, 329);
+            this.txtComment.Name = "txtComment";
+            this.txtComment.SelectionFill = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(78)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
+            this.txtComment.Size = new System.Drawing.Size(728, 192);
+            this.txtComment.TabIndex = 6;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Multiselect = true;
             // 
             // NewWorkSheets
             // 
@@ -304,15 +297,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblStyle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFileno)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.beFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listFiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtComment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtComment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -330,14 +321,12 @@
         private Telerik.WinControls.UI.RadLabel lblStyle;
         private Telerik.WinControls.UI.RadLabel lblFileno;
         private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadLabel radLabel4;
-        private Telerik.WinControls.UI.RadLabel lblStatus;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadBrowseEditor beFiles;
-        private Telerik.WinControls.UI.RadTextBox txtComment;
         private Telerik.WinControls.UI.RadListView listFiles;
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadLabel radLabel8;
+        private Telerik.WinControls.UI.RadRichTextEditor txtComment;
     }
 }

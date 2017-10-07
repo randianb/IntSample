@@ -184,7 +184,7 @@ namespace Dev.Out
             Out1.HeaderText = "Out";
             Out1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             Out1.DropDownStyle = RadDropDownStyle.DropDown;
-            Out1.Width = 200;
+            Out1.Width = 130;
             gv.Columns.Add(Out1);
 
             GridViewTextBoxColumn Out2 = new GridViewTextBoxColumn();
@@ -198,33 +198,28 @@ namespace Dev.Out
             Delivered.Name = "Delivered";
             Delivered.FieldName = "Delivered";
             Delivered.HeaderText = "Delivered";
-            Delivered.Width = 150;
+            Delivered.Width = 130;
             Delivered.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Add(Delivered);
             
             GridViewDateTimeColumn OutDate = new GridViewDateTimeColumn();
             OutDate.Name = "OutDate";
             OutDate.FieldName = "OutDate";
-            OutDate.Width = 100;
+            OutDate.Width = 90;
             OutDate.TextAlignment = ContentAlignment.MiddleCenter;
             OutDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             OutDate.FormatString = "{0:d}";
-            OutDate.HeaderText = "Out Date";
+            OutDate.HeaderText = "Out Date"; 
             gv.Columns.Add(OutDate);
             
-            GridViewTextBoxColumn Remarks = new GridViewTextBoxColumn();
-            Remarks.Name = "Remarks";
-            Remarks.FieldName = "Remarks";
-            Remarks.HeaderText = "Remarks";
-            Remarks.Width = 220;
-            gv.Columns.Add(Remarks);
-
             GridViewCommandColumn Confirm = new GridViewCommandColumn();
             Confirm.Name = "Confirm";
             Confirm.FieldName = "Confirm";
             Confirm.UseDefaultText = true;
             Confirm.DefaultText = "Receive";
             Confirm.HeaderText = "Recevie";
+            Confirm.TextAlignment = ContentAlignment.MiddleCenter;
+            Confirm.Width = 60;
             gv.Columns.Add(Confirm);
 
             GridViewComboBoxColumn Received1 = new GridViewComboBoxColumn();
@@ -236,7 +231,7 @@ namespace Dev.Out
             Received1.HeaderText = "Received";
             Received1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             Received1.DropDownStyle = RadDropDownStyle.DropDown;
-            Received1.Width = 200;
+            Received1.Width = 130;
             gv.Columns.Add(Received1);
 
             GridViewTextBoxColumn Received2 = new GridViewTextBoxColumn();
@@ -249,7 +244,7 @@ namespace Dev.Out
             GridViewDateTimeColumn RcvdDate = new GridViewDateTimeColumn();
             RcvdDate.Name = "RcvdDate";
             RcvdDate.FieldName = "RcvdDate";
-            RcvdDate.Width = 100;
+            RcvdDate.Width = 90;
             RcvdDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             RcvdDate.TextAlignment = ContentAlignment.MiddleCenter;
             RcvdDate.FormatString = "{0:d}";
@@ -260,7 +255,7 @@ namespace Dev.Out
             Status.Name = "Status";
             Status.FieldName = "Status";
             Status.HeaderText = "Status";
-            Status.Width = 100;
+            Status.Width = 80;
             Status.ReadOnly = true; 
             gv.Columns.Add(Status);
 
@@ -272,7 +267,14 @@ namespace Dev.Out
             viewInv.UseDefaultText = true;
             viewInv.TextAlignment = ContentAlignment.MiddleCenter;
             viewInv.HeaderText = "Invoice";
-            gv.Columns.Add(viewInv); 
+            gv.Columns.Add(viewInv);
+
+            GridViewTextBoxColumn Remarks = new GridViewTextBoxColumn();
+            Remarks.Name = "Remarks";
+            Remarks.FieldName = "Remarks";
+            Remarks.HeaderText = "Remarks";
+            Remarks.Width = 220;
+            gv.Columns.Add(Remarks);
 
             #endregion
         }

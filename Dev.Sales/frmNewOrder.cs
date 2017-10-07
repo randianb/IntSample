@@ -69,11 +69,12 @@ namespace Dev.Sales
                     0, 
                     0,
                     Convert.ToInt32(ddlSizeGroup.SelectedValue),
-                    Convert.ToInt32(ddlSewThread.SelectedValue),
+                    0, //Convert.ToInt32(ddlSewThread.SelectedValue),
                     Convert.ToInt32(txtQty.Value), 0f, // Convert.ToDouble(txtUprice.Value),
                     0f, txtRemark.Text, // Convert.ToDouble(txtAmount.Value),
                     DateTime.Now, DateTime.Now, 
-                    Convert.ToInt32(ddlHandler.SelectedValue));
+                    Convert.ToInt32(ddlHandler.SelectedValue),
+                    chkIsSample.Checked ? 1: 0);
                     
                 ((OrderMain)_parent).InsertedOrderRow = row;
                 this.Close();
@@ -262,9 +263,9 @@ namespace Dev.Sales
             //ddlPrinting.DropDownHeight = CommonValues.DDL_DropDownHeight;
             
             // ddlSewThread
-            ddlSewThread.AutoSizeDropDownToBestFit = true;
-            ddlSewThread.AutoSizeDropDownHeight = true;
-            ddlSewThread.SelectedIndex = 0;
+            //ddlSewThread.AutoSizeDropDownToBestFit = true;
+            //ddlSewThread.AutoSizeDropDownHeight = true;
+            //ddlSewThread.SelectedIndex = 0;
 
             // Handler
             ddlHandler.DataSource = lstUser;
@@ -289,7 +290,7 @@ namespace Dev.Sales
 
                 if (CommonValues.NewOrderBuyerIdx > 0) ddlCust.SelectedValue = CommonValues.NewOrderBuyerIdx; 
             }
-                
+            chkIsSample.Checked = true; 
         }
         
         private void txtQty_ValueChanged(object sender, EventArgs e)
@@ -336,6 +337,18 @@ namespace Dev.Sales
             catch (Exception ex)
             {
                 //__main__.lblDescription.Text = "Please insert the Size Group.";
+            }
+        }
+
+        private void chkIsSample_ToggleStateChanged(object sender, StateChangedEventArgs args)
+        {
+            if (chkIsSample.Checked)
+            {
+                chkIsSample.Text = "Include Sample Work"; 
+            }
+            else
+            {
+                chkIsSample.Text = "Only Patter/Comption";
             }
         }
     }

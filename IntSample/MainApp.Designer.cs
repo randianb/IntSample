@@ -32,27 +32,47 @@
             this.radRibbonBar1 = new Telerik.WinControls.UI.RadRibbonBar();
             this.bsViewMain = new Telerik.WinControls.UI.RadRibbonBarBackstageView();
             this.backstageViewPage3 = new Telerik.WinControls.UI.BackstageViewPage();
-            this.btnAccountSave = new Telerik.WinControls.UI.RadButton();
-            this.txtPhone = new Telerik.WinControls.UI.RadTextBox();
-            this.txtEmail = new Telerik.WinControls.UI.RadTextBox();
+            this.radScrollablePanel1 = new Telerik.WinControls.UI.RadScrollablePanel();
+            this.OrderOpCheck3 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.ddlNewOrderBuyer = new Telerik.WinControls.UI.RadDropDownList();
+            this.btnAccountSave = new Telerik.WinControls.UI.RadButton();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.PatternOpCheck6 = new System.Windows.Forms.CheckBox();
+            this.PatternOpCheck4 = new System.Windows.Forms.CheckBox();
+            this.WorksheetOpCheck4 = new System.Windows.Forms.CheckBox();
+            this.PatternOpCheck2 = new System.Windows.Forms.CheckBox();
+            this.WorksheetOpCheck2 = new System.Windows.Forms.CheckBox();
+            this.OrderOpCheck2 = new System.Windows.Forms.CheckBox();
+            this.PatternOpCheck5 = new System.Windows.Forms.CheckBox();
+            this.WorksheetOpCheck5 = new System.Windows.Forms.CheckBox();
+            this.PatternOpCheck3 = new System.Windows.Forms.CheckBox();
+            this.WorksheetOpCheck3 = new System.Windows.Forms.CheckBox();
+            this.PatternOpCheck1 = new System.Windows.Forms.CheckBox();
+            this.WorksheetOpCheck1 = new System.Windows.Forms.CheckBox();
+            this.OrderOpCheck1 = new System.Windows.Forms.CheckBox();
             this.enableSearchRow = new System.Windows.Forms.CheckBox();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.enablePagingGV = new System.Windows.Forms.CheckBox();
+            this.txtPhone = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
+            this.txtEmail = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.SetHandler = new System.Windows.Forms.CheckBox();
+            this.btnChangePass = new Telerik.WinControls.UI.RadButton();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.retypePass = new Telerik.WinControls.UI.RadTextBox();
+            this.originalPass = new Telerik.WinControls.UI.RadTextBox();
             this.newPass = new Telerik.WinControls.UI.RadTextBox();
             this.txtUsername = new Telerik.WinControls.UI.RadTextBox();
-            this.originalPass = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.btnChangePass = new Telerik.WinControls.UI.RadButton();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.backstageViewPage4 = new Telerik.WinControls.UI.BackstageViewPage();
             this.backstageViewPage2 = new Telerik.WinControls.UI.BackstageViewPage();
             this.btnSaveAs = new Telerik.WinControls.UI.RadButton();
@@ -142,25 +162,33 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsViewMain)).BeginInit();
             this.bsViewMain.SuspendLayout();
             this.backstageViewPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAccountSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).BeginInit();
+            this.radScrollablePanel1.PanelContainer.SuspendLayout();
+            this.radScrollablePanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderOpCheck3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlNewOrderBuyer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAccountSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnChangePass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retypePass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.originalPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.newPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.originalPass)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnChangePass)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             this.backstageViewPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveAs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
@@ -172,7 +200,7 @@
             // 
             // radStatusStrip1
             // 
-            this.radStatusStrip1.Location = new System.Drawing.Point(0, 746);
+            this.radStatusStrip1.Location = new System.Drawing.Point(0, 864);
             this.radStatusStrip1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radStatusStrip1.Size = new System.Drawing.Size(1262, 26);
             // 
@@ -273,7 +301,7 @@
             // 
             // 
             this.radRibbonBar1.OptionsButton.Text = "Options";
-            this.radRibbonBar1.Size = new System.Drawing.Size(1262, 165);
+            this.radRibbonBar1.Size = new System.Drawing.Size(1262, 176);
             this.radRibbonBar1.StartButtonImage = ((System.Drawing.Image)(resources.GetObject("radRibbonBar1.StartButtonImage")));
             this.radRibbonBar1.TabIndex = 0;
             this.radRibbonBar1.Text = "MainApp";
@@ -297,111 +325,421 @@
             this.bsViewMain.Name = "bsViewMain";
             this.bsViewMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.bsViewMain.SelectedItem = this.bsAbout;
-            this.bsViewMain.Size = new System.Drawing.Size(1262, 566);
+            this.bsViewMain.Size = new System.Drawing.Size(1262, 684);
             this.bsViewMain.TabIndex = 3;
             this.bsViewMain.Leave += new System.EventHandler(this.bsViewMain_Leave);
             // 
             // backstageViewPage3
             // 
             this.backstageViewPage3.BackColor = System.Drawing.Color.Transparent;
-            this.backstageViewPage3.Controls.Add(this.btnAccountSave);
-            this.backstageViewPage3.Controls.Add(this.txtPhone);
-            this.backstageViewPage3.Controls.Add(this.txtEmail);
-            this.backstageViewPage3.Controls.Add(this.ddlNewOrderBuyer);
-            this.backstageViewPage3.Controls.Add(this.radLabel9);
-            this.backstageViewPage3.Controls.Add(this.enableSearchRow);
-            this.backstageViewPage3.Controls.Add(this.enablePagingGV);
-            this.backstageViewPage3.Controls.Add(this.retypePass);
-            this.backstageViewPage3.Controls.Add(this.newPass);
-            this.backstageViewPage3.Controls.Add(this.txtUsername);
-            this.backstageViewPage3.Controls.Add(this.originalPass);
-            this.backstageViewPage3.Controls.Add(this.radLabel4);
-            this.backstageViewPage3.Controls.Add(this.btnChangePass);
-            this.backstageViewPage3.Controls.Add(this.radLabel3);
-            this.backstageViewPage3.Controls.Add(this.radLabel10);
-            this.backstageViewPage3.Controls.Add(this.radLabel8);
-            this.backstageViewPage3.Controls.Add(this.radLabel2);
-            this.backstageViewPage3.Controls.Add(this.radLabel11);
-            this.backstageViewPage3.Controls.Add(this.radLabel6);
-            this.backstageViewPage3.Controls.Add(this.radLabel12);
-            this.backstageViewPage3.Controls.Add(this.radLabel1);
+            this.backstageViewPage3.Controls.Add(this.radScrollablePanel1);
             this.backstageViewPage3.Location = new System.Drawing.Point(132, 1);
             this.backstageViewPage3.Name = "backstageViewPage3";
-            this.backstageViewPage3.Size = new System.Drawing.Size(1130, 565);
+            this.backstageViewPage3.Size = new System.Drawing.Size(1130, 683);
             this.backstageViewPage3.TabIndex = 5;
+            // 
+            // radScrollablePanel1
+            // 
+            this.radScrollablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radScrollablePanel1.Location = new System.Drawing.Point(0, 0);
+            this.radScrollablePanel1.Name = "radScrollablePanel1";
+            // 
+            // radScrollablePanel1.PanelContainer
+            // 
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.OrderOpCheck3);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel2);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.ddlNewOrderBuyer);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.btnAccountSave);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel9);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.PatternOpCheck6);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.PatternOpCheck4);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.WorksheetOpCheck4);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.PatternOpCheck2);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.WorksheetOpCheck2);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.OrderOpCheck2);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.PatternOpCheck5);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.WorksheetOpCheck5);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.PatternOpCheck3);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.WorksheetOpCheck3);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.PatternOpCheck1);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.WorksheetOpCheck1);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.OrderOpCheck1);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.enableSearchRow);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel1);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.enablePagingGV);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.txtPhone);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel16);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel15);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel14);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel13);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel8);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel12);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.txtEmail);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel6);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel11);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel10);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel3);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.SetHandler);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.btnChangePass);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel4);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.retypePass);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.originalPass);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.newPass);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.txtUsername);
+            this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(1128, 681);
+            this.radScrollablePanel1.Size = new System.Drawing.Size(1130, 683);
+            this.radScrollablePanel1.TabIndex = 24;
+            this.radScrollablePanel1.Text = "radScrollablePanel1";
+            // 
+            // OrderOpCheck3
+            // 
+            this.OrderOpCheck3.IsThreeState = true;
+            this.OrderOpCheck3.Location = new System.Drawing.Point(416, 484);
+            this.OrderOpCheck3.Name = "OrderOpCheck3";
+            this.OrderOpCheck3.Size = new System.Drawing.Size(158, 18);
+            this.OrderOpCheck3.TabIndex = 24;
+            this.OrderOpCheck3.Text = "Sample / Consumption / All";
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.radLabel2.Location = new System.Drawing.Point(50, 35);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(192, 29);
+            this.radLabel2.TabIndex = 7;
+            this.radLabel2.Text = "Change the Password";
+            // 
+            // ddlNewOrderBuyer
+            // 
+            this.ddlNewOrderBuyer.Location = new System.Drawing.Point(50, 353);
+            this.ddlNewOrderBuyer.Name = "ddlNewOrderBuyer";
+            this.ddlNewOrderBuyer.Size = new System.Drawing.Size(243, 20);
+            this.ddlNewOrderBuyer.TabIndex = 20;
             // 
             // btnAccountSave
             // 
-            this.btnAccountSave.Location = new System.Drawing.Point(552, 166);
+            this.btnAccountSave.Location = new System.Drawing.Point(554, 162);
             this.btnAccountSave.Name = "btnAccountSave";
             this.btnAccountSave.Size = new System.Drawing.Size(110, 24);
             this.btnAccountSave.TabIndex = 23;
             this.btnAccountSave.Text = "Update Info";
             this.btnAccountSave.Click += new System.EventHandler(this.btnAccountSave_Click);
             // 
-            // txtPhone
-            // 
-            this.txtPhone.Location = new System.Drawing.Point(552, 128);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(233, 20);
-            this.txtPhone.TabIndex = 22;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(552, 89);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(233, 20);
-            this.txtEmail.TabIndex = 21;
-            // 
-            // ddlNewOrderBuyer
-            // 
-            this.ddlNewOrderBuyer.Location = new System.Drawing.Point(48, 361);
-            this.ddlNewOrderBuyer.Name = "ddlNewOrderBuyer";
-            this.ddlNewOrderBuyer.Size = new System.Drawing.Size(243, 20);
-            this.ddlNewOrderBuyer.TabIndex = 20;
-            // 
             // radLabel9
             // 
             this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.radLabel9.Location = new System.Drawing.Point(48, 325);
+            this.radLabel9.Location = new System.Drawing.Point(50, 317);
             this.radLabel9.Name = "radLabel9";
             this.radLabel9.Size = new System.Drawing.Size(129, 29);
             this.radLabel9.TabIndex = 17;
             this.radLabel9.Text = "Favorite Buyer";
             // 
+            // PatternOpCheck6
+            // 
+            this.PatternOpCheck6.AutoSize = true;
+            this.PatternOpCheck6.Location = new System.Drawing.Point(746, 568);
+            this.PatternOpCheck6.Name = "PatternOpCheck6";
+            this.PatternOpCheck6.Size = new System.Drawing.Size(64, 30);
+            this.PatternOpCheck6.TabIndex = 19;
+            this.PatternOpCheck6.Text = "Viewed\r\n(Team)";
+            this.PatternOpCheck6.UseVisualStyleBackColor = true;
+            // 
+            // PatternOpCheck4
+            // 
+            this.PatternOpCheck4.AutoSize = true;
+            this.PatternOpCheck4.Location = new System.Drawing.Point(526, 568);
+            this.PatternOpCheck4.Name = "PatternOpCheck4";
+            this.PatternOpCheck4.Size = new System.Drawing.Size(54, 30);
+            this.PatternOpCheck4.TabIndex = 19;
+            this.PatternOpCheck4.Text = "Sent\r\n(CAD)";
+            this.PatternOpCheck4.UseVisualStyleBackColor = true;
+            // 
+            // WorksheetOpCheck4
+            // 
+            this.WorksheetOpCheck4.AutoSize = true;
+            this.WorksheetOpCheck4.Location = new System.Drawing.Point(526, 523);
+            this.WorksheetOpCheck4.Name = "WorksheetOpCheck4";
+            this.WorksheetOpCheck4.Size = new System.Drawing.Size(80, 30);
+            this.WorksheetOpCheck4.TabIndex = 19;
+            this.WorksheetOpCheck4.Text = "Confirmed\r\n(TD)";
+            this.WorksheetOpCheck4.UseVisualStyleBackColor = true;
+            // 
+            // PatternOpCheck2
+            // 
+            this.PatternOpCheck2.AutoSize = true;
+            this.PatternOpCheck2.Location = new System.Drawing.Point(306, 575);
+            this.PatternOpCheck2.Name = "PatternOpCheck2";
+            this.PatternOpCheck2.Size = new System.Drawing.Size(70, 17);
+            this.PatternOpCheck2.TabIndex = 19;
+            this.PatternOpCheck2.Text = "Rejected";
+            this.PatternOpCheck2.UseVisualStyleBackColor = true;
+            // 
+            // WorksheetOpCheck2
+            // 
+            this.WorksheetOpCheck2.AutoSize = true;
+            this.WorksheetOpCheck2.Location = new System.Drawing.Point(306, 530);
+            this.WorksheetOpCheck2.Name = "WorksheetOpCheck2";
+            this.WorksheetOpCheck2.Size = new System.Drawing.Size(70, 17);
+            this.WorksheetOpCheck2.TabIndex = 19;
+            this.WorksheetOpCheck2.Text = "Rejected";
+            this.WorksheetOpCheck2.UseVisualStyleBackColor = true;
+            // 
+            // OrderOpCheck2
+            // 
+            this.OrderOpCheck2.AutoSize = true;
+            this.OrderOpCheck2.Location = new System.Drawing.Point(306, 485);
+            this.OrderOpCheck2.Name = "OrderOpCheck2";
+            this.OrderOpCheck2.Size = new System.Drawing.Size(61, 17);
+            this.OrderOpCheck2.TabIndex = 19;
+            this.OrderOpCheck2.Text = "Closed";
+            this.OrderOpCheck2.UseVisualStyleBackColor = true;
+            // 
+            // PatternOpCheck5
+            // 
+            this.PatternOpCheck5.AutoSize = true;
+            this.PatternOpCheck5.Location = new System.Drawing.Point(636, 568);
+            this.PatternOpCheck5.Name = "PatternOpCheck5";
+            this.PatternOpCheck5.Size = new System.Drawing.Size(80, 30);
+            this.PatternOpCheck5.TabIndex = 19;
+            this.PatternOpCheck5.Text = "Confirmed\r\n(TD)";
+            this.PatternOpCheck5.UseVisualStyleBackColor = true;
+            // 
+            // WorksheetOpCheck5
+            // 
+            this.WorksheetOpCheck5.AutoSize = true;
+            this.WorksheetOpCheck5.Location = new System.Drawing.Point(636, 523);
+            this.WorksheetOpCheck5.Name = "WorksheetOpCheck5";
+            this.WorksheetOpCheck5.Size = new System.Drawing.Size(80, 30);
+            this.WorksheetOpCheck5.TabIndex = 19;
+            this.WorksheetOpCheck5.Text = "Confirmed\r\n(Admin)";
+            this.WorksheetOpCheck5.UseVisualStyleBackColor = true;
+            // 
+            // PatternOpCheck3
+            // 
+            this.PatternOpCheck3.AutoSize = true;
+            this.PatternOpCheck3.Location = new System.Drawing.Point(416, 568);
+            this.PatternOpCheck3.Name = "PatternOpCheck3";
+            this.PatternOpCheck3.Size = new System.Drawing.Size(80, 30);
+            this.PatternOpCheck3.TabIndex = 19;
+            this.PatternOpCheck3.Text = "Confirmed\r\n(CAD)";
+            this.PatternOpCheck3.UseVisualStyleBackColor = true;
+            // 
+            // WorksheetOpCheck3
+            // 
+            this.WorksheetOpCheck3.AutoSize = true;
+            this.WorksheetOpCheck3.Location = new System.Drawing.Point(416, 523);
+            this.WorksheetOpCheck3.Name = "WorksheetOpCheck3";
+            this.WorksheetOpCheck3.Size = new System.Drawing.Size(80, 30);
+            this.WorksheetOpCheck3.TabIndex = 19;
+            this.WorksheetOpCheck3.Text = "Confirmed\r\n(Office)";
+            this.WorksheetOpCheck3.UseVisualStyleBackColor = true;
+            // 
+            // PatternOpCheck1
+            // 
+            this.PatternOpCheck1.AutoSize = true;
+            this.PatternOpCheck1.Location = new System.Drawing.Point(196, 575);
+            this.PatternOpCheck1.Name = "PatternOpCheck1";
+            this.PatternOpCheck1.Size = new System.Drawing.Size(73, 17);
+            this.PatternOpCheck1.TabIndex = 19;
+            this.PatternOpCheck1.Text = "Canceled";
+            this.PatternOpCheck1.UseVisualStyleBackColor = true;
+            // 
+            // WorksheetOpCheck1
+            // 
+            this.WorksheetOpCheck1.AutoSize = true;
+            this.WorksheetOpCheck1.Location = new System.Drawing.Point(196, 530);
+            this.WorksheetOpCheck1.Name = "WorksheetOpCheck1";
+            this.WorksheetOpCheck1.Size = new System.Drawing.Size(73, 17);
+            this.WorksheetOpCheck1.TabIndex = 19;
+            this.WorksheetOpCheck1.Text = "Canceled";
+            this.WorksheetOpCheck1.UseVisualStyleBackColor = true;
+            // 
+            // OrderOpCheck1
+            // 
+            this.OrderOpCheck1.AutoSize = true;
+            this.OrderOpCheck1.Location = new System.Drawing.Point(196, 485);
+            this.OrderOpCheck1.Name = "OrderOpCheck1";
+            this.OrderOpCheck1.Size = new System.Drawing.Size(73, 17);
+            this.OrderOpCheck1.TabIndex = 19;
+            this.OrderOpCheck1.Text = "Canceled";
+            this.OrderOpCheck1.UseVisualStyleBackColor = true;
+            // 
             // enableSearchRow
             // 
             this.enableSearchRow.AutoSize = true;
-            this.enableSearchRow.Location = new System.Drawing.Point(476, 402);
+            this.enableSearchRow.Location = new System.Drawing.Point(478, 360);
             this.enableSearchRow.Name = "enableSearchRow";
             this.enableSearchRow.Size = new System.Drawing.Size(124, 17);
             this.enableSearchRow.TabIndex = 19;
             this.enableSearchRow.Text = "Enable Search Row";
             this.enableSearchRow.UseVisualStyleBackColor = true;
             // 
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(50, 147);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(96, 18);
+            this.radLabel1.TabIndex = 9;
+            this.radLabel1.Text = "Original Password";
+            // 
             // enablePagingGV
             // 
             this.enablePagingGV.AutoSize = true;
-            this.enablePagingGV.Location = new System.Drawing.Point(476, 370);
+            this.enablePagingGV.Location = new System.Drawing.Point(478, 328);
             this.enablePagingGV.Name = "enablePagingGV";
             this.enablePagingGV.Size = new System.Drawing.Size(148, 17);
             this.enablePagingGV.TabIndex = 18;
             this.enablePagingGV.Text = "Enable Paging Gridview";
             this.enablePagingGV.UseVisualStyleBackColor = true;
             // 
+            // txtPhone
+            // 
+            this.txtPhone.Location = new System.Drawing.Point(554, 124);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(233, 20);
+            this.txtPhone.TabIndex = 22;
+            // 
+            // radLabel16
+            // 
+            this.radLabel16.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.radLabel16.Location = new System.Drawing.Point(80, 571);
+            this.radLabel16.Name = "radLabel16";
+            this.radLabel16.Size = new System.Drawing.Size(60, 25);
+            this.radLabel16.TabIndex = 6;
+            this.radLabel16.Text = "Pattern";
+            // 
+            // radLabel15
+            // 
+            this.radLabel15.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.radLabel15.Location = new System.Drawing.Point(79, 526);
+            this.radLabel15.Name = "radLabel15";
+            this.radLabel15.Size = new System.Drawing.Size(92, 25);
+            this.radLabel15.TabIndex = 6;
+            this.radLabel15.Text = "Work Sheet";
+            // 
+            // radLabel14
+            // 
+            this.radLabel14.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.radLabel14.Location = new System.Drawing.Point(80, 481);
+            this.radLabel14.Name = "radLabel14";
+            this.radLabel14.Size = new System.Drawing.Size(50, 25);
+            this.radLabel14.TabIndex = 6;
+            this.radLabel14.Text = "Order";
+            // 
+            // radLabel13
+            // 
+            this.radLabel13.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.radLabel13.Location = new System.Drawing.Point(50, 434);
+            this.radLabel13.Name = "radLabel13";
+            this.radLabel13.Size = new System.Drawing.Size(122, 29);
+            this.radLabel13.TabIndex = 6;
+            this.radLabel13.Text = "View Options";
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.radLabel8.Location = new System.Drawing.Point(478, 283);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(82, 29);
+            this.radLabel8.TabIndex = 6;
+            this.radLabel8.Text = "Gridview";
+            // 
+            // radLabel12
+            // 
+            this.radLabel12.Location = new System.Drawing.Point(478, 125);
+            this.radLabel12.Name = "radLabel12";
+            this.radLabel12.Size = new System.Drawing.Size(38, 18);
+            this.radLabel12.TabIndex = 9;
+            this.radLabel12.Text = "Phone";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(554, 85);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(233, 20);
+            this.txtEmail.TabIndex = 21;
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.Location = new System.Drawing.Point(50, 87);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(56, 18);
+            this.radLabel6.TabIndex = 8;
+            this.radLabel6.Text = "Username";
+            // 
+            // radLabel11
+            // 
+            this.radLabel11.Location = new System.Drawing.Point(478, 87);
+            this.radLabel11.Name = "radLabel11";
+            this.radLabel11.Size = new System.Drawing.Size(37, 18);
+            this.radLabel11.TabIndex = 8;
+            this.radLabel11.Text = "E-mail";
+            // 
+            // radLabel10
+            // 
+            this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.radLabel10.Location = new System.Drawing.Point(478, 35);
+            this.radLabel10.Name = "radLabel10";
+            this.radLabel10.Size = new System.Drawing.Size(117, 29);
+            this.radLabel10.TabIndex = 6;
+            this.radLabel10.Text = "Account Info";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(50, 174);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(79, 18);
+            this.radLabel3.TabIndex = 5;
+            this.radLabel3.Text = "New Password";
+            // 
+            // SetHandler
+            // 
+            this.SetHandler.AutoSize = true;
+            this.SetHandler.Location = new System.Drawing.Point(196, 111);
+            this.SetHandler.Name = "SetHandler";
+            this.SetHandler.Size = new System.Drawing.Size(155, 17);
+            this.SetHandler.TabIndex = 18;
+            this.SetHandler.Text = "Set Handler by Username";
+            this.SetHandler.UseVisualStyleBackColor = true;
+            // 
+            // btnChangePass
+            // 
+            this.btnChangePass.Location = new System.Drawing.Point(196, 237);
+            this.btnChangePass.Name = "btnChangePass";
+            this.btnChangePass.Size = new System.Drawing.Size(136, 24);
+            this.btnChangePass.TabIndex = 17;
+            this.btnChangePass.Text = "Change Password";
+            this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Location = new System.Drawing.Point(50, 206);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(98, 18);
+            this.radLabel4.TabIndex = 4;
+            this.radLabel4.Text = "Re-Type Password";
+            // 
             // retypePass
             // 
             this.retypePass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.retypePass.Location = new System.Drawing.Point(194, 202);
+            this.retypePass.Location = new System.Drawing.Point(196, 206);
             this.retypePass.Name = "retypePass";
             this.retypePass.PasswordChar = '*';
             this.retypePass.Size = new System.Drawing.Size(136, 20);
             this.retypePass.TabIndex = 16;
             // 
+            // originalPass
+            // 
+            this.originalPass.Location = new System.Drawing.Point(196, 146);
+            this.originalPass.Name = "originalPass";
+            this.originalPass.PasswordChar = '*';
+            this.originalPass.Size = new System.Drawing.Size(136, 20);
+            this.originalPass.TabIndex = 14;
+            // 
             // newPass
             // 
             this.newPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.newPass.Location = new System.Drawing.Point(194, 165);
+            this.newPass.Location = new System.Drawing.Point(196, 175);
             this.newPass.Name = "newPass";
             this.newPass.PasswordChar = '*';
             this.newPass.Size = new System.Drawing.Size(136, 20);
@@ -410,103 +748,11 @@
             // txtUsername
             // 
             this.txtUsername.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtUsername.Location = new System.Drawing.Point(194, 89);
+            this.txtUsername.Location = new System.Drawing.Point(196, 85);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.ReadOnly = true;
             this.txtUsername.Size = new System.Drawing.Size(136, 20);
             this.txtUsername.TabIndex = 13;
-            // 
-            // originalPass
-            // 
-            this.originalPass.Location = new System.Drawing.Point(194, 128);
-            this.originalPass.Name = "originalPass";
-            this.originalPass.PasswordChar = '*';
-            this.originalPass.Size = new System.Drawing.Size(136, 20);
-            this.originalPass.TabIndex = 14;
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.Location = new System.Drawing.Point(48, 202);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(98, 18);
-            this.radLabel4.TabIndex = 4;
-            this.radLabel4.Text = "Re-Type Password";
-            // 
-            // btnChangePass
-            // 
-            this.btnChangePass.Location = new System.Drawing.Point(194, 239);
-            this.btnChangePass.Name = "btnChangePass";
-            this.btnChangePass.Size = new System.Drawing.Size(136, 24);
-            this.btnChangePass.TabIndex = 17;
-            this.btnChangePass.Text = "Change Password";
-            this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Location = new System.Drawing.Point(48, 164);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(79, 18);
-            this.radLabel3.TabIndex = 5;
-            this.radLabel3.Text = "New Password";
-            // 
-            // radLabel10
-            // 
-            this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.radLabel10.Location = new System.Drawing.Point(476, 39);
-            this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Size = new System.Drawing.Size(117, 29);
-            this.radLabel10.TabIndex = 6;
-            this.radLabel10.Text = "Account Info";
-            // 
-            // radLabel8
-            // 
-            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.radLabel8.Location = new System.Drawing.Point(476, 325);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(82, 29);
-            this.radLabel8.TabIndex = 6;
-            this.radLabel8.Text = "Gridview";
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.radLabel2.Location = new System.Drawing.Point(48, 39);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(192, 29);
-            this.radLabel2.TabIndex = 7;
-            this.radLabel2.Text = "Change the Password";
-            // 
-            // radLabel11
-            // 
-            this.radLabel11.Location = new System.Drawing.Point(476, 91);
-            this.radLabel11.Name = "radLabel11";
-            this.radLabel11.Size = new System.Drawing.Size(37, 18);
-            this.radLabel11.TabIndex = 8;
-            this.radLabel11.Text = "E-mail";
-            // 
-            // radLabel6
-            // 
-            this.radLabel6.Location = new System.Drawing.Point(48, 91);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(56, 18);
-            this.radLabel6.TabIndex = 8;
-            this.radLabel6.Text = "Username";
-            // 
-            // radLabel12
-            // 
-            this.radLabel12.Location = new System.Drawing.Point(476, 129);
-            this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(38, 18);
-            this.radLabel12.TabIndex = 9;
-            this.radLabel12.Text = "Phone";
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(48, 129);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(96, 18);
-            this.radLabel1.TabIndex = 9;
-            this.radLabel1.Text = "Original Password";
             // 
             // backstageViewPage4
             // 
@@ -554,7 +800,7 @@
             this.backstageViewPage1.Controls.Add(this.radLabel5);
             this.backstageViewPage1.Location = new System.Drawing.Point(132, 1);
             this.backstageViewPage1.Name = "backstageViewPage1";
-            this.backstageViewPage1.Size = new System.Drawing.Size(1130, 565);
+            this.backstageViewPage1.Size = new System.Drawing.Size(1130, 683);
             this.backstageViewPage1.TabIndex = 1;
             // 
             // radLabel5
@@ -595,7 +841,7 @@
             // 
             // ribbonTab2
             // 
-            this.ribbonTab2.IsSelected = false;
+            this.ribbonTab2.IsSelected = true;
             this.ribbonTab2.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup4,
             this.radRibbonBarGroup6,
@@ -828,7 +1074,7 @@
             // 
             // ribbonTab4
             // 
-            this.ribbonTab4.IsSelected = true;
+            this.ribbonTab4.IsSelected = false;
             this.ribbonTab4.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup15,
             this.radRibbonBarGroup8,
@@ -980,7 +1226,7 @@
             this.radRibbonBarGroup7,
             this.radRibbonBarGroup14});
             this.ribbonTab3.Name = "ribbonTab3";
-            this.ribbonTab3.Text = "Pattern";
+            this.ribbonTab3.Text = "Pattern / Consumption";
             // 
             // radRibbonBarGroup7
             // 
@@ -1006,7 +1252,7 @@
             this.btnPatternMain.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnPatternMain.Name = "btnPatternMain";
             this.btnPatternMain.Tag = "37";
-            this.btnPatternMain.Text = "Pattern";
+            this.btnPatternMain.Text = "Pattern /\r\nConsumption";
             this.btnPatternMain.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPatternMain.TextWrap = true;
             this.btnPatternMain.Click += new System.EventHandler(this.btnPatternMain_Click);
@@ -1024,7 +1270,7 @@
             this.btnPatternReportControl.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnPatternReportControl.Name = "btnPatternReportControl";
             this.btnPatternReportControl.Tag = "38";
-            this.btnPatternReportControl.Text = "Control of Pattern";
+            this.btnPatternReportControl.Text = "Control of \r\nPattern";
             this.btnPatternReportControl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPatternReportControl.Click += new System.EventHandler(this.btnPatternReportControl_Click);
             // 
@@ -1350,7 +1596,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SampleApp.Properties.Resources.interp1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1262, 772);
+            this.ClientSize = new System.Drawing.Size(1262, 890);
             this.Controls.Add(this.radRibbonBar1);
             this.Controls.Add(this.radRibbonBarBackstageView1);
             this.Controls.Add(this.bsViewMain);
@@ -1373,26 +1619,34 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsViewMain)).EndInit();
             this.bsViewMain.ResumeLayout(false);
             this.backstageViewPage3.ResumeLayout(false);
-            this.backstageViewPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAccountSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).EndInit();
+            this.radScrollablePanel1.PanelContainer.ResumeLayout(false);
+            this.radScrollablePanel1.PanelContainer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).EndInit();
+            this.radScrollablePanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.OrderOpCheck3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlNewOrderBuyer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAccountSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnChangePass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.retypePass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.originalPass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.newPass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.originalPass)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnChangePass)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             this.backstageViewPage2.ResumeLayout(false);
             this.backstageViewPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveAs)).EndInit();
@@ -1517,5 +1771,25 @@
         private Telerik.WinControls.UI.RadLabel radLabel11;
         private Telerik.WinControls.UI.RadLabel radLabel12;
         private Telerik.WinControls.UI.RadRibbonBarBackstageView radRibbonBarBackstageView1;
+        private System.Windows.Forms.CheckBox SetHandler;
+        private Telerik.WinControls.UI.RadScrollablePanel radScrollablePanel1;
+        private System.Windows.Forms.CheckBox OrderOpCheck1;
+        private Telerik.WinControls.UI.RadLabel radLabel16;
+        private Telerik.WinControls.UI.RadLabel radLabel15;
+        private Telerik.WinControls.UI.RadLabel radLabel14;
+        private Telerik.WinControls.UI.RadLabel radLabel13;
+        private Telerik.WinControls.UI.RadCheckBox OrderOpCheck3;
+        private System.Windows.Forms.CheckBox PatternOpCheck6;
+        private System.Windows.Forms.CheckBox PatternOpCheck4;
+        private System.Windows.Forms.CheckBox WorksheetOpCheck4;
+        private System.Windows.Forms.CheckBox PatternOpCheck2;
+        private System.Windows.Forms.CheckBox WorksheetOpCheck2;
+        private System.Windows.Forms.CheckBox OrderOpCheck2;
+        private System.Windows.Forms.CheckBox PatternOpCheck5;
+        private System.Windows.Forms.CheckBox WorksheetOpCheck5;
+        private System.Windows.Forms.CheckBox PatternOpCheck3;
+        private System.Windows.Forms.CheckBox WorksheetOpCheck3;
+        private System.Windows.Forms.CheckBox PatternOpCheck1;
+        private System.Windows.Forms.CheckBox WorksheetOpCheck1;
     }
 }

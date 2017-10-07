@@ -1,5 +1,6 @@
 ﻿using Dev.Options;
 using Int.Code;
+using Int.Customer;
 using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using Telerik.WinForms.Documents.Model;
 
 namespace Dev.Sales
 {
@@ -30,6 +32,10 @@ namespace Dev.Sales
         private List<string> lstFiles2 = new List<string>();
         private List<string> lstFileUrls = new List<string>();
         private List<string> lstFileUrls2 = new List<string>();
+        private DataTable _dt = null;                                           // 기본 데이터테이블
+
+        private List<CustomerName> lstUserTD = new List<CustomerName>();          // 유저명
+        private List<CustomerName> lstUserCAD = new List<CustomerName>();          // 유저명
 
         #endregion
 
@@ -54,7 +60,7 @@ namespace Dev.Sales
 
             lblFileno.Text = fileNo;
             lblStyle.Text = styleno;
-            lblStatus.Text = orderStatus.ToString();
+            
 
             this.StartPosition = FormStartPosition.CenterScreen;
             
@@ -71,6 +77,9 @@ namespace Dev.Sales
             ddlSize.DataSource = lstSize;
             ddlSize.DisplayMember = "sizeName";
             ddlSize.ValueMember = "sizeIdx";
+            //ddlSize.DropDownListElement.SelectionMode = SelectionMode.MultiExtended; 
+
+            dtTechPack.Value = DateTime.Now; 
 
             beFiles.DialogType = BrowseEditorDialogType.OpenFileDialog;
             if (beFiles.DialogType == BrowseEditorDialogType.OpenFileDialog)
@@ -78,7 +87,39 @@ namespace Dev.Sales
                 OpenFileDialog dialog = (OpenFileDialog)beFiles.Dialog;
                 dialog.Multiselect = true;
             }
-            
+
+            // Username
+            lstUserTD.Add(new CustomerName(0, "", 0));
+            lstUserCAD.Add(new CustomerName(0, "", 0));
+
+            _dt = CommonController.Getlist(CommonValues.KeyName.TDUser).Tables[0];
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstUserTD.Add(new CustomerName(Convert.ToInt32(row["UserIdx"]), row["UserName"].ToString(), Convert.ToInt32(row["DeptIdx"])));
+            }
+            _dt = CommonController.Getlist(CommonValues.KeyName.CADUser).Tables[0];
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstUserCAD.Add(new CustomerName(Convert.ToInt32(row["UserIdx"]), row["UserName"].ToString(), Convert.ToInt32(row["DeptIdx"])));
+            }
+
+            //CAD
+            ddlCAD.DataSource = lstUserCAD;
+            ddlCAD.DisplayMember = "CustName";
+            ddlCAD.ValueMember = "CustIdx";
+            ddlCAD.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlCAD.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+
+            //TD
+            ddlTD.DataSource = lstUserTD;
+            ddlTD.DisplayMember = "CustName";
+            ddlTD.ValueMember = "CustIdx";
+            ddlTD.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlTD.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+
+            SetDefaultFontPropertiesToEditor(txtComment);
+
+
         }
 
         
@@ -135,52 +176,161 @@ namespace Dev.Sales
         {
             try
             {
-                string NewCode = Code.GetPrimaryCode(UserInfo.CenterIdx, UserInfo.DeptIdx, 5, _fileNo);
+                CommonController.Log("[Start] Request Pattern transaction (" + DateTime.Now.ToString() + ")");
+                string NewCode = ""; 
 
-                if (Convert.ToInt32(ddlSize.SelectedValue) <= 0)
+                try
                 {
-                    RadMessageBox.Show("Please input the Size", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
-                    return;
+                    NewCode = Code.GetPrimaryCode(Options.UserInfo.CenterIdx, Options.UserInfo.DeptIdx, 5, _fileNo);
+                    CommonController.Log("[Success] Create Code: " + NewCode + ", File#: " + _fileNo);
                 }
+                catch(Exception ex)
+                {
+                    CommonController.Log("[Fail] Create Code: " + ex.Message.ToString());
+                }
+                
+
+                try
+                {
+                    if (Convert.ToInt32(ddlCAD.SelectedValue) <= 0)
+                    {
+                        RadMessageBox.Show("Please select the CAD", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+                    if (Convert.ToInt32(ddlTD.SelectedValue) <= 0)
+                    {
+                        RadMessageBox.Show("Please select the TD", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+                    if (!chkConsumption.Checked && !chkPattern.Checked)
+                    {
+                        RadMessageBox.Show("Please check the Pattern or Consumption", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+                    if (ddlSize.SelectedItems.Count <= 0)
+                    {
+                        RadMessageBox.Show("Please input the Size", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+
+                    CommonController.Log("[Success] Validation Items");
+                }
+                catch(Exception ex)
+                {
+                    CommonController.Log("[Fail] Validation Items: " + ex.Message.ToString());
+                }
+                
 
                 if (!string.IsNullOrEmpty(NewCode))
                 {
-                    for (int i=0; i<=4; i++)
+                    for (int i=0; i<=8; i++)
                     {
                         lstFiles2.Add(""); lstFileUrls2.Add(""); 
                     }
                     if (lstFiles.Count>0)
                     {
+                        CommonController.Log("[Progress] File list Count: " + lstFiles.Count.ToString());
+
                         for (int i = 0; i < lstFiles.Count; i++)
                         {
                             if (!string.IsNullOrEmpty(lstFiles[i])) lstFiles2[i] = lstFiles[i]; lstFileUrls2[i] = lstFileUrls[i];
                         }
                     }
-                    
-                    DataRow dr = Dev.Controller.Pattern.Insert(_orderIdx, NewCode, Convert.ToInt32(ddlSize.SelectedValue),
-                    dtTechPack.Value, DateTime.Now, UserInfo.Idx, txtComment.Text,
-                    lstFiles2[0].ToString(), lstFiles2[1].ToString(), lstFiles2[2].ToString(), lstFiles2[3].ToString(), lstFiles2[4].ToString(),
-                    lstFileUrls2[0].ToString(), lstFileUrls2[1].ToString(), lstFileUrls2[2].ToString(), lstFileUrls2[3].ToString(), lstFileUrls2[4].ToString(), UserInfo.Idx);
 
-
-                    // 데이터 DB저장 
-                    
-
-                    if (dr != null)
+                    try
                     {
-                        // 입력완료 후 그리드뷰 갱신
-                        DialogResult = System.Windows.Forms.DialogResult.OK;
+                        DataRow dr = Dev.Controller.Pattern.Insert(_orderIdx, NewCode,
+                            ddlSize.SelectedItems.Count > 0 && Convert.ToInt32(ddlSize.SelectedItems[0].Value) > 0 ? Convert.ToInt32(ddlSize.SelectedItems[0].Value) : 0,
+                            dtTechPack.Value, DateTime.Now, Options.UserInfo.Idx, txtComment.Text,
+                            lstFiles2[0].ToString(), lstFiles2[1].ToString(), lstFiles2[2].ToString(), lstFiles2[3].ToString(), lstFiles2[4].ToString(),
+                            lstFiles2[5].ToString(), lstFiles2[6].ToString(), lstFiles2[7].ToString(), lstFiles2[8].ToString(),
+                            lstFileUrls2[0].ToString(), lstFileUrls2[1].ToString(), lstFileUrls2[2].ToString(),
+                            lstFileUrls2[3].ToString(), lstFileUrls2[4].ToString(),
+                            lstFileUrls2[5].ToString(), lstFileUrls2[6].ToString(), lstFileUrls2[7].ToString(), lstFileUrls2[8].ToString(),
+                            Options.UserInfo.Idx,
+                            chkPattern.Checked ? 1 : 0, chkConsumption.Checked ? 1 : 0,
+                            ddlSize.SelectedItems.Count > 1 && Convert.ToInt32(ddlSize.SelectedItems[1].Value) > 0 ? Convert.ToInt32(ddlSize.SelectedItems[1].Value) : 0,
+                            ddlSize.SelectedItems.Count > 2 && Convert.ToInt32(ddlSize.SelectedItems[2].Value) > 0 ? Convert.ToInt32(ddlSize.SelectedItems[2].Value) : 0,
+                            ddlSize.SelectedItems.Count > 3 && Convert.ToInt32(ddlSize.SelectedItems[3].Value) > 0 ? Convert.ToInt32(ddlSize.SelectedItems[3].Value) : 0,
+                            ddlSize.SelectedItems.Count > 4 && Convert.ToInt32(ddlSize.SelectedItems[4].Value) > 0 ? Convert.ToInt32(ddlSize.SelectedItems[4].Value) : 0,
+                            ddlSize.SelectedItems.Count > 5 && Convert.ToInt32(ddlSize.SelectedItems[5].Value) > 0 ? Convert.ToInt32(ddlSize.SelectedItems[5].Value) : 0,
+                            ddlSize.SelectedItems.Count > 6 && Convert.ToInt32(ddlSize.SelectedItems[6].Value) > 0 ? Convert.ToInt32(ddlSize.SelectedItems[6].Value) : 0,
+                            ddlSize.SelectedItems.Count > 7 && Convert.ToInt32(ddlSize.SelectedItems[7].Value) > 0 ? Convert.ToInt32(ddlSize.SelectedItems[7].Value) : 0,
+                            Convert.ToInt32(ddlCAD.SelectedValue), Convert.ToInt32(ddlTD.SelectedValue)
+                            );
+
+                        CommonController.Log("[Success] Save to Database");
+
+                        // 데이터 DB저장 
+                        if (dr != null)
+                        {
+                            RadMessageBox.Show("Created Pattern/Consumption", "Saved");
+
+                            // 오더핸들러 전화번호가 등록되어 있는 경우
+                            //DataRow drm = Dev.Options.Data.CommonData.GetPhoneNumber(Convert.ToInt32(ddlCAD.SelectedValue));
+                            //if (drm != null && !string.IsNullOrEmpty(drm["Phone"].ToString().Trim()))
+                            //{
+                            //    // 결과 메시지 송신
+                            //    Dev.Controller.TelegramMessageSender msgSender = new Dev.Controller.TelegramMessageSender();
+                            //    msgSender.sendMessage(drm["Phone"].ToString().Trim(), "[Aviso] " +
+                            //                "Buyer: " + drm["Buyer"].ToString() + ", " +
+                            //                "File: " + drm["Fileno"].ToString() + ", " +
+                            //                "Style: " + drm["Styleno"].ToString() + "\n" +
+                            //                (chkPattern.Checked ? "Patron" : "") + "/" + (chkConsumption.Checked ? "Consumo" : "") + "\n" +
+                            //                "Requested by " + UserInfo.Userfullname.ToString() + "\n" +
+                            //                (ddlSize.SelectedItems.Count > 0 && Convert.ToInt32(ddlSize.SelectedItems[0].Value) > 0 ? ddlSize.SelectedItems[0].Text : "") + "/" +
+                            //                (ddlSize.SelectedItems.Count > 1 && Convert.ToInt32(ddlSize.SelectedItems[1].Value) > 0 ? ddlSize.SelectedItems[1].Text : "") + "/" +
+                            //                (ddlSize.SelectedItems.Count > 2 && Convert.ToInt32(ddlSize.SelectedItems[2].Value) > 0 ? ddlSize.SelectedItems[2].Text : "") + "/" +
+                            //                (ddlSize.SelectedItems.Count > 3 && Convert.ToInt32(ddlSize.SelectedItems[3].Value) > 0 ? ddlSize.SelectedItems[3].Text : "") + "/" +
+                            //                (ddlSize.SelectedItems.Count > 4 && Convert.ToInt32(ddlSize.SelectedItems[4].Value) > 0 ? ddlSize.SelectedItems[4].Text : "") +
+                            //                 "Comment: " + txtComment.Text.ToString()
+                            //                );
+                            //}
+
+                            // 입력완료 후 그리드뷰 갱신
+                            DialogResult = System.Windows.Forms.DialogResult.OK;
+                        }
+                        else
+                        {
+                            //lblResult.Text = "Failed to input the data.";
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        //lblResult.Text = "Failed to input the data.";
+                        CommonController.Log("[Fail] Save to Database: " + ex.Message.ToString());
                     }
+                    
                 }
+
+                CommonController.Log("[End] Request Pattern transaction (" + DateTime.Now.ToString() + ")");
             }
             catch (Exception ex)
             {
+                CommonController.Log("[Fail] Request Patern: " + ex.Message.ToString()); 
                 Console.WriteLine("btnUpdate_Click: " + ex.Message.ToString());
             }
+        }
+
+        public void SetDefaultFontPropertiesToEditor(RadRichTextEditor editor)
+        {
+            editor.Document.Selection.SelectAll();
+            editor.RichTextBoxElement.ChangeFontFamily(new Telerik.WinControls.RichTextEditor.UI.FontFamily("Segoe UI"));
+            editor.RichTextBoxElement.ChangeFontSize(Unit.PointToDip(9));
+            editor.RichTextBoxElement.ChangeFontStyle(Telerik.WinControls.RichTextEditor.UI.FontStyles.Normal);
+            editor.RichTextBoxElement.ChangeFontWeight(Telerik.WinControls.RichTextEditor.UI.FontWeights.Normal);
+
+            editor.RichTextBoxElement.ChangeParagraphLineSpacingType(LineSpacingType.Auto);
+            editor.RichTextBoxElement.ChangeParagraphLineSpacing(1);
+            editor.RichTextBoxElement.ChangeParagraphSpacingAfter(12);
+
+            editor.DocumentInheritsDefaultStyleSettings = true;
+
+            Telerik.WinForms.Documents.DocumentPosition startPosition = editor.Document.CaretPosition;
+            Telerik.WinForms.Documents.DocumentPosition endPosition = new Telerik.WinForms.Documents.DocumentPosition(startPosition);
+            startPosition.MoveToCurrentWordEnd();
+            endPosition.MoveToCurrentWordEnd();
+            editor.Document.Selection.AddSelectionStart(startPosition);
+            editor.Document.Selection.AddSelectionEnd(endPosition);
         }
 
         public int OrderIdx
@@ -299,9 +449,10 @@ namespace Dev.Sales
             {
                 DialogResult result = openDialog.ShowDialog();
 
-                if (result == DialogResult.OK && openDialog.FileNames.Length <= 5)
+                if (result == DialogResult.OK && openDialog.FileNames.Length <= 9)
                 {
-                    listFiles.Items.Clear();
+                    // 파일리스트 초기화 
+                    // listFiles.Items.Clear();
                     
                     for (int i = 0; i < openDialog.FileNames.Length; i++)
                     {

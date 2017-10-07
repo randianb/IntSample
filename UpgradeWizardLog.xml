@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="_UpgradeWizard_Files\UpgradeWizardLog.xslt"?>
+<log>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\IntSample\SampleApp.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\IntSample\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\git\IntSample\IntSample\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\git\IntSample\IntSample\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\git\IntSample\IntSample\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\git\IntSample\IntSample\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\git\IntSample\IntSample\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="D:\git\IntSample\IntSample\App.config" />
+  <event action="Analyze" type="Success" name="MainApp.resx" path="D:\git\IntSample\IntSample\MainApp.resx" />
+  <event action="Analyze" type="Success" name="MainLogin.resx" path="D:\git\IntSample\IntSample\MainLogin.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\IntSample\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\git\IntSample\IntSample\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\git\IntSample\IntSample\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\git\IntSample\IntSample\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\git\IntSample\IntSample\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\git\IntSample\IntSample\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\git\IntSample\IntSample\packages.config" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\git\IntSample\IntSample\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="SampleApp" path="D:\git\IntSample\IntSample\SampleApp.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Options\Dev.Options.csproj" />
+  <event action="Analyze" type="Success" name="InheritForm.resx" path="D:\git\IntSample\Dev.Options\InheritForm.resx" />
+  <event action="Analyze" type="Success" name="InheritMDI.resx" path="D:\git\IntSample\Dev.Options\InheritMDI.resx" />
+  <event action="Analyze" type="Success" name="Dev.Options" path="D:\git\IntSample\Dev.Options\Dev.Options.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Sales\Dev.Sales.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Sales\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\git\IntSample\Dev.Sales\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\git\IntSample\Dev.Sales\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\git\IntSample\Dev.Sales\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\git\IntSample\Dev.Sales\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\git\IntSample\Dev.Sales\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="D:\git\IntSample\Dev.Sales\app.config" />
+  <event action="Analyze" type="Success" name="CustomAppointmentEditForm.resx" path="D:\git\IntSample\Dev.Sales\CustomAppointmentEditForm.resx" />
+  <event action="Analyze" type="Success" name="frmCopyOrder.resx" path="D:\git\IntSample\Dev.Sales\frmCopyOrder.resx" />
+  <event action="Analyze" type="Success" name="frmCuttingRequest.resx" path="D:\git\IntSample\Dev.Sales\frmCuttingRequest.resx" />
+  <event action="Analyze" type="Success" name="frmEmbroideryRequest.resx" path="D:\git\IntSample\Dev.Sales\frmEmbroideryRequest.resx" />
+  <event action="Analyze" type="Success" name="frmInspectingRequest.resx" path="D:\git\IntSample\Dev.Sales\frmInspectingRequest.resx" />
+  <event action="Analyze" type="Success" name="frmNewOrder.resx" path="D:\git\IntSample\Dev.Sales\frmNewOrder.resx" />
+  <event action="Analyze" type="Success" name="frmPatternRequest.resx" path="D:\git\IntSample\Dev.Sales\frmPatternRequest.resx" />
+  <event action="Analyze" type="Success" name="frmPrintingRequest.resx" path="D:\git\IntSample\Dev.Sales\frmPrintingRequest.resx" />
+  <event action="Analyze" type="Success" name="frmScheduler.resx" path="D:\git\IntSample\Dev.Sales\frmScheduler.resx" />
+  <event action="Analyze" type="Success" name="frmSewingRequest.resx" path="D:\git\IntSample\Dev.Sales\frmSewingRequest.resx" />
+  <event action="Analyze" type="Success" name="frmWorkSheets.resx" path="D:\git\IntSample\Dev.Sales\frmWorkSheets.resx" />
+  <event action="Analyze" type="Success" name="NewWorkSheets.resx" path="D:\git\IntSample\Dev.Sales\NewWorkSheets.resx" />
+  <event action="Analyze" type="Success" name="OrderMain.resx" path="D:\git\IntSample\Dev.Sales\OrderMain.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Sales\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\git\IntSample\Dev.Sales\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\git\IntSample\Dev.Sales\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\git\IntSample\Dev.Sales\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\git\IntSample\Dev.Sales\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\git\IntSample\Dev.Sales\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\git\IntSample\Dev.Sales\packages.config" />
+  <event action="Analyze" type="Success" name="PrintOrderReview.resx" path="D:\git\IntSample\Dev.Sales\PrintOrderReview.resx" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\git\IntSample\Dev.Sales\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="rpPrintOrderReview.resx" path="D:\git\IntSample\Dev.Sales\Reports\rpPrintOrderReview.resx" />
+  <event action="Analyze" type="Success" name="SampleScheduler.resx" path="D:\git\IntSample\Dev.Sales\SampleScheduler.resx" />
+  <event action="Analyze" type="Success" name="WorkSheetPageControl.resx" path="D:\git\IntSample\Dev.Sales\WorkSheetPageControl.resx" />
+  <event action="Analyze" type="Success" name="Dev.Sales" path="D:\git\IntSample\Dev.Sales\Dev.Sales.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Fabric\Dev.Fabric.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Fabric\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\git\IntSample\Dev.Fabric\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\git\IntSample\Dev.Fabric\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\git\IntSample\Dev.Fabric\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\git\IntSample\Dev.Fabric\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\git\IntSample\Dev.Fabric\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="D:\git\IntSample\Dev.Fabric\app.config" />
+  <event action="Analyze" type="Success" name="FabricCode.resx" path="D:\git\IntSample\Dev.Fabric\FabricCode.resx" />
+  <event action="Analyze" type="Success" name="frmFabricCode.resx" path="D:\git\IntSample\Dev.Fabric\frmFabricCode.resx" />
+  <event action="Analyze" type="Success" name="frmPrintInbound.resx" path="D:\git\IntSample\Dev.Fabric\frmPrintInbound.resx" />
+  <event action="Analyze" type="Success" name="frmPrintOutbound.resx" path="D:\git\IntSample\Dev.Fabric\frmPrintOutbound.resx" />
+  <event action="Analyze" type="Success" name="frmPrintStock.resx" path="D:\git\IntSample\Dev.Fabric\frmPrintStock.resx" />
+  <event action="Analyze" type="Success" name="Inbound.resx" path="D:\git\IntSample\Dev.Fabric\Inbound.resx" />
+  <event action="Analyze" type="Success" name="Outbound.resx" path="D:\git\IntSample\Dev.Fabric\Outbound.resx" />
+  <event action="Analyze" type="Success" name="PrintQRCode.resx" path="D:\git\IntSample\Dev.Fabric\PrintQRCode.resx" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\git\IntSample\Dev.Fabric\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="rptFabricCodeForm.resx" path="D:\git\IntSample\Dev.Fabric\Reports\rptFabricCodeForm.resx" />
+  <event action="Analyze" type="Success" name="rptInbound.resx" path="D:\git\IntSample\Dev.Fabric\Reports\rptInbound.resx" />
+  <event action="Analyze" type="Success" name="rptOutbound.resx" path="D:\git\IntSample\Dev.Fabric\Reports\rptOutbound.resx" />
+  <event action="Analyze" type="Success" name="rptPrintLocationCode.resx" path="D:\git\IntSample\Dev.Fabric\Reports\rptPrintLocationCode.resx" />
+  <event action="Analyze" type="Success" name="rptPrintQRCode.resx" path="D:\git\IntSample\Dev.Fabric\Reports\rptPrintQRCode.resx" />
+  <event action="Analyze" type="Success" name="rptStock.resx" path="D:\git\IntSample\Dev.Fabric\Reports\rptStock.resx" />
+  <event action="Analyze" type="Success" name="Warehouse.resx" path="D:\git\IntSample\Dev.Fabric\Warehouse.resx" />
+  <event action="Analyze" type="Success" name="Dev.Fabric" path="D:\git\IntSample\Dev.Fabric\Dev.Fabric.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.System\Dev.Codes.csproj" />
+  <event action="Analyze" type="Success" name="CodeColor.resx" path="D:\git\IntSample\Dev.System\CodeColor.resx" />
+  <event action="Analyze" type="Success" name="CodeLocation.resx" path="D:\git\IntSample\Dev.System\CodeLocation.resx" />
+  <event action="Analyze" type="Success" name="CodeSewThread.resx" path="D:\git\IntSample\Dev.System\CodeSewThread.resx" />
+  <event action="Analyze" type="Success" name="CodeSize.resx" path="D:\git\IntSample\Dev.System\CodeSize.resx" />
+  <event action="Analyze" type="Success" name="CodeSizeGroup.resx" path="D:\git\IntSample\Dev.System\CodeSizeGroup.resx" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\git\IntSample\Dev.System\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="Dev.Codes" path="D:\git\IntSample\Dev.System\Dev.Codes.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Pattern\Dev.Pattern.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Pattern\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\git\IntSample\Dev.Pattern\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\git\IntSample\Dev.Pattern\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\git\IntSample\Dev.Pattern\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\git\IntSample\Dev.Pattern\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\git\IntSample\Dev.Pattern\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="D:\git\IntSample\Dev.Pattern\app.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Pattern\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\git\IntSample\Dev.Pattern\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\git\IntSample\Dev.Pattern\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\git\IntSample\Dev.Pattern\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\git\IntSample\Dev.Pattern\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\git\IntSample\Dev.Pattern\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\git\IntSample\Dev.Pattern\packages.config" />
+  <event action="Analyze" type="Success" name="PatternMain.resx" path="D:\git\IntSample\Dev.Pattern\PatternMain.resx" />
+  <event action="Analyze" type="Success" name="PrintPattern.resx" path="D:\git\IntSample\Dev.Pattern\PrintPattern.resx" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\git\IntSample\Dev.Pattern\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="rptPrintPattern.resx" path="D:\git\IntSample\Dev.Pattern\Reports\rptPrintPattern.resx" />
+  <event action="Analyze" type="Success" name="TrimMain.resx" path="D:\git\IntSample\Dev.Pattern\TrimMain.resx" />
+  <event action="Analyze" type="Success" name="WorksheetMain.resx" path="D:\git\IntSample\Dev.Pattern\WorksheetMain.resx" />
+  <event action="Analyze" type="Success" name="Dev.Pattern" path="D:\git\IntSample\Dev.Pattern\Dev.Pattern.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Controller\Dev.Controller.csproj" />
+  <event action="Analyze" type="Success" name="Dev.Controller" path="D:\git\IntSample\Dev.Controller\Dev.Controller.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Data\Dev.Data.csproj" />
+  <event action="Analyze" type="Success" name="Dev.Data" path="D:\git\IntSample\Dev.Data\Dev.Data.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.WorkOrder\Dev.WorkOrder.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.WorkOrder\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\git\IntSample\Dev.WorkOrder\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\git\IntSample\Dev.WorkOrder\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\git\IntSample\Dev.WorkOrder\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\git\IntSample\Dev.WorkOrder\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\git\IntSample\Dev.WorkOrder\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="D:\git\IntSample\Dev.WorkOrder\app.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.WorkOrder\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\git\IntSample\Dev.WorkOrder\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\git\IntSample\Dev.WorkOrder\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\git\IntSample\Dev.WorkOrder\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\git\IntSample\Dev.WorkOrder\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\git\IntSample\Dev.WorkOrder\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\git\IntSample\Dev.WorkOrder\packages.config" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\git\IntSample\Dev.WorkOrder\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="rptWorkOrderCuttingTicket.resx" path="D:\git\IntSample\Dev.WorkOrder\Reports\rptWorkOrderCuttingTicket.resx" />
+  <event action="Analyze" type="Success" name="rptWorkOrderEmbroideryTicket.resx" path="D:\git\IntSample\Dev.WorkOrder\Reports\rptWorkOrderEmbroideryTicket.resx" />
+  <event action="Analyze" type="Success" name="rptWorkOrderInspectionTicket.resx" path="D:\git\IntSample\Dev.WorkOrder\Reports\rptWorkOrderInspectionTicket.resx" />
+  <event action="Analyze" type="Success" name="rptWorkOrderPatternTicket.resx" path="D:\git\IntSample\Dev.WorkOrder\Reports\rptWorkOrderPatternTicket.resx" />
+  <event action="Analyze" type="Success" name="rptWorkOrderPrintTicket.resx" path="D:\git\IntSample\Dev.WorkOrder\Reports\rptWorkOrderPrintTicket.resx" />
+  <event action="Analyze" type="Success" name="rptWorkOrderSewTicket.resx" path="D:\git\IntSample\Dev.WorkOrder\Reports\rptWorkOrderSewTicket.resx" />
+  <event action="Analyze" type="Success" name="rptWorkOrderTicket.resx" path="D:\git\IntSample\Dev.WorkOrder\Reports\rptWorkOrderTicket.resx" />
+  <event action="Analyze" type="Success" name="WorkOrderMain.resx" path="D:\git\IntSample\Dev.WorkOrder\WorkOrderMain.resx" />
+  <event action="Analyze" type="Success" name="WorkOrderTicketPrint.resx" path="D:\git\IntSample\Dev.WorkOrder\WorkOrderTicketPrint.resx" />
+  <event action="Analyze" type="Success" name="Dev.WorkOrder" path="D:\git\IntSample\Dev.WorkOrder\Dev.WorkOrder.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Yarn\Dev.Yarn.csproj" />
+  <event action="Analyze" type="Success" name="YarnCode.resx" path="D:\git\IntSample\Dev.Yarn\YarnCode.resx" />
+  <event action="Analyze" type="Success" name="Dev.Yarn" path="D:\git\IntSample\Dev.Yarn\Dev.Yarn.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Production\Dev.Production.csproj" />
+  <event action="Analyze" type="Success" name="CuttingMain.resx" path="D:\git\IntSample\Dev.Production\CuttingMain.resx" />
+  <event action="Analyze" type="Success" name="DirectWorkOrder.resx" path="D:\git\IntSample\Dev.Production\DirectWorkOrder.resx" />
+  <event action="Analyze" type="Success" name="EmbroideryMain.resx" path="D:\git\IntSample\Dev.Production\EmbroideryMain.resx" />
+  <event action="Analyze" type="Success" name="InspectionMain.resx" path="D:\git\IntSample\Dev.Production\InspectionMain.resx" />
+  <event action="Analyze" type="Success" name="PrintCutting.resx" path="D:\git\IntSample\Dev.Production\PrintCutting.resx" />
+  <event action="Analyze" type="Success" name="PrintEmbroidery.resx" path="D:\git\IntSample\Dev.Production\PrintEmbroidery.resx" />
+  <event action="Analyze" type="Success" name="PrintingMain.resx" path="D:\git\IntSample\Dev.Production\PrintingMain.resx" />
+  <event action="Analyze" type="Success" name="PrintInspection.resx" path="D:\git\IntSample\Dev.Production\PrintInspection.resx" />
+  <event action="Analyze" type="Success" name="PrintPrinting.resx" path="D:\git\IntSample\Dev.Production\PrintPrinting.resx" />
+  <event action="Analyze" type="Success" name="PrintSewing.resx" path="D:\git\IntSample\Dev.Production\PrintSewing.resx" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\git\IntSample\Dev.Production\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="rptPrintCutting.resx" path="D:\git\IntSample\Dev.Production\Reports\rptPrintCutting.resx" />
+  <event action="Analyze" type="Success" name="rptPrintEmbroidery.resx" path="D:\git\IntSample\Dev.Production\Reports\rptPrintEmbroidery.resx" />
+  <event action="Analyze" type="Success" name="rptPrintInspection.resx" path="D:\git\IntSample\Dev.Production\Reports\rptPrintInspection.resx" />
+  <event action="Analyze" type="Success" name="rptPrintPrinting.resx" path="D:\git\IntSample\Dev.Production\Reports\rptPrintPrinting.resx" />
+  <event action="Analyze" type="Success" name="rptPrintSewing.resx" path="D:\git\IntSample\Dev.Production\Reports\rptPrintSewing.resx" />
+  <event action="Analyze" type="Success" name="SewingMain.resx" path="D:\git\IntSample\Dev.Production\SewingMain.resx" />
+  <event action="Analyze" type="Success" name="Dev.Production" path="D:\git\IntSample\Dev.Production\Dev.Production.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\git\IntSample\Dev.Finish\Dev.Out.csproj" />
+  <event action="Analyze" type="Success" name="FinishedMain.resx" path="D:\git\IntSample\Dev.Finish\FinishedMain.resx" />
+  <event action="Analyze" type="Success" name="frmOutRequest.resx" path="D:\git\IntSample\Dev.Finish\frmOutRequest.resx" />
+  <event action="Analyze" type="Success" name="PrintInvoice.resx" path="D:\git\IntSample\Dev.Finish\PrintInvoice.resx" />
+  <event action="Analyze" type="Success" name="PrintProductHistory.resx" path="D:\git\IntSample\Dev.Finish\PrintProductHistory.resx" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\git\IntSample\Dev.Finish\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="rptPrintInvoice.resx" path="D:\git\IntSample\Dev.Finish\Reports\rptPrintInvoice.resx" />
+  <event action="Analyze" type="Success" name="rptPrintProductHistory.resx" path="D:\git\IntSample\Dev.Finish\Reports\rptPrintProductHistory.resx" />
+  <event action="Analyze" type="Success" name="Dev.Out" path="D:\git\IntSample\Dev.Finish\Dev.Out.csproj" />
+  <event action="Analyze" type="Success" name="IntSample" path="D:\git\IntSample\IntSample.sln" />
+</log>

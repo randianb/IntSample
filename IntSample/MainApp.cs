@@ -87,6 +87,31 @@ namespace SampleApp
                     enablePagingGV.Checked = cs.enablePaging;
                     enableSearchRow.Checked = cs.enableSearchRow;
                     ddlNewOrderBuyer.SelectedValue = cs.NewOrderBuyerIdx;
+                    SetHandler.Checked = cs.SetHandler;
+
+                    OrderOpCheck1.Checked = cs.OrderOpCheck1;
+                    OrderOpCheck2.Checked = cs.OrderOpCheck2;
+
+                    switch (cs.OrderOpCheck3)
+                    {
+                        case 0: OrderOpCheck3.CheckState = CheckState.Unchecked; break;
+                        case 1: OrderOpCheck3.CheckState = CheckState.Checked; break;
+                        case 2: OrderOpCheck3.CheckState = CheckState.Indeterminate; break;
+                    }
+
+                    WorksheetOpCheck1.Checked = cs.WorksheetOpCheck1;
+                    WorksheetOpCheck2.Checked = cs.WorksheetOpCheck2;
+                    WorksheetOpCheck3.Checked = cs.WorksheetOpCheck3;
+                    WorksheetOpCheck4.Checked = cs.WorksheetOpCheck4;
+                    WorksheetOpCheck5.Checked = cs.WorksheetOpCheck5;
+
+                    PatternOpCheck1.Checked = cs.PatternOpCheck1;
+                    PatternOpCheck2.Checked = cs.PatternOpCheck2;
+                    PatternOpCheck3.Checked = cs.PatternOpCheck3;
+                    PatternOpCheck4.Checked = cs.PatternOpCheck4;
+                    PatternOpCheck5.Checked = cs.PatternOpCheck5;
+                    PatternOpCheck6.Checked = cs.PatternOpCheck6;
+
                 }
                 // 없으면 기본값으로 새로 만듬 
                 else
@@ -96,10 +121,44 @@ namespace SampleApp
                         enablePaging = true,
                         enableSearchRow = false,
                         NewOrderBuyerIdx = 0,
+
+                        OrderOpCheck1 = true,
+                        OrderOpCheck2 = true,
+                        OrderOpCheck3 = 2,
+
+                        WorksheetOpCheck1 = true,
+                        WorksheetOpCheck2 = true,
+                        WorksheetOpCheck3 = true,
+                        WorksheetOpCheck4 = true,
+                        WorksheetOpCheck5 = true,
+
+                        PatternOpCheck1 = true,
+                        PatternOpCheck2 = true,
+                        PatternOpCheck3 = true,
+                        PatternOpCheck4 = true,
+                        PatternOpCheck5 = true,
+                        PatternOpCheck6 = true,
                     };
 
                     string confStr = JsonConvert.SerializeObject(cs, Formatting.Indented);
                     System.IO.File.WriteAllText(path, confStr);
+
+                    OrderOpCheck1.Checked = true;
+                    OrderOpCheck2.Checked = true;
+                    OrderOpCheck3.CheckState = CheckState.Indeterminate;
+
+                    WorksheetOpCheck1.Checked = true;
+                    WorksheetOpCheck2.Checked = true;
+                    WorksheetOpCheck3.Checked = true;
+                    WorksheetOpCheck4.Checked = true;
+                    WorksheetOpCheck5.Checked = true;
+
+                    PatternOpCheck1.Checked = true;
+                    PatternOpCheck2.Checked = true;
+                    PatternOpCheck3.Checked = true;
+                    PatternOpCheck4.Checked = true;
+                    PatternOpCheck5.Checked = true;
+                    PatternOpCheck6.Checked = true;
                 }
             }
             catch (Exception ex)
@@ -211,14 +270,50 @@ namespace SampleApp
 
                 cs.enablePaging = enablePagingGV.Checked;
                 cs.enableSearchRow = enableSearchRow.Checked;
+                cs.SetHandler = SetHandler.Checked; 
                 cs.NewOrderBuyerIdx = Convert.ToInt32(ddlNewOrderBuyer.SelectedValue);
+
+                cs.OrderOpCheck1 = OrderOpCheck1.Checked;
+                cs.OrderOpCheck2 = OrderOpCheck2.Checked;
+                cs.OrderOpCheck3 = Convert.ToInt32(OrderOpCheck3.CheckState);
+
+                cs.WorksheetOpCheck1 = WorksheetOpCheck1.Checked;
+                cs.WorksheetOpCheck2 = WorksheetOpCheck2.Checked;
+                cs.WorksheetOpCheck3 = WorksheetOpCheck3.Checked;
+                cs.WorksheetOpCheck4 = WorksheetOpCheck4.Checked;
+                cs.WorksheetOpCheck5 = WorksheetOpCheck5.Checked;
+                
+                cs.PatternOpCheck1 = PatternOpCheck1.Checked;
+                cs.PatternOpCheck2 = PatternOpCheck2.Checked;
+                cs.PatternOpCheck3 = PatternOpCheck3.Checked;
+                cs.PatternOpCheck4 = PatternOpCheck4.Checked;
+                cs.PatternOpCheck5 = PatternOpCheck5.Checked;
+                cs.PatternOpCheck6 = PatternOpCheck6.Checked;
 
                 string confStr = JsonConvert.SerializeObject(cs, Formatting.Indented);
                 System.IO.File.WriteAllText(path, confStr);
 
                 CommonValues.enablePaging = enablePagingGV.Checked;
                 CommonValues.enableSearchRow = enableSearchRow.Checked;
+                CommonValues.SetHandler = SetHandler.Checked; 
                 CommonValues.NewOrderBuyerIdx = Convert.ToInt32(ddlNewOrderBuyer.SelectedValue);
+
+                CommonValues.OrderOpCheck1 = OrderOpCheck1.Checked;
+                CommonValues.OrderOpCheck2 = OrderOpCheck2.Checked;
+                CommonValues.OrderOpCheck3 = Convert.ToInt32(OrderOpCheck3.CheckState);
+
+                CommonValues.WorksheetOpCheck1 = WorksheetOpCheck1.Checked;
+                CommonValues.WorksheetOpCheck2 = WorksheetOpCheck2.Checked;
+                CommonValues.WorksheetOpCheck3 = WorksheetOpCheck3.Checked;
+                CommonValues.WorksheetOpCheck4 = WorksheetOpCheck4.Checked;
+                CommonValues.WorksheetOpCheck5 = WorksheetOpCheck5.Checked;
+
+                CommonValues.PatternOpCheck1 = PatternOpCheck1.Checked;
+                CommonValues.PatternOpCheck2 = PatternOpCheck2.Checked;
+                CommonValues.PatternOpCheck3 = PatternOpCheck3.Checked;
+                CommonValues.PatternOpCheck4 = PatternOpCheck4.Checked;
+                CommonValues.PatternOpCheck5 = PatternOpCheck5.Checked;
+                CommonValues.PatternOpCheck6 = PatternOpCheck6.Checked;
             }
             catch (Exception ex)
             {
@@ -258,6 +353,23 @@ namespace SampleApp
                         CommonValues.enablePaging = cs.enablePaging;
                         CommonValues.enableSearchRow = cs.enableSearchRow;
                         CommonValues.NewOrderBuyerIdx = cs.NewOrderBuyerIdx;
+
+                        CommonValues.OrderOpCheck1 = cs.OrderOpCheck1;
+                        CommonValues.OrderOpCheck2 = cs.OrderOpCheck2;
+                        CommonValues.OrderOpCheck3 = cs.OrderOpCheck3;
+
+                        CommonValues.WorksheetOpCheck1 = cs.WorksheetOpCheck1; 
+                        CommonValues.WorksheetOpCheck2 = cs.WorksheetOpCheck2;
+                        CommonValues.WorksheetOpCheck3 = cs.WorksheetOpCheck3;
+                        CommonValues.WorksheetOpCheck4 = cs.WorksheetOpCheck4;
+                        CommonValues.WorksheetOpCheck5 = cs.WorksheetOpCheck5;
+
+                        CommonValues.PatternOpCheck1 = cs.PatternOpCheck1; 
+                        CommonValues.PatternOpCheck2 = cs.PatternOpCheck2;
+                        CommonValues.PatternOpCheck3 = cs.PatternOpCheck3;
+                        CommonValues.PatternOpCheck4 = cs.PatternOpCheck4;
+                        CommonValues.PatternOpCheck5 = cs.PatternOpCheck5;
+                        CommonValues.PatternOpCheck6 = cs.PatternOpCheck6;
                     }
                 }
                 catch (Exception ex)
@@ -329,11 +441,7 @@ namespace SampleApp
                 {
                     if (Convert.ToInt32(row["ProgramIdx"]) == menuNo)
                     {
-                        if (row["ClassName"].ToString().Trim() == "Sales")
-                        {
-                            bOrder = true;
-                        }
-                        else if (row["ClassName"].ToString().Trim() == "Yarn")
+                        if (row["ClassName"].ToString().Trim() == "Yarn")
                         {
                             bYarn = true;
                         }
@@ -357,15 +465,14 @@ namespace SampleApp
                         {
                             bSystem = true;
                         }
+                        else if (row["ClassName"].ToString().Trim() == "Sales")
+                        {
+                            bOrder = true;
+                        }
                     }
                 }
             }
             // 각 탭별로 권한이 전혀 없는 탭은 숨기기 
-            if (!bOrder)
-            {
-                ribbonTab2.Visibility = ElementVisibility.Collapsed;
-                //ribGroupAccounting.Visibility = ElementVisibility.Collapsed;
-            }
             if (!bYarn)
             {
                 ribbonTab1.Visibility = ElementVisibility.Collapsed;
@@ -390,6 +497,11 @@ namespace SampleApp
             {
                 ribbonTab7.Visibility = ElementVisibility.Collapsed;
             }
+            if (!bOrder)
+            {
+                ribbonTab2.Visibility = ElementVisibility.Collapsed;
+                //ribGroupAccounting.Visibility = ElementVisibility.Collapsed;
+            }
 
             // 기타 
             if (!lstMenu[51].Enabled) radRibbonBarGroup13.Visibility = ElementVisibility.Collapsed;     // System > Other
@@ -397,11 +509,23 @@ namespace SampleApp
 
             if (!lstMenu[27].Enabled && !lstMenu[28].Enabled && !lstMenu[29].Enabled)
                 radRibbonBarGroup8.Visibility = ElementVisibility.Collapsed;     // Fabric > Fabric
+
+            if (!lstMenu[22].Enabled && !lstMenu[25].Enabled && !lstMenu[23].Enabled && !lstMenu[24].Enabled)
+                radRibbonBarGroup5.Visibility = ElementVisibility.Collapsed;    // order > report 
             
             ribbonTab2.Focus();
             ribbonTab2.Select();
             //radRibbonBarGroup4.AutoSize = true;
 
+            //실행시 order tab 선택 
+            foreach (RadPageViewItem ri in radRibbonBar1.RibbonBarElement.TabStripElement.Items)
+            {
+                if (ri.Text == "Order")
+                {
+                    radRibbonBar1.RibbonBarElement.TabStripElement.SelectedItem = ri;
+                    break;
+                }
+            }
         }
 
         #region Methods 

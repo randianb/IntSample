@@ -832,6 +832,7 @@ namespace Dev.Production
 
                     _searchKey.Add(CommonValues.KeyName.CustIdx, Convert.ToInt32(ddlCust.SelectedValue));
                     _searchKey.Add(CommonValues.KeyName.Status, Convert.ToInt32(ddlStatus.SelectedValue));
+                    _searchKey.Add(CommonValues.KeyName.Handler, 0);
                     _searchKey.Add(CommonValues.KeyName.EmbelishId1, 0);
 
                     DataBinding_GV1(2, _searchKey, txtFileno.Text.Trim(), txtStyle.Text.Trim());

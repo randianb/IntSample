@@ -14,6 +14,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System.IO;
+using Telerik.WinForms.Documents.Model;
 
 namespace Dev.Pattern
 {
@@ -90,7 +91,7 @@ namespace Dev.Pattern
             LoadGVLayout();             // 그리드뷰 레이아웃 복구 
 
             //TD확인 
-            if (UserInfo.DeptIdx == 12)
+            if (Options.UserInfo.DeptIdx == 12)
             {
                 toggTD.Value = true;
             }
@@ -98,6 +99,12 @@ namespace Dev.Pattern
             {
                 toggTD.Value = false;
             }
+
+            WorksheetOpCheck1.Checked = CommonValues.WorksheetOpCheck1;
+            WorksheetOpCheck2.Checked = CommonValues.WorksheetOpCheck2;
+            WorksheetOpCheck3.Checked = CommonValues.WorksheetOpCheck3;
+            WorksheetOpCheck4.Checked = CommonValues.WorksheetOpCheck4;
+            WorksheetOpCheck5.Checked = CommonValues.WorksheetOpCheck5;
 
             // 다른 폼으로부터 전달된 Work ID가 있을 경우, 해당 ID로 조회 
             if (!string.IsNullOrEmpty(_workOrderIdx))
@@ -217,10 +224,10 @@ namespace Dev.Pattern
             GridViewDateTimeColumn RegDate = new GridViewDateTimeColumn();
             RegDate.Name = "RegDate";
             RegDate.FieldName = "RegDate";
-            RegDate.Width = 100;
+            RegDate.Width = 120;
             RegDate.TextAlignment = ContentAlignment.MiddleCenter;
-            RegDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
-            RegDate.FormatString = "{0:d}";
+            RegDate.FormatInfo = new System.Globalization.CultureInfo("en-US");
+            RegDate.FormatString = "{0:g}";
             RegDate.HeaderText = "Sent Date";
             RegDate.ReadOnly = true;
             gv.Columns.Add(RegDate);
@@ -233,13 +240,19 @@ namespace Dev.Pattern
             Handler.TextAlignment = ContentAlignment.MiddleLeft;
             Handler.HeaderText = "Order\nHandler";
             gv.Columns.Add(Handler);
-                                   
+
+            GridViewTextBoxColumn HandlerIdx = new GridViewTextBoxColumn();
+            HandlerIdx.Name = "HandlerIdx";
+            HandlerIdx.FieldName = "HandlerIdx";
+            HandlerIdx.IsVisible = false;
+            gv.Columns.Add(HandlerIdx);
+
             GridViewDateTimeColumn ConfirmDate = new GridViewDateTimeColumn();
             ConfirmDate.Name = "ConfirmDate";
             ConfirmDate.FieldName = "ConfirmDate";
-            ConfirmDate.Width = 130;
+            ConfirmDate.Width = 120;
             ConfirmDate.TextAlignment = ContentAlignment.MiddleCenter;
-            ConfirmDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            ConfirmDate.FormatInfo = new System.Globalization.CultureInfo("en-US");
             ConfirmDate.FormatString = "{0:g}";
             ConfirmDate.HeaderText = "Confirm Date\n(Office)";
             ConfirmDate.ReadOnly = true;
@@ -257,9 +270,9 @@ namespace Dev.Pattern
             GridViewDateTimeColumn ConfirmDateTD = new GridViewDateTimeColumn();
             ConfirmDateTD.Name = "ConfirmDateTD";
             ConfirmDateTD.FieldName = "ConfirmDateTD";
-            ConfirmDateTD.Width = 130;
+            ConfirmDateTD.Width = 120;
             ConfirmDateTD.TextAlignment = ContentAlignment.MiddleCenter;
-            ConfirmDateTD.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            ConfirmDateTD.FormatInfo = new System.Globalization.CultureInfo("en-US");
             ConfirmDateTD.FormatString = "{0:g}";
             ConfirmDateTD.HeaderText = "Confirm Date\n(T/D)";
             ConfirmDateTD.ReadOnly = true;
@@ -277,9 +290,9 @@ namespace Dev.Pattern
             GridViewDateTimeColumn ConfirmDateLast = new GridViewDateTimeColumn();
             ConfirmDateLast.Name = "ConfirmDateLast";
             ConfirmDateLast.FieldName = "ConfirmDateLast";
-            ConfirmDateLast.Width = 130;
+            ConfirmDateLast.Width = 120;
             ConfirmDateLast.TextAlignment = ContentAlignment.MiddleCenter;
-            ConfirmDateLast.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            ConfirmDateLast.FormatInfo = new System.Globalization.CultureInfo("en-US");
             ConfirmDateLast.FormatString = "{0:g}";
             ConfirmDateLast.HeaderText = "Confirm Date\n(Admin)";
             ConfirmDateLast.ReadOnly = true;
@@ -309,9 +322,9 @@ namespace Dev.Pattern
             GridViewDateTimeColumn RejectDate = new GridViewDateTimeColumn();
             RejectDate.Name = "RejectDate";
             RejectDate.FieldName = "RejectDate";
-            RejectDate.Width = 130;
+            RejectDate.Width = 120;
             RejectDate.TextAlignment = ContentAlignment.MiddleCenter;
-            RejectDate.FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+            RejectDate.FormatInfo = new System.Globalization.CultureInfo("en-US");
             RejectDate.FormatString = "{0:g}";
             RejectDate.HeaderText = "Rejected/\nCancelled Date";
             RejectDate.ReadOnly = true;
@@ -486,7 +499,7 @@ namespace Dev.Pattern
             #region Config Cell Conditions: 오더상태에 따라 행스타일 변경
 
             // 캔슬오더 색상변경
-            Font f = new Font(new FontFamily("Segoe UI"), 8.25f, FontStyle.Strikeout);
+            Font f = new Font(new FontFamily("Segoe UI"), 8.25f);
             ConditionalFormattingObject obj = new ConditionalFormattingObject("MyCondition", ConditionTypes.Equal, "2", "", true);
             obj.RowForeColor = Color.Black;
             obj.RowBackColor = Color.FromArgb(255, 255, 230, 230);
@@ -561,7 +574,7 @@ namespace Dev.Pattern
             foreach (DataRow row in _dt.Rows)
             {
                 // 관리부와 임원은 모든 부서에 접근가능
-                if (UserInfo.CenterIdx != 1 || UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6)
+                if (Options.UserInfo.CenterIdx != 1 || Options.UserInfo.DeptIdx == 5 || Options.UserInfo.DeptIdx == 6)
                 {
                     deptName.Add(new DepartmentName(Convert.ToInt32(row["DeptIdx"]),
                                                 row["DeptName"].ToString(),
@@ -570,7 +583,7 @@ namespace Dev.Pattern
                 // 영업부는 해당 부서 데이터만 접근가능
                 else
                 {
-                    if (Convert.ToInt32(row["DeptIdx"]) <= 0 || Convert.ToInt32(row["DeptIdx"]) == UserInfo.DeptIdx)
+                    if (Convert.ToInt32(row["DeptIdx"]) <= 0 || Convert.ToInt32(row["DeptIdx"]) == Options.UserInfo.DeptIdx)
                     {
                         deptName.Add(new DepartmentName(Convert.ToInt32(row["DeptIdx"]),
                                                 row["DeptName"].ToString(),
@@ -616,7 +629,7 @@ namespace Dev.Pattern
             // Username
             lstUser.Add(new CustomerName(0, "", 0));
 
-            if (UserInfo.CenterIdx != 1 || UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6)
+            if (Options.UserInfo.CenterIdx != 1 || Options.UserInfo.DeptIdx == 5 || Options.UserInfo.DeptIdx == 6)
             {
                 _dt = CommonController.Getlist(CommonValues.KeyName.AllUser).Tables[0];
             }
@@ -673,8 +686,8 @@ namespace Dev.Pattern
                 _searchKey = new Dictionary<CommonValues.KeyName, int>();
 
                 // 영업부인경우, 해당 부서만 조회할수 있도록 제한 
-                if (UserInfo.ReportNo < 9)
-                    _searchKey.Add(CommonValues.KeyName.DeptIdx, UserInfo.DeptIdx);
+                if (Options.UserInfo.ReportNo < 9)
+                    _searchKey.Add(CommonValues.KeyName.DeptIdx, Options.UserInfo.DeptIdx);
                 else
                     _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlDept.SelectedValue));
 
@@ -713,21 +726,21 @@ namespace Dev.Pattern
                 if (toggTD.Value)
                 {
                     // TD일땐 해당 바이어만 
-                    _ds1 = Controller.Worksheet.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx, UserInfo.Idx);
+                    _ds1 = Controller.Worksheet.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx, Options.UserInfo.Idx);
                 }
                 else
                 {
                     // TD아니면 모든 바이어 
                     _ds1 = Controller.Worksheet.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx);
                 }
-
                 
                 if (_ds1 != null)
                 {
                     _gv1.DataSource = _ds1.Tables[0].DefaultView;
                     __main__.lblRows.Text = _gv1.RowCount.ToString() + " Rows"; 
                     _gv1.EnablePaging = CommonValues.enablePaging;
-                    _gv1.AllowSearchRow = CommonValues.enableSearchRow; 
+                    _gv1.AllowSearchRow = CommonValues.enableSearchRow;
+                    
                 }
             }
             catch (Exception ex)
@@ -954,9 +967,9 @@ namespace Dev.Pattern
                 btnSaveData.Enabled = true;
                 btnReject.Enabled = true;
 
-                if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader != 1) // 사무실
+                if (Options.UserInfo.DeptIdx == 7 && Options.UserInfo.IsLeader != 1) // 사무실
                 {
-                    txtComments.Enabled = false;
+                    txtComments.Enabled = true;
                     txtCommentTD.Enabled = true;
                     btnCancel.Visible = false;
                     btnSaveData.Text = "Confirmed";
@@ -967,9 +980,9 @@ namespace Dev.Pattern
                         btnSaveData.Enabled = false;
                     }
                 }
-                else if (UserInfo.DeptIdx == 12)  // TD
+                else if (Options.UserInfo.DeptIdx == 12)  // TD
                 {
-                    txtComments.Enabled = false;
+                    txtComments.Enabled = true;
                     txtCommentTD.Enabled = true;
                     btnCancel.Visible = false;
                     btnSaveData.Text = "Confirmed";
@@ -980,9 +993,9 @@ namespace Dev.Pattern
                         btnSaveData.Enabled = false;
                     }
                 }
-                else if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader == 1) // 개발실 총괄
+                else if (Options.UserInfo.DeptIdx == 7 && Options.UserInfo.IsLeader == 1) // 개발실 총괄
                 {
-                    txtComments.Enabled = false;
+                    txtComments.Enabled = true;
                     txtCommentTD.Enabled = true;
                     btnCancel.Visible = false;
                     btnSaveData.Text = "Confirmed";
@@ -995,12 +1008,13 @@ namespace Dev.Pattern
                 } 
                 else // 영업부 
                 {
-                    txtCommentTD.Enabled = false;
+                    txtCommentTD.Enabled = true;
                     btnSaveData.Visible = false;
                     btnReject.Visible = false;
                     txtComments.Enabled = true;
                     
                     if ((!string.IsNullOrEmpty(row.Cells["ConfirmUserTD"].Value.ToString())) ||
+                        (Options.UserInfo.Idx!=Convert.ToInt32(row.Cells["HandlerIdx"].Value)) ||
                         (!string.IsNullOrEmpty(row.Cells["ConfirmUserLast"].Value.ToString())) ||
                         (!string.IsNullOrEmpty(row.Cells["Rejected"].Value.ToString()))) {
 
@@ -1014,14 +1028,18 @@ namespace Dev.Pattern
                 if (row.Cells["CommentTD"].Value != DBNull.Value) txtCommentTD.Text = row.Cells["CommentTD"].Value.ToString();
 
                 // 캔슬또는 완료 건이면 승인, 취소 locking
-                if (Convert.ToInt32(row.Cells["Status"].Value)==3 || Convert.ToInt32(row.Cells["Status"].Value) == 4)
+                if (Convert.ToInt32(row.Cells["Status"].Value)==3 || Convert.ToInt32(row.Cells["Status"].Value) == 4 ||
+                    Options.UserInfo.DeptIdx==5 || Options.UserInfo.DeptIdx==6) // 관리부, 임원 버튼 접근불가 
                 {
-                    txtComments.Enabled = false;
-                    txtCommentTD.Enabled = false;
+                    txtComments.Enabled = true;
+                    txtCommentTD.Enabled = true;
                     btnCancel.Visible = false;
                     btnSaveData.Visible = false;
                     btnReject.Visible = false;
                 }
+
+                SetDefaultFontPropertiesToEditor(txtComments);
+                SetDefaultFontPropertiesToEditor(txtCommentTD);
             }
             catch(Exception ex)
             {
@@ -1029,7 +1047,29 @@ namespace Dev.Pattern
             }
 
         }
-        
+
+        public void SetDefaultFontPropertiesToEditor(RadRichTextEditor editor)
+        {
+            editor.Document.Selection.SelectAll();
+            editor.RichTextBoxElement.ChangeFontFamily(new Telerik.WinControls.RichTextEditor.UI.FontFamily("Segoe UI"));
+            editor.RichTextBoxElement.ChangeFontSize(Unit.PointToDip(9));
+            editor.RichTextBoxElement.ChangeFontStyle(Telerik.WinControls.RichTextEditor.UI.FontStyles.Normal);
+            editor.RichTextBoxElement.ChangeFontWeight(Telerik.WinControls.RichTextEditor.UI.FontWeights.Normal);
+
+            editor.RichTextBoxElement.ChangeParagraphLineSpacingType(LineSpacingType.Auto);
+            editor.RichTextBoxElement.ChangeParagraphLineSpacing(1);
+            editor.RichTextBoxElement.ChangeParagraphSpacingAfter(12);
+
+            editor.DocumentInheritsDefaultStyleSettings = true;
+
+            Telerik.WinForms.Documents.DocumentPosition startPosition = editor.Document.CaretPosition;
+            Telerik.WinForms.Documents.DocumentPosition endPosition = new Telerik.WinForms.Documents.DocumentPosition(startPosition);
+            startPosition.MoveToCurrentWordEnd();
+            endPosition.MoveToCurrentWordEnd();
+            editor.Document.Selection.AddSelectionStart(startPosition);
+            editor.Document.Selection.AddSelectionEnd(endPosition);
+        }
+
         /// <summary>
         /// 업데이트 버튼
         /// </summary>
@@ -1049,10 +1089,10 @@ namespace Dev.Pattern
                     _gv1.EndEdit();
                     GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
 
-                    if (UserInfo.DeptIdx == 12)     // TD
+                    if (Options.UserInfo.DeptIdx == 12)     // TD
                     {
                         _bRtn = Data.WorksheetData.ConfirmTD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        UserInfo.Idx, txtCommentTD.Text.Trim());
+                        Options.UserInfo.Idx, txtCommentTD.Text.Trim());
 
                         if (_bRtn)
                         {
@@ -1060,10 +1100,10 @@ namespace Dev.Pattern
                             RadMessageBox.Show("Confirmed Worksheet by TD.", "Confirmed TD");
                         }
                     } 
-                    else if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader==1)     // 개발 총괄
+                    else if (Options.UserInfo.DeptIdx == 7 && Options.UserInfo.IsLeader==1)     // 개발 총괄
                     {
                         _bRtn = Data.WorksheetData.ConfirmAdmin(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        UserInfo.Idx, txtCommentTD.Text.Trim());
+                        Options.UserInfo.Idx, txtCommentTD.Text.Trim());
 
                         if (_bRtn)
                         {
@@ -1071,10 +1111,10 @@ namespace Dev.Pattern
                             RadMessageBox.Show("Confirmed Worksheet by Admin.", "Confirmed");
                         }
                     }
-                    else if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader != 1)     // 사무실
+                    else if (Options.UserInfo.DeptIdx == 7 && Options.UserInfo.IsLeader != 1)     // 사무실
                     {
                         _bRtn = Data.WorksheetData.ConfirmOffice(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        UserInfo.Idx, txtCommentTD.Text.Trim());
+                        Options.UserInfo.Idx, txtCommentTD.Text.Trim());
 
                         if (_bRtn)
                         {
@@ -1381,56 +1421,59 @@ namespace Dev.Pattern
 
         private void gvWorksheet_CellFormatting(object sender, CellFormattingEventArgs e)
         {
-            //  
-            if (e.CellElement.ColumnInfo.Name == "ConfirmUser" || e.CellElement.ColumnInfo.Name == "ConfirmDate" )
+            if (Options.UserInfo.DeptIdx != 7 && Options.UserInfo.IsLeader != 1)
             {
-                e.CellElement.BackColor = Color.LightYellow;
-                e.CellElement.ForeColor = Color.Black;
-                e.CellElement.GradientStyle = GradientStyles.Solid;
-                e.CellElement.DrawFill = true;
-                e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
-            }
-            else if (e.CellElement.ColumnInfo.Name == "ConfirmUserTD" || e.CellElement.ColumnInfo.Name == "ConfirmDateTD")
-            {
-                e.CellElement.BackColor = Color.PaleGreen;
-                e.CellElement.ForeColor = Color.Black;
-                e.CellElement.GradientStyle = GradientStyles.Solid;
-                e.CellElement.DrawFill = true;
-                e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
-            }
-            else if (e.CellElement.ColumnInfo.Name == "RejectDate" || e.CellElement.ColumnInfo.Name == "Rejected")
-            {
-                e.CellElement.BackColor = Color.White;
-                e.CellElement.ForeColor = Color.Red;
-                e.CellElement.GradientStyle = GradientStyles.Solid;
-                e.CellElement.DrawFill = true;
-                e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
-            }
-            else if (e.CellElement.ColumnInfo.Name == "RegDate" || e.CellElement.ColumnInfo.Name == "Handler")
-            {
-                e.CellElement.BackColor = Color.SeaShell;
-                e.CellElement.ForeColor = Color.Black;
-                e.CellElement.GradientStyle = GradientStyles.Solid;
-                e.CellElement.DrawFill = true;
-                e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
-            }
-            else if (e.CellElement.ColumnInfo.Name == "ConfirmUserLast" || e.CellElement.ColumnInfo.Name == "ConfirmDateLast")
-            {
-                e.CellElement.BackColor = Color.AliceBlue;
-                e.CellElement.ForeColor = Color.Black;
-                e.CellElement.GradientStyle = GradientStyles.Solid;
-                e.CellElement.DrawFill = true;
-                e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
-            }
-            else
-            {
-                e.CellElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
-                e.CellElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
-                e.CellElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
-                e.CellElement.ResetValue(LightVisualElement.ForeColorProperty, ValueResetFlags.Local);
+                if (e.CellElement.ColumnInfo.Name == "ConfirmUser" || e.CellElement.ColumnInfo.Name == "ConfirmDate")
+                {
+                    e.CellElement.BackColor = Color.LightYellow;
+                    e.CellElement.ForeColor = Color.Black;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+                }
+                else if (e.CellElement.ColumnInfo.Name == "ConfirmUserTD" || e.CellElement.ColumnInfo.Name == "ConfirmDateTD")
+                {
+                    e.CellElement.BackColor = Color.PaleGreen;
+                    e.CellElement.ForeColor = Color.Black;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+                }
+                else if (e.CellElement.ColumnInfo.Name == "RejectDate" || e.CellElement.ColumnInfo.Name == "Rejected")
+                {
+                    e.CellElement.BackColor = Color.White;
+                    e.CellElement.ForeColor = Color.Red;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+                }
+                else if (e.CellElement.ColumnInfo.Name == "RegDate" || e.CellElement.ColumnInfo.Name == "Handler")
+                {
+                    e.CellElement.BackColor = Color.SeaShell;
+                    e.CellElement.ForeColor = Color.Black;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+                }
+                else if (e.CellElement.ColumnInfo.Name == "ConfirmUserLast" || e.CellElement.ColumnInfo.Name == "ConfirmDateLast")
+                {
+                    e.CellElement.BackColor = Color.AliceBlue;
+                    e.CellElement.ForeColor = Color.Black;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+                }
+                else
+                {
+                    e.CellElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                    e.CellElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+                    e.CellElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                    e.CellElement.ResetValue(LightVisualElement.ForeColorProperty, ValueResetFlags.Local);
 
 
+                }
             }
+                
         }
 
         private void gvWorksheet_CellValueChanged(object sender, GridViewCellEventArgs e)
@@ -1558,7 +1601,7 @@ namespace Dev.Pattern
                     GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
 
                     _bRtn = Data.WorksheetData.CancelWorksheetTeam(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        UserInfo.Idx, txtComments.Text.Trim());
+                        Options.UserInfo.Idx, txtComments.Text.Trim());
 
                     if (_bRtn)
                     {
@@ -1595,10 +1638,10 @@ namespace Dev.Pattern
                         return;
                     }
 
-                    if (UserInfo.DeptIdx == 12)     // TD
+                    if (Options.UserInfo.DeptIdx == 12)     // TD
                     {
                         _bRtn = Data.WorksheetData.RejectTD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        UserInfo.Idx, txtCommentTD.Text.Trim());
+                        Options.UserInfo.Idx, txtCommentTD.Text.Trim());
 
                         if (_bRtn)
                         {
@@ -1619,15 +1662,15 @@ namespace Dev.Pattern
                                         "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
                                         "Worksheet#: " + _gv1.Rows[row.Index].Cells["WorksheetIdx"].Value.ToString() + ", " +
                                         "Rejected Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
-                                        "Rejected by " + UserInfo.Userfullname.ToString() + "\n" +
+                                        "Rejected by " + Options.UserInfo.Userfullname.ToString() + "\n" +
                                          "Comment: " + txtCommentTD.Text.ToString()
                                         );
                         }
                     }
-                    else if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader==1)     // 개발 총괄
+                    else if (Options.UserInfo.DeptIdx == 7 && Options.UserInfo.IsLeader==1)     // 개발 총괄
                     {
                         _bRtn = Data.WorksheetData.RejectAdmin(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        UserInfo.Idx, txtCommentTD.Text.Trim());
+                        Options.UserInfo.Idx, txtCommentTD.Text.Trim());
 
                         if (_bRtn)
                         {
@@ -1647,15 +1690,15 @@ namespace Dev.Pattern
                                         "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
                                         "Worksheet#: " + _gv1.Rows[row.Index].Cells["WorksheetIdx"].Value.ToString() + ", " +
                                         "Rejected Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
-                                        "Rejected by " + UserInfo.Userfullname.ToString() + "\n" +
+                                        "Rejected by " + Options.UserInfo.Userfullname.ToString() + "\n" +
                                          "Comment: " + txtCommentTD.Text.ToString()
                                         );
                         }
                     }
-                    else if (UserInfo.DeptIdx == 7 && UserInfo.IsLeader != 1)     // 사무실
+                    else if (Options.UserInfo.DeptIdx == 7 && Options.UserInfo.IsLeader != 1)     // 사무실
                     {
                         _bRtn = Data.WorksheetData.RejectOffice(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        UserInfo.Idx, txtCommentTD.Text.Trim());
+                        Options.UserInfo.Idx, txtCommentTD.Text.Trim());
 
                         if (_bRtn)
                         {
@@ -1675,7 +1718,7 @@ namespace Dev.Pattern
                                         "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
                                         "Worksheet#: " + _gv1.Rows[row.Index].Cells["WorksheetIdx"].Value.ToString() + ", " +
                                         "Rejected Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
-                                        "Rejected by " + UserInfo.Userfullname.ToString() + "\n" +
+                                        "Rejected by " + Options.UserInfo.Userfullname.ToString() + "\n" +
                                          "Comment: " + txtCommentTD.Text.ToString()
                                         );
                         }
@@ -1687,6 +1730,84 @@ namespace Dev.Pattern
             catch (Exception ex)
             {
                 Console.WriteLine("btnUpdate_Click: " + ex.Message.ToString());
+            }
+        }
+
+        private void gvWorksheet_RowFormatting(object sender, RowFormattingEventArgs e)
+        {
+            try
+            { 
+                _gv1.EndEdit();
+                GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
+
+                if (Options.UserInfo.DeptIdx == 12)     // TD
+                {
+                    if (!string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["ConfirmDateTD"].Value.ToString()))
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LightSkyBlue;
+                    }
+                    else if (!string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["RejectDate"].Value.ToString()))
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+                    }
+                }
+                else if (Options.UserInfo.DeptIdx == 7 && Options.UserInfo.IsLeader == 1)     // 개발 총괄
+                {
+                    if (!string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["ConfirmDateLast"].Value.ToString()))
+                    {
+                        e.RowElement.DrawFill = true; 
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LightSkyBlue;
+                    }
+                    else if (!string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["RejectDate"].Value.ToString()))
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+                    }
+                }
+                else if (Options.UserInfo.DeptIdx == 7 && Options.UserInfo.IsLeader != 1)     // 사무실
+                {
+                    if (!string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["ConfirmDate"].Value.ToString()))
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LightSkyBlue;
+                    }
+                    else if (!string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["RejectDate"].Value.ToString()))
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("RowFormatting: " + ex.Message.ToString());
             }
         }
     }

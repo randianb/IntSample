@@ -31,7 +31,7 @@ namespace Dev.Sales.Data
             string Season, string Description, DateTime DeliveryDate, int IsPrinting,
             int EmbelishId1, int EmbelishId2, int SizeGroupIdx, int SewThreadIdx, 
             int OrderQty, double OrderPrice, double OrderAmount, string Remark,
-            DateTime TeamRequestedDate, DateTime SplConfirmedDate, int Handler 
+            DateTime TeamRequestedDate, DateTime SplConfirmedDate, int Handler, int IsSample
             )
         {
             try
@@ -126,6 +126,9 @@ namespace Dev.Sales.Data
                 
                 _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
                 _cmd.Parameters["@Handler"].Value = Handler;
+
+                _cmd.Parameters.Add("@IsSample", SqlDbType.Int, 4);
+                _cmd.Parameters["@IsSample"].Value = IsSample;
 
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);
@@ -222,7 +225,7 @@ namespace Dev.Sales.Data
             string Season, string Description, DateTime DeliveryDate, int IsPrinting,
             int EmbelishId1, int EmbelishId2, int SizeGroupIdx, int SewThreadIdx,
             int OrderQty, double OrderPrice, double OrderAmount, string Remark,
-            DateTime TeamRequestedDate, DateTime SplConfirmedDate, int Handler
+            DateTime TeamRequestedDate, DateTime SplConfirmedDate, int Handler, int IsSample
             )
         {
             try
@@ -319,6 +322,9 @@ namespace Dev.Sales.Data
                 _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
                 _cmd.Parameters["@Handler"].Value = Handler;
 
+                _cmd.Parameters.Add("@IsSample", SqlDbType.Int, 4);
+                _cmd.Parameters["@IsSample"].Value = IsSample;
+                
                 _rtn = _cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -444,6 +450,9 @@ namespace Dev.Sales.Data
                 _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
                 _cmd.Parameters["@Status"].Value = SearchKey[CommonValues.KeyName.Status];
 
+                _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
+                _cmd.Parameters["@Handler"].Value = SearchKey[CommonValues.KeyName.Handler];
+
                 _cmd.Parameters.Add("@EmbIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@EmbIdx"].Value = SearchKey[CommonValues.KeyName.EmbelishId1];
 
@@ -457,6 +466,79 @@ namespace Dev.Sales.Data
 
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static DataSet Getlist(Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string style,
+                                     int orderOpCheck1, int orderOpCheck2, int orderOpCheck3)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_Orders_List4";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+
+                _cmd.Parameters.Add("@DeptIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@DeptIdx"].Value = SearchKey[CommonValues.KeyName.DeptIdx];
+
+                _cmd.Parameters.Add("@CustIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@CustIdx"].Value = SearchKey[CommonValues.KeyName.CustIdx];
+
+                _cmd.Parameters.Add("@Status", SqlDbType.Int, 4);
+                _cmd.Parameters["@Status"].Value = SearchKey[CommonValues.KeyName.Status];
+
+                _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
+                _cmd.Parameters["@Handler"].Value = SearchKey[CommonValues.KeyName.Handler];
+
+                _cmd.Parameters.Add("@EmbIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@EmbIdx"].Value = SearchKey[CommonValues.KeyName.EmbelishId1];
+
+                // 1711001-01S
+                _cmd.Parameters.Add("@Fileno", SqlDbType.NVarChar, 40);
+                _cmd.Parameters["@Fileno"].Value = fileno;
+
+                _cmd.Parameters.Add("@Styleno", SqlDbType.NVarChar, 40);
+                _cmd.Parameters["@Styleno"].Value = style;
+
+                _cmd.Parameters.Add("@orderOpCheck1", SqlDbType.Int, 4);
+                _cmd.Parameters["@orderOpCheck1"].Value = orderOpCheck1;
+
+                _cmd.Parameters.Add("@orderOpCheck2", SqlDbType.Int, 4);
+                _cmd.Parameters["@orderOpCheck2"].Value = orderOpCheck2;
+
+                _cmd.Parameters.Add("@orderOpCheck3", SqlDbType.Int, 4);
+                _cmd.Parameters["@orderOpCheck3"].Value = orderOpCheck3;
+
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
 
             }
             catch (Exception ex)
@@ -834,7 +916,7 @@ namespace Dev.Sales.Data
         //        _cmd.CommandText = "up_iOrderStatus_List_OrderSumDate";
         //        _cmd.CommandType = CommandType.StoredProcedure;
         //        _cmd.Connection = _conn;
-                
+
         //        _adapter.SelectCommand = _cmd;
         //        _adapter.Fill(_ds);
 
@@ -859,55 +941,90 @@ namespace Dev.Sales.Data
         //    }
         //}
 
-  //      public static DataSet LoadAppointments()
-  //      {
-  //          try
-  //          {
-  //              _conn = new SqlConnection(_strConn);
-  //              _cmd = new SqlCommand();
-  //              _conn.Open();
-  //              _ds = new DataSet();
-  //              _adapter = new SqlDataAdapter();
+        //      public static DataSet LoadAppointments()
+        //      {
+        //          try
+        //          {
+        //              _conn = new SqlConnection(_strConn);
+        //              _cmd = new SqlCommand();
+        //              _conn.Open();
+        //              _ds = new DataSet();
+        //              _adapter = new SqlDataAdapter();
 
-  //              _cmd.CommandText = @"SELECT [ID]
-  //    ,[Summary]
-  //    ,[Start]
-  //    ,[End]
-  //    ,[RecurrenceRule]
-  //    ,[MasterEventId]
-  //    ,[Location]
-  //    ,[Description]
-  //    ,[BackgroundId]
-  //    ,[DeptIdx]
-  //FROM [intsample].[dbo].[Appointments] 
-  //  where year(start)=year(getdate())";
-  //              _cmd.CommandType = CommandType.Text;
-  //              _cmd.Connection = _conn;
+        //              _cmd.CommandText = @"SELECT [ID]
+        //    ,[Summary]
+        //    ,[Start]
+        //    ,[End]
+        //    ,[RecurrenceRule]
+        //    ,[MasterEventId]
+        //    ,[Location]
+        //    ,[Description]
+        //    ,[BackgroundId]
+        //    ,[DeptIdx]
+        //FROM [intsample].[dbo].[Appointments] 
+        //  where year(start)=year(getdate())";
+        //              _cmd.CommandType = CommandType.Text;
+        //              _cmd.Connection = _conn;
 
-  //              _adapter.SelectCommand = _cmd;
-  //              _adapter.Fill(_ds);
+        //              _adapter.SelectCommand = _cmd;
+        //              _adapter.Fill(_ds);
 
-  //          }
-  //          catch (Exception ex)
-  //          {
-  //              Console.WriteLine(ex.Message.ToString());
-  //          }
-  //          finally
-  //          {
-  //              _conn.Close();
-  //          }
+        //          }
+        //          catch (Exception ex)
+        //          {
+        //              Console.WriteLine(ex.Message.ToString());
+        //          }
+        //          finally
+        //          {
+        //              _conn.Close();
+        //          }
 
-  //          // dataset 확인 및 결과 datarow 반환
-  //          if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
-  //          {
-  //              return _ds;
-  //          }
-  //          else
-  //          {
-  //              return null;
-  //          }
-  //      }
-        
+        //          // dataset 확인 및 결과 datarow 반환
+        //          if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+        //          {
+        //              return _ds;
+        //          }
+        //          else
+        //          {
+        //              return null;
+        //          }
+        //      }
+
+        public static bool ModifyOrderQty(int OrderIdx, int tqty)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"Update Orders set OrderQty=@tqty where idx = @OrderIdx";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
+
+                _cmd.Parameters.Add("@tqty", SqlDbType.Int, 4);
+                _cmd.Parameters["@tqty"].Value = tqty;
+                
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            if (_rtn > 0)
+                return true;
+            else
+                return false;
+        }
+
         #endregion
     }
 }

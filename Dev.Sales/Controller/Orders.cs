@@ -42,7 +42,8 @@ namespace Dev.Sales.Controller
         private DateTime _splConfirmedDate;
         
         private int _handler;
-        private int _status; 
+        private int _status;
+        private int _isSample;
 
         private DataRow _row;
 
@@ -56,6 +57,7 @@ namespace Dev.Sales.Controller
             get { return _idx; }
             set { _idx = value; }
         }
+        
         //영업파일번호 
         public string Fileno
         {
@@ -234,6 +236,12 @@ namespace Dev.Sales.Controller
             get { return _status; }
             set { _status = value; }
         }
+        //Sample여부 
+        public int IsSample
+        {
+            get { return _isSample; }
+            set { _isSample = value; }
+        }
 
         #endregion
 
@@ -280,6 +288,7 @@ namespace Dev.Sales.Controller
             
                 if (_row["Handler"] != DBNull.Value) _handler = Convert.ToInt32(_row["Handler"]);
                 if (_row["Status"] != DBNull.Value) _status = Convert.ToInt32(_row["Status"]);
+                if (_row["IsSample"] != DBNull.Value) _isSample = Convert.ToInt32(_row["IsSample"]);
 
             }
             else
@@ -319,6 +328,7 @@ namespace Dev.Sales.Controller
             _splConfirmedDate = DateTime.Now;
             _handler = 0;
             _status = 0;
+            _isSample = 0;
         }
         #endregion
 
@@ -330,13 +340,13 @@ namespace Dev.Sales.Controller
             string Season, string Description, DateTime DeliveryDate, int IsPrinting,
             int EmbelishId1, int EmbelishId2, int SizeGroupIdx, int SewThreadIdx,
             int OrderQty, double OrderPrice, double OrderAmount, string Remark,
-            DateTime TeamRequestedDate, DateTime SplConfirmedDate, int Handler)
+            DateTime TeamRequestedDate, DateTime SplConfirmedDate, int Handler, int IsSample)
         {
             DataRow row = Data.OrdersData.Insert(Fileno, DeptIdx, Reorder, ReorderReason, Indate, Buyer, 0, 0, 
                                     Pono, Styleno, "000", "00000000000000000000", Season, Description, DeliveryDate, IsPrinting,
                                     EmbelishId1, EmbelishId2, SizeGroupIdx, SewThreadIdx, OrderQty, OrderPrice, OrderAmount, Remark,
                                     TeamRequestedDate, SplConfirmedDate, 
-                                    UserInfo.Idx);
+                                    UserInfo.Idx, IsSample);
             return row;
         }
 
@@ -355,6 +365,16 @@ namespace Dev.Sales.Controller
                 default:
                     break;
             }
+            
+            return ds;
+        }
+
+        public static DataSet Getlist(int KeyCount, Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string style,
+                                        int orderOpCheck1, int orderOpCheck2, int orderOpCheck3)
+        {
+            DataSet ds = new DataSet();
+            
+            ds = Data.OrdersData.Getlist(SearchKey, fileno, style, orderOpCheck1, orderOpCheck2, orderOpCheck3);
             
             return ds;
         }
@@ -404,7 +424,7 @@ namespace Dev.Sales.Controller
                                                          _season, _description, _deliveryDate, _isPrinting,
                                                          _embelishId1, _embelishId2, _sizeGroupIdx, _sewThreadIdx, 
                                                          _orderQty, _orderPrice, _orderAmount, _remark, 
-                                                         _teamRequestedDate, _splConfirmedDate, _handler);
+                                                         _teamRequestedDate, _splConfirmedDate, _handler, _isSample);
             return blRtn;
         }
 

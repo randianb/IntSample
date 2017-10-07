@@ -318,7 +318,7 @@
             this.ddlOut.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlOut.Location = new System.Drawing.Point(3, 71);
             this.ddlOut.Name = "ddlOut";
-            this.ddlOut.Size = new System.Drawing.Size(149, 20);
+            this.ddlOut.Size = new System.Drawing.Size(149, 1);
             this.ddlOut.TabIndex = 6;
             // 
             // ddlReceived
@@ -327,7 +327,7 @@
             this.ddlReceived.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlReceived.Location = new System.Drawing.Point(160, 71);
             this.ddlReceived.Name = "ddlReceived";
-            this.ddlReceived.Size = new System.Drawing.Size(122, 20);
+            this.ddlReceived.Size = new System.Drawing.Size(122, 1);
             this.ddlReceived.TabIndex = 6;
             // 
             // radLabel10
@@ -376,7 +376,7 @@
             this.dtOutFrom.Location = new System.Drawing.Point(315, 71);
             this.dtOutFrom.Name = "dtOutFrom";
             this.dtOutFrom.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dtOutFrom.Size = new System.Drawing.Size(122, 20);
+            this.dtOutFrom.Size = new System.Drawing.Size(122, 1);
             this.dtOutFrom.TabIndex = 11;
             this.dtOutFrom.TabStop = false;
             this.dtOutFrom.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
@@ -397,7 +397,7 @@
             this.dtOutTo.Location = new System.Drawing.Point(443, 71);
             this.dtOutTo.Name = "dtOutTo";
             this.dtOutTo.NullDate = new System.DateTime(2900, 1, 1, 0, 0, 0, 0);
-            this.dtOutTo.Size = new System.Drawing.Size(140, 20);
+            this.dtOutTo.Size = new System.Drawing.Size(140, 1);
             this.dtOutTo.TabIndex = 11;
             this.dtOutTo.TabStop = false;
             this.dtOutTo.Value = new System.DateTime(2900, 1, 1, 0, 0, 0, 0);
@@ -410,7 +410,7 @@
             this.dtRcvdFrom.Location = new System.Drawing.Point(589, 71);
             this.dtRcvdFrom.Name = "dtRcvdFrom";
             this.dtRcvdFrom.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dtRcvdFrom.Size = new System.Drawing.Size(144, 20);
+            this.dtRcvdFrom.Size = new System.Drawing.Size(144, 1);
             this.dtRcvdFrom.TabIndex = 11;
             this.dtRcvdFrom.TabStop = false;
             this.dtRcvdFrom.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
@@ -422,7 +422,7 @@
             this.dtRcvdTo.Location = new System.Drawing.Point(741, 71);
             this.dtRcvdTo.Name = "dtRcvdTo";
             this.dtRcvdTo.NullDate = new System.DateTime(2900, 1, 1, 0, 0, 0, 0);
-            this.dtRcvdTo.Size = new System.Drawing.Size(129, 20);
+            this.dtRcvdTo.Size = new System.Drawing.Size(129, 1);
             this.dtRcvdTo.TabIndex = 11;
             this.dtRcvdTo.TabStop = false;
             this.dtRcvdTo.Value = new System.DateTime(2900, 1, 1, 0, 0, 0, 0);
@@ -461,7 +461,7 @@
             this.ddlWorkStatus.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlWorkStatus.Location = new System.Drawing.Point(891, 71);
             this.ddlWorkStatus.Name = "ddlWorkStatus";
-            this.ddlWorkStatus.Size = new System.Drawing.Size(129, 20);
+            this.ddlWorkStatus.Size = new System.Drawing.Size(129, 1);
             this.ddlWorkStatus.TabIndex = 12;
             // 
             // radLabel14
@@ -489,6 +489,7 @@
             this.gvMain.MasterTemplate.EnablePaging = true;
             this.gvMain.MasterTemplate.MultiSelect = true;
             this.gvMain.MasterTemplate.PageSize = 50;
+            this.gvMain.MasterTemplate.ShowRowHeaderColumn = false;
             this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvMain.Name = "gvMain";
             this.gvMain.RightToLeft = System.Windows.Forms.RightToLeft.No;

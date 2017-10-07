@@ -90,7 +90,10 @@ namespace Dev.Options
 
                 case CommonValues.KeyName.TDUser:                       // 개발실 TD 유저
                     ds = Int.Users.Users.Getlist(12); break;
-                    
+
+                case CommonValues.KeyName.CADUser:                       // 개발실 CAD 유저
+                    ds = Int.Users.Users.Getlist(11); break;
+
                 default:
                     break;
             }
@@ -112,7 +115,7 @@ namespace Dev.Options
         /// 각종 로그를 기록 (/logs/Log-yyyyMM 에 저장)
         /// </summary>
         /// <param name="str">기록하고자 하는 로그내역 (내역앞부분에 윈도우명 명시필요)</param>
-        private static void Log(string str)
+        public static void Log(string str)
         {
             // 저장위치
             string FilePath = Environment.CurrentDirectory + @"\logs\Log-" + DateTime.Today.ToString("yyyyMM") + ".log";

@@ -447,6 +447,9 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@EmbIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@EmbIdx"].Value = SearchKey[CommonValues.KeyName.EmbelishId1];
 
+                _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
+                _cmd.Parameters["@Handler"].Value = SearchKey[CommonValues.KeyName.Handler];
+
                 // 1711001-01S
                 _cmd.Parameters.Add("@Fileno", SqlDbType.NVarChar, 40);
                 _cmd.Parameters["@Fileno"].Value = fileno;

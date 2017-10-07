@@ -51,6 +51,10 @@ namespace Dev.Controller
         private int _type229;
         private int _type230;
 
+        private int _type231;
+        private int _type232;
+        private int _type233;
+
         private DataRow _row;
 
         #endregion
@@ -278,6 +282,24 @@ namespace Dev.Controller
             get { return _type230; }
             set { _type230 = value; }
         }
+        //
+        public int Type231
+        {
+            get { return _type231; }
+            set { _type231 = value; }
+        }
+        //
+        public int Type232
+        {
+            get { return _type232; }
+            set { _type232 = value; }
+        }
+        //
+        public int Type233
+        {
+            get { return _type233; }
+            set { _type233 = value; }
+        }
         #endregion
 
         #region Constructor 
@@ -329,6 +351,9 @@ namespace Dev.Controller
                 if (_row["Type229"] != DBNull.Value) _type229 = Convert.ToInt32(_row["Type229"]);
                 if (_row["Type230"] != DBNull.Value) _type230 = Convert.ToInt32(_row["Type230"]);
 
+                if (_row["Type231"] != DBNull.Value) _type231 = Convert.ToInt32(_row["Type231"]);
+                if (_row["Type232"] != DBNull.Value) _type232 = Convert.ToInt32(_row["Type232"]);
+                if (_row["Type233"] != DBNull.Value) _type233 = Convert.ToInt32(_row["Type233"]);
             }
             else
             {
@@ -378,6 +403,10 @@ namespace Dev.Controller
             _type228 = 0;
             _type229 = 0;
             _type230 = 0;
+
+            _type231 = 0;
+            _type232 = 0;
+            _type233 = 0;
         }
 
         #endregion
@@ -428,7 +457,8 @@ namespace Dev.Controller
             blRtn = Data.OrderTypeData.Update(_idx, _type101, _type102, _type103, 
                 _type201, _type202, _type203, _type204, _type205, _type206, _type207, _type208, _type209, _type210, 
                 _type211, _type212, _type213, _type214, _type215, _type216, _type217, _type218, _type219, _type220, 
-                _type221, _type222, _type223, _type224, _type225, _type226, _type227, _type228, _type229, _type230
+                _type221, _type222, _type223, _type224, _type225, _type226, _type227, _type228, _type229, _type230,
+                _type231, _type232, _type233 
                 );
             return blRtn;
         }

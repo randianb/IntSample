@@ -53,6 +53,7 @@ namespace Dev.Sales
         private List<CodeContents> lstBrand = new List<CodeContents>();         // 브랜드
         private List<CodeContents> lstIsPrinting = new List<CodeContents>();    // 나염여부
         private List<CustomerName> lstUser = new List<CustomerName>();          // 유저명
+        private List<CustomerName> lstUser2 = new List<CustomerName>();          // 유저명
         private List<CustomerName> lstSewthread = new List<CustomerName>();     // sewthread
         private List<CodeContents> lstClass = new List<CodeContents>();         // 컬러명
         private List<CodeContents> lstOperation = new List<CodeContents>();         // 공정명
@@ -112,6 +113,15 @@ namespace Dev.Sales
             }
 
             btnSaveData.Enabled = false;
+
+            OrderOpCheck1.Checked = CommonValues.OrderOpCheck1;
+            OrderOpCheck2.Checked = CommonValues.OrderOpCheck2;
+            switch (CommonValues.OrderOpCheck3)
+            {
+                case 0: OrderOpCheck3.CheckState = CheckState.Unchecked; break;
+                case 1: OrderOpCheck3.CheckState = CheckState.Checked; break;
+                case 2: OrderOpCheck3.CheckState = CheckState.Indeterminate; break;
+            }
         }
         
         /// <summary>
@@ -140,14 +150,17 @@ namespace Dev.Sales
             ddlStatus.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
             ddlStatus.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
-            // 나염
-            //embName.Add(new CustomerName(0, "All", 0));
-            //ddlPrinting.DataSource = embName;
-            //ddlPrinting.DisplayMember = "CustName";
-            //ddlPrinting.ValueMember = "CustIdx";
-            //ddlPrinting.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
-            //ddlPrinting.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+            // 
+            ddlHandler.DataSource = lstUser2;
+            ddlHandler.DisplayMember = "CustName";
+            ddlHandler.ValueMember = "CustIdx";
+            ddlHandler.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlHandler.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
 
+            if (CommonValues.SetHandler)
+            {
+                ddlHandler.SelectedValue = Convert.ToInt32(UserInfo.Idx); 
+            }
             // 사이즈
             //ddlSampleTypeSize.DataSource = lstSizeDDL;
             //ddlSampleTypeSize.DisplayMember = "SizeName";
@@ -413,6 +426,7 @@ namespace Dev.Sales
 
             gv.Columns["Indate"].Width = 90;
             gv.Columns["Indate"].TextAlignment = ContentAlignment.MiddleCenter;
+            gv.Columns["Indate"].FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             gv.Columns["Indate"].FormatString = "{0:d}";
             gv.Columns["Indate"].HeaderText = "Date";
 
@@ -470,6 +484,7 @@ namespace Dev.Sales
             
             gv.Columns["DeliveryDate"].Width = 100;
             gv.Columns["DeliveryDate"].TextAlignment = ContentAlignment.MiddleCenter;
+            gv.Columns["DeliveryDate"].FormatInfo = new System.Globalization.CultureInfo("ko-KR");
             gv.Columns["DeliveryDate"].FormatString = "{0:d}";
             gv.Columns["DeliveryDate"].HeaderText = "Delivery";
             
@@ -532,6 +547,7 @@ namespace Dev.Sales
             cboSewThread.DisplayMember = "SewThreadName";
             cboSewThread.FieldName = "SewThreadIdx";
             cboSewThread.HeaderText = "SewThread";
+            cboSewThread.IsVisible = false;
             cboSewThread.AutoSizeMode = BestFitColumnMode.AllCells;
             cboSewThread.Width = 70;
             gv.Columns.Insert(17, cboSewThread);
@@ -552,10 +568,12 @@ namespace Dev.Sales
 
             gv.Columns["OrderPrice"].Width = 50;
             gv.Columns["OrderPrice"].FormatString = "{0:N2}";
+            gv.Columns["OrderPrice"].IsVisible = false;
             gv.Columns["OrderPrice"].HeaderText = "U/Price\n($)";
             
             gv.Columns["OrderAmount"].Width = 80;
             gv.Columns["OrderAmount"].FormatString = "{0:N2}";
+            gv.Columns["OrderAmount"].IsVisible = false;
             gv.Columns["OrderAmount"].HeaderText = "Amount($)";
             
             GridViewTextBoxColumn remark = new GridViewTextBoxColumn();
@@ -573,7 +591,8 @@ namespace Dev.Sales
             dtRequested.FormatString = "{0:d}";
             dtRequested.FieldName = "TeamRequestedDate";
             dtRequested.HeaderText = "Requested";
-            dtRequested.ReadOnly = true; 
+            dtRequested.ReadOnly = true;
+            dtRequested.IsVisible = false;
             gv.Columns.Insert(23, dtRequested);
 
             GridViewDateTimeColumn dtConfirmed = new GridViewDateTimeColumn();
@@ -584,6 +603,7 @@ namespace Dev.Sales
             dtConfirmed.FieldName = "SplConfirmedDate";
             dtConfirmed.HeaderText = "Confirmed";
             dtConfirmed.ReadOnly = true;
+            dtConfirmed.IsVisible = false;
             gv.Columns.Insert(24, dtConfirmed);
 
 
@@ -644,7 +664,15 @@ namespace Dev.Sales
             InspType.IsVisible = false;
             InspType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             gv.Columns.Insert(29, InspType);
-            
+
+            GridViewCheckBoxColumn IsSample = new GridViewCheckBoxColumn();
+            IsSample.Name = "IsSample";
+            IsSample.FieldName = "IsSample";
+            IsSample.HeaderText = "Sample\nWorking ?";
+            IsSample.Width = 60;
+            IsSample.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gv.Columns.Insert(30, IsSample);
+
             #endregion
         }
 
@@ -1081,6 +1109,7 @@ namespace Dev.Sales
             Yds.Width = 70;
             Yds.FormatString = "{0:N2}";
             Yds.TextAlignment = ContentAlignment.MiddleRight;
+            Yds.IsVisible = false; 
             Yds.HeaderText = "Yds";
             gv.Columns.Add(Yds);
 
@@ -1185,7 +1214,7 @@ namespace Dev.Sales
             obj5.RowForeColor = Color.Black;
             obj5.RowFont = f;
             gv.Columns["Status"].ConditionalFormattingObjectList.Add(obj5);
-
+            
             #endregion
 
         }
@@ -1998,18 +2027,13 @@ namespace Dev.Sales
                     CheckAuth.ShowMessage(_mode_);
                 else
                 {
-                    gvFabric.EndEdit();
-                    GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);  // 현재 행번호 확인
+                    SearchFabric frm = new SearchFabric(Int.Members.GetCurrentRow(_gv1, "Idx"));
 
-                    if (row.Cells["Idx"].Value != DBNull.Value) orderIdx = Convert.ToInt32(row.Cells["Idx"].Value.ToString());
-                    
-                    DataRow rows = Dev.Controller.OrderFabric.Insert(orderIdx);
-
-                    DataBinding_GV5(gvFabric, Convert.ToInt32(row.Cells["Idx"].Value.ToString()));
-                    //SetCurrentRow(gvColorSize, Convert.ToInt32(rows["LastIdx"]));   // 신규입력된 행번호로 이동
+                    if (frm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        DataBinding_GV5(gvFabric, Int.Members.GetCurrentRow(_gv1, "Idx"));
+                    }
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -2461,6 +2485,7 @@ namespace Dev.Sales
 
             // Username
             lstUser.Add(new CustomerName(0, "", 0));
+            lstUser2.Add(new CustomerName(0, "", 0));
 
             if (UserInfo.CenterIdx != 1 || UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6)
             {
@@ -2474,6 +2499,9 @@ namespace Dev.Sales
             foreach (DataRow row in _dt.Rows)
             {
                 lstUser.Add(new CustomerName(Convert.ToInt32(row["UserIdx"]),
+                                            row["UserName"].ToString(),
+                                            Convert.ToInt32(row["DeptIdx"])));
+                lstUser2.Add(new CustomerName(Convert.ToInt32(row["UserIdx"]),
                                             row["UserName"].ToString(),
                                             Convert.ToInt32(row["DeptIdx"])));
             }
@@ -2529,8 +2557,10 @@ namespace Dev.Sales
             try
             {
                 if (ddlCust.SelectedValue != null || ddlDept.SelectedValue != null
-                    || ddlStatus.SelectedValue != null 
-                    || !string.IsNullOrEmpty(txtFileno.Text) || !string.IsNullOrEmpty(txtStyle.Text))
+                    || ddlStatus.SelectedValue != null
+                    || !string.IsNullOrEmpty(txtFileno.Text) || !string.IsNullOrEmpty(txtStyle.Text)
+                    || ddlHandler.SelectedValue != null 
+                    )
                 {
                     _searchKey = new Dictionary<CommonValues.KeyName, int>();
 
@@ -2542,9 +2572,20 @@ namespace Dev.Sales
 
                     _searchKey.Add(CommonValues.KeyName.CustIdx, Convert.ToInt32(ddlCust.SelectedValue));
                     _searchKey.Add(CommonValues.KeyName.Status, Convert.ToInt32(ddlStatus.SelectedValue));
+                    _searchKey.Add(CommonValues.KeyName.Handler, Convert.ToInt32(ddlHandler.SelectedValue));
                     _searchKey.Add(CommonValues.KeyName.EmbelishId1, 0);
 
-                    DataBinding_GV1(2, _searchKey, txtFileno.Text.Trim(), txtStyle.Text.Trim());
+                    int ocState = 2;
+                    switch (OrderOpCheck3.CheckState)
+                    {
+                        case CheckState.Checked: ocState = 1; break;
+                        case CheckState.Indeterminate: ocState = 2; break;
+                        case CheckState.Unchecked: ocState = 0; break;
+                        default: ocState = 2; break;
+                    }
+
+                    DataBinding_GV1(2, _searchKey, txtFileno.Text.Trim(), txtStyle.Text.Trim(),
+                                    OrderOpCheck1.Checked?1:0, OrderOpCheck2.Checked ? 1 : 0, ocState);
                 }
             }
             catch (Exception ex)
@@ -2561,7 +2602,8 @@ namespace Dev.Sales
         /// <param name="SearchKey">RefleshWithCondition()에서 검색조건(key, value) 확인</param>
         /// <param name="fileno">검색조건: 파일번호</param>
         /// <param name="styleno">검색조건: 스타일번호</param>
-        private void DataBinding_GV1(int KeyCount, Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string styleno)
+        private void DataBinding_GV1(int KeyCount, Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string styleno, 
+                                    int orderOpCheck1, int orderOpCheck2, int orderOpCheck3)
         {
             try
             {
@@ -2578,7 +2620,7 @@ namespace Dev.Sales
 
                     _gv1.DataSource = null;
 
-                    _ds1 = Controller.Orders.Getlist(KeyCount, SearchKey, fileno, styleno);
+                    _ds1 = Controller.Orders.Getlist(KeyCount, SearchKey, fileno, styleno); //, orderOpCheck1, orderOpCheck2, orderOpCheck3);
                     if (_ds1 != null)
                     {
                         _gv1.DataSource = _ds1.Tables[0].DefaultView;
@@ -2825,6 +2867,7 @@ namespace Dev.Sales
 
                     if (row.Cells["Status"].Value != DBNull.Value) _obj1.Status = Convert.ToInt32(row.Cells["Status"].Value.ToString());
                     if (row.Cells["Handler"].Value != DBNull.Value) _obj1.Handler = Convert.ToInt32(row.Cells["Handler"].Value.ToString());
+                    if (row.Cells["IsSample"].Value != DBNull.Value) _obj1.IsSample = Convert.ToInt16(row.Cells["IsSample"].Value);
 
                     // 업데이트 (오더캔슬, 선적완료 상태가 아닐경우)
                     if (_obj1.Status != 2 && _obj1.Status != 3) _bRtn = _obj1.Update();
@@ -2833,6 +2876,7 @@ namespace Dev.Sales
                     lstSize.Clear(); // 기존 저장된 사이즈 초기화 
                     GetSizes(_gv1); // 하단 Color Size 데이터용 Size 정보 업데이트 
                     GV2_CreateColumn(gvColorSize);
+                    DataBinding_GV2(gvColorSize, Int.Members.GetCurrentRow(_gv1, "Idx"));
                 }
                 
             }
@@ -2892,6 +2936,28 @@ namespace Dev.Sales
 
                     // 업데이트
                     _bRtn = _obj2.Update();
+
+                    int tqty = 0;
+                    
+                    // 메인 오더수량 변경 
+                    foreach (GridViewRowInfo grow in gv.Rows)
+                    {
+                        tqty = tqty + Convert.ToInt32(grow.Cells["Pcs1"].Value.ToString()) + Convert.ToInt32(grow.Cells["Pcs2"].Value.ToString()) +
+                                      Convert.ToInt32(grow.Cells["Pcs3"].Value.ToString()) + Convert.ToInt32(grow.Cells["Pcs4"].Value.ToString()) +
+                                      Convert.ToInt32(grow.Cells["Pcs5"].Value.ToString()) + Convert.ToInt32(grow.Cells["Pcs6"].Value.ToString()) +
+                                      Convert.ToInt32(grow.Cells["Pcs7"].Value.ToString()) + Convert.ToInt32(grow.Cells["Pcs8"].Value.ToString()); 
+                    }
+
+                    GridViewRowInfo orow = Int.Members.GetCurrentRow(gvOrderActual);
+                    
+                    bool iRtn = Data.OrdersData.ModifyOrderQty(Convert.ToInt32(row.Cells["OrderIdx"].Value), tqty);
+
+                    if (iRtn)
+                    {
+                        orow.Cells["OrderQty"].Value = tqty;
+                        
+                        __main__.lblDescription.Text = "Updated Order Q'ty with Modified Color Q'ty.";
+                    }
                 }
                 
             }
@@ -3235,6 +3301,10 @@ namespace Dev.Sales
                 _obj5.Type229 = Convert.ToInt32(chkType229.Checked);
                 _obj5.Type230 = Convert.ToInt32(chkType230.Checked);
 
+                _obj5.Type231 = Convert.ToInt32(chkType231.Checked);
+                _obj5.Type232 = Convert.ToInt32(chkType232.Checked);
+                _obj5.Type233 = Convert.ToInt32(chkType233.Checked);
+
                 // 업데이트
                 _bRtn = _obj5.Update();
 
@@ -3320,6 +3390,10 @@ namespace Dev.Sales
                         chkType228.Checked = Convert.ToBoolean(row["Type228"]);
                         chkType229.Checked = Convert.ToBoolean(row["Type229"]);
                         chkType230.Checked = Convert.ToBoolean(row["Type230"]);
+
+                        chkType231.Checked = Convert.ToBoolean(row["Type231"]);
+                        chkType232.Checked = Convert.ToBoolean(row["Type232"]);
+                        chkType233.Checked = Convert.ToBoolean(row["Type233"]);
                     }
                     else
                     {
@@ -3379,6 +3453,11 @@ namespace Dev.Sales
                 chkType228.Enabled = true;
                 chkType229.Enabled = true;
                 chkType230.Enabled = true;
+
+                chkType231.Enabled = true;
+                chkType232.Enabled = true;
+                chkType233.Enabled = true;
+
             }
             else
             {
@@ -3418,6 +3497,10 @@ namespace Dev.Sales
                 chkType228.Enabled = false;
                 chkType229.Enabled = false;
                 chkType230.Enabled = false;
+
+                chkType231.Enabled = false;
+                chkType232.Enabled = false;
+                chkType233.Enabled = false;
             }
         }
 
@@ -3463,6 +3546,10 @@ namespace Dev.Sales
             chkType228.Checked = false;
             chkType229.Checked = false;
             chkType230.Checked = false;
+
+            chkType231.Checked = false;
+            chkType232.Checked = false;
+            chkType233.Checked = false;
         }
 
 
@@ -3540,6 +3627,91 @@ namespace Dev.Sales
                 frm.Text = "PrintOrderReview";
                 //frm.MdiParent = this;
                 frm.Show();
+            }
+        }
+
+        private void gvOrderActual_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            
+        }
+
+        private void gvOrderActual_ViewRowFormatting(object sender, RowFormattingEventArgs e)
+        {
+            
+        }
+
+        private void gvOrderActual_RowFormatting(object sender, RowFormattingEventArgs e)
+        {
+            if ((int)e.RowElement.RowInfo.Cells["Status"].Value == 2)
+            {
+                e.RowElement.DrawFill = true;
+                e.RowElement.GradientStyle = GradientStyles.Solid;
+                e.RowElement.BackColor = Color.LightPink;
+            }
+            else if ((bool)e.RowElement.RowInfo.Cells["IsSample"].Value == false)
+            {
+                e.RowElement.DrawFill = true;
+                e.RowElement.GradientStyle = GradientStyles.Solid;
+                e.RowElement.BackColor = Color.LightSkyBlue;
+            }
+            else
+            {
+                e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+            }
+            
+        }
+
+        private void txtFileno_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
+        }
+
+        private void txtStyle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
+        }
+
+        private void btnOutFinishedAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNewOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 1;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    frmNewOrder newOrder = new frmNewOrder(this);
+                    newOrder.ShowDialog();
+
+                    if (InsertedOrderRow != null)
+                    {
+                        RefleshWithCondition();
+                        SetCurrentRow(_gv1, Convert.ToInt32(InsertedOrderRow["LastIdx"]));   // 신규입력된 행번호로 이동
+
+                    }
+                }
+
+
+                //}
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
             }
         }
 
@@ -3798,6 +3970,8 @@ namespace Dev.Sales
             if (dtEditor != null)
             {
                 RadDateTimeEditorElement el = dtEditor.EditorElement as RadDateTimeEditorElement;
+                //gv.Columns["DeliveryDate"].FormatInfo = new System.Globalization.CultureInfo("ko-KR");
+                el.Culture = new System.Globalization.CultureInfo("en-US");
                 el.CalendarSize = new Size(500, 400);
             }
 

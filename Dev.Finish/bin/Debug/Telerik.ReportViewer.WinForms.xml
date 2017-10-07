@@ -672,6 +672,11 @@
             Occurs when the viewer's area is painted.
             </summary>
         </member>
+        <member name="P:Telerik.ReportViewer.WinForms.ReportViewerBase.Toolbar">
+            <summary>
+            Internal for test purposes only
+            </summary>
+        </member>
         <member name="P:Telerik.ReportViewer.WinForms.ReportViewerBase.Report">
             <summary>
             Gets or sets the report displayed in the viewer. 
@@ -1214,6 +1219,21 @@
             Provides data for the PrintBegin event of both WinForms and WPF report viewers. 
             </summary>
         </member>
+        <member name="P:Telerik.ReportViewer.Common.PrintBeginEventArgs.PrinterSettings">
+            <summary>
+            Gets or sets PrinterSettings.
+            If a valid printer is specified the print dialog will not be shown.
+            </summary>
+        </member>
+        <member name="P:Telerik.ReportViewer.Common.PrintBeginEventArgs.PrintController">
+            <summary>
+            Gets or sets PrinterController. 
+            The specified print controller will be used in the PrintDocument.
+            The PrintController controls how a document is printed.
+            If PrintController is not specified 
+            the default print controller is PrintControllerWithStatusDialog.
+            </summary>
+        </member>
         <member name="T:Telerik.ReportViewer.Common.PrintEndEventHandler">
             <summary>
             Represents the method that will handle the PrintEnd event of both WinForms and WPF report viewers.
@@ -1472,7 +1492,7 @@
             <param name="expiredReportSource"></param>
             <param name="currentConnString"></param>
         </member>
-        <member name="M:Telerik.ReportViewer.Common.ReportViewerUtils.NeedsToClearSession(System.String,System.String)">
+        <member name="M:Telerik.ReportViewer.Common.ReportViewerUtils.AreConnectionsEqual(System.String,System.String)">
             <summary>
             If the new and the old connection have different connection strings, clear the session id.
             </summary>
