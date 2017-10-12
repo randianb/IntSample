@@ -28,7 +28,8 @@ namespace Dev.Options
         public bool PatternOpCheck3 { get; set; }
         public bool PatternOpCheck4 { get; set; }
         public bool PatternOpCheck5 { get; set; }
-        public bool PatternOpCheck6 { get; set; }
+        public int PatternOpCheck6 { get; set; }
+        public int PeriodTime { get; set; }
     }
 
 }

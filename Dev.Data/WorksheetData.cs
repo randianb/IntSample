@@ -294,7 +294,6 @@ namespace Dev.Data
         {
             try
             {
-
                 _conn = new SqlConnection(_strConn);
                 _cmd = new SqlCommand();
                 _conn.Open();
@@ -328,6 +327,170 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@UserIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@UserIdx"].Value = UserIdx;
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Getlist: 목록조회 (작업지시 메인용) 
+        /// TD일땐 useridx로 해당 바이어만 조회하고 나머진 useridx=0로 모두 조회 
+        /// </summary>
+        public static DataSet Getlist(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx, int UserIdx, 
+                int OptionCheck1, int OptionCheck2, int OptionCheck3, int OptionCheck4, int OptionCheck5)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_Worksheet_List4";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@DeptIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@DeptIdx"].Value = DeptIdx;
+
+                _cmd.Parameters.Add("@CustIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@CustIdx"].Value = CustIdx;
+
+                _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
+                _cmd.Parameters["@Handler"].Value = Handler;
+
+                _cmd.Parameters.Add("@WorkStatus", SqlDbType.Int, 4);
+                _cmd.Parameters["@WorkStatus"].Value = WorkStatus;
+
+                _cmd.Parameters.Add("@Fileno", SqlDbType.NVarChar, 11);
+                _cmd.Parameters["@Fileno"].Value = Fileno;
+
+                _cmd.Parameters.Add("@Styleno", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Styleno"].Value = Styleno;
+
+                _cmd.Parameters.Add("@WorksheetIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorksheetIdx"].Value = WorksheetIdx;
+
+                _cmd.Parameters.Add("@UserIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@UserIdx"].Value = UserIdx;
+
+                _cmd.Parameters.Add("@OptionCheck1", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck1"].Value = OptionCheck1;
+
+                _cmd.Parameters.Add("@OptionCheck2", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck2"].Value = OptionCheck2;
+
+                _cmd.Parameters.Add("@OptionCheck3", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck3"].Value = OptionCheck3;
+
+                _cmd.Parameters.Add("@OptionCheck4", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck4"].Value = OptionCheck4;
+
+                _cmd.Parameters.Add("@OptionCheck5", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck5"].Value = OptionCheck5;
+                
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// GetlistReport: 목록조회 (Sample Chart 리포트 조회용) 
+        /// TD일땐 useridx로 해당 바이어만 조회하고 나머진 useridx=0로 모두 조회 
+        /// </summary>
+        public static DataSet GetlistReport(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx, int UserIdx,
+                int OptionCheck1, int OptionCheck2, int OptionCheck3, int OptionCheck4, int OptionCheck5)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_Worksheet_List5";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@DeptIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@DeptIdx"].Value = DeptIdx;
+
+                _cmd.Parameters.Add("@CustIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@CustIdx"].Value = CustIdx;
+
+                _cmd.Parameters.Add("@Handler", SqlDbType.Int, 4);
+                _cmd.Parameters["@Handler"].Value = Handler;
+
+                _cmd.Parameters.Add("@WorkStatus", SqlDbType.Int, 4);
+                _cmd.Parameters["@WorkStatus"].Value = WorkStatus;
+
+                _cmd.Parameters.Add("@Fileno", SqlDbType.NVarChar, 11);
+                _cmd.Parameters["@Fileno"].Value = Fileno;
+
+                _cmd.Parameters.Add("@Styleno", SqlDbType.NVarChar, 50);
+                _cmd.Parameters["@Styleno"].Value = Styleno;
+
+                _cmd.Parameters.Add("@WorksheetIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorksheetIdx"].Value = WorksheetIdx;
+
+                _cmd.Parameters.Add("@UserIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@UserIdx"].Value = UserIdx;
+
+                _cmd.Parameters.Add("@OptionCheck1", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck1"].Value = OptionCheck1;
+
+                _cmd.Parameters.Add("@OptionCheck2", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck2"].Value = OptionCheck2;
+
+                _cmd.Parameters.Add("@OptionCheck3", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck3"].Value = OptionCheck3;
+
+                _cmd.Parameters.Add("@OptionCheck4", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck4"].Value = OptionCheck4;
+
+                _cmd.Parameters.Add("@OptionCheck5", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck5"].Value = OptionCheck5;
 
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);
@@ -437,7 +600,7 @@ namespace Dev.Data
         /// <param name="OrderIdx"></param>
         /// <param name="WorkOrderIdx"></param>
         /// <returns></returns>
-        public static bool ConfirmOffice(int idx, int confirmed, string CommentTD)
+        public static bool ConfirmOffice(int idx, int confirmed, string CommentTD, int Status)
         {
             try
             {
@@ -445,9 +608,17 @@ namespace Dev.Data
                 _conn = new SqlConnection(_strConn);
                 _conn.Open();
 
-                _cmd.CommandText = @"update Worksheet set ConfirmDate=dbo.GetLocalDate(default), ConfirmUser=@confirmed, CommentTD=@CommentTD, 
-                                     status=10 where idx=@Idx
-                                    ";
+                if (Status == 12 || Status==7)
+                {
+                    _cmd.CommandText = @"update Worksheet set ConfirmDate=dbo.GetLocalDate(default), ConfirmUser=@confirmed, CommentTD=@CommentTD  
+                                     where idx=@Idx";
+                }
+                else
+                {
+                    _cmd.CommandText = @"update Worksheet set ConfirmDate=dbo.GetLocalDate(default), ConfirmUser=@confirmed, CommentTD=@CommentTD, 
+                                     status=10 where idx=@Idx";
+                }
+                
                 _cmd.CommandType = CommandType.Text;
                 _cmd.Connection = _conn;
 
@@ -526,7 +697,7 @@ namespace Dev.Data
         /// <param name="OrderIdx"></param>
         /// <param name="WorkOrderIdx"></param>
         /// <returns></returns>
-        public static bool ConfirmTD(int idx, int confirmed, string CommentTD)
+        public static bool ConfirmTD(int idx, int confirmed, string CommentTD, int Status)
         {
             try
             {
@@ -534,7 +705,15 @@ namespace Dev.Data
                 _conn = new SqlConnection(_strConn);
                 _conn.Open();
 
-                _cmd.CommandText = @"update Worksheet set ConfirmDateTD=dbo.GetLocalDate(default), ConfirmUserTD=@confirmed, CommentTD=@CommentTD, status=7 where idx=@Idx";
+                if (Status == 12)
+                {
+                    _cmd.CommandText = @"update Worksheet set ConfirmDateTD=dbo.GetLocalDate(default), ConfirmUserTD=@confirmed, CommentTD=@CommentTD where idx=@Idx";
+                }
+                else
+                {
+                    _cmd.CommandText = @"update Worksheet set ConfirmDateTD=dbo.GetLocalDate(default), ConfirmUserTD=@confirmed, CommentTD=@CommentTD, status=7 where idx=@Idx";
+                }
+                
                 _cmd.CommandType = CommandType.Text;
                 _cmd.Connection = _conn;
 
@@ -546,6 +725,46 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@CommentTD", SqlDbType.NText);
                 _cmd.Parameters["@CommentTD"].Value = CommentTD;
+
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
+        /// <summary>
+        /// 개발실 원단담당자 작지상 커멘트 등록
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <param name="confirmed"></param>
+        /// <param name="OrderIdx"></param>
+        /// <param name="WorkOrderIdx"></param>
+        /// <returns></returns>
+        public static bool SaveFabricComments(int idx, string Comment)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"update Worksheet set CommentFabric=@Comment where idx=@Idx";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = idx;
+                
+                _cmd.Parameters.Add("@Comment", SqlDbType.NText);
+                _cmd.Parameters["@Comment"].Value = Comment;
 
                 _rtn = _cmd.ExecuteNonQuery();
             }

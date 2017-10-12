@@ -1121,7 +1121,7 @@ namespace Dev.WorkOrder
                     if (e.Cell.Value.ToString().Trim().Length < 11 && e.Cell.Value.ToString().Trim().Substring(0, 1) == "S")
                     {
                         CommonController.Close_All_Children(this, "OrderMain");
-                        OrderMain form = new OrderMain(__main__, e.Cell.Value.ToString());
+                        Sales.OrderMain form = new Sales.OrderMain(__main__, e.Cell.Value.ToString());
                         form.Text = "Order Main"; // DateTime.Now.ToLongTimeString();
                         form.MdiParent = this.MdiParent;
                         form.Show();
@@ -1132,7 +1132,7 @@ namespace Dev.WorkOrder
                         if (e.Cell.Value.ToString().Trim().Substring(11, 1) == "P")
                         {
                             CommonController.Close_All_Children(this, "PatternMain");
-                            PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
+                            Pattern.OrderMain form = new Pattern.OrderMain(__main__, e.Cell.Value.ToString());
                             form.Text = "Pattern Main"; // DateTime.Now.ToLongTimeString();
                             form.MdiParent = this.MdiParent;
                             form.Show();

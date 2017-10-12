@@ -646,10 +646,15 @@ namespace Dev.Pattern
         {
             try
             {
-                //if (ddlCust.SelectedValue != null || ddlSize.SelectedValue != null
-                //    || ddlStatus.SelectedValue != null || ddlSize.SelectedValue != null
-                //    || !string.IsNullOrEmpty(txtFileno.Text) || !string.IsNullOrEmpty(txtStyle.Text))
-                //{
+                if (Convert.ToInt32(ddlCust.SelectedValue) == 0 && Convert.ToInt32(ddlDept.SelectedValue) == 0 &&
+                    Convert.ToInt32(ddlStatus.SelectedValue) == 0 && Convert.ToInt32(ddlHandler.SelectedValue) == 0 &&
+                    string.IsNullOrEmpty(txtFileno.Text.Trim()) && string.IsNullOrEmpty(txtStyle.Text.Trim()))
+                {
+                    RadMessageBox.Show("Por favor ingresar condicion (numero de File o Estilo) para buscar.", "Noticiar", MessageBoxButtons.OK, 
+                                        RadMessageIcon.Exclamation);
+                    txtFileno.Select(); 
+                    return; 
+                }
                 _searchKey = new Dictionary<CommonValues.KeyName, int>();
 
                 // 영업부인경우, 해당 부서만 조회할수 있도록 제한 
@@ -1499,6 +1504,22 @@ namespace Dev.Pattern
                         Console.WriteLine("GV1_Update: " + ex.Message.ToString());
                     }
                 }
+            }
+        }
+
+        private void txtFileno_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
+        }
+
+        private void txtStyle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
             }
         }
     }

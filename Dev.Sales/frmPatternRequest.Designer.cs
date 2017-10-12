@@ -269,13 +269,13 @@
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(97, 24);
             this.radLabel4.TabIndex = 0;
-            this.radLabel4.Text = "Pattern/Cons";
+            this.radLabel4.Text = "Type";
             // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.19905F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.80095F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.58268F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.41732F));
             this.tableLayoutPanel4.Controls.Add(this.chkPattern, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.chkConsumption, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -294,7 +294,7 @@
             this.chkPattern.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkPattern.Location = new System.Drawing.Point(3, 3);
             this.chkPattern.Name = "chkPattern";
-            this.chkPattern.Size = new System.Drawing.Size(65, 24);
+            this.chkPattern.Size = new System.Drawing.Size(91, 24);
             this.chkPattern.TabIndex = 0;
             this.chkPattern.Text = "Pattern";
             // 
@@ -303,20 +303,23 @@
             this.chkConsumption.AutoSize = false;
             this.chkConsumption.BackColor = System.Drawing.Color.LemonChiffon;
             this.chkConsumption.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkConsumption.Location = new System.Drawing.Point(74, 3);
+            this.chkConsumption.Location = new System.Drawing.Point(100, 3);
             this.chkConsumption.Name = "chkConsumption";
-            this.chkConsumption.Size = new System.Drawing.Size(177, 24);
+            this.chkConsumption.Size = new System.Drawing.Size(151, 24);
             this.chkConsumption.TabIndex = 1;
             this.chkConsumption.Text = "Consumption";
             // 
             // dtTechPack
             // 
+            this.dtTechPack.Culture = new System.Globalization.CultureInfo("en-US");
+            this.dtTechPack.CustomFormat = "yyyy-MM-dd";
+            this.dtTechPack.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtTechPack.Location = new System.Drawing.Point(478, 33);
             this.dtTechPack.Name = "dtTechPack";
             this.dtTechPack.Size = new System.Drawing.Size(164, 20);
             this.dtTechPack.TabIndex = 7;
             this.dtTechPack.TabStop = false;
-            this.dtTechPack.Text = "2017년 5월 4일 목요일";
+            this.dtTechPack.Text = "2017-05-04";
             this.dtTechPack.Value = new System.DateTime(2017, 5, 4, 11, 40, 0, 0);
             // 
             // radLabel3
@@ -358,6 +361,7 @@
             this.ddlCAD.Size = new System.Drawing.Size(247, 20);
             this.ddlCAD.TabIndex = 19;
             this.ddlCAD.Text = "radDropDownList8";
+            this.ddlCAD.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlCAD_SelectedIndexChanged);
             // 
             // radLabel9
             // 

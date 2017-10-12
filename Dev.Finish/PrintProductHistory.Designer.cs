@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.reportViewer1 = new Telerik.ReportViewer.WinForms.ReportViewer();
-            this.dtRcvdTo = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.dtRcvdFrom = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.dtOutTo = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.dtOutFrom = new Telerik.WinControls.UI.RadDateTimePicker();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.ddlCust = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -64,11 +59,12 @@
             this.btnSearch = new Telerik.WinControls.UI.RadButton();
             this.ddlWorkStatus = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
+            this.reportViewer1 = new Telerik.ReportViewer.WinForms.ReportViewer();
+            this.dtRcvdTo = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.dtRcvdFrom = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.dtOutTo = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.dtOutFrom = new Telerik.WinControls.UI.RadDateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtRcvdTo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtRcvdFrom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtOutTo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtOutFrom)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCust)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -99,6 +95,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlWorkStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtRcvdTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtRcvdFrom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtOutTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtOutFrom)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -116,64 +116,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 115F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1286, 826);
             this.tableLayoutPanel1.TabIndex = 6;
-            // 
-            // reportViewer1
-            // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewer1.Location = new System.Drawing.Point(3, 116);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ShowHistoryButtons = false;
-            this.reportViewer1.Size = new System.Drawing.Size(1280, 707);
-            this.reportViewer1.TabIndex = 34;
-            this.reportViewer1.ViewMode = Telerik.ReportViewer.WinForms.ViewMode.PrintPreview;
-            // 
-            // dtRcvdTo
-            // 
-            this.dtRcvdTo.CustomFormat = "yy-MM-dd";
-            this.dtRcvdTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtRcvdTo.Location = new System.Drawing.Point(741, 81);
-            this.dtRcvdTo.Name = "dtRcvdTo";
-            this.dtRcvdTo.NullDate = new System.DateTime(2900, 1, 1, 0, 0, 0, 0);
-            this.dtRcvdTo.Size = new System.Drawing.Size(144, 20);
-            this.dtRcvdTo.TabIndex = 11;
-            this.dtRcvdTo.TabStop = false;
-            this.dtRcvdTo.Value = new System.DateTime(2900, 1, 1, 0, 0, 0, 0);
-            // 
-            // dtRcvdFrom
-            // 
-            this.dtRcvdFrom.CustomFormat = "yy-MM-dd";
-            this.dtRcvdFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtRcvdFrom.Location = new System.Drawing.Point(589, 81);
-            this.dtRcvdFrom.Name = "dtRcvdFrom";
-            this.dtRcvdFrom.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dtRcvdFrom.Size = new System.Drawing.Size(146, 20);
-            this.dtRcvdFrom.TabIndex = 11;
-            this.dtRcvdFrom.TabStop = false;
-            this.dtRcvdFrom.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            // 
-            // dtOutTo
-            // 
-            this.dtOutTo.CustomFormat = "yy-MM-dd";
-            this.dtOutTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtOutTo.Location = new System.Drawing.Point(443, 81);
-            this.dtOutTo.Name = "dtOutTo";
-            this.dtOutTo.NullDate = new System.DateTime(2900, 1, 1, 0, 0, 0, 0);
-            this.dtOutTo.Size = new System.Drawing.Size(140, 20);
-            this.dtOutTo.TabIndex = 11;
-            this.dtOutTo.TabStop = false;
-            this.dtOutTo.Value = new System.DateTime(2900, 1, 1, 0, 0, 0, 0);
-            // 
-            // dtOutFrom
-            // 
-            this.dtOutFrom.CustomFormat = "yy-MM-dd";
-            this.dtOutFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtOutFrom.Location = new System.Drawing.Point(315, 81);
-            this.dtOutFrom.Name = "dtOutFrom";
-            this.dtOutFrom.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dtOutFrom.Size = new System.Drawing.Size(122, 20);
-            this.dtOutFrom.TabIndex = 11;
-            this.dtOutFrom.TabStop = false;
-            this.dtOutFrom.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
             // tableLayoutPanel5
             // 
@@ -216,6 +158,7 @@
             this.tableLayoutPanel5.Controls.Add(this.btnSearch, 7, 1);
             this.tableLayoutPanel5.Controls.Add(this.ddlWorkStatus, 6, 3);
             this.tableLayoutPanel5.Controls.Add(this.radLabel14, 6, 2);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 4;
@@ -223,12 +166,14 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1249, 107);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1280, 107);
             this.tableLayoutPanel5.TabIndex = 35;
             // 
             // ddlCust
             // 
             this.ddlCust.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ddlCust.AutoSize = false;
+            this.ddlCust.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.ddlCust.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlCust.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlCust.Location = new System.Drawing.Point(3, 25);
@@ -238,46 +183,58 @@
             // 
             // radLabel2
             // 
+            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.radLabel2.Location = new System.Drawing.Point(3, 3);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(34, 16);
+            this.radLabel2.Size = new System.Drawing.Size(37, 18);
             this.radLabel2.TabIndex = 3;
             this.radLabel2.Text = "Buyer";
             // 
             // txtStyle
             // 
+            this.txtStyle.AutoSize = false;
+            this.txtStyle.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.txtStyle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtStyle.Location = new System.Drawing.Point(741, 25);
             this.txtStyle.Name = "txtStyle";
             this.txtStyle.Size = new System.Drawing.Size(144, 28);
             this.txtStyle.TabIndex = 9;
+            this.txtStyle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtStyle_KeyDown);
             // 
             // radLabel6
             // 
+            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.radLabel6.Location = new System.Drawing.Point(741, 3);
             this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(37, 16);
+            this.radLabel6.Size = new System.Drawing.Size(39, 18);
             this.radLabel6.TabIndex = 3;
             this.radLabel6.Text = "Style#";
             // 
             // txtFileno
             // 
+            this.txtFileno.AutoSize = false;
+            this.txtFileno.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.txtFileno.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtFileno.Location = new System.Drawing.Point(589, 25);
             this.txtFileno.Name = "txtFileno";
-            this.txtFileno.Size = new System.Drawing.Size(146, 20);
+            this.txtFileno.NullText = "S";
+            this.txtFileno.Size = new System.Drawing.Size(146, 28);
             this.txtFileno.TabIndex = 8;
+            this.txtFileno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFileno_KeyDown);
             // 
             // radLabel5
             // 
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.radLabel5.Location = new System.Drawing.Point(589, 3);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(30, 16);
+            this.radLabel5.Size = new System.Drawing.Size(31, 18);
             this.radLabel5.TabIndex = 3;
             this.radLabel5.Text = "File#";
             // 
             // ddlSize
             // 
             this.ddlSize.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ddlSize.AutoSize = false;
             this.ddlSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlSize.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlSize.Location = new System.Drawing.Point(315, 25);
@@ -303,11 +260,13 @@
             // 
             // txtColor
             // 
+            this.txtColor.AutoSize = false;
             this.txtColor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtColor.Location = new System.Drawing.Point(160, 25);
             this.txtColor.Name = "txtColor";
             this.txtColor.Size = new System.Drawing.Size(149, 28);
             this.txtColor.TabIndex = 8;
+            this.txtColor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtColor_KeyDown);
             // 
             // radLabel9
             // 
@@ -353,9 +312,11 @@
             // 
             // txtDelivered
             // 
+            this.txtDelivered.AutoSize = false;
+            this.txtDelivered.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtDelivered.Location = new System.Drawing.Point(443, 25);
             this.txtDelivered.Name = "txtDelivered";
-            this.txtDelivered.Size = new System.Drawing.Size(140, 20);
+            this.txtDelivered.Size = new System.Drawing.Size(140, 28);
             this.txtDelivered.TabIndex = 8;
             // 
             // radLabel11
@@ -368,10 +329,13 @@
             // 
             // txtWorkorder
             // 
+            this.txtWorkorder.AutoSize = false;
+            this.txtWorkorder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtWorkorder.Location = new System.Drawing.Point(891, 25);
             this.txtWorkorder.Name = "txtWorkorder";
-            this.txtWorkorder.Size = new System.Drawing.Size(129, 20);
+            this.txtWorkorder.Size = new System.Drawing.Size(129, 28);
             this.txtWorkorder.TabIndex = 8;
+            this.txtWorkorder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtWorkorder_KeyDown);
             // 
             // radLabel8
             // 
@@ -459,9 +423,10 @@
             // 
             // btnSearch
             // 
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSearch.Location = new System.Drawing.Point(1026, 25);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(112, 28);
+            this.btnSearch.Size = new System.Drawing.Size(148, 28);
             this.btnSearch.TabIndex = 7;
             this.btnSearch.Text = "Search";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -483,20 +448,74 @@
             this.radLabel14.TabIndex = 3;
             this.radLabel14.Text = "Work Status";
             // 
-            // PrintInvoice
+            // reportViewer1
+            // 
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer1.Location = new System.Drawing.Point(3, 116);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ShowHistoryButtons = false;
+            this.reportViewer1.Size = new System.Drawing.Size(1280, 707);
+            this.reportViewer1.TabIndex = 34;
+            this.reportViewer1.ViewMode = Telerik.ReportViewer.WinForms.ViewMode.PrintPreview;
+            // 
+            // dtRcvdTo
+            // 
+            this.dtRcvdTo.CustomFormat = "yy-MM-dd";
+            this.dtRcvdTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtRcvdTo.Location = new System.Drawing.Point(741, 81);
+            this.dtRcvdTo.Name = "dtRcvdTo";
+            this.dtRcvdTo.NullDate = new System.DateTime(2900, 1, 1, 0, 0, 0, 0);
+            this.dtRcvdTo.Size = new System.Drawing.Size(144, 20);
+            this.dtRcvdTo.TabIndex = 11;
+            this.dtRcvdTo.TabStop = false;
+            this.dtRcvdTo.Value = new System.DateTime(2900, 1, 1, 0, 0, 0, 0);
+            // 
+            // dtRcvdFrom
+            // 
+            this.dtRcvdFrom.CustomFormat = "yy-MM-dd";
+            this.dtRcvdFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtRcvdFrom.Location = new System.Drawing.Point(589, 81);
+            this.dtRcvdFrom.Name = "dtRcvdFrom";
+            this.dtRcvdFrom.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtRcvdFrom.Size = new System.Drawing.Size(146, 20);
+            this.dtRcvdFrom.TabIndex = 11;
+            this.dtRcvdFrom.TabStop = false;
+            this.dtRcvdFrom.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            // 
+            // dtOutTo
+            // 
+            this.dtOutTo.CustomFormat = "yy-MM-dd";
+            this.dtOutTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtOutTo.Location = new System.Drawing.Point(443, 81);
+            this.dtOutTo.Name = "dtOutTo";
+            this.dtOutTo.NullDate = new System.DateTime(2900, 1, 1, 0, 0, 0, 0);
+            this.dtOutTo.Size = new System.Drawing.Size(140, 20);
+            this.dtOutTo.TabIndex = 11;
+            this.dtOutTo.TabStop = false;
+            this.dtOutTo.Value = new System.DateTime(2900, 1, 1, 0, 0, 0, 0);
+            // 
+            // dtOutFrom
+            // 
+            this.dtOutFrom.CustomFormat = "yy-MM-dd";
+            this.dtOutFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtOutFrom.Location = new System.Drawing.Point(315, 81);
+            this.dtOutFrom.Name = "dtOutFrom";
+            this.dtOutFrom.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtOutFrom.Size = new System.Drawing.Size(122, 20);
+            this.dtOutFrom.TabIndex = 11;
+            this.dtOutFrom.TabStop = false;
+            this.dtOutFrom.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            // 
+            // PrintProductHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1286, 826);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "PrintInvoice";
-            this.Text = "Report Viewer Form";
+            this.Name = "PrintProductHistory";
+            this.Text = "Please input the condition to search the data.";
             this.Load += new System.EventHandler(this.rptFabricCode_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtRcvdTo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtRcvdFrom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtOutTo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtOutFrom)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCust)).EndInit();
@@ -528,6 +547,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlWorkStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtRcvdTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtRcvdFrom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtOutTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtOutFrom)).EndInit();
             this.ResumeLayout(false);
 
         }

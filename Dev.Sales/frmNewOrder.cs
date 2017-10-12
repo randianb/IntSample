@@ -315,6 +315,7 @@ namespace Dev.Sales
             {
                 // 사이즈 그룹 데이터로딩 후, 데이터테이블에 추가하고 바인딩해준다 bindingSourceSizeGroup 
                 // MultipleColumnComboBox의 DataMember 설정하기 위해 필요 
+                
                 _dt = Dev.Codes.Controller.SizeGroup.GetlistWithCustIdx(Convert.ToInt32(ddlCust.SelectedValue)).Tables[0]; //Getlist(0).Tables[0];
                 dataSetSizeGroup.DataTableSizeGroup.Clear();
 

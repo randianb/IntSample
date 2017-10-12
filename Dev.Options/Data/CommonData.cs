@@ -67,6 +67,52 @@ namespace Dev.Options.Data
         }
 
         /// <summary>
+        /// 코드 값 GET
+        /// </summary>
+        /// <param name="className">Code Classification</param>
+        /// <returns>결과 데이터셋</returns>
+        public static DataSet GetCodeValue(int codeIdx)
+        {
+            try
+            {
+                _conn = new SqlConnection(_strConn);
+                _cmd = new SqlCommand();
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = "up_Codes_Get";
+                _cmd.CommandType = CommandType.StoredProcedure;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@idx"].Value = codeIdx;
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            // dataset 확인 및 결과 datarow 반환
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                return _ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// 유저 전화번호 확인 (유저번호로 검색)
         /// </summary>
         public static DataRow GetPhoneNumber(int UserIdx)

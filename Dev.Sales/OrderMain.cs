@@ -15,6 +15,7 @@ using Dev.Out;
 
 namespace Dev.Sales
 {
+    
     /// <summary>
     /// 샘플오더 관리화면: 오더입력수정 및 작업지시등
     /// </summary>
@@ -30,7 +31,7 @@ namespace Dev.Sales
         private enum OrderStatus { Normal, Progress, Cancel, Close };           // 오더상태값
         
         private bool _bRtn;                                                     // 쿼리결과 리턴
-        private string __FileNo__ = ""; 
+        public string __FileNo__ = ""; 
         private DataSet _ds1 = null;                                            // 기본 데이터셋
         private DataTable _dt = null;                                           // 기본 데이터테이블
         private Controller.Orders _obj1 = null;                                 // 현재 생성된 객체 
@@ -67,7 +68,7 @@ namespace Dev.Sales
 
         private string __AUTHCODE__ = CheckAuth.ValidCheck(CommonValues.packageNo, 18, 0);   // 패키지번호, 프로그램번호, 윈도우번호
         private int _selectedSizeIdx = 0;    // 사이즈별 오더타입을 선택시 저장할때 사이즈를 구분하기 위해 사용하는 번호 
-
+        
         #endregion
 
         #region 2. 초기로드 및 컨트롤 생성
@@ -83,7 +84,12 @@ namespace Dev.Sales
             __main__ = main;            // MDI 연결
             __FileNo__ = fileno; 
             _gv1 = this.gvOrderActual;  // 그리드뷰 일반화를 위해 변수 별도 저장
-            
+
+            if (!string.IsNullOrEmpty(__FileNo__))
+            {
+                txtFileno.Text = __FileNo__;
+            }
+
         }
 
         /// <summary>
@@ -93,7 +99,7 @@ namespace Dev.Sales
         /// <param name="e"></param>
         private void frmOrderActual_Load(object sender, EventArgs e)
         {
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;  // 창 최대화
+            
             DataLoading_DDL();          // DDL 데이터 로딩
             Config_DropDownList();      // 상단 DDL 생성 설정
             GV1_CreateColumn(_gv1);     // 그리드뷰 생성
@@ -108,9 +114,11 @@ namespace Dev.Sales
 
             if (!string.IsNullOrEmpty(__FileNo__))
             {
-                txtFileno.Text = __FileNo__;
-                RefleshWithCondition(); 
+                //txtFileno.Text = __FileNo__;
+                RefleshWithCondition();
             }
+            if (!string.IsNullOrEmpty(__FileNo__)) this.WindowState = FormWindowState.Normal;
+            else this.WindowState = FormWindowState.Maximized; 
 
             btnSaveData.Enabled = false;
 
@@ -2120,6 +2128,13 @@ namespace Dev.Sales
                 CheckAuth.ShowMessage(_mode_);
             else
             {
+                if (UserInfo.Idx != Int.Members.GetCurrentRow(_gv1, "Handler"))
+                {
+                    RadMessageBox.Show("You're not Order Handler. Please contact IT Team.", "Warning",
+                        MessageBoxButtons.OK, RadMessageIcon.Question);
+                    return;
+                }
+
                 if (RadMessageBox.Show("Do you want to close this order?", "Confirm", MessageBoxButtons.YesNo, RadMessageIcon.Question)
                 == DialogResult.Yes)
                 {
@@ -2150,6 +2165,12 @@ namespace Dev.Sales
                     CheckAuth.ShowMessage(_mode_);
                 else
                 {
+                    if (UserInfo.Idx != Int.Members.GetCurrentRow(_gv1, "Handler"))
+                    {
+                        RadMessageBox.Show("You're not the Order Handler. Please contact IT Team.", "Warning",
+                            MessageBoxButtons.OK, RadMessageIcon.Question);
+                        return; 
+                    }
                     // 삭제하기전 삭제될 데이터 확인
                     foreach (GridViewRowInfo row in _gv1.SelectedRows)
                     {
@@ -2219,10 +2240,16 @@ namespace Dev.Sales
                         RadMessageBox.Show("Please input the Size Group", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
                         return;
                     }
+                    if (Int.Members.GetCurrentRow(_gv1, "Buyer") <= 0)
+                    {
+                        RadMessageBox.Show("Please input the Buyer", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
 
                     // 파일번호, 오더수량, 금액이 정상 입력되었으면 
                     if (!string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Fileno", "")) &&
                         !string.IsNullOrEmpty(Int.Members.GetCurrentRow(_gv1, "Styleno", "")) &&
+                        Int.Members.GetCurrentRow(_gv1, "Buyer") > 0 && 
                         Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx") > 0
                         )
                     {
@@ -2230,6 +2257,7 @@ namespace Dev.Sales
                         frmPatternRequest frm = new frmPatternRequest(Int.Members.GetCurrentRow(_gv1, "Idx"),
                                                         Int.Members.GetCurrentRow(_gv1, "Fileno", ""),
                                                         Int.Members.GetCurrentRow(_gv1, "Styleno", ""),
+                                                        Int.Members.GetCurrentRow(_gv1, "Buyer"),
                                                         Int.Members.GetCurrentRow(_gv1, "SizeGroupIdx"),
                                                         Int.Members.GetCurrentRow(_gv1, "Status")
                                                         );
@@ -2355,7 +2383,7 @@ namespace Dev.Sales
             foreach (DataRow row in _dt.Rows)
             {
                 // 관리부와 임원은 모든 부서에 접근가능
-                if (UserInfo.CenterIdx != 1 || UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6)
+                if (UserInfo.CenterIdx != 1 || UserInfo.DeptIdx == 5 || UserInfo.DeptIdx == 6 || Options.UserInfo.ExceptionGroup == 233)
                 {
                     deptName.Add(new DepartmentName(Convert.ToInt32(row["DeptIdx"]),
                                                 row["DeptName"].ToString(),
@@ -2565,7 +2593,7 @@ namespace Dev.Sales
                     _searchKey = new Dictionary<CommonValues.KeyName, int>();
 
                     // 영업부인경우, 해당 부서만 조회할수 있도록 제한 
-                    if (UserInfo.ReportNo < 9 && UserInfo.CenterIdx!=4)
+                    if (UserInfo.ReportNo < 9 && UserInfo.CenterIdx!=4 && Options.UserInfo.ExceptionGroup != 233)
                         _searchKey.Add(CommonValues.KeyName.DeptIdx, UserInfo.DeptIdx);
                     else
                         _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlDept.SelectedValue));
@@ -2620,7 +2648,7 @@ namespace Dev.Sales
 
                     _gv1.DataSource = null;
 
-                    _ds1 = Controller.Orders.Getlist(KeyCount, SearchKey, fileno, styleno); //, orderOpCheck1, orderOpCheck2, orderOpCheck3);
+                    _ds1 = Controller.Orders.Getlist(KeyCount, SearchKey, fileno, styleno, orderOpCheck1, orderOpCheck2, orderOpCheck3);
                     if (_ds1 != null)
                     {
                         _gv1.DataSource = _ds1.Tables[0].DefaultView;
@@ -3100,7 +3128,7 @@ namespace Dev.Sales
                         if (e.Cell.Value.ToString().Trim().Substring(11, 1) == "P")
                         {
                             CommonController.Close_All_Children(this, "PatternMain");
-                            PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
+                            Pattern.OrderMain form = new Pattern.OrderMain(__main__, e.Cell.Value.ToString());
                             form.Text = "Pattern Main"; // DateTime.Now.ToLongTimeString();
                             form.MdiParent = this.MdiParent;
                             form.Show();
@@ -3116,7 +3144,7 @@ namespace Dev.Sales
                         if (e.Cell.Value.ToString().Trim().Substring(11, 1) == "P")
                         {
                             CommonController.Close_All_Children(this, "PatternMain");
-                            PatternMain form = new PatternMain(__main__, e.Cell.Value.ToString());
+                            Pattern.OrderMain form = new Pattern.OrderMain(__main__, e.Cell.Value.ToString());
                             form.Text = "Pattern Main"; // DateTime.Now.ToLongTimeString();
                             form.MdiParent = this.MdiParent;
                             form.Show();

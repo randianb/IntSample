@@ -8,9 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,7 +28,7 @@ namespace Dev.Sales
         #region 변수 선언
         
         private string _fileNo, _styleNo = "";
-        private int _orderIdx,  _orderStatus, _sizeGroup = 0;
+        private int _orderIdx,  _orderStatus, _sizeGroup, _buyer = 0;
         private bool _bRtn = false;
         private List<Codes.Controller.Sizes> lstSize = new List<Codes.Controller.Sizes>();
         private List<string> lstFiles = new List<string>();
@@ -36,6 +39,8 @@ namespace Dev.Sales
 
         private List<CustomerName> lstUserTD = new List<CustomerName>();          // 유저명
         private List<CustomerName> lstUserCAD = new List<CustomerName>();          // 유저명
+
+        private string urlTemp = Environment.CurrentDirectory + "\\temp";
 
         #endregion
 
@@ -49,14 +54,15 @@ namespace Dev.Sales
         /// <param name="qty">수량</param>
         /// <param name="amount">금액</param>
         /// <param name="shipCompleted">선적완료 여부</param>
-        public frmPatternRequest(int idx, string fileNo, string styleno, int sizeGroup, int orderStatus)
+        public frmPatternRequest(int idx, string fileNo, string styleno, int buyer, int sizeGroup, int orderStatus)
         {
             InitializeComponent();
             _orderIdx = idx; 
             _fileNo = fileNo;
             _styleNo = styleno;
             _sizeGroup = sizeGroup;
-            _orderStatus = orderStatus; 
+            _orderStatus = orderStatus;
+            _buyer = buyer; 
 
             lblFileno.Text = fileNo;
             lblStyle.Text = styleno;
@@ -87,7 +93,7 @@ namespace Dev.Sales
                 OpenFileDialog dialog = (OpenFileDialog)beFiles.Dialog;
                 dialog.Multiselect = true;
             }
-
+            
             // Username
             lstUserTD.Add(new CustomerName(0, "", 0));
             lstUserCAD.Add(new CustomerName(0, "", 0));
@@ -116,13 +122,82 @@ namespace Dev.Sales
             ddlTD.ValueMember = "CustIdx";
             ddlTD.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
             ddlTD.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
-
+            
             SetDefaultFontPropertiesToEditor(txtComment);
+            CheckFolder(urlTemp);
 
-
+            // 해당 바이어 담당 패턴사 확인 Cad3
+            DataRow _row = GetCadPerson(_buyer);
+            if (_row["Cad3"] != DBNull.Value)
+            {
+                ddlCAD.SelectedValue = Convert.ToInt32(_row["Cad3"]); 
+            }
+            if (_row["Handler"] != DBNull.Value)
+            {
+                ddlTD.SelectedValue = Convert.ToInt32(_row["Handler"]);
+            }
         }
 
-        
+        private static string _strConn = Int.Members.IntSampleConnectionString;
+        private static SqlDataAdapter _adapter = null;
+        private static SqlConnection _conn = null;
+        private static SqlCommand _cmd = null;
+        private static DataSet _ds = null;
+        private static DataRow _dr = null;
+        private static int _rtn = 0;
+
+        public static DataRow GetCadPerson(int CustIdx)
+        {    
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+                _ds = new DataSet();
+                _adapter = new SqlDataAdapter();
+
+                _cmd.CommandText = @"select top 1 isnull(cs.Cad3,0) Cad3, isnull(cs.Handler,0) Handler  from Customers cs where cs.CustIdx=@CustIdx";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@CustIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@CustIdx"].Value = CustIdx;
+
+                _adapter.SelectCommand = _cmd;
+                _adapter.Fill(_ds);
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            DataRow _dr = null;
+            if ((_ds != null) && (_ds.Tables[0].Rows.Count > 0))
+            {
+                _dr = _ds.Tables[0].Rows[0];
+                return _dr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private void CheckFolder(string sPath)
+        {
+            // 폴더 유무확인 및 생성 
+            DirectoryInfo di = new DirectoryInfo(sPath);
+            if (di.Exists == false)
+            {
+                di.Create();
+            }
+        }
+
         #endregion
 
         #region 바인딩 & 이벤트
@@ -176,7 +251,7 @@ namespace Dev.Sales
         {
             try
             {
-                CommonController.Log("[Start] Request Pattern transaction (" + DateTime.Now.ToString() + ")");
+                CommonController.Log("[Pattern] Start Request Transaction (" + DateTime.Now.ToString() + ")");
                 string NewCode = ""; 
 
                 try
@@ -200,6 +275,11 @@ namespace Dev.Sales
                     if (Convert.ToInt32(ddlTD.SelectedValue) <= 0)
                     {
                         RadMessageBox.Show("Please select the TD", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                        return;
+                    }
+                    if (string.IsNullOrEmpty(txtComment.Text.Trim()))
+                    {
+                        RadMessageBox.Show("Please input the Comment", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
                         return;
                     }
                     if (!chkConsumption.Checked && !chkPattern.Checked)
@@ -265,6 +345,8 @@ namespace Dev.Sales
                         if (dr != null)
                         {
                             RadMessageBox.Show("Created Pattern/Consumption", "Saved");
+                            // 처리완료후, 임시파일 삭제 
+                            DeleteFiles(urlTemp);
 
                             // 오더핸들러 전화번호가 등록되어 있는 경우
                             //DataRow drm = Dev.Options.Data.CommonData.GetPhoneNumber(Convert.ToInt32(ddlCAD.SelectedValue));
@@ -302,7 +384,7 @@ namespace Dev.Sales
                     
                 }
 
-                CommonController.Log("[End] Request Pattern transaction (" + DateTime.Now.ToString() + ")");
+                CommonController.Log("[End] Request Pattern Transaction (" + DateTime.Now.ToString() + ")");
             }
             catch (Exception ex)
             {
@@ -405,21 +487,26 @@ namespace Dev.Sales
                 {
                     foreach (string filename in fileNames)
                     {
-                        // 업데이트 파일 storage저장 
-                        using (var fileStream = System.IO.File.OpenRead(filename))
+                        if (filename != null)
                         {
-                            // blob명은 파일명과 같도록 생성
-                            CloudBlockBlob blockBlob = container.GetBlockBlobReference(filename.Substring(filename.LastIndexOf("\\") + 1));
+                            // 업데이트 파일 storage저장 
+                            using (var fileStream = System.IO.File.OpenRead(filename))
+                            {
+                                // blob명은 파일명과 같도록 생성
+                                CloudBlockBlob blockBlob = container.GetBlockBlobReference(filename.Substring(filename.LastIndexOf("\\") + 1));
 
-                            blockBlob.UploadFromStream(fileStream);
+                                blockBlob.UploadFromStream(fileStream);
 
-                            lstFiles.Add(filename.Substring(filename.LastIndexOf("\\") + 1));
-                            lstFileUrls.Add(blockBlob.StorageUri.PrimaryUri.ToString()); 
-                            
+                                if (!lstFiles.Exists(element => element == filename.Substring(filename.LastIndexOf("\\") + 1)))
+                                {
+                                    lstFiles.Add(filename.Substring(filename.LastIndexOf("\\") + 1));
+                                    lstFileUrls.Add(blockBlob.StorageUri.PrimaryUri.ToString());
+                                }
+                            }
                         }
-
                     }
-                            
+                    SetDirectorySecurity(urlTemp);
+                    
                 }
 
             }
@@ -430,6 +517,11 @@ namespace Dev.Sales
 
         }
 
+        private void ddlCAD_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+             
+        }
+
         /// <summary>
         /// 다중 파일 선택
         /// </summary>
@@ -437,6 +529,7 @@ namespace Dev.Sales
         private string[] GetFiles()
         {
             string[] fileNames;
+            string[] copiedNames = new string[9];
             OpenFileDialog openDialog = new OpenFileDialog();
 
             openDialog.Filter = "All files|*.*";
@@ -448,6 +541,7 @@ namespace Dev.Sales
             try
             {
                 DialogResult result = openDialog.ShowDialog();
+                string fName = "";
 
                 if (result == DialogResult.OK && openDialog.FileNames.Length <= 9)
                 {
@@ -456,11 +550,23 @@ namespace Dev.Sales
                     
                     for (int i = 0; i < openDialog.FileNames.Length; i++)
                     {
-                        FileOpen_ListView(openDialog.FileNames[i], listFiles);
+                        fName = Path.GetFileName(openDialog.FileNames[i].ToString());
+                        FileInfo file = new FileInfo(Path.GetFullPath(openDialog.FileNames[i].ToString()));
+                        if (file.Exists)
+                        {
+                            file.CopyTo(urlTemp + "\\" + fName, true);
+                            FileOpen_ListView(urlTemp + "\\" + fName, listFiles);
+                        }
                     }
-                   
-                    return fileNames = openDialog.FileNames;
-                    
+
+                    int j = 0;
+                    foreach (ListViewDataItem data in listFiles.Items)
+                    {
+                        copiedNames[j] = data.Value.ToString();
+                        j++;
+                    }
+                    return copiedNames;
+
                 }
                 else if (result == DialogResult.Cancel)
                 {
@@ -485,6 +591,43 @@ namespace Dev.Sales
                 return null;
             }
 
+        }
+
+        private bool DeleteFiles(string extract)
+        {
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(extract);
+
+                System.IO.FileInfo[] files = dir.GetFiles("*.*",
+                    SearchOption.AllDirectories);
+
+                foreach (System.IO.FileInfo file in files)
+                {
+                    file.Attributes = FileAttributes.Normal;
+                    file.Delete();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+        private void SetDirectorySecurity(string linePath)
+        {
+            DirectorySecurity dSecurity = Directory.GetAccessControl(linePath);
+            var sid = new SecurityIdentifier(WellKnownSidType.AuthenticatedUserSid, null);
+
+            dSecurity.AddAccessRule(new FileSystemAccessRule(sid,
+                                FileSystemRights.FullControl,
+                                InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit,
+                                PropagationFlags.None,
+                                AccessControlType.Allow));
+
+            Directory.SetAccessControl(linePath, dSecurity);
         }
 
         #endregion 

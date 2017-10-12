@@ -51,7 +51,7 @@ namespace Dev.Pattern
         private List<CodeContents> sizeName = new List<CodeContents>();
         private string _layoutfile = "/GVLayoutWorksheet.xml";
         private string _workOrderIdx;
-
+        private GridViewRowInfo _currentRow = null; 
         private List<string> lstFiles = new List<string>();
         private List<string> lstFileUrls = new List<string>();
 
@@ -88,10 +88,10 @@ namespace Dev.Pattern
             Config_DropDownList();      // 상단 DDL 생성 설정
             GV1_CreateColumn(_gv1);     // 그리드뷰 생성
             GV1_LayoutSetting(_gv1);    // 중앙 그리드뷰 설정 
-            LoadGVLayout();             // 그리드뷰 레이아웃 복구 
+            //LoadGVLayout();             // 그리드뷰 레이아웃 복구 
 
             //TD확인 
-            if (Options.UserInfo.DeptIdx == 12)
+            if (Options.UserInfo.DeptIdx == 12 || Options.UserInfo.DeptIdx == 11)
             {
                 toggTD.Value = true;
             }
@@ -109,11 +109,37 @@ namespace Dev.Pattern
             // 다른 폼으로부터 전달된 Work ID가 있을 경우, 해당 ID로 조회 
             if (!string.IsNullOrEmpty(_workOrderIdx))
             {
-                DataBinding_GV1(0, 0, 0, 0, "", "", _workOrderIdx);
+                DataBinding_GV1(0, 0, 0, 0, "", "", _workOrderIdx, 0,0,0,0,0);
             }
 
-            
+            if (Options.UserInfo.Idx == 18)             // 개발실 원단담당자일 경우, 저장버튼 활성화 
+                btnSaveFabricComment.Enabled = true; 
+            else
+                btnSaveFabricComment.Enabled = false;
+
+            // Period Time이 설정되어 있는 경우, 타이머 동작시켜 주기적으로 데이터 갱신한다 
+            if (CommonValues.PeriodTime > 0)
+            {
+                DataTable dt = Options.Data.CommonData.GetCodeValue(CommonValues.PeriodTime).Tables[0];
+                if (dt.Rows.Count>0)
+                {
+                    Timer searchTimer = new System.Windows.Forms.Timer();
+                    searchTimer.Interval = Convert.ToInt32(dt.Rows[0]["SubCode1"]);
+                    this.Text = this.Text + "-----Auto refreshing " + dt.Rows[0]["Contents"].ToString(); 
+                    searchTimer.Tick += new EventHandler(searchTimer_Tick);
+                    searchTimer.Start(); 
+                }
+                RefleshWithCondition(); 
+            }
         }
+
+        void searchTimer_Tick(object sender, EventArgs e)
+        {
+            // UI 쓰레드에서 실행. 
+            // UI 컨트롤 직접 엑세스 가능
+            RefleshWithCondition();
+        }
+
         /// <summary>
         /// 상단 검색을 위한 Dropdownlist 생성
         /// </summary>
@@ -175,23 +201,14 @@ namespace Dev.Pattern
             OrderIdx.FieldName = "OrderIdx";
             OrderIdx.IsVisible = false;
             gv.Columns.Add(OrderIdx);
-
-            GridViewTextBoxColumn WorksheetIdx = new GridViewTextBoxColumn();
-            WorksheetIdx.Name = "WorksheetIdx";
-            WorksheetIdx.FieldName = "WorksheetIdx";
-            WorksheetIdx.ReadOnly = true;
-            WorksheetIdx.Width = 100;
-            WorksheetIdx.TextAlignment = ContentAlignment.MiddleLeft;
-            WorksheetIdx.HeaderText = "Worksheet#";
-            gv.Columns.Add(WorksheetIdx);
-
+            
             GridViewTextBoxColumn DeptIdx = new GridViewTextBoxColumn();
             DeptIdx.Name = "DeptIdx";
             DeptIdx.FieldName = "DeptIdx";
             DeptIdx.ReadOnly = true;
-            DeptIdx.Width = 70;
+            DeptIdx.Width = 50;
             DeptIdx.TextAlignment = ContentAlignment.MiddleLeft;
-            DeptIdx.HeaderText = "Department";
+            DeptIdx.HeaderText = "Dept.";
             gv.Columns.Add(DeptIdx);
 
             GridViewTextBoxColumn Buyer = new GridViewTextBoxColumn();
@@ -203,20 +220,20 @@ namespace Dev.Pattern
             Buyer.HeaderText = "Buyer";
             gv.Columns.Add(Buyer);
 
-            GridViewTextBoxColumn Fileno = new GridViewTextBoxColumn();
+            GridViewHyperlinkColumn Fileno = new GridViewHyperlinkColumn();
             Fileno.Name = "Fileno";
             Fileno.FieldName = "Fileno";
             Fileno.ReadOnly = true;
-            Fileno.Width = 90;
-            Fileno.TextAlignment = ContentAlignment.MiddleLeft;
+            Fileno.Width = 80;
             Fileno.HeaderText = "File#";
+            Fileno.ReadOnly = true;
             gv.Columns.Add(Fileno);
-
+            
             GridViewTextBoxColumn Styleno = new GridViewTextBoxColumn();
             Styleno.Name = "Styleno";
             Styleno.FieldName = "Styleno";
             Styleno.ReadOnly = true;
-            Styleno.Width = 160;
+            Styleno.Width = 120;
             Styleno.TextAlignment = ContentAlignment.MiddleLeft;
             Styleno.HeaderText = "Style#";
             gv.Columns.Add(Styleno);
@@ -236,7 +253,7 @@ namespace Dev.Pattern
             Handler.Name = "Handler";
             Handler.FieldName = "Handler";
             Handler.ReadOnly = true;
-            Handler.Width = 130;
+            Handler.Width = 90;
             Handler.TextAlignment = ContentAlignment.MiddleLeft;
             Handler.HeaderText = "Order\nHandler";
             gv.Columns.Add(Handler);
@@ -262,7 +279,7 @@ namespace Dev.Pattern
             ConfirmUser.Name = "ConfirmUser";
             ConfirmUser.FieldName = "ConfirmUser";
             ConfirmUser.ReadOnly = true;
-            ConfirmUser.Width = 130;
+            ConfirmUser.Width = 90;
             ConfirmUser.TextAlignment = ContentAlignment.MiddleLeft;
             ConfirmUser.HeaderText = "Confirmed\n(Office)";
             gv.Columns.Add(ConfirmUser);
@@ -282,7 +299,7 @@ namespace Dev.Pattern
             ConfirmUserTD.Name = "ConfirmUserTD";
             ConfirmUserTD.FieldName = "ConfirmUserTD";
             ConfirmUserTD.ReadOnly = true;
-            ConfirmUserTD.Width = 130;
+            ConfirmUserTD.Width = 90;
             ConfirmUserTD.TextAlignment = ContentAlignment.MiddleLeft;
             ConfirmUserTD.HeaderText = "Confirmed\n(T/D)";
             gv.Columns.Add(ConfirmUserTD);
@@ -302,7 +319,7 @@ namespace Dev.Pattern
             ConfirmUserLast.Name = "ConfirmUserLast";
             ConfirmUserLast.FieldName = "ConfirmUserLast";
             ConfirmUserLast.ReadOnly = true;
-            ConfirmUserLast.Width = 130;
+            ConfirmUserLast.Width = 90;
             ConfirmUserLast.TextAlignment = ContentAlignment.MiddleLeft;
             ConfirmUserLast.HeaderText = "Confirmed\n(Admin)";
             gv.Columns.Add(ConfirmUserLast);
@@ -334,10 +351,19 @@ namespace Dev.Pattern
             Rejected.Name = "Rejected";
             Rejected.FieldName = "Rejected";
             Rejected.ReadOnly = true;
-            Rejected.Width = 130;
+            Rejected.Width = 90; 
             Rejected.TextAlignment = ContentAlignment.MiddleLeft;
             Rejected.HeaderText = "Rejected";
             gv.Columns.Add(Rejected);
+
+            GridViewTextBoxColumn WorksheetIdx = new GridViewTextBoxColumn();
+            WorksheetIdx.Name = "WorksheetIdx";
+            WorksheetIdx.FieldName = "WorksheetIdx";
+            WorksheetIdx.ReadOnly = true;
+            WorksheetIdx.Width = 100;
+            WorksheetIdx.TextAlignment = ContentAlignment.MiddleLeft;
+            WorksheetIdx.HeaderText = "Worksheet#";
+            gv.Columns.Add(WorksheetIdx);
 
             GridViewTextBoxColumn Comments = new GridViewTextBoxColumn();
             Comments.Name = "Comments";
@@ -350,7 +376,7 @@ namespace Dev.Pattern
             CommentTD.FieldName = "CommentTD";
             CommentTD.IsVisible = false;
             gv.Columns.Add(CommentTD);
-
+            
             #region Attachment columns 
 
             GridViewTextBoxColumn Attached1 = new GridViewTextBoxColumn();
@@ -463,6 +489,12 @@ namespace Dev.Pattern
 
             #endregion
 
+            GridViewTextBoxColumn CommentFabric = new GridViewTextBoxColumn();
+            CommentFabric.Name = "CommentFabric";
+            CommentFabric.FieldName = "CommentFabric";
+            CommentFabric.IsVisible = false;
+            gv.Columns.Add(CommentFabric);
+
             #endregion
         }
 
@@ -542,15 +574,21 @@ namespace Dev.Pattern
             try
             {
                 row = 0;
-                // 페이징 되어 있는 경우, 제일 첫페이지로 이동한후, 
-                if (CommonValues.enablePaging == true)
+                //// 페이징 되어 있는 경우, 제일 첫페이지로 이동한후, 
+                //if (CommonValues.enablePaging == true)
+                //{
+                //    gv.MasterTemplate.MoveToFirstPage();
+                //}
+                //gv.CurrentRow = gv.Rows[row];
+                //if (gv.CurrentRow != null)
+                //{
+                //    gv.CurrentRow.IsSelected = true;
+                //}
+                if (_currentRow != null)
                 {
-                    gv.MasterTemplate.MoveToFirstPage();
-                }
-                gv.CurrentRow = gv.Rows[row];
-                if (gv.CurrentRow != null)
-                {
+                    gv.CurrentRow = _currentRow;
                     gv.CurrentRow.IsSelected = true;
+                    gv.TableElement.ScrollToRow(_currentRow); 
                 }
 
             }
@@ -574,7 +612,8 @@ namespace Dev.Pattern
             foreach (DataRow row in _dt.Rows)
             {
                 // 관리부와 임원은 모든 부서에 접근가능
-                if (Options.UserInfo.CenterIdx != 1 || Options.UserInfo.DeptIdx == 5 || Options.UserInfo.DeptIdx == 6)
+                if (Options.UserInfo.CenterIdx != 1 || Options.UserInfo.DeptIdx == 5 || Options.UserInfo.DeptIdx == 6 || 
+                    Options.UserInfo.ExceptionGroup == 233)
                 {
                     deptName.Add(new DepartmentName(Convert.ToInt32(row["DeptIdx"]),
                                                 row["DeptName"].ToString(),
@@ -590,6 +629,8 @@ namespace Dev.Pattern
                                                 Convert.ToInt32(row["CostcenterIdx"])));
                     }
                 }
+
+                //if (UserInfo.ExceptionGroup == 233)     // 팀장급 이상일 경우, 
             }
 
             // 바이어
@@ -686,7 +727,7 @@ namespace Dev.Pattern
                 _searchKey = new Dictionary<CommonValues.KeyName, int>();
 
                 // 영업부인경우, 해당 부서만 조회할수 있도록 제한 
-                if (Options.UserInfo.ReportNo < 9)
+                if (Options.UserInfo.ReportNo < 9 && Options.UserInfo.ExceptionGroup != 233)
                     _searchKey.Add(CommonValues.KeyName.DeptIdx, Options.UserInfo.DeptIdx);
                 else
                     _searchKey.Add(CommonValues.KeyName.DeptIdx, Convert.ToInt32(ddlDept.SelectedValue));
@@ -698,8 +739,14 @@ namespace Dev.Pattern
                 //int OrderIdx, string WorksheetIdx, int Handler, int ConfirmUser, int WorkStatus
 
                 DataBinding_GV1(_searchKey[CommonValues.KeyName.DeptIdx], Convert.ToInt32(ddlCust.SelectedValue), 
-                                    Convert.ToInt32(ddlHandler.SelectedValue), Convert.ToInt32(ddlStatus.SelectedValue), 
-                                    txtFileno.Text.Trim(), txtStyle.Text.Trim(), txtWorksheet.Text.Trim());
+                                Convert.ToInt32(ddlHandler.SelectedValue), Convert.ToInt32(ddlStatus.SelectedValue), 
+                                txtFileno.Text.Trim(), txtStyle.Text.Trim(), txtWorksheet.Text.Trim(),
+                                WorksheetOpCheck1.Checked ? 1 : 0,
+                                WorksheetOpCheck2.Checked ? 1 : 0,
+                                WorksheetOpCheck3.Checked ? 1 : 0,
+                                WorksheetOpCheck4.Checked ? 1 : 0,
+                                WorksheetOpCheck5.Checked ? 1 : 0
+                                );
                 //}
             }
             catch (Exception ex)
@@ -716,22 +763,24 @@ namespace Dev.Pattern
         /// <param name="SearchKey">RefleshWithCondition()에서 검색조건(key, value) 확인</param>
         /// <param name="fileno">검색조건: 파일번호</param>
         /// <param name="styleno">검색조건: 스타일번호</param>
-        private void DataBinding_GV1(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx)
+        private void DataBinding_GV1(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx,
+                                    int OptionCheck1, int OptionCheck2, int OptionCheck3, int OptionCheck4, int OptionCheck5)
         {
             try
             {
                 _gv1.DataSource = null;
-
-
+                
                 if (toggTD.Value)
                 {
                     // TD일땐 해당 바이어만 
-                    _ds1 = Controller.Worksheet.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx, Options.UserInfo.Idx);
+                    _ds1 = Controller.Worksheet.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx, Options.UserInfo.Idx,
+                                    OptionCheck1, OptionCheck2, OptionCheck3, OptionCheck4, OptionCheck5);
                 }
                 else
                 {
                     // TD아니면 모든 바이어 
-                    _ds1 = Controller.Worksheet.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx);
+                    _ds1 = Controller.Worksheet.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx,
+                                    OptionCheck1, OptionCheck2, OptionCheck3, OptionCheck4, OptionCheck5);
                 }
                 
                 if (_ds1 != null)
@@ -740,7 +789,8 @@ namespace Dev.Pattern
                     __main__.lblRows.Text = _gv1.RowCount.ToString() + " Rows"; 
                     _gv1.EnablePaging = CommonValues.enablePaging;
                     _gv1.AllowSearchRow = CommonValues.enableSearchRow;
-                    
+                    //SetCurrentRow(_gv1, 0);
+
                 }
             }
             catch (Exception ex)
@@ -936,6 +986,8 @@ namespace Dev.Pattern
         {
             try
             {
+                _currentRow = Int.Members.GetCurrentRow(_gv1);
+
                 if (Int.Members.GetCurrentRow(_gv1, "Status") == 2
                 || Int.Members.GetCurrentRow(_gv1, "Status") == 3)
                 {
@@ -966,7 +1018,7 @@ namespace Dev.Pattern
                 btnReject.Visible = true;
                 btnSaveData.Enabled = true;
                 btnReject.Enabled = true;
-
+                
                 if (Options.UserInfo.DeptIdx == 7 && Options.UserInfo.IsLeader != 1) // 사무실
                 {
                     txtComments.Enabled = true;
@@ -991,6 +1043,7 @@ namespace Dev.Pattern
                         !string.IsNullOrEmpty(row.Cells["Rejected"].Value.ToString()))
                     {
                         btnSaveData.Enabled = false;
+                        btnReject.Enabled = false;
                     }
                 }
                 else if (Options.UserInfo.DeptIdx == 7 && Options.UserInfo.IsLeader == 1) // 개발실 총괄
@@ -1024,8 +1077,10 @@ namespace Dev.Pattern
 
                 txtComments.Text = "";
                 txtCommentTD.Text = "";
+                txtFabricComment.Text = "";
                 if (row.Cells["Comments"].Value != DBNull.Value) txtComments.Text = row.Cells["Comments"].Value.ToString();
                 if (row.Cells["CommentTD"].Value != DBNull.Value) txtCommentTD.Text = row.Cells["CommentTD"].Value.ToString();
+                if (row.Cells["CommentFabric"].Value != DBNull.Value) txtFabricComment.Text = row.Cells["CommentFabric"].Value.ToString();
 
                 // 캔슬또는 완료 건이면 승인, 취소 locking
                 if (Convert.ToInt32(row.Cells["Status"].Value)==3 || Convert.ToInt32(row.Cells["Status"].Value) == 4 ||
@@ -1038,8 +1093,17 @@ namespace Dev.Pattern
                     btnReject.Visible = false;
                 }
 
+                // 원단담당자 버튼 비활성화 
+                if (Options.UserInfo.Idx == 18)
+                {
+                    btnCancel.Visible = false;
+                    btnSaveData.Visible = false;
+                    btnReject.Visible = false;
+                }
+
                 SetDefaultFontPropertiesToEditor(txtComments);
                 SetDefaultFontPropertiesToEditor(txtCommentTD);
+                SetDefaultFontPropertiesToEditor(txtFabricComment);
             }
             catch(Exception ex)
             {
@@ -1092,7 +1156,8 @@ namespace Dev.Pattern
                     if (Options.UserInfo.DeptIdx == 12)     // TD
                     {
                         _bRtn = Data.WorksheetData.ConfirmTD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        Options.UserInfo.Idx, txtCommentTD.Text.Trim());
+                        Options.UserInfo.Idx, txtCommentTD.Text.Trim(),
+                        Convert.ToInt32(_gv1.Rows[row.Index].Cells["Status"].Value));
 
                         if (_bRtn)
                         {
@@ -1114,7 +1179,8 @@ namespace Dev.Pattern
                     else if (Options.UserInfo.DeptIdx == 7 && Options.UserInfo.IsLeader != 1)     // 사무실
                     {
                         _bRtn = Data.WorksheetData.ConfirmOffice(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        Options.UserInfo.Idx, txtCommentTD.Text.Trim());
+                        Options.UserInfo.Idx, txtCommentTD.Text.Trim(),
+                        Convert.ToInt32(_gv1.Rows[row.Index].Cells["Status"].Value));
 
                         if (_bRtn)
                         {
@@ -1185,10 +1251,23 @@ namespace Dev.Pattern
             // Tackpack 첨부파일 링크 
             try
             {
+                string container = "intsampleworksheet";
+                string processfname = @"C:\INT\Data\intsampleworksheet\"; 
+                string filename = ((System.Windows.Forms.LinkLabel)sender).Text.Trim();
+
                 CheckFolder(@"C:\INT\Data\intsampleworksheet");
-                Download_File("intsampleworksheet", ((System.Windows.Forms.LinkLabel)sender).Text);
+                CheckFolder(@"C:\INT\Data\intsampleworksheet\Development\temp");
+                
+                if (filename.ToString().PadLeft(16) == "Development/temp")
+                {
+                    container = "intsampleworksheet/Development/temp";
+                    processfname = @"C:\INT\Data\intsampleworksheet\Development\temp";
+                    filename = filename.Substring(15); 
+                }
+
+                Download_File(container, filename);
                 Process process = new Process();
-                process.StartInfo.FileName = @"C:\INT\Data\intsampleworksheet\" + ((System.Windows.Forms.LinkLabel)sender).Text.Trim();
+                process.StartInfo.FileName = processfname + filename;
                 process.Start();
             }
             catch(Exception ex) {  }
@@ -1429,7 +1508,7 @@ namespace Dev.Pattern
                     e.CellElement.ForeColor = Color.Black;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.DrawFill = true;
-                    e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+                    //e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
                 }
                 else if (e.CellElement.ColumnInfo.Name == "ConfirmUserTD" || e.CellElement.ColumnInfo.Name == "ConfirmDateTD")
                 {
@@ -1437,7 +1516,7 @@ namespace Dev.Pattern
                     e.CellElement.ForeColor = Color.Black;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.DrawFill = true;
-                    e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+                    //e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
                 }
                 else if (e.CellElement.ColumnInfo.Name == "RejectDate" || e.CellElement.ColumnInfo.Name == "Rejected")
                 {
@@ -1445,7 +1524,7 @@ namespace Dev.Pattern
                     e.CellElement.ForeColor = Color.Red;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.DrawFill = true;
-                    e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+                    //e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
                 }
                 else if (e.CellElement.ColumnInfo.Name == "RegDate" || e.CellElement.ColumnInfo.Name == "Handler")
                 {
@@ -1453,7 +1532,7 @@ namespace Dev.Pattern
                     e.CellElement.ForeColor = Color.Black;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.DrawFill = true;
-                    e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+                    //e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
                 }
                 else if (e.CellElement.ColumnInfo.Name == "ConfirmUserLast" || e.CellElement.ColumnInfo.Name == "ConfirmDateLast")
                 {
@@ -1461,7 +1540,7 @@ namespace Dev.Pattern
                     e.CellElement.ForeColor = Color.Black;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.DrawFill = true;
-                    e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
+                    //e.CellElement.TextAlignment = ContentAlignment.MiddleCenter;
                 }
                 else
                 {
@@ -1803,11 +1882,129 @@ namespace Dev.Pattern
                         e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
                     }
                 }
+                else      // 영업부
+                {
+                    if (!string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["ConfirmDateLast"].Value.ToString()))
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LightSkyBlue;
+                    }
+                    else if (!string.IsNullOrEmpty(e.RowElement.RowInfo.Cells["RejectDate"].Value.ToString()))
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+                    }
+                }
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine("RowFormatting: " + ex.Message.ToString());
+            }
+        }
+
+        private void gvWorksheet_HyperlinkOpened(object sender, HyperlinkOpenedEventArgs e)
+        {
+            try
+            {
+                /// 작업 수행하기 전에 해당 유저가 작업 권한 검사
+                /// 읽기: 0, 쓰기: 1, 삭제: 2
+                int _mode_ = 0;
+                if (Convert.ToInt16(__AUTHCODE__.Substring(_mode_, 1).Trim()) <= 0)
+                    CheckAuth.ShowMessage(_mode_);
+                else
+                {
+                    CommonController.Close_All_Children(this, "WorksheetMain");
+                    OrderMain form = new OrderMain(__main__, e.Hyperlink.ToString());
+                    form.Text = "Order Main"; // DateTime.Now.ToLongTimeString();
+                    //form.MdiParent = this; 
+                    form.WindowState = FormWindowState.Normal;
+                    form.Show();
+                    
+                }
+            }
+            catch(Exception ex)
+            {
+                RadMessageBox.Show(ex.Message); 
+            }
+        }
+
+        private void gvWorksheet_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
+        {
+            e.Cancel = true; 
+        }
+
+        private void btnSaveFabricComment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _gv1.EndEdit();
+                GridViewRowInfo row = Int.Members.GetCurrentRow(_gv1);
+
+                if (Options.UserInfo.Idx == 18)     // Sample Fabric Bryan
+                {
+                    _bRtn = Data.WorksheetData.SaveFabricComments(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
+                                                                txtFabricComment.Text.Trim());
+
+                    if (_bRtn)
+                    {
+                        __main__.lblRows.Text = "Guardado Comentario";
+                        RadMessageBox.Show("Guardado Comentario", "Guardar");
+                    }
+                }
+
+                // 오더핸들러 전화번호가 등록되어 있는 경우
+                DataRow dr = Dev.Options.Data.CommonData.GetPhoneNumberbyOrderID(Convert.ToInt32(_gv1.Rows[row.Index].Cells["OrderIdx"].Value.ToString()));
+                if (dr != null && !string.IsNullOrEmpty(dr["Phone"].ToString().Trim()))
+                {
+                    // 결과 메시지 송신
+                    Controller.TelegramMessageSender msgSender = new Controller.TelegramMessageSender();
+                    msgSender.sendMessage(dr["Phone"].ToString().Trim(), "[원단담당자 의견] " +
+                                "Buyer: " + _gv1.Rows[row.Index].Cells["Buyer"].Value.ToString() + ", " +
+                                "File: " + _gv1.Rows[row.Index].Cells["Fileno"].Value.ToString() + ", " +
+                                "Style: " + _gv1.Rows[row.Index].Cells["Styleno"].Value.ToString() + ", " +
+                                "Worksheet#: " + _gv1.Rows[row.Index].Cells["WorksheetIdx"].Value.ToString() + ", " +
+                                "Date: " + Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm") + ", " +
+                                "Commented by " + Options.UserInfo.Userfullname.ToString() + "\n" +
+                                 "Comment: " + txtFabricComment.Text.ToString()
+                                );
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("btnSaveFabricComment_Click: " + ex.Message.ToString());
+            }
+        }
+
+        private void txtFileno_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
+        }
+
+        private void txtStyle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
+        }
+
+        private void txtWorksheet_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
             }
         }
     }

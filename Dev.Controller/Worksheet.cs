@@ -213,17 +213,39 @@ namespace Dev.Controller
             return ds;
         }
 
-        public static DataSet Getlist(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx)
+        public static DataSet Getlist(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx,
+                                        int OptionCheck1, int OptionCheck2, int OptionCheck3, int OptionCheck4, int OptionCheck5)
         {
             DataSet ds = new DataSet();
-            ds = Data.WorksheetData.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx, 0);
+            ds = Data.WorksheetData.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx, 0,
+                                        OptionCheck1, OptionCheck2, OptionCheck3, OptionCheck4, OptionCheck5);
             return ds;
         }
 
-        public static DataSet Getlist(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx, int UserIdx)
+        public static DataSet Getlist(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx, int UserIdx,
+                int OptionCheck1, int OptionCheck2, int OptionCheck3, int OptionCheck4, int OptionCheck5)
         {
             DataSet ds = new DataSet();
-            ds = Data.WorksheetData.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx, UserIdx);
+            ds = Data.WorksheetData.Getlist(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx, UserIdx,
+                                        OptionCheck1, OptionCheck2, OptionCheck3, OptionCheck4, OptionCheck5);
+            return ds;
+        }
+
+        public static DataSet GetlistReport(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx,
+                                        int OptionCheck1, int OptionCheck2, int OptionCheck3, int OptionCheck4, int OptionCheck5)
+        {
+            DataSet ds = new DataSet();
+            ds = Data.WorksheetData.GetlistReport(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx, 0,
+                                        OptionCheck1, OptionCheck2, OptionCheck3, OptionCheck4, OptionCheck5);
+            return ds;
+        }
+
+        public static DataSet GetlistReport(int DeptIdx, int CustIdx, int Handler, int WorkStatus, string Fileno, string Styleno, string WorksheetIdx, int UserIdx,
+                int OptionCheck1, int OptionCheck2, int OptionCheck3, int OptionCheck4, int OptionCheck5)
+        {
+            DataSet ds = new DataSet();
+            ds = Data.WorksheetData.GetlistReport(DeptIdx, CustIdx, Handler, WorkStatus, Fileno, Styleno, WorksheetIdx, UserIdx,
+                                        OptionCheck1, OptionCheck2, OptionCheck3, OptionCheck4, OptionCheck5);
             return ds;
         }
 

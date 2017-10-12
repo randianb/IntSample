@@ -33,36 +33,36 @@
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnRequest = new Telerik.WinControls.UI.RadButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.lblStyle = new Telerik.WinControls.UI.RadLabel();
             this.lblFileno = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.beFiles = new Telerik.WinControls.UI.RadBrowseEditor();
-            this.listFiles = new Telerik.WinControls.UI.RadListView();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.listFiles = new Telerik.WinControls.UI.RadListView();
             this.txtComment = new Telerik.WinControls.UI.RadRichTextEditor();
+            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRequest)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblStyle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFileno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.beFiles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listFiles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtComment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,6 +80,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(856, 575);
             this.tableLayoutPanel2.TabIndex = 2;
+            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // tableLayoutPanel3
             // 
@@ -87,7 +88,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.89313F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.10687F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 173F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 402F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 405F));
             this.tableLayoutPanel3.Controls.Add(this.btnCancel, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnRequest, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -100,7 +101,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(277, 3);
+            this.btnCancel.Location = new System.Drawing.Point(274, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(167, 33);
             this.btnCancel.TabIndex = 16;
@@ -109,9 +110,9 @@
             // 
             // btnRequest
             // 
-            this.btnRequest.Location = new System.Drawing.Point(123, 3);
+            this.btnRequest.Location = new System.Drawing.Point(122, 3);
             this.btnRequest.Name = "btnRequest";
-            this.btnRequest.Size = new System.Drawing.Size(148, 33);
+            this.btnRequest.Size = new System.Drawing.Size(146, 33);
             this.btnRequest.TabIndex = 15;
             this.btnRequest.Text = "Send Worksheet";
             this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
@@ -146,14 +147,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(850, 524);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // radLabel7
-            // 
-            this.radLabel7.Location = new System.Drawing.Point(3, 329);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(60, 18);
-            this.radLabel7.TabIndex = 5;
-            this.radLabel7.Text = "Comments";
             // 
             // radLabel1
             // 
@@ -212,6 +205,14 @@
             this.radLabel3.TabIndex = 0;
             this.radLabel3.Text = "Worksheet Date";
             // 
+            // radLabel5
+            // 
+            this.radLabel5.Location = new System.Drawing.Point(119, 63);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(55, 18);
+            this.radLabel5.TabIndex = 1;
+            this.radLabel5.Text = "radLabel2";
+            // 
             // radLabel6
             // 
             this.radLabel6.Location = new System.Drawing.Point(3, 93);
@@ -227,8 +228,16 @@
             this.beFiles.Size = new System.Drawing.Size(340, 20);
             this.beFiles.TabIndex = 3;
             this.beFiles.Text = "radBrowseEditor1";
-            this.beFiles.ValueChanged += new System.EventHandler(this.beFiles_ValueChanged);
+            this.beFiles.ValueChanged += new System.EventHandler(this.beFiles_ValueChanged_1);
             this.beFiles.Click += new System.EventHandler(this.BtnOpenFile_Click);
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.Location = new System.Drawing.Point(3, 123);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(43, 18);
+            this.radLabel8.TabIndex = 0;
+            this.radLabel8.Text = "File List";
             // 
             // listFiles
             // 
@@ -238,22 +247,6 @@
             this.listFiles.Size = new System.Drawing.Size(728, 200);
             this.listFiles.TabIndex = 4;
             this.listFiles.Text = "radListView1";
-            // 
-            // radLabel5
-            // 
-            this.radLabel5.Location = new System.Drawing.Point(119, 63);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(55, 18);
-            this.radLabel5.TabIndex = 1;
-            this.radLabel5.Text = "radLabel2";
-            // 
-            // radLabel8
-            // 
-            this.radLabel8.Location = new System.Drawing.Point(3, 123);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(43, 18);
-            this.radLabel8.TabIndex = 0;
-            this.radLabel8.Text = "File List";
             // 
             // txtComment
             // 
@@ -265,6 +258,14 @@
             this.txtComment.SelectionFill = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(78)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.txtComment.Size = new System.Drawing.Size(728, 192);
             this.txtComment.TabIndex = 6;
+            // 
+            // radLabel7
+            // 
+            this.radLabel7.Location = new System.Drawing.Point(3, 329);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(60, 18);
+            this.radLabel7.TabIndex = 5;
+            this.radLabel7.Text = "Comments";
             // 
             // openFileDialog1
             // 
@@ -292,18 +293,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnRequest)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblStyle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFileno)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.beFiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listFiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtComment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

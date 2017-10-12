@@ -96,6 +96,7 @@ namespace Dev.Out
             lstWorkStatus.Add(new CodeContents(3, "Completed", ""));
             lstWorkStatus.Add(new CodeContents(4, "Canceled", ""));
 
+            txtFileno.Select();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -184,6 +185,38 @@ namespace Dev.Out
         private void radLabel13_DoubleClick(object sender, EventArgs e)
         {
             dtRcvdTo.Value = Convert.ToDateTime("2900-01-01");
+        }
+
+        private void txtFileno_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
+        }
+
+        private void txtStyle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
+        }
+
+        private void txtColor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
+        }
+
+        private void txtWorkorder_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
         }
     }
 }

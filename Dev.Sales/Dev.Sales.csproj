@@ -169,6 +169,18 @@
     <Compile Include="frmInspectingRequest.Designer.cs">
       <DependentUpon>frmInspectingRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrintSampleChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintSampleChart.designer.cs">
+      <DependentUpon>PrintSampleChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rpPrintSampleChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rpPrintSampleChart.designer.cs">
+      <DependentUpon>rpPrintSampleChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="SearchFabric.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,6 +285,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInspectingRequest.resx">
       <DependentUpon>frmInspectingRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintSampleChart.resx">
+      <DependentUpon>PrintSampleChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpPrintSampleChart.resx">
+      <DependentUpon>rpPrintSampleChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchFabric.resx">
       <DependentUpon>SearchFabric.cs</DependentUpon>

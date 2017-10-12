@@ -24,6 +24,7 @@ namespace SampleApp
     public partial class MainApp : InheritMDI 
     {
         private List<CustomerName> lstBuyer = new List<CustomerName>();
+        private List<CustomerName> lstPeriod = new List<CustomerName>();
         private DataTable _dt = null;
 
         public MainApp()
@@ -58,8 +59,22 @@ namespace SampleApp
             ddlNewOrderBuyer.DefaultItemsCountInDropDown = CommonValues.DDL_DefaultItemsCountInDropDown;
             ddlNewOrderBuyer.DropDownHeight = CommonValues.DDL_DropDownHeight;
 
+            // Period
+            _dt = CommonController.Getlist(CommonValues.KeyName.Period).Tables[0];
 
+            lstPeriod.Add(new CustomerName(0, "", 0)); 
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstPeriod.Add(new CustomerName(Convert.ToInt32(row["Idx"]),
+                                            row["Contents"].ToString(),
+                                            0));
+            }
 
+            ddlRefresh.DataSource = lstPeriod;
+            ddlRefresh.DisplayMember = "CustName";
+            ddlRefresh.ValueMember = "CustIdx";
+            ddlRefresh.DefaultItemsCountInDropDown = CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlRefresh.DropDownHeight = CommonValues.DDL_DropDownHeight;
         }
 
         private void bsOptions_Click(object sender, EventArgs e)
@@ -87,6 +102,7 @@ namespace SampleApp
                     enablePagingGV.Checked = cs.enablePaging;
                     enableSearchRow.Checked = cs.enableSearchRow;
                     ddlNewOrderBuyer.SelectedValue = cs.NewOrderBuyerIdx;
+                    ddlRefresh.SelectedValue = cs.PeriodTime;
                     SetHandler.Checked = cs.SetHandler;
 
                     OrderOpCheck1.Checked = cs.OrderOpCheck1;
@@ -110,8 +126,14 @@ namespace SampleApp
                     PatternOpCheck3.Checked = cs.PatternOpCheck3;
                     PatternOpCheck4.Checked = cs.PatternOpCheck4;
                     PatternOpCheck5.Checked = cs.PatternOpCheck5;
-                    PatternOpCheck6.Checked = cs.PatternOpCheck6;
 
+                    switch (cs.PatternOpCheck6)
+                    {
+                        case 0: PatternOpCheck6.CheckState = CheckState.Unchecked; break;
+                        case 1: PatternOpCheck6.CheckState = CheckState.Checked; break;
+                        case 2: PatternOpCheck6.CheckState = CheckState.Indeterminate; break;
+                    }
+                    
                 }
                 // 없으면 기본값으로 새로 만듬 
                 else
@@ -121,6 +143,7 @@ namespace SampleApp
                         enablePaging = true,
                         enableSearchRow = false,
                         NewOrderBuyerIdx = 0,
+                        PeriodTime = 0,
 
                         OrderOpCheck1 = true,
                         OrderOpCheck2 = true,
@@ -137,7 +160,7 @@ namespace SampleApp
                         PatternOpCheck3 = true,
                         PatternOpCheck4 = true,
                         PatternOpCheck5 = true,
-                        PatternOpCheck6 = true,
+                        PatternOpCheck6 = 2,
                     };
 
                     string confStr = JsonConvert.SerializeObject(cs, Formatting.Indented);
@@ -158,7 +181,7 @@ namespace SampleApp
                     PatternOpCheck3.Checked = true;
                     PatternOpCheck4.Checked = true;
                     PatternOpCheck5.Checked = true;
-                    PatternOpCheck6.Checked = true;
+                    PatternOpCheck6.CheckState = CheckState.Indeterminate;
                 }
             }
             catch (Exception ex)
@@ -272,6 +295,7 @@ namespace SampleApp
                 cs.enableSearchRow = enableSearchRow.Checked;
                 cs.SetHandler = SetHandler.Checked; 
                 cs.NewOrderBuyerIdx = Convert.ToInt32(ddlNewOrderBuyer.SelectedValue);
+                cs.PeriodTime = Convert.ToInt32(ddlRefresh.SelectedValue);
 
                 cs.OrderOpCheck1 = OrderOpCheck1.Checked;
                 cs.OrderOpCheck2 = OrderOpCheck2.Checked;
@@ -288,7 +312,7 @@ namespace SampleApp
                 cs.PatternOpCheck3 = PatternOpCheck3.Checked;
                 cs.PatternOpCheck4 = PatternOpCheck4.Checked;
                 cs.PatternOpCheck5 = PatternOpCheck5.Checked;
-                cs.PatternOpCheck6 = PatternOpCheck6.Checked;
+                cs.PatternOpCheck6 = Convert.ToInt32(PatternOpCheck6.CheckState);
 
                 string confStr = JsonConvert.SerializeObject(cs, Formatting.Indented);
                 System.IO.File.WriteAllText(path, confStr);
@@ -297,6 +321,7 @@ namespace SampleApp
                 CommonValues.enableSearchRow = enableSearchRow.Checked;
                 CommonValues.SetHandler = SetHandler.Checked; 
                 CommonValues.NewOrderBuyerIdx = Convert.ToInt32(ddlNewOrderBuyer.SelectedValue);
+                CommonValues.PeriodTime = Convert.ToInt32(ddlRefresh.SelectedValue);
 
                 CommonValues.OrderOpCheck1 = OrderOpCheck1.Checked;
                 CommonValues.OrderOpCheck2 = OrderOpCheck2.Checked;
@@ -313,7 +338,7 @@ namespace SampleApp
                 CommonValues.PatternOpCheck3 = PatternOpCheck3.Checked;
                 CommonValues.PatternOpCheck4 = PatternOpCheck4.Checked;
                 CommonValues.PatternOpCheck5 = PatternOpCheck5.Checked;
-                CommonValues.PatternOpCheck6 = PatternOpCheck6.Checked;
+                CommonValues.PatternOpCheck6 = Convert.ToInt32(PatternOpCheck6.CheckState);
             }
             catch (Exception ex)
             {
@@ -353,6 +378,7 @@ namespace SampleApp
                         CommonValues.enablePaging = cs.enablePaging;
                         CommonValues.enableSearchRow = cs.enableSearchRow;
                         CommonValues.NewOrderBuyerIdx = cs.NewOrderBuyerIdx;
+                        CommonValues.PeriodTime = cs.PeriodTime;
 
                         CommonValues.OrderOpCheck1 = cs.OrderOpCheck1;
                         CommonValues.OrderOpCheck2 = cs.OrderOpCheck2;
@@ -390,7 +416,7 @@ namespace SampleApp
             // Order
             lstMenu.Add(18, btnOrderOrder); lstMenu.Add(19, btnOrderWorkSheet); lstMenu.Add(20, btnOrderWorkOrder); lstMenu.Add(21, btnOrderWorkSchedule);
             lstMenu.Add(22, btnOrderReportTicketPrint); lstMenu.Add(25, btnOrderReportWorkSchedule); lstMenu.Add(23, btnOrderReportOrderStatus);
-            lstMenu.Add(24, btnOrderReportProductHistory); lstMenu.Add(106, btnOrderTrim);
+            lstMenu.Add(24, btnOrderReportProductHistory); lstMenu.Add(106, btnOrderTrim); lstMenu.Add(110, btnPrintSampleChart);
             
             // Yarn
             lstMenu.Add(54, btnYarnCodeMain); lstMenu.Add(53, btnYarnPurchase); lstMenu.Add(55, btnYarnManager); lstMenu.Add(56, btnYarnInbound);
@@ -510,7 +536,7 @@ namespace SampleApp
             if (!lstMenu[27].Enabled && !lstMenu[28].Enabled && !lstMenu[29].Enabled)
                 radRibbonBarGroup8.Visibility = ElementVisibility.Collapsed;     // Fabric > Fabric
 
-            if (!lstMenu[22].Enabled && !lstMenu[25].Enabled && !lstMenu[23].Enabled && !lstMenu[24].Enabled)
+            if (!lstMenu[22].Enabled && !lstMenu[25].Enabled && !lstMenu[23].Enabled && !lstMenu[24].Enabled && !lstMenu[110].Enabled)
                 radRibbonBarGroup5.Visibility = ElementVisibility.Collapsed;    // order > report 
             
             ribbonTab2.Focus();
@@ -608,8 +634,8 @@ namespace SampleApp
             {
                 if (Close_All_Children("OrderMain"))
                 {
-                    OrderMain ordfrm = null; 
-                    ordfrm = new OrderMain(this, "");
+                    Dev.Sales.OrderMain ordfrm = null; 
+                    ordfrm = new Dev.Sales.OrderMain(this, "");
                     ordfrm.Text = "OrderMain";
                     ordfrm.MdiParent = this;
                     ordfrm.Show();
@@ -666,8 +692,8 @@ namespace SampleApp
         {
             if (Close_All_Children("PatternMain"))
             {
-                PatternMain frm = null;
-                frm = new PatternMain(this, "");
+                Dev.Pattern.OrderMain frm = null;
+                frm = new Dev.Pattern.OrderMain(this, "");
                 frm.Text = "Pattern Main";
                 frm.MdiParent = this;
                 frm.Show();
@@ -1080,6 +1106,17 @@ namespace SampleApp
             catch (Exception ex)
             {
                 RadMessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void btnPrintSampleChart_Click(object sender, EventArgs e)
+        {
+            if (Close_Wnd_Children("PrintSampleChart"))
+            {
+                PrintSampleChart frm = new PrintSampleChart();
+                frm.Text = "Print Sample Chart";
+                frm.MdiParent = this;
+                frm.Show();
             }
         }
     }

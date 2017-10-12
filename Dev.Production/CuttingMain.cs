@@ -706,7 +706,6 @@ namespace Dev.Production
                             el.Value = Convert.ToDateTime(null);
                         }
                     }
-
                 }
             }
             catch(Exception ex)

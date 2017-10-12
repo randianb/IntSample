@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -86,7 +86,11 @@
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
             this.toolWindow2 = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.gvWorksheet = new Telerik.WinControls.UI.RadGridView();
-            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
+            this.toolTabStrip2 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
+            this.toolWindow3 = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtFabricComment = new Telerik.WinControls.UI.RadRichTextEditor();
+            this.btnSaveFabricComment = new Telerik.WinControls.UI.RadButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCust)).BeginInit();
@@ -143,8 +147,12 @@
             this.toolWindow2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvWorksheet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvWorksheet.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
-            this.toolTabStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip2)).BeginInit();
+            this.toolTabStrip2.SuspendLayout();
+            this.toolWindow3.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFabricComment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSaveFabricComment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -297,6 +305,7 @@
             this.txtFileno.Name = "txtFileno";
             this.txtFileno.Size = new System.Drawing.Size(101, 20);
             this.txtFileno.TabIndex = 8;
+            this.txtFileno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFileno_KeyDown);
             // 
             // radLabel6
             // 
@@ -320,6 +329,7 @@
             this.txtStyle.Name = "txtStyle";
             this.txtStyle.Size = new System.Drawing.Size(111, 20);
             this.txtStyle.TabIndex = 9;
+            this.txtStyle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtStyle_KeyDown);
             // 
             // toggTD
             // 
@@ -414,6 +424,7 @@
             this.txtWorksheet.Name = "txtWorksheet";
             this.txtWorksheet.Size = new System.Drawing.Size(109, 20);
             this.txtWorksheet.TabIndex = 10;
+            this.txtWorksheet.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtWorksheet_KeyDown);
             // 
             // btnSearch
             // 
@@ -475,8 +486,8 @@
             this.twColorSize.Location = new System.Drawing.Point(1, 22);
             this.twColorSize.Name = "twColorSize";
             this.twColorSize.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.twColorSize.Size = new System.Drawing.Size(377, 768);
-            this.twColorSize.Text = " ";
+            this.twColorSize.Size = new System.Drawing.Size(377, 744);
+            this.twColorSize.Text = "Attached Files / Comments";
             this.twColorSize.ToolCaptionButtons = Telerik.WinControls.UI.Docking.ToolStripCaptionButtons.AutoHide;
             // 
             // radScrollablePanel1
@@ -488,8 +499,8 @@
             // radScrollablePanel1.PanelContainer
             // 
             this.radScrollablePanel1.PanelContainer.Controls.Add(this.tableLayoutPanel2);
-            this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(375, 766);
-            this.radScrollablePanel1.Size = new System.Drawing.Size(377, 768);
+            this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(358, 742);
+            this.radScrollablePanel1.Size = new System.Drawing.Size(377, 744);
             this.radScrollablePanel1.TabIndex = 1;
             this.radScrollablePanel1.Text = "radScrollablePanel1";
             // 
@@ -511,7 +522,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(375, 745);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(358, 745);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // radGroupBox3
@@ -524,7 +535,7 @@
             this.radGroupBox3.HeaderText = "Attached Files";
             this.radGroupBox3.Location = new System.Drawing.Point(3, 3);
             this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(369, 233);
+            this.radGroupBox3.Size = new System.Drawing.Size(352, 233);
             this.radGroupBox3.TabIndex = 2;
             this.radGroupBox3.Text = "Attached Files";
             // 
@@ -555,7 +566,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(365, 213);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(348, 213);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // linkLabel4
@@ -564,7 +575,7 @@
             this.linkLabel4.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel4.Location = new System.Drawing.Point(3, 90);
             this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(359, 30);
+            this.linkLabel4.Size = new System.Drawing.Size(342, 30);
             this.linkLabel4.TabIndex = 9;
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = "linkLabel4";
@@ -577,7 +588,7 @@
             this.linkLabel3.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel3.Location = new System.Drawing.Point(3, 60);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(359, 30);
+            this.linkLabel3.Size = new System.Drawing.Size(342, 30);
             this.linkLabel3.TabIndex = 8;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "linkLabel3";
@@ -590,7 +601,7 @@
             this.linkLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel2.Location = new System.Drawing.Point(3, 30);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(359, 30);
+            this.linkLabel2.Size = new System.Drawing.Size(342, 30);
             this.linkLabel2.TabIndex = 7;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "linkLabel2";
@@ -604,7 +615,7 @@
             this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel1.Location = new System.Drawing.Point(3, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(359, 30);
+            this.linkLabel1.Size = new System.Drawing.Size(342, 30);
             this.linkLabel1.TabIndex = 11;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "linkLabel1";
@@ -616,7 +627,7 @@
             this.linkLabel5.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel5.Location = new System.Drawing.Point(3, 120);
             this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(351, 30);
+            this.linkLabel5.Size = new System.Drawing.Size(342, 30);
             this.linkLabel5.TabIndex = 12;
             this.linkLabel5.TabStop = true;
             this.linkLabel5.Text = "linkLabel5";
@@ -628,7 +639,7 @@
             this.linkLabel6.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel6.Location = new System.Drawing.Point(3, 150);
             this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(351, 30);
+            this.linkLabel6.Size = new System.Drawing.Size(342, 30);
             this.linkLabel6.TabIndex = 12;
             this.linkLabel6.TabStop = true;
             this.linkLabel6.Text = "linkLabel6";
@@ -640,7 +651,7 @@
             this.linkLabel7.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel7.Location = new System.Drawing.Point(3, 180);
             this.linkLabel7.Name = "linkLabel7";
-            this.linkLabel7.Size = new System.Drawing.Size(351, 30);
+            this.linkLabel7.Size = new System.Drawing.Size(342, 30);
             this.linkLabel7.TabIndex = 12;
             this.linkLabel7.TabStop = true;
             this.linkLabel7.Text = "linkLabel7";
@@ -652,7 +663,7 @@
             this.linkLabel8.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel8.Location = new System.Drawing.Point(3, 210);
             this.linkLabel8.Name = "linkLabel8";
-            this.linkLabel8.Size = new System.Drawing.Size(351, 30);
+            this.linkLabel8.Size = new System.Drawing.Size(342, 30);
             this.linkLabel8.TabIndex = 12;
             this.linkLabel8.TabStop = true;
             this.linkLabel8.Text = "linkLabel8";
@@ -664,7 +675,7 @@
             this.linkLabel9.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel9.Location = new System.Drawing.Point(3, 240);
             this.linkLabel9.Name = "linkLabel9";
-            this.linkLabel9.Size = new System.Drawing.Size(351, 30);
+            this.linkLabel9.Size = new System.Drawing.Size(342, 30);
             this.linkLabel9.TabIndex = 12;
             this.linkLabel9.TabStop = true;
             this.linkLabel9.Text = "linkLabel9";
@@ -682,16 +693,16 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(369, 46);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(352, 46);
             this.tableLayoutPanel4.TabIndex = 13;
             // 
             // btnCancel
             // 
             this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCancel.ForeColor = System.Drawing.Color.Red;
-            this.btnCancel.Location = new System.Drawing.Point(187, 3);
+            this.btnCancel.Location = new System.Drawing.Point(179, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(179, 40);
+            this.btnCancel.Size = new System.Drawing.Size(170, 40);
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Visible = false;
@@ -708,7 +719,7 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(361, 44);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(352, 44);
             this.tableLayoutPanel6.TabIndex = 13;
             // 
             // btnSaveData
@@ -716,7 +727,7 @@
             this.btnSaveData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSaveData.Location = new System.Drawing.Point(3, 3);
             this.btnSaveData.Name = "btnSaveData";
-            this.btnSaveData.Size = new System.Drawing.Size(174, 38);
+            this.btnSaveData.Size = new System.Drawing.Size(170, 38);
             this.btnSaveData.TabIndex = 5;
             this.btnSaveData.Text = "Confirm";
             this.btnSaveData.Visible = false;
@@ -726,9 +737,9 @@
             // 
             this.btnReject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReject.ForeColor = System.Drawing.Color.Red;
-            this.btnReject.Location = new System.Drawing.Point(183, 3);
+            this.btnReject.Location = new System.Drawing.Point(179, 3);
             this.btnReject.Name = "btnReject";
-            this.btnReject.Size = new System.Drawing.Size(175, 38);
+            this.btnReject.Size = new System.Drawing.Size(170, 38);
             this.btnReject.TabIndex = 5;
             this.btnReject.Text = "Reject";
             this.btnReject.Visible = false;
@@ -742,7 +753,7 @@
             this.txtComments.Location = new System.Drawing.Point(3, 242);
             this.txtComments.Name = "txtComments";
             this.txtComments.SelectionFill = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(78)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.txtComments.Size = new System.Drawing.Size(369, 181);
+            this.txtComments.Size = new System.Drawing.Size(352, 181);
             this.txtComments.TabIndex = 15;
             // 
             // txtCommentTD
@@ -753,7 +764,7 @@
             this.txtCommentTD.Location = new System.Drawing.Point(3, 481);
             this.txtCommentTD.Name = "txtCommentTD";
             this.txtCommentTD.SelectionFill = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(78)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.txtCommentTD.Size = new System.Drawing.Size(369, 116);
+            this.txtCommentTD.Size = new System.Drawing.Size(352, 116);
             this.txtCommentTD.TabIndex = 16;
             // 
             // toolTabStrip4
@@ -792,7 +803,7 @@
             // 
             this.radSplitContainer1.CausesValidation = false;
             this.radSplitContainer1.Controls.Add(this.documentContainer1);
-            this.radSplitContainer1.Controls.Add(this.toolTabStrip1);
+            this.radSplitContainer1.Controls.Add(this.toolTabStrip2);
             this.radSplitContainer1.IsCleanUpTarget = true;
             this.radSplitContainer1.Location = new System.Drawing.Point(5, 74);
             this.radSplitContainer1.Name = "radSplitContainer1";
@@ -851,6 +862,7 @@
             // 
             // gvWorksheet
             // 
+            this.gvWorksheet.AutoScroll = true;
             this.gvWorksheet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(240)))), ((int)(((byte)(249)))));
             this.gvWorksheet.Cursor = System.Windows.Forms.Cursors.Default;
             this.gvWorksheet.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -863,7 +875,7 @@
             // 
             this.gvWorksheet.MasterTemplate.AllowAddNewRow = false;
             this.gvWorksheet.MasterTemplate.AllowCellContextMenu = false;
-            this.gvWorksheet.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvWorksheet.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvWorksheet.Name = "gvWorksheet";
             this.gvWorksheet.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvWorksheet.ShowGroupPanel = false;
@@ -876,25 +888,76 @@
             this.gvWorksheet.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvWorksheet_CellEditorInitialized);
             this.gvWorksheet.SelectionChanged += new System.EventHandler(this.gvOrderActual_SelectionChanged);
             this.gvWorksheet.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvWorksheet_CellValueChanged);
+            this.gvWorksheet.ContextMenuOpening += new Telerik.WinControls.UI.ContextMenuOpeningEventHandler(this.gvWorksheet_ContextMenuOpening);
+            this.gvWorksheet.HyperlinkOpened += new Telerik.WinControls.UI.HyperlinkOpenedEventHandler(this.gvWorksheet_HyperlinkOpened);
             // 
-            // toolTabStrip1
+            // toolTabStrip2
             // 
-            this.toolTabStrip1.CanUpdateChildIndex = true;
-            this.toolTabStrip1.CausesValidation = false;
-            this.toolTabStrip1.Controls.Add(this.twColorSize);
-            this.toolTabStrip1.Location = new System.Drawing.Point(1182, 0);
-            this.toolTabStrip1.Name = "toolTabStrip1";
+            this.toolTabStrip2.CanUpdateChildIndex = true;
+            this.toolTabStrip2.CausesValidation = false;
+            this.toolTabStrip2.Controls.Add(this.twColorSize);
+            this.toolTabStrip2.Controls.Add(this.toolWindow3);
+            this.toolTabStrip2.Location = new System.Drawing.Point(1182, 0);
+            this.toolTabStrip2.Name = "toolTabStrip2";
             // 
             // 
             // 
-            this.toolTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.toolTabStrip1.SelectedIndex = 0;
-            this.toolTabStrip1.Size = new System.Drawing.Size(379, 792);
-            this.toolTabStrip1.SizeInfo.AbsoluteSize = new System.Drawing.Size(379, 233);
-            this.toolTabStrip1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1539188F, 0F);
-            this.toolTabStrip1.SizeInfo.SplitterCorrection = new System.Drawing.Size(342, 51);
-            this.toolTabStrip1.TabIndex = 6;
-            this.toolTabStrip1.TabStop = false;
+            this.toolTabStrip2.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.toolTabStrip2.SelectedIndex = 0;
+            this.toolTabStrip2.Size = new System.Drawing.Size(379, 792);
+            this.toolTabStrip2.SizeInfo.AbsoluteSize = new System.Drawing.Size(379, 233);
+            this.toolTabStrip2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1539188F, 0F);
+            this.toolTabStrip2.SizeInfo.SplitterCorrection = new System.Drawing.Size(342, 51);
+            this.toolTabStrip2.TabIndex = 7;
+            this.toolTabStrip2.TabStop = false;
+            // 
+            // toolWindow3
+            // 
+            this.toolWindow3.Caption = null;
+            this.toolWindow3.Controls.Add(this.tableLayoutPanel9);
+            this.toolWindow3.Font = new System.Drawing.Font("Gulim", 9F);
+            this.toolWindow3.Location = new System.Drawing.Point(1, 24);
+            this.toolWindow3.Name = "toolWindow3";
+            this.toolWindow3.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.toolWindow3.Size = new System.Drawing.Size(377, 742);
+            this.toolWindow3.Text = "Fabric Comments";
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 1;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Controls.Add(this.txtFabricComment, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.btnSaveFabricComment, 0, 1);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 3;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(377, 742);
+            this.tableLayoutPanel9.TabIndex = 0;
+            // 
+            // txtFabricComment
+            // 
+            this.txtFabricComment.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(189)))), ((int)(((byte)(232)))));
+            this.txtFabricComment.CaretWidth = float.NaN;
+            this.txtFabricComment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtFabricComment.Location = new System.Drawing.Point(3, 3);
+            this.txtFabricComment.Name = "txtFabricComment";
+            this.txtFabricComment.SelectionFill = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(78)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
+            this.txtFabricComment.Size = new System.Drawing.Size(371, 294);
+            this.txtFabricComment.TabIndex = 0;
+            // 
+            // btnSaveFabricComment
+            // 
+            this.btnSaveFabricComment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSaveFabricComment.Location = new System.Drawing.Point(3, 303);
+            this.btnSaveFabricComment.Name = "btnSaveFabricComment";
+            this.btnSaveFabricComment.Size = new System.Drawing.Size(371, 34);
+            this.btnSaveFabricComment.TabIndex = 1;
+            this.btnSaveFabricComment.Text = "Save";
+            this.btnSaveFabricComment.Click += new System.EventHandler(this.btnSaveFabricComment_Click);
             // 
             // WorksheetMain
             // 
@@ -969,8 +1032,12 @@
             this.toolWindow2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvWorksheet.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvWorksheet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
-            this.toolTabStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip2)).EndInit();
+            this.toolTabStrip2.ResumeLayout(false);
+            this.toolWindow3.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtFabricComment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSaveFabricComment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1011,7 +1078,6 @@
         private Data.DataSetSizeGroup dataSetSizeGroup;
         private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip4;
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
-        private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
@@ -1046,5 +1112,10 @@
         private Telerik.WinControls.UI.RadCheckBox WorksheetOpCheck4;
         private Telerik.WinControls.UI.RadCheckBox WorksheetOpCheck3;
         private Telerik.WinControls.UI.RadLabel radLabel9;
+        private Telerik.WinControls.UI.Docking.ToolWindow toolWindow3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private Telerik.WinControls.UI.RadRichTextEditor txtFabricComment;
+        private Telerik.WinControls.UI.RadButton btnSaveFabricComment;
+        private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip2;
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.gvMain = new Telerik.WinControls.UI.RadGridView();
@@ -99,7 +99,7 @@
             this.gvMain.MasterTemplate.AutoGenerateColumns = false;
             this.gvMain.MasterTemplate.MultiSelect = true;
             this.gvMain.MasterTemplate.PageSize = 50;
-            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvMain.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvMain.Name = "gvMain";
             this.gvMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvMain.ShowGroupPanel = false;
@@ -138,6 +138,7 @@
             this.txtFabric.Name = "txtFabric";
             this.txtFabric.Size = new System.Drawing.Size(209, 20);
             this.txtFabric.TabIndex = 11;
+            this.txtFabric.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtStyle_KeyDown);
             // 
             // btnSearch
             // 

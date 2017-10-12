@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -137,21 +137,24 @@
             this.tableLayoutPanel5.Controls.Add(this.radLabel6, 5, 0);
             this.tableLayoutPanel5.Controls.Add(this.txtStyle, 5, 1);
             this.tableLayoutPanel5.Controls.Add(this.btnSearch, 6, 1);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(5, 3);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1280, 55);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1559, 61);
             this.tableLayoutPanel5.TabIndex = 14;
             // 
             // ddlCust
             // 
             this.ddlCust.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ddlCust.AutoSize = false;
+            this.ddlCust.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlCust.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlCust.Location = new System.Drawing.Point(136, 23);
             this.ddlCust.Name = "ddlCust";
-            this.ddlCust.Size = new System.Drawing.Size(127, 20);
+            this.ddlCust.Size = new System.Drawing.Size(155, 35);
             this.ddlCust.TabIndex = 4;
             // 
             // radLabel2
@@ -172,9 +175,11 @@
             // 
             // ddlDept
             // 
+            this.ddlDept.AutoSize = false;
+            this.ddlDept.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlDept.Location = new System.Drawing.Point(3, 23);
             this.ddlDept.Name = "ddlDept";
-            this.ddlDept.Size = new System.Drawing.Size(127, 20);
+            this.ddlDept.Size = new System.Drawing.Size(127, 35);
             this.ddlDept.TabIndex = 11;
             // 
             // radLabel1
@@ -188,10 +193,12 @@
             // ddlHandler
             // 
             this.ddlHandler.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ddlHandler.AutoSize = false;
+            this.ddlHandler.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlHandler.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlHandler.Location = new System.Drawing.Point(297, 23);
             this.ddlHandler.Name = "ddlHandler";
-            this.ddlHandler.Size = new System.Drawing.Size(114, 20);
+            this.ddlHandler.Size = new System.Drawing.Size(128, 35);
             this.ddlHandler.TabIndex = 5;
             // 
             // radLabel3
@@ -205,10 +212,12 @@
             // ddlStatus
             // 
             this.ddlStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ddlStatus.AutoSize = false;
+            this.ddlStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlStatus.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlStatus.Location = new System.Drawing.Point(431, 23);
             this.ddlStatus.Name = "ddlStatus";
-            this.ddlStatus.Size = new System.Drawing.Size(114, 20);
+            this.ddlStatus.Size = new System.Drawing.Size(114, 35);
             this.ddlStatus.TabIndex = 6;
             // 
             // radLabel5
@@ -221,10 +230,15 @@
             // 
             // txtFileno
             // 
+            this.txtFileno.AutoSize = false;
+            this.txtFileno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtFileno.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtFileno.Location = new System.Drawing.Point(551, 23);
             this.txtFileno.Name = "txtFileno";
-            this.txtFileno.Size = new System.Drawing.Size(118, 20);
+            this.txtFileno.NullText = "S";
+            this.txtFileno.Size = new System.Drawing.Size(118, 35);
             this.txtFileno.TabIndex = 8;
+            this.txtFileno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFileno_KeyDown);
             // 
             // radLabel6
             // 
@@ -236,16 +250,21 @@
             // 
             // txtStyle
             // 
+            this.txtStyle.AutoSize = false;
+            this.txtStyle.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtStyle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtStyle.Location = new System.Drawing.Point(675, 23);
             this.txtStyle.Name = "txtStyle";
-            this.txtStyle.Size = new System.Drawing.Size(120, 20);
+            this.txtStyle.Size = new System.Drawing.Size(133, 35);
             this.txtStyle.TabIndex = 9;
+            this.txtStyle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtStyle_KeyDown);
             // 
             // btnSearch
             // 
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSearch.Location = new System.Drawing.Point(814, 23);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(85, 24);
+            this.btnSearch.Size = new System.Drawing.Size(120, 35);
             this.btnSearch.TabIndex = 7;
             this.btnSearch.Text = "Search";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -313,7 +332,7 @@
             this.gvWorksheet.MasterTemplate.AllowCellContextMenu = false;
             this.gvWorksheet.MasterTemplate.SelectionMode = Telerik.WinControls.UI.GridViewSelectionMode.CellSelect;
             this.gvWorksheet.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvWorksheet.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvWorksheet.MasterTemplate.ViewDefinition = tableViewDefinition5;
             this.gvWorksheet.Name = "gvWorksheet";
             this.gvWorksheet.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvWorksheet.ShowGroupPanel = false;

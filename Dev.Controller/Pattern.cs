@@ -412,20 +412,24 @@ namespace Dev.Controller
             return row;
         }
         
-        public static DataSet Getlist(int KeyCount, Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string style)
+        public static DataSet Getlist(int KeyCount, Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string style,
+                            int OptionCheck1, int OptionCheck2, int OptionCheck3, int OptionCheck4, int OptionCheck5, int OptionCheck6)
         {
             DataSet ds = new DataSet();
             
-            ds = Data.PatternData.Getlist(SearchKey, fileno, style); 
+            ds = Data.PatternData.Getlist(SearchKey, fileno, style,
+                                    OptionCheck1, OptionCheck2, OptionCheck3, OptionCheck4, OptionCheck5, OptionCheck6); 
                         
             return ds;
         }
 
-        public static DataSet Getlist(int KeyCount, Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string style, int UserIdx)
+        public static DataSet Getlist(int KeyCount, Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string style, int UserIdx,
+                            int OptionCheck1, int OptionCheck2, int OptionCheck3, int OptionCheck4, int OptionCheck5, int OptionCheck6)
         {
             DataSet ds = new DataSet();
 
-            ds = Data.PatternData.Getlist(SearchKey, fileno, style, UserIdx);
+            ds = Data.PatternData.Getlist(SearchKey, fileno, style, UserIdx,
+                                    OptionCheck1, OptionCheck2, OptionCheck3, OptionCheck4, OptionCheck5, OptionCheck6);
 
             return ds;
         }

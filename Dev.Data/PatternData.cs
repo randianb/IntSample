@@ -613,6 +613,107 @@ namespace Dev.Data
         }
 
         /// <summary>
+        /// pattern confirm by Admin
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <param name="confirmed"></param>
+        /// <param name="OrderIdx"></param>
+        /// <param name="WorkOrderIdx"></param>
+        /// <returns></returns>
+        public static bool ConfirmAdmin(int idx, string CommentAdmin, int OrderIdx, string WorkOrderIdx)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"update pattern set ConfirmedAdminDate=dbo.GetLocalDate(default), CommentAdmin=@CommentAdmin where idx = @Idx 
+                                     
+                                     update workorder set status=12 where OrderIdx = @OrderIdx and WorkOrderIdx = @WorkOrderIdx
+                                    ";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = idx;
+
+                _cmd.Parameters.Add("@CommentAdmin", SqlDbType.NText);
+                _cmd.Parameters["@CommentAdmin"].Value = CommentAdmin;
+
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
+        /// <summary>
+        /// pattern reject by Admin
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <param name="Rejected"></param>
+        /// <param name="OrderIdx"></param>
+        /// <param name="WorkOrderIdx"></param>
+        /// <returns></returns>
+        public static bool RejectAdmin(int idx, int Rejected, int OrderIdx, string WorkOrderIdx, string CommentAdmin)
+        {
+            try
+            {
+                _cmd = new SqlCommand();
+                _conn = new SqlConnection(_strConn);
+                _conn.Open();
+
+                _cmd.CommandText = @"update pattern set RejectedDate=dbo.GetLocalDate(default), Rejected = @Rejected, CommentAdmin = @CommentAdmin where idx = @Idx 
+                                     
+                                     update workorder set status=13 where OrderIdx = @OrderIdx and WorkOrderIdx = @WorkOrderIdx
+                                    ";
+                _cmd.CommandType = CommandType.Text;
+                _cmd.Connection = _conn;
+
+                _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
+                _cmd.Parameters["@Idx"].Value = idx;
+
+                _cmd.Parameters.Add("@Rejected", SqlDbType.Int, 4);
+                _cmd.Parameters["@Rejected"].Value = Rejected;
+                
+                _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
+                _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
+
+                _cmd.Parameters.Add("@CommentAdmin", SqlDbType.NText);
+                _cmd.Parameters["@CommentAdmin"].Value = CommentAdmin;
+
+                _cmd.Parameters.Add("@WorkOrderIdx", SqlDbType.NVarChar, 14);
+                _cmd.Parameters["@WorkOrderIdx"].Value = WorkOrderIdx;
+
+                _rtn = _cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            if (_rtn > 0) return true;
+            else return false;
+        }
+
+        /// <summary>
         /// pattern view by team 
         /// </summary>
         /// <param name="idx"></param>
@@ -738,7 +839,8 @@ namespace Dev.Data
         //    }
         //}
         
-        public static DataSet Getlist(Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string style)
+        public static DataSet Getlist(Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string style,
+                            int OptionCheck1, int OptionCheck2, int OptionCheck3, int OptionCheck4, int OptionCheck5, int OptionCheck6)
         {
             try
             {
@@ -748,7 +850,7 @@ namespace Dev.Data
                 _ds = new DataSet();
                 _adapter = new SqlDataAdapter();
 
-                _cmd.CommandText = "up_Pattern_List2";
+                _cmd.CommandText = "up_Pattern_List6";
                 _cmd.CommandType = CommandType.StoredProcedure;
                 _cmd.Connection = _conn;
 
@@ -770,6 +872,23 @@ namespace Dev.Data
                 _cmd.Parameters.Add("@Styleno", SqlDbType.NVarChar, 40);
                 _cmd.Parameters["@Styleno"].Value = style;
 
+                _cmd.Parameters.Add("@OptionCheck1", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck1"].Value = OptionCheck1;
+
+                _cmd.Parameters.Add("@OptionCheck2", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck2"].Value = OptionCheck2;
+
+                _cmd.Parameters.Add("@OptionCheck3", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck3"].Value = OptionCheck3;
+
+                _cmd.Parameters.Add("@OptionCheck4", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck4"].Value = OptionCheck4;
+
+                _cmd.Parameters.Add("@OptionCheck5", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck5"].Value = OptionCheck5;
+
+                _cmd.Parameters.Add("@OptionCheck6", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck6"].Value = OptionCheck6;
 
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);
@@ -795,7 +914,8 @@ namespace Dev.Data
             }
         }
 
-        public static DataSet Getlist(Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string style, int UserIdx)
+        public static DataSet Getlist(Dictionary<CommonValues.KeyName, int> SearchKey, string fileno, string style, int UserIdx,
+                            int OptionCheck1, int OptionCheck2, int OptionCheck3, int OptionCheck4, int OptionCheck5, int OptionCheck6)
         {
             try
             {
@@ -805,7 +925,7 @@ namespace Dev.Data
                 _ds = new DataSet();
                 _adapter = new SqlDataAdapter();
 
-                _cmd.CommandText = "up_Pattern_List4";
+                _cmd.CommandText = "up_Pattern_List5";
                 _cmd.CommandType = CommandType.StoredProcedure;
                 _cmd.Connection = _conn;
 
@@ -826,6 +946,24 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@UserIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@UserIdx"].Value = UserIdx;
+
+                _cmd.Parameters.Add("@OptionCheck1", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck1"].Value = OptionCheck1;
+
+                _cmd.Parameters.Add("@OptionCheck2", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck2"].Value = OptionCheck2;
+
+                _cmd.Parameters.Add("@OptionCheck3", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck3"].Value = OptionCheck3;
+
+                _cmd.Parameters.Add("@OptionCheck4", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck4"].Value = OptionCheck4;
+
+                _cmd.Parameters.Add("@OptionCheck5", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck5"].Value = OptionCheck5;
+
+                _cmd.Parameters.Add("@OptionCheck6", SqlDbType.Int, 4);
+                _cmd.Parameters["@OptionCheck6"].Value = OptionCheck6;
 
                 _adapter.SelectCommand = _cmd;
                 _adapter.Fill(_ds);

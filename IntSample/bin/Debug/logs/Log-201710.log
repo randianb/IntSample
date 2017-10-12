@@ -1,0 +1,65 @@
+[2017-10-10 00:27:38:788] : [WorkSheet] Start Request Transaction (2017-10-10 오전 12:27:38)
+[2017-10-10 00:27:38:890] : [Success] Create Code: S1767016-0-S01, File#: S1767016-0
+[2017-10-10 00:27:38:893] : [Progress] File list Count: 1
+[2017-10-10 00:27:39:003] : [Success] Save to Database
+[2017-10-10 00:27:40:910] : [End] Request Worksheet Transaction (2017-10-10 오전 12:27:40)
+[2017-10-10 00:29:08:263] : [Pattern] Start Request Transaction (2017-10-10 오전 12:29:08)
+[2017-10-10 00:29:08:356] : [Success] Create Code: S1767016-0-P01, File#: S1767016-0
+[2017-10-10 00:29:08:359] : [Success] Validation Items
+[2017-10-10 00:29:08:362] : [Progress] File list Count: 1
+[2017-10-10 00:29:08:462] : [Success] Save to Database
+[2017-10-10 00:29:09:702] : [End] Request Pattern Transaction (2017-10-10 오전 12:29:09)
+[2017-10-10 16:00:26:487] : [WorkSheet] OpenFile (D:\git\IntSample\IntSample\bin\Debug/temp/DM, MOTHERHOOD, MH49SM18008D KEY-HOLE CROP LEGGING_2ND DEV.FIT SAMPLE_171010.xlsx2017-10-10 오후 4:00:26)
+[2017-10-10 16:02:58:765] : [WorkSheet] OpenFile (D:\git\IntSample\IntSample\bin\Debug\temp\DM, MOTHERHOOD, MH49SM18008D KEY-HOLE CROP LEGGING_2ND DEV.FIT SAMPLE_171010.xlsx2017-10-10 오후 4:02:58)
+[2017-10-10 16:04:31:878] : [WorkSheet] OpenFile (2017-10-10 오후 4:04:31)
+[2017-10-10 16:04:34:807] : [WorkSheet] OpenFile (2017-10-10 오후 4:04:34)
+[2017-10-10 16:04:36:379] : [WorkSheet] OpenFile (2017-10-10 오후 4:04:36)
+[2017-10-10 16:04:36:672] : [WorkSheet] OpenFile (2017-10-10 오후 4:04:36)
+[2017-10-10 16:04:36:971] : [WorkSheet] OpenFile (2017-10-10 오후 4:04:36)
+[2017-10-10 16:04:38:406] : [WorkSheet] OpenFile (2017-10-10 오후 4:04:38)
+[2017-10-10 16:04:39:565] : [WorkSheet] OpenFile (2017-10-10 오후 4:04:39)
+[2017-10-10 16:04:40:924] : [WorkSheet] OpenFile (2017-10-10 오후 4:04:40)
+[2017-10-10 16:06:16:844] : [WorkSheet] OpenFile (D:\git\IntSample\IntSample\bin\Debug\temp\DM, MOTHERHOOD, MH49SM18008D KEY-HOLE CROP LEGGING_2ND DEV.FIT SAMPLE_171010.xlsx2017-10-10 오후 4:06:16)
+[2017-10-10 16:06:18:969] : [WorkSheet] OpenFile (D:\git\IntSample\IntSample\bin\Debug\temp\MH49SM18008D PRINTED KEY-HOLE CROP LEGGING 1ST DEV.FIT REJECTED COMMENTS.PDF2017-10-10 오후 4:06:18)
+[2017-10-10 16:06:20:282] : [WorkSheet] OpenFile (D:\git\IntSample\IntSample\bin\Debug\temp\MH49SM18008D PRINTED KEY-HOLE CROP LEGGING 1ST DEV.FIT REJECTED FULL TP.PDF2017-10-10 오후 4:06:20)
+[2017-10-10 16:06:22:469] : [WorkSheet] OpenFile (2017-10-10 오후 4:06:22)
+[2017-10-10 16:06:22:469] : [WorkSheet] OpenFile (2017-10-10 오후 4:06:22)
+[2017-10-10 16:06:22:469] : [WorkSheet] OpenFile (2017-10-10 오후 4:06:22)
+[2017-10-10 16:06:22:469] : [WorkSheet] OpenFile (2017-10-10 오후 4:06:22)
+[2017-10-10 16:06:22:485] : [WorkSheet] OpenFile (2017-10-10 오후 4:06:22)
+[2017-10-10 16:06:22:485] : [WorkSheet] OpenFile (2017-10-10 오후 4:06:22)
+[2017-10-10 16:06:31:766] : [WorkSheet] Start Request Transaction (2017-10-10 오후 4:06:31)
+[2017-10-10 16:06:31:909] : [Success] Create Code: S17A2068-0-S03, File#: S17A2068-0
+[2017-10-10 16:06:31:909] : [Progress] File list Count: 3
+[2017-10-10 16:06:32:018] : [Success] Save to Database
+[2017-10-10 16:06:33:008] : [End] Request Worksheet Transaction (2017-10-10 오후 4:06:33)
+[2017-10-10 17:07:56:517] : [WorkSheet] OpenFile (D:\git\IntSample\IntSample\bin\Debug\temp\MH49SM18008D PRINTED KEY-HOLE CROP LEGGING 1ST DEV.FIT REJECTED COMMENTS.PDF2017-10-10 오후 5:07:56)
+[2017-10-10 17:07:57:539] : [WorkSheet] OpenFile (D:\git\IntSample\IntSample\bin\Debug\temp\MH49SM18008D PRINTED KEY-HOLE CROP LEGGING 1ST DEV.FIT REJECTED FULL TP.PDF2017-10-10 오후 5:07:57)
+[2017-10-10 17:07:58:499] : [WorkSheet] OpenFile (2017-10-10 오후 5:07:58)
+[2017-10-10 17:07:58:502] : [WorkSheet] OpenFile (2017-10-10 오후 5:07:58)
+[2017-10-10 17:07:58:505] : [WorkSheet] OpenFile (2017-10-10 오후 5:07:58)
+[2017-10-10 17:07:58:508] : [WorkSheet] OpenFile (2017-10-10 오후 5:07:58)
+[2017-10-10 17:07:58:511] : [WorkSheet] OpenFile (2017-10-10 오후 5:07:58)
+[2017-10-10 17:07:58:515] : [WorkSheet] OpenFile (2017-10-10 오후 5:07:58)
+[2017-10-10 17:07:58:518] : [WorkSheet] OpenFile (2017-10-10 오후 5:07:58)
+[2017-10-10 17:08:02:775] : [WorkSheet] OpenFile (D:\git\IntSample\IntSample\bin\Debug\temp\MH49SM18008D PRINTED KEY-HOLE CROP LEGGING 1ST DEV.FIT REJECTED COMMENTS.PDF2017-10-10 오후 5:08:02)
+[2017-10-10 17:08:03:143] : [WorkSheet] OpenFile (D:\git\IntSample\IntSample\bin\Debug\temp\MH49SM18008D PRINTED KEY-HOLE CROP LEGGING 1ST DEV.FIT REJECTED FULL TP.PDF2017-10-10 오후 5:08:03)
+[2017-10-10 17:08:04:154] : [WorkSheet] OpenFile (D:\git\IntSample\IntSample\bin\Debug\temp\DM, MOTHERHOOD, MH49SM18008D KEY-HOLE CROP LEGGING_2ND DEV.FIT SAMPLE_171010.xlsx2017-10-10 오후 5:08:04)
+[2017-10-10 17:08:05:642] : [WorkSheet] OpenFile (2017-10-10 오후 5:08:05)
+[2017-10-10 17:08:05:645] : [WorkSheet] OpenFile (2017-10-10 오후 5:08:05)
+[2017-10-10 17:08:05:649] : [WorkSheet] OpenFile (2017-10-10 오후 5:08:05)
+[2017-10-10 17:08:05:652] : [WorkSheet] OpenFile (2017-10-10 오후 5:08:05)
+[2017-10-10 17:08:05:655] : [WorkSheet] OpenFile (2017-10-10 오후 5:08:05)
+[2017-10-10 17:08:05:658] : [WorkSheet] OpenFile (2017-10-10 오후 5:08:05)
+[2017-10-10 17:08:35:423] : [WorkSheet] Start Request Transaction (2017-10-10 오후 5:08:35)
+[2017-10-10 17:08:35:551] : [Success] Create Code: S17A2006-0-S04, File#: S17A2006-0
+[2017-10-10 17:08:35:554] : [Progress] File list Count: 3
+[2017-10-10 17:08:35:654] : [Success] Save to Database
+[2017-10-10 17:08:36:655] : [End] Request Worksheet Transaction (2017-10-10 오후 5:08:36)
+[2017-10-11 23:45:47:814] : [Pattern] Start Request Transaction (2017-10-11 오후 11:45:47)
+[2017-10-11 23:45:47:913] : [Success] Create Code: S17A1127-0-P02, File#: S17A1127-0
+[2017-10-11 23:45:54:400] : [Pattern] Start Request Transaction (2017-10-11 오후 11:45:54)
+[2017-10-11 23:45:54:491] : [Success] Create Code: S17A1127-0-P02, File#: S17A1127-0
+[2017-10-11 23:45:54:494] : [Success] Validation Items
+[2017-10-11 23:45:54:593] : [Success] Save to Database
+[2017-10-11 23:45:55:672] : [End] Request Pattern Transaction (2017-10-11 오후 11:45:55)

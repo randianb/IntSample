@@ -44,7 +44,10 @@ namespace Dev.Options
 
                 case CommonValues.KeyName.Destination:
                     ds = Data.CommonData.GetlistCode("Destination"); break;
-                    
+
+                case CommonValues.KeyName.Period:
+                    ds = Data.CommonData.GetlistCode("Period Time"); break;
+
                 case CommonValues.KeyName.Codes:                // 전체 코드 
                     ds = Data.CommonData.GetlistCode(""); break;
 
@@ -55,7 +58,8 @@ namespace Dev.Options
                     ds = Dept.GetNamelist(); break;
 
                 case CommonValues.KeyName.CustIdx:              // 바이어
-                    if (UserInfo.ReportNo < 9)
+                    if (UserInfo.ReportNo < 9 && Options.UserInfo.ExceptionGroup != 233 &&
+                        UserInfo.CenterIdx != 1 && UserInfo.DeptIdx == 5 && UserInfo.DeptIdx == 6)
                         ds = Int.Customer.Customer.GetNamelist(UserInfo.DeptIdx);
                     else
                         ds = Int.Customer.Customer.GetNamelist();
@@ -93,7 +97,7 @@ namespace Dev.Options
 
                 case CommonValues.KeyName.CADUser:                       // 개발실 CAD 유저
                     ds = Int.Users.Users.Getlist(11); break;
-
+                
                 default:
                     break;
             }

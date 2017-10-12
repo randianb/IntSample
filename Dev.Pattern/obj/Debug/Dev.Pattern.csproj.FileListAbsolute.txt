@@ -13,7 +13,6 @@ D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Controller.pdb
 D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Data.pdb
 D:\git\IntSample\Dev.Pattern\bin\Debug\Dev.Options.pdb
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.csprojResolveAssemblyReference.cache
-D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.PatternMain.resources
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.Properties.Resources.resources
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.csproj.GenerateResource.Cache
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.dll.licenses
@@ -95,3 +94,4 @@ D:\git\IntSample\Dev.Pattern\bin\Debug\Microsoft.Extensions.Logging.xml
 D:\git\IntSample\Dev.Pattern\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
 D:\git\IntSample\Dev.Pattern\bin\Debug\RestSharp.xml
 D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.TrimMain.resources
+D:\git\IntSample\Dev.Pattern\obj\Debug\Dev.Pattern.OrderMain.resources

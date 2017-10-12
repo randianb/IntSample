@@ -5,7 +5,7 @@
       <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="OrderIdx" Name="OrderIdx" IsVisible="False" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CustIdx" DisplayMember="CustName" DataType="System.Int32" Width="100" FieldName="Buyer" Name="Buyer" IsVisible="True" ReadOnly="True" HeaderText="Buyer" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="110" FieldName="Styleno" Name="Styleno" EnableExpressionEditor="False" IsVisible="True" ReadOnly="True" HeaderText="Style#" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn Width="80" FieldName="Fileno" Name="Fileno" EnableExpressionEditor="False" IsVisible="True" ReadOnly="True" HeaderText="INT File #" />
+      <Telerik.WinControls.UI.GridViewHyperlinkColumn Width="80" FieldName="Fileno" Name="Fileno" IsVisible="True" HeaderText="File#" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="70" FieldName="SizeNm" Name="SizeNm" IsVisible="True" ReadOnly="True" HeaderText="SizeNm" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="90" FieldName="OrderType" Name="OrderType" IsVisible="True" ReadOnly="True" HeaderText="Order&#xA;Type" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="ko-KR" FormatString="{0:d}" Width="90" FieldName="TechpackDate" Name="TechpackDate" IsVisible="True" ReadOnly="True" HeaderText="Techpack&#xA;Date" TextAlignment="MiddleCenter" />
@@ -18,6 +18,7 @@
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="en-US" FormatString="{0:g}" Width="120" FieldName="CompletedDate" Name="CompletedDate" IsVisible="True" ReadOnly="True" HeaderText="Sent Date&#xA;(CAD)" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="en-US" FormatString="{0:g}" Width="120" FieldName="SentDate" Name="SentDate" IsVisible="True" ReadOnly="True" HeaderText="Confirm Date&#xA;(T/D)" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CustIdx" DisplayMember="CustName" DataType="System.Int32" Width="100" FieldName="Received" Name="Received" IsVisible="True" ReadOnly="True" HeaderText="Confirmed&#xA;(T/D)" />
+      <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="en-US" FormatString="{0:g}" Width="120" FieldName="ConfirmedAdminDate" Name="ConfirmedAdminDate" IsVisible="True" ReadOnly="True" HeaderText="Confirmed Date&#xA;(Admin)" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn ValueMember="CodeIdx" DisplayMember="Contents" DataType="System.Int32" Width="95" FieldName="wstatus" Name="wstatus" IsVisible="True" ReadOnly="True" HeaderText="Status" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewComboBoxColumn DataType="System.Int32" Width="70" FieldName="Status" Name="Status" IsVisible="False" ReadOnly="True" HeaderText="Order&#xA;Status">
         <ConditionalFormattingObjectList>

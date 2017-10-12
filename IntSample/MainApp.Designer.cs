@@ -33,12 +33,14 @@
             this.bsViewMain = new Telerik.WinControls.UI.RadRibbonBarBackstageView();
             this.backstageViewPage3 = new Telerik.WinControls.UI.BackstageViewPage();
             this.radScrollablePanel1 = new Telerik.WinControls.UI.RadScrollablePanel();
+            this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlRefresh = new Telerik.WinControls.UI.RadDropDownList();
+            this.PatternOpCheck6 = new Telerik.WinControls.UI.RadCheckBox();
             this.OrderOpCheck3 = new Telerik.WinControls.UI.RadCheckBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.ddlNewOrderBuyer = new Telerik.WinControls.UI.RadDropDownList();
             this.btnAccountSave = new Telerik.WinControls.UI.RadButton();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.PatternOpCheck6 = new System.Windows.Forms.CheckBox();
             this.PatternOpCheck4 = new System.Windows.Forms.CheckBox();
             this.WorksheetOpCheck4 = new System.Windows.Forms.CheckBox();
             this.PatternOpCheck2 = new System.Windows.Forms.CheckBox();
@@ -96,6 +98,7 @@
             this.btnOrderReportWorkSchedule = new Telerik.WinControls.UI.RadButtonElement();
             this.btnOrderReportOrderStatus = new Telerik.WinControls.UI.RadButtonElement();
             this.btnOrderReportProductHistory = new Telerik.WinControls.UI.RadButtonElement();
+            this.btnPrintSampleChart = new Telerik.WinControls.UI.RadButtonElement();
             this.ribbonTab1 = new Telerik.WinControls.UI.RibbonTab();
             this.radRibbonBarGroup1 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.btnYarnCodeMain = new Telerik.WinControls.UI.RadButtonElement();
@@ -165,6 +168,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).BeginInit();
             this.radScrollablePanel1.PanelContainer.SuspendLayout();
             this.radScrollablePanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlRefresh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PatternOpCheck6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OrderOpCheck3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlNewOrderBuyer)).BeginInit();
@@ -346,12 +352,14 @@
             // 
             // radScrollablePanel1.PanelContainer
             // 
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel17);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.ddlRefresh);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.PatternOpCheck6);
             this.radScrollablePanel1.PanelContainer.Controls.Add(this.OrderOpCheck3);
             this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel2);
             this.radScrollablePanel1.PanelContainer.Controls.Add(this.ddlNewOrderBuyer);
             this.radScrollablePanel1.PanelContainer.Controls.Add(this.btnAccountSave);
             this.radScrollablePanel1.PanelContainer.Controls.Add(this.radLabel9);
-            this.radScrollablePanel1.PanelContainer.Controls.Add(this.PatternOpCheck6);
             this.radScrollablePanel1.PanelContainer.Controls.Add(this.PatternOpCheck4);
             this.radScrollablePanel1.PanelContainer.Controls.Add(this.WorksheetOpCheck4);
             this.radScrollablePanel1.PanelContainer.Controls.Add(this.PatternOpCheck2);
@@ -390,6 +398,30 @@
             this.radScrollablePanel1.Size = new System.Drawing.Size(1130, 683);
             this.radScrollablePanel1.TabIndex = 24;
             this.radScrollablePanel1.Text = "radScrollablePanel1";
+            // 
+            // radLabel17
+            // 
+            this.radLabel17.Location = new System.Drawing.Point(478, 327);
+            this.radLabel17.Name = "radLabel17";
+            this.radLabel17.Size = new System.Drawing.Size(187, 18);
+            this.radLabel17.TabIndex = 26;
+            this.radLabel17.Text = "Auto Refresh (WorkSheet && Pattern)";
+            // 
+            // ddlRefresh
+            // 
+            this.ddlRefresh.Location = new System.Drawing.Point(671, 325);
+            this.ddlRefresh.Name = "ddlRefresh";
+            this.ddlRefresh.Size = new System.Drawing.Size(125, 20);
+            this.ddlRefresh.TabIndex = 25;
+            // 
+            // PatternOpCheck6
+            // 
+            this.PatternOpCheck6.IsThreeState = true;
+            this.PatternOpCheck6.Location = new System.Drawing.Point(751, 567);
+            this.PatternOpCheck6.Name = "PatternOpCheck6";
+            this.PatternOpCheck6.Size = new System.Drawing.Size(62, 33);
+            this.PatternOpCheck6.TabIndex = 24;
+            this.PatternOpCheck6.Text = "Viewed\r\n(Team)";
             // 
             // OrderOpCheck3
             // 
@@ -433,16 +465,6 @@
             this.radLabel9.Size = new System.Drawing.Size(129, 29);
             this.radLabel9.TabIndex = 17;
             this.radLabel9.Text = "Favorite Buyer";
-            // 
-            // PatternOpCheck6
-            // 
-            this.PatternOpCheck6.AutoSize = true;
-            this.PatternOpCheck6.Location = new System.Drawing.Point(746, 568);
-            this.PatternOpCheck6.Name = "PatternOpCheck6";
-            this.PatternOpCheck6.Size = new System.Drawing.Size(64, 30);
-            this.PatternOpCheck6.TabIndex = 19;
-            this.PatternOpCheck6.Text = "Viewed\r\n(Team)";
-            this.PatternOpCheck6.UseVisualStyleBackColor = true;
             // 
             // PatternOpCheck4
             // 
@@ -567,7 +589,7 @@
             // enableSearchRow
             // 
             this.enableSearchRow.AutoSize = true;
-            this.enableSearchRow.Location = new System.Drawing.Point(478, 360);
+            this.enableSearchRow.Location = new System.Drawing.Point(478, 302);
             this.enableSearchRow.Name = "enableSearchRow";
             this.enableSearchRow.Size = new System.Drawing.Size(124, 17);
             this.enableSearchRow.TabIndex = 19;
@@ -585,7 +607,7 @@
             // enablePagingGV
             // 
             this.enablePagingGV.AutoSize = true;
-            this.enablePagingGV.Location = new System.Drawing.Point(478, 328);
+            this.enablePagingGV.Location = new System.Drawing.Point(478, 274);
             this.enablePagingGV.Name = "enablePagingGV";
             this.enablePagingGV.Size = new System.Drawing.Size(148, 17);
             this.enablePagingGV.TabIndex = 18;
@@ -638,7 +660,7 @@
             // radLabel8
             // 
             this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.radLabel8.Location = new System.Drawing.Point(478, 283);
+            this.radLabel8.Location = new System.Drawing.Point(478, 229);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(82, 29);
             this.radLabel8.TabIndex = 6;
@@ -932,7 +954,8 @@
             this.btnOrderReportTicketPrint,
             this.btnOrderReportWorkSchedule,
             this.btnOrderReportOrderStatus,
-            this.btnOrderReportProductHistory});
+            this.btnOrderReportProductHistory,
+            this.btnPrintSampleChart});
             this.radRibbonBarGroup5.Name = "radRibbonBarGroup5";
             this.radRibbonBarGroup5.Text = "Report";
             // 
@@ -976,6 +999,16 @@
             this.btnOrderReportProductHistory.Text = "Product History";
             this.btnOrderReportProductHistory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOrderReportProductHistory.TextWrap = true;
+            // 
+            // btnPrintSampleChart
+            // 
+            this.btnPrintSampleChart.Image = global::SampleApp.Properties.Resources._698918_icon_86_document_list_481;
+            this.btnPrintSampleChart.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnPrintSampleChart.Name = "btnPrintSampleChart";
+            this.btnPrintSampleChart.Tag = "110";
+            this.btnPrintSampleChart.Text = "Sample Chart";
+            this.btnPrintSampleChart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPrintSampleChart.Click += new System.EventHandler(this.btnPrintSampleChart_Click);
             // 
             // ribbonTab1
             // 
@@ -1623,6 +1656,9 @@
             this.radScrollablePanel1.PanelContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).EndInit();
             this.radScrollablePanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlRefresh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PatternOpCheck6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OrderOpCheck3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlNewOrderBuyer)).EndInit();
@@ -1779,7 +1815,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel14;
         private Telerik.WinControls.UI.RadLabel radLabel13;
         private Telerik.WinControls.UI.RadCheckBox OrderOpCheck3;
-        private System.Windows.Forms.CheckBox PatternOpCheck6;
         private System.Windows.Forms.CheckBox PatternOpCheck4;
         private System.Windows.Forms.CheckBox WorksheetOpCheck4;
         private System.Windows.Forms.CheckBox PatternOpCheck2;
@@ -1791,5 +1826,9 @@
         private System.Windows.Forms.CheckBox WorksheetOpCheck3;
         private System.Windows.Forms.CheckBox PatternOpCheck1;
         private System.Windows.Forms.CheckBox WorksheetOpCheck1;
+        private Telerik.WinControls.UI.RadCheckBox PatternOpCheck6;
+        private Telerik.WinControls.UI.RadLabel radLabel17;
+        private Telerik.WinControls.UI.RadDropDownList ddlRefresh;
+        private Telerik.WinControls.UI.RadButtonElement btnPrintSampleChart;
     }
 }

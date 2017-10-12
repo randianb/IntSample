@@ -10,6 +10,8 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -31,6 +33,8 @@ namespace Dev.Sales
         private List<string> lstFiles2 = new List<string>();
         private List<string> lstFileUrls = new List<string>();
         private List<string> lstFileUrls2 = new List<string>();
+
+        private string urlTemp = Environment.CurrentDirectory + "\\temp";
 
         #endregion
 
@@ -80,6 +84,17 @@ namespace Dev.Sales
                 dialog.Multiselect = true;
             }
             SetDefaultFontPropertiesToEditor(txtComment);
+
+            CheckFolder(urlTemp); 
+        }
+        private void CheckFolder(string sPath)
+        {
+            // 폴더 유무확인 및 생성 
+            DirectoryInfo di = new DirectoryInfo(sPath);
+            if (di.Exists == false)
+            {
+                di.Create();
+            }
         }
 
         public void SetDefaultFontPropertiesToEditor(RadRichTextEditor editor)
@@ -157,13 +172,24 @@ namespace Dev.Sales
         {
             try
             {
-                string NewCode = Code.GetPrimaryCode(Options.UserInfo.CenterIdx, Options.UserInfo.ReportNo, 3, _fileNo);
+                CommonController.Log("[WorkSheet] Start Request Transaction (" + DateTime.Now.ToString() + ")");
+                string NewCode = ""; 
 
-                //if (Convert.ToInt32(ddlSize.SelectedValue) <= 0)
-                //{
-                //    RadMessageBox.Show("Please input the Size", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
-                //    return;
-                //}
+                try
+                {
+                    NewCode = Code.GetPrimaryCode(Options.UserInfo.CenterIdx, Options.UserInfo.ReportNo, 3, _fileNo);
+                    CommonController.Log("[Success] Create Code: " + NewCode + ", File#: " + _fileNo);
+                }
+                catch(Exception ex)
+                {
+                    CommonController.Log("[Fail] Create Code: " + ex.Message.ToString());
+                }
+
+                if (string.IsNullOrEmpty(txtComment.Text.Trim()))
+                {
+                    RadMessageBox.Show("Please input the Comment", "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                    return;
+                }
 
                 if (!string.IsNullOrEmpty(NewCode))
                 {
@@ -173,37 +199,55 @@ namespace Dev.Sales
                     }
                     if (lstFiles.Count>0)
                     {
+                        CommonController.Log("[Progress] File list Count: " + lstFiles.Count.ToString());
                         for (int i = 0; i < lstFiles.Count; i++)
                         {
-                            if (!string.IsNullOrEmpty(lstFiles[i])) lstFiles2[i] = lstFiles[i]; lstFileUrls2[i] = lstFileUrls[i];
+                            try
+                            {
+                                if (!string.IsNullOrEmpty(lstFiles[i])) lstFiles2[i] = lstFiles[i]; lstFileUrls2[i] = lstFileUrls[i];
+                            }
+                            catch (Exception ex)
+                            {
+                                CommonController.Log("[Fail] Setting List file and url: " + ex.Message.ToString());
+                            }
                         }
                     }
-                    
-                    DataRow dr = Dev.Controller.Worksheet.Insert(_orderIdx, NewCode, txtComment.Text,
-                    lstFiles2[0].ToString(), lstFiles2[1].ToString(), lstFiles2[2].ToString(), lstFiles2[3].ToString(), lstFiles2[4].ToString(),
-                    lstFiles2[5].ToString(), lstFiles2[6].ToString(), lstFiles2[7].ToString(), lstFiles2[8].ToString(),
-                    lstFileUrls2[0].ToString(), lstFileUrls2[1].ToString(), lstFileUrls2[2].ToString(), lstFileUrls2[3].ToString(), lstFileUrls2[4].ToString(),
-                    lstFileUrls2[5].ToString(), lstFileUrls2[6].ToString(), lstFileUrls2[7].ToString(), lstFileUrls2[8].ToString(),
-                    Options.UserInfo.Idx);
-
-
-                    // 데이터 DB저장 
-                    
-
-                    if (dr != null)
+                    try
                     {
-                        RadMessageBox.Show("Created WorkSheet", "Saved");
-                        // 입력완료 후 그리드뷰 갱신
-                        DialogResult = System.Windows.Forms.DialogResult.OK;
+                        DataRow dr = Dev.Controller.Worksheet.Insert(_orderIdx, NewCode, txtComment.Text,
+                            lstFiles2[0].ToString(), lstFiles2[1].ToString(), lstFiles2[2].ToString(), lstFiles2[3].ToString(), lstFiles2[4].ToString(),
+                            lstFiles2[5].ToString(), lstFiles2[6].ToString(), lstFiles2[7].ToString(), lstFiles2[8].ToString(),
+                            lstFileUrls2[0].ToString(), lstFileUrls2[1].ToString(), lstFileUrls2[2].ToString(), lstFileUrls2[3].ToString(), lstFileUrls2[4].ToString(),
+                            lstFileUrls2[5].ToString(), lstFileUrls2[6].ToString(), lstFileUrls2[7].ToString(), lstFileUrls2[8].ToString(),
+                            Options.UserInfo.Idx);
+
+                        CommonController.Log("[Success] Save to Database");
+
+                        // 데이터 DB저장 
+                        if (dr != null)
+                        {
+                            RadMessageBox.Show("Created WorkSheet", "Saved");
+                            // 처리완료후, 임시파일 삭제 
+                            DeleteFiles(urlTemp);
+                            // 입력완료 후 그리드뷰 갱신
+                            DialogResult = System.Windows.Forms.DialogResult.OK;
+                        }
+                        else
+                        {
+                            //lblResult.Text = "Failed to input the data.";
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        //lblResult.Text = "Failed to input the data.";
+                        CommonController.Log("[Fail] Save to Database: " + ex.Message.ToString());
                     }
+                    
                 }
+                CommonController.Log("[End] Request Worksheet Transaction (" + DateTime.Now.ToString() + ")");
             }
             catch (Exception ex)
             {
+                CommonController.Log("[Fail] Request Worksheet: " + ex.Message.ToString());
                 Console.WriteLine("btnUpdate_Click: " + ex.Message.ToString());
             }
         }
@@ -282,21 +326,29 @@ namespace Dev.Sales
                 {
                     foreach (string filename in fileNames)
                     {
-                        // 업데이트 파일 storage저장 
-                        using (var fileStream = System.IO.File.OpenRead(filename))
+                        CommonController.Log("[WorkSheet] OpenFile (" + filename + DateTime.Now.ToString() + ")");
+
+                        if (filename != null)
                         {
-                            // blob명은 파일명과 같도록 생성
-                            CloudBlockBlob blockBlob = container.GetBlockBlobReference(filename.Substring(filename.LastIndexOf("\\") + 1));
+                            // 업데이트 파일 storage저장 
+                            using (var fileStream = System.IO.File.OpenRead(filename))
+                            {
+                                // blob명은 파일명과 같도록 생성
+                                CloudBlockBlob blockBlob = container.GetBlockBlobReference(filename.Substring(filename.LastIndexOf("\\") + 1));
 
-                            blockBlob.UploadFromStream(fileStream);
+                                blockBlob.UploadFromStream(fileStream);
 
-                            lstFiles.Add(filename.Substring(filename.LastIndexOf("\\") + 1));
-                            lstFileUrls.Add(blockBlob.StorageUri.PrimaryUri.ToString()); 
-                            
+                                if (!lstFiles.Exists(element => element == filename.Substring(filename.LastIndexOf("\\") + 1)))
+                                {
+                                    lstFiles.Add(filename.Substring(filename.LastIndexOf("\\") + 1));
+                                    lstFileUrls.Add(blockBlob.StorageUri.PrimaryUri.ToString());
+                                }
+                                
+                            }
                         }
-
                     }
-                            
+
+                    SetDirectorySecurity(urlTemp); 
                 }
 
             }
@@ -307,13 +359,24 @@ namespace Dev.Sales
 
         }
 
+        private void beFiles_ValueChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// 다중 파일 선택
         /// </summary>
         /// <returns>string[] filenames</returns>
         private string[] GetFiles()
         {
-            string[] fileNames;
+            string[] fileNames; 
+            string[] copiedNames = new string[9];
             OpenFileDialog openDialog = new OpenFileDialog();
 
             openDialog.Filter = "All files|*.*"; 
@@ -325,6 +388,7 @@ namespace Dev.Sales
             try
             {
                 DialogResult result = openDialog.ShowDialog();
+                string fName = ""; 
 
                 if (result == DialogResult.OK && openDialog.FileNames.Length <= 9)
                 {
@@ -333,10 +397,23 @@ namespace Dev.Sales
                     
                     for (int i = 0; i < openDialog.FileNames.Length; i++)
                     {
-                        FileOpen_ListView(openDialog.FileNames[i], listFiles);
+                        fName = Path.GetFileName(openDialog.FileNames[i].ToString());
+                        FileInfo file = new FileInfo(Path.GetFullPath(openDialog.FileNames[i].ToString())); 
+                        if (file.Exists)
+                        {
+                            file.CopyTo(urlTemp + "\\" + fName, true);
+                            FileOpen_ListView(urlTemp + "\\" + fName, listFiles);
+                            
+                        }
+                        
                     }
-                   
-                    return fileNames = openDialog.FileNames;
+                    int j = 0; 
+                    foreach(ListViewDataItem data in listFiles.Items)
+                    {
+                        copiedNames[j] = data.Value.ToString();
+                        j++; 
+                    }
+                    return copiedNames;  //copiedNames; // fileNames = openDialog.FileNames;
                     
                 }
                 else if (result == DialogResult.Cancel)
@@ -362,6 +439,42 @@ namespace Dev.Sales
                 return null;
             }
 
+        }
+        private bool DeleteFiles(string extract)
+        {
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(extract);
+
+                System.IO.FileInfo[] files = dir.GetFiles("*.*",
+                    SearchOption.AllDirectories);
+
+                foreach (System.IO.FileInfo file in files)
+                {
+                    file.Attributes = FileAttributes.Normal;
+                    file.Delete();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+        private void SetDirectorySecurity(string linePath)
+        {
+            DirectorySecurity dSecurity = Directory.GetAccessControl(linePath);
+            var sid = new SecurityIdentifier(WellKnownSidType.AuthenticatedUserSid, null);
+
+            dSecurity.AddAccessRule(new FileSystemAccessRule(sid,
+                                FileSystemRights.FullControl,
+                                InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit,
+                                PropagationFlags.None,
+                                AccessControlType.Allow));
+
+            Directory.SetAccessControl(linePath, dSecurity);
         }
 
         #endregion 

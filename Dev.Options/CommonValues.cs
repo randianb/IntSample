@@ -10,35 +10,36 @@ namespace Dev.Options
     {
         #region 전역변수: 향후 json으로 변경필요 (todo) 
 
-        public const int packageNo = 100;                        // 패키지번호 = intsample
+        public const int packageNo = 100;                           // 패키지번호 = intsample
         public const string packageName = "intsample";
-        public static string verNo = "";                         // 프로그램 버전번호 
-        public static int DDL_DefaultItemsCountInDropDown = 30; // DDL 갯수
-        public static int DDL_DropDownHeight = 300;             // DDL 높이
-        public static int DDL_DropDownWidth = 300;                // DDL 폭
-        public static int PropertyValueColumnWidth = 230;       // 프로퍼티 값열 폭 
-        public static bool enablePaging = true;                 // 그리드뷰 페이징 
-        public static bool enableSearchRow = false;             // 그리드뷰 전체 컬럼 대상으로 검색여부
-        public static bool SetHandler = false;             // 기본 핸들러 설정 
+        public static string verNo = "";                            // 프로그램 버전번호 
+        public static int DDL_DefaultItemsCountInDropDown = 30;     // DDL 갯수
+        public static int DDL_DropDownHeight = 300;                 // DDL 높이
+        public static int DDL_DropDownWidth = 300;                  // DDL 폭
+        public static int PropertyValueColumnWidth = 230;           // 프로퍼티 값열 폭 
+        public static bool enablePaging = false;                    // 그리드뷰 페이징 
+        public static bool enableSearchRow = false;                 // 그리드뷰 전체 컬럼 대상으로 검색여부
+        public static bool SetHandler = false;                      // 기본 핸들러 설정 
 
-        public static bool OrderOpCheck1 = true;             // 보기옵션 설정 Cancel
-        public static bool OrderOpCheck2 = true;             // 보기옵션 설정 Closed
-        public static int  OrderOpCheck3 = 2;                // 보기옵션 설정 Sample 또는 Only Consumption 또는 All
+        public static bool OrderOpCheck1 = true;                    // 보기옵션 설정 Cancel
+        public static bool OrderOpCheck2 = true;                    // 보기옵션 설정 Closed
+        public static int  OrderOpCheck3 = 2;                       // 보기옵션 설정 Sample 또는 Only Consumption 또는 All
 
-        public static bool WorksheetOpCheck1 = true;             // 보기옵션 설정 Cancel 
-        public static bool WorksheetOpCheck2 = true;             // 보기옵션 설정 Reject
-        public static bool WorksheetOpCheck3 = true;             // 보기옵션 설정 Confirm Office
-        public static bool WorksheetOpCheck4 = true;             // 보기옵션 설정 Confirm TD
-        public static bool WorksheetOpCheck5 = true;             // 보기옵션 설정 Confirm Admin
+        public static bool WorksheetOpCheck1 = true;                // 보기옵션 설정 Cancel 
+        public static bool WorksheetOpCheck2 = true;                // 보기옵션 설정 Reject
+        public static bool WorksheetOpCheck3 = true;                // 보기옵션 설정 Confirm Office
+        public static bool WorksheetOpCheck4 = true;                // 보기옵션 설정 Confirm TD
+        public static bool WorksheetOpCheck5 = true;                // 보기옵션 설정 Confirm Admin
 
-        public static bool PatternOpCheck1 = true;             // 보기옵션 설정 Cancel
-        public static bool PatternOpCheck2 = true;             // 보기옵션 설정 Reject
-        public static bool PatternOpCheck3 = true;             // 보기옵션 설정 Confirm Cad
-        public static bool PatternOpCheck4 = true;             // 보기옵션 설정 Complete
-        public static bool PatternOpCheck5 = true;             // 보기옵션 설정 Confirm TD
-        public static bool PatternOpCheck6 = true;             // 보기옵션 설정 Viewed Team 
+        public static bool PatternOpCheck1 = true;                  // 보기옵션 설정 Cancel
+        public static bool PatternOpCheck2 = true;                  // 보기옵션 설정 Reject
+        public static bool PatternOpCheck3 = true;                  // 보기옵션 설정 Confirm Cad
+        public static bool PatternOpCheck4 = true;                  // 보기옵션 설정 Complete
+        public static bool PatternOpCheck5 = true;                  // 보기옵션 설정 Confirm TD
+        public static int PatternOpCheck6 = 2;                      // 보기옵션 설정 Viewed Team 
 
-        public static int NewOrderBuyerIdx = 0;                 // 신규 오더입력시 바이어 프리셋 번호
+        public static int NewOrderBuyerIdx = 0;                     // 신규 오더입력시 바이어 프리셋 번호
+        public static int PeriodTime = 0;                           // 작업지서서, 패턴요척 화면 자동갱신 주기 (0: 갱신안함)
 
         // 식별코드: 주로 조회를 위해 컨트롤러 호출시 key로 사용한다
         public enum KeyName {
@@ -46,7 +47,7 @@ namespace Dev.Options
             EmbelishId1, EmbelishId2, ShipTerm, IsPrinting, Codes, Status, SizeGroup, User, Vendor, Size, CustAllExceptBuyer, 
             OrderIdx, OperationIdx, WorkOrderIdx, TicketDate, WorkStatus, StartDate, Composition, BurnCount, YarnType, Contents, IsUse,
             Remark, BuyerIdx, ColorIdx, FabricType, Lotno, FabricIdx, RackNo, Floorno, RackPos, PosX, PosY, Wash, InIdx, Handler, 
-            RequestDate, CompleteDate, AllUser, TDUser, CADUser, TrimCode, 
+            RequestDate, CompleteDate, AllUser, TDUser, CADUser, TrimCode, Period, 
             OptionCheck1, OptionCheck2, OptionCheck3, OptionCheck4, OptionCheck5, OptionCheck6
         };      
 

@@ -1,8 +1,8 @@
 {
   "enablePaging": false,
   "enableSearchRow": false,
-  "NewOrderBuyerIdx": 0,
-  "SetHandler": false,
+  "NewOrderBuyerIdx": 15,
+  "SetHandler": true,
   "OrderOpCheck1": true,
   "OrderOpCheck2": true,
   "OrderOpCheck3": 2,
@@ -16,5 +16,6 @@
   "PatternOpCheck3": true,
   "PatternOpCheck4": true,
   "PatternOpCheck5": true,
-  "PatternOpCheck6": true
+  "PatternOpCheck6": 2,
+  "PeriodTime": 0
 }

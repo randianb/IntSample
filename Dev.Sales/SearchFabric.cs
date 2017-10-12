@@ -72,7 +72,7 @@ namespace Dev.Sales
             Config_DropDownList();      // 상단 DDL 생성 설정
             GV1_CreateColumn(_gv1);     // 그리드뷰 생성
             GV1_LayoutSetting(_gv1);    // 중앙 그리드뷰 설정 
-
+            txtFabric.Select(); 
         }
 
         /// <summary>
