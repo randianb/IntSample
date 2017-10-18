@@ -101,7 +101,7 @@ namespace Dev.Fabric
 
             // 오더 삭제
             mnuDel = new RadMenuItem("Remove Fabric");
-            mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
+            //mnuDel.Shortcuts.Add(new RadShortcut(Keys.Control, Keys.D));
             mnuDel.Click += new EventHandler(mnuDel_Click);
 
             // 열 숨기기
@@ -118,7 +118,7 @@ namespace Dev.Fabric
 
             // 컨텍스트 추가 
             contextMenu.Items.Add(mnuNew);
-            contextMenu.Items.Add(mnuDel);
+            // contextMenu.Items.Add(mnuDel);
             contextMenu.Items.Add(separator);
 
             contextMenu.Items.Add(mnuHide);

@@ -3133,7 +3133,14 @@ namespace Dev.Sales
                             form.MdiParent = this.MdiParent;
                             form.Show();
                         }
-
+                        else if (e.Cell.Value.ToString().Trim().Substring(11, 1) == "S")
+                        {
+                            CommonController.Close_All_Children(this, "WorksheetMain");
+                            WorksheetMain form = new WorksheetMain(__main__, e.Cell.Value.ToString());
+                            form.Text = "Worksheet Main"; // DateTime.Now.ToLongTimeString();
+                            form.MdiParent = this.MdiParent;
+                            form.Show();
+                        }
                     }
                 }
                 else

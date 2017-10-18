@@ -23,6 +23,7 @@ namespace Dev.Fabric
 
         private void PrintQRCode_Load(object sender, EventArgs e)
         {
+            //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;  // 창 최대화
             try
             {
                 // 원단코드, 랙코드 구분

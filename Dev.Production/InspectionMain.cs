@@ -860,7 +860,7 @@ namespace Dev.Production
 
         private void radLabel8_DoubleClick(object sender, EventArgs e)
         {
-            dtRequested.Value = Convert.ToDateTime("2000-01-01");
+            dtCompleted.Value = Convert.ToDateTime("2000-01-01");
         }
 
         private void gvMain_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)

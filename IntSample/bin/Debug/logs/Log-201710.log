@@ -63,3 +63,9 @@
 [2017-10-11 23:45:54:494] : [Success] Validation Items
 [2017-10-11 23:45:54:593] : [Success] Save to Database
 [2017-10-11 23:45:55:672] : [End] Request Pattern Transaction (2017-10-11 오후 11:45:55)
+[2017-10-16 23:01:01:698] : [Pattern] Start Request Transaction (2017-10-16 오후 11:01:01)
+[2017-10-16 23:01:01:848] : [Success] Create Code: S1799102-0-P01, File#: S1799102-0
+[2017-10-16 23:01:01:853] : [Success] Validation Items
+[2017-10-16 23:01:01:956] : [Success] Save to Database
+[2017-10-16 23:01:03:251] : [End] Request Pattern Transaction (2017-10-16 오후 11:01:03)
+[2017-10-16 23:14:26:829] : [Failed] Send message to notice the Pattern Completed (1161, File#: S17A1121-0, Time: 2017-10-16 23:14, Exception: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.

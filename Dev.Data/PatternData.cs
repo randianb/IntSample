@@ -368,7 +368,7 @@ namespace Dev.Data
         /// <param name="OrderIdx"></param>
         /// <param name="WorkOrderIdx"></param>
         /// <returns></returns>
-        public static bool ConfirmCAD(int idx, int confirmed, int OrderIdx, string WorkOrderIdx)
+        public static bool ConfirmCAD(int idx, int confirmed, string CommentCad, int OrderIdx, string WorkOrderIdx)
         {
             try
             {
@@ -376,7 +376,7 @@ namespace Dev.Data
                 _conn = new SqlConnection(_strConn);
                 _conn.Open();
 
-                _cmd.CommandText = @"update pattern set ConfirmedDate=dbo.GetLocalDate(default), Confirmed = @confirmed where idx = @Idx 
+                _cmd.CommandText = @"update pattern set ConfirmedDate=dbo.GetLocalDate(default), CommentCad=@CommentCad, Confirmed = @confirmed where idx = @Idx 
                                      
                                      update workorder set status=5 where OrderIdx = @OrderIdx and WorkOrderIdx = @WorkOrderIdx
                                     ";
@@ -388,6 +388,9 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@Confirmed", SqlDbType.Int, 4);
                 _cmd.Parameters["@Confirmed"].Value = confirmed;
+
+                _cmd.Parameters.Add("@CommentCad", SqlDbType.NText);
+                _cmd.Parameters["@CommentCad"].Value = CommentCad;
 
                 _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@OrderIdx"].Value = OrderIdx;
@@ -417,7 +420,7 @@ namespace Dev.Data
         /// <param name="OrderIdx"></param>
         /// <param name="WorkOrderIdx"></param>
         /// <returns></returns>
-        public static bool CompleteCAD(int idx, int OrderIdx, string WorkOrderIdx)
+        public static bool CompleteCAD(int idx, string CommentCad, int OrderIdx, string WorkOrderIdx)
         {
             try
             {
@@ -425,7 +428,7 @@ namespace Dev.Data
                 _conn = new SqlConnection(_strConn);
                 _conn.Open();
 
-                _cmd.CommandText = @"update pattern set CompletedDate=dbo.GetLocalDate(default) where idx = @Idx 
+                _cmd.CommandText = @"update pattern set CompletedDate=dbo.GetLocalDate(default), CommentCad=@CommentCad where idx = @Idx 
                                      
                                      update workorder set status=3 where OrderIdx = @OrderIdx and WorkOrderIdx = @WorkOrderIdx
                                     ";
@@ -434,6 +437,9 @@ namespace Dev.Data
 
                 _cmd.Parameters.Add("@Idx", SqlDbType.Int, 4);
                 _cmd.Parameters["@Idx"].Value = idx;
+
+                _cmd.Parameters.Add("@CommentCad", SqlDbType.NText);
+                _cmd.Parameters["@CommentCad"].Value = CommentCad;
                 
                 _cmd.Parameters.Add("@OrderIdx", SqlDbType.Int, 4);
                 _cmd.Parameters["@OrderIdx"].Value = OrderIdx;

@@ -56,6 +56,9 @@
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.ddlPatternType = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
@@ -83,6 +86,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
+            this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlPatternType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -144,18 +150,16 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 254F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 118F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.radLabel11, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblFileno, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.listFiles, 3, 4);
             this.tableLayoutPanel1.Controls.Add(this.radLabel7, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.radLabel5, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.beFiles, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lblStyle, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.radLabel2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.radLabel4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dtTechPack, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel3, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.radLabel8, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtComment, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.ddlCAD, 1, 2);
@@ -164,6 +168,8 @@
             this.tableLayoutPanel1.Controls.Add(this.ddlSize, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.radLabel6, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.radLabel10, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ddlPatternType, 3, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -243,9 +249,9 @@
             this.lblStyle.AutoSize = false;
             this.lblStyle.BackColor = System.Drawing.Color.LemonChiffon;
             this.lblStyle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStyle.Location = new System.Drawing.Point(478, 3);
+            this.lblStyle.Location = new System.Drawing.Point(3, 3);
             this.lblStyle.Name = "lblStyle";
-            this.lblStyle.Size = new System.Drawing.Size(514, 24);
+            this.lblStyle.Size = new System.Drawing.Size(249, 24);
             this.lblStyle.TabIndex = 1;
             this.lblStyle.Text = "radLabel2";
             // 
@@ -294,18 +300,19 @@
             this.chkPattern.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkPattern.Location = new System.Drawing.Point(3, 3);
             this.chkPattern.Name = "chkPattern";
-            this.chkPattern.Size = new System.Drawing.Size(91, 24);
+            this.chkPattern.Size = new System.Drawing.Size(92, 24);
             this.chkPattern.TabIndex = 0;
             this.chkPattern.Text = "Pattern";
+            this.chkPattern.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkPattern_ToggleStateChanged);
             // 
             // chkConsumption
             // 
             this.chkConsumption.AutoSize = false;
             this.chkConsumption.BackColor = System.Drawing.Color.LemonChiffon;
             this.chkConsumption.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkConsumption.Location = new System.Drawing.Point(100, 3);
+            this.chkConsumption.Location = new System.Drawing.Point(101, 3);
             this.chkConsumption.Name = "chkConsumption";
-            this.chkConsumption.Size = new System.Drawing.Size(151, 24);
+            this.chkConsumption.Size = new System.Drawing.Size(150, 24);
             this.chkConsumption.TabIndex = 1;
             this.chkConsumption.Text = "Consumption";
             // 
@@ -314,9 +321,9 @@
             this.dtTechPack.Culture = new System.Globalization.CultureInfo("en-US");
             this.dtTechPack.CustomFormat = "yyyy-MM-dd";
             this.dtTechPack.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtTechPack.Location = new System.Drawing.Point(478, 33);
+            this.dtTechPack.Location = new System.Drawing.Point(383, 3);
             this.dtTechPack.Name = "dtTechPack";
-            this.dtTechPack.Size = new System.Drawing.Size(164, 20);
+            this.dtTechPack.Size = new System.Drawing.Size(134, 20);
             this.dtTechPack.TabIndex = 7;
             this.dtTechPack.TabStop = false;
             this.dtTechPack.Text = "2017-05-04";
@@ -325,10 +332,10 @@
             // radLabel3
             // 
             this.radLabel3.AutoSize = false;
-            this.radLabel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radLabel3.Location = new System.Drawing.Point(360, 33);
+            this.radLabel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radLabel3.Location = new System.Drawing.Point(258, 3);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(112, 18);
+            this.radLabel3.Size = new System.Drawing.Size(119, 24);
             this.radLabel3.TabIndex = 0;
             this.radLabel3.Text = "Tech Pack Date";
             // 
@@ -417,6 +424,45 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Multiselect = true;
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 3;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
+            this.tableLayoutPanel5.Controls.Add(this.dtTechPack, 2, 0);
+            this.tableLayoutPanel5.Controls.Add(this.radLabel3, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.lblStyle, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(475, 0);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(520, 30);
+            this.tableLayoutPanel5.TabIndex = 21;
+            // 
+            // ddlPatternType
+            // 
+            this.ddlPatternType.BackColor = System.Drawing.Color.LemonChiffon;
+            this.ddlPatternType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlPatternType.Location = new System.Drawing.Point(478, 33);
+            this.ddlPatternType.Name = "ddlPatternType";
+            this.ddlPatternType.Size = new System.Drawing.Size(250, 20);
+            this.ddlPatternType.TabIndex = 19;
+            this.ddlPatternType.Text = "radDropDownList8";
+            // 
+            // radLabel11
+            // 
+            this.radLabel11.AutoSize = false;
+            this.radLabel11.BackColor = System.Drawing.Color.LemonChiffon;
+            this.radLabel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radLabel11.Location = new System.Drawing.Point(360, 33);
+            this.radLabel11.Name = "radLabel11";
+            this.radLabel11.Size = new System.Drawing.Size(112, 24);
+            this.radLabel11.TabIndex = 22;
+            this.radLabel11.Text = "Pattern Type";
+            // 
             // frmPatternRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -459,6 +505,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlPatternType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -493,5 +543,8 @@
         private Telerik.WinControls.UI.RadLabel radLabel10;
         private Telerik.WinControls.UI.RadListControl ddlSize;
         private Telerik.WinControls.UI.RadRichTextEditor txtComment;
+        private Telerik.WinControls.UI.RadLabel radLabel11;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private Telerik.WinControls.UI.RadDropDownList ddlPatternType;
     }
 }

@@ -77,6 +77,11 @@ namespace SampleApp
             ddlRefresh.DropDownHeight = CommonValues.DDL_DropDownHeight;
         }
 
+        /// <summary>
+        /// Home 메인탭의 Option 메뉴 선택시 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bsOptions_Click(object sender, EventArgs e)
         {
             // 설정 버튼 클릭시 파일 없으면 새로 만들고 있으면 내용 불러옴 
@@ -182,6 +187,23 @@ namespace SampleApp
                     PatternOpCheck4.Checked = true;
                     PatternOpCheck5.Checked = true;
                     PatternOpCheck6.CheckState = CheckState.Indeterminate;
+
+                    cs.OrderOpCheck1 = OrderOpCheck1.Checked;
+                    cs.OrderOpCheck2 = OrderOpCheck2.Checked;
+                    cs.OrderOpCheck3 = Convert.ToInt32(OrderOpCheck3.CheckState);
+
+                    cs.WorksheetOpCheck1 = WorksheetOpCheck1.Checked;
+                    cs.WorksheetOpCheck2 = WorksheetOpCheck2.Checked;
+                    cs.WorksheetOpCheck3 = WorksheetOpCheck3.Checked;
+                    cs.WorksheetOpCheck4 = WorksheetOpCheck4.Checked;
+                    cs.WorksheetOpCheck5 = WorksheetOpCheck5.Checked;
+
+                    cs.PatternOpCheck1 = PatternOpCheck1.Checked;
+                    cs.PatternOpCheck2 = PatternOpCheck2.Checked;
+                    cs.PatternOpCheck3 = PatternOpCheck3.Checked;
+                    cs.PatternOpCheck4 = PatternOpCheck4.Checked;
+                    cs.PatternOpCheck5 = PatternOpCheck5.Checked;
+                    cs.PatternOpCheck6 = Convert.ToInt32(PatternOpCheck6.CheckState);
                 }
             }
             catch (Exception ex)
@@ -279,7 +301,11 @@ namespace SampleApp
             }
         }
 
-
+        /// <summary>
+        /// Home 메인탭을 나갈경우 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bsViewMain_Leave(object sender, EventArgs e)
         {
             try
@@ -291,38 +317,88 @@ namespace SampleApp
                 SetDirectorySecurity(url);
                 ConfigStruct cs = new ConfigStruct();
 
-                cs.enablePaging = enablePagingGV.Checked;
-                cs.enableSearchRow = enableSearchRow.Checked;
-                cs.SetHandler = SetHandler.Checked; 
-                cs.NewOrderBuyerIdx = Convert.ToInt32(ddlNewOrderBuyer.SelectedValue);
-                cs.PeriodTime = Convert.ToInt32(ddlRefresh.SelectedValue);
+                // 설정파일이 있으면 내용을 불러옴
+                if (System.IO.File.Exists(path))
+                {
+                    cs.enablePaging = enablePagingGV.Checked;
+                    cs.enableSearchRow = enableSearchRow.Checked;
+                    cs.SetHandler = SetHandler.Checked;
+                    cs.NewOrderBuyerIdx = Convert.ToInt32(ddlNewOrderBuyer.SelectedValue);
+                    cs.PeriodTime = Convert.ToInt32(ddlRefresh.SelectedValue);
 
-                cs.OrderOpCheck1 = OrderOpCheck1.Checked;
-                cs.OrderOpCheck2 = OrderOpCheck2.Checked;
-                cs.OrderOpCheck3 = Convert.ToInt32(OrderOpCheck3.CheckState);
+                    cs.OrderOpCheck1 = OrderOpCheck1.Checked;
+                    cs.OrderOpCheck2 = OrderOpCheck2.Checked;
+                    cs.OrderOpCheck3 = Convert.ToInt32(OrderOpCheck3.CheckState);
 
-                cs.WorksheetOpCheck1 = WorksheetOpCheck1.Checked;
-                cs.WorksheetOpCheck2 = WorksheetOpCheck2.Checked;
-                cs.WorksheetOpCheck3 = WorksheetOpCheck3.Checked;
-                cs.WorksheetOpCheck4 = WorksheetOpCheck4.Checked;
-                cs.WorksheetOpCheck5 = WorksheetOpCheck5.Checked;
-                
-                cs.PatternOpCheck1 = PatternOpCheck1.Checked;
-                cs.PatternOpCheck2 = PatternOpCheck2.Checked;
-                cs.PatternOpCheck3 = PatternOpCheck3.Checked;
-                cs.PatternOpCheck4 = PatternOpCheck4.Checked;
-                cs.PatternOpCheck5 = PatternOpCheck5.Checked;
-                cs.PatternOpCheck6 = Convert.ToInt32(PatternOpCheck6.CheckState);
+                    cs.WorksheetOpCheck1 = WorksheetOpCheck1.Checked;
+                    cs.WorksheetOpCheck2 = WorksheetOpCheck2.Checked;
+                    cs.WorksheetOpCheck3 = WorksheetOpCheck3.Checked;
+                    cs.WorksheetOpCheck4 = WorksheetOpCheck4.Checked;
+                    cs.WorksheetOpCheck5 = WorksheetOpCheck5.Checked;
+
+                    cs.PatternOpCheck1 = PatternOpCheck1.Checked;
+                    cs.PatternOpCheck2 = PatternOpCheck2.Checked;
+                    cs.PatternOpCheck3 = PatternOpCheck3.Checked;
+                    cs.PatternOpCheck4 = PatternOpCheck4.Checked;
+                    cs.PatternOpCheck5 = PatternOpCheck5.Checked;
+                    cs.PatternOpCheck6 = Convert.ToInt32(PatternOpCheck6.CheckState);
+
+                    CommonValues.enablePaging = enablePagingGV.Checked;
+                    CommonValues.enableSearchRow = enableSearchRow.Checked;
+                    CommonValues.SetHandler = SetHandler.Checked;
+                    CommonValues.NewOrderBuyerIdx = Convert.ToInt32(ddlNewOrderBuyer.SelectedValue);
+                    CommonValues.PeriodTime = Convert.ToInt32(ddlRefresh.SelectedValue);
+                }
+
+                // 없으면 기본값으로 새로 만듬 
+                else
+                {
+                    cs = new ConfigStruct
+                    {
+                        enablePaging = true,
+                        enableSearchRow = false,
+                        NewOrderBuyerIdx = 0,
+                        PeriodTime = 0,
+
+                        OrderOpCheck1 = true,
+                        OrderOpCheck2 = true,
+                        OrderOpCheck3 = 2,
+
+                        WorksheetOpCheck1 = true,
+                        WorksheetOpCheck2 = true,
+                        WorksheetOpCheck3 = true,
+                        WorksheetOpCheck4 = true,
+                        WorksheetOpCheck5 = true,
+
+                        PatternOpCheck1 = true,
+                        PatternOpCheck2 = true,
+                        PatternOpCheck3 = true,
+                        PatternOpCheck4 = true,
+                        PatternOpCheck5 = true,
+                        PatternOpCheck6 = 2,
+                    };
+
+                    OrderOpCheck1.Checked = true;
+                    OrderOpCheck2.Checked = true;
+                    OrderOpCheck3.CheckState = CheckState.Indeterminate;
+
+                    WorksheetOpCheck1.Checked = true;
+                    WorksheetOpCheck2.Checked = true;
+                    WorksheetOpCheck3.Checked = true;
+                    WorksheetOpCheck4.Checked = true;
+                    WorksheetOpCheck5.Checked = true;
+
+                    PatternOpCheck1.Checked = true;
+                    PatternOpCheck2.Checked = true;
+                    PatternOpCheck3.Checked = true;
+                    PatternOpCheck4.Checked = true;
+                    PatternOpCheck5.Checked = true;
+                    PatternOpCheck6.CheckState = CheckState.Indeterminate;
+                }
 
                 string confStr = JsonConvert.SerializeObject(cs, Formatting.Indented);
                 System.IO.File.WriteAllText(path, confStr);
-
-                CommonValues.enablePaging = enablePagingGV.Checked;
-                CommonValues.enableSearchRow = enableSearchRow.Checked;
-                CommonValues.SetHandler = SetHandler.Checked; 
-                CommonValues.NewOrderBuyerIdx = Convert.ToInt32(ddlNewOrderBuyer.SelectedValue);
-                CommonValues.PeriodTime = Convert.ToInt32(ddlRefresh.SelectedValue);
-
+                
                 CommonValues.OrderOpCheck1 = OrderOpCheck1.Checked;
                 CommonValues.OrderOpCheck2 = OrderOpCheck2.Checked;
                 CommonValues.OrderOpCheck3 = Convert.ToInt32(OrderOpCheck3.CheckState);
@@ -791,13 +867,13 @@ namespace SampleApp
 
         private void btnFabricCodePrint_Click(object sender, EventArgs e)
         {
-            if (Close_All_Children("PrintQRCode"))
-            {
+            //if (Close_All_Children("PrintQRCode"))
+            //{
                 if (CommonValues.ListWorkID.Count > 0)
                 {
                     PrintQRCode frm = new PrintQRCode();
                     frm.Text = "Print QR Code";
-                    frm.MdiParent = this;
+                    //frm.MdiParent = this;
                     frm.Show();
                 }
                 else
@@ -807,7 +883,7 @@ namespace SampleApp
                     return;
                 }
 
-            }
+            //}
         }
 
         private void btnLocation_Click(object sender, EventArgs e)

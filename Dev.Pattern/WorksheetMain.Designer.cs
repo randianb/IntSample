@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -875,7 +875,8 @@
             // 
             this.gvWorksheet.MasterTemplate.AllowAddNewRow = false;
             this.gvWorksheet.MasterTemplate.AllowCellContextMenu = false;
-            this.gvWorksheet.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvWorksheet.MasterTemplate.EnableSorting = false;
+            this.gvWorksheet.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvWorksheet.Name = "gvWorksheet";
             this.gvWorksheet.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvWorksheet.ShowGroupPanel = false;

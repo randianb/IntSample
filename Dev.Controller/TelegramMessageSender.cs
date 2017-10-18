@@ -1,4 +1,5 @@
-﻿using Int;
+﻿using Dev.Options;
+using Int;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -55,6 +56,7 @@ namespace Dev.Controller
             }
             catch (WebException webEx)
             {
+                CommonController.Log("[Message Code] " + ((HttpWebResponse)webEx.Response).StatusCode);
 
                 Console.WriteLine(((HttpWebResponse)webEx.Response).StatusCode);
 

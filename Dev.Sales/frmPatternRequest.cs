@@ -39,6 +39,7 @@ namespace Dev.Sales
 
         private List<CustomerName> lstUserTD = new List<CustomerName>();          // 유저명
         private List<CustomerName> lstUserCAD = new List<CustomerName>();          // 유저명
+        private List<CustomerName> lstPatternType = new List<CustomerName>();
 
         private string urlTemp = Environment.CurrentDirectory + "\\temp";
 
@@ -122,6 +123,22 @@ namespace Dev.Sales
             ddlTD.ValueMember = "CustIdx";
             ddlTD.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
             ddlTD.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
+
+            // 코드
+            _dt = Code.Getlist("Pattern Type").Tables[0];
+
+            lstPatternType.Add(new CustomerName(0, "", 0));
+            foreach (DataRow row in _dt.Rows)
+            {
+                lstPatternType.Add(new CustomerName(Convert.ToInt32(row["Idx"]), row["Contents"].ToString(), 0));
+            }
+
+            //Pattern Type
+            ddlPatternType.DataSource = lstPatternType;
+            ddlPatternType.DisplayMember = "CustName";
+            ddlPatternType.ValueMember = "CustIdx";
+            ddlPatternType.DefaultItemsCountInDropDown = Options.CommonValues.DDL_DefaultItemsCountInDropDown;
+            ddlPatternType.DropDownHeight = Options.CommonValues.DDL_DropDownHeight;
             
             SetDefaultFontPropertiesToEditor(txtComment);
             CheckFolder(urlTemp);
@@ -325,7 +342,7 @@ namespace Dev.Sales
                             lstFiles2[0].ToString(), lstFiles2[1].ToString(), lstFiles2[2].ToString(), lstFiles2[3].ToString(), lstFiles2[4].ToString(),
                             lstFiles2[5].ToString(), lstFiles2[6].ToString(), lstFiles2[7].ToString(), lstFiles2[8].ToString(),
                             lstFileUrls2[0].ToString(), lstFileUrls2[1].ToString(), lstFileUrls2[2].ToString(),
-                            lstFileUrls2[3].ToString(), lstFileUrls2[4].ToString(),
+                            lstFileUrls2[3].ToString(), lstFileUrls2[4].ToString(), 
                             lstFileUrls2[5].ToString(), lstFileUrls2[6].ToString(), lstFileUrls2[7].ToString(), lstFileUrls2[8].ToString(),
                             Options.UserInfo.Idx,
                             chkPattern.Checked ? 1 : 0, chkConsumption.Checked ? 1 : 0,
@@ -515,6 +532,20 @@ namespace Dev.Sales
                 Console.WriteLine(ex.Message);
             }
 
+        }
+
+        private void chkPattern_ToggleStateChanged(object sender, StateChangedEventArgs args)
+        {
+            if (args.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On)
+            {
+                radLabel11.Visible = true;
+                ddlPatternType.Visible = true; 
+            }
+            else
+            {
+                radLabel11.Visible = false;
+                ddlPatternType.Visible = false;
+            }
         }
 
         private void ddlCAD_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)

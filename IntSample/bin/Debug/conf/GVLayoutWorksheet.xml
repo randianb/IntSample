@@ -1,15 +1,16 @@
 ﻿<RadGridView ShowGroupPanel="False" BackColor="233, 240, 249" ForeColor="Black" Text="radGridView1" Font="Segoe UI, 8.25pt" AutoScroll="True" Cursor="Default" RightToLeft="No" TabIndex="0" ImeMode="NoControl">
-  <MasterTemplate MultiSelect="True" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableGrouping="False">
+  <MasterTemplate MultiSelect="True" AllowColumnHeaderContextMenu="False" AllowAddNewRow="False" EnableSorting="False" EnableGrouping="False">
     <Columns>
-      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="Idx" Name="Idx" IsVisible="True" ReadOnly="True" HeaderText="ID" TextAlignment="MiddleCenter" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="OrderIdx" Name="OrderIdx" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn FieldName="Idx" Name="Idx" IsVisible="True" ReadOnly="True" HeaderText="ID" TextAlignment="MiddleCenter" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn FieldName="OrderIdx" Name="OrderIdx" IsVisible="False" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn FieldName="DeptIdx" Name="DeptIdx" IsVisible="True" ReadOnly="True" HeaderText="Dept." />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="130" FieldName="Buyer" Name="Buyer" IsVisible="True" ReadOnly="True" HeaderText="Buyer" />
       <Telerik.WinControls.UI.GridViewHyperlinkColumn Width="80" FieldName="Fileno" Name="Fileno" IsVisible="True" HeaderText="File#" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="120" FieldName="Styleno" Name="Styleno" IsVisible="True" ReadOnly="True" HeaderText="Style#" />
+      <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="en-US" FormatString="{0:d}" Width="80" FieldName="DeliveryDate" Name="DeliveryDate" IsVisible="True" ReadOnly="True" HeaderText="Delivery" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="en-US" FormatString="{0:g}" Width="120" FieldName="RegDate" Name="RegDate" IsVisible="True" ReadOnly="True" HeaderText="Sent Date" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="90" FieldName="Handler" Name="Handler" IsVisible="True" ReadOnly="True" HeaderText="Order&#xA;Handler" />
-      <Telerik.WinControls.UI.GridViewTextBoxColumn DataType="System.Int32" FieldName="HandlerIdx" Name="HandlerIdx" IsVisible="False" />
+      <Telerik.WinControls.UI.GridViewTextBoxColumn FieldName="HandlerIdx" Name="HandlerIdx" IsVisible="False" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="en-US" FormatString="{0:g}" Width="120" FieldName="ConfirmDate" Name="ConfirmDate" IsVisible="True" ReadOnly="True" HeaderText="Confirm Date&#xA;(Office)" TextAlignment="MiddleCenter" />
       <Telerik.WinControls.UI.GridViewTextBoxColumn Width="90" FieldName="ConfirmUser" Name="ConfirmUser" IsVisible="True" ReadOnly="True" HeaderText="Confirmed&#xA;(Office)" />
       <Telerik.WinControls.UI.GridViewDateTimeColumn FormatInfo="en-US" FormatString="{0:g}" Width="120" FieldName="ConfirmDateTD" Name="ConfirmDateTD" IsVisible="True" ReadOnly="True" HeaderText="Confirm Date&#xA;(T/D)" TextAlignment="MiddleCenter" />

@@ -1,0 +1,21 @@
+{
+  "enablePaging": false,
+  "enableSearchRow": false,
+  "NewOrderBuyerIdx": 0,
+  "SetHandler": true,
+  "OrderOpCheck1": true,
+  "OrderOpCheck2": true,
+  "OrderOpCheck3": 2,
+  "WorksheetOpCheck1": true,
+  "WorksheetOpCheck2": true,
+  "WorksheetOpCheck3": true,
+  "WorksheetOpCheck4": true,
+  "WorksheetOpCheck5": true,
+  "PatternOpCheck1": true,
+  "PatternOpCheck2": true,
+  "PatternOpCheck3": true,
+  "PatternOpCheck4": true,
+  "PatternOpCheck5": true,
+  "PatternOpCheck6": 2,
+  "PeriodTime": 0
+}

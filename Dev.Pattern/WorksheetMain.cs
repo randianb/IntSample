@@ -91,7 +91,8 @@ namespace Dev.Pattern
             //LoadGVLayout();             // 그리드뷰 레이아웃 복구 
 
             //TD확인 
-            if (Options.UserInfo.DeptIdx == 12 || Options.UserInfo.DeptIdx == 11)
+            if ((Options.UserInfo.DeptIdx == 12 || Options.UserInfo.DeptIdx == 11) && 
+                (Options.UserInfo.Idx!=98 && Options.UserInfo.Idx != 99)) // 3D인원 제외 
             {
                 toggTD.Value = true;
             }
@@ -109,7 +110,7 @@ namespace Dev.Pattern
             // 다른 폼으로부터 전달된 Work ID가 있을 경우, 해당 ID로 조회 
             if (!string.IsNullOrEmpty(_workOrderIdx))
             {
-                DataBinding_GV1(0, 0, 0, 0, "", "", _workOrderIdx, 0,0,0,0,0);
+                DataBinding_GV1(0, 0, 0, 0, "", "", _workOrderIdx, 1,1,1,1,1);
             }
 
             if (Options.UserInfo.Idx == 18)             // 개발실 원단담당자일 경우, 저장버튼 활성화 
@@ -237,6 +238,17 @@ namespace Dev.Pattern
             Styleno.TextAlignment = ContentAlignment.MiddleLeft;
             Styleno.HeaderText = "Style#";
             gv.Columns.Add(Styleno);
+
+            GridViewDateTimeColumn DeliveryDate = new GridViewDateTimeColumn();
+            DeliveryDate.Name = "DeliveryDate";
+            DeliveryDate.FieldName = "DeliveryDate";
+            DeliveryDate.Width = 80;
+            DeliveryDate.TextAlignment = ContentAlignment.MiddleCenter;
+            DeliveryDate.FormatInfo = new System.Globalization.CultureInfo("en-US");
+            DeliveryDate.FormatString = "{0:d}";
+            DeliveryDate.HeaderText = "Delivery";
+            DeliveryDate.ReadOnly = true;
+            gv.Columns.Add(DeliveryDate);
 
             GridViewDateTimeColumn RegDate = new GridViewDateTimeColumn();
             RegDate.Name = "RegDate";
@@ -1720,7 +1732,7 @@ namespace Dev.Pattern
                     if (Options.UserInfo.DeptIdx == 12)     // TD
                     {
                         _bRtn = Data.WorksheetData.RejectTD(Convert.ToInt32(_gv1.Rows[row.Index].Cells["Idx"].Value),
-                        Options.UserInfo.Idx, txtCommentTD.Text.Trim());
+                                                            Options.UserInfo.Idx, txtCommentTD.Text.Trim());
 
                         if (_bRtn)
                         {

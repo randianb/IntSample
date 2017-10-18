@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -123,7 +123,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 227F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 506F));
             this.tableLayoutPanel5.Controls.Add(this.ddlCust, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.radLabel2, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.radLabel7, 0, 0);
@@ -177,6 +177,7 @@
             // 
             this.ddlDept.AutoSize = false;
             this.ddlDept.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ddlDept.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlDept.Location = new System.Drawing.Point(3, 23);
             this.ddlDept.Name = "ddlDept";
             this.ddlDept.Size = new System.Drawing.Size(127, 35);
@@ -330,9 +331,10 @@
             // 
             this.gvWorksheet.MasterTemplate.AllowAddNewRow = false;
             this.gvWorksheet.MasterTemplate.AllowCellContextMenu = false;
+            this.gvWorksheet.MasterTemplate.EnableSorting = false;
             this.gvWorksheet.MasterTemplate.SelectionMode = Telerik.WinControls.UI.GridViewSelectionMode.CellSelect;
             this.gvWorksheet.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvWorksheet.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.gvWorksheet.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvWorksheet.Name = "gvWorksheet";
             this.gvWorksheet.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvWorksheet.ShowGroupPanel = false;
